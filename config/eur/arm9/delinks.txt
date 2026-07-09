@@ -86,6 +86,7 @@ src/main/status/StatusChangeOne.cpp:
 
 src/main/status/StoryStatus.cpp:
     .text start:0x0202c3cc end:0x0202c678
+    .bss start:0x020ee1cc end:0x020eec88
 
 src/main/status/BaseActionMessage:
     .text start:0x0202d020 end:0x0202d51c

@@ -7576,9 +7576,7 @@ data_020ee188 kind:bss addr:0x020ee188
 data_020ee190 kind:bss addr:0x020ee190
 data_020ee19c kind:bss addr:0x020ee19c
 data_020ee1c0 kind:bss addr:0x020ee1c0
-_ZN6status7g_StoryE kind:bss addr:0x020ee1cc
-data_020ee1d8 kind:bss addr:0x020ee1d8
-data_020eec58 kind:bss addr:0x020eec58
+_ZN6status7g_StoryE kind:bss(size=0xABC) addr:0x020ee1cc
 data_020eec88 kind:bss addr:0x020eec88
 data_020eec94 kind:bss addr:0x020eec94
 data_020eeca4 kind:bss addr:0x020eeca4

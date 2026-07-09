@@ -251,7 +251,7 @@ from:0x02189e5e kind:thumb_call to:0x0203b004 module:main
 from:0x02189e70 kind:thumb_call to:0x0216aca4 module:overlay(16)
 from:0x02189e74 kind:thumb_call to:0x0216b020 module:overlay(16)
 from:0x02189e7c kind:load to:0x020f0078 module:main
-from:0x02189e80 kind:load to:0x020eec58 module:main
+from:0x02189e80 kind:load to:0x020ee1cc add:0xA8C module:main
 from:0x02189e84 kind:load to:0x020d0bc0 module:main
 from:0x02189e88 kind:load to:0x020ed1bc module:main
 from:0x02189e90 kind:load to:0x02185e58 module:overlay(16)

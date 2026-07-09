@@ -10536,7 +10536,7 @@ from:0x02038838 kind:load to:0x020d0f3c module:main
 from:0x0203883c kind:load to:0x020d0ebc module:main
 from:0x02038840 kind:load to:0x020c7b1c module:main
 from:0x02038848 kind:load to:0x020d08e0 add:0x200 module:main
-from:0x02038854 kind:load to:0x020eec58 module:main
+from:0x02038854 kind:load to:0x020ee1cc add:0xA8C module:main
 from:0x02038858 kind:load to:0x020ef9ac module:main
 from:0x0203886c kind:load to:0x020d0bc0 module:main
 from:0x02038874 kind:load to:0x020d06b4 module:main
@@ -10560,7 +10560,7 @@ from:0x02038996 kind:thumb_call to:0x02013ff0 module:main
 from:0x020389dc kind:thumb_call to:0x02013fb4 module:main
 from:0x020389e6 kind:thumb_call to:0x02013ff0 module:main
 from:0x02038a08 kind:load to:0x020ee1cc module:main
-from:0x02038a0c kind:load to:0x020ee1d8 module:main
+from:0x02038a0c kind:load to:0x020ee1cc add:0xc module:main
 from:0x02038a18 kind:load to:0x020c7b1c add:0x1c module:main
 from:0x02038a1c kind:load to:0x020c7b1c add:0x280 module:main
 from:0x02038a30 kind:thumb_call_arm to:0x020882d4 module:main
@@ -10696,7 +10696,7 @@ from:0x020391a8 kind:thumb_call to:0x020140c8 module:main
 from:0x020391e2 kind:thumb_call to:0x020140c8 module:main
 from:0x020391f0 kind:thumb_call to:0x0200e728 module:main
 from:0x020391f8 kind:thumb_call to:0x0200e7d0 module:main
-from:0x02039200 kind:load to:0x020ee1d8 module:main
+from:0x02039200 kind:load to:0x020ee1cc add:0xc module:main
 from:0x02039204 kind:load to:0x020ee1cc module:main
 from:0x0203920c kind:load to:0x020c7b1c add:0x1c module:main
 from:0x02039210 kind:load to:0x020c7b1c module:main
@@ -11156,7 +11156,7 @@ from:0x0203b87a kind:thumb_call to:0x0203a820 module:main
 from:0x0203b880 kind:thumb_call_arm to:0x020882b0 module:main
 from:0x0203b894 kind:load to:0x020b6164 module:main
 from:0x0203b898 kind:load to:0x020b618e module:main
-from:0x0203b89c kind:load to:0x020eec58 module:main
+from:0x0203b89c kind:load to:0x020ee1cc add:0xA8C module:main
 from:0x0203b8a0 kind:load to:0x020f0078 module:main
 from:0x0203b8ae kind:thumb_call to:0x02051900 module:main
 from:0x0203b8ce kind:thumb_call to:0x02035180 module:main

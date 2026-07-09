@@ -3,7 +3,7 @@
 #include "main/status/PartyStatus.hpp"
 #include "main/dss/DssUtils.hpp"
 
-// status::StoryStatus status::g_Story; //data_020ee1cc
+status::StoryStatus status::g_Story; //data_020ee1cc
 
 
 THUMB void status::StoryStatus::setTarot(int flag) {
