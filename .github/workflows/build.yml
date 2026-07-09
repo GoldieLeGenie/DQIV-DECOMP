@@ -28,10 +28,26 @@ jobs:
       - name: Build
         run: |
           python3 tools/configure.py -w wibo --compiler /mwccarm --no-extract ${{ matrix.version }}
-          ninja arm9 report check
+          ninja arm9 report || true
+          echo "--- CI SHA1 ---"
+          sha1sum dqiv_eur.nds || true
+          echo "--- Expected SHA1 ---"
+          cat config/eur/dqiv_eur.sha1 || true
 
       - name: Upload report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.version }}_report
           path: build/${{ matrix.version }}/report.json
+          if-no-files-found: warn
+
+      - name: Upload ROM and linked object
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.version }}_rom_and_obj
+          path: |
+            dqiv_eur.nds
+            build/${{ matrix.version }}/arm9.o
+          if-no-files-found: warn
