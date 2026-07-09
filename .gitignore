@@ -1,0 +1,40 @@
+### Copyright — jamais dans le repo ###
+*.nds
+*.srl
+*bios.bin
+*.sav
+
+### extract/ : on garde extract/eur/ (dossier vide) mais pas son contenu ###
+extract/*
+!extract/eur/
+extract/eur/*
+!extract/eur/.gitkeep
+
+### Compilateur proprio ###
+tools/mwccarm/
+
+### Binaires d'outils (l'utilisateur les télécharge) ###
+/dsd
+/dsd.exe
+/dsd.pdb
+/objdiff-cli
+/objdiff-cli.exe
+/objdiff-windows-x86_64.exe
+/wibo
+/ninja.exe
+/m2ctx
+
+### Générés par le build ###
+build/
+build.ninja
+.ninja_log*
+.ninja_lock
+.ninja_deps
+objdiff.json
+compile_commands.json
+*.xMAP
+
+### Caches / IDE ###
+__pycache__/
+.cache/
+.vscode/

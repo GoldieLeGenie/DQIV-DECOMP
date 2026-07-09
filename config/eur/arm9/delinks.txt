@@ -1,0 +1,161 @@
+    .text       start:0x02000000 end:0x0208a1a8 kind:code align:32
+    .exceptix   start:0x0208a1a8 end:0x0208a1a8 kind:rodata align:4
+    .init       start:0x0208a1a8 end:0x0208c830 kind:code align:4
+    .rodata     start:0x0208c830 end:0x020bb30c kind:rodata align:4
+    .ctor       start:0x020bb30c end:0x020bb4d0 kind:rodata align:4
+    .data       start:0x020bb4e0 end:0x020c4a20 kind:data align:32
+    .bss        start:0x020c4a20 end:0x021210e0 kind:bss align:32
+
+src/main/dss/DssUtils.cpp:
+    .text start:0x02088360 end:0x020883d8
+
+src/main/dss/Random.cpp:
+    .text start:0x02080d48 end:0x02080d80
+
+src/main/status/BaseStatus.cpp:
+	.text start:0x0200e004 end:0x0200e128
+
+src/main/status/ExcelParam.cpp:
+    .text start:0x0200d220 end:0x0200d3c4
+    .bss  start:0x020c79b8 end:0x020c7a7c
+
+src/main/status/GameFlag.cpp:
+	.text start:0x0201d864 end:0x0201d8c8
+
+src/main/status/GameStatus.cpp:
+    .text start:0x0201d46c end:0x0201d4dc
+    .bss start:0x020d0bc0 end:0x020d0bcc
+
+src/main/status/ItemData.cpp:
+    .text start:0x02013d9c end:0x02013db8
+
+src/main/status/BattleResult.cpp:
+    .text start:0x02022ae4 end:0x02022db0
+    .bss start:0x020ec664 end:0x020ecd30
+
+
+src/main/status/BattleHistory.cpp:
+    .text start:0x02022db8 end:0x020231c8
+    .bss  start:0x020ecd3c end:0x020ecdb4
+
+src/main/status/BasePartyStatus.cpp:
+    .text start:0x0200e6dc end:0x0200e8e8
+    .data start:0x020bc88c end:0x020bc8ac
+
+src/main/status/PartyStatus.cpp:
+    .text start:0x0200e9f8 end:0x02010540
+    .bss start:0x020c7ab4 end:0x020c7e48
+
+src/main/status/HaveItemSack.cpp:
+    .text start:0x02014028 end:0x02014258
+    .data start:0x020bc8e0 end:0x020bc8f4
+
+src/main/status/PlayerStatus.cpp:
+    .text start:0x0200e128 end:0x0200e6dc
+    .data start:0x020bc870 end:0x020bc88c
+
+src/main/status/HaveItem.cpp:
+    .text start:0x02010574 end:0x02010928
+    .data start:0x020bc8ac end:0x020bc8c0
+    
+src/main/status/HaveEquipment.cpp:
+    .text start:0x020115d4 end:0x02011a9c
+    .data start:0x020bc8c0 end:0x020bc8cc
+
+src/main/status/HaveStatus.cpp:
+    .text start:0x02010928 end:0x020110dc
+
+src/main/status/HaveAction.cpp:
+    .text start:0x020111f8 end:0x020115d4
+    .bss start:0x020d06ac end:0x020d06b0
+
+
+src/main/status/Action.cpp:
+    .text start:0x020110dc end:0x020111f8
+
+src/main/status/HaveStatusInfo.cpp:
+    complete
+    .text start:0x02011a9c end:0x02013d00
+    .bss start:0x020d06b0 end:0x020d06b4
+
+src/main/status/StatusChange.cpp:
+    .text start:0x0201e6e0 end:0x0201f12c
+
+src/main/status/StatusChangeOne.cpp:
+    .text start:0x020370f0 end:0x02037494
+
+src/main/status/StoryStatus.cpp:
+    .text start:0x0202c3cc end:0x0202c678
+
+src/main/status/BaseActionMessage:
+    .text start:0x0202d020 end:0x0202d51c
+    .bss start:0x020eecc0 end:0x020eeccc
+
+src/main/status/BaseAction.cpp:
+    complete
+    .text start:0x02015c2c end:0x020162c0
+    .data start:0x020bc938 end:0x020bc9b4
+    .bss start:0x020d07f0 end:0x020d07fc
+
+src/main/status/BaseActionStatus.cpp:
+    complete
+    .bss start:0x020eecec end:0x020eecfc
+
+src/main/status/UseAction.cpp:
+    .text start:0x0201532c end:0x02015b34
+    .bss start:0x020d0718 end:0x020d0730
+
+src/main/status/UseActionMessage.cpp:
+    .text start:0x02033690 end:0x020336d8
+
+src/main/status/UseActionParam.cpp:
+    .text start:0x0202742c end:0x020274c4
+
+src/main/status/BaseHaveItem.cpp:
+    .text start:0x02013db8 end:0x02014028
+    .data start:0x020bc8cc end:0x020bc8e0
+
+src/main/status/StageStatus.cpp:
+    .text start:0x0201c360 end:0x0201d3a4
+    .bss  start:0x020d08e0 end:0x020d0bb4
+
+src/main/status/HaveBattleStatus.cpp:
+    .text start:0x0201ad3c end:0x0201c084
+    .data start:0x020bdb08 end:0x020bdb80
+    .bss  start:0x020d08b0 end:0x020d08d0
+
+src/main/global/Global.cpp:
+    .text start:0x0200b9e4 end:0x0200ba58
+    .bss start:0x020c768c end:0x020c774c
+
+src/main/status/ActionDefence.cpp:
+    .text start:0x020142dc end:0x02014da4
+
+src/main/status/ActionExec.cpp:
+    .text start:0x02014da4 end:0x0201532c
+    .bss start:0x020d06c8 end:0x020d0718
+    
+src/main/status/DQ4HaveEquipment.cpp:
+    .text start:0x02022a80 end:0x02022ac8
+    .data start:0x020be028 end:0x020be034
+
+
+src/main/status/OptionStatus.cpp:
+    complete
+    .init start:0x0208a920 end:0x0208a940
+    .ctor start:0x020bb398 end:0x020bb39c
+    .text start:0x02013d00 end:0x02013d9c
+    .bss  start:0x020d06b4 end:0x020d06c8
+
+
+src/main/status/CharacterStatus.cpp:
+    .text start:0x02026d38 end:0x02027024
+    .data start:0x020be6f8 end:0x020be71c
+
+src/main/status/UseItem.cpp:
+    .text start:0x0201a464 end:0x0201a990
+    .data start:0x020bd730 end:0x020bdb08
+
+
+src/main/param/Param.cpp:
+    .rodata start:0x0208eb00 end:0x020919dc
