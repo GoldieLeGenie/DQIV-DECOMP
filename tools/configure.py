@@ -153,7 +153,7 @@ class Project:
         ]
 
     def arm9_lcf(self) -> Path:
-        return self.game_build / "linker_script.lcf"
+        return self.game_build / "arm9.lcf"
 
     def arm9_objects_txt(self) -> Path:
         return self.game_build / "objects.txt"
@@ -224,7 +224,7 @@ def main():
 
         n.rule(
             name="lcf",
-            command=f"{DSD} lcf -c $config_path && echo '[lcf-debug] contents:' && ls $$(dirname $lcf_file) && (mv $$(dirname $lcf_file)/arm9.lcf $lcf_file 2>/dev/null || true)"
+            command=f"{DSD} lcf -c $config_path"
         )
         n.newline()
 
