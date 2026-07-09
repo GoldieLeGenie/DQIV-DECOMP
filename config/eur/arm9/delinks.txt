@@ -89,7 +89,7 @@ src/main/status/StoryStatus.cpp:
     .bss start:0x020ee1cc end:0x020eec88
 
 src/main/status/BaseActionMessage:
-    .text start:0x0202d020 end:0x0202d51c
+    .text start:0x0202d018 end:0x0202e0c4
     .bss start:0x020eecc0 end:0x020eeccc
 
 src/main/status/BaseAction.cpp:

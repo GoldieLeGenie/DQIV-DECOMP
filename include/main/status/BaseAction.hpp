@@ -9,6 +9,8 @@ namespace status{
         static int tsukonFlag_;    // data_020d07f4
         static int tsukon2Flag_;   // data_020d07f0
         static int doubleFlag_;    // data_020d080c
+        static int splitFlag_;  // data_020d0808
+        static int joukFlag_;  //data_020d0804
         void* unk;
         int actionIndex_;
         CharacterType targetType_;

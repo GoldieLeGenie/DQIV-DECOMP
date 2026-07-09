@@ -1,7 +1,24 @@
 #include "main/status/BaseActionMessage.hpp"
 #include "main/status/ActionExec.hpp"
+#include "main/status/BaseAction.hpp"
 
 status::BaseActionMessageData status::messageData_;
+
+
+THUMB status::BaseActionMessage::BaseActionMessage()
+
+{
+  return;
+}
+
+
+
+THUMB status::BaseActionMessage::~BaseActionMessage()
+
+{
+  return;
+}
+
 
 THUMB void status::BaseActionMessage::initialize() {
     messageData_.actionParam_ = excelParam.actionParam_;
@@ -198,41 +215,645 @@ THUMB int status::BaseActionMessage::setSplitMessage(status::CharacterStatus* ac
     if (index == -1) {
         return message;
     }
-    int result = func_0202d51c(this, target, index);
-    if (result == 0) result = func_0202d570(this, target, index);
-    if (result == 0) result = func_0202d5c4(this, target, index);
-    if (result == 0) result = func_0202d604(this, target, index);
-    if (result == 0) result = func_0202d644(this, target, index);
-    if (result == 0) result = func_0202d684(this, target, index);
-    if (result == 0) result = func_0202d6d4(this, target, index);
-    if (result == 0) result = func_0202d720(this, target, index);
-    if (result == 0) result = func_0202d754(this, target, index);
-    if (result == 0) result = func_0202d788(this, target, index);
-    if (result == 0) result = func_0202d7c0(this, target, index);
-    if (result == 0) result = func_0202d7f8(this, target, index);
-    if (result == 0) result = func_0202d840(this, target, index);
-    if (result == 0) result = func_0202d87c(this, target, index);
-    if (result == 0) result = func_0202d8b8(this, actor, index);
-    if (result == 0) result = func_0202d8fc(this, actor, index);
-    if (result == 0) result = func_0202d940(this, actor, index);
-    if (result == 0) result = func_0202d970(this, actor, index);
-    if (result == 0) result = func_0202da50(this, index);
-    if (result == 0) result = func_0202dadc(this, index);
-    if (result == 0) result = func_0202d9a0(this, actor, index);
-    if (result == 0) result = func_0202db20(this, index);
-    if (result == 0) result = func_0202db8c(this, index);
-    if (result == 0) result = func_0202dbf0(this, index);
-    if (result == 0) result = func_0202dc54(this, index);
-    if (result == 0) result = func_0202dcb8(this, index);
-    if (result == 0) result = func_0202dd1c(this, index);
-    if (result == 0) result = func_0202dd80(this, index);
-    if (result == 0) result = func_0202dde4(this, index);
-    if (result == 0) result = func_0202de48(this, index);
-    if (result == 0) result = func_0202deac(this, index);
-    if (result == 0) result = func_0202e078(this, index);
-    if (result == 0) result = func_0202df18(this, index);
-    if (result == 0) result = func_0202df70(this, index);
-    if (result == 0) result = func_0202dfc8(this, index);
-    if (result == 0) result = func_0202e020(this, index);
+    int result = getMessagePlayerOne(target, index);
+    if (result == 0) result = getMessagePlayerMany(target, index);
+    if (result == 0) result = getMessageMonster1G(target, index);
+    if (result == 0) result = getMessageMonster2G(target, index);
+    if (result == 0) result = getMessageMonsterD(target, index);
+    if (result == 0) result = getMessageTargetNoSleepNoSpazz(target, index);
+    if (result == 0) result = getMessageTargetSleepSpazz(target, index);
+    if (result == 0) result = getMessageTargetAlive(target, index);
+    if (result == 0) result = getMessageTargetDead(target, index);
+    if (result == 0) result = getMessageTargetAstoron(target, index);
+    if (result == 0) result = getMessageTargetNoMosyasu(target, index);
+    if (result == 0) result = getMessageTargetNoSplitNoJouk(target, index);
+    if (result == 0) result = getMessageTargetSplit(target, index);
+    if (result == 0) result = getMessageTargetJouk(target, index);
+    if (result == 0) result = getMessageWeaponEquipment(actor, index);
+    if (result == 0) result = getMessageNoWeaponEquipment(actor, index);
+    if (result == 0) result = getMessageActorMale(actor, index);
+    if (result == 0) result = getMessageActorFemale(actor, index);
+    if (result == 0) result = getMessageRulaOff(index);
+    if (result == 0) result = getMessageRiremitoOff(index);
+    if (result == 0) result = getMessageNoUse(actor, index);
+    if (result == 0) result = getMessageVainTimeZone(index);
+    if (result == 0) result = getMessageItemInBox(index);
+    if (result == 0) result = getMessageMonsterInBox(index);
+    if (result == 0) result = getMessageGoldInBox(index);
+    if (result == 0) result = getMessageZeroInBox(index);
+    if (result == 0) result = getMessageItemInPot(index);
+    if (result == 0) result = getMessageMonsterInPot(index);
+    if (result == 0) result = getMessageGoldInPot(index);
+    if (result == 0) result = getMessageZeroInPot(index);
+    if (result == 0) result = getMessageNoTarget(index);
+    if (result == 0) result = getMessageZero(index);
+    if (result == 0) result = getMessageNorthEast(index);
+    if (result == 0) result = getMessageSouthEast(index);
+    if (result == 0) result = getMessageNorthWest(index);
+    if (result == 0) result = getMessageSouthWest(index);
+    return result;
+}
+
+
+THUMB int status::BaseActionMessage::getMessagePlayerOne(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].aliveOne == 0) {
+        return 0;
+    }
+    if (target == 0) {
+        return 0;
+    }
+    if (target->characterType_ == PLAYER) {
+        g_Party.setBattleMode();
+        if (g_Party.getCarriageOutAliveCount() == 1) {
+            result = messageData_.splitMsg_[splitIndex].aliveOne;
+            this->splitFlag_ = 1;
+        }
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessagePlayerMany(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].aliveTwo == 0) {
+        return 0;
+    }
+    if (target == 0) {
+        return 0;
+    }
+    if (target->characterType_ == PLAYER) {
+        g_Party.setBattleMode();
+        if (g_Party.getCarriageOutAliveCount() >= 2) {
+            result = messageData_.splitMsg_[splitIndex].aliveTwo;
+            this->splitFlag_ = 1;
+        }
+    }
+    return result;
+}
+
+
+THUMB int status::BaseActionMessage::getMessageMonster1G(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].monsterOne == 0) {
+        return 0;
+    }
+    if (func_ov003_0212e6f8(data_ov003_0216639c) == 0) {
+        result = messageData_.splitMsg_[splitIndex].monsterOne;
+        this->splitFlag_ = 1;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageMonster2G(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].monsterTwo == 0) {
+        return 0;
+    }
+    if (func_ov003_0212e6f8(data_ov003_0216639c) == 1) {
+        result = messageData_.splitMsg_[splitIndex].monsterTwo;
+        this->splitFlag_ = 1;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageMonsterD(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].monsterMore == 0) {
+        return 0;
+    }
+    if (func_ov003_0212e6f8(data_ov003_0216639c) == 2) {
+        result = messageData_.splitMsg_[splitIndex].monsterMore;
+        this->splitFlag_ = 1;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageTargetNoSleepNoSpazz(status::CharacterStatus* target, int splitIndex)
+{
+    if (target == 0) {
+        return 0;
+    }
+    if (target->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusSleep)) {
+        return 0;
+    }
+    if (target->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusSpazz)) {
+        return 0;
+    }
+    int result = messageData_.splitMsg_[splitIndex].activate;
+    this->splitFlag_ = 0;
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageTargetSleepSpazz(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (target == 0) {
+        return 0;
+    }
+    if (target->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusSleep)
+     || target->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusSpazz)) {
+        result = messageData_.splitMsg_[splitIndex].deactivate;
+        this->splitFlag_ = 0;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageTargetAlive(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (target == 0) {
+        return 0;
+    }
+    if (!target->haveStatusInfo_.isDeath()) {
+        result = messageData_.splitMsg_[splitIndex].alive;
+        this->splitFlag_ = 0;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageTargetDead(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (target == 0) {
+        return 0;
+    }
+    if (target->haveStatusInfo_.isDeath()) {
+        result = messageData_.splitMsg_[splitIndex].dead;
+        this->splitFlag_ = 0;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageTargetAstoron(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (target == 0) {
+        return 0;
+    }
+    if (target->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusAstoron)) {
+        result = messageData_.splitMsg_[splitIndex].astoron;
+        splitFlag_ = 0;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageTargetNoMosyasu(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (target == 0) {
+        return 0;
+    }
+    if (!target->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusMosyasu)) {
+        result = messageData_.splitMsg_[splitIndex].mosyasu;
+        splitFlag_ = 0;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageTargetNoSplitNoJouk(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (target == 0) {
+        return 0;
+    }
+    int msg = messageData_.splitMsg_[splitIndex].splitAvoid;
+    if (msg != 0 && status::BaseAction::splitFlag_ == 0 && status::BaseAction::joukFlag_ == 0) {
+        result = msg;
+        this->splitFlag_ = 0;   
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageTargetSplit(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (target == 0) {
+        return 0;
+    }
+    int msg = messageData_.splitMsg_[splitIndex].split;
+    if (msg != 0 && status::BaseAction::splitFlag_ != 0) {
+        result = msg;
+        splitFlag_ = 0;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageTargetJouk(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (target == 0) {
+        return 0;
+    }
+    int msg = messageData_.splitMsg_[splitIndex].avoid;
+    if (msg && status::BaseAction::joukFlag_) {
+        result = msg;
+        splitFlag_ = 0;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageWeaponEquipment(status::CharacterStatus* actor, int splitIndex)
+{
+    int result = 0;
+
+    if (actor == 0) {
+        return 0;
+    }
+    if (messageData_.splitMsg_[splitIndex].equip
+     && actor->haveStatusInfo_.haveEquipment_.getEquipment(ITEM_WEAPON)) {
+        result = messageData_.splitMsg_[splitIndex].equip;
+        splitFlag_ = 0;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageNoWeaponEquipment(status::CharacterStatus* actor, int splitIndex)
+{
+    int result = 0;
+
+    if (actor == 0) {
+        return 0;
+    }
+    if (messageData_.splitMsg_[splitIndex].notEquit 
+     && actor->haveStatusInfo_.haveEquipment_.getEquipment(ITEM_WEAPON) == 0) {
+        result = messageData_.splitMsg_[splitIndex].notEquit;
+        splitFlag_ = 0;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageActorMale(status::CharacterStatus* actor, int splitIndex)
+{
+    int result = 0;
+
+    if (actor == 0) {
+        return 0;
+    }
+    if (actor->haveStatusInfo_.haveStatus_.sex_  == 0) {
+        result = messageData_.splitMsg_[splitIndex].male;
+        splitFlag_ = 0;
+    }
+    return result;
+}
+
+
+THUMB int status::BaseActionMessage::getMessageActorFemale(status::CharacterStatus* actor, int splitIndex)
+{
+    int result = 0;
+
+    if (actor == 0) {
+        return 0;
+    }
+    if (actor->haveStatusInfo_.haveStatus_.sex_ == 1) {
+        result = messageData_.splitMsg_[splitIndex].female;
+        splitFlag_ = 0;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageNoUse(status::CharacterStatus* target, int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].wastePlace != 0) {
+        if (actionIndex_ == 0xD0 || actionIndex_ == 0xB2) {
+            if (func_02058114(&data_0210bb94, 0xC) == 1 && g_Stage.lastFldSurface_ == -1) {
+                result = messageData_.splitMsg_[splitIndex].wastePlace;
+                splitFlag_ = 0;
+            }
+            if (g_Stage.isLanaruta() == 0) {
+                result = messageData_.splitMsg_[splitIndex].wastePlace;
+                splitFlag_ = 0;
+            }
+        }
+        if (actionIndex_ == 0xCB || actionIndex_ == 0xA4 || actionIndex_ == 0xAF) {
+            if (g_Stage.isRula() == 0) {
+                result = messageData_.splitMsg_[splitIndex].wastePlace;
+                splitFlag_ = 0;
+            }
+        }
+        if (actionIndex_ == 0xCC) {
+            if (g_Stage.isRiremito() == 0) {
+                result = messageData_.splitMsg_[splitIndex].wastePlace;
+                splitFlag_ = 0;
+            }
+        }
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageRulaOff(int splitIndex)
+{
+    int result = 0;
+    int action = actionIndex_;
+
+    if (action != 0xCB && action != 0xA4 && action != 0xAF
+     && action != 0xB2 && action != 0xD0) {
+        return 0;
+    }
+
+    if (messageData_.splitMsg_[splitIndex].rura ) {
+        if (action == 0xB2 || action == 0xD0) {
+            if (g_Stage.isLanarutaDisable()) {
+                result = messageData_.splitMsg_[splitIndex].rura;
+                splitFlag_ = 0;
+            }
+            if (g_Stage.timestop_  ) {     
+                result = messageData_.splitMsg_[splitIndex].rura;
+                splitFlag_ = 0;
+            }
+        } else {
+            if (g_Stage.isRulaDisable()) {
+                result = messageData_.splitMsg_[splitIndex].rura;
+                splitFlag_ = 0;
+            }
+        }
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageRiremitoOff(int splitIndex)
+{
+    int result = 0;
+
+    if (actionIndex_ != 0xCC) {
+        return 0;
+    }
+    if (messageData_.splitMsg_[splitIndex].riremito 
+     && g_Stage.isRiremitoDisable() ) {
+        result = messageData_.splitMsg_[splitIndex].riremito;
+        splitFlag_ = 0;
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageVainTimeZone(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].wasteTime != 0) {
+        if (actionIndex_ == 0xB2
+         && (g_Stage.getTimeZone() == 1 || g_Stage.getTimeZone() == 4)) {
+            result = messageData_.splitMsg_[splitIndex].wasteTime;
+            splitFlag_ = 0;
+        }
+        if (actionIndex_ == 0xD4
+         && func_02058114(&data_0210bb94, 0xC) == 0) {
+            result = messageData_.splitMsg_[splitIndex].wasteTime;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+
+THUMB int status::BaseActionMessage::getMessageItemInBox(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].cofferItem != 0
+     && func_02058114(&data_0210bb94, 0xC) == 1) {
+        int uid = func_ov000_02135358(func_ov000_02132a90());
+        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 7
+         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 2) {
+            result = messageData_.splitMsg_[splitIndex].cofferItem;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageMonsterInBox(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].cofferMonster != 0
+     && func_02058114(&data_0210bb94, 0xC) == 1) {
+        int uid = func_ov000_02135358(func_ov000_02132a90());
+        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 7
+         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 4) {
+            result = messageData_.splitMsg_[splitIndex].cofferMonster;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+
+THUMB int status::BaseActionMessage::getMessageGoldInBox(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].cofferGold != 0
+     && func_02058114(&data_0210bb94, 0xC) == 1) {
+        int uid = func_ov000_02135358(func_ov000_02132a90());
+        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 7
+         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 3) {
+            result = messageData_.splitMsg_[splitIndex].cofferGold;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageZeroInBox(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].cofferNothing != 0
+     && func_02058114(&data_0210bb94, 0xC) == 1) {
+        int uid = func_ov000_02135358(func_ov000_02132a90());
+        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 7
+         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 1) {
+            result = messageData_.splitMsg_[splitIndex].cofferNothing;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageItemInPot(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].tuboItem != 0
+     && func_02058114(&data_0210bb94, 0xC) == 1) {
+        int uid = func_ov000_02135358(func_ov000_02132a90());
+        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 0x27
+         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 2) {
+            result = messageData_.splitMsg_[splitIndex].tuboItem;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageMonsterInPot(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].tuboMonster != 0
+     && func_02058114(&data_0210bb94, 0xC) == 1) {
+        int uid = func_ov000_02135358(func_ov000_02132a90());
+        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 0x27
+         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 4) {
+            result = messageData_.splitMsg_[splitIndex].tuboMonster;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+
+THUMB int status::BaseActionMessage::getMessageGoldInPot(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].tuboGold != 0
+     && func_02058114(&data_0210bb94, 0xC) == 1) {
+        int uid = func_ov000_02135358(func_ov000_02132a90());
+        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 0x27
+         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 3) {
+            result = messageData_.splitMsg_[splitIndex].tuboGold;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+
+
+THUMB int status::BaseActionMessage::getMessageZeroInPot(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].tuboNothing != 0
+     && func_02058114(&data_0210bb94, 0xC) == 1) {
+        int uid = func_ov000_02135358(func_ov000_02132a90());
+        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 0x27
+         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 1) {
+            result = messageData_.splitMsg_[splitIndex].tuboNothing;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+
+THUMB int status::BaseActionMessage::getMessageNoTarget(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].noTarget != 0) {
+        if (func_02058114(&data_0210bb94, 0xC) == 1) {
+            int uid = func_ov000_02135358(func_ov000_02132a90());
+            int type = func_ov000_02123198(func_ov000_02122ad8(), uid);
+            if (uid == 0 || (type != 0x27 && type != 7)) {
+                result = messageData_.splitMsg_[splitIndex].noTarget;
+                splitFlag_ = 0;
+            }
+        } else {
+            result = messageData_.splitMsg_[splitIndex].noTarget;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageNorthEast(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].northEast != 0
+     && func_02058114(&data_0210bb94, 0xE) != 0) {
+        char dx = func_ov016_021755a0()->takanomeX_;
+        char dy = func_ov016_021755a0()->takanomeY_;
+        if (dx <= 0 && dy >= 0) {
+            result = messageData_.splitMsg_[splitIndex].northEast;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+
+THUMB int status::BaseActionMessage::getMessageSouthEast(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].northEast != 0     
+     && func_02058114(&data_0210bb94, 0xE) != 0) {
+        char dx = func_ov016_021755a0()->takanomeX_;
+        char dy = func_ov016_021755a0()->takanomeY_;
+        if (dx <= 0 && dy < 0) {
+            result = messageData_.splitMsg_[splitIndex].southEast;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageNorthWest(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].northWest != 0
+     && func_02058114(&data_0210bb94, 0xE) != 0) {
+        char dx = func_ov016_021755a0()->takanomeX_;
+        char dy = func_ov016_021755a0()->takanomeY_;
+        if (dx > 0 && dy >= 0) {
+            result = messageData_.splitMsg_[splitIndex].northWest;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+THUMB int status::BaseActionMessage::getMessageSouthWest(int splitIndex)
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].southWest != 0
+     && func_02058114(&data_0210bb94, 0xE) != 0) {
+        char dx = func_ov016_021755a0()->takanomeX_;
+        char dy = func_ov016_021755a0()->takanomeY_;
+        if (dx > 0 && dy < 0) {
+            result = messageData_.splitMsg_[splitIndex].southWest;
+            splitFlag_ = 0;
+        }
+    }
+    return result;
+}
+
+
+THUMB int status::BaseActionMessage::getMessageZero(int splitIndex)  
+{
+    int result = 0;
+
+    if (messageData_.splitMsg_[splitIndex].nothing != 0
+     && func_02058114(&data_0210bb94, 0xC) == 1) {
+        if (func_ov000_021232d0(func_ov000_02122ad8()) == 0) {
+            result = messageData_.splitMsg_[splitIndex].nothing;
+            splitFlag_ = 0;
+        }
+    }
     return result;
 }

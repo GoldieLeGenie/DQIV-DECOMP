@@ -54,6 +54,7 @@ extern GlobalDQ4 data_0210bb94;
 extern "C" int   func_02058114(void* global, int partId);       // checkPartId (g_Global2.m_part_id == partId) ?                 
 extern "C" void* func_ov000_02132a90();                        // TownPlayerManager::getInstance → &m_singleton
 extern "C" int   func_ov000_02135358(void* self);              // TownPlayerManager::getInpasMapObj
+extern "C" int   func_ov000_021232d0(void* self);              // TownFurnitureManager::checkNothing
 extern "C" void* func_ov000_02122ad8();                        // TownFurnitureManager::getInstance → &m_singleton
 extern "C" int   func_ov000_02123144(void* self, int mapObj);  // TownFurnitureManager::checkCoffer
 extern "C" int   func_ov000_02121d04();                        // TownFurnitureMessage::setSecondMessage 
