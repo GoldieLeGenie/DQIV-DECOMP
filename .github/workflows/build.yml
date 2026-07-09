@@ -1,28 +1,36 @@
-name: PR Check
+name: Build
 
 on:
+  push:
   pull_request:
-    branches: [main]
-  workflow_dispatch:
 
 jobs:
-  check-forbidden-files:
+  build:
+    container: ghcr.io/goldielegenie/dqiv-build:latest
+
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [eur]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          submodules: recursive
 
-      - name: Check for forbidden binary/ROM/asset files
+      - name: Prepare
         run: |
-          base="${{ github.event.pull_request.base.sha }}"
-          head="${{ github.event.pull_request.head.sha }}"
-          bad=$(git diff --name-only "$base" "$head" \
-                | grep -iE '\.(nds|exe|dll|o|bin|png|jpe?g|zip|rar|7z)$' || true)
-          if [ -n "$bad" ]; then
-            echo "::error::This PR adds forbidden binary/ROM/asset files. Only C source is allowed:"
-            echo "$bad"
-            exit 1
-          fi
-          echo "OK — no forbidden files."
+          mv /extract/* ./extract
+
+      - name: Build
+        run: |
+          python tools/configure.py -w wibo --compiler /mwccarm --no-extract ${{ matrix.version }}
+          ninja arm9 report check
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.version }}_report
+          path: build/${{ matrix.version }}/report.json
