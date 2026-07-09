@@ -224,7 +224,7 @@ def main():
 
         n.rule(
             name="lcf",
-            command=f"{DSD} lcf -c $config_path"
+            command=f"{DSD} lcf -c $config_path && mv $$(dirname $lcf_file)/arm9.lcf $lcf_file"
         )
         n.newline()
 
