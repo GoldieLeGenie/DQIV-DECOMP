@@ -28,6 +28,9 @@ jobs:
       - name: Build
         run: |
           python3 tools/configure.py -w wibo --compiler /mwccarm --no-extract ${{ matrix.version }}
+          ./dsd lcf -c config/eur/arm9/config.yaml
+          echo "--- build/eur/ contents after lcf ---"
+          ls -la build/eur/
           ninja arm9 report check
 
       - name: Upload report
