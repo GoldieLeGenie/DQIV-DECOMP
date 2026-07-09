@@ -224,7 +224,7 @@ def main():
 
         n.rule(
             name="lcf",
-            command=f"{DSD} lcf -c $config_path && mv $$(dirname $lcf_file)/arm9.lcf $lcf_file"
+            command=f"{DSD} lcf -c $config_path && echo '[lcf-debug] contents:' && ls $$(dirname $lcf_file) && (mv $$(dirname $lcf_file)/arm9.lcf $lcf_file 2>/dev/null || true)"
         )
         n.newline()
 
