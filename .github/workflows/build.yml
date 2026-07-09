@@ -22,6 +22,7 @@ jobs:
 
       - name: Prepare
         run: |
+          rm -rf ./extract/eur
           mv /extract/* ./extract
 
       - name: Build
