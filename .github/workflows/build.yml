@@ -24,6 +24,7 @@ jobs:
         run: |
           rm -rf ./extract/eur
           mv /extract/* ./extract
+          cp ./extract/eur/arm7_bios.bin ./arm7_bios.bin
 
       - name: Build
         run: |
