@@ -1,0 +1,107 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: pip install -r tools/requirements.txt
+
+      - name: Install ninja
+        run: sudo apt-get update && sudo apt-get install -y ninja-build
+
+      - name: Restore baserom
+        env:
+          BASEROM_B64: ${{ secrets.BASEROM_B64 }}
+        run: |
+          if [ -z "$BASEROM_B64" ]; then
+            echo "::error::Secret BASEROM_B64 is not set. Add the base64-encoded EUR ROM as a repository secret."
+            exit 1
+          fi
+          mkdir -p extract
+          echo "$BASEROM_B64" | base64 -d > extract/baserom_dqiv_eur.nds
+
+      - name: Restore ARM7 BIOS
+        env:
+          ARM7_BIOS_B64: ${{ secrets.ARM7_BIOS_B64 }}
+        run: |
+          if [ -n "$ARM7_BIOS_B64" ]; then
+            echo "$ARM7_BIOS_B64" | base64 -d > arm7_bios.bin
+          fi
+
+      - name: Restore mwccarm compiler
+        env:
+          MWCCARM_B64: ${{ secrets.MWCCARM_B64 }}
+        run: |
+          if [ -z "$MWCCARM_B64" ]; then
+            echo "::error::Secret MWCCARM_B64 is not set. Add the base64-encoded tools/mwccarm folder (zipped) as a repository secret."
+            exit 1
+          fi
+          echo "$MWCCARM_B64" | base64 -d > mwccarm.zip
+          mkdir -p tools/mwccarm
+          unzip -q mwccarm.zip -d tools/mwccarm
+          chmod -R +x tools/mwccarm
+
+      - name: Download dsd
+        run: |
+          DSD_VERSION="v0.10.2"
+          curl -L "https://github.com/AetiasHax/dsd/releases/download/${DSD_VERSION}/dsd-linux-x86_64" -o dsd
+          chmod +x dsd
+
+      - name: Download objdiff-cli
+        run: |
+          OBJDIFF_VERSION="v2.7.1"
+          curl -L "https://github.com/encounter/objdiff/releases/download/${OBJDIFF_VERSION}/objdiff-cli-linux-x86_64" -o objdiff-cli
+          chmod +x objdiff-cli
+
+      - name: Download wibo (Windows exe runner)
+        run: |
+          WIBO_VERSION="0.6.16"
+          curl -L "https://github.com/decompals/wibo/releases/download/${WIBO_VERSION}/wibo" -o wibo
+          chmod +x wibo
+
+      - name: Configure
+        run: python tools/configure.py eur
+
+      - name: Build
+        run: ninja
+
+      - name: Verify SHA1
+        run: |
+          if [ -f dqiv_eur.nds ]; then
+            sha1sum dqiv_eur.nds
+          fi
+
+      - name: Upload objdiff report
+        uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: build/eur/report.json
+          if-no-files-found: error
+
+      - name: Upload full build artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: |
+            build/eur/report.json
+            build/eur/arm9.o
+            objdiff.json
+          if-no-files-found: warn
