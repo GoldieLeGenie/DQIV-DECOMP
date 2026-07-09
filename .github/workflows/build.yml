@@ -6,6 +6,8 @@ on:
 
 jobs:
   build:
+    container: ghcr.io/goldielegenie/dqiv-build:latest
+
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
