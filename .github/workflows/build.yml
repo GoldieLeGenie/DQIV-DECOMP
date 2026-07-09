@@ -27,7 +27,7 @@ jobs:
 
       - name: Build
         run: |
-          python tools/configure.py -w wibo --compiler /mwccarm --no-extract ${{ matrix.version }}
+          python3 tools/configure.py -w wibo --compiler /mwccarm --no-extract ${{ matrix.version }}
           ninja arm9 report check
 
       - name: Upload report
