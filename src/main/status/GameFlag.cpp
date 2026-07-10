@@ -1,5 +1,8 @@
 #include "main/status/GameFlag.hpp"
 
+status::GameFlag g_GlobalFlag;
+
+
 THUMB void status::GameFlag::set(unsigned int index) {
     this->flag_[index >> 5].flag_ |= 1 << (index & 0x1f);
     return;

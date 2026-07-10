@@ -33,7 +33,7 @@ from:0x021894ba kind:thumb_call to:0x02189760 module:overlay(24)
 from:0x021894c2 kind:thumb_call to:0x02025bb8 module:main
 from:0x021894c8 kind:load to:0x020ed1bc module:main
 from:0x021894d0 kind:load to:0x020c768c module:main
-from:0x021894d4 kind:load to:0x020ef650 module:main
+from:0x021894d4 kind:load to:0x20eed50 add:0x900 module:main
 from:0x021894d8 kind:load to:0x020ef9ac module:main
 from:0x021894dc kind:load to:0x020efcc0 module:main
 from:0x021894e4 kind:load to:0x020d08e0 module:main

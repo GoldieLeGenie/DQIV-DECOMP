@@ -13,3 +13,6 @@ namespace status{
         void remove(unsigned int index);
     };
 }
+
+extern status::GameFlag g_GlobalFlag;
+

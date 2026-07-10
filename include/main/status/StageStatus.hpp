@@ -162,16 +162,16 @@ extern status::StageStatus g_Stage; //data_020d08e0
 
 extern "C" {
     void func_02030fe0(int);
-    Ov000unkstruct* func_ov000_02132228();
+    void* func_ov000_02132228();
     void func_ov000_021341ec(void*, int);
-    void func_ov001_02127b28();
-    void func_020332cc();
+    void* func_ov001_02127b28();
+    cmn::CommonRuraData* func_020332cc();
     void func_02033328();
     void func_02087154(void*, int);
     void func_02087168(void*, int);
     void func_02088360(void* dest, int size, void* src); 
     int func_0200c0a4(param::FloorParam*, char*);
-    int func_020882b0(char*, const char*);
+    int func_020882b0(const char*, const char*);
     void func_02037d28();
     void func_02037da4();
     int func_02058114(void*, int);

@@ -10,6 +10,8 @@ namespace dss{
     struct Fx32
     {
         fx32 value;
+        Fx32() {}
+        Fx32(const Fx32& other);
     };
     template <typename T>
     struct BitFlag
@@ -41,6 +43,10 @@ namespace dss{
         Fx32 vx;
         Fx32 vy;
         Fx32 vz;
+        Fx32Vector3();                                       
+        Fx32Vector3(const Fx32& x, const Fx32& y, const Fx32& z)
+            : vx(x), vy(y), vz(z) {}
+        Fx32Vector3& operator=(const Fx32Vector3& o);
     };
 
     struct DssUtils

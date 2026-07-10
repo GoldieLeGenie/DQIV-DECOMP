@@ -158,7 +158,7 @@ from:0x02189936 kind:thumb_call to:0x0200ef94 module:main
 from:0x02189948 kind:thumb_call to:0x02035180 module:main
 from:0x0218994c kind:thumb_call to:0x020351c8 module:main
 from:0x02189954 kind:load to:0x020c7b1c module:main
-from:0x02189958 kind:load to:0x020ef650 module:main
+from:0x02189958 kind:load to:0x20eed50 add:0x900 module:main
 from:0x0218996a kind:thumb_call to:0x0205241c module:main
 from:0x0218997a kind:thumb_call to:0x02052408 module:main
 from:0x02189984 kind:thumb_call_arm to:0x02039930 module:main
