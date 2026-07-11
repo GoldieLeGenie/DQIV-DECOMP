@@ -14,5 +14,7 @@ namespace status{
     };
 }
 
+extern status::GameFlag g_LocalFlag;
+extern status::GameFlag g_AreaFlag; 
 extern status::GameFlag g_GlobalFlag;
 

@@ -1,7 +1,20 @@
 #pragma once
+#include "globaldefs.h"
+#include "main/dss/DssUtils.hpp"
+#include "GameInfo.hpp"
+#include "main/status/HaveItemSack.hpp"
 
 class profile {
 public:
+    struct PROFILE_SYSTEM {
+        unsigned int MAGIC;
+        unsigned int VER;
+        unsigned int CHECKSUM;
+        unsigned char BOOKNO;
+        unsigned char SAVETYPE;
+        unsigned char PAD_POS;
+  
+    };
     enum SAVETYPE {
         SAVETYPE_NONE = 0,
         SAVETYPE_CHURCH = 1,
@@ -119,7 +132,22 @@ public:
         unsigned char NEW_SYMBOLFLAG[16];
         unsigned char BREAKFLAG[8];
         unsigned char SELECTTAISHI_FLAG[64];
-        unsigned char CampaignFlag[1024];
+        unsigned char CampaignFlag[509];
+    };
+    struct PROFILE_CHAPTER {
+        unsigned int GOLD;
+        unsigned int CASINOCOIN;
+        unsigned char SACKITEM[162];
+        unsigned char SACKCOUNT[162];
+    };
+    
+    struct PROFILE_MONSTER {
+        unsigned short KILL;
+        unsigned short ITEMCOUNT;
+        unsigned char ITEM;
+        unsigned char LEVEL;
+        unsigned char ENCOUNT;
+        unsigned char __padding;
     };
     struct PROFILE_HISTORY {
         unsigned int ADVENTURE_TIME;
@@ -134,4 +162,49 @@ public:
         unsigned char HERO_LEVEL;
         unsigned char __padding;
     };
+    struct PROFILE_ENVOY {
+        unsigned int UNIQUE;
+        unsigned char NAME[16];
+        unsigned char HERONAME[16];
+        unsigned char TOWNNAME[28];
+        unsigned char COMMENT[136];
+        unsigned char TYPE;
+        unsigned char SEX;
+        unsigned char AGE;
+        unsigned char SKILL;
+    };
+    struct PROFILE_RECORD {
+        PROFILE_SYSTEM system;
+        PROFILE_PARTY party;
+        PROFILE_CHAPTER chapter[5];
+        PROFILE_PLAYER player[14];
+        PROFILE_MONSTER monster[210];
+        PROFILE_HISTORY history[3];
+        PROFILE_ENVOY envoy[25];
+    };
+    struct Profile {
+        PROFILE_SYSTEM *pSYSTEM;
+        PROFILE_PARTY *pPARTY;
+        PROFILE_CHAPTER *pCHAPTER;
+        PROFILE_PLAYER *pPLAYER;
+        PROFILE_MONSTER *pMONSTER;
+        PROFILE_HISTORY *pHISTORY;
+        PROFILE_ENVOY *pENVOY;
+        PROFILE_RECORD profiledata_;
+        unsigned char profiledummy_[1440];
+        void presetMember();
+        void collectDATA_PARTY();
+        void collectDATA_PLAYER();
+        void collectDATA_CHAPTER();
+        
+    };  
 };
+
+extern status::HaveItemSack g_NeneItemSack;      // data_020d0c00
+extern int darts[6];             //data_020d0be4 
+extern unsigned char data_020f0078;     // manager SELECTTAISHI
+extern "C" void* func_020882d4(void* dst, int c, int n);                   
+extern "C" void func_02030df8(void* prof, unsigned char* dst, void* flag);  // Profile::collectGameFlag 
+extern "C" void func_0201d288(void* stage, int savetype, void* pparty);     // collectMapFlag
+extern "C" int func_02003528(char* a, char* b);                             // strcmp 
+extern "C" unsigned char func_0203ab30(void* mgr, int index);               // getter SELECTTAISHI

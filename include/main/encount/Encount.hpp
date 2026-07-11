@@ -14,6 +14,6 @@ struct Encount{
     TIME_ZONE timeZone_;
     int chapter_;
     int partyCount_;
-    bool enable_;
+    int enable_;
     int brewCount_;
 };

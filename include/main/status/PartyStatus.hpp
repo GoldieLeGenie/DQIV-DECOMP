@@ -20,6 +20,10 @@ namespace status {
         int party_[13];
         int memberOutside_[4];
         int memberBackside_[4];
+        virtual void setSaveData(profile::PROFILE_PARTY* data);
+        virtual void setLoadData(profile::PROFILE_PARTY* data, profile::PROFILE_HISTORY* history);
+        PartyStatus();
+        void unkfunc_0200e9cc();
         ~PartyStatus();
         void initialize();
         void add(int playerIndex);
@@ -106,15 +110,15 @@ namespace status {
         int isChapter4BGM();
         int isPartyActionEnable();
         int isMegazaruRingEnable();
-        virtual void setSaveData(profile::PROFILE_PARTY* data);
-        virtual void setLoadData(profile::PROFILE_PARTY* data);
+        
     };
 
     extern PartyStatus g_Party; // 0x020c7b1c
 }
 
 
-extern status::PlayerStatus originalPlayer_[1];
+extern status::PlayerStatus originalPlayer_[26];
+extern int originalPlayerFlag_[26];
 
 
 extern "C" {

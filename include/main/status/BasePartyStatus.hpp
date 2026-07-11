@@ -23,6 +23,7 @@ namespace status{
         int battleExp_;
         int battleGold_;
         BasePartyStatus();
+        ~BasePartyStatus();
         bool isCarriageEnter();
         void setGold(int gold);
         static unsigned int getClampValue(unsigned int value, unsigned int min, unsigned int max);
@@ -39,7 +40,7 @@ namespace status{
         void addPlayerMedalCoin(unsigned int coin);
         int isFirstMedalCoin();
         virtual void setSaveData(profile::PROFILE_PARTY* data);
-        virtual void setLoadData(profile::PROFILE_PARTY *data);
+        virtual void setLoadData(profile::PROFILE_PARTY *data, profile::PROFILE_HISTORY* history);
         int getBattleExp();
         int getBattleGold();
     };

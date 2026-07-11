@@ -2,6 +2,7 @@
 #include "main/status/UseItem.hpp"
 
 
+
 THUMB status::HaveItemSack::HaveItemSack() : sortType_(Kind) {
     item_ = itemArray_;
     itemMax_ = 162;

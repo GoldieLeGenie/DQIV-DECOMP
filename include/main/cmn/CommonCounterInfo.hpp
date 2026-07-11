@@ -27,3 +27,6 @@ extern "C" int func_0207f280(void* pad);        // getKeyHeld/getTrigger — pad
 extern char data_02116d40[];                     // struct input 
 extern "C"  int func_0203690c();                  // isAnyKeyPush — check global pad
 extern "C"  int func_02008eb8(int a, int b);      // max(a, b)
+
+ 
+

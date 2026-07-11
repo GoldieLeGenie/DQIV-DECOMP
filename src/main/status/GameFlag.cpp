@@ -1,5 +1,7 @@
 #include "main/status/GameFlag.hpp"
 
+status::GameFlag g_AreaFlag;
+status::GameFlag g_LocalFlag;
 status::GameFlag g_GlobalFlag;
 
 

@@ -3,6 +3,34 @@
 #include <globaldefs.h>
 
 namespace param{
+    struct PartyTalk
+    {
+        unsigned int messageID;
+        unsigned int value1;
+        unsigned int value2;
+        unsigned int value3;
+        unsigned int pick1;
+        unsigned short start;
+        unsigned short end;
+        unsigned short floor;
+        unsigned short document1;
+        unsigned char object1;
+        unsigned char object2;
+        unsigned char condition1;
+        unsigned char condition2;
+        unsigned char condition3;
+        unsigned char horse;
+        char byte_1;
+        char byte_2;
+        char byte_3;
+        char byte_4;
+        char byte_5;
+        char byte_6;
+        char byte_7;
+        unsigned char dmmy0;
+        unsigned char dmmy1;
+        unsigned char dmmy2;
+    };
     struct AppriseItem {
         unsigned int message1;
         unsigned int message2;

@@ -13,6 +13,7 @@ src/main/dss/Random.cpp:
     .text start:0x02080d48 end:0x02080d80
 
 src/main/status/BaseStatus.cpp:
+    complete
 	.text start:0x0200e004 end:0x0200e128
 
 src/main/status/ExcelParam.cpp:
@@ -22,7 +23,7 @@ src/main/status/ExcelParam.cpp:
 src/main/status/GameFlag.cpp:
     complete
 	.text start:0x0201d864 end:0x0201d8c8
-    .bss start:0x020d0fbc end:0x020d103c
+    .bss start:0x020d0ebc end:0x020d103c
 
 src/main/status/GameStatus.cpp:
     .text start:0x0201d46c end:0x0201d4dc
@@ -37,42 +38,47 @@ src/main/status/BattleResult.cpp:
 
 
 src/main/status/BattleHistory.cpp:
+    complete
     .text start:0x02022db8 end:0x020231c8
     .bss  start:0x020ecd3c end:0x020ecdb4
 
 src/main/status/BasePartyStatus.cpp:
-    .text start:0x0200e6dc end:0x0200e8e8
-    .data start:0x020bc88c end:0x020bc8ac
-
-src/main/status/PartyStatus.cpp:
-    .text start:0x0200e9f8 end:0x02010540
+    .text start:0x0200e6dc end:0x02010540
     .bss start:0x020c7ab4 end:0x020c7e48
+    .data start:0x020bc88c end:0x020bc8ac
 
 src/main/status/HaveItemSack.cpp:
     .text start:0x02014028 end:0x02014258
     .data start:0x020bc8e0 end:0x020bc8f4
+
+
 
 src/main/status/PlayerStatus.cpp:
     .text start:0x0200e128 end:0x0200e6dc
     .data start:0x020bc870 end:0x020bc88c
 
 src/main/status/HaveItem.cpp:
+    complete
     .text start:0x02010574 end:0x02010928
     .data start:0x020bc8ac end:0x020bc8c0
     
 src/main/status/HaveEquipment.cpp:
+    complete
     .text start:0x020115d4 end:0x02011a9c
     .data start:0x020bc8c0 end:0x020bc8cc
 
 src/main/status/HaveStatus.cpp:
+    complete
     .text start:0x02010928 end:0x020110dc
 
 src/main/status/HaveAction.cpp:
+    complete
     .text start:0x020111f8 end:0x020115d4
     .bss start:0x020d06ac end:0x020d06b0
 
 
 src/main/status/Action.cpp:
+    complete
     .text start:0x020110dc end:0x020111f8
 
 src/main/status/HaveStatusInfo.cpp:
@@ -81,9 +87,11 @@ src/main/status/HaveStatusInfo.cpp:
     .bss start:0x020d06b0 end:0x020d06b4
 
 src/main/status/StatusChange.cpp:
+    complete
     .text start:0x0201e6e0 end:0x0201f12c
 
 src/main/status/StatusChangeOne.cpp:
+    complete
     .text start:0x020370f0 end:0x02037494
 
 src/main/status/StoryStatus.cpp:
@@ -91,6 +99,7 @@ src/main/status/StoryStatus.cpp:
     .bss start:0x020ee1cc end:0x020eec88
 
 src/main/status/BaseActionMessage:
+    complete
     .text start:0x0202d018 end:0x0202e0c4
     .bss start:0x020eecc0 end:0x020eeccc
 
@@ -109,6 +118,7 @@ src/main/status/UseAction.cpp:
     .bss start:0x020d0718 end:0x020d0730
 
 src/main/status/UseActionMessage.cpp:
+    complete
     .text start:0x02033690 end:0x020336d8
 
 src/main/status/UseActionParam.cpp:
@@ -139,6 +149,7 @@ src/main/status/ActionExec.cpp:
     .bss start:0x020d06c8 end:0x020d0718
     
 src/main/status/DQ4HaveEquipment.cpp:
+    complete
     .text start:0x02022a80 end:0x02022ac8
     .data start:0x020be028 end:0x020be034
 
@@ -160,6 +171,14 @@ src/main/status/UseItem.cpp:
     .data start:0x020bd730 end:0x020bdb08
 
 
+src/main/profile/Profile.cpp:
+    .text start:0x02030da8 end:0x02030df8
+
+src/main/profile/Profile_2.cpp:
+    .text start:0x02038458 end:0x02038b3c
+    .data start:0x020c1398 end:0x020c13a0
+
+
 src/main/param/Param.cpp:
     .rodata start:0x0208eb00 end:0x020919dc
 
@@ -174,3 +193,6 @@ src/main/cmn/CommonPartyInfo.cpp:
     .text start:0x02032588 end:0x02032cec
     .bss  start:0x020eed50 end:0x020ef6f4
     .data start:0x020bece8 end:0x020becf0
+
+src/main/cmn/HengeNoTsueManager.cpp:
+    .bss start:0x020efc6c end:0x020efc88
