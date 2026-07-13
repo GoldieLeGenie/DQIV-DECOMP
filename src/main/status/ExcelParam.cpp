@@ -113,5 +113,7 @@ THUMB param::AlterMessage* status::ExcelParam::getAlterMessage()
 	return this->alterMessage_;
 }
 
-
-
+THUMB param::CharaVoice* status::ExcelParam::getCharaVoice()
+{
+  return this->charaVoice_;
+}

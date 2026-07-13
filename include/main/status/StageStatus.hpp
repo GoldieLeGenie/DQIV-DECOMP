@@ -106,7 +106,7 @@ namespace status{
         bool isBashaEnter();
         void setBashaEnable(bool flag);
         bool isBashaEnable();
-        void setEncount(bool flag);
+        void setEncount(int flag);
         bool isEncount();
         void setEventEncount(bool flag);
         void setAbortSave(int flag);
@@ -155,6 +155,7 @@ namespace status{
         void deliverMapFlag(profile::SAVETYPE savetype, profile::PROFILE_PARTY *pparty);
         void setFallFlag(int flag);
         int getFallFlag();
+        int restartChurch();
     };
 
 }
@@ -180,35 +181,13 @@ extern "C" {
     void func_020334ac();
 }
 
-extern char data_020bdb98[];
+struct MapChurchInfo {
+    unsigned int count_;    // 0x020b615c
+    unsigned int unk4_;     // 0x020b6160
+};
+extern MapChurchInfo data_020b615c; // MapChurchInfo
+extern int data_020ed28c;           // g_ExtraMapLink
 
-
-extern char data_020bdb80[]; 
-extern char data_020bdb88[];
-extern char data_020bdb94[];
-extern const char data_020bdba0[];
-extern const char data_020bdba8[];
-extern const char data_020bdbac[];
-extern const char data_020bdbb0[];
-extern const char data_020bdbb4[];
-extern const char data_020bdbb8[];
-extern const char data_020bdbc4[];
-extern const char data_020bdbc8[];
-extern const char data_020bdbcc[];
-extern const char data_020bdbd0[];
-extern char data_020bdc64[];
-extern char data_020bdc58[];
-extern char data_020bdbd4[];
-extern char data_020bdbe0[];
-extern char data_020bdbec[];
-extern char data_020bdbf8[];
-extern char data_020bdc04[];
-extern char data_020bdc10[];
-extern char data_020bdc1c[];
-extern char data_020bdc28[];
-extern char data_020bdc34[];
-extern char data_020bdc40[];
-extern char data_020bdc4c[];
 
 struct ExternalData {
     char pad[0x10];

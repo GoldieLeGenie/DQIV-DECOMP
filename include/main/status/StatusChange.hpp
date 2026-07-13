@@ -83,7 +83,7 @@ namespace status{
         int getResultMessage1(Status status);
         int getResultMessage2(Status status, CharacterType type);
         int getResultMessage3(Status status, CharacterType type);
-        void getAgainEnableMessage(Status status);
+        int getAgainEnableMessage(Status status);
         int getAgainDisableMessage(Status status);
         int getReleaseMessage();
         void setupFizzleZone();

@@ -69,6 +69,7 @@ namespace status {
         param::ItemData* getItemData();
         param::AppriseItem* getAppriseItem();
         param::AlterMessage* getAlterMessage();
+        param::CharaVoice* getCharaVoice();
 
     };
 

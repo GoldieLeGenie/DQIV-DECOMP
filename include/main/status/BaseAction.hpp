@@ -30,6 +30,7 @@ namespace status{
         void clear();
         void exec(UseActionParam& useActionParam, int flag);
     };
+    
     struct BaseActionData {
         UseActionParam* useActionParam_;    // 0x00
         int missFlag_;                      // 0x04

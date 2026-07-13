@@ -10,8 +10,9 @@ namespace dss{
     struct Fx32
     {
         fx32 value;
-        Fx32() {}
+        Fx32() {}                       
         Fx32(const Fx32& other);
+        Fx32& operator=(fx32 v);        
     };
     template <typename T>
     struct BitFlag

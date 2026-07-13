@@ -70,8 +70,8 @@ namespace status{
         void setRebirthAnimation();
         void clearRebirthAnimation();
         bool isRebirthAnimation();
+        
        
-    
         virtual void print();
         virtual void printAction();
         virtual bool isDeathDisable() { return 0; }

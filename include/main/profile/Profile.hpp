@@ -4,9 +4,13 @@
 #include "GameInfo.hpp"
 #include "main/status/HaveItemSack.hpp"
 
+namespace status {
+    struct GameFlag;
+}
+
 class profile {
 public:
-    struct PROFILE_SYSTEM {
+     struct PROFILE_SYSTEM {
         unsigned int MAGIC;
         unsigned int VER;
         unsigned int CHECKSUM;
@@ -164,10 +168,10 @@ public:
     };
     struct PROFILE_ENVOY {
         unsigned int UNIQUE;
-        unsigned char NAME[16];
-        unsigned char HERONAME[16];
-        unsigned char TOWNNAME[28];
-        unsigned char COMMENT[136];
+        unsigned char NAME[26];
+        unsigned char HERONAME[26];
+        unsigned char TOWNNAME[42];
+        unsigned char COMMENT[92];
         unsigned char TYPE;
         unsigned char SEX;
         unsigned char AGE;
@@ -193,18 +197,65 @@ public:
         PROFILE_RECORD profiledata_;
         unsigned char profiledummy_[1440];
         void presetMember();
+        void collectGameFlag(unsigned char *flagBuf, status::GameFlag *gameFlag);
+        void deliverGameFlag(status::GameFlag *gameFlag, unsigned char *flagBuf);
+        int calcCheckSum();
+        bool isValidData();
+        int collectDATA(int bookNo, int saveType);
         void collectDATA_PARTY();
-        void collectDATA_PLAYER();
         void collectDATA_CHAPTER();
+        void collectDATA_PLAYER();
+        void collectDATA_MONSTER();
+        void collectDATA_ENVOY();
+        int deliverDATA();
+        void deliverDATA_CHAPTER();
+        void deliverDATA_PLAYER();
+        void deliverDATA_MONSTER();
+        void deliverDATA_ENVOY();
+        void deliverRESTART_MAP(dss::Fx32Vector3* pos, short dir);
         
     };  
 };
 
 extern status::HaveItemSack g_NeneItemSack;      // data_020d0c00
 extern int darts[6];             //data_020d0be4 
-extern unsigned char data_020f0078;     // manager SELECTTAISHI
+extern int data_020f0078;     // manager SELECTTAISHI
 extern "C" void* func_020882d4(void* dst, int c, int n);                   
 extern "C" void func_02030df8(void* prof, unsigned char* dst, void* flag);  // Profile::collectGameFlag 
 extern "C" void func_0201d288(void* stage, int savetype, void* pparty);     // collectMapFlag
 extern "C" int func_02003528(char* a, char* b);                             // strcmp 
 extern "C" unsigned char func_0203ab30(void* mgr, int index);               // getter SELECTTAISHI
+extern "C" int func_02030ef0(void* prof);    // isValidData (thumb)
+extern "C" int func_02030eb0(void* prof);    // calcCheckSum 
+extern "C" void func_02038d2c(void* prof);   // deliverDATA_PARTY
+extern "C" void func_02039190(void* prof);   // deliverDATA_CHAPTER
+extern "C" void func_02039214(void* prof);   // deliverDATA_PLAYER
+extern "C" void func_02039250(void* prof);   // deliverDATA_MONSTER
+extern "C" void func_020392a0(void* prof);   // deliverDATA (HISTORY) ?
+extern "C" int func_0203a358(void* mgr, int index);   // isEnable(i)
+extern "C" int func_0203a354(void* mgr);              // isEnable slot final
+extern "C" void func_0203a34c(void* mgr, int index);  // select
+extern "C" unsigned int func_0203a5a4(void* mgr);     // getUnique
+extern "C" char func_0203a5ec(void* mgr);             // getType
+extern "C" unsigned char func_0203a714(void* mgr);    // getSex
+extern "C" unsigned char func_0203a750(void* mgr);    // getAge
+extern "C" unsigned char func_0203a78c(void* mgr);    // getSkill
+extern "C" unsigned char* func_0203a65c(void* mgr);   // getName ptr
+extern "C" unsigned char* func_0203a6d8(void* mgr);   // getHeroName ptr
+extern "C" unsigned char* func_0203a820(void* mgr);   // getTownName ptr
+extern "C" unsigned char* func_0203a938(void* mgr);   // getComment ptr
+extern "C" void func_0203a574(void* mgr, int enable);             // setEnable
+extern "C" void func_0203a58c(void* mgr, unsigned int unique);    // setUnique
+extern "C" void func_0203a5bc(void* mgr, unsigned char type);     // setType
+extern "C" void func_0203a6f4(void* mgr, unsigned char sex);      // setSex
+extern "C" void func_0203a730(void* mgr, unsigned char age);      // setAge
+extern "C" void func_0203a76c(void* mgr, unsigned char skill);    // setSkill            
+extern "C" void func_02037da4(void);                              //
+extern "C" void func_02037ca4(void);                              //
+extern "C" void* func_020882ec(void* dst, void* src, int n);      // memcpy
+extern "C" int func_0207c384(void* a, void* b);   // strcmp
+extern "C" int func_0201d3a4(void* stage);        // "restartChurch" 
+extern "C" void func_02028e8c(void* mgr, unsigned char fieldType, dss::Fx32Vector3* pos, int dir); //cmn::ExtraMapLink::setExtraLinkFieldAbsPos
+extern "C" void func_02028494(void* mgr, void* mapName, dss::Fx32Vector3* pos, int dir); //cmn::ExtraMapLink::setExtraLinkTown
+extern "C" char data_020c13a0[];                  // string map "field"
+extern int data_020ed28c;                         // cmn::g_extraMapLink

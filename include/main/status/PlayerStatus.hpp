@@ -32,17 +32,13 @@ namespace status{
         void setNearDeath(int damage);
         void execStartOfRound();
         void execOfRound();
-        virtual void print();
         virtual void printAction();
+        virtual void print();
         virtual bool isDeathDisable();
         virtual void setMosyasRelease();
         virtual void setMosyasChange();
         void setSaveDataForPlayer(profile::PROFILE_PLAYER* dat);
         void setLoadDataForPlayer(profile::PROFILE_PLAYER* dat);
-        
-        
-        
-        
 
     };
 }

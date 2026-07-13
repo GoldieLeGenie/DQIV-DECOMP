@@ -118,3 +118,27 @@ THUMB void status::HaveItemSack::sortOutSack(status::HaveItemSack::SortType type
     }
 
 }
+
+THUMB void status::HaveItemSack::sortOutItemOne(status::HaveItem *haveItem)
+{
+    for (int i = 0; i < haveItem->getCount(); i++)
+    {
+        if (haveItem->isEquipment(i) == 0)
+        {
+            if (UseItem::isOrder(haveItem->getItem(i)))
+            {
+                ((status::BaseHaveItem *)this)->add(haveItem->getItem(i));
+                haveItem->del(i);
+                return;
+            }
+        }
+    }
+}
+
+THUMB void status::HaveItemSack::sortOutItem(status::HaveItem *haveItem)
+{
+    for (int i = 0; i < haveItem->getMaxCount(); i++)
+    {
+        sortOutItemOne(haveItem);
+    }
+}

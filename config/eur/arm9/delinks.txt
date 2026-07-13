@@ -16,8 +16,12 @@ src/main/status/BaseStatus.cpp:
     complete
 	.text start:0x0200e004 end:0x0200e128
 
+src/main/status/BaseActionStatus.cpp:
+    .text start:0x0202e0c4 end:0x0202ff7c
+    .bss start:0x020eecec end:0x020eecfc
+
 src/main/status/ExcelParam.cpp:
-    .text start:0x0200d220 end:0x0200d3c4
+    .text start:0x0200d220 end:0x0200d3c8
     .bss  start:0x020c79b8 end:0x020c7a7c
 
 src/main/status/GameFlag.cpp:
@@ -48,7 +52,7 @@ src/main/status/BasePartyStatus.cpp:
     .data start:0x020bc88c end:0x020bc8ac
 
 src/main/status/HaveItemSack.cpp:
-    .text start:0x02014028 end:0x02014258
+    .text start:0x02014028 end:0x02014280
     .data start:0x020bc8e0 end:0x020bc8f4
 
 
@@ -109,10 +113,6 @@ src/main/status/BaseAction.cpp:
     .data start:0x020bc938 end:0x020bc9b4
     .bss start:0x020d07f0 end:0x020d07fc
 
-src/main/status/BaseActionStatus.cpp:
-    complete
-    .bss start:0x020eecec end:0x020eecfc
-
 src/main/status/UseAction.cpp:
     .text start:0x0201532c end:0x02015b34
     .bss start:0x020d0718 end:0x020d0730
@@ -130,6 +130,7 @@ src/main/status/BaseHaveItem.cpp:
 
 src/main/status/StageStatus.cpp:
     .text start:0x0201c360 end:0x0201d3a4
+    .data start:0x020bdb80 end:0x020bdc70
     .bss  start:0x020d08e0 end:0x020d0bb4
 
 src/main/status/HaveBattleStatus.cpp:
@@ -153,6 +154,9 @@ src/main/status/DQ4HaveEquipment.cpp:
     .text start:0x02022a80 end:0x02022ac8
     .data start:0x020be028 end:0x020be034
 
+src/main/status/ShopList.cpp:
+    .text start:0x0201d4fc end:0x0201d514
+    .bss  start:0x020d0bcc end:0x020d0bd8
 
 src/main/status/OptionStatus.cpp:
     complete
@@ -172,10 +176,10 @@ src/main/status/UseItem.cpp:
 
 
 src/main/profile/Profile.cpp:
-    .text start:0x02030da8 end:0x02030df8
+    .text start:0x02030da8 end:0x02030f24
 
 src/main/profile/Profile_2.cpp:
-    .text start:0x02038458 end:0x02038b3c
+    .text start:0x02038458 end:0x02039460
     .data start:0x020c1398 end:0x020c13a0
 
 
@@ -196,3 +200,7 @@ src/main/cmn/CommonPartyInfo.cpp:
 
 src/main/cmn/HengeNoTsueManager.cpp:
     .bss start:0x020efc6c end:0x020efc88
+
+src/main/cmn/PartyTalk.cpp:
+    .text start:0x02037494 end:0x02037520
+    .bss start:0x020ef9d4 end:0x020efba0

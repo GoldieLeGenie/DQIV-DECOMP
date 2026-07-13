@@ -4,6 +4,36 @@
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/status/ExcelParam.hpp"
 
+char map_caf1[8]        = "caf1";       // 0x020bdb80
+char map_btl_pl_d[12]   = "btl_pl_d";   // 0x020bdb88
+#pragma explicit_zero_data on
+char map_empty[4]       = "";           // 0x020bdb94
+#pragma explicit_zero_data reset
+char map_casino[8]      = "casino";     // 0x020bdb98
+char map_field[8]       = "field";      // 0x020bdba0
+char map_m[4]           = "m";          // 0x020bdba8
+char map_h[4]           = "h";          // 0x020bdbac
+char map_c[4]           = "c";          // 0x020bdbb0
+char map_f[4]           = "f";          // 0x020bdbb4
+char map_darkfield[12]  = "darkfield";  // 0x020bdbb8
+char map_d[4]           = "d";          // 0x020bdbc4
+char map_t[4]           = "t";          // 0x020bdbc8
+char map_s[4]           = "s";          // 0x020bdbcc
+char map_e[4]           = "e";          // 0x020bdbd0
+char map_btl_pl_dk[12]  = "btl_pl_dk";  // 0x020bdbd4
+char map_btl_se_dk[12]  = "btl_se_dk";  // 0x020bdbe0
+char map_btl_sd_dk[12]  = "btl_sd_dk";  // 0x020bdbec
+char map_btl_mt_dk[12]  = "btl_mt_dk";  // 0x020bdbf8
+char map_btl_po_dk[12]  = "btl_po_dk";  // 0x020bdc04
+char map_btl_wd_dk[12]  = "btl_wd_dk";  // 0x020bdc10
+char map_btl_se_d[12]   = "btl_se_d";   // 0x020bdc1c
+char map_btl_sd_d[12]   = "btl_sd_d";   // 0x020bdc28
+char map_btl_mt_d[12]   = "btl_mt_d";   // 0x020bdc34
+char map_btl_po_d[12]   = "btl_po_d";   // 0x020bdc40
+char map_btl_wd_d[12]   = "btl_wd_d";   // 0x020bdc4c
+char map_btldougu_d[12] = "btldougu_d"; // 0x020bdc58
+char map_btlyado_d[12]  = "btlyado_d";  // 0x020bdc64
+
 // int status::StageStatus::toramana_;
 status::StageStatus g_Stage; //data_020d08e0
 
@@ -11,15 +41,15 @@ THUMB void status::StageStatus::initialize()
 {
     this->flag_.flag_ = 0;
 
-    dss::DssUtils::strcpy_s(this->mapName_, 0x20, data_020bdb80);
+    dss::DssUtils::strcpy_s(this->mapName_, 0x20, map_caf1);
 
     this->map_ = 0;
 
-    dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdb88);
+    dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_pl_d);
 
     this->btlMap_ = 0;
 
-    dss::DssUtils::strcpy_s(this->evBtlMapName_, 0x20, data_020bdb88);
+    dss::DssUtils::strcpy_s(this->evBtlMapName_, 0x20, map_btl_pl_d);
 
     this->evBtlMap_ = 0;
 
@@ -57,7 +87,7 @@ THUMB void status::StageStatus::initialize()
     func_020332cc();
     func_02033328();
 
-    dss::DssUtils::strcpy_s(this->lastRanaStageName_, 0xA, data_020bdb94);
+    dss::DssUtils::strcpy_s(this->lastRanaStageName_, 0xA, map_empty);
 
     this->lastFldSurface_ = -1;
     this->encountMapUid_ = 0;
@@ -78,8 +108,8 @@ THUMB void status::StageStatus::setup(char *mapname)
     param::FloorParam *entry = &floorParam[index];
 
     if (g_Global.isAreaChange() == 1 &&
-        func_020882b0(g_Global.getMapName(), data_020bdb98) != 0 &&
-        func_020882b0(g_Global.getPrevMapName(), data_020bdb98) != 0)
+        func_020882b0(g_Global.getMapName(), map_casino) != 0 &&
+        func_020882b0(g_Global.getPrevMapName(), map_casino) != 0)
     {
         func_02037da4();
         func_02037d28();
@@ -526,7 +556,7 @@ THUMB bool status::StageStatus::isBashaEnable()
     return 0;
 }
 
-THUMB void status::StageStatus::setEncount(bool flag)
+THUMB void status::StageStatus::setEncount(int flag)
 {
     if (flag)
     {
@@ -609,15 +639,15 @@ THUMB int status::StageStatus::isAbortSaveTown()
     char *name = getMapName();
     local[0] = name[0];
 
-    if (func_020882b0(getMapName(), data_020bdba0) == 0)
+    if (func_020882b0(getMapName(), map_field) == 0)
     {
         return 1;
     }
 
-    if (func_020882b0(local, data_020bdba8) == 0 ||
-        func_020882b0(local, data_020bdbac) == 0 ||
-        func_020882b0(local, data_020bdbb0) == 0 ||
-        func_020882b0(local, data_020bdbb4) == 0)
+    if (func_020882b0(local, map_m) == 0 ||
+        func_020882b0(local, map_h) == 0 ||
+        func_020882b0(local, map_c) == 0 ||
+        func_020882b0(local, map_f) == 0)
     {
 
         if (this->isAbortSave() == 0)
@@ -649,15 +679,15 @@ THUMB int status::StageStatus::isAbortSaveDungeon()
     char *name = getMapName();
     local[0] = name[0];
 
-    if (func_020882b0(this->getMapName(), data_020bdbb8) == 0)
+    if (func_020882b0(this->getMapName(), map_darkfield) == 0)
     {
         return 1;
     }
 
-    if (func_020882b0(local, data_020bdbc4) == 0 ||
-        func_020882b0(local, data_020bdbc8) == 0 ||
-        func_020882b0(local, data_020bdbcc) == 0 ||
-        func_020882b0(local, data_020bdbd0) == 0)
+    if (func_020882b0(local, map_d) == 0 ||
+        func_020882b0(local, map_t) == 0 ||
+        func_020882b0(local, map_s) == 0 ||
+        func_020882b0(local, map_e) == 0)
     {
 
         if (this->isAbortSave() == 0)
@@ -683,26 +713,26 @@ THUMB void status::StageStatus::setBtlMapNameOnField(LandType land)
         switch (land)
         {
         case Floor:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdbd4);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_pl_dk);
             break;
         case Sea:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdbe0);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_se_dk);
             break;
         case Desert:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdbec);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_sd_dk);
             break;
         case Mountain:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdbf8);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_mt_dk);
             break;
         case Pond:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdc04);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_po_dk);
             break;
         case Bush:
         case Field:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdbd4);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_pl_dk);
             break;
         case Forest:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdc10);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_wd_dk);
             break;
         }
     }
@@ -711,26 +741,26 @@ THUMB void status::StageStatus::setBtlMapNameOnField(LandType land)
         switch (land)
         {
         case Floor:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdb88);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_pl_d);
             break;
         case Sea:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdc1c);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_se_d);
             break;
         case Desert:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdc28);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_sd_d);
             break;
         case Mountain:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdc34);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_mt_d);
             break;
         case Pond:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdc40);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_po_d);
             break;
         case Bush:
         case Field:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdb88);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_pl_d);
             break;
         case Forest:
-            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdc4c);
+            dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btl_wd_d);
             break;
         }
     }
@@ -740,7 +770,7 @@ THUMB void status::StageStatus::setBtlMapNameOnField(LandType land)
 THUMB char *status::StageStatus::getTraderMapName()
 {
     TIME_ZONE timezone;
-    dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdc58);
+    dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btldougu_d);
     this->btlMap_ = this->btlMapName_;
     if (isTimeZoneEnable() != 0)
     {
@@ -767,7 +797,7 @@ THUMB char *status::StageStatus::getInnKeeperMapName()
 {
     TIME_ZONE timezone;
 
-    dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, data_020bdc64);
+    dss::DssUtils::strcpy_s(this->btlMapName_, 0x20, map_btlyado_d);
     this->btlMap_ = this->btlMapName_;
     if (isTimeZoneEnable() != 0)
     {
@@ -1171,3 +1201,27 @@ THUMB int status::StageStatus::getFallFlag()
 }
 
 
+THUMB int status::StageStatus::restartChurch()
+{
+    unsigned int found = 0xFFFFFFFF;
+    dss::Fx32Vector3 pos;
+
+    param::MapChurch* tbl = status::excelParam.mapChurch_;
+    for (unsigned int i = 0; i < data_020b615c.count_; i++) {
+        if (this->churchMap_[0] == tbl[i].floor[0] && this->churchMap_[1] == tbl[i].floor[1]) {
+            if (tbl[i].direction != 0xFFFF) {
+                found = i;
+            }
+            break;
+        }
+    }
+    if (found == 0xFFFFFFFF) {
+        return 0;
+    }
+    pos.vx = tbl[found].playerX;
+    pos.vy = tbl[found].playerY;
+    pos.vz = tbl[found].playerZ;
+    func_02028494(&data_020ed28c, this->churchMap_, &pos, (short)tbl[found].direction);
+    setTimeZone(TIME_ZONE_DAYTIME);
+    return 1;
+}

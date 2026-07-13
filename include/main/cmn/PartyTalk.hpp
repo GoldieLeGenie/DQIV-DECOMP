@@ -34,7 +34,10 @@ namespace cmn
         int saveMessageFlag_;
         int findPriorityMessage_;
         int getChapter6Data_;
-    };                           
+        static cmn::PartyTalk s_partyTalk; //data_020ef9d4
+        static cmn::PartyTalk* getSingleton();
+        void initialize();
+    };
 }
 
 extern "C" cmn::PartyTalk* func_02037494();                                  // PartyTalk::getSingleton

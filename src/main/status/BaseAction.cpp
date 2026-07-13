@@ -44,7 +44,7 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
     for (int i = 0; i < 4; i++) {
         data_020d0810[i] = 0;
     }
-    BaseActionStatus_.unk_00 = 0;
+    BaseActionValue_.unk_00 = 0;
 
     this->actionIndex_ = useActionParam.actionIndex_;
     status::BaseActionData_.useActionParam_ = &useActionParam;

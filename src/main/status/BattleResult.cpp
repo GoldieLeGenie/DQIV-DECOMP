@@ -124,16 +124,16 @@ THUMB unsigned int status::BattleResult::getGoldTotal(unsigned int monsterIndex)
     return this->result_[monsterIndex].monsterCount_ * getMaxGold(monsterIndex);
 }
 
-THUMB void status::BattleResult::setEncount(unsigned int monsterIndex, bool flag)
+THUMB void status::BattleResult::setEncount(unsigned int monsterIndex, int flag)
 {
     if (flag == 1) {
-        this->encountFlag_[monsterIndex >> 5].flag_ =
-            this->encountFlag_[monsterIndex >> 5].flag_ | 1 << (monsterIndex & 0x1f);
+        this->encountFlag_.flag_[monsterIndex >> 5].flag_ =
+            this->encountFlag_.flag_[monsterIndex >> 5].flag_ | 1 << (monsterIndex & 0x1f);
         return;
     }
     else {
-        this->encountFlag_[monsterIndex >> 5].flag_ =
-            this->encountFlag_[monsterIndex >> 5].flag_ & ~(1 << (monsterIndex & 0x1f));
+        this->encountFlag_.flag_[monsterIndex >> 5].flag_ =
+            this->encountFlag_.flag_[monsterIndex >> 5].flag_ & ~(1 << (monsterIndex & 0x1f));
         return;
     }
     return;
@@ -144,7 +144,7 @@ THUMB bool status::BattleResult::isEncount(unsigned int monsterIndex)
 {
     unsigned int bit = monsterIndex & 0x1f;
     unsigned int mask = 1 << bit;
-    unsigned int flag = this->encountFlag_[monsterIndex >> 5].flag_;
+    unsigned int flag = this->encountFlag_.flag_[monsterIndex >> 5].flag_;
     return (flag & mask);
 }
 
@@ -154,7 +154,7 @@ THUMB int status::BattleResult::getEncountCount()
     for (unsigned int i = 0; i < 210; i++) {
         unsigned int bit = i & 0x1f;
         unsigned int mask = 1 << bit;
-        unsigned int flag = this->encountFlag_[i >> 5].flag_;
+        unsigned int flag = this->encountFlag_.flag_[i >> 5].flag_;
         int found = (flag & mask) != 0;
         if (found == 1) {
             result++;

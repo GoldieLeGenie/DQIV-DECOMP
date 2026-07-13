@@ -57,12 +57,13 @@ THUMB void status::StoryStatus::setChapter(int chapter)
 {
   this->chapter_ = chapter;
   if (chapter <= 4) {
-    ShopList::section_ = 0;
+    ShopData_.section_ = 0;
     return;
   }
-  ShopList::section_ = 1;
+  ShopData_.section_ = 1;
   return;
 }
+
 
 THUMB void status::StoryStatus::storeFukuro(status::HaveItemSack* sack) {
     int var_r4;

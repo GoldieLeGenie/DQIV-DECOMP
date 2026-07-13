@@ -15,6 +15,30 @@
 char s_field[8] = "field"; // data_020c1398
 
 
+THUMB int profile::Profile::collectDATA(int bookNo, int saveType)
+{
+    presetMember();
+    func_020882d4(&this->profiledata_, 0xFF, 0x3300);
+    func_020882d4(this->profiledummy_, 0xFF, 0x900);
+    this->pSYSTEM->MAGIC = 0x65747261;      // 'arte'
+    this->pSYSTEM->VER = 0x0BF7FF5C;
+    this->pSYSTEM->CHECKSUM = 0;
+    if (bookNo != 3) {
+        g_Stage.profileBank_ = bookNo;
+        this->pSYSTEM->BOOKNO = bookNo;
+    } else {
+        this->pSYSTEM->BOOKNO = g_Stage.profileBank_;
+    }
+    this->pSYSTEM->SAVETYPE = saveType;
+    collectDATA_PARTY();
+    collectDATA_CHAPTER();
+    collectDATA_PLAYER();
+    collectDATA_MONSTER();
+    collectDATA_ENVOY();
+    func_02030eb0(this);
+    return 1;
+}
+
 THUMB void profile::Profile::collectDATA_PARTY()
 {
     func_020882d4(this->pPARTY->RESTART, 0, 0x10);
@@ -74,9 +98,9 @@ THUMB void profile::Profile::collectDATA_PARTY()
     this->pPARTY->RANALUTA_SURFACE = ::g_Stage.lastFldSurface_;
     this->pPARTY->CHAPTER = status::g_Story.chapter_;
 
-    func_02030df8(this, this->pPARTY->GLOBALFLAG, &g_GlobalFlag);
-    func_02030df8(this, this->pPARTY->AREAFLAG, &g_AreaFlag);
-    func_02030df8(this, this->pPARTY->LOCALFLAG, &g_LocalFlag);
+    collectGameFlag(this->pPARTY->GLOBALFLAG, &g_GlobalFlag);
+    collectGameFlag(this->pPARTY->AREAFLAG, &g_AreaFlag);
+    collectGameFlag(this->pPARTY->LOCALFLAG, &g_LocalFlag);
     for (int i = 0; i < 0x40; i++) {
         this->pPARTY->LOCALFLAG[i] = 0;
     }
@@ -115,11 +139,11 @@ THUMB void profile::Profile::collectDATA_PARTY()
         this->pPARTY->DARTS_ITEM[i] = darts[i];
     }
     for (int i = 0; i < 0xA; i++) {
-        this->pPARTY->SPEAKTO_MESSAGE[i] = func_02037494()->preMessage_[i];
+        this->pPARTY->SPEAKTO_MESSAGE[i] = cmn::PartyTalk::getSingleton()->preMessage_[i];
     }
-    this->pPARTY->SPEAKTO_OBJECT = func_02037494()->objectNo_;
-    this->pPARTY->SPEAKTO_EXITNO = func_02037494()->lastExit_;
-    this->pPARTY->SPEAKTO_ITEMNO = func_02037494()->prevItem_;
+    this->pPARTY->SPEAKTO_OBJECT = cmn::PartyTalk::getSingleton()->objectNo_;
+    this->pPARTY->SPEAKTO_EXITNO = cmn::PartyTalk::getSingleton()->lastExit_;
+    this->pPARTY->SPEAKTO_ITEMNO = cmn::PartyTalk::getSingleton()->prevItem_;
 
     status::g_BattleHistory.setSaveData(this->pPARTY, this->pHISTORY);
     this->pPARTY->BANKMONEY = status::g_Party.bankMoney_;
@@ -220,6 +244,163 @@ THUMB void profile::Profile::collectDATA_PLAYER()
     }
 }
 
+THUMB void profile::Profile::collectDATA_MONSTER()
+{
+    for (unsigned int i = 0; i < 0xD2; i++) {
+        this->pMONSTER->KILL = status::g_BattleResult.getMonsterCount(i);
+        this->pMONSTER->ITEMCOUNT = status::g_BattleResult.getItemCount(i);
+        this->pMONSTER->LEVEL = status::g_BattleResult.getLevel(i);
+        this->pMONSTER->ENCOUNT = status::g_BattleResult.isEncount(i);
+        this->pMONSTER++;
+    }
+}
+
+THUMB void profile::Profile::collectDATA_ENVOY()
+{
+    for (int i = 0; i < 0x18; i++) {
+        if (func_0203a358(&data_020f0078, i) != 0) {
+            func_0203a34c(&data_020f0078, i);
+            this->pENVOY->UNIQUE = func_0203a5a4(&data_020f0078);
+            this->pENVOY->TYPE = func_0203a5ec(&data_020f0078);
+            this->pENVOY->SEX = func_0203a714(&data_020f0078);
+            this->pENVOY->AGE = func_0203a750(&data_020f0078);
+            this->pENVOY->SKILL = func_0203a78c(&data_020f0078);
+            func_020882ec(this->pENVOY->NAME, func_0203a65c(&data_020f0078), 0x1A);
+            func_020882ec(this->pENVOY->HERONAME, func_0203a6d8(&data_020f0078), 0x1A);
+            func_020882ec(this->pENVOY->TOWNNAME, func_0203a820(&data_020f0078), 0x2A);
+            func_020882ec(this->pENVOY->COMMENT, func_0203a938(&data_020f0078), 0x5C);
+        } else {
+            this->pENVOY->TYPE = 0xFF;
+        }
+        this->pENVOY++;
+    }
+    if (func_0203a354(&data_020f0078) != 0) {
+        data_020f0078 = 1;
+        this->pENVOY->UNIQUE = func_0203a5a4(&data_020f0078);
+        this->pENVOY->TYPE = func_0203a5ec(&data_020f0078);
+        this->pENVOY->SEX = func_0203a714(&data_020f0078);
+        this->pENVOY->AGE = func_0203a750(&data_020f0078);
+        this->pENVOY->SKILL = func_0203a78c(&data_020f0078);
+        func_020882ec(this->pENVOY->NAME, func_0203a65c(&data_020f0078), 0x1A);
+        func_020882ec(this->pENVOY->HERONAME, func_0203a6d8(&data_020f0078), 0x1A);
+        func_020882ec(this->pENVOY->TOWNNAME, func_0203a820(&data_020f0078), 0x2A);
+        func_020882ec(this->pENVOY->COMMENT, func_0203a938(&data_020f0078), 0x5C);
+    } else {
+        this->pENVOY->TYPE = 0xFF;
+    }
+}
+
+THUMB int profile::Profile::deliverDATA()
+{
+    presetMember();
+    if (isValidData() == 0) {
+        return 0;
+    }
+    if (calcCheckSum() == 0) {
+        return 0;
+    }
+    func_02038d2c(this);
+    deliverDATA_CHAPTER();
+    deliverDATA_PLAYER();
+    deliverDATA_MONSTER();
+    deliverDATA_ENVOY();
+    return 1;
+}
+
+THUMB void profile::Profile::deliverDATA_CHAPTER()
+{
+    profile::PROFILE_CHAPTER* pc = this->pCHAPTER;
+    status::HaveItemSack* sack = status::g_Story.fukuro_;
+
+    for (int i = 0; i < 4; i++) {
+        for (int k = 0; k < 0xA2; k++) {
+            sack->adds(pc->SACKITEM[k], pc->SACKCOUNT[k]);
+        }
+        status::g_Story.gold_[i] = pc->GOLD;
+        status::g_Story.coin_[i] = pc->CASINOCOIN;
+        pc++;
+        sack++;
+    }
+
+    for (int k = 0; k < 0xA2; k++) {
+        status::g_Party.haveItemSack_.adds(pc->SACKITEM[k], pc->SACKCOUNT[k]);
+    }
+    status::g_Party.setGold(pc->GOLD);
+    status::g_Party.setCasinoCoin(pc->CASINOCOIN);
+}
+
+THUMB void profile::Profile::deliverDATA_PLAYER()
+{
+    for (int j = 0; j < 14; j++) {
+        int pi = this->pPARTY->PARTY[j];
+        if (pi != 0) {
+            status::PlayerStatus* p = status::PartyStatus::getPlayerStatusForPlayerIndex(pi);
+            p->setLoadDataForPlayer(&this->pPLAYER[j]);
+            p->haveStatusInfo_.haveEquipment_.setLoadDataForPlayer(&this->pPLAYER[j]);
+        }
+    }
+}
+
+THUMB void profile::Profile::deliverDATA_MONSTER()
+{
+    for (unsigned int i = 0; i < 0xD2; i++) {
+        status::g_BattleResult.setMonsterCount(i, this->pMONSTER->KILL);
+        status::g_BattleResult.setItemCount(i, this->pMONSTER->ITEMCOUNT);
+        status::g_BattleResult.setLevel(i, this->pMONSTER->LEVEL);
+        status::g_BattleResult.setEncount(i, this->pMONSTER->ENCOUNT);
+        this->pMONSTER++;
+    }
+}
+
+THUMB void profile::Profile::deliverDATA_ENVOY()
+{
+    for (int i = 0; i < 0x18; i++) {
+        func_0203a34c(&data_020f0078, i);
+        if (this->pENVOY->TYPE != 0xFF) {
+            func_0203a574(&data_020f0078, 1);
+            func_0203a58c(&data_020f0078, this->pENVOY->UNIQUE);
+            func_0203a5bc(&data_020f0078, this->pENVOY->TYPE);
+            func_0203a6f4(&data_020f0078, this->pENVOY->SEX);
+            func_0203a730(&data_020f0078, this->pENVOY->AGE);
+            func_0203a76c(&data_020f0078, this->pENVOY->SKILL);
+            func_020882ec(func_0203a65c(&data_020f0078), this->pENVOY->NAME, 0x1A);
+            func_020882ec(func_0203a6d8(&data_020f0078), this->pENVOY->HERONAME, 0x1A);
+            func_020882ec(func_0203a820(&data_020f0078), this->pENVOY->TOWNNAME, 0x2A);
+            func_020882ec(func_0203a938(&data_020f0078), this->pENVOY->COMMENT, 0x5C);
+        } else {
+            func_0203a574(&data_020f0078, 0);
+        }
+        this->pENVOY++;
+    }
+    func_02037da4();
+    func_02037ca4();
+    data_020f0078 = 1;
+    if (this->pENVOY->TYPE != 0xFF) {
+        func_0203a574(&data_020f0078, 1);
+        func_0203a58c(&data_020f0078, this->pENVOY->UNIQUE);
+        func_0203a5bc(&data_020f0078, this->pENVOY->TYPE);
+        func_0203a6f4(&data_020f0078, this->pENVOY->SEX);
+        func_0203a730(&data_020f0078, this->pENVOY->AGE);
+        func_0203a76c(&data_020f0078, this->pENVOY->SKILL);
+        func_020882ec(func_0203a65c(&data_020f0078), this->pENVOY->NAME, 0x1A);
+        func_020882ec(func_0203a6d8(&data_020f0078), this->pENVOY->HERONAME, 0x1A);
+        func_020882ec(func_0203a820(&data_020f0078), this->pENVOY->TOWNNAME, 0x2A);
+        func_020882ec(func_0203a938(&data_020f0078), this->pENVOY->COMMENT, 0x5C);
+    } else {
+        func_0203a574(&data_020f0078, 0);
+    }
+}
 
 
-
+THUMB void profile::Profile::deliverRESTART_MAP(dss::Fx32Vector3* pos, short dir)
+{
+    if (this->pSYSTEM->SAVETYPE == profile::SAVETYPE_CHURCH && g_Stage.restartChurch() == 1) {
+        g_Stage.load_ = 1;
+        return;
+    }
+    if (func_020882b0((const char*)this->pPARTY->RESTART, data_020c13a0) == 0) {
+        func_02028e8c(&data_020ed28c, this->pPARTY->FIELDTYPE, pos, 4);
+        return;
+    }
+    func_02028494(&data_020ed28c, this->pPARTY->RESTART, pos, dir);
+}
