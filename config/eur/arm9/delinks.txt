@@ -109,8 +109,8 @@ src/main/status/BaseActionMessage:
 
 src/main/status/BaseAction.cpp:
     complete
-    .text start:0x02015c2c end:0x020162c0
-    .data start:0x020bc938 end:0x020bc9b4
+    .text start:0x02015c2c end:0x020164a8
+    .data start:0x020bc938 end:0x020bc9dc
     .bss start:0x020d07f0 end:0x020d07fc
 
 src/main/status/UseAction.cpp:
@@ -129,17 +129,18 @@ src/main/status/BaseHaveItem.cpp:
     .data start:0x020bc8cc end:0x020bc8e0
 
 src/main/status/StageStatus.cpp:
-    .text start:0x0201c360 end:0x0201d3a4
+    .text start:0x0201c294 end:0x0201d3a4
     .data start:0x020bdb80 end:0x020bdc70
     .bss  start:0x020d08e0 end:0x020d0bb4
 
 src/main/status/HaveBattleStatus.cpp:
-    .text start:0x0201ad3c end:0x0201c084
+    .text start:0x0201ad3c end:0x0201c294
+    .rodata start:0x020b4d68 end:0x020b4f8c
     .data start:0x020bdb08 end:0x020bdb80
     .bss  start:0x020d08b0 end:0x020d08d0
 
 src/main/global/Global.cpp:
-    .text start:0x0200b9e4 end:0x0200ba58
+    .text start:0x0200b954 end:0x0200ba58
     .bss start:0x020c768c end:0x020c774c
 
 src/main/status/ActionDefence.cpp:
@@ -155,8 +156,9 @@ src/main/status/DQ4HaveEquipment.cpp:
     .data start:0x020be028 end:0x020be034
 
 src/main/status/ShopList.cpp:
-    .text start:0x0201d4fc end:0x0201d514
+    .text start:0x0201d4fc end:0x0201d5ec
     .bss  start:0x020d0bcc end:0x020d0bd8
+    .data start:0x020bdc70 end:0x020bdc78
 
 src/main/status/OptionStatus.cpp:
     complete
@@ -186,10 +188,16 @@ src/main/profile/Profile_2.cpp:
 src/main/param/Param.cpp:
     .rodata start:0x0208eb00 end:0x020919dc
 
+src/main/param/MonsterAnim.cpp:
+    .text start:0x0200c044 end:0x0200c0a4
+
+
 src/main/cmn/CommonCounterInfo.cpp:
     complete
     .text start:0x020368a8 end:0x020369d0
     .bss start:0x020ef9ac end:0x020ef9c8
+
+
 
 src/main/cmn/CommonPartyInfo.cpp:
     .init start:0x0208b328 end:0x0208b33c
@@ -199,8 +207,12 @@ src/main/cmn/CommonPartyInfo.cpp:
     .data start:0x020bece8 end:0x020becf0
 
 src/main/cmn/HengeNoTsueManager.cpp:
+    .text start:0x020395c8 end:0x0203972c
+    .data start:0x020c13a8 end:0x020c13c8
     .bss start:0x020efc6c end:0x020efc88
 
+
 src/main/cmn/PartyTalk.cpp:
-    .text start:0x02037494 end:0x02037520
+    .text start:0x02037494 end:0x02037728
     .bss start:0x020ef9d4 end:0x020efba0
+    .data start:0x020c1330 end:0x020c1340

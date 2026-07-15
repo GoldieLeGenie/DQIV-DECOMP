@@ -6,7 +6,6 @@
 
 namespace status
 {
-    // --- FORWARD DECLARATIONS ---
     struct HaveStatusInfo;
     struct PlayerStatus;
     struct PartyStatus;
@@ -14,9 +13,9 @@ namespace status
     struct HaveItem;
     struct BaseHaveItem;
 
-    struct MonsterInitdata {
+    struct Initdata {
         param::MonsterData* monsterData_;   // 0x00
-        int unk_4;                          // 0x04
+        int torunekoDebugIndex_;                          // 0x04
         const param::CharInitData* charaInitData_;// 0x08
         int unk_0c;                         // 0x0C
         int parupunteFlag_;                 // 0x10
@@ -47,7 +46,7 @@ namespace status
         int originalIndex_;
         CharacterType originalType_;
         CharacterType type_;
-        HaveStatusInfo *haveStatusInfo_; // Pointeur : la forward declaration suffit
+        HaveStatusInfo *haveStatusInfo_; 
         int exp_;
         unsigned short hp_;
         unsigned short hpMax_;
@@ -99,9 +98,8 @@ namespace status
 
         static int groupControl_[4]; 
         static int groupRoopIndex_[4];
-        static status::MonsterInitdata monsterinitData_; 
+        static status::Initdata initData_; 
 
-        // Méthodes
         HaveBattleStatus();
         ~HaveBattleStatus();
         void initialize();
@@ -153,44 +151,50 @@ namespace status
         void setupTarotAction();
         void setupParupunteAction();
         void setupConfuseAction();
+        int setupTorunekoAction();
+        void setupSpecialAction(int actionIndex);
+        void updateSpecialSleepBehaviors();
+        void setupRollOver();
+        void setupSleepAction();
+        void setupTurnBeforeAction();
+        void setMosyasAction(int action);
+        int getMosyasAction(int index);
+        void clearMosyasAction();
+        void print();
     };
 }
 
-
-
+struct TorunekoActionTable { int v[10]; };
 struct RoopCopy { int v[4]; };
-extern RoopCopy data_020b4dac;
-
 struct RestArray { int v[6]; };
-extern RestArray data_020b4e1c;
-extern RestArray data_020b4e34;
-
 struct TarotTable { int v[8]; };
-extern TarotTable data_020b4e6c;
-
 struct ParupunteArraySmall { int v[13]; };
 struct ParupunteArrayLarge { int v[23]; };
-extern ParupunteArraySmall data_020b4efc;
-extern ParupunteArrayLarge data_020b4f30;
-
 struct ConfuseArray3 { int v[3]; };
 struct ConfuseArray4 { int v[4]; };
 struct ConfuseArray6 { int v[6]; };
 struct ConfuseArray8 { int v[8]; };
 
-extern ConfuseArray3 data_020b4d68;
-extern ConfuseArray3 data_020b4d74;
-extern ConfuseArray3 data_020b4d80;
-extern ConfuseArray4 data_020b4d8c;
-extern ConfuseArray4 data_020b4d9c;
-extern ConfuseArray4 data_020b4dbc;
-extern ConfuseArray4 data_020b4dcc;
-extern ConfuseArray4 data_020b4ddc;
-extern ConfuseArray6 data_020b4dec;
-extern ConfuseArray6 data_020b4e04;
-extern ConfuseArray8 data_020b4e4c;
-extern ConfuseArray8 data_020b4e8c;
-
+extern const ConfuseArray3       confusePlayer12;
+extern const ConfuseArray3       confusePlayer7;
+extern const ConfuseArray3       confusePlayer3;
+extern const ConfuseArray4       confusePlayer9;
+extern const ConfuseArray4       confusePlayer4;
+extern const RoopCopy            roopPattern;
+extern const ConfuseArray4       confusePlayer6;
+extern const ConfuseArray4       confusePlayer8;
+extern const ConfuseArray4       confusePlayer5;
+extern const ConfuseArray6       confuseOtherParupunte;
+extern const ConfuseArray6       confuseOtherNormal;
+extern const RestArray           restOneTable;
+extern const RestArray           restNumTable;
+extern const ConfuseArray8       confuseMonsterNormal;
+extern const TarotTable          tarotActionTable;
+extern const ConfuseArray8       confuseMonsterParupunte;
+extern const TorunekoActionTable torunekoParupunte;
+extern const TorunekoActionTable torunekoNormal;
+extern const ParupunteArraySmall parupunteSmallTable;
+extern const ParupunteArrayLarge parupunteLargeTable;
 
 extern "C" {
     void func_02012044(status::HaveStatusInfo*, int pro);

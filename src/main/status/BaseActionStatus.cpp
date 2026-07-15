@@ -1,4 +1,7 @@
 #include "main/status/BaseActionStatus.hpp"
+#include "main/status/MonsterStatus.hpp"
+#include "main/status/UseAction.hpp"
+#include "main/status/ActionExec.hpp"
 #include "main/dss/Random.hpp"
 
 status::BaseActionValue BaseActionValue_;
@@ -357,7 +360,7 @@ THUMB int status::BaseActionStatus::actionTypeStatusClear(status::CharacterStatu
         {
             target->haveStatusInfo_.statusChange_.release(status::StatusChange::StatusMosyasu);
             target->haveStatusInfo_.setStatusChangeInBattle(status::HaveStatusInfo::ResultAction);
-            target->printAction();
+            target->setMosyasRelease();
             target->haveStatusInfo_.setStatusChangeRelease(true);
         }
 
@@ -516,6 +519,94 @@ THUMB void status::BaseActionStatus::actionTypePowerSave(status::CharacterStatus
     target->haveStatusInfo_.setStatusChangeInBattle(status::HaveStatusInfo::ResultAction);
 }
 
+
+THUMB int status::BaseActionStatus::actionTypeMosyas(status::CharacterStatus *actor,
+                                               status::CharacterStatus *target)
+{
+    if (target->haveStatusInfo_.isMosyasTarget())
+    {
+        return 0;
+    }
+    target->haveStatusInfo_.setMosyasTarget(true);
+
+    int monsterIndex = 0;
+    int mosyasIndex  = 0;
+    unsigned int index = target->haveStatusInfo_.haveStatus_.playerIndex_;
+    switch (index)
+    {
+        case 1:  monsterIndex = 0xFA;  mosyasIndex = 0xD7; break;
+        case 2:  monsterIndex = 0xFB;  mosyasIndex = 0xD8; break;
+        case 3:  monsterIndex = 0xFC;  mosyasIndex = 0xD9; break;
+        case 4:  monsterIndex = 0xFD;  mosyasIndex = 0xDA; break;
+        case 5:  monsterIndex = 0xFE;  mosyasIndex = 0xDB; break;
+        case 6:  monsterIndex = 0xFF;  mosyasIndex = 0xDC; break;
+        case 7:  monsterIndex = 0x100; mosyasIndex = 0xDD; break;
+        case 8:  monsterIndex = 0x101; mosyasIndex = 0xDE; break;
+        case 9:  monsterIndex = 0x102; mosyasIndex = 0xDF; break;
+        case 10: case 11: case 12: case 13: case 14:
+        case 15: case 16: case 17: case 18: case 19:
+        case 20: case 21: case 22: case 23: case 24: break;
+        case 25: monsterIndex = 0x103; mosyasIndex = 0xE0; break;
+    }
+
+    actor->haveStatusInfo_.statusChange_.setup(BaseActionStatus_.actionIndex_, true);
+    actor->haveStatusInfo_.setStatusChangeInBattle(status::HaveStatusInfo::ResultAction);
+
+    int hp    = actor->haveStatusInfo_.getHp();
+    int hpMax = actor->haveStatusInfo_.getHpMax();
+    int mp    = actor->haveStatusInfo_.getMp();
+    int mpMax = actor->haveStatusInfo_.getMpMax();
+
+    actor->setMosyasChange(monsterIndex);
+
+    actor->haveStatusInfo_.setHpMax(hpMax);
+    actor->haveStatusInfo_.setHp(hp);
+    actor->haveStatusInfo_.setMpMax(mpMax);
+    actor->haveStatusInfo_.setMp(mp);
+
+    ((status::MonsterStatus *)actor)->mosyasIndex_  = target->haveStatusInfo_.haveStatus_.playerIndex_;
+    ((status::MonsterStatus *)actor)->mosyasTarget_ = target;
+
+    int agl = target->haveStatusInfo_.getAgility(0);
+    actor->haveStatusInfo_.setAgility(agl);
+    int protection = target->haveStatusInfo_.getProtection(0);
+    actor->haveStatusInfo_.setProtection(protection);
+    actor->haveStatusInfo_.setAttack(target->haveStatusInfo_.getAttack(0));
+    actor->haveStatusInfo_.setDefence(target->haveStatusInfo_.getDefence(0));
+
+    int count = func_02008ea0(target->haveStatusInfo_.haveAction_.getCount(), 0, 14);
+    actor->haveBattleStatus_.clearMosyasAction();
+
+    int i = 0;
+    if (count > 0)
+    {
+        status::HaveStatusInfo *info = &target->haveStatusInfo_;
+        if (count > 0)
+        {
+            status::HaveAction *act = &info->haveAction_;
+            if (count > 0)
+            {
+                do
+                {
+                    unsigned short action = act->getAction(i);
+                    if (status::UseAction::isBattleUse(action) &&
+                        status::UseAction::isMosyasAction(action) &&
+                        action != 0x8C && action != 0x8E)
+                    {
+                        actor->haveBattleStatus_.setMosyasAction(action);
+                    }
+                    i++;
+                } while (i < count);
+            }
+        }
+    }
+    actor->haveBattleStatus_.setMosyasAction(0x47);
+
+    actor->haveStatusInfo_.setMosyasExec(true);
+    status::setMosyasIndex(mosyasIndex);
+    return 1;
+}
+
 THUMB void status::BaseActionStatus::characterClearOut(status::CharacterStatus *chara, status::BaseActionStatus::MonsterDrop drop)
 {
     if (drop == GoldExp)
@@ -564,3 +655,4 @@ THUMB bool status::BaseActionStatus::isMonsterChange()
     }
     return false;
 }
+

@@ -125,7 +125,7 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
     }
 
     func_02017ea0(this);
-    func_020162c0(this);
+    execBefore();
 
     int count = status::BaseActionData_.useActionParam_->targetCount_;
     status::CharacterStatus* a = status::BaseActionData_.useActionParam_->actorCharacterStatus_;
@@ -269,5 +269,75 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
     }
 
     func_02016768(this, 1);
+}
+
+THUMB int status::BaseAction::execBefore()
+{
+    if (actionIndex_ == 137) {
+        if (status::BaseActionData_.useActionParam_->actorCharacterStatus_->characterType_ == PLAYER) {
+            moonSaltCount_ = func_ov003_0212e37c(&data_ov003_0216639c);
+        }
+        if (status::BaseActionData_.useActionParam_->actorCharacterStatus_->characterType_ == MONSTER) {
+            g_Party.setBattleModeWithCarriage();
+            moonSaltCount_ = g_Party.getCount();
+        }
+    }
+
+    if (status::BaseActionData_.useActionParam_->actorCharacterStatus_
+     && !status::UseAction::isBaikiruto(actionIndex_)) {
+        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setBaikirutoDisable(true);
+    }
+
+    if (func_02019398(this, status::BaseActionData_.useActionParam_->actorCharacterStatus_)) {
+        status::BaseActionData_.useActionParam_->targetCharacterStatus_[1] =
+            status::BaseActionData_.useActionParam_->targetCharacterStatus_[0];
+        status::BaseActionData_.useActionParam_->targetCount_ = 2;
+    }
+
+    if (actionIndex_ == 459) {
+        status::BaseActionData_.callMonster_[0] = func_ov003_0212e7bc(&data_ov003_0216639c);
+        status::BaseActionData_.callMonster_[1] = func_ov003_0212e6f8(&data_ov003_0216639c);
+    }
+    if (actionIndex_ == 477) {
+        status::BaseActionData_.callMonster_[0] = func_ov003_0212e7bc(&data_ov003_0216639c);
+        status::BaseActionData_.callMonster_[1] = func_ov003_0212e6f8(&data_ov003_0216639c);
+    }
+    if (actionIndex_ == 480) {
+        status::BaseActionData_.callMonster_[0] = func_ov003_0212e7bc(&data_ov003_0216639c);
+    }
+    if ((unsigned int)(actionIndex_ - 528) <= 1) {
+        if (func_ov003_0212e6f8(&data_ov003_0216639c) == 0) {
+            status::BaseActionData_.callMonster_[0] = 0;
+        }
+        if (func_ov003_0212e6f8(&data_ov003_0216639c) == 1) {
+            status::BaseActionData_.callMonster_[0] = 1;
+        }
+        if (func_ov003_0212e6f8(&data_ov003_0216639c) == 2) {
+            status::BaseActionData_.callMonster_[0] = 2;
+        }
+        status::BaseActionData_.callMonster_[1] = func_ov003_0212e7bc(&data_ov003_0216639c);
+    }
+
+    if (actionIndex_ == 371 && status::BaseActionData_.useActionParam_->actorCharacterStatus_) {
+        if (dssrand::rand(8) < 5) {
+            unsigned int lv = status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.haveStatus_.level_;
+            status::BaseActionData_.flag_ = (lv >> 1) + 20;
+            status::BaseActionData_.flag_ = status::getRandomVariation(status::BaseActionData_.flag_, 20, 10);
+        } else {
+            status::BaseActionData_.flag_ = 0;
+        }
+    }
+
+    if (actionIndex_ == 513) {
+        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setHp(0);
+        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setExecuteMeganteRing(true);
+        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.clearHpInBattle();
+    }
+    if (actionIndex_ == 514) {
+        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setHp(0);
+        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.clearHpInBattle();
+    }
+
+    return 1;
 }
 #pragma profile off

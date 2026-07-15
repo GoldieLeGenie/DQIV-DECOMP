@@ -3,6 +3,10 @@
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 
+namespace param {
+    struct MonsterAnim;
+}
+
 namespace status {
     struct ExcelParam {
         param::CharInitData* charaInitData_;

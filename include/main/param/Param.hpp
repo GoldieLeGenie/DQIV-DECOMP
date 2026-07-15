@@ -167,23 +167,7 @@ namespace param{
         unsigned char dmmy2;
     };
 
-    struct MonsterAnim {
-        dss::fx32 scale;
-        unsigned short monster;
-        unsigned short action;
-        unsigned short sound;
-        unsigned short hitframe;
-        unsigned short startframe;
-        unsigned short wait;
-        unsigned char anim;
-        unsigned char effect;
-        unsigned char animfile;
-        unsigned char camera;
-        unsigned char camera2;
-        char byte_1;
-        unsigned char dmmy0;
-        unsigned char dmmy1;
-    };
+    
 
     struct SplitMsg {
         unsigned int branch;

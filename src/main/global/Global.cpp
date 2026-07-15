@@ -2,6 +2,33 @@
 
 Global g_Global; //data_020c768c
 
+THUMB void Global::startCasino() {
+    setMapName(data_020bc270);
+    func_0200bdb8(data_020c7658, 0xF);
+    func_02058294(data_0210bc18, data_020c7658);
+    func_0200bcc4(this, 0x1E);
+}
+
+
+THUMB void Global::startBook()
+{
+    setMapName(data_020bc258);
+    func_0200bdb8(data_020c7658, 0x10);
+    func_02058294(data_0210bc18, data_020c7658);
+    func_0200bcc4(this, 0x1E);
+}
+
+
+THUMB void Global::startSurechigai()
+{
+    setMapName(data_020bc278);
+    func_0200bdb8(data_020c7658, 0x13);
+    func_02058294(data_0210bc18, data_020c7658);
+    func_0200bcc4(this, 0x1E);
+}
+
+
+
 THUMB void Global::setMinigame(int type) {
     this->minigameType_ = type;
 }

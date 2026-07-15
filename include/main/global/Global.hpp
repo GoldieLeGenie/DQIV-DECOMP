@@ -36,6 +36,9 @@ struct Global {
     unsigned char fightStadiumResult_;          
     char _unknownB9_[7];                        
 
+    void startCasino();
+    void startBook();
+    void startSurechigai();
     void setMinigame(int type);
     int getMinigame();
     void setGameStatus(int minigameStatus);
@@ -49,4 +52,13 @@ struct Global {
     int getFieldType();
 };
 
-extern Global g_Global; // 0x020c768c, sizeof = 0xC0
+extern Global g_Global; // 0x020c768c
+extern char data_020bc278[];                            // "surechigai"
+extern char data_020bc258[];                            // "book"
+extern char data_020bc270[];                            // "casino"
+extern int  data_020c7658[];                            // 
+extern int  data_0210bc18[];                            //
+extern "C" void func_0200bdb8(void* part, int id);      // 
+extern "C" void func_02058294(void* mgr, void* part);   // 
+extern "C" void func_0200bcc4(Global* g, int part);     // 
+

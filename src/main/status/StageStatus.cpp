@@ -37,6 +37,24 @@ char map_btlyado_d[12]  = "btlyado_d";  // 0x020bdc64
 // int status::StageStatus::toramana_;
 status::StageStatus g_Stage; //data_020d08e0
 
+
+
+THUMB status::StageStatus::StageStatus()
+{
+    this->flag_.flag_ = 0;
+    for (int i = 0; i < 16; i++)
+    {
+        this->mapVeil_[i].flag_ |= 0xFFFF;
+    }
+    this->loadType_ = profile::SAVETYPE_INVALID;
+}
+
+THUMB status::StageStatus::~StageStatus()
+{
+  return;
+}
+
+
 THUMB void status::StageStatus::initialize()
 {
     this->flag_.flag_ = 0;

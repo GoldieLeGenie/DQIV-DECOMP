@@ -68,12 +68,13 @@ namespace status{
         int load_;
         int chapterLoad_;
         profile::SAVETYPE loadType_;
-        bool returnBookFlag_;
+        int returnBookFlag_;
         int profileBank_;
         short lastParty_[9];
-
-        void setup(char *mapname);
+        StageStatus();
+        ~StageStatus();
         void initialize();
+        void setup(char *mapname);
         void setupField();
         void cleanup();
         void setTimeZoneEnable(int flag);

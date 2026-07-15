@@ -2,6 +2,9 @@
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 #include "main/status/BaseActionMessage.hpp"
+#include "main/status/ActionExec.hpp"
+#include "main/status/UseAction.hpp"
+#include "main/dss/DssUtils.hpp"
 
 namespace status{
     struct BaseAction {
@@ -29,6 +32,7 @@ namespace status{
         void initialize();
         void clear();
         void exec(UseActionParam& useActionParam, int flag);
+        int execBefore();
     };
     
     struct BaseActionData {
@@ -52,6 +56,8 @@ namespace status{
     };
     extern BaseActionData BaseActionData_; //data_020d07d0
 }
+extern int data_020d0810[4];
+
 extern "C" int  func_020170b0(status::BaseAction* action, status::CharacterStatus* actor, status::CharacterStatus* target);  // execMain
 extern "C" void func_02016768(status::BaseAction* action, int flag);            // execAfter
 extern "C" void func_020164a8(status::BaseAction* action, int targetIndex);     // execAfterOne
@@ -70,4 +76,4 @@ extern "C" int  func_02018274(status::BaseAction* action);                      
 extern "C" void func_02017928(status::BaseAction* action);                      // checkStatusRelease
 extern "C" int  func_02018cc0(status::BaseAction* action, status::CharacterStatus* actor, status::CharacterStatus* target);  // checkTargetMahokanta
 extern "C" int  func_02019398(status::BaseAction* action, status::CharacterStatus* actor);  // checkActorDouble
-extern int data_020d0810[4];
+extern "C" int  func_02019398(status::BaseAction* action, status::CharacterStatus* actor);  // checkActorDouble

@@ -13,6 +13,15 @@ namespace cmn
         int locked_;
         int endLess_;
         int nextAction_;
+        void getChangeCharaNo();
+        void execute();
+        int isEnd();
+        int getChangeTable(int no);
+        bool isMonster();
+        void setCounter();
+        int getMessage(int charaNo);
+        void setNextAction(int action);
+        int getNextAction();
     };
 }
 

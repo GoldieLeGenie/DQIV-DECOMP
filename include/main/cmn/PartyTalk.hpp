@@ -37,7 +37,16 @@ namespace cmn
         static cmn::PartyTalk s_partyTalk; //data_020ef9d4
         static cmn::PartyTalk* getSingleton();
         void initialize();
+        void setPartyTalkMessage();
+        void resetPartyTalk();
+        void setPreMessageNo(int mesNo);
+        void setObjectNo(int objNo);
+        void setExitNo(int exitNo);
+        void setPreItem(int itemId);
+        void setPreMessage(int count, int message);
     };
 }
 
 extern "C" cmn::PartyTalk* func_02037494();                                  // PartyTalk::getSingleton
+extern "C" int func_020882b0(const char*, const char*);                      // strcmp
+extern "C" int func_0200c0a4(param::FloorParam*, char*);                     // getFloorIndex

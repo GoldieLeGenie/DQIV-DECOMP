@@ -124,7 +124,7 @@ namespace status{
         void setStatusChangeInBattle(DiffStatus status);
         bool isStatusChangeInBattle(DiffStatus status, MenuStatusChange statusChange);
         void setAttack(unsigned short atk);
-        unsigned int getAttack(int effect);
+        unsigned short getAttack(int effect);
         unsigned int getBaseAttack();
         unsigned int setAttackChange();
         short getAttackChange();

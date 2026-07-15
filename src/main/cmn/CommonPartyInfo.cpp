@@ -31,14 +31,14 @@ ARM short* cmn::CommonPartyInfo::getDirectionArrayPointer()
 
 ARM void cmn::CommonPartyInfo::setPartyInfo(dss::Fx32Vector3* partyPosition, short partyDirIdx)
 {
-    func_020888bc(&this->position_, partyPosition);
+    this->position_ = *partyPosition;
     this->dirIdx_ = partyDirIdx;
 }
 
 
 ARM void cmn::CommonPartyInfo::getPartyInfo(dss::Fx32Vector3* partyPos, short* partyDirIdx)
 {
-    func_020888bc(partyPos, &this->position_);
+    *partyPos = this->position_;
     *partyDirIdx = this->dirIdx_;
 }
 
@@ -46,8 +46,8 @@ ARM void cmn::CommonPartyInfo::setBashaInfo(dss::Fx32Vector3* bashaLPos, dss::Fx
                                         short bashaLIdx, short bashaRIdx,
                                         int countParty, int countLFix, int countRFix)
 {
-    func_020888bc(&this->bashaLPos_, bashaLPos);
-    func_020888bc(&this->bashaRPos_, bashaRPos);
+    this->bashaLPos_ = *bashaLPos;
+    this->bashaRPos_ = *bashaRPos;
     this->bashaLIdx_ = bashaLIdx;
     this->bashaRIdx_ = bashaRIdx;
     this->countPartyArray_ = countParty;
@@ -60,8 +60,8 @@ ARM void cmn::CommonPartyInfo::getBashaInfo(dss::Fx32Vector3* bashaLPos, dss::Fx
                                         short* bashaLIdx, short* bashaRIdx,
                                         int* countParty, int* countLFix, int* countRFix)
 {
-    func_020888bc(bashaLPos, &this->bashaLPos_);
-    func_020888bc(bashaRPos, &this->bashaRPos_);
+    *bashaLPos = this->bashaLPos_;
+    *bashaRPos = this->bashaRPos_;
     *bashaLIdx = this->bashaLIdx_;
     *bashaRIdx = this->bashaRIdx_;
     *countParty = this->countPartyArray_;
@@ -78,14 +78,14 @@ ARM void cmn::CommonPartyInfo::setDirIdx(short dirIdx)
 
 ARM void cmn::CommonPartyInfo::setStartPosition()
 {
-  func_020888bc(&this->position_,&this->startPos_);
+  this->position_ = this->startPos_;
   return;
 }
 
 ARM void cmn::CommonPartyInfo::setShipInfo(char* name, dss::Fx32Vector3* pos, short idx)
 {
     dss::DssUtils::strcpy_s(this->mapNameAtShip_, 10, name);
-    func_020888bc(&this->townShipPos_, pos);
+    this->townShipPos_ = *pos;
     this->shipDirection_ = idx;
 }
 
@@ -97,14 +97,14 @@ ARM char * cmn::CommonPartyInfo::getShipMapName()
 
 ARM void cmn::CommonPartyInfo::getShipInfo(dss::Fx32Vector3* pos, short* idx)
 {
-    func_020888bc(pos, &this->townShipPos_);
+    *pos = this->townShipPos_;
     *idx = this->shipDirection_;
 }
 
 ARM void cmn::CommonPartyInfo::setIkadaInfo(char *name,dss::Fx32Vector3 *pos)
 {
   dss::DssUtils::strcpy_s(this->mapNameAtIkada_,10,name);
-  func_020888bc(&this->townIkadaPos_,pos);
+  this->townIkadaPos_ = *pos;
   return;
 }
 

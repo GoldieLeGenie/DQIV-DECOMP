@@ -7,6 +7,27 @@
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/PartyStatus.hpp"
 
+const RoopCopy              roopPattern             = { { 8, 4, 3, 1 } };         
+const ConfuseArray3         confusePlayer12         = { { 0x1a4, 0x1a5, 0x1a6 } };                                                                         
+const ConfuseArray3         confusePlayer7          = { { 0x1ab, 0x1ac, 0x1ad } };                                                                         
+const ConfuseArray3         confusePlayer3          = { { 0x1a7, 0x1a8, 0x1a9 } };                                                                        
+const ConfuseArray4         confusePlayer9          = { { 0x1c0, 0x1c1, 0x1c2, 0x1c3 } };  
+const ConfuseArray4         confusePlayer4          = { { 0x1ae, 0x1af, 0x1b0, 0x1b1 } };    
+const ConfuseArray4         confusePlayer6          = { { 0x1b8, 0x1b9, 0x1ba, 0x1bb } };
+const ConfuseArray4         confusePlayer8          = { { 0x1bc, 0x1bd, 0x1be, 0x1bf } };                                                                                                                                                                                              // 0x020b4d8c
+const ConfuseArray4         confusePlayer5          = { { 0x1b2, 0x1b3, 0x1b4, 0x1b7 } };  
+const ConfuseArray6         confuseOtherParupunte   = { { 0x1c4, 0x1c5, 0x1c6, 0x1c7, 0x1a3, 0x1a7 } };                                                    
+const ConfuseArray6         confuseOtherNormal      = { { 0x1c4, 0x1c5, 0x1c6, 0x1c7, 0x1c8, 0x1a7 } };                                                    
+const RestArray             restOneTable            = { { 1, 1, 1, 1, 1, 1 } };                                                                            
+const RestArray             restNumTable            = { { 1, 1, 1, 1, 1, 1 } };                                                                            
+const ConfuseArray8         confuseMonsterNormal    = { { 0x1c4, 0x1c5, 0x1c6, 0x1c7, 0x1a7, 0x1c8, 0x1c9, 0x1ca } };                                      
+const TarotTable            tarotActionTable        = { { 0x21e, 0x220, 0x221, 0x222, 0x223, 0x224, 0x225, 0x226 } };                                      
+const ConfuseArray8         confuseMonsterParupunte = { { 0x1c4, 0x1c5, 0x1c6, 0x1c7, 0x1a7, 0x1a3, 0x1a3, 0x1a3 } };                                      
+const TorunekoActionTable   torunekoParupunte       = { { 0x212, 0x213, 0x214, 0x215, 0x216, 0x217, 0x218, 0x219, 0x21a, 0x21b } };                        
+const TorunekoActionTable   torunekoNormal          = { { 0x212, 0x213, 0x214, 0x215, 0x216, 0x217, 0x218, 0x219, 0x21a, 0x21b } };                        
+const ParupunteArraySmall   parupunteSmallTable     = { { 0x1cc, 0x1cd, 0x1d6, 0x1d7, 0x1d9, 0x1da, 0x1dc, 0x1de, 0x1df, 0x1e0, 0x1e1, 0x1e3, 0x1e4 } };   
+const ParupunteArrayLarge   parupunteLargeTable     = { { 0x1cb, 0x1cc, 0x1cd, 0x1ce, 0x1cf, 0x1d0, 0x1d1, 0x1d2, 0x1d5, 0x1d6, 0x1d7, 0x1d8, 0x1d9, 0x1da, 0x1dc, 0x1dd, 0x1de, 0x1df, 0x1e0, 0x1e1, 0x1e3, 0x1e4, 0x1e5 } };  
+
 
 unsigned char actionPattern[120] = {
     0x2B,0x00,0x00,0x00,0x2A,0x00,0x00,0x00,
@@ -48,8 +69,8 @@ THUMB status::HaveBattleStatus::~HaveBattleStatus()
 }
 
 THUMB void status::HaveBattleStatus::initialize() {
-    monsterinitData_.charaInitData_ = status::excelParam.getCharaInitData();
-    monsterinitData_.monsterData_ = status::excelParam.monsterData_;
+    initData_.charaInitData_ = status::excelParam.getCharaInitData();
+    initData_.monsterData_ = status::excelParam.monsterData_;
 }
 
 
@@ -73,7 +94,7 @@ THUMB void status::HaveBattleStatus::setup(CharacterType type, int group, int in
         this->mosyasAction_[i] = 0x47; 
     }
 
-    this->monsterIndexForNpc_ = monsterinitData_.charaInitData_[index].monsterID;
+    this->monsterIndexForNpc_ = initData_.charaInitData_[index].monsterID;
 
     if ((this->monsterIndexForNpc_ != 0) && (this->type_ == PLAYER)) {
         this->index_ = this->monsterIndexForNpc_;
@@ -209,29 +230,29 @@ THUMB void status::HaveBattleStatus::setupPlayer()
 }
 
 THUMB void status::HaveBattleStatus::setupMonster() {    
-    this->brains_ = monsterinitData_.monsterData_[this->index_].integer;        
-    this->multi_ = monsterinitData_.monsterData_[this->index_].times;           
+    this->brains_ = initData_.monsterData_[this->index_].integer;        
+    this->multi_ = initData_.monsterData_[this->index_].times;           
     this->multiCount_ = 0;                              
     this->multiCount2_ = 0;
     
-    this->group_[0] = monsterinitData_.monsterData_[this->index_].byte_8 & 7;              
-    this->group_[1] = ((monsterinitData_.monsterData_[this->index_].byte_8 & 0x38) >> 3);
-    this->group_[2] = monsterinitData_.monsterData_[this->index_].byte_9 & 7;              
-    this->group_[3] = ((monsterinitData_.monsterData_[this->index_].byte_9 & 0x38) >> 3);
-    this->group_[4] = monsterinitData_.monsterData_[this->index_].byte_10 & 7;             
-    this->group_[5] = ((monsterinitData_.monsterData_[this->index_].byte_10 & 0x38) >> 3);
+    this->group_[0] = initData_.monsterData_[this->index_].byte_8 & 7;              
+    this->group_[1] = ((initData_.monsterData_[this->index_].byte_8 & 0x38) >> 3);
+    this->group_[2] = initData_.monsterData_[this->index_].byte_9 & 7;              
+    this->group_[3] = ((initData_.monsterData_[this->index_].byte_9 & 0x38) >> 3);
+    this->group_[4] = initData_.monsterData_[this->index_].byte_10 & 7;             
+    this->group_[5] = ((initData_.monsterData_[this->index_].byte_10 & 0x38) >> 3);
     
-    this->crossFire_ = monsterinitData_.monsterData_[this->index_].focus;       
+    this->crossFire_ = initData_.monsterData_[this->index_].focus;       
     this->crossFireTarget_ = -1;                        
-    this->level_ = monsterinitData_.monsterData_[this->index_].level;          
+    this->level_ = initData_.monsterData_[this->index_].level;          
     
-    this->dragon_ = ((monsterinitData_.monsterData_[this->index_].byte_4 & 0xC0) >> 6);    
-    this->metal_ = monsterinitData_.monsterData_[this->index_].byte_5 & 3;                 
-    this->zombi_ = ((monsterinitData_.monsterData_[this->index_].byte_5 & 0x0C) >> 2);
-    this->air_ = ((monsterinitData_.monsterData_[this->index_].byte_5 & 0x30) >> 4);
-    this->slime_ = ((monsterinitData_.monsterData_[this->index_].byte_5 & 0xC0) >> 6);
+    this->dragon_ = ((initData_.monsterData_[this->index_].byte_4 & 0xC0) >> 6);    
+    this->metal_ = initData_.monsterData_[this->index_].byte_5 & 3;                 
+    this->zombi_ = ((initData_.monsterData_[this->index_].byte_5 & 0x0C) >> 2);
+    this->air_ = ((initData_.monsterData_[this->index_].byte_5 & 0x30) >> 4);
+    this->slime_ = ((initData_.monsterData_[this->index_].byte_5 & 0xC0) >> 6);
     
-    this->jouk_ = monsterinitData_.monsterData_[this->index_].avoid;            
+    this->jouk_ = initData_.monsterData_[this->index_].avoid;            
 }
 
 THUMB bool status::HaveBattleStatus::isJouk()
@@ -401,7 +422,7 @@ THUMB void status::HaveBattleStatus::setActionSelectForMonster(CallStart callSta
     if (this->index_ >= 250 && this->index_ <= 259) {
         if (this->mosyasActionCount_ != 0) {
             int randIndex = dssrand::rand(this->mosyasActionCount_);
-            this->actionIndex_ = func_0201c270(this,randIndex);
+            this->actionIndex_ = getMosyasAction(randIndex);
         }
     }
 }
@@ -410,13 +431,13 @@ THUMB void status::HaveBattleStatus::setActionSelectForMonster(CallStart callSta
 THUMB void status::HaveBattleStatus::setActionPatternForMonster() {
     RoopCopy local_70;
     RoopCopy tmpPattern;
-    unsigned char pattern = monsterinitData_.monsterData_[this->index_].pattern;
+    unsigned char pattern = initData_.monsterData_[this->index_].pattern;
     this->patternIndex_ = 0;
     int offset;
     volatile int* vp = &offset;
     *vp = pattern * 0x18;
     int* pActionCount = &this->actionCount_;
-    __memcpy(&tmpPattern, &data_020b4dac, sizeof(RoopCopy));
+    __memcpy(&tmpPattern, &roopPattern, sizeof(RoopCopy));
     
     for (;;) {
         switch (pattern) {
@@ -525,22 +546,22 @@ THUMB void status::HaveBattleStatus::setActionIndexForMonster()
 {
     switch (this->patternIndex_) {
     case 0:
-        this->actionIndex_ = monsterinitData_.monsterData_[this->index_].action1;
+        this->actionIndex_ = initData_.monsterData_[this->index_].action1;
         return;
     case 1:
-        this->actionIndex_ = monsterinitData_.monsterData_[this->index_].action2;
+        this->actionIndex_ = initData_.monsterData_[this->index_].action2;
         return;
     case 2:
-        this->actionIndex_ = monsterinitData_.monsterData_[this->index_].action3;
+        this->actionIndex_ = initData_.monsterData_[this->index_].action3;
         return;
     case 3:
-        this->actionIndex_ = monsterinitData_.monsterData_[this->index_].action4;
+        this->actionIndex_ = initData_.monsterData_[this->index_].action4;
         return;
     case 4:
-        this->actionIndex_ = monsterinitData_.monsterData_[this->index_].action5;
+        this->actionIndex_ = initData_.monsterData_[this->index_].action5;
         return;
     case 5:
-        this->actionIndex_ = monsterinitData_.monsterData_[this->index_].action6;
+        this->actionIndex_ = initData_.monsterData_[this->index_].action6;
         return;
     case 7:
         this->actionIndex_ = 0x1e9;
@@ -558,17 +579,17 @@ THUMB int status::HaveBattleStatus::getActionIndex(int index) {
     }
     switch (this->patternIndex_) {
     case 0:
-        return monsterinitData_.monsterData_[index].action1;
+        return initData_.monsterData_[index].action1;
     case 1:
-        return monsterinitData_.monsterData_[index].action2;
+        return initData_.monsterData_[index].action2;
     case 2:
-        return monsterinitData_.monsterData_[index].action3;
+        return initData_.monsterData_[index].action3;
     case 3:
-        return monsterinitData_.monsterData_[index].action4;
+        return initData_.monsterData_[index].action4;
     case 4:
-        return monsterinitData_.monsterData_[idx].action5;
+        return initData_.monsterData_[idx].action5;
     case 5:
-        return monsterinitData_.monsterData_[idx].action6;
+        return initData_.monsterData_[idx].action6;
     default:
         return 0;
     }
@@ -588,22 +609,22 @@ THUMB int status::HaveBattleStatus::getActionAnimation(int index)
 
     switch (this->patternIndex_) {
         case 0:
-            result = monsterinitData_.monsterData_[index].animation1;
+            result = initData_.monsterData_[index].animation1;
             break;
         case 1:
-            result = monsterinitData_.monsterData_[index].animation2;
+            result = initData_.monsterData_[index].animation2;
             break;
         case 2:
-            result = monsterinitData_.monsterData_[index].animation3;
+            result = initData_.monsterData_[index].animation3;
             break;
         case 3:
-            result = monsterinitData_.monsterData_[index].animation4;
+            result = initData_.monsterData_[index].animation4;
             break;
         case 4:
-            result = monsterinitData_.monsterData_[index].animation5;
+            result = initData_.monsterData_[index].animation5;
             break;
         case 5:
-            result = monsterinitData_.monsterData_[index].animation6;
+            result = initData_.monsterData_[index].animation6;
             break;
         default:
             break;
@@ -699,7 +720,7 @@ THUMB int status::HaveBattleStatus::isRestOneAction2nd() {
 
 
 THUMB void status::HaveBattleStatus::setRestOne() {
-    RestArray tmp = data_020b4e1c;
+    RestArray tmp = restOneTable;
     unsigned int i = 0;
     int* p = tmp.v;
     do {
@@ -735,7 +756,7 @@ THUMB void status::HaveBattleStatus::setRestOne() {
 
 
 THUMB int status::HaveBattleStatus::getRestNum() {
-    RestArray tmp = data_020b4e34;
+    RestArray tmp = restNumTable;
     unsigned int i = 0;
     int* p = tmp.v;
     do {
@@ -975,7 +996,7 @@ THUMB void status::HaveBattleStatus::setupTarotAction()
     if ((this->index_ == 8) && (this->actionIndex_ == 0x148)) {
         this->selectCommand_ = UseAction;
 
-        table = data_020b4e6c;
+        table = tarotActionTable;
 
         this->actionIndex_ = table.v[dssrand::rand(8)];
         this->tarotCount_++;
@@ -983,9 +1004,9 @@ THUMB void status::HaveBattleStatus::setupTarotAction()
             this->actionIndex_ = 0x21F;
         }
 
-        if (monsterinitData_.unk_0c != 0) {
-            this->actionIndex_ = monsterinitData_.unk_0c;
-            monsterinitData_.unk_0c = 0;
+        if (initData_.unk_0c != 0) {
+            this->actionIndex_ = initData_.unk_0c;
+            initData_.unk_0c = 0;
         }
 
         this->tarotActionIndex_ = this->actionIndex_;
@@ -1005,18 +1026,18 @@ THUMB void status::HaveBattleStatus::setupParupunteAction() {
     if (this->haveStatusInfo_ != 0) {
         StatusChange* sc = &this->haveStatusInfo_->statusChange_;
         if (!sc->isEnable(StatusChange::StatusFizzleZone) && this->actionIndex_ == 0x42) {
-            if (monsterinitData_.parupunteFlag_ != 0) {
-                ParupunteArraySmall tmp = data_020b4efc;
+            if (initData_.parupunteFlag_ != 0) {
+                ParupunteArraySmall tmp = parupunteSmallTable;
                 int r = dssrand::rand(0xd);
                 this->actionIndex_ = tmp.v[r];
             } else {
-                ParupunteArrayLarge tmp = data_020b4f30;
+                ParupunteArrayLarge tmp = parupunteLargeTable;
                 int r = dssrand::rand(0x17);
                 this->actionIndex_ = tmp.v[r];
             }
-            if (monsterinitData_.parupunteAction_ != 0) {
-                this->actionIndex_ = monsterinitData_.parupunteAction_;
-                monsterinitData_.parupunteAction_ = 0;
+            if (initData_.parupunteAction_ != 0) {
+                this->actionIndex_ = initData_.parupunteAction_;
+                initData_.parupunteAction_ = 0;
             }
             this->selectCommand_ = UseAction;
             this->selectedTarget_ = -1;
@@ -1051,11 +1072,11 @@ THUMB void status::HaveBattleStatus::setupConfuseAction() {
             } else {
                 int idx = this->index_;
                 if (idx - 1U <= 1) {
-                    ConfuseArray3 tmp = data_020b4d68;
+                    ConfuseArray3 tmp = confusePlayer12;
                     r = dssrand::rand(3);
                     this->actionIndex_ = tmp.v[r];
                 } else if (idx == 3) {
-                    ConfuseArray3 tmp = data_020b4d80;
+                    ConfuseArray3 tmp = confusePlayer3;
                     r = dssrand::rand(3);
                     int act = tmp.v[r];
                     this->actionIndex_ = act;
@@ -1066,7 +1087,7 @@ THUMB void status::HaveBattleStatus::setupConfuseAction() {
                         }
                     }
                 } else if (idx == 7) {
-                    ConfuseArray3 tmp = data_020b4d74;
+                    ConfuseArray3 tmp = confusePlayer7;
                     r = dssrand::rand(3);
                     int act = tmp.v[r];
                     this->actionIndex_ = act;
@@ -1081,11 +1102,11 @@ THUMB void status::HaveBattleStatus::setupConfuseAction() {
                         }
                     }
                 } else if (idx == 4) {
-                    ConfuseArray4 tmp = data_020b4d9c;
+                    ConfuseArray4 tmp = confusePlayer4;
                     r = dssrand::rand(4);
                     this->actionIndex_ = tmp.v[r];
                 } else if (idx == 5) {
-                    ConfuseArray4 tmp = data_020b4ddc;
+                    ConfuseArray4 tmp = confusePlayer5;
                     r = dssrand::rand(4);
                     int act = tmp.v[r];
                     this->actionIndex_ = act;
@@ -1105,11 +1126,11 @@ THUMB void status::HaveBattleStatus::setupConfuseAction() {
                         }
                     }
                 } else if (idx == 6) {
-                    ConfuseArray4 tmp = data_020b4dbc;
+                    ConfuseArray4 tmp = confusePlayer6;
                     r = dssrand::rand(4);
                     this->actionIndex_ = tmp.v[r];
                 } else if (idx == 8) {
-                    ConfuseArray4 tmp = data_020b4dcc;
+                    ConfuseArray4 tmp = confusePlayer8;
                     r = dssrand::rand(4);
                     int act = tmp.v[r];
                     this->actionIndex_ = act;
@@ -1119,7 +1140,7 @@ THUMB void status::HaveBattleStatus::setupConfuseAction() {
                         }
                     }
                 } else if (idx == 9) {
-                    ConfuseArray4 tmp = data_020b4d8c;
+                    ConfuseArray4 tmp = confusePlayer9;
                     r = dssrand::rand(4);
                     int act = tmp.v[r];
                     this->actionIndex_ = act;
@@ -1130,20 +1151,20 @@ THUMB void status::HaveBattleStatus::setupConfuseAction() {
                             this->actionIndex_ = 0x1a3;
                         }
                     }
-                } else if (monsterinitData_.parupunteFlag_ != 0) {
-                    ConfuseArray6 tmp = data_020b4dec;
+                } else if (initData_.parupunteFlag_ != 0) {
+                    ConfuseArray6 tmp = confuseOtherParupunte;
                     r = dssrand::rand(6);
                     this->actionIndex_ = tmp.v[r];
                 } else {
-                    ConfuseArray6 tmp = data_020b4e04;
+                    ConfuseArray6 tmp = confuseOtherNormal;
                     r = dssrand::rand(6);
                     this->actionIndex_ = tmp.v[r];
                 }
             }
         }
-        if (monsterinitData_.confuseDebugAction_ != 0) {
-            this->actionIndex_ = monsterinitData_.confuseDebugAction_;
-            monsterinitData_.confuseDebugAction_ = 0;
+        if (initData_.confuseDebugAction_ != 0) {
+            this->actionIndex_ = initData_.confuseDebugAction_;
+            initData_.confuseDebugAction_ = 0;
         }
     } else if (this->type_ == MONSTER) {
         int r = dssrand::rand(2);
@@ -1153,12 +1174,12 @@ THUMB void status::HaveBattleStatus::setupConfuseAction() {
             if (r == 0) {
                 this->haveStatusInfo_->setConfuseMissAttack(true);
             }
-        } else if (monsterinitData_.parupunteFlag_ != 0) {
-            ConfuseArray8 tmp = data_020b4e8c;
+        } else if (initData_.parupunteFlag_ != 0) {
+            ConfuseArray8 tmp = confuseMonsterParupunte;
             r = dssrand::rand(8);
             this->actionIndex_ = tmp.v[r];
         } else {
-            ConfuseArray8 tmp = data_020b4e4c;
+            ConfuseArray8 tmp = confuseMonsterNormal;
             r = dssrand::rand(8);
             this->actionIndex_ = tmp.v[r];
         }
@@ -1166,4 +1187,160 @@ THUMB void status::HaveBattleStatus::setupConfuseAction() {
     this->selectCommand_ = UseAction;
     this->selectedTarget_ = -1;
     this->selectedGroup_ = -1;
+}
+
+
+THUMB int status::HaveBattleStatus::setupTorunekoAction()
+{
+    if (haveStatusInfo_ == 0)
+    {
+        return 0;
+    }
+    if (type_ != PLAYER)
+    {
+        return 0;
+    }
+    if (haveStatusInfo_->haveStatus_.playerIndex_ != 7)
+    {
+        return 0;
+    }
+    if (g_Story.chapter_ == 3)
+    {
+        return 0;
+    }
+    if (haveStatusInfo_->isDeath())
+    {
+        return 0;
+    }
+    if (haveStatusInfo_->statusChange_.isEnable(status::StatusChange::StatusConfusion))
+    {
+        return 0;
+    }
+    if (haveStatusInfo_->statusChange_.isEnable(status::StatusChange::StatusSpazz))
+    {
+        return 0;
+    }
+    if (haveStatusInfo_->statusChange_.isEnable(status::StatusChange::StatusSleep))
+    {
+        return 0;
+    }
+    if (haveStatusInfo_->statusChange_.isEnable(status::StatusChange::StatusSleep))
+    {
+        return 0;
+    }
+    if (initData_.torunekoDebugIndex_ != 0)
+    {
+        actionIndex_ = initData_.torunekoDebugIndex_;
+        initData_.torunekoDebugIndex_ = 0;
+        selectCommand_ = UseAction;
+        selectedTarget_ = -1;
+        selectedGroup_ = -1;
+        return 1;
+    }
+    if (dssrand::rand(4) == 0)
+    {
+        if (initData_.parupunteFlag_ != 0)
+        {
+            TorunekoActionTable table = torunekoParupunte;
+            actionIndex_ = table.v[dssrand::rand(10)];
+        }
+        else
+        {
+            TorunekoActionTable table = torunekoNormal;
+            actionIndex_ = table.v[dssrand::rand(10)];
+        }
+        selectCommand_ = UseAction;
+        selectedTarget_ = -1;
+        selectedGroup_ = -1;
+        return 1;
+    }
+    return 0;
+}
+
+THUMB void status::HaveBattleStatus::setupSpecialAction(int actionIndex)
+{
+  this->actionIndex_ = actionIndex;
+  this->selectCommand_ = UseAction;
+  this->selectedTarget_ = -1;
+  this->selectedGroup_ = -1;
+  return;
+}
+
+THUMB void status::HaveBattleStatus::updateSpecialSleepBehaviors()
+
+{
+  setupRollOver();
+  setupSleepAction();
+  return;
+}
+
+
+THUMB void status::HaveBattleStatus::setupRollOver()
+{
+    if (this->haveStatusInfo_ != 0 && 
+        this->type_ == MONSTER && 
+        this->index_ == 0x26) 
+    {   
+        if (this->haveStatusInfo_->statusChange_.isEnable(StatusChange::StatusSleep)) {
+            if (dssrand::rand(3) != 0) { 
+                this->actionIndex_ = 0x144; 
+            }
+        }
+    }
+    return;
+}
+
+THUMB void status::HaveBattleStatus::setupSleepAction()
+{
+    if (this->haveStatusInfo_ != 0 && 
+        this->type_ == MONSTER && 
+        this->index_ == 0xBC) 
+    {
+        int isAsleep = this->haveStatusInfo_->statusChange_.isEnable(StatusChange::StatusSleep);
+        if (isAsleep) {
+            this->actionIndex_ = 0x145;
+        }
+    }
+    return;
+}
+
+THUMB void status::HaveBattleStatus::setupTurnBeforeAction() {
+    updateSpecialSleepBehaviors();
+    return;
+}
+
+
+THUMB void  status::HaveBattleStatus::setMosyasAction(int action)
+{
+  int mosyasActionCount; 
+
+  mosyasActionCount = this->mosyasActionCount_;
+  this->mosyasActionCount_ = this->mosyasActionCount_ + 1;
+  this->mosyasAction_[mosyasActionCount] = action;
+  return;
+}
+
+THUMB int status::HaveBattleStatus::getMosyasAction(int index)
+{
+    int action;
+    
+    action = this->mosyasAction_[index];
+    if (action == 0x47) {
+        this->patternIndex_ = 0;
+    } else {
+        this->patternIndex_ = 1;
+    }
+    return action;
+}
+
+THUMB void status::HaveBattleStatus::clearMosyasAction()
+{
+  this->mosyasActionCount_ = 0;
+  return;
+}
+
+THUMB void status::HaveBattleStatus::print()
+
+{
+  return;
 }

@@ -700,7 +700,7 @@ THUMB void status::HaveStatusInfo::setAttack(unsigned short atk)
     return;
 }
 
-THUMB unsigned int status::HaveStatusInfo::getAttack(int effect)
+THUMB unsigned short status::HaveStatusInfo::getAttack(int effect)
 {
     int attackChange;
     unsigned short equipAttack;

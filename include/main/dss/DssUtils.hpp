@@ -40,6 +40,10 @@ namespace dss{
         short vy;
         short vz;
     };
+    struct Vector2int {
+        int vx;
+        int vy;
+    };
     struct Fx32Vector3 {
         Fx32 vx;
         Fx32 vy;

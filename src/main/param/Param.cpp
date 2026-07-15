@@ -631,3 +631,5 @@ const unsigned char princessDataTable[0x964] = {
 const unsigned char priestDataTable[] = {
 
 };
+
+
