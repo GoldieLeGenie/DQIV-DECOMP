@@ -10,8 +10,21 @@
 
 namespace status{
     struct StageStatus {
+        struct Flag {
+            unsigned int flag_;
+            Flag() { flag_ = 0; }
+        };
+        struct FlagU8 {
+            unsigned char flag_;
+            FlagU8() { flag_ = 0; }
+        };
+        struct FlagU16 {
+            unsigned short flag_;
+            FlagU16() { flag_ = 0; }
+        };
+
         static int toramana_;  //data_020d08d0 
-        dss::BitFlaguint flag_;
+        Flag flag_;
         char mapName_[32];
         char* map_;
         char btlMapName_[32];
@@ -34,16 +47,16 @@ namespace status{
         dss::Fx32Vector3 overviewTempPosition_;
         int flagMapChange_;
 
-        dss::BitFlaguint ruraEnable_;
+        Flag ruraEnable_;
         int ruraFlag_;
         int ruraSymbol_;
         int maxKekai;
         int crusingPeopleEncount_;
-        dss::BitFlaguchar symbolFlag_[16];
-        dss::BitFlagushort mapVeil_[16];
-        dss::BitFlaguchar furnFlag_[256];
-        dss::BitFlaguchar openFlag_[16];
-        dss::BitFlaguchar breakFlag_[8];
+        FlagU8 symbolFlag_[16];
+        FlagU16 mapVeil_[16];
+        FlagU8 furnFlag_[256];
+        FlagU8 openFlag_[16];
+        FlagU8 breakFlag_[8];
         int timestop_;
         int fallFlag_;
         dss::Fx32 idoLinkPosX_;

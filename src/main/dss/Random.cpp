@@ -14,3 +14,16 @@ int dssrand::rand(int n) {
     }
     return ((dssrand::dssrand.state >> 16) & 0xFFFF);
 }
+
+extern "C" unsigned int func_02080d80(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+
+#pragma thumb off
+extern "C" asm unsigned int func_02080d80(unsigned int a, unsigned int b, unsigned int c, unsigned int d)
+{
+    mov r1, r1, lsl 16
+    orr r0, r1, r0, lsl 24
+    orr r0, r0, r2, lsl 8
+    orr r0, r3, r0
+    bx lr
+}
+#pragma thumb on

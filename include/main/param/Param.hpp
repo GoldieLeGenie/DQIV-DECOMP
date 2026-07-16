@@ -520,9 +520,9 @@ namespace param{
     };
 
     struct MapChurch {
-        dss::fx32 playerX;
-        dss::fx32 playerY;
-        dss::fx32 playerZ;
+        dss::Fx32 playerX;
+        dss::Fx32 playerY;
+        dss::Fx32 playerZ;
         unsigned short direction;
         char floor[8];
         char byte_1;

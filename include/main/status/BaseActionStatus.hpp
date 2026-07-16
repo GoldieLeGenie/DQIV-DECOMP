@@ -35,6 +35,7 @@ namespace status {
         static int actionTypeRecovery(status::CharacterStatus *target);
         static int actionTypeAddMP(status::CharacterStatus *target);
         static int actionTypeSubMP(status::CharacterStatus *actor,status::CharacterStatus *target);
+        static int actionTypeZaoriku(status::CharacterStatus *target);
         static void actionTypeBaikiruto(status::CharacterStatus *target);
         static void actionTypeMahokanta(status::CharacterStatus *target);
         static void actionTypeMahosute(status::CharacterStatus *target);

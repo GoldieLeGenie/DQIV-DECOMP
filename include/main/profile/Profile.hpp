@@ -208,6 +208,7 @@ public:
         void collectDATA_MONSTER();
         void collectDATA_ENVOY();
         int deliverDATA();
+        void deliverDATA_PARTY();
         void deliverDATA_CHAPTER();
         void deliverDATA_PLAYER();
         void deliverDATA_MONSTER();
@@ -227,11 +228,10 @@ extern "C" int func_02003528(char* a, char* b);                             // s
 extern "C" unsigned char func_0203ab30(void* mgr, int index);               // getter SELECTTAISHI
 extern "C" int func_02030ef0(void* prof);    // isValidData (thumb)
 extern "C" int func_02030eb0(void* prof);    // calcCheckSum 
-extern "C" void func_02038d2c(void* prof);   // deliverDATA_PARTY
 extern "C" void func_02039190(void* prof);   // deliverDATA_CHAPTER
 extern "C" void func_02039214(void* prof);   // deliverDATA_PLAYER
 extern "C" void func_02039250(void* prof);   // deliverDATA_MONSTER
-extern "C" void func_020392a0(void* prof);   // deliverDATA (HISTORY) ?
+extern "C" void func_020392a0(void* prof);
 extern "C" int func_0203a358(void* mgr, int index);   // isEnable(i)
 extern "C" int func_0203a354(void* mgr);              // isEnable slot final
 extern "C" void func_0203a34c(void* mgr, int index);  // select

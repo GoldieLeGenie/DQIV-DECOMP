@@ -39,11 +39,13 @@ status::StageStatus g_Stage; //data_020d08e0
 
 
 
+extern "C" void _ZN3dss11Fx32Vector3C1Ev(dss::Fx32Vector3*);
+
 THUMB status::StageStatus::StageStatus()
 {
+    _ZN3dss11Fx32Vector3C1Ev((dss::Fx32Vector3*)&this->idoLinkPosX_);
     this->flag_.flag_ = 0;
-    for (int i = 0; i < 16; i++)
-    {
+    for (int i = 0; i < 16; i++) {
         this->mapVeil_[i].flag_ |= 0xFFFF;
     }
     this->loadType_ = profile::SAVETYPE_INVALID;
@@ -88,7 +90,7 @@ THUMB void status::StageStatus::initialize()
     func_02087154(&this->balloonPosition_.vz.value, 0);
 
     this->idoLink_.inFlag_ = 0;
-    this->idoLink_.outFlag_  = 0;
+    this->idoLink_.outFlag_ = 0;
     StageStatus::IdoLink* link = &g_Stage.idoLink_;
     link->shipEncount_ = 0;
     link->encount_ = 0;
@@ -1221,19 +1223,25 @@ THUMB int status::StageStatus::getFallFlag()
 
 THUMB int status::StageStatus::restartChurch()
 {
-    unsigned int found = 0xFFFFFFFF;
+    int found = -1;
     dss::Fx32Vector3 pos;
-
     param::MapChurch* tbl = status::excelParam.mapChurch_;
-    for (unsigned int i = 0; i < data_020b615c.count_; i++) {
-        if (this->churchMap_[0] == tbl[i].floor[0] && this->churchMap_[1] == tbl[i].floor[1]) {
-            if (tbl[i].direction != 0xFFFF) {
-                found = i;
+    unsigned int count = data_020b615c.count_;
+    unsigned int i = 0;
+
+    if (count != 0) {
+        do {
+            if (this->churchMap_[0] == tbl[i].floor[0] &&
+                this->churchMap_[1] == tbl[i].floor[1]) {
+                if (tbl[i].direction != 0xFFFF) {
+                    found = i;
+                }
+                break;
             }
-            break;
-        }
+            i++;
+        } while (i < count);
     }
-    if (found == 0xFFFFFFFF) {
+    if (found == -1) {
         return 0;
     }
     pos.vx = tbl[found].playerX;
@@ -1242,4 +1250,13 @@ THUMB int status::StageStatus::restartChurch()
     func_02028494(&data_020ed28c, this->churchMap_, &pos, (short)tbl[found].direction);
     setTimeZone(TIME_ZONE_DAYTIME);
     return 1;
+}
+
+THUMB void func_0201d460(int* p)
+{
+    p[1] = 0;
+}
+
+THUMB void func_0201d468()
+{
 }

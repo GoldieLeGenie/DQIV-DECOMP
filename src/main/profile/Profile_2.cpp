@@ -9,6 +9,7 @@
 #include "main/cmn/CommonCounterInfo.hpp"
 #include "main/cmn/HengeNoTsueManager.hpp"
 #include "main/cmn/PartyTalk.hpp"
+#include "main/encount/Encount.hpp"
 
 
 // status::HaveItemSack g_NeneItemSack;
@@ -299,12 +300,149 @@ THUMB int profile::Profile::deliverDATA()
     if (calcCheckSum() == 0) {
         return 0;
     }
-    func_02038d2c(this);
+    deliverDATA_PARTY();
     deliverDATA_CHAPTER();
     deliverDATA_PLAYER();
     deliverDATA_MONSTER();
     deliverDATA_ENVOY();
     return 1;
+}
+
+extern "C" {
+    void func_0200b864(void*);
+    void func_0205594c(int);
+    void func_0203ab20(void*, int, int);
+}
+
+THUMB void profile::Profile::deliverDATA_PARTY()
+{
+    func_0200b864(&g_Global);
+    func_0205594c(0xF);
+
+    g_Stage.profileBank_ = this->pSYSTEM->BOOKNO;
+    g_Stage.loadType_ = (profile::SAVETYPE)this->pSYSTEM->SAVETYPE;
+
+    g_Stage.initialize();
+    g_Stage.setup((char*)this->pPARTY->RESTART);
+    g_Stage.setChurchMapName((char*)this->pPARTY->CHURCH);
+
+    dss::Fx32Vector3 pos;
+    pos.vx.value = (dss::fx32)this->pPARTY->PARTY_X;
+    pos.vy.value = (dss::fx32)this->pPARTY->PARTY_Y;
+    pos.vz.value = (dss::fx32)this->pPARTY->PARTY_Z;
+    deliverRESTART_MAP(&pos, this->pPARTY->PARTY_D);
+
+    {
+        dss::Fx32Vector3 tmp;
+        tmp.vx.value = (dss::fx32)this->pPARTY->SHIP_X;
+        tmp.vy.value = (dss::fx32)this->pPARTY->SHIP_Y;
+        tmp.vz.value = (dss::fx32)this->pPARTY->SHIP_Z;
+        dss::Fx32 x(tmp.vx);
+        dss::Fx32 y(tmp.vy);
+        dss::Fx32 z(tmp.vz);
+        g_Stage.shipPosition_ = *(dss::Fx32Vector3*)&x;
+    }
+    {
+        dss::Fx32Vector3 tmp;
+        tmp.vx.value = (dss::fx32)this->pPARTY->BALLOON_X;
+        tmp.vy.value = (dss::fx32)this->pPARTY->BALLOON_Y;
+        tmp.vz.value = (dss::fx32)this->pPARTY->BALLOON_Z;
+        dss::Fx32 x(tmp.vx);
+        dss::Fx32 y(tmp.vy);
+        dss::Fx32 z(tmp.vz);
+        g_Stage.balloonPosition_ = *(dss::Fx32Vector3*)&x;
+    }
+    {
+        dss::Fx32Vector3 tmp;
+        tmp.vx.value = (dss::fx32)this->pPARTY->RAFT_X;
+        tmp.vy.value = (dss::fx32)this->pPARTY->RAFT_Y;
+        tmp.vz.value = (dss::fx32)this->pPARTY->RAFT_Z;
+        g_cmnPartyInfo.townIkadaPos_ = tmp;
+    }
+    {
+        dss::Fx32Vector3 tmp;
+        tmp.vx.value = (dss::fx32)this->pPARTY->OVERVIEW_X;
+        tmp.vy.value = (dss::fx32)this->pPARTY->OVERVIEW_Y;
+        tmp.vz.value = (dss::fx32)this->pPARTY->OVERVIEW_Z;
+        g_Stage.overviewTempPosition_ = tmp;
+        g_Stage.overviewPosition_ = tmp;
+    }
+
+    g_cmnPartyInfo.rideOnType_ = (cmn::PARTY_RIDE_ON_TYPE)this->pPARTY->RIDEON;
+    g_Stage.balloonFieldType_ = this->pPARTY->BALLOON_FIELD;
+    g_Stage.setRanaMapName((char*)this->pPARTY->RANALUTA_MAP);
+    g_Stage.lastFldSurface_ = this->pPARTY->RANALUTA_SURFACE;
+    status::g_Story.setChapter(this->pPARTY->CHAPTER);
+
+    deliverGameFlag(&g_GlobalFlag, this->pPARTY->GLOBALFLAG);
+    deliverGameFlag(&g_AreaFlag, this->pPARTY->AREAFLAG);
+    deliverGameFlag(&g_LocalFlag, this->pPARTY->LOCALFLAG);
+
+    g_Stage.deliverMapFlag((profile::SAVETYPE)this->pSYSTEM->SAVETYPE, this->pPARTY);
+    status::g_Party.setLoadData(this->pPARTY, this->pHISTORY);
+
+    g_Stage.setTimeZone((TIME_ZONE)this->pPARTY->TIMEZONE);
+    g_Stage.setWorldTime(this->pPARTY->WORLDTIME);
+    g_Stage.timestop_ = this->pPARTY->TIMESTOP;
+    status::g_Story.sex_ = (Sex)this->pPARTY->SEX;
+    status::g_Story.setHeroName((char*)this->pPARTY->NAME);
+
+    for (int i = 0; i < 0x10; i++) {
+        cmn::g_CommonCounterInfo.dayCounter_[i] = this->pPARTY->DAY_COUNTER[i];
+    }
+    for (int i = 0; i < 4; i++) {
+        cmn::g_CommonCounterInfo.freeCounter_[i] = this->pPARTY->FREE_COUNTER[i];
+    }
+
+    status::g_Story.setEndorEventItemCount(status::StoryStatus::EVENT_HAGANENOTURUGI, this->pPARTY->BONMOL[0]);
+    status::g_Story.setEndorEventItemCount(status::StoryStatus::EVENT_TETUNOYOROI, this->pPARTY->BONMOL[1]);
+    status::g_Game.setPlayTime(this->pPARTY->PLAYTIME);
+    status::g_Game.language = (Language)this->pPARTY->LANGUAGE;
+    ::g_Option.setBgmVolume(this->pPARTY->BGM_VOLUME);
+    ::g_Option.setSeVolume(this->pPARTY->SE_VOLUME);
+    ::g_Option.setBattleSpeed(this->pPARTY->BATTLE_SPEED);
+
+    func_0200a6c8()->enable_ = this->pPARTY->ENCOUNT;
+    g_Stage.symbolID_ = this->pPARTY->SYMBOLID;
+
+    for (int k = 0; k < 0xA2; k++) {
+        g_NeneItemSack.adds(this->pPARTY->NENEITEM[k], this->pPARTY->NENECOUNT[k]);
+    }
+    for (int i = 0; i < 6; i++) {
+        darts[i] = this->pPARTY->DARTS_ITEM[i];
+    }
+    cmn::PartyTalk* talk = cmn::PartyTalk::getSingleton();
+    for (int i = 0; i < 0xA; i++) {
+        talk->setPreMessage(i, this->pPARTY->SPEAKTO_MESSAGE[i]);
+    }
+    talk = cmn::PartyTalk::getSingleton();
+    talk->objectNo_ = this->pPARTY->SPEAKTO_OBJECT;
+    talk = cmn::PartyTalk::getSingleton();
+    talk->lastExit_ = this->pPARTY->SPEAKTO_EXITNO;
+    talk = cmn::PartyTalk::getSingleton();
+    talk->prevItem_ = this->pPARTY->SPEAKTO_ITEMNO;
+
+    status::g_BattleHistory.setLoadData(this->pPARTY, this->pHISTORY);
+    status::g_Party.setBankMoney(this->pPARTY->BANKMONEY);
+    status::g_Party.setMedalCoin(this->pPARTY->MEDALCOIN);
+    status::g_Story.setTarot(this->pPARTY->TAROT);
+    status::g_Story.setUseBank(this->pPARTY->USE_BANK);
+    status::g_Story.setCompleteCoin(this->pPARTY->COMP_PICTUREBOOK);
+
+    g_HengeNoTsue.charNo_ = this->pPARTY->HENGE_CHARANO;
+    g_HengeNoTsue.counter_ = this->pPARTY->HENGE_COUNTER;
+    g_HengeNoTsue.change_ = this->pPARTY->HENGE_CHANGE;
+    g_HengeNoTsue.endLess_ = this->pPARTY->HENGE_ENDLESS;
+    g_HengeNoTsue.index_ = this->pPARTY->HENGE_INDEX;
+    status::g_Party.setPlayerMedalCoin(this->pPARTY->PLAYERMEDAL);
+
+    g_cmnPartyInfo.setIkadaMapName((char*)this->pPARTY->IKADAMAP);
+    g_cmnPartyInfo.barron_ = this->pPARTY->BALONFLAG;
+    status::g_Game.setUniqueID(this->pPARTY->UNIQUEID);
+
+    for (int i = 0; i < 0x32; i++) {
+        func_0203ab20(&data_020f0078, i, this->pPARTY->SELECTTAISHI_FLAG[i]);
+    }
 }
 
 THUMB void profile::Profile::deliverDATA_CHAPTER()

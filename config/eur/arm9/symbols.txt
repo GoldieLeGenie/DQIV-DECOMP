@@ -2040,7 +2040,7 @@ _ZN6status16BaseActionStatus22actionTypeInstantDeathEPNS_15CharacterStatusE kind
 _ZN6status16BaseActionStatus18actionTypeRecoveryEPNS_15CharacterStatusE kind:function(thumb,size=0x4c) addr:0x0202e2bc
 _ZN6status16BaseActionStatus15actionTypeAddMPEPNS_15CharacterStatusE kind:function(thumb,size=0x5e) addr:0x0202e308
 _ZN6status16BaseActionStatus15actionTypeSubMPEPNS_15CharacterStatusES2_ kind:function(thumb,size=0xa4) addr:0x0202e368
-func_0202e40c kind:function(thumb,size=0x25c) addr:0x0202e40c
+_ZN6status16BaseActionStatus17actionTypeZaorikuEPNS_15CharacterStatusE kind:function(thumb,size=0x25c) addr:0x0202e40c
 _ZN6status16BaseActionStatus19actionTypeBaikirutoEPNS_15CharacterStatusE kind:function(thumb,size=0x54) addr:0x0202e668
 _ZN6status16BaseActionStatus19actionTypeMahokantaEPNS_15CharacterStatusE kind:function(thumb,size=0x44) addr:0x0202e6bc
 _ZN6status16BaseActionStatus18actionTypeMahosuteEPNS_15CharacterStatusE kind:function(thumb,size=0x30) addr:0x0202e700
@@ -2456,7 +2456,7 @@ _ZN7profile7Profile18collectDATA_PLAYEREv kind:function(thumb,size=0x11c) addr:0
 _ZN7profile7Profile19collectDATA_MONSTEREv kind:function(thumb,size=0x50) addr:0x02038b3c
 _ZN7profile7Profile17collectDATA_ENVOYEv kind:function(thumb,size=0x158) addr:0x02038b8c
 _ZN7profile7Profile11deliverDATAEv kind:function(thumb,size=0x46) addr:0x02038ce4
-func_02038d2c kind:function(thumb,size=0x464) addr:0x02038d2c
+_ZN7profile7Profile17deliverDATA_PARTYEv kind:function(thumb,size=0x464) addr:0x02038d2c
 _ZN7profile7Profile19deliverDATA_CHAPTEREv kind:function(thumb,size=0x84) addr:0x02039190
 _ZN7profile7Profile18deliverDATA_PLAYEREv kind:function(thumb,size=0x3c) addr:0x02039214
 _ZN7profile7Profile19deliverDATA_MONSTEREv kind:function(thumb,size=0x50) addr:0x02039250

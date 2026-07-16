@@ -2,6 +2,7 @@
 #include "main/status/MonsterStatus.hpp"
 #include "main/status/UseAction.hpp"
 #include "main/status/ActionExec.hpp"
+#include "main/status/PartyStatus.hpp"
 #include "main/dss/Random.hpp"
 
 status::BaseActionValue BaseActionValue_;
@@ -107,6 +108,83 @@ THUMB void status::BaseActionStatus::actionTypeInstantDeath(status::CharacterSta
     {
         target->clearDeathAnimation();
     }
+}
+
+extern "C" void* func_0205b2f0();
+
+THUMB int status::BaseActionStatus::actionTypeZaoriku(status::CharacterStatus *target)
+{
+    int result = 0;
+
+    if (target->characterType_ == PLAYER) {
+        if (func_ov000_02121d04() == 0) {
+            if (func_ov003_021223b4(0, target->haveStatusInfo_.index_) == 0) {
+                return 0;
+            }
+        }
+    }
+
+    int action = BaseActionStatus_.actionIndex_;
+    if (action == 0x3D || action == 0xC8) {
+        if (dssrand::rand(2) != 0) {
+            return 0;
+        }
+
+        if (target->haveStatusInfo_.isDeath() != 0) {
+            unsigned short hpMax = target->haveStatusInfo_.getHpMax();
+            target->haveStatusInfo_.setHp((hpMax << 15) >> 16);
+            target->haveStatusInfo_.addHpInBattle(status::HaveStatusInfo::ResultAction, 0);
+            target->haveStatusInfo_.setUseActionEffectValue(0x3FF);
+            target->haveStatusInfo_.statusChange_.clear();
+            target->haveStatusInfo_.setStatusChangeRelease(true);
+            target->haveStatusInfo_.setZaorikuRebirth(true);
+            target->setRebirthAnimation();
+            result = 1;
+
+            if (func_02058114(&data_0210bb94, 0xD) != 0 && target->characterType_ == PLAYER) {
+                int count = status::g_Party.getCount();
+                for (int i = 0; i < count; i++) {
+                    if ((status::CharacterStatus*)status::g_Party.getPlayerStatus(i) == target) {
+                        void* mgr = func_0205b2f0();
+                        short flags = *(short*)((char*)mgr + 0x66B8);
+                        int bit = 1 << status::g_Party.getPlayerIndex(i);
+                        if (flags & bit) {
+                            flags ^= bit;
+                            *(short*)((char*)mgr + 0x66B8) = flags;
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+    }
+
+    if (target->haveStatusInfo_.isDeath() != 0) {
+        target->haveStatusInfo_.addHpInBattle(status::HaveStatusInfo::ResultAction, 2);
+        target->haveStatusInfo_.setUseActionEffectValue(0x3FF);
+        target->haveStatusInfo_.statusChange_.clear();
+        target->haveStatusInfo_.setStatusChangeRelease(true);
+        target->haveStatusInfo_.setZaorikuRebirth(true);
+        target->setRebirthAnimation();
+        result = 1;
+
+        if (func_02058114(&data_0210bb94, 0xD) != 0 && target->characterType_ == PLAYER) {
+            int count = status::g_Party.getCount();
+            for (int i = 0; i < count; i++) {
+                if ((status::CharacterStatus*)status::g_Party.getPlayerStatus(i) == target) {
+                    void* mgr = func_0205b2f0();
+                    short flags = *(short*)((char*)mgr + 0x66B8);
+                    int bit = 1 << status::g_Party.getPlayerIndex(i);
+                    if (flags & bit) {
+                        flags ^= bit;
+                        *(short*)((char*)mgr + 0x66B8) = flags;
+                    }
+                }
+            }
+        }
+    }
+
+    return result;
 }
 
 THUMB int status::BaseActionStatus::actionTypeRecovery(status::CharacterStatus *target)
