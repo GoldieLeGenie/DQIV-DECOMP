@@ -122,7 +122,7 @@ THUMB void status::StageStatus::setup(char *mapname)
     this->flag_.flag_ = 0;
     setMapName(mapname);
     param::FloorParam *floorParam = status::excelParam.floorParam_;
-    int index = func_0200c0a4(floorParam, mapname);
+    int index = param::FloorParam::getFloorIndex(floorParam, mapname);
     param::FloorParam *entry = &floorParam[index];
 
     if (g_Global.isAreaChange() == 1 &&

@@ -1,8 +1,9 @@
 #pragma once
 #include "main/dss/DssUtils.hpp"
+#include "main/param/FloorParam.hpp"
 #include <globaldefs.h>
 
-namespace param{
+namespace param {
     struct PartyTalk
     {
         unsigned int messageID;
@@ -404,23 +405,6 @@ namespace param{
         unsigned char level;
         char byte_1;
         unsigned char dmmy0;
-    };
-
-    struct FloorParam {
-        unsigned char bgmDaytime;
-        unsigned char bgmNight;
-        char floor[8];
-        char battlefloor[11];
-        char eventfloor[12];
-        char byte_1;
-        char byte_2;
-        char byte_3;
-        char byte_4;
-        char byte_5;
-        char byte_6;
-        unsigned char dmmy0;
-        unsigned char dmmy1;
-        unsigned char dmmy2;
     };
 
     struct ShopDataFirst {

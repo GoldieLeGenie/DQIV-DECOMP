@@ -49,4 +49,3 @@ namespace cmn
 
 extern "C" cmn::PartyTalk* func_02037494();                                  // PartyTalk::getSingleton
 extern "C" int func_020882b0(const char*, const char*);                      // strcmp
-extern "C" int func_0200c0a4(param::FloorParam*, char*);                     // getFloorIndex

@@ -5,7 +5,7 @@
 #include "main/status/ExcelParam.hpp"
 #include "main/global/Global.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
-
+#include "main/param/FloorParam.hpp"
 cmn::PartyTalk cmn::PartyTalk::s_partyTalk;
 
 THUMB cmn::PartyTalk* cmn::PartyTalk::getSingleton()
@@ -80,7 +80,7 @@ THUMB void cmn::PartyTalk::setPartyTalkMessage()
     getChapter6Data_     = 0;
 
     param::FloorParam *floorParam = status::excelParam.floorParam_;
-    floor_ = func_0200c0a4(floorParam, g_Global.getMapName());
+    floor_ = param::FloorParam::getFloorIndex(floorParam, g_Global.getMapName());
     if (floor_ == -1)
     {
         char* mapname = "field";

@@ -4,6 +4,22 @@ status::GameFlag g_AreaFlag;
 status::GameFlag g_LocalFlag;
 status::GameFlag g_GlobalFlag;
 
+THUMB status::GameFlag::GameFlag()
+{
+    dss::BitFlaguint* p = flag_;
+    do
+    {
+        p->flag_ = 0;
+        p++;
+    }
+    while (p < (flag_ + 32));
+    clear();
+}
+
+THUMB status::GameFlag::~GameFlag()
+{
+  return;
+}
 
 THUMB void status::GameFlag::set(unsigned int index) {
     this->flag_[index >> 5].flag_ |= 1 << (index & 0x1f);

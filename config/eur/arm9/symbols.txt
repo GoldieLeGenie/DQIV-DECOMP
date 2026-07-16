@@ -386,7 +386,7 @@ func_0200c02c kind:function(thumb,size=0xc) addr:0x0200c02c
 func_0200c038 kind:function(thumb,size=0xc) addr:0x0200c038
 _ZN5param11MonsterAnim12getDataIndexEi kind:function(thumb,size=0xc) addr:0x0200c044
 _ZN5param11MonsterAnim11getAnimDataEjtt kind:function(thumb,size=0x54) addr:0x0200c050
-func_0200c0a4 kind:function(thumb,size=0x534) addr:0x0200c0a4
+_ZN5param10FloorParam13getFloorIndexEPS0_Pc kind:function(thumb,size=0x534) addr:0x0200c0a4
 func_0200c5d8 kind:function(thumb,size=0x2d8) addr:0x0200c5d8
 func_0200c8b0 kind:function(thumb,size=0x34a) addr:0x0200c8b0
 func_0200cbfc kind:function(thumb,size=0x68) addr:0x0200cbfc
@@ -1260,17 +1260,17 @@ _ZN6status10GameStatus11getPlayTimeEv kind:function(thumb,size=0x4) addr:0x0201d
 _ZN6status10GameStatus13resetUniqueIDEv kind:function(thumb,size=0x2e) addr:0x0201d494
 _ZN6status10GameStatus11getUniqueIDEv kind:function(thumb,size=0x12) addr:0x0201d4c4
 _ZN6status10GameStatus11setUniqueIDEj kind:function(thumb,size=0x4) addr:0x0201d4d8
-func_0201d4dc kind:function(thumb,size=0xe) addr:0x0201d4dc
-func_0201d4ec kind:function(thumb,size=0xe) addr:0x0201d4ec
+_ZN6status8ShopListC2Ev kind:function(thumb,size=0xe) addr:0x0201d4dc
+_ZN6status8ShopListD1Ev kind:function(thumb,size=0xe) addr:0x0201d4ec
 _ZN6status8ShopList10initializeEv kind:function(thumb,size=0x18) addr:0x0201d4fc
 _ZN6status8ShopList12getDataIndexEi kind:function(thumb,size=0xd8) addr:0x0201d514
-func_0201d5ec kind:function(thumb,size=0x168) addr:0x0201d5ec
-func_0201d754 kind:function(thumb,size=0x28) addr:0x0201d754
-func_0201d77c kind:function(thumb,size=0x2c) addr:0x0201d77c
-func_0201d7a8 kind:function(thumb,size=0x34) addr:0x0201d7a8
-func_0201d7dc kind:function(thumb,size=0x68) addr:0x0201d7dc
-func_0201d844 kind:function(thumb,size=0x1a) addr:0x0201d844
-func_0201d860 kind:function(thumb,size=0x2) addr:0x0201d860
+_ZN6status8ShopList12getShopCountEi kind:function(thumb,size=0x168) addr:0x0201d5ec
+_ZN6status8ShopList11getShopItemEii kind:function(thumb,size=0x28) addr:0x0201d754
+_ZN6status8ShopList12getShopPriceEii kind:function(thumb,size=0x2c) addr:0x0201d77c
+_ZN6status8ShopList13getHotelPriceEi kind:function(thumb,size=0x34) addr:0x0201d7a8
+_ZN6status8ShopList13getChurchTypeEi kind:function(thumb,size=0x68) addr:0x0201d7dc
+_ZN6status8GameFlagC1Ev kind:function(thumb,size=0x1a) addr:0x0201d844
+_ZN6status8GameFlagD1Ev kind:function(thumb,size=0x2) addr:0x0201d860
 _ZN6status8GameFlag3setEj kind:function(thumb,size=0x1c) addr:0x0201d864
 _ZN6status8GameFlag6removeEj kind:function(thumb,size=0x1c) addr:0x0201d880
 _ZN6status8GameFlag5checkEj kind:function(thumb,size=0x1a) addr:0x0201d89c
@@ -1280,8 +1280,8 @@ func_0201d92c kind:function(thumb,size=0x1c) addr:0x0201d92c
 func_0201d948 kind:function(thumb,size=0x2c) addr:0x0201d948
 func_0201d974 kind:function(arm,size=0x2c) addr:0x0201d974
 func_0201d9a0 kind:function(arm,size=0x14) addr:0x0201d9a0
-func_0201d9b4 kind:function(arm,size=0x20) addr:0x0201d9b4
-func_0201d9d4 kind:function(arm,size=0x48) addr:0x0201d9d4
+_ZN13CameraControl9terminateEv kind:function(arm,size=0x20) addr:0x0201d9b4
+_ZN13CameraControl17initCameraControlEN3dss11Fx32Vector3ENS0_12Vector3shortE kind:function(arm,size=0x48) addr:0x0201d9d4
 func_0201da1c kind:function(arm,size=0xac) addr:0x0201da1c
 func_0201dac8 kind:function(arm,size=0x580) addr:0x0201dac8
 func_0201e048 kind:function(arm,size=0x68) addr:0x0201e048
@@ -5476,7 +5476,7 @@ __sinit_0208a970 kind:function(thumb,size=0x1c) addr:0x0208a970
 __sinit_0208a98c kind:function(thumb,size=0x20) addr:0x0208a98c
 __sinit_0208a9ac kind:function(thumb,size=0x20) addr:0x0208a9ac
 __sinit_0208a9cc kind:function(thumb,size=0x20) addr:0x0208a9cc
-__sinit_0208a9ec kind:function(thumb,size=0x50) addr:0x0208a9ec
+__sinit_GameFlag.cpp kind:function(thumb,size=0x50) addr:0x0208a9ec local
 __sinit_0208aa3c kind:function(arm,size=0x14c) addr:0x0208aa3c
 __sinit_0208ab88 kind:function(thumb,size=0x20) addr:0x0208ab88
 __sinit_0208aba8 kind:function(arm,size=0x140) addr:0x0208aba8
@@ -5792,7 +5792,7 @@ data_020bb2ec kind:data(any) addr:0x020bb2ec
 .p__sinit_0208a98c kind:data(word) addr:0x020bb3a4
 .p__sinit_0208a9ac kind:data(word) addr:0x020bb3a8
 .p__sinit_0208a9cc kind:data(word) addr:0x020bb3ac
-.p__sinit_0208a9ec kind:data(word) addr:0x020bb3b0
+.p__sinit_GameFlag.cpp kind:data(word) addr:0x020bb3b0 local
 .p__sinit_0208aa3c kind:data(word) addr:0x020bb3b4
 .p__sinit_0208ab88 kind:data(word) addr:0x020bb3b8
 .p__sinit_0208aba8 kind:data(word) addr:0x020bb3bc
@@ -7406,12 +7406,12 @@ _ZN6status9ShopData_E kind:bss addr:0x020d0bcc
 data_020d0bd8 kind:bss addr:0x020d0bd8
 darts kind:bss addr:0x020d0be4
 g_NeneItemSack kind:bss addr:0x020d0c00
-data_020d0e98 kind:bss addr:0x020d0e98
-data_020d0ea4 kind:bss addr:0x020d0ea4
-data_020d0eb0 kind:bss addr:0x020d0eb0
-g_LocalFlag kind:bss addr:0x020d0ebc
-g_AreaFlag kind:bss addr:0x020d0f3c
-g_GlobalFlag kind:bss addr:0x020d0fbc
+@33 kind:bss addr:0x020d0e98 local
+@32 kind:bss addr:0x020d0ea4 local
+@34 kind:bss addr:0x020d0eb0 local
+g_GlobalFlag kind:bss addr:0x020d0ebc
+g_LocalFlag kind:bss addr:0x020d0f3c
+g_AreaFlag kind:bss addr:0x020d0fbc
 data_020d103c kind:bss addr:0x020d103c
 data_020d1044 kind:bss addr:0x020d1044
 data_020d1050 kind:bss addr:0x020d1050

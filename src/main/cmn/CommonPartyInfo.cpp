@@ -219,8 +219,8 @@ ARM void cmn::CommonPartyInfo::checkBallon(dss::Fx32Vector3* pos)
         ::g_Stage.setBashaEnter(0);
         return;
     }
-    if (g_GlobalFlag.check(310) != 1
-     && g_GlobalFlag.check(388) != 1) {
+    if (g_AreaFlag.check(310) != 1
+     && g_AreaFlag.check(388) != 1) {
         return;
     }
     status::g_Party.basha_ = 1;

@@ -98,9 +98,9 @@ THUMB void profile::Profile::collectDATA_PARTY()
     this->pPARTY->RANALUTA_SURFACE = ::g_Stage.lastFldSurface_;
     this->pPARTY->CHAPTER = status::g_Story.chapter_;
 
-    collectGameFlag(this->pPARTY->GLOBALFLAG, &g_GlobalFlag);
-    collectGameFlag(this->pPARTY->AREAFLAG, &g_AreaFlag);
-    collectGameFlag(this->pPARTY->LOCALFLAG, &g_LocalFlag);
+    collectGameFlag(this->pPARTY->GLOBALFLAG, &g_AreaFlag);
+    collectGameFlag(this->pPARTY->AREAFLAG, &g_LocalFlag);
+    collectGameFlag(this->pPARTY->LOCALFLAG, &g_GlobalFlag);
     for (int i = 0; i < 0x40; i++) {
         this->pPARTY->LOCALFLAG[i] = 0;
     }
