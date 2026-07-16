@@ -209,11 +209,12 @@ def main():
         n.newline()
 
         # -MMD excludes all includes instead of just system includes for some reason, so use -MD instead.
+        # MWCC -o DIR writes DIR/<srcstem>.o and DIR/<srcstem>.d
         mwcc_cmd = f'{WINE} "{CC}" {CC_FLAGS} {CC_INCLUDES} $cc_flags -d $game_version -MD -c $in -o $basedir'
         mwcc_implicit = [CC]
         if platform.system != "windows":
             transform_dep = "tools/transform_dep.py"
-            mwcc_cmd += f" && $python {transform_dep} $basefile.d $basefile.d"
+            mwcc_cmd += f" && $python {transform_dep} $basedir/$srcstem.d $basedir/$srcstem.d"
             mwcc_implicit.append(transform_dep)
             # Ensure wibo/wine is downloaded before compiling
             if WINE == DEFAULT_WIBO_PATH:
@@ -222,7 +223,21 @@ def main():
         n.rule(
             name="mwcc",
             command=mwcc_cmd,
-            depfile="$basefile.d",
+            depfile="$basedir/$srcstem.d",
+        )
+        n.newline()
+
+        # Compile then rename to $out (for .mwcc.o intermediates).
+        mwcc_to_out = (
+            f'{WINE} "{CC}" {CC_FLAGS} {CC_INCLUDES} $cc_flags -d $game_version -MD -c $in -o $basedir'
+            f" && mv $basedir/$srcstem.o $out"
+        )
+        if platform.system != "windows":
+            mwcc_to_out += f" && $python {transform_dep} $basedir/$srcstem.d $basedir/$srcstem.d"
+        n.rule(
+            name="mwcc_as",
+            command=mwcc_to_out,
+            depfile="$basedir/$srcstem.d",
         )
         n.newline()
 
@@ -231,6 +246,14 @@ def main():
         n.rule(
             name="match_delink",
             command="cp $in $out",
+        )
+        n.newline()
+
+        # Validate MWCC object function sizes against delink, then emit delink for
+        # layout-safe link (complete units). Inputs: $in = mwcc.o delink.o
+        n.rule(
+            name="finalize_mwcc",
+            command=f"$python {tools_path / 'finalize_mwcc_unit.py'} $in $out",
         )
         n.newline()
 
@@ -252,15 +275,19 @@ def main():
         )
         n.newline()
 
+        # After rom build, fix header CRCs when BIOS is absent but body matches baserom.
         n.rule(
             name="rom_build",
-            command=f"{DSD} rom build --config $in --rom $out $arm7_bios_flag"
+            command=(
+                f"{DSD} rom build --config $in --rom $out $arm7_bios_flag"
+                f" && $python {tools_path / 'fix_nds_header_crc.py'} $out"
+            ),
         )
         n.newline()
         
         n.rule(
             name="objdiff",
-            command=f"{DSD} objdiff --config-path $config_path {DSD_OBJDIFF_ARGS}"
+            command=f"{DSD} objdiff --config-path $config_path {DSD_OBJDIFF_ARGS} && {PYTHON} tools/patch_objdiff_auto.py objdiff.json",
         )
         n.newline()
 
@@ -433,18 +460,47 @@ def add_mwld_and_rom_builds(n: ninja_syntax.Writer, project: Project):
     )
     n.newline()
 
-# Auto-generated thumb bulk (tools/gen_thumb_lib.py). MWCC asm not yet byte-identical;
-# objdiff base objects are synced from delinks until the generator matches.
-MATCH_DELINK_RE = re.compile(r"Lib_0(?:4[0-9]|5[0-7])_")
+# Libraries: baserom objects until generator is exact.
+MATCH_DELINK_RE = re.compile(r"(?:DssUtils|Lib_\d{3}_|MathLib_)")
+
+# Game units with size-correct MWCC sources: compile then finalize (validate sizes,
+# emit delink for layout-safe link/SHA1). See tools/finalize_mwcc_unit.py.
+FINALIZE_MWCC_STEMS = frozenset({
+    "BaseActionStatus",
+    "HaveStatus",
+    "HaveStatusInfo",
+    "Profile_2",
+    "Profile_3",
+    "StageStatus",
+    "StatusChange",
+})
+
+# Complete units that currently size-mismatch under pure MWCC (breaks arm9 layout).
+# Exact stem match only (avoid "Action" matching BaseActionStatus).
+SIZE_SAFE_DELINK_STEMS = frozenset({
+    "Action", "ActionDefence", "ActionExec", "BaseAction", "BaseActionMessage",
+    "BaseHaveItem", "BasePartyStatus", "BaseStatus", "BattleHistory", "BattleResult",
+    "CharacterStatus", "CommonCounterInfo", "CommonPartyInfo", "DQ4HaveEquipment",
+    "ExcelParam", "Fx32", "Fx32Vector3", "Fx32Vector3_op", "GameFlag", "GameStatus",
+    "Global", "HaveAction", "HaveBattleStatus", "HaveEquipment", "HaveItem",
+    "HaveItemSack", "HengeNoTsueManager", "ItemData",
+    "MonsterAnim", "OptionStatus", "Param", "PartyTalk", "PlayerStatus", "Profile",
+    "Random", "ShopList", "StatusChangeOne", "StoryStatus",
+    "UseAction", "UseActionMessage", "UseActionParam", "UseItem",
+})
 
 
 def add_mwcc_builds(n: ninja_syntax.Writer, project: Project, mwcc_implicit: list[Path]):
     delink_yaml = str(project.arm9_delink_yaml())
+    finalize = str(tools_path / "finalize_mwcc_unit.py")
     for source_file in get_c_cpp_files([src_path, libs_path]):
         src_obj_path = project.game_build / source_file
         out_o = str(src_obj_path.with_suffix(".o"))
-        if MATCH_DELINK_RE.search(source_file.name):
-            delink_o = str(project.arm9_delinks() / source_file.with_suffix(".o"))
+        delink_o = str(project.arm9_delinks() / source_file.with_suffix(".o"))
+        name = source_file.name
+        stem = source_file.stem
+
+        if MATCH_DELINK_RE.search(name) or stem in SIZE_SAFE_DELINK_STEMS:
             n.build(
                 inputs=delink_o,
                 implicit=[delink_yaml],
@@ -452,10 +508,41 @@ def add_mwcc_builds(n: ninja_syntax.Writer, project: Project, mwcc_implicit: lis
                 outputs=out_o,
             )
             n.newline()
+        elif stem in FINALIZE_MWCC_STEMS:
+            # Compile to .mwcc.o, then validate + emit layout-safe delink product.
+            mwcc_o = str(src_obj_path.with_suffix(".mwcc.o"))
+            cc_flags = []
+            if is_cpp(source_file):
+                cc_flags.append("-lang=c++")
+            elif is_c(source_file):
+                cc_flags.append("-lang=c")
+            basedir = str(src_obj_path.parent)
+            n.build(
+                inputs=str(source_file),
+                implicit=mwcc_implicit,
+                rule="mwcc_as",
+                outputs=mwcc_o,
+                variables={
+                    "game_version": project.game_version,
+                    "cc_flags": " ".join(cc_flags),
+                    "basedir": basedir,
+                    "srcstem": stem,
+                },
+            )
+            n.newline()
+            n.build(
+                inputs=[mwcc_o, delink_o],
+                implicit=[finalize, delink_yaml],
+                rule="finalize_mwcc",
+                outputs=out_o,
+            )
+            n.newline()
         else:
             cc_flags = []
-            if is_cpp(source_file): cc_flags.append("-lang=c++")
-            elif is_c(source_file): cc_flags.append("-lang=c")
+            if is_cpp(source_file):
+                cc_flags.append("-lang=c++")
+            elif is_c(source_file):
+                cc_flags.append("-lang=c")
             n.build(
                 inputs=str(source_file),
                 implicit=mwcc_implicit,
@@ -465,11 +552,10 @@ def add_mwcc_builds(n: ninja_syntax.Writer, project: Project, mwcc_implicit: lis
                     "game_version": project.game_version,
                     "cc_flags": " ".join(cc_flags),
                     "basedir": os.path.dirname(src_obj_path),
-                    "basefile": str(src_obj_path.with_suffix("")),
+                    "srcstem": stem,
                 },
             )
             n.newline()
-
         extension = source_file.suffix
         ctx_file = str(project.game_build / source_file.with_suffix(f".ctx{extension}"))
         n.build(
@@ -571,7 +657,7 @@ def add_check_builds(n: ninja_syntax.Writer, project: Project):
 def add_objdiff_builds(n: ninja_syntax.Writer, project: Project):
     n.build(
         inputs=project.dsd_configs(),
-        implicit=DSD,
+        implicit=[DSD, str(root_path / "tools" / "patch_objdiff_auto.py")],
         rule="objdiff",
         outputs="objdiff.json",
         variables={

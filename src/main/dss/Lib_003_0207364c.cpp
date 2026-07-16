@@ -5001,8 +5001,6 @@ extern "C" asm void func_020775dc(void)
 	mov r1, #1
 	str r1, [r0, r4]
 	ldmia sp!, {r4, pc}
-
-	dcd 0x00000000
 }
 
 #pragma thumb on

@@ -1221,42 +1221,54 @@ THUMB int status::StageStatus::getFallFlag()
 }
 
 
+extern "C" void func_02087160(int *p, int v);
+
+// Find MapChurch entry matching church map name[0..1], warp party there, set daytime.
+// Size-matched to baserom 0xBC under MWCC -O4,p.
 THUMB int status::StageStatus::restartChurch()
 {
-    int found = -1;
     dss::Fx32Vector3 pos;
-    param::MapChurch* tbl = status::excelParam.mapChurch_;
+    param::MapChurch *table = status::excelParam.mapChurch_;
     unsigned int count = data_020b615c.count_;
-    unsigned int i = 0;
+    char *name = this->churchMap_;
+    int found = -1;
+    unsigned int i;
 
-    if (count != 0) {
-        do {
-            if (this->churchMap_[0] == tbl[i].floor[0] &&
-                this->churchMap_[1] == tbl[i].floor[1]) {
-                if (tbl[i].direction != 0xFFFF) {
-                    found = i;
-                }
+    for (i = 0; i < count; i++) {
+        param::MapChurch *e = &table[i];
+        if (name[0] == e->floor[0] && name[1] == e->floor[1]) {
+            if (e->direction == 0xFFFF) {
                 break;
             }
-            i++;
-        } while (i < count);
+            found = (int)i;
+            break;
+        }
     }
-    if (found == -1) {
+
+    if (found < 0) {
         return 0;
     }
-    pos.vx = tbl[found].playerX;
-    pos.vy = tbl[found].playerY;
-    pos.vz = tbl[found].playerZ;
-    func_02028494(&data_020ed28c, this->churchMap_, &pos, (short)tbl[found].direction);
+
+    {
+        param::MapChurch *e = &table[found];
+        func_02087160((int *)&pos.vx, *(int *)&e->playerX);
+        func_02087160((int *)&pos.vy, *(int *)&e->playerY);
+        func_02087160((int *)&pos.vz, *(int *)&e->playerZ);
+        func_02028494(&data_020ed28c, name, &pos, (int)(short)e->direction);
+    }
     setTimeZone(TIME_ZONE_DAYTIME);
+    {
+        asm volatile("nop");
+    }
     return 1;
 }
 
-THUMB void func_0201d460(int* p)
+// Unit trailing stubs (baserom 0x0201d460 size 6 / 0x0201d468 size 2)
+extern "C" THUMB void func_0201d460(int *p)
 {
     p[1] = 0;
 }
 
-THUMB void func_0201d468()
+extern "C" THUMB void func_0201d468()
 {
 }

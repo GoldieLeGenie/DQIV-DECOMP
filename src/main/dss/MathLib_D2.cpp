@@ -65,8 +65,8 @@ extern "C" {
     void func_0207f3bc(void);
     void func_0207f400(void);
     void func_0207f44c(void);
-    void func_0212e37c(void);
-    void func_0212e5c0(void);
+    void func_ov003_0212e37c(void);
+    void func_ov003_0212e5c0(void);
     void g_Global(void);
     void g_Stage(void);
 }
@@ -294,7 +294,7 @@ lbl_02089d70:
 	mov r0, #0
 	bl func_0201054c
 	ldr r0, =data_0216639c
-	bl func_0212e37c
+	bl func_ov003_0212e37c
 	mov r8, r0
 	cmp r8, #0
 	mov r9, #0
@@ -305,7 +305,7 @@ lbl_02089e28:
 	mov r0, r7
 	mov r1, r9
 	ldr r10, [r6]
-	bl func_0212e5c0
+	bl func_ov003_0212e5c0
 	add r9, r9, #1
 	str r10, [r0, #0x408]
 	cmp r9, r8

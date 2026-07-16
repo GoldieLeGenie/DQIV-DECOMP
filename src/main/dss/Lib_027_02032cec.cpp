@@ -41,7 +41,7 @@ extern "C" {
     void _ZN6status8GameFlag5checkEj(void);
     void __register_global_object(void);
     void _s32_div_f(void);
-    void data_0201d89d(void);
+    void _ZN6status8GameFlag5checkEj(void);
     void data_020b5fbc(void);
     void data_020becf0(void);
     void data_020ef710(void);
@@ -690,7 +690,7 @@ lbl_02033568:
 
 extern "C" asm void func_02033584(void)
 {
-	ldr r12, =data_0201d89d
+	ldr r12, =_ZN6status8GameFlag5checkEj
 	ldr r0, =g_GlobalFlag
 	mov r1, #0x1d
 	bx r12

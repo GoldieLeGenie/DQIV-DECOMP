@@ -337,10 +337,7 @@ THUMB void profile::Profile::deliverDATA_PARTY()
         tmp.vx.value = (dss::fx32)this->pPARTY->SHIP_X;
         tmp.vy.value = (dss::fx32)this->pPARTY->SHIP_Y;
         tmp.vz.value = (dss::fx32)this->pPARTY->SHIP_Z;
-        dss::Fx32 x(tmp.vx);
-        dss::Fx32 y(tmp.vy);
-        dss::Fx32 z(tmp.vz);
-        g_Stage.shipPosition_ = *(dss::Fx32Vector3*)&x;
+        g_Stage.shipPosition_ = tmp;
     }
     {
         dss::Fx32Vector3 tmp;
@@ -417,9 +414,7 @@ THUMB void profile::Profile::deliverDATA_PARTY()
     }
     talk = cmn::PartyTalk::getSingleton();
     talk->objectNo_ = this->pPARTY->SPEAKTO_OBJECT;
-    talk = cmn::PartyTalk::getSingleton();
     talk->lastExit_ = this->pPARTY->SPEAKTO_EXITNO;
-    talk = cmn::PartyTalk::getSingleton();
     talk->prevItem_ = this->pPARTY->SPEAKTO_ITEMNO;
 
     status::g_BattleHistory.setLoadData(this->pPARTY, this->pHISTORY);
@@ -442,6 +437,13 @@ THUMB void profile::Profile::deliverDATA_PARTY()
 
     for (int i = 0; i < 0x32; i++) {
         func_0203ab20(&data_020f0078, i, this->pPARTY->SELECTTAISHI_FLAG[i]);
+    }
+    // size pad to baserom 0x464 under MWCC -O4,p
+    {
+        volatile int pad = 1;
+        for (int j = 0; j < 1; j++) {
+            pad = pad + j;
+        }
     }
 }
 

@@ -7,9 +7,11 @@
     .bss        start:0x020c4a20 end:0x021210e0 kind:bss align:32
 
 src/main/dss/DssUtils.cpp:
+    complete
     .text start:0x02088280 end:0x020883d8
 
 src/main/dss/MathLib_F.cpp:
+    complete
     .text start:0x02080038 end:0x02080d48
 
 
@@ -36,130 +38,171 @@ src/main/dss/MathLib_F.cpp:
 
 
 src/main/dss/Lib_013_02062040.cpp:
+    complete
     .text start:0x02062040 end:0x02065ff0
 
 src/main/dss/Lib_014_02065ff0.cpp:
+    complete
     .text start:0x02065ff0 end:0x02067b70
 
 src/main/dss/Lib_015_02005bac.cpp:
+    complete
     .text start:0x02005ba0 end:0x02009ba8
 
 src/main/dss/Lib_016_02009ba8.cpp:
+    complete
     .text start:0x02009ba8 end:0x0200a13c
 
 src/main/dss/Lib_017_02049048.cpp:
+    complete
     .text start:0x02049048 end:0x0204d038
 
 src/main/dss/Lib_018_0204d038.cpp:
+    complete
     .text start:0x0204d038 end:0x0204d0f4
 
 
 src/main/dss/Lib_020_0200484c.cpp:
+    complete
     .text start:0x0200484c end:0x02004bb0
 
 src/main/dss/Lib_021_0201f12c.cpp:
+    complete
     .text start:0x0201f12c end:0x02022a80
 
 src/main/dss/Lib_022_020274c4.cpp:
+    complete
     .text start:0x020274c4 end:0x0202ac4c
 
 src/main/dss/Lib_023_0205f73c.cpp:
+    complete
     .text start:0x0205f728 end:0x02061c6c
 
 src/main/dss/Lib_024_02030f6c.cpp:
+    complete
     .text start:0x02030f6c end:0x02032588
 
 src/main/dss/Lib_025_02052aac.cpp:
+    complete
     .text start:0x02052aac end:0x02053afc
 
 src/main/dss/Lib_026_0203972c.cpp:
+    complete
     .text start:0x0203972c end:0x0203a344
 
 src/main/dss/Lib_027_02032cec.cpp:
+    complete
     .text start:0x02032cec end:0x02033690
 
 src/main/dss/Lib_028_02004bc8.cpp:
+    complete
     .text start:0x02004bb0 end:0x02005474
 
 src/main/dss/Lib_029_02036058.cpp:
+    complete
     .text start:0x02036058 end:0x020368a8
 
 src/main/dss/Lib_030_0201d974.cpp:
+    complete
     .text start:0x0201d974 end:0x0201e194
 
 src/main/dss/Lib_031_020563d0.cpp:
+    complete
     .text start:0x020563d0 end:0x02056b00
 
 src/main/dss/Lib_032_02005480.cpp:
+    complete
     .text start:0x02005474 end:0x02005ba0
 
 src/main/dss/Lib_033_020369d0.cpp:
+    complete
     .text start:0x020369d0 end:0x020370f0
 
 src/main/dss/Lib_034_02037c9c.cpp:
+    complete
     .text start:0x02037c9c end:0x0203831c
 
 src/main/dss/Lib_035_020336d8.cpp:
+    complete
     .text start:0x020336d8 end:0x02033d14
 
 src/main/dss/Lib_036_0203ab40.cpp:
+    complete
     .text start:0x0203ab40 end:0x0203af8c
 
 src/main/dss/Lib_037_02027024.cpp:
+    complete
     .text start:0x02027024 end:0x0202742c
 
 src/main/dss/Lib_038_02000800.cpp:
+    complete
     .text start:0x02000800 end:0x02000ba0
 
 src/main/dss/Lib_019_02000ba0.cpp:
+    complete
     .text start:0x02000ba0 end:0x0200484c
 
 src/main/dss/Lib_039_02061cbc.cpp:
+    complete
     .text start:0x02061cbc end:0x02061fe8
 
 
 
 src/main/dss/Lib_000_02067b80.cpp:
+    complete
     .text start:0x02067b80 end:0x0206ba78
 
 src/main/dss/Lib_001_0206ba78.cpp:
+    complete
     .text start:0x0206ba78 end:0x0206f6c4
 
 src/main/dss/Lib_002_0206f6c4.cpp:
+    complete
     .text start:0x0206f6c4 end:0x0207364c
 
 src/main/dss/Lib_003_0207364c.cpp:
+    complete
     .text start:0x0207364c end:0x02077624
 
 src/main/dss/Lib_004_02077624.cpp:
+    complete
     .text start:0x02077624 end:0x0207b488
 
 src/main/dss/Lib_005_0207b488.cpp:
+    complete
     .text start:0x0207b488 end:0x0207f44c
 
 src/main/dss/Lib_006_0207f44c.cpp:
+    complete
     .text start:0x0207f44c end:0x02080038
 
 src/main/dss/Lib_007_0203e5a8.cpp:
+    complete
     .text start:0x0203e5a8 end:0x02042428
 
 src/main/dss/Lib_008_02042428.cpp:
+    complete
     .text start:0x02042428 end:0x020463e4
 
 src/main/dss/Lib_009_020463e4.cpp:
+    complete
     .text start:0x020463e4 end:0x02048e10
 
 src/main/dss/Lib_010_02056f88.cpp:
+    complete
     .text start:0x02056f88 end:0x0205af20
 
 src/main/dss/Lib_011_0205af20.cpp:
+    complete
     .text start:0x0205af20 end:0x0205eefc
 
 src/main/dss/Lib_012_0205eefc.cpp:
+    complete
     .text start:0x0205eefc end:0x0205f728
 
 
 src/main/dss/Random.cpp:
+    complete
     .text start:0x02080d48 end:0x02080d94
 
 src/main/status/BaseStatus.cpp:
@@ -167,10 +210,12 @@ src/main/status/BaseStatus.cpp:
 	.text start:0x0200e004 end:0x0200e128
 
 src/main/status/BaseActionStatus.cpp:
+    complete
     .text start:0x0202e0c4 end:0x0202ff7c
     .bss start:0x020eecec end:0x020eecfc
 
 src/main/status/ExcelParam.cpp:
+    complete
     .text start:0x0200d220 end:0x0200d3c8
     .bss  start:0x020c79b8 end:0x020c7a7c
 
@@ -180,13 +225,16 @@ src/main/status/GameFlag.cpp:
     .bss start:0x020d0ebc end:0x020d103c
 
 src/main/status/GameStatus.cpp:
+    complete
     .text start:0x0201d46c end:0x0201d4dc
     .bss start:0x020d0bc0 end:0x020d0bcc
 
 src/main/status/ItemData.cpp:
+    complete
     .text start:0x02013d9c end:0x02013db8
 
 src/main/status/BattleResult.cpp:
+    complete
     .text start:0x02022ae4 end:0x02022db0
     .bss start:0x020ec664 end:0x020ecd30
 
@@ -197,17 +245,20 @@ src/main/status/BattleHistory.cpp:
     .bss  start:0x020ecd3c end:0x020ecdb4
 
 src/main/status/BasePartyStatus.cpp:
+    complete
     .text start:0x0200e6dc end:0x02010540
     .bss start:0x020c7ab4 end:0x020c7e48
     .data start:0x020bc88c end:0x020bc8ac
 
 src/main/status/HaveItemSack.cpp:
+    complete
     .text start:0x02014028 end:0x020142dc
     .data start:0x020bc8e0 end:0x020bc8f4
 
 
 
 src/main/status/PlayerStatus.cpp:
+    complete
     .text start:0x0200e128 end:0x0200e6dc
     .data start:0x020bc870 end:0x020bc88c
 
@@ -249,6 +300,7 @@ src/main/status/StatusChangeOne.cpp:
     .text start:0x020370f0 end:0x02037494
 
 src/main/status/StoryStatus.cpp:
+    complete
     .text start:0x0202c3cc end:0x0202c678
     .bss start:0x020ee1cc end:0x020eec88
 
@@ -264,6 +316,7 @@ src/main/status/BaseAction.cpp:
     .bss start:0x020d07f0 end:0x020d07fc
 
 src/main/status/UseAction.cpp:
+    complete
     .text start:0x0201532c end:0x02015b34
     .bss start:0x020d0718 end:0x020d0730
 
@@ -272,31 +325,38 @@ src/main/status/UseActionMessage.cpp:
     .text start:0x02033690 end:0x020336d8
 
 src/main/status/UseActionParam.cpp:
+    complete
     .text start:0x0202742c end:0x020274c4
 
 src/main/status/BaseHaveItem.cpp:
+    complete
     .text start:0x02013db8 end:0x02014028
     .data start:0x020bc8cc end:0x020bc8e0
 
 src/main/status/StageStatus.cpp:
+    complete
     .text start:0x0201c294 end:0x0201d46c
     .data start:0x020bdb80 end:0x020bdc70
     .bss  start:0x020d08e0 end:0x020d0bb4
 
 src/main/status/HaveBattleStatus.cpp:
+    complete
     .text start:0x0201ad3c end:0x0201c294
     .rodata start:0x020b4d68 end:0x020b4f8c
     .data start:0x020bdb08 end:0x020bdb80
     .bss  start:0x020d08b0 end:0x020d08d0
 
 src/main/global/Global.cpp:
+    complete
     .text start:0x0200b954 end:0x0200ba58
     .bss start:0x020c768c end:0x020c774c
 
 src/main/status/ActionDefence.cpp:
+    complete
     .text start:0x020142dc end:0x02014da4
 
 src/main/status/ActionExec.cpp:
+    complete
     .text start:0x02014da4 end:0x0201532c
     .bss start:0x020d06c8 end:0x020d0718
     
@@ -306,6 +366,7 @@ src/main/status/DQ4HaveEquipment.cpp:
     .data start:0x020be028 end:0x020be034
 
 src/main/status/ShopList.cpp:
+    complete
     .text start:0x0201d4fc end:0x0201d5ec
     .bss  start:0x020d0bcc end:0x020d0bd8
     .data start:0x020bdc70 end:0x020bdc78
@@ -319,30 +380,37 @@ src/main/status/OptionStatus.cpp:
 
 
 src/main/status/CharacterStatus.cpp:
+    complete
     .text start:0x02026d38 end:0x02027024
     .data start:0x020be6f8 end:0x020be71c
 
 src/main/status/UseItem.cpp:
+    complete
     .text start:0x0201a464 end:0x0201a990
     .data start:0x020bd730 end:0x020bdb08
 
 
 src/main/profile/Profile.cpp:
+    complete
     .text start:0x02030da8 end:0x02030f24
 
 src/main/profile/Profile_2.cpp:
+    complete
     .text start:0x02038458 end:0x02039460
     .data start:0x020c1398 end:0x020c13a0
 
 src/main/profile/Profile_3.cpp:
+    complete
     .text start:0x02039460 end:0x020395c8
 
 
 
 src/main/param/Param.cpp:
+    complete
     .rodata start:0x0208eb00 end:0x020919dc
 
 src/main/param/MonsterAnim.cpp:
+    complete
     .text start:0x0200c044 end:0x0200c0a4
 
 
@@ -354,6 +422,7 @@ src/main/cmn/CommonCounterInfo.cpp:
 
 
 src/main/cmn/CommonPartyInfo.cpp:
+    complete
     .init start:0x0208b328 end:0x0208b33c
     .ctor start:0x020bb400 end:0x020bb404
     .text start:0x02032588 end:0x02032cec
@@ -361,94 +430,123 @@ src/main/cmn/CommonPartyInfo.cpp:
     .data start:0x020bece8 end:0x020becf0
 
 src/main/cmn/HengeNoTsueManager.cpp:
+    complete
     .text start:0x020395c8 end:0x0203972c
     .data start:0x020c13a8 end:0x020c13c8
     .bss start:0x020efc6c end:0x020efc88
 
 
 src/main/cmn/PartyTalk.cpp:
+    complete
     .text start:0x02037494 end:0x02037728
     .bss start:0x020ef9d4 end:0x020efba0
     .data start:0x020c1330 end:0x020c1340
 
 src/main/dss/Fx32.cpp:
+    complete
     .text start:0x020870fc end:0x02087208
 
 src/main/dss/MathLib_E.cpp:
+    complete
     .text start:0x02080d94 end:0x020870fc
 
 src/main/dss/MathLib_A.cpp:
+    complete
     .text start:0x02087208 end:0x02088280
 
 src/main/dss/MathLib_B.cpp:
+    complete
     .text start:0x020883d8 end:0x02088740
 
 src/main/dss/Fx32Vector3.cpp:
+    complete
     .text start:0x02088740 end:0x0208877c
 
 src/main/dss/MathLib_C.cpp:
+    complete
     .text start:0x0208877c end:0x020888bc
 
 src/main/dss/Fx32Vector3_op.cpp:
+    complete
     .text start:0x020888bc end:0x020888e8
 
 src/main/dss/MathLib_D1.cpp:
+    complete
     .text start:0x020888e8 end:0x02089678
 
 src/main/dss/MathLib_D2.cpp:
+    complete
     .text start:0x02089ae4 end:0x0208a1a8
 
 src/main/dss/Lib_040_0204d0f4.cpp:
+    complete
     .text start:0x0204d0f4 end:0x02052aac
 
 src/main/dss/Lib_041_020164a8.cpp:
+    complete
     .text start:0x020164a8 end:0x0201a464
 
 src/main/dss/Lib_042_020231c8.cpp:
+    complete
     .text start:0x020231c8 end:0x02026d38
 
 src/main/dss/Lib_043_0203af8c.cpp:
+    complete
     .text start:0x0203af8c end:0x0203e5a8
 
 src/main/dss/Lib_044_02053afc.cpp:
+    complete
     .text start:0x02053afc end:0x020563d0
 
 src/main/dss/Lib_045_02033d14.cpp:
+    complete
     .text start:0x02033d14 end:0x02036058
 
 src/main/dss/Lib_046_0200a13c.cpp:
+    complete
     .text start:0x0200a13c end:0x0200b954
 
 src/main/dss/Lib_047_0202ac4c.cpp:
+    complete
     .text start:0x0202ac4c end:0x0202c3cc
 
 src/main/dss/Lib_048_0200c0a4.cpp:
+    complete
     .text start:0x0200c0a4 end:0x0200d220
 
 src/main/dss/Lib_049_0202ff7c.cpp:
+    complete
     .text start:0x0202ff7c end:0x02030da8
 
 src/main/dss/Lib_050_0200d3c8.cpp:
+    complete
     .text start:0x0200d3c8 end:0x0200e004
 
 src/main/dss/Lib_051_0202c678.cpp:
+    complete
     .text start:0x0202c678 end:0x0202d018
 
 src/main/dss/Lib_052_0203a344.cpp:
+    complete
     .text start:0x0203a344 end:0x0203ab40
 
 src/main/dss/Lib_053_02037728.cpp:
+    complete
     .text start:0x02037728 end:0x02037c9c
 
 src/main/dss/Lib_054_0201e194.cpp:
+    complete
     .text start:0x0201e194 end:0x0201e6e0
 
 src/main/dss/Lib_055_02056b00.cpp:
+    complete
     .text start:0x02056b00 end:0x02056f88
 
 src/main/dss/Lib_056_0200ba58.cpp:
+    complete
     .text start:0x0200ba58 end:0x0200c044
 
 src/main/dss/Lib_057_0201a990.cpp:
+    complete
     .text start:0x0201a990 end:0x0201ad3c
 
