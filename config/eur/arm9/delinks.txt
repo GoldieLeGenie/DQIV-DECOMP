@@ -222,3 +222,11 @@ src/main/cmn/PartyTalk.cpp:
 
 src/main/CameraControl/CameraControl.cpp:
     .text start:0x0201d9b4 end:0x0201da1c
+
+
+src/main/PartTaskManager/PartTaskManager.cpp:
+    .text start:0x020350ac end:0x02035150
+
+src/main/MenuDataCommon/MenuDataCommon.cpp:
+    .text start:0x02030580 end:0x02030aa8
+    .rodata start:0x020b5dbc end:0x020b5f78
