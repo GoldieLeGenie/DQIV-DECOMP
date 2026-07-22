@@ -3,6 +3,10 @@
 #include "main/dss/DssUtils.hpp"
 #include "GameInfo.hpp"
 
+namespace cmn {
+    struct CommonRuraData;
+}
+
 namespace cmn
 {
     enum PARTY_RIDE_ON_TYPE
@@ -92,10 +96,6 @@ namespace cmn
         void setBalloonPosByExtraSave();
         void resetBalloonPosByExtraSave();
     };
-
-    struct CommonRuraData{
-
-    };
 }
 extern cmn::CommonPartyInfo g_cmnPartyInfo; //data_020ef650
 
@@ -132,7 +132,6 @@ extern "C" int func_0207c384(void* a, void* b);   // strcmp
 extern "C" void  func_02030fe0(int flag);                 // PlayerManager::setLock (static)
 extern "C" void  func_ov000_021341ec(void* mgr, int f);   // TownPlayerManager::setLock
 extern "C" dss::Fx32Vector3 func_020335ec(cmn::CommonRuraData* self, int townID);
-extern "C" cmn::CommonRuraData* func_020332cc();
 
 extern char s_srout_map[8];                                        // map baron (rodata)
 

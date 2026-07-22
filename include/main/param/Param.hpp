@@ -484,10 +484,10 @@ namespace param {
     };
 
     struct VehicleData {
-        unsigned int shipX;
-        unsigned int shipY;
-        unsigned int balloonX;
-        unsigned int balloonY;
+        dss::fx32 shipX;
+        dss::fx32 shipY;
+        dss::fx32 balloonX;
+        dss::fx32 balloonY;
         unsigned char world;
         unsigned char id;
         char mapname[4];

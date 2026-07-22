@@ -219,6 +219,18 @@ src/main/cmn/PartyTalk.cpp:
     .bss start:0x020ef9d4 end:0x020efba0
     .data start:0x020c1330 end:0x020c1340
 
+src/main/cmn/CommonRuraData.cpp:
+    .text start:0x020332cc end:0x02033690
+    .rodata start:0x020b5fbc end:0x020b610c
+    .data start:0x020becf0 end:0x020bed08
+    .bss start:0x020ef794 end:0x020ef7ac
+
+src/main/cmn/TalkSoundManager.cpp:
+    .text start:0x02039750 end:0x02039b70
+    .rodata start:0x020b614c end:0x020b6154
+
+src/main/cmn/WorldLocation.cpp:
+    .text start:0x0203ab9c end:0x0203af8c
 
 src/main/CameraControl/CameraControl.cpp:
     .text start:0x0201d9b4 end:0x0201da1c

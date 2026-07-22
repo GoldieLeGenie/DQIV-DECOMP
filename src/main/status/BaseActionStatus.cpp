@@ -607,6 +607,135 @@ THUMB int status::BaseActionStatus::actionTypeMosyas(status::CharacterStatus *ac
     return 1;
 }
 
+struct BattleMonsterDrawEntry {
+    char pad_[0xD40];
+    int  screenPosition_;                 // 0xD40
+    int  screenWidth_;                    // 0xD44
+    char pad2_[0x244];
+};
+struct BattleMonsterDraw2 {
+    BattleMonsterDrawEntry monsters_[12];  // 
+    char pad_[0x1B8];
+    int  spacePos_;                        // 
+    int  spaceWidth_;                      // 
+};
+struct BattleActorManager2 {
+    char pad_[0x66B8];
+    short deathLog_;                       // 0x66B8
+};
+struct BattleMonsterDrawParam {   // data_020beb98
+    int  unk_00;                  // 0x00
+    int  unk_04;                  // 0x04
+    int  vz_;                     // 0x08
+    int  vy_;                     // 0x0C
+    int  vx_;                     // 0x10
+};
+extern BattleMonsterDrawParam data_020beb98;
+
+extern "C" BattleActorManager2* func_ov003_02126ee8(void);
+extern "C" status::MonsterStatus* func_ov003_0212e5c0(void* party, int i);  // getMonsterStatus
+extern "C" void func_0205b2f0(void* obj, dss::Vector3int pos);   // DSSACharacter::setPositionInt
+
+
+int status::BaseActionStatus::actionTypeRebirth(status::CharacterStatus *target)
+{
+    int ret = 0;
+    int i;
+    if (target->characterType_ == MONSTER)
+    {
+        if (func_ov003_021223b4(func_ov000_02121d04(), target->characterIndex_) == 0)
+        {
+            return 0;
+        }
+    }
+
+    if (BaseActionStatus_.actionIndex_ == 0x3D || BaseActionStatus_.actionIndex_ == 0xC8)
+    {
+        if (dssrand::rand(2) != 0)
+        {
+            return 0;
+        }
+
+        if (target->haveStatusInfo_.isDeath())
+        {
+            target->haveStatusInfo_.setHp((unsigned short)(target->haveStatusInfo_.getHpMax() / 2));
+            target->haveStatusInfo_.addHpInBattle(status::HaveStatusInfo::ResultAction, 0);
+            target->haveStatusInfo_.setUseActionEffectValue(0x3FF);
+            target->haveStatusInfo_.statusChange_.clear();
+            target->haveStatusInfo_.setStatusChangeRelease(true);
+            target->haveStatusInfo_.setZaorikuRebirth(true);
+            target->setRebirthAnimation();
+            ret = 1;
+
+            if (func_02058114(&data_0210bb94, 0xD) && target->characterType_ == MONSTER)
+            {
+                short log;
+                for (i = 0; i < func_ov003_0212e37c(&data_ov003_0216639c); i++)
+                {
+                    if (func_ov003_0212e5c0(&data_ov003_0216639c, i) == (status::MonsterStatus*)target)
+                    {
+                        log = func_ov003_02126ee8()->deathLog_;
+                        if (log & (1 << func_ov003_0212e5fc(&data_ov003_0216639c, i)))
+                        {
+                            log ^= (1 << func_ov003_0212e5fc(&data_ov003_0216639c, i));
+                            func_ov003_02126ee8()->deathLog_ = log;
+                        }
+                    }
+                }
+            }
+        }
+        return ret;
+    }
+
+    if (target->haveStatusInfo_.isDeath())
+    {
+        target->haveStatusInfo_.addHpInBattle(status::HaveStatusInfo::ResultAction, 0x3FF);
+        target->haveStatusInfo_.setUseActionEffectValue(0x3FF);
+        target->haveStatusInfo_.statusChange_.clear();
+        target->haveStatusInfo_.rebirthFlag_ = 1;
+        target->haveStatusInfo_.setStatusChangeRelease(true);
+        target->haveStatusInfo_.setZaorikuRebirth(true);
+        target->setRebirthAnimation();
+        ret = 1;
+
+        if (func_02058114(&data_0210bb94, 0xD) &&
+            target->characterType_ == MONSTER)
+        {
+                int log;
+                for (int i = 0; i < func_ov003_0212e37c(&data_ov003_0216639c); i++)
+                {
+                    if (func_ov003_0212e5c0(&data_ov003_0216639c, i) == (status::MonsterStatus*)target)
+                    {
+                        log = func_ov003_02126ee8()->deathLog_;
+                    if (log & (1 << func_ov003_0212e5fc(&data_ov003_0216639c, i)))
+                    {
+                        log ^= (1 << func_ov003_0212e5fc(&data_ov003_0216639c, i));
+                        func_ov003_02126ee8()->deathLog_ = (short)log;
+                    }
+                }
+            }
+        }
+    }
+
+    if (target->characterType_ == MONSTER)
+    {
+        int idx = target->haveStatusInfo_.drawCtrlId_;
+        int spacePos   = func_ov000_02121d04()->spacePos_;
+        int spaceWidth = func_ov000_02121d04()->spaceWidth_;
+
+        dss::Vector3int pos;
+        pos.vx = data_020beb98.vx_;
+        pos.vy = data_020beb98.vy_;
+        pos.vz = data_020beb98.vz_;
+        pos.vx = spacePos;
+
+        func_0205b2f0(&func_ov000_02121d04()->monsters_[idx], pos);
+
+        func_ov000_02121d04()->monsters_[idx].screenPosition_ = spacePos - spaceWidth / 2;
+        func_ov000_02121d04()->monsters_[idx].screenWidth_    = spaceWidth;
+    }
+    return ret;
+}
 THUMB void status::BaseActionStatus::characterClearOut(status::CharacterStatus *chara, status::BaseActionStatus::MonsterDrop drop)
 {
     if (drop == GoldExp)

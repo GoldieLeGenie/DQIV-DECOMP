@@ -1,4 +1,5 @@
 #include "main/cmn/CommonPartyInfo.hpp"
+#include "main/cmn/CommonRuraData.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/StageStatus.hpp"
 #include "main/status/ActionExec.hpp"
@@ -256,7 +257,7 @@ ARM void cmn::CommonPartyInfo::setBalloonPosByExtraSave()
                                              g_Stage.balloonPosition_.vz);
     this->tempBalloonFieldType_ = g_Stage.balloonFieldType_;
 
-    dss::Fx32Vector3 townPos = func_020335ec(func_020332cc(), 1);
+    dss::Fx32Vector3 townPos = cmn::CommonRuraData::getSingleton()->getBalloonTownPos(1);
     g_Stage.balloonPosition_ = dss::Fx32Vector3(townPos.vx, townPos.vy, townPos.vz);
     g_Stage.balloonFieldType_ = 0;
 

@@ -55,6 +55,7 @@ namespace status {
         static int actionTypeLight(status::CharacterStatus *target);
         static void actionTypeDefence(status::CharacterStatus *target);
         static void actionTypePowerSave(status::CharacterStatus *target);
+        static int  actionTypeRebirth(status::CharacterStatus *target);
         static int actionTypeMosyas(status::CharacterStatus *actor,status::CharacterStatus *target);
         static void characterClearOut(status::CharacterStatus *chara, MonsterDrop drop);
         static void setMonsterChange(int flag);

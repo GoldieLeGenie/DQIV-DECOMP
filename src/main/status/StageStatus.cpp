@@ -2,6 +2,7 @@
 #include "main/status/ActionExec.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
+#include "main/cmn/CommonRuraData.hpp"
 #include "main/status/ExcelParam.hpp"
 
 char map_caf1[8]        = "caf1";       // 0x020bdb80
@@ -102,8 +103,7 @@ THUMB void status::StageStatus::initialize()
 
     this->ruraEnable_.flag_ = 0;
 
-    func_020332cc();
-    func_02033328();
+    cmn::CommonRuraData::getSingleton()->initialize();
 
     dss::DssUtils::strcpy_s(this->lastRanaStageName_, 0xA, map_empty);
 
@@ -1203,8 +1203,7 @@ THUMB void status::StageStatus::deliverMapFlag(profile::SAVETYPE savetype, profi
         }
     }
 
-    func_020332cc();
-    func_020334ac();
+    cmn::CommonRuraData::getSingleton()->setRuraFlagAll();
 }
 
 THUMB void status::StageStatus::setFallFlag(int flag)

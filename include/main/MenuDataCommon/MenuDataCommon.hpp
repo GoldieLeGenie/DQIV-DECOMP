@@ -77,7 +77,6 @@ extern const AbilityKindTable        abilityKindTable_;        // 0x020b5e4c
 extern const ItemMessageTable        itemMessageTable_;        // 0x020b5e70
 extern const RuraMoveName            ruraMoveName_;            // 0x020b5ed0
 
-extern "C" int  func_02033584(void);
 
 
 

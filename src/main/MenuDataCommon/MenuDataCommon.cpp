@@ -1,6 +1,7 @@
 #include "main/MenuDataCommon/MenuDataCommon.hpp"
 #include "main/status/UseItem.hpp"
 #include "main/status/StoryStatus.hpp"
+#include "main/cmn/CommonRuraData.hpp"
 
 const SuretigaiSexTable       suretigaiSexTable_       = { { 0xa0000005, 0xa0000006, 0xa0000259 } };                                                                                                                                                                                                                                                                                                                                                                            // 0x020b5dbc
 const OpponentTable           opponentTable_           = { { 0x000000af, 0x000000b0, 0x000000b1, 0x000000b2, 0x000000aa } };                                                                                                                                                                                                                                                                                                                                                    // 0x020b5dc8
@@ -105,8 +106,7 @@ THUMB int MenuDataCommon::getRuraName(int index)
     case 5:
     case 6:
         if (index == 0xD) {
-            func_020332cc();
-            if (func_02033584() == 1) {
+            if (cmn::CommonRuraData::getSingleton()->getRenameFlag() == 1) {
                 index = 0x1D;
             }
         }

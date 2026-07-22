@@ -167,8 +167,6 @@ extern "C" {
     void* func_ov000_02132228();
     void func_ov000_021341ec(void*, int);
     void* func_ov001_02127b28();
-    cmn::CommonRuraData* func_020332cc();
-    void func_02033328();
     void func_02087154(void*, int);
     void func_02087168(void*, int);
     void func_02088360(void* dest, int size, void* src); 
@@ -178,7 +176,6 @@ extern "C" {
     int func_02058114(void*, int);
     int func_ov000_02135b04();
     void func_02088740(dss::Fx32Vector3* vec);
-    void func_020334ac();
 }
 
 struct MapChurchInfo {
