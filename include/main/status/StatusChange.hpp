@@ -86,7 +86,7 @@ namespace status{
         int getAgainEnableMessage(Status status);
         int getAgainDisableMessage(Status status);
         int getReleaseMessage();
-        void setupFizzleZone();
+        static void setupFizzleZone();
         void print();
     };
 }

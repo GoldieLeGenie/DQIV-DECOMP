@@ -82,7 +82,7 @@ namespace status {
 }
 
 extern "C" int func_ov003_0212e6f8(void* battleObj);  
-extern "C" int func_02058114(void* self, int flag);
+extern "C" int  func_02058114(void* global, int partId);
 extern "C" int func_ov003_0212e37c(void* monsterParty);              /* MonsterParty::getCount */
 extern "C" status::CharacterStatus* func_ov003_0212e5c0(void* monsterParty, int index);  /* MonsterParty::getMonsterStatus */
 extern "C" void func_ov003_0212eab0(void* monsterParty, int index);  /* MonsterParty::checkDropItem */
