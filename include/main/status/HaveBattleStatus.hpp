@@ -40,7 +40,8 @@ namespace status
             StartRound = 0,
             StartTurn = 1
         };
-
+        static int groupControl_[4];
+        static int groupRoopIndex_[4];
         int groupIndex_;
         int index_;
         int originalIndex_;
@@ -96,9 +97,7 @@ namespace status
         unsigned char mosyasAction_[17];
         int mosyasActionCount_;
 
-        static int groupControl_[4]; 
-        static int groupRoopIndex_[4];
-        static status::Initdata initData_; 
+       
 
         HaveBattleStatus();
         ~HaveBattleStatus();
@@ -163,6 +162,7 @@ namespace status
         void print();
     };
 }
+extern status::Initdata initData_;
 
 struct TorunekoActionTable { int v[10]; };
 struct RoopCopy { int v[4]; };
@@ -175,6 +175,9 @@ struct ConfuseArray4 { int v[4]; };
 struct ConfuseArray6 { int v[6]; };
 struct ConfuseArray8 { int v[8]; };
 
+extern const ConfuseArray4       confusePlayer8;
+extern const ConfuseArray4       confusePlayer5;
+
 extern const ConfuseArray3       confusePlayer12;
 extern const ConfuseArray3       confusePlayer7;
 extern const ConfuseArray3       confusePlayer3;
@@ -182,8 +185,6 @@ extern const ConfuseArray4       confusePlayer9;
 extern const ConfuseArray4       confusePlayer4;
 extern const RoopCopy            roopPattern;
 extern const ConfuseArray4       confusePlayer6;
-extern const ConfuseArray4       confusePlayer8;
-extern const ConfuseArray4       confusePlayer5;
 extern const ConfuseArray6       confuseOtherParupunte;
 extern const ConfuseArray6       confuseOtherNormal;
 extern const RestArray           restOneTable;

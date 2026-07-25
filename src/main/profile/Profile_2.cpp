@@ -1,4 +1,5 @@
 #include "main/profile/Profile.hpp"
+#include "main/global/Global.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/StageStatus.hpp"
@@ -299,12 +300,146 @@ THUMB int profile::Profile::deliverDATA()
     if (calcCheckSum() == 0) {
         return 0;
     }
-    func_02038d2c(this);
+    deliverDATA_PARTY();
     deliverDATA_CHAPTER();
     deliverDATA_PLAYER();
     deliverDATA_MONSTER();
     deliverDATA_ENVOY();
     return 1;
+}
+
+
+
+extern "C" void _ZN6status11PartyStatus11setLoadDataEPN7profile13PROFILE_PARTYEPNS1_15PROFILE_HISTORYE(void *, void *);
+
+THUMB void profile::Profile::deliverDATA_PARTY()
+{
+    func_0200b864(&g_Global);
+    func_0205594c(15);
+
+    g_Stage.profileBank_ = pSYSTEM->BOOKNO;                       
+    g_Stage.loadType_    = (profile::SAVETYPE)pSYSTEM->SAVETYPE;  
+
+    g_Stage.initialize();
+    g_Stage.setup((char *)pPARTY->RESTART);
+    g_Stage.setChurchMapName((char *)pPARTY->CHURCH);
+
+    dss::Fx32Vector3 pos;
+    pos.vx.value = pPARTY->PARTY_X;
+    pos.vy.value = pPARTY->PARTY_Y;
+    pos.vz.value = pPARTY->PARTY_Z;
+    deliverRESTART_MAP(&pos, pPARTY->PARTY_D);
+
+    dss::Fx32Vector3 ship;
+    ship.vx.value = pPARTY->SHIP_X;
+    ship.vy.value = pPARTY->SHIP_Y;
+    ship.vz.value = pPARTY->SHIP_Z;
+    g_Stage.shipPosition_ = dss::Fx32Vector3(ship.vx, ship.vy, ship.vz);
+
+    dss::Fx32Vector3 balloon;
+    balloon.vx.value = pPARTY->BALLOON_X;
+    balloon.vy.value = pPARTY->BALLOON_Y;
+    balloon.vz.value = pPARTY->BALLOON_Z;
+    g_Stage.balloonPosition_ = dss::Fx32Vector3(balloon.vx, balloon.vy, balloon.vz);
+
+    dss::Fx32Vector3 ikada;
+    ikada.vx.value = pPARTY->RAFT_X;
+    ikada.vy.value = pPARTY->RAFT_Y;
+    ikada.vz.value = pPARTY->RAFT_Z;
+    g_cmnPartyInfo.townIkadaPos_ = ikada;                         // +0x944
+
+    dss::Fx32Vector3 overview;
+    overview.vx.value = pPARTY->OVERVIEW_X;
+    overview.vy.value = pPARTY->OVERVIEW_Y;
+    overview.vz.value = pPARTY->OVERVIEW_Z;
+    g_Stage.overviewPosition_     = overview;
+    g_Stage.overviewTempPosition_ = overview;
+
+    g_cmnPartyInfo.rideOnType_ = (cmn::PARTY_RIDE_ON_TYPE)pPARTY->RIDEON;
+    g_Stage.balloonFieldType_  = pPARTY->BALLOON_FIELD;
+    g_Stage.setRanaMapName((char *)pPARTY->RANALUTA_MAP);
+    g_Stage.lastFldSurface_    = pPARTY->RANALUTA_SURFACE;
+
+    status::g_Story.setChapter(pPARTY->CHAPTER);
+
+    deliverGameFlag(&g_AreaFlag,   pPARTY->GLOBALFLAG);   // 0xDC
+    deliverGameFlag(&g_LocalFlag,  pPARTY->AREAFLAG);     // 0x11C
+    deliverGameFlag(&g_GlobalFlag, pPARTY->LOCALFLAG);    // 0x15C
+
+    g_Stage.deliverMapFlag((profile::SAVETYPE)pSYSTEM->SAVETYPE, pPARTY);
+
+
+    // MATCHING HACK: the original binary calls PartyStatus::setLoadData with r2
+    // (the PROFILE_HISTORY* param) left untouched — no instruction loads it
+    _ZN6status11PartyStatus11setLoadDataEPN7profile13PROFILE_PARTYEPNS1_15PROFILE_HISTORYE(&status::g_Party, pPARTY);
+    
+
+    g_Stage.setTimeZone((TIME_ZONE)pPARTY->TIMEZONE);
+    g_Stage.setWorldTime(pPARTY->WORLDTIME);
+    g_Stage.timestop_ = pPARTY->TIMESTOP;                         
+
+    status::g_Story.sex_ = (Sex)pPARTY->SEX;                      // +8
+    status::g_Story.setHeroName((char *)pPARTY->NAME);
+
+    for (int i = 0; i < 16; i++)
+        cmn::g_CommonCounterInfo.dayCounter_[i] = pPARTY->DAY_COUNTER[i];
+
+    for (int i = 0; i < 4; i++)
+        cmn::g_CommonCounterInfo.freeCounter_[i] = pPARTY->FREE_COUNTER[i];
+
+    status::g_Story.setEndorEventItemCount(status::StoryStatus::EVENT_HAGANENOTURUGI, pPARTY->BONMOL[0]);
+    status::g_Story.setEndorEventItemCount(status::StoryStatus::EVENT_TETUNOYOROI,    pPARTY->BONMOL[1]);
+
+    status::g_Game.setPlayTime(pPARTY->PLAYTIME);
+
+    g_Option.setBgmVolume(pPARTY->BGM_VOLUME);
+    g_Option.setSeVolume(pPARTY->SE_VOLUME);
+    g_Option.setBattleSpeed(pPARTY->BATTLE_SPEED);
+
+    int encount = pPARTY->ENCOUNT;
+    func_0200a6c8()->enable_ = encount;
+    g_Stage.symbolID_ = pPARTY->SYMBOLID;                         // +0xBC
+
+    for (int i = 0; i < 162; i++)
+        g_NeneItemSack.adds(pPARTY->NENEITEM[i], pPARTY->NENECOUNT[i]);
+
+    int *dart = darts;
+    for (int i = 0; i < 6; i++)
+    darts[i] = pPARTY->DARTS_ITEM[i];
+
+
+    for (int i = 0; i < 10; i++)
+        cmn::PartyTalk::getSingleton()->setPreMessage(i, pPARTY->SPEAKTO_MESSAGE[i]);
+
+    int objectNo = pPARTY->SPEAKTO_OBJECT;
+    cmn::PartyTalk::getSingleton()->objectNo_ = objectNo;          // +0x1B0
+    int exitNo = pPARTY->SPEAKTO_EXITNO;
+    cmn::PartyTalk::getSingleton()->lastExit_ = exitNo;            // +0x1B4
+    int itemNo = pPARTY->SPEAKTO_ITEMNO;
+    cmn::PartyTalk::getSingleton()->prevItem_ = itemNo;            // +0x1B8
+
+    status::g_BattleHistory.setLoadData(pPARTY, pHISTORY);
+
+    status::g_Party.setBankMoney(pPARTY->BANKMONEY);
+    status::g_Party.setMedalCoin(pPARTY->MEDALCOIN);
+
+    status::g_Story.setTarot(pPARTY->TAROT);
+    status::g_Story.setUseBank(pPARTY->USE_BANK);
+    status::g_Story.setCompleteCoin(pPARTY->COMP_PICTUREBOOK);
+
+    g_HengeNoTsue.charNo_  = pPARTY->HENGE_CHARANO;               // +4
+    g_HengeNoTsue.counter_ = pPARTY->HENGE_COUNTER;               // +8
+    g_HengeNoTsue.change_  = pPARTY->HENGE_CHANGE;                // +0xC
+    g_HengeNoTsue.endLess_ = pPARTY->HENGE_ENDLESS;               // 
+    g_HengeNoTsue.index_   = pPARTY->HENGE_INDEX;                 // +0
+
+    status::g_Party.setPlayerMedalCoin(pPARTY->PLAYERMEDAL);
+    g_cmnPartyInfo.setIkadaMapName((char *)pPARTY->IKADAMAP);
+    g_cmnPartyInfo.barron_ = pPARTY->BALONFLAG;                   // +0x964
+    status::g_Game.setUniqueID(pPARTY->UNIQUEID);
+
+    for (int i = 0; i < 50; i++)
+        func_0203ab20(&data_020f0078, i, pPARTY->SELECTTAISHI_FLAG[i]);
 }
 
 THUMB void profile::Profile::deliverDATA_CHAPTER()

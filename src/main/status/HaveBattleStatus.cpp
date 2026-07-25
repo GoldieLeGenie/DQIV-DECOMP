@@ -7,15 +7,15 @@
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/PartyStatus.hpp"
 
-const RoopCopy              roopPattern             = { { 8, 4, 3, 1 } };         
-const ConfuseArray3         confusePlayer12         = { { 0x1a4, 0x1a5, 0x1a6 } };                                                                         
 const ConfuseArray3         confusePlayer7          = { { 0x1ab, 0x1ac, 0x1ad } };                                                                         
 const ConfuseArray3         confusePlayer3          = { { 0x1a7, 0x1a8, 0x1a9 } };                                                                        
-const ConfuseArray4         confusePlayer9          = { { 0x1c0, 0x1c1, 0x1c2, 0x1c3 } };  
-const ConfuseArray4         confusePlayer4          = { { 0x1ae, 0x1af, 0x1b0, 0x1b1 } };    
+const ConfuseArray4         confusePlayer4          = { { 0x1ae, 0x1af, 0x1b0, 0x1b1 } };                                                                                                                                                                                      // 0x020b4d8c
+const ConfuseArray4         confusePlayer8          = { { 0x1bc, 0x1bd, 0x1be, 0x1bf } }; 
+const ConfuseArray3         confusePlayer12         = { { 0x1a4, 0x1a5, 0x1a6 } };                                                                         
 const ConfuseArray4         confusePlayer6          = { { 0x1b8, 0x1b9, 0x1ba, 0x1bb } };
-const ConfuseArray4         confusePlayer8          = { { 0x1bc, 0x1bd, 0x1be, 0x1bf } };                                                                                                                                                                                              // 0x020b4d8c
+const RoopCopy              roopPattern             = { { 8, 4, 3, 1 } };         
 const ConfuseArray4         confusePlayer5          = { { 0x1b2, 0x1b3, 0x1b4, 0x1b7 } };  
+const ConfuseArray4         confusePlayer9          = { { 0x1c0, 0x1c1, 0x1c2, 0x1c3 } }; 
 const ConfuseArray6         confuseOtherParupunte   = { { 0x1c4, 0x1c5, 0x1c6, 0x1c7, 0x1a3, 0x1a7 } };                                                    
 const ConfuseArray6         confuseOtherNormal      = { { 0x1c4, 0x1c5, 0x1c6, 0x1c7, 0x1c8, 0x1a7 } };                                                    
 const RestArray             restOneTable            = { { 1, 1, 1, 1, 1, 1 } };                                                                            
@@ -47,9 +47,8 @@ unsigned char actionPattern[120] = {
     0x0F,0x00,0x00,0x00,0x0F,0x00,0x00,0x00
 };
 
-int status::HaveBattleStatus::groupRoopIndex_[4];
 int status::HaveBattleStatus::groupControl_[4];
-
+int status::HaveBattleStatus::groupRoopIndex_[4];
 
 THUMB status::HaveBattleStatus::HaveBattleStatus()
 {

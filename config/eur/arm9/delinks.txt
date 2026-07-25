@@ -9,6 +9,14 @@
 src/main/dss/DssUtils.cpp:
     .text start:0x02088360 end:0x020883d8
 
+src/main/EncountParam/EncountParam.cpp:
+    .text start:0x0200b6b0 end:0x0200b82c
+
+src/main/CountDown/CountDown.cpp:
+    complete
+    .text start:0x0200b5cc end:0x0200b6b0
+    .data start:0x020bc19c end:0x020bc258
+
 src/main/dss/Random.cpp:
     .text start:0x02080d48 end:0x02080d80
 
@@ -21,8 +29,11 @@ src/main/status/BaseActionStatus.cpp:
     .bss start:0x020eecec end:0x020eecfc
 
 src/main/status/ExcelParam.cpp:
-    .text start:0x0200d220 end:0x0200d3c8
-    .bss  start:0x020c79b8 end:0x020c7a7c
+    complete
+    .init start:0x0208a838 end:0x0208a858
+    .ctor start:0x020bb384 end:0x020bb388
+    .text start:0x0200d218 end:0x0200d3c8
+    .bss  start:0x020c79ac end:0x020c7a7c
 
 src/main/status/GameFlag.cpp:
     .init start:0x0208a9ec end:0x0208aa3c
@@ -38,8 +49,11 @@ src/main/status/ItemData.cpp:
     .text start:0x02013d9c end:0x02013db8
 
 src/main/status/BattleResult.cpp:
-    .text start:0x02022ae4 end:0x02022db0
-    .bss start:0x020ec664 end:0x020ecd30
+    complete
+    .init start:0x0208ace8 end:0x0208ad08
+    .ctor start:0x020bb3c0 end:0x020bb3c4
+    .text start:0x02022ac8 end:0x02022db0
+    .bss start:0x020ec658 end:0x020ecd30
 
 
 src/main/status/BattleHistory.cpp:
@@ -189,17 +203,40 @@ src/main/profile/Profile_2.cpp:
 src/main/param/Param.cpp:
     .rodata start:0x0208eb00 end:0x020919dc
 
+src/main/param/Event.cpp:
+    .text start:0x0200cbfc end:0x0200cc64
+    .data start:0x020bc584 end:0x020bc614
+
+src/main/param/ShopDataFirst.cpp:
+    .text start:0x0200cc64 end:0x0200ce20
+
+src/main/param/ShopDataSecond.cpp:
+    .text start:0x0200ce20 end:0x0200cf24
+
+src/main/param/ColorCorrect.cpp:
+    .text start:0x0200c5d8 end:0x0200c8b0
+
+src/main/param/Fukuro.cpp:
+    .text start:0x0200cf24 end:0x0200cf60
+    .data start:0x020bc614 end:0x020bc638
+
+src/main/param/BattleMap.cpp:
+    .text start:0x0200cf60 end:0x0200d218
+    .data start:0x020bc638 end:0x020bc654
+
 src/main/param/FloorParam.cpp:
     .text start:0x0200c0a4 end:0x0200c5d8
 
 src/main/param/MonsterAnim.cpp:
     .text start:0x0200c044 end:0x0200c0a4
 
-
 src/main/cmn/CommonCounterInfo.cpp:
     complete
     .text start:0x020368a8 end:0x020369d0
     .bss start:0x020ef9ac end:0x020ef9c8
+
+src/main/cmn/CommonWalkDamage.cpp:
+    .text start:0x02032cec end:0x02032db4
 
 src/main/cmn/CommonPartyInfo.cpp:
     .init start:0x0208b328 end:0x0208b33c
@@ -231,6 +268,10 @@ src/main/cmn/TalkSoundManager.cpp:
 
 src/main/cmn/WorldLocation.cpp:
     .text start:0x0203ab9c end:0x0203af8c
+
+src/main/cmn/PlayerManager.cpp:
+    .text start:0x02030fcc end:0x020310d0
+    .bss start:0x020eed20 end:0x020eed2c
 
 src/main/CameraControl/CameraControl.cpp:
     .text start:0x0201d9b4 end:0x0201da1c

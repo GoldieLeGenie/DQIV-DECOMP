@@ -5,7 +5,20 @@
 #define WORLD_TIME_EVENING  0x7C0
 #define WORLD_TIME_NIGHT    0x8C0
 
-
+enum PLAYER_COMMAND {
+    PUSH_NONE=0,
+    PUSH_BENRI_BUTTON=1,
+    PUSH_BALLOON_GETOUT_BUTTON=2,
+    PUSH_BALLOON_SEARCH_BUTTON=3,
+    START_SEARCH_COMMAND=4,
+    END_SEARCH_COMMAND=5,
+    START_TALK_COMMAND=6,
+    END_TALK_COMMAND=7,
+    START_RIDE_BALLOON_COMMAND=8,
+    END_RIDE_BALLOON_COMMAND=9,
+    START_IDO_LINK_COMMAND=10,
+    END_IDO_LINK_COMMAND=11
+};
 
 enum PartyModeState {
     PARTY_MODE_DISABLED = 0,
@@ -145,6 +158,24 @@ enum TIME_ZONE
 enum CharacterType {
     PLAYER = 0x0,
     MONSTER = 0x1,
+};
+
+enum EncountType {
+    TYPE_NONE=-1,
+    TYPE_A=0,
+    TYPE_B=1,
+    TYPE_C=2,
+    TYPE_D=3,
+    TYPE_E=4,
+    TYPE_F=5,
+    TYPE_G=6,
+    TYPE_H=7,
+    TYPE_I=8,
+    TYPE_J=9,
+    TYPE_K=10,
+    TYPE_L=11,
+    TYPE_M=12,
+    TYPE_N=13
 };
 
 enum FirstAttack {

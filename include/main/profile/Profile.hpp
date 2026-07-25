@@ -4,6 +4,8 @@
 #include "GameInfo.hpp"
 #include "main/status/HaveItemSack.hpp"
 
+struct Global;
+
 namespace status {
     struct GameFlag;
 }
@@ -110,8 +112,8 @@ public:
         unsigned char SYMBOLID;
         unsigned char FIELDTYPE;
         unsigned char TAROT;
-        unsigned char USE_BANK;
-        unsigned char COMP_PICTUREBOOK;
+        bool USE_BANK;
+        bool COMP_PICTUREBOOK;
         unsigned char RIDEON;
         unsigned char BALLOON_FIELD;
         unsigned char RANALUTA_MAP[10];
@@ -213,6 +215,7 @@ public:
         void deliverDATA_MONSTER();
         void deliverDATA_ENVOY();
         void deliverRESTART_MAP(dss::Fx32Vector3* pos, short dir);
+        void deliverDATA_PARTY();
         
     };  
 };
@@ -258,4 +261,7 @@ extern "C" int func_0201d3a4(void* stage);        // "restartChurch"
 extern "C" void func_02028e8c(void* mgr, unsigned char fieldType, dss::Fx32Vector3* pos, int dir); //cmn::ExtraMapLink::setExtraLinkFieldAbsPos
 extern "C" void func_02028494(void* mgr, void* mapName, dss::Fx32Vector3* pos, int dir); //cmn::ExtraMapLink::setExtraLinkTown
 extern "C" char data_020c13a0[];                  // string map "field"
+extern "C" void func_0200b864(Global *g);                        // init g_Global
+extern "C" void func_0205594c(int fade);                         // SoundManager::stopBgm
+extern "C" void func_0203ab20(void *mgr, int index, unsigned char value); // 
 extern int data_020ed28c;                         // cmn::g_extraMapLink

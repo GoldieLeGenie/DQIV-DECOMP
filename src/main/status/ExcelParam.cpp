@@ -3,6 +3,14 @@
 
 status::ExcelParam status::excelParam;
 
+THUMB status::ExcelParam::ExcelParam(){
+	return;
+}
+
+THUMB status::ExcelParam::~ExcelParam(){
+	return;
+}
+
 THUMB void status::ExcelParam::setup()
 {
 	this->surechigai_ = (param::SurechigaiObjectData*)&data_0208cc08;

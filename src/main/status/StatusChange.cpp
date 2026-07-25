@@ -517,8 +517,7 @@ THUMB int status::StatusChange::getResultMessage3(Status status, CharacterType t
 
 THUMB int status::StatusChange::getAgainEnableMessage(Status status) {
     if (status == StatusFizzleZone) {
-        statusFizzleZone_.getAgainEnableMessage();
-        return;
+        return statusFizzleZone_.getAgainEnableMessage();
     }
     return this->status_[status].getAgainEnableMessage();
 }
@@ -576,3 +575,5 @@ THUMB void status::StatusChange::print()
     this->isEnable(StatusFizzleZone);
     return;
 }
+
+

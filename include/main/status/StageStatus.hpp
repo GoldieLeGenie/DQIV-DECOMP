@@ -7,6 +7,7 @@
 #include "main/global/Global.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/profile/Profile.hpp"
+#include "main/cmn/PlayerManager.hpp"
 
 namespace status{
     struct StageStatus {
@@ -163,7 +164,6 @@ namespace status{
 extern status::StageStatus g_Stage; //data_020d08e0
 
 extern "C" {
-    void func_02030fe0(int);
     void* func_ov000_02132228();
     void func_ov000_021341ec(void*, int);
     void* func_ov001_02127b28();

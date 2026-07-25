@@ -4,7 +4,8 @@
 #include "main/status/ExcelParam.hpp"
 #include "main/status/StageStatus.hpp"
 #include "main/status/HaveItemSack.hpp"
-
+#include "main/param/ShopDataFirst.hpp"
+#include "main/param/ShopDataSecond.hpp"
 namespace status{
     struct ShopData {                              // data_020d0bcc
         int section_;                              // +0

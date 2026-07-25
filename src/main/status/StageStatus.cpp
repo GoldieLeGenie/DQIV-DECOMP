@@ -5,35 +5,39 @@
 #include "main/cmn/CommonRuraData.hpp"
 #include "main/status/ExcelParam.hpp"
 
-char map_caf1[8]        = "caf1";       // 0x020bdb80
-char map_btl_pl_d[12]   = "btl_pl_d";   // 0x020bdb88
+char map_btlyado_d[12]  = "btlyado_d";  // 0x020bdc64
+
+
 #pragma explicit_zero_data on
 char map_empty[4]       = "";           // 0x020bdb94
 #pragma explicit_zero_data reset
+char map_caf1[8]        = "caf1";       // 0x020bdb80
 char map_casino[8]      = "casino";     // 0x020bdb98
 char map_field[8]       = "field";      // 0x020bdba0
 char map_m[4]           = "m";          // 0x020bdba8
 char map_h[4]           = "h";          // 0x020bdbac
 char map_c[4]           = "c";          // 0x020bdbb0
+char map_btl_se_d[12]   = "btl_se_d";   // 0x020bdc1c
 char map_f[4]           = "f";          // 0x020bdbb4
-char map_darkfield[12]  = "darkfield";  // 0x020bdbb8
 char map_d[4]           = "d";          // 0x020bdbc4
 char map_t[4]           = "t";          // 0x020bdbc8
 char map_s[4]           = "s";          // 0x020bdbcc
 char map_e[4]           = "e";          // 0x020bdbd0
-char map_btl_pl_dk[12]  = "btl_pl_dk";  // 0x020bdbd4
+char map_darkfield[12]  = "darkfield";  // 0x020bdbb8
+char map_btl_pl_d[12]   = "btl_pl_d";   // 0x020bdb88
 char map_btl_se_dk[12]  = "btl_se_dk";  // 0x020bdbe0
 char map_btl_sd_dk[12]  = "btl_sd_dk";  // 0x020bdbec
-char map_btl_mt_dk[12]  = "btl_mt_dk";  // 0x020bdbf8
-char map_btl_po_dk[12]  = "btl_po_dk";  // 0x020bdc04
 char map_btl_wd_dk[12]  = "btl_wd_dk";  // 0x020bdc10
-char map_btl_se_d[12]   = "btl_se_d";   // 0x020bdc1c
 char map_btl_sd_d[12]   = "btl_sd_d";   // 0x020bdc28
-char map_btl_mt_d[12]   = "btl_mt_d";   // 0x020bdc34
 char map_btl_po_d[12]   = "btl_po_d";   // 0x020bdc40
 char map_btl_wd_d[12]   = "btl_wd_d";   // 0x020bdc4c
+char map_btl_pl_dk[12]  = "btl_pl_dk";  // 0x020bdbd4
+char map_btl_mt_dk[12]  = "btl_mt_dk";  // 0x020bdbf8
+char map_btl_mt_d[12]   = "btl_mt_d";   // 0x020bdc34
 char map_btldougu_d[12] = "btldougu_d"; // 0x020bdc58
-char map_btlyado_d[12]  = "btlyado_d";  // 0x020bdc64
+char map_btl_po_dk[12]  = "btl_po_dk";  // 0x020bdc04
+
+
 
 // int status::StageStatus::toramana_;
 status::StageStatus g_Stage; //data_020d08e0
@@ -1100,7 +1104,7 @@ THUMB void status::StageStatus::setRuraFlag(int rura)
         if (func_02058114(&data_0210bb94, 0xE) != 0)
         {
             func_ov001_02127b28();
-            func_02030fe0(1);
+            cmn::PlayerManager::setLock(1);
             return;
         }
         func_ov000_021341ec(func_ov000_02132a90(), 1);

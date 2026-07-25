@@ -670,7 +670,7 @@ from:0x02123660 kind:load to:0x020ec664 module:main
 from:0x02123664 kind:load to:0x020c7b1c module:main
 from:0x02123668 kind:load to:0x020c7a88 module:main
 from:0x02123670 kind:load to:0x020c7a8c module:main
-from:0x02123674 kind:load to:0x020d08a4 module:main
+from:0x02123674 kind:load to:0x020d0894 add:0x10 module:main
 from:0x02123678 kind:load to:0x0020d07e8 module:main
 from:0x0212367c kind:load to:0x020eece4 module:main
 from:0x02123680 kind:load to:0x020ec664 add:0x500 module:main

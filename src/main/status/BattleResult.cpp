@@ -2,6 +2,23 @@
 
 status::BattleResult status::g_BattleResult;
 
+
+THUMB status::BattleResult::BattleResult()
+{
+    dss::BitFlag<unsigned int>* p = encountFlag_.flag_;
+    do {
+        p->flag_ = 0;
+        p++;
+    } while (p < &encountFlag_.flag_[7]);
+}
+
+
+THUMB status::BattleResult::~BattleResult()
+
+{
+  return;
+}
+
 THUMB void status::BattleResult::initialize() {
     for (unsigned int i = 0; i < 210; i++) {
         this->result_[i].monsterCount_ = 0;

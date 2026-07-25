@@ -5,8 +5,9 @@
 int status::BaseAction::tsukonFlag_;
 int status::BaseAction::tsukon2Flag_;
 int status::BaseAction::kaishinFlag_;
-
-
+// int status::BaseAction::splitFlag_;
+// int status::BaseAction::joukFlag_;
+// int data_020d0810[4];
 #pragma profile on
 THUMB void status::BaseAction::initialize()
 {

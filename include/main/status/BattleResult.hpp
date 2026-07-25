@@ -25,6 +25,8 @@ namespace status{
         int playerFirstAttack_;
         int monsterFirstAttack_;
         unsigned short defaultMonsterNo_[210];
+        BattleResult();
+        ~BattleResult();
         void initialize();
         void setMonsterCount(unsigned int monsterIndex, unsigned short count);
         void addMonsterCount(unsigned int monsterIndex);

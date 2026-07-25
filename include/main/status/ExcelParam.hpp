@@ -1,5 +1,9 @@
 #pragma once
 #include "main/param/Param.hpp"
+#include "main/param/ShopDataFirst.hpp"
+#include "main/param/ShopDataSecond.hpp"
+#include "main/param/BattleMap.hpp"
+
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 
@@ -59,6 +63,8 @@ namespace status {
         param::MapChurch* mapChurch_;
         param::SurechigaiTenant* surechigaiTenant_;
 
+        ExcelParam();
+        ~ExcelParam();
         void setup();
         param::CharInitData* getCharaInitData();
         param::HeroData* getHeroData();

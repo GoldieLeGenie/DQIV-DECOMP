@@ -5,7 +5,7 @@
 #include "main/status/ActionExec.hpp"
 #include "main/status/GameFlag.hpp"
 #include "main/global/Global.hpp"
-
+#include "main/cmn/PlayerManager.hpp"
 char s_srout_map[8] = "srout";
 cmn::CommonPartyInfo g_cmnPartyInfo;
 
@@ -232,14 +232,14 @@ ARM void cmn::CommonPartyInfo::setMenuAction(MENU_ACTION mode)
     if (mode != MENU_ACTION_NONE) {
         if (func_02058114(&data_0210bb94, 0xE) != MENU_ACTION_NONE) {
             func_ov001_02127b28();
-            func_02030fe0(1);
+            cmn::PlayerManager::setLock(1);
         } else {
             func_ov000_021341ec(func_ov000_02132a90(), 1);
         }
     } else {
         if (func_02058114(&data_0210bb94, 0xE) != MENU_ACTION_NONE) {
             func_ov001_02127b28();
-            func_02030fe0(0);
+            cmn::PlayerManager::setLock(0);
         } else {
             func_ov000_021341ec(func_ov000_02132a90(), 0);
         }

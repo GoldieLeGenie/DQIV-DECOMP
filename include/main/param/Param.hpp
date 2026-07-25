@@ -2,7 +2,9 @@
 #include "main/dss/DssUtils.hpp"
 #include "main/param/FloorParam.hpp"
 #include <globaldefs.h>
-
+#include "main/param/ColorCorrect.hpp"
+#include "main/param/ShopDataFirst.hpp"
+#include "main/param/ShopDataSecond.hpp"
 namespace param {
     struct PartyTalk
     {
@@ -53,7 +55,7 @@ namespace param {
         unsigned short index;
         unsigned short voice;
     };
-
+    
     struct ActionParam {
         unsigned int actionMes;
         unsigned int playerSuccessMes;
@@ -332,13 +334,7 @@ namespace param {
         unsigned char dmmy1;
     };
 
-    struct ColorCorrect {
-        unsigned char backcolor;
-        char floor[8];
-        char byte_1;
-        char byte_2;
-        unsigned char dmmy0;
-    };
+    
 
 
     struct FloorFog {
@@ -407,15 +403,9 @@ namespace param {
         unsigned char dmmy0;
     };
 
-    struct ShopDataFirst {
-        unsigned short item;
-        unsigned short price;
-    };
+    
 
-    struct ShopDataSecond {
-        unsigned short item;
-        unsigned short price;
-    };
+    
 
     struct CommonParam {
         unsigned int checkMsg;
@@ -464,12 +454,7 @@ namespace param {
         unsigned char* tile_;
     };
 
-    struct BattleMap {
-        unsigned char R;
-        unsigned char G;
-        unsigned char B;
-        char map[13];
-    };
+    
 
     struct MapCamera {
         dss::fx32 distance;
