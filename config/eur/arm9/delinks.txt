@@ -238,6 +238,11 @@ src/main/cmn/CommonCounterInfo.cpp:
 src/main/cmn/CommonWalkDamage.cpp:
     .text start:0x02032cec end:0x02032db4
 
+src/main/cmn/CommonEffectLocation.cpp:
+    complete
+    .text start:0x0203e964 end:0x0203ed64
+    .data start:0x020c1a40 end:0x020c1b7c
+
 src/main/cmn/CommonPartyInfo.cpp:
     .init start:0x0208b328 end:0x0208b33c
     .ctor start:0x020bb400 end:0x020bb404
@@ -263,6 +268,7 @@ src/main/cmn/CommonRuraData.cpp:
     .bss start:0x020ef794 end:0x020ef7ac
 
 src/main/cmn/TalkSoundManager.cpp:
+    complete
     .text start:0x02039750 end:0x02039b70
     .rodata start:0x020b614c end:0x020b6154
 
@@ -272,6 +278,9 @@ src/main/cmn/WorldLocation.cpp:
 src/main/cmn/PlayerManager.cpp:
     .text start:0x02030fcc end:0x020310d0
     .bss start:0x020eed20 end:0x020eed2c
+
+src/main/cmn/GameManager.cpp:
+    .text start:0x02030f50 end:0x02030f60
 
 src/main/CameraControl/CameraControl.cpp:
     .text start:0x0201d9b4 end:0x0201da1c

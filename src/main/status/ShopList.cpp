@@ -1,6 +1,9 @@
 #include "main/status/ShopList.hpp"
 #include "main/status/StoryStatus.hpp"
 #include "main/status/GameFlag.hpp"
+#include "main/param/ShopDataFirst.hpp"
+#include "main/param/ShopDataSecond.hpp"
+
 status::ShopData status::ShopData_;
 char check_map[4] = "en";
 
@@ -40,9 +43,9 @@ THUMB int status::ShopList::getDataIndex(int shop)
 
     int index;
     if (ShopData_.section_ == 0) {
-        index = func_0200ce20(name);
+        index = param::ShopDataSecond::getIndex(name);
     } else {
-        index = func_0200cc64(name);
+        index = param::ShopDataFirst::getIndex(name);
     }
 
     switch (shop) {

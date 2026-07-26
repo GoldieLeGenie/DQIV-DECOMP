@@ -2111,9 +2111,9 @@ _ZN7profile7Profile12calcCheckSumEv kind:function(arm,size=0x40) addr:0x02030eb0
 _ZN7profile7Profile11isValidDataEv kind:function(arm,size=0x34) addr:0x02030ef0
 func_02030f24 kind:function(thumb,size=0x2) addr:0x02030f24
 func_02030f28 kind:function(thumb,size=0x28) addr:0x02030f28
-func_02030f50 kind:function(thumb,size=0x6) addr:0x02030f50
-func_02030f58 kind:function(thumb,size=0x2) addr:0x02030f58
-func_02030f5c kind:function(thumb,size=0x2) addr:0x02030f5c
+_ZN3cmn11GameManager10initializeEv kind:function(thumb,size=0x6) addr:0x02030f50
+_ZN3cmn11GameManager9terminateEv kind:function(thumb,size=0x2) addr:0x02030f58
+_ZN3cmn11GameManager7executeEv kind:function(thumb,size=0x2) addr:0x02030f5c
 func_02030f60 kind:function(thumb,size=0xc) addr:0x02030f60
 func_02030f6c kind:function(arm,size=0x10) addr:0x02030f6c
 func_02030f7c kind:function(arm,size=0x4) addr:0x02030f7c
@@ -2637,13 +2637,13 @@ func_0203e868 kind:function(arm,size=0x20) addr:0x0203e868
 func_0203e888 kind:function(arm,size=0x44) addr:0x0203e888
 func_0203e8cc kind:function(arm,size=0x2c) addr:0x0203e8cc
 func_0203e8f8 kind:function(arm,size=0x6c) addr:0x0203e8f8
-func_0203e964 kind:function(arm,size=0x34) addr:0x0203e964
-func_0203e998 kind:function(arm,size=0x2c) addr:0x0203e998
-func_0203e9c4 kind:function(arm,size=0x6c) addr:0x0203e9c4
-func_0203ea30 kind:function(arm,size=0x34) addr:0x0203ea30
-func_0203ea64 kind:function(arm,size=0xc0) addr:0x0203ea64
-func_0203eb24 kind:function(arm,size=0x194) addr:0x0203eb24
-func_0203ecb8 kind:function(arm,size=0xac) addr:0x0203ecb8
+_ZN3cmn20CommonEffectLocation10initializeEv kind:function(arm,size=0x34) addr:0x0203e964
+_ZN3cmn20CommonEffectLocation9terminateEv kind:function(arm,size=0x2c) addr:0x0203e998
+_ZN3cmn20CommonEffectLocation7executeEv kind:function(arm,size=0x6c) addr:0x0203e9c4
+_ZN3cmn20CommonEffectLocation5startEii kind:function(arm,size=0x34) addr:0x0203ea30
+_ZN3cmn20CommonEffectLocation14setPaletteRateEi kind:function(arm,size=0xc0) addr:0x0203ea64
+_ZN3cmn20CommonEffectLocation15calcPaletteRateEv kind:function(arm,size=0x194) addr:0x0203eb24
+_ZN3cmn20CommonEffectLocation14getPaletteRateEv kind:function(arm,size=0xac) addr:0x0203ecb8
 func_0203ed64 kind:function(arm,size=0x84) addr:0x0203ed64
 func_0203ede8 kind:function(arm,size=0x4) addr:0x0203ede8
 func_0203edec kind:function(arm,size=0x6c) addr:0x0203edec
@@ -5363,11 +5363,11 @@ func_02088854 kind:function(arm,size=0x8) addr:0x02088854
 func_0208885c kind:function(arm,size=0x30) addr:0x0208885c
 func_0208888c kind:function(arm,size=0x30) addr:0x0208888c
 _ZN3dss11Fx32Vector3aSERKS0_ kind:function(arm,size=0x2c) addr:0x020888bc
-_ZN3dss11Fx32Vector3plERKS0_ kind:function(arm,size=0x74) addr:0x020888e8
+_ZNK3dss11Fx32Vector3plERKS0_ kind:function(arm,size=0x74) addr:0x020888e8
 func_0208895c kind:function(arm,size=0x2c) addr:0x0208895c
 func_02088988 kind:function(arm,size=0x74) addr:0x02088988
 func_020889fc kind:function(arm,size=0x2c) addr:0x020889fc
-_ZN3dss11Fx32Vector3mlERKNS_4Fx32E kind:function(arm,size=0x74) addr:0x02088a28
+_ZNK3dss11Fx32Vector3mlERKNS_4Fx32E kind:function(arm,size=0x74) addr:0x02088a28
 func_02088a9c kind:function(arm,size=0x74) addr:0x02088a9c
 func_02088b10 kind:function(arm,size=0x2c) addr:0x02088b10
 func_02088b3c kind:function(arm,size=0x2c) addr:0x02088b3c
@@ -6753,13 +6753,13 @@ data_020c19b0 kind:data(any) addr:0x020c19b0
 data_020c19c8 kind:data(any) addr:0x020c19c8
 data_020c19ec kind:data(any) addr:0x020c19ec
 data_020c1a10 kind:data(any) addr:0x020c1a10
-data_020c1a40 kind:data(any) addr:0x020c1a40
-data_020c1a6c kind:data(any) addr:0x020c1a6c
-data_020c1a98 kind:data(any) addr:0x020c1a98
-data_020c1ac0 kind:data(any) addr:0x020c1ac0
-data_020c1ae8 kind:data(any) addr:0x020c1ae8
-data_020c1b18 kind:data(any) addr:0x020c1b18
-data_020c1b4c kind:data(any) addr:0x020c1b4c
+@49 kind:data(any) addr:0x020c1a40 local
+@55 kind:data(any) addr:0x020c1a6c local
+@70 kind:data(any) addr:0x020c1a98 local
+@79 kind:data(any) addr:0x020c1ac0 local 
+@101 kind:data(any) addr:0x020c1ae8 local
+@145 kind:data(any) addr:0x020c1b18 local
+@163 kind:data(any) addr:0x020c1b4c local
 data_020c1b7c kind:data(any) addr:0x020c1b7c
 data_020c1b88 kind:data(any) addr:0x020c1b88
 data_020c1b9c kind:data(any) addr:0x020c1b9c

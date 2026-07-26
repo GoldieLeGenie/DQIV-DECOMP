@@ -4,6 +4,11 @@
 
 namespace dss{
     typedef signed int fx32;
+    struct VecFx32 {
+        fx32 x;
+        fx32 y;
+        fx32 z;
+    };
     struct Fx32 {
         fx32 value;
         Fx32();                         // func_020870fc
@@ -47,17 +52,17 @@ namespace dss{
         int vy;
         int vz;
     };
-    struct Fx32Vector3 {
+    struct Fx32Vector3
+    {
         Fx32 vx;
         Fx32 vy;
         Fx32 vz;
-        Fx32Vector3();                                       
+        Fx32Vector3();                                      // func_02088740
         Fx32Vector3(const Fx32& x, const Fx32& y, const Fx32& z)
             : vx(x), vy(y), vz(z) {}
-        Fx32Vector3 operator*(const Fx32& s);          // func_02088a28
-        Fx32Vector3 operator+(const Fx32Vector3& o);   // func_020888e8
-        Fx32Vector3& operator=(const Fx32Vector3& o);  // func_020888bc 
-        
+        Fx32Vector3& operator=(const Fx32Vector3& o);       // func_020888bc
+        Fx32Vector3 operator*(const Fx32& s) const;         // func_02088a28
+        Fx32Vector3 operator+(const Fx32Vector3& o) const;  // func_020888e8
     };
 
     struct DssUtils
