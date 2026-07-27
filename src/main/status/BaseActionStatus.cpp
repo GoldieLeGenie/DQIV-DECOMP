@@ -3,7 +3,7 @@
 #include "main/status/UseAction.hpp"
 #include "main/status/ActionExec.hpp"
 #include "main/dss/Random.hpp"
-
+#include "ov003/status/MonsterParty.hpp"
 status::BaseActionValue BaseActionValue_;
 
 
@@ -219,14 +219,14 @@ THUMB int status::BaseActionStatus::actionTypeRebirth(status::CharacterStatus *t
             if (func_02058114(&data_0210bb94, 0xD) && target->characterType_ == MONSTER)
             {
                 short log;
-                for (int i = 0; i < func_ov003_0212e37c(data_ov003_0216639c); i++)
+                for (int i = 0; i < data_ov003_0216639c.getCount(); i++)
                 {
-                    if (func_ov003_0212e5c0(data_ov003_0216639c, i) == (status::MonsterStatus*)target)
+                    if (data_ov003_0216639c.getMonsterStatus(i) == (status::MonsterStatus*)target)
                     {
                         log = func_ov003_02126ee8()->deathLog_;
-                        if (log & (1 << func_ov003_0212e5fc(data_ov003_0216639c, i)))
+                        if (log & (1 << data_ov003_0216639c.getCtrlId(i)))
                         {
-                            int val = log ^ (1 << func_ov003_0212e5fc(data_ov003_0216639c, i));
+                            int val = log ^ (1 << data_ov003_0216639c.getCtrlId(i));
                             func_ov003_02126ee8()->deathLog_ = val;
                         }
                     }
@@ -251,14 +251,14 @@ THUMB int status::BaseActionStatus::actionTypeRebirth(status::CharacterStatus *t
             target->characterType_ == MONSTER)
         {
             short log;
-            for (int i = 0; i < func_ov003_0212e37c(data_ov003_0216639c); i++)
+            for (int i = 0; i < data_ov003_0216639c.getCount(); i++)
             {
-                if (func_ov003_0212e5c0(&data_ov003_0216639c, i) == (status::MonsterStatus*)target)
+                if (data_ov003_0216639c.getMonsterStatus(i) == (status::MonsterStatus*)target)
                 {
                     log = func_ov003_02126ee8()->deathLog_;
-                    if (log & (1 << func_ov003_0212e5fc(data_ov003_0216639c, i)))
+                    if (log & (1 << data_ov003_0216639c.getCtrlId(i)))
                     {
-                        int val = log ^ (1 << func_ov003_0212e5fc(data_ov003_0216639c, i));
+                        int val = log ^ (1 << data_ov003_0216639c.getCtrlId(i));
                         func_ov003_02126ee8()->deathLog_ = val;
                     }
                 }
@@ -1065,9 +1065,9 @@ THUMB int status::BaseActionStatus::actionTypeNone(status::CharacterStatus *acto
                 ((status::CharacterStatus*)g_Party.getPlayerStatus(i))->haveStatusInfo_.statusChange_.setup2(StatusChange::StatusTimeStop, 1);
             }
         }
-        int cnt2 = func_ov003_0212e37c(&data_ov003_0216639c);
+        int cnt2 = data_ov003_0216639c.getCount();
         for (int i = 0; i < cnt2; i++) {
-            ((status::MonsterStatus*)func_ov003_0212e5c0(&data_ov003_0216639c, i))->haveStatusInfo_.statusChange_.setup2(StatusChange::StatusTimeStop, 1);
+            ((status::MonsterStatus*)data_ov003_0216639c.getMonsterStatus(i))->haveStatusInfo_.statusChange_.setup2(StatusChange::StatusTimeStop, 1);
         }
     }
 
@@ -1198,7 +1198,7 @@ THUMB int status::BaseActionStatus::actionTypeNone(status::CharacterStatus *acto
     }
 
     if (BaseActionStatus_.actionIndex_ == 0x214) {
-        int item = func_ov003_02123a88(target);
+        int item = ((status::MonsterStatus*)target)->getHaveDropItem();
         if (item != 0) {
             if (actor->haveStatusInfo_.haveItem_.getCount() != 0xC) {
                 actor->haveStatusInfo_.haveItem_.add(item);

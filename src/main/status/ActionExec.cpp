@@ -173,50 +173,44 @@ THUMB int status::callDifferentMonster(int index, int monsterIndex)
 {
     CallMonster.callMonsterIndex_ = monsterIndex;
     if (func_ov003_021223b4(func_ov000_02121d04(), monsterIndex) != 0
-        && func_ov003_0212e37c(&data_ov003_0216639c) < 0xC) {
+        && data_ov003_0216639c.getCount() < 0xC) {
         if (index != -1) {
-            if (func_ov003_0212e428(&data_ov003_0216639c, index) == 8) {
+            if (data_ov003_0216639c.getMonsterCountInGroup(index) == 8) {
                 return 0;
             }
-            if (func_ov003_0212e428(&data_ov003_0216639c, index) == 8) {
+            if (data_ov003_0216639c.getMonsterCountInGroup(index) == 8) {
                 return 0;
             }
-            addCallMonster((status::CharacterStatus*)func_ov003_0212e5c0(&data_ov003_0216639c,
-                func_ov003_0212e988(&data_ov003_0216639c, index, monsterIndex, 0)));
+            addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, index, monsterIndex, 0)));
             setCallMonster(1);
             return 1;
         } else {
-            int found = func_ov003_0212e6c4(&data_ov003_0216639c, monsterIndex);
+            int found = data_ov003_0216639c.getMonsterGroupForMonsterIndex(monsterIndex);
             if (found != -1) {
-                if (func_ov003_0212e428(&data_ov003_0216639c, found) == 8) {
+                if (data_ov003_0216639c.getMonsterCountInGroup(found) == 8) {
                     return 0;
                 }
-                addCallMonster((status::CharacterStatus*)func_ov003_0212e5c0(&data_ov003_0216639c,
-                    func_ov003_0212e988(&data_ov003_0216639c, found, monsterIndex, 0)));
+                addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, found, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
-            if (func_ov003_0212e464(&data_ov003_0216639c, 0) == 0) {
-                addCallMonster((status::CharacterStatus*)func_ov003_0212e5c0(&data_ov003_0216639c,
-                    func_ov003_0212e988(&data_ov003_0216639c, 0, monsterIndex, 0)));
+            if (data_ov003_0216639c.getMonsterCountInGroupExist(0) == 0) {
+                addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, 0, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
-            if (func_ov003_0212e464(&data_ov003_0216639c, 1) == 0) {
-                addCallMonster((status::CharacterStatus*)func_ov003_0212e5c0(&data_ov003_0216639c,
-                    func_ov003_0212e988(&data_ov003_0216639c, 1, monsterIndex, 0)));
+            if (data_ov003_0216639c.getMonsterCountInGroupExist(1) == 0) {
+                addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, 1, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
-            if (func_ov003_0212e464(&data_ov003_0216639c, 2) == 0) {
-                addCallMonster((status::CharacterStatus*)func_ov003_0212e5c0(&data_ov003_0216639c,
-                    func_ov003_0212e988(&data_ov003_0216639c, 2, monsterIndex, 0)));
+            if (data_ov003_0216639c.getMonsterCountInGroupExist(2) == 0) {
+                addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, 2, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
-            if (func_ov003_0212e464(&data_ov003_0216639c, 3) == 0) {
-                addCallMonster((status::CharacterStatus*)func_ov003_0212e5c0(&data_ov003_0216639c,
-                    func_ov003_0212e988(&data_ov003_0216639c, 3, monsterIndex, 0)));
+            if (data_ov003_0216639c.getMonsterCountInGroupExist(3) == 0) {
+                addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, 3, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
@@ -237,8 +231,8 @@ THUMB int status::getParupunteMetalSlimeBeforeIndex() {
 
 THUMB void status::parupunteMetalSlime1()
 {
-    CallMonster.metalSlimeBeforeIndex_ = func_ov003_0212e7bc(&data_ov003_0216639c);
-    int count = func_ov003_0212e37c(&data_ov003_0216639c);
+    CallMonster.metalSlimeBeforeIndex_ = data_ov003_0216639c.getMonsterCallIndex();
+    int count = data_ov003_0216639c.getCount();
     int n = 0;
     for (int i = 0; i < count; i++) {
         n++;
@@ -250,7 +244,7 @@ THUMB void status::parupunteMetalSlime2(int actionIndex)
 {
     if (actionIndex == 0x1DB) {
         int collected[12];
-        int count = func_ov003_0212e37c(&data_ov003_0216639c);
+        int count = data_ov003_0216639c.getCount();
         int found = 0;
         int i = 0;
         int* p = collected;
@@ -263,9 +257,9 @@ THUMB void status::parupunteMetalSlime2(int actionIndex)
         if (0 < count) {
             int* dst = collected;
             do {
-                status::MonsterStatus* monster = (status::MonsterStatus*)func_ov003_0212e5c0(&data_ov003_0216639c, i);
+                status::MonsterStatus* monster = (status::MonsterStatus*)data_ov003_0216639c.getMonsterStatus(i);
                 if (monster->haveStatusInfo_.isDeath() == 0) {
-                    *dst = func_ov003_0212e5fc(&data_ov003_0216639c, i);
+                    *dst = data_ov003_0216639c.getCtrlId(i);
                     found = found + 1;
                     dst = dst + 1;
                 }
@@ -285,7 +279,7 @@ THUMB void status::parupunteMetalSlime2(int actionIndex)
                 count = count + 1;
             } while (count < found);
         }
-        func_ov003_0212e37c(&data_ov003_0216639c);
+        data_ov003_0216639c.getCount();
     }
 }
 
@@ -296,12 +290,11 @@ THUMB void status::parupunteMetalSlime3(int actionIndex)
         int i = 0;
         if (0 < CallMonster.metalSlimeCount_) {
             do {
-                addCallMonster((status::CharacterStatus*)func_ov003_0212e5c0(&data_ov003_0216639c,
-                    func_ov003_0212e988(&data_ov003_0216639c, 0, 0x44, 0)));
+                addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, 0, 0x44, 0)));
                 i = i + 1;
             } while (i < CallMonster.metalSlimeCount_);
         }
-        func_ov003_0212e37c(&data_ov003_0216639c);
+        data_ov003_0216639c.getCount();
     }
 }
 

@@ -292,3 +292,7 @@ src/main/PartTaskManager/PartTaskManager.cpp:
 src/main/MenuDataCommon/MenuDataCommon.cpp:
     .text start:0x02030580 end:0x02030aa8
     .rodata start:0x020b5dbc end:0x020b5f78
+
+
+src/main/FLDObject/FLDObject.cpp:
+    .text start:0x02046f64 end:0x02046fe0

@@ -74,7 +74,7 @@ static inline void setFieldRGBRate(const dss::Fx32Vector3& rgb)
     v.y = tmp.vy.value;
     v.z = tmp.vz.value;
 
-    func_02046f74(&stage->m_fld, &v, 0);
+    stage->m_fld.SetRGBRate(&v, 0);
 }
 
 

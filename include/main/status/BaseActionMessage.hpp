@@ -5,6 +5,7 @@
 #include "main/param/Param.hpp"
 #include "main/status/UseActionMessage.hpp" 
 #include "main/status/CharacterStatus.hpp"
+#include "ov003/status/MonsterParty.hpp"
 
 
 namespace status {
@@ -86,7 +87,7 @@ extern "C" int  func_02058114(void* global, int partId);
 extern "C" int func_ov003_0212e37c(void* monsterParty);              /* MonsterParty::getCount */
 extern "C" status::CharacterStatus* func_ov003_0212e5c0(void* monsterParty, int index);  /* MonsterParty::getMonsterStatus */
 extern "C" void func_ov003_0212eab0(void* monsterParty, int index);  /* MonsterParty::checkDropItem */
-extern int data_ov003_0216639c[];   /* g_MonsterParty */
+extern status::MonsterParty data_ov003_0216639c; //g_monster
 extern "C" int  func_ov000_02123198(void* self, int pos);    // ???
 
 //im lazy but need to be moved from here

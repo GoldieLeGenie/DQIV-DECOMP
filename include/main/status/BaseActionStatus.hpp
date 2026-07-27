@@ -100,4 +100,3 @@ extern "C" void func_0200ad08(Encount*);         // self = func_0200a6c8()
 extern "C" void func_0200ad18(Encount*, int);    // "disableEncount" (a3/cf)
 extern "C" void func_0200ad28(Encount*, int);    // 
 extern "C" void func_0200ad38(Encount*, int);    // "easyEncount" (d7)
-extern "C" int  func_ov003_02123a88(status::CharacterStatus*);   // MonsterStatus::getHaveDropItem

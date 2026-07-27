@@ -1,5 +1,7 @@
 #include "main/status/BaseAction.hpp"
 #include "main/status/BaseActionStatus.hpp"
+#include "ov003/status/MonsterParty.hpp"
+
 
 // status::BaseActionData status::BaseActionData_; //data_020d07d0
 int status::BaseAction::tsukonFlag_;
@@ -276,7 +278,7 @@ THUMB int status::BaseAction::execBefore()
 {
     if (actionIndex_ == 137) {
         if (status::BaseActionData_.useActionParam_->actorCharacterStatus_->characterType_ == PLAYER) {
-            moonSaltCount_ = func_ov003_0212e37c(&data_ov003_0216639c);
+            moonSaltCount_ = data_ov003_0216639c.getCount();
         }
         if (status::BaseActionData_.useActionParam_->actorCharacterStatus_->characterType_ == MONSTER) {
             g_Party.setBattleModeWithCarriage();
@@ -296,27 +298,27 @@ THUMB int status::BaseAction::execBefore()
     }
 
     if (actionIndex_ == 459) {
-        status::BaseActionData_.callMonster_[0] = func_ov003_0212e7bc(&data_ov003_0216639c);
-        status::BaseActionData_.callMonster_[1] = func_ov003_0212e6f8(&data_ov003_0216639c);
+        status::BaseActionData_.callMonster_[0] = data_ov003_0216639c.getMonsterCallIndex();
+        status::BaseActionData_.callMonster_[1] = data_ov003_0216639c.getMonsterCallType();
     }
     if (actionIndex_ == 477) {
-        status::BaseActionData_.callMonster_[0] = func_ov003_0212e7bc(&data_ov003_0216639c);
-        status::BaseActionData_.callMonster_[1] = func_ov003_0212e6f8(&data_ov003_0216639c);
+        status::BaseActionData_.callMonster_[0] = data_ov003_0216639c.getMonsterCallIndex();
+        status::BaseActionData_.callMonster_[1] = data_ov003_0216639c.getMonsterCallType();
     }
     if (actionIndex_ == 480) {
-        status::BaseActionData_.callMonster_[0] = func_ov003_0212e7bc(&data_ov003_0216639c);
+        status::BaseActionData_.callMonster_[0] = data_ov003_0216639c.getMonsterCallIndex();
     }
     if ((unsigned int)(actionIndex_ - 528) <= 1) {
-        if (func_ov003_0212e6f8(&data_ov003_0216639c) == 0) {
+        if (data_ov003_0216639c.getMonsterCallType() == 0) {
             status::BaseActionData_.callMonster_[0] = 0;
         }
-        if (func_ov003_0212e6f8(&data_ov003_0216639c) == 1) {
+        if (data_ov003_0216639c.getMonsterCallType() == 1) {
             status::BaseActionData_.callMonster_[0] = 1;
         }
-        if (func_ov003_0212e6f8(&data_ov003_0216639c) == 2) {
+        if (data_ov003_0216639c.getMonsterCallType() == 2) {
             status::BaseActionData_.callMonster_[0] = 2;
         }
-        status::BaseActionData_.callMonster_[1] = func_ov003_0212e7bc(&data_ov003_0216639c);
+        status::BaseActionData_.callMonster_[1] = data_ov003_0216639c.getMonsterCallIndex();
     }
 
     if (actionIndex_ == 371 && status::BaseActionData_.useActionParam_->actorCharacterStatus_) {

@@ -2,6 +2,7 @@
 #include "globaldefs.h"
 #include "GameInfo.hpp"
 #include "main/dss/DssUtils.hpp"
+#include "main/FLDObject/FLDObject.hpp"
 
 namespace cmn{
     struct CommonEffectLocation
@@ -23,8 +24,6 @@ namespace cmn{
     };
 }
 
-
-struct FLDObject { };
 
 struct BattleStage {
     dss::Fx32Vector3 m_rgb_rate;   // 0x00
