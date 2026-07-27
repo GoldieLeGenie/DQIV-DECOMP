@@ -278,7 +278,7 @@ THUMB int status::BaseAction::execBefore()
 {
     if (actionIndex_ == 137) {
         if (status::BaseActionData_.useActionParam_->actorCharacterStatus_->characterType_ == PLAYER) {
-            moonSaltCount_ = data_ov003_0216639c.getCount();
+            moonSaltCount_ = g_monster.getCount();
         }
         if (status::BaseActionData_.useActionParam_->actorCharacterStatus_->characterType_ == MONSTER) {
             g_Party.setBattleModeWithCarriage();
@@ -298,27 +298,27 @@ THUMB int status::BaseAction::execBefore()
     }
 
     if (actionIndex_ == 459) {
-        status::BaseActionData_.callMonster_[0] = data_ov003_0216639c.getMonsterCallIndex();
-        status::BaseActionData_.callMonster_[1] = data_ov003_0216639c.getMonsterCallType();
+        status::BaseActionData_.callMonster_[0] = g_monster.getMonsterCallIndex();
+        status::BaseActionData_.callMonster_[1] = g_monster.getMonsterCallType();
     }
     if (actionIndex_ == 477) {
-        status::BaseActionData_.callMonster_[0] = data_ov003_0216639c.getMonsterCallIndex();
-        status::BaseActionData_.callMonster_[1] = data_ov003_0216639c.getMonsterCallType();
+        status::BaseActionData_.callMonster_[0] = g_monster.getMonsterCallIndex();
+        status::BaseActionData_.callMonster_[1] = g_monster.getMonsterCallType();
     }
     if (actionIndex_ == 480) {
-        status::BaseActionData_.callMonster_[0] = data_ov003_0216639c.getMonsterCallIndex();
+        status::BaseActionData_.callMonster_[0] = g_monster.getMonsterCallIndex();
     }
     if ((unsigned int)(actionIndex_ - 528) <= 1) {
-        if (data_ov003_0216639c.getMonsterCallType() == 0) {
+        if (g_monster.getMonsterCallType() == 0) {
             status::BaseActionData_.callMonster_[0] = 0;
         }
-        if (data_ov003_0216639c.getMonsterCallType() == 1) {
+        if (g_monster.getMonsterCallType() == 1) {
             status::BaseActionData_.callMonster_[0] = 1;
         }
-        if (data_ov003_0216639c.getMonsterCallType() == 2) {
+        if (g_monster.getMonsterCallType() == 2) {
             status::BaseActionData_.callMonster_[0] = 2;
         }
-        status::BaseActionData_.callMonster_[1] = data_ov003_0216639c.getMonsterCallIndex();
+        status::BaseActionData_.callMonster_[1] = g_monster.getMonsterCallIndex();
     }
 
     if (actionIndex_ == 371 && status::BaseActionData_.useActionParam_->actorCharacterStatus_) {

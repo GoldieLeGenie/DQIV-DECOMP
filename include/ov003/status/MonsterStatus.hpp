@@ -11,6 +11,8 @@ namespace status{
         dss::BitFlaguint eventFlag_;     // 0x500
         int              mosyasIndex_;   // 0x504
         CharacterStatus* mosyasTarget_;  // 0x508
+        MonsterStatus();
+        ~MonsterStatus();
         void setup(int monsterGroup, int monsterIndex, int sortIndex);
         void cleanup();
         bool isEnable();

@@ -3,6 +3,7 @@
 #include "main/status/BaseActionMessage.hpp"
 #include "main/status/MonsterStatus.hpp"
 #include "main/dss/Random.hpp"
+#include "ov003/status/MonsterParty.hpp"
 
 status::CallMonsterInfo CallMonster;//data_020d06c8
 status::CharacterStatus* callMonsterStatus_[12];  //data_020d06e8
@@ -173,44 +174,44 @@ THUMB int status::callDifferentMonster(int index, int monsterIndex)
 {
     CallMonster.callMonsterIndex_ = monsterIndex;
     if (func_ov003_021223b4(func_ov000_02121d04(), monsterIndex) != 0
-        && data_ov003_0216639c.getCount() < 0xC) {
+        && g_monster.getCount() < 0xC) {
         if (index != -1) {
-            if (data_ov003_0216639c.getMonsterCountInGroup(index) == 8) {
+            if (g_monster.getMonsterCountInGroup(index) == 8) {
                 return 0;
             }
-            if (data_ov003_0216639c.getMonsterCountInGroup(index) == 8) {
+            if (g_monster.getMonsterCountInGroup(index) == 8) {
                 return 0;
             }
-            addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, index, monsterIndex, 0)));
+            addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, index, monsterIndex, 0)));
             setCallMonster(1);
             return 1;
         } else {
-            int found = data_ov003_0216639c.getMonsterGroupForMonsterIndex(monsterIndex);
+            int found = g_monster.getMonsterGroupForMonsterIndex(monsterIndex);
             if (found != -1) {
-                if (data_ov003_0216639c.getMonsterCountInGroup(found) == 8) {
+                if (g_monster.getMonsterCountInGroup(found) == 8) {
                     return 0;
                 }
-                addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, found, monsterIndex, 0)));
+                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, found, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
-            if (data_ov003_0216639c.getMonsterCountInGroupExist(0) == 0) {
-                addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, 0, monsterIndex, 0)));
+            if (g_monster.getMonsterCountInGroupExist(0) == 0) {
+                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, 0, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
-            if (data_ov003_0216639c.getMonsterCountInGroupExist(1) == 0) {
-                addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, 1, monsterIndex, 0)));
+            if (g_monster.getMonsterCountInGroupExist(1) == 0) {
+                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, 1, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
-            if (data_ov003_0216639c.getMonsterCountInGroupExist(2) == 0) {
-                addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, 2, monsterIndex, 0)));
+            if (g_monster.getMonsterCountInGroupExist(2) == 0) {
+                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, 2, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
-            if (data_ov003_0216639c.getMonsterCountInGroupExist(3) == 0) {
-                addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, 3, monsterIndex, 0)));
+            if (g_monster.getMonsterCountInGroupExist(3) == 0) {
+                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, 3, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
@@ -231,8 +232,8 @@ THUMB int status::getParupunteMetalSlimeBeforeIndex() {
 
 THUMB void status::parupunteMetalSlime1()
 {
-    CallMonster.metalSlimeBeforeIndex_ = data_ov003_0216639c.getMonsterCallIndex();
-    int count = data_ov003_0216639c.getCount();
+    CallMonster.metalSlimeBeforeIndex_ = g_monster.getMonsterCallIndex();
+    int count = g_monster.getCount();
     int n = 0;
     for (int i = 0; i < count; i++) {
         n++;
@@ -244,7 +245,7 @@ THUMB void status::parupunteMetalSlime2(int actionIndex)
 {
     if (actionIndex == 0x1DB) {
         int collected[12];
-        int count = data_ov003_0216639c.getCount();
+        int count = g_monster.getCount();
         int found = 0;
         int i = 0;
         int* p = collected;
@@ -257,9 +258,9 @@ THUMB void status::parupunteMetalSlime2(int actionIndex)
         if (0 < count) {
             int* dst = collected;
             do {
-                status::MonsterStatus* monster = (status::MonsterStatus*)data_ov003_0216639c.getMonsterStatus(i);
+                status::MonsterStatus* monster = (status::MonsterStatus*)g_monster.getMonsterStatus(i);
                 if (monster->haveStatusInfo_.isDeath() == 0) {
-                    *dst = data_ov003_0216639c.getCtrlId(i);
+                    *dst = g_monster.getCtrlId(i);
                     found = found + 1;
                     dst = dst + 1;
                 }
@@ -273,13 +274,13 @@ THUMB void status::parupunteMetalSlime2(int actionIndex)
             do {
                 v = *src;
                 if (v != -1) {
-                    func_ov003_0212ea84(&data_ov003_0216639c,v);
+                    func_ov003_0212ea84(&g_monster,v);
                 }
                 src = src + 1;
                 count = count + 1;
             } while (count < found);
         }
-        data_ov003_0216639c.getCount();
+        g_monster.getCount();
     }
 }
 
@@ -290,11 +291,11 @@ THUMB void status::parupunteMetalSlime3(int actionIndex)
         int i = 0;
         if (0 < CallMonster.metalSlimeCount_) {
             do {
-                addCallMonster((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(func_ov003_0212e988(&data_ov003_0216639c, 0, 0x44, 0)));
+                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, 0, 0x44, 0)));
                 i = i + 1;
             } while (i < CallMonster.metalSlimeCount_);
         }
-        data_ov003_0216639c.getCount();
+        g_monster.getCount();
     }
 }
 

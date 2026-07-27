@@ -1,5 +1,68 @@
 #include "ov003/status/MonsterParty.hpp"
+#include "ov003/status/MonsterPartyWithDraw.hpp"
+#include "main/status/PartyStatus.hpp"
+#include "main/status/PlayerStatus.hpp"
+#include "main/dss/Random.hpp"
 
+int status::MonsterParty::sortIndex_[4] = { -1, -1, -1, -1 };
+int status::MonsterParty::sortCount_[4];
+SpecialItem specialItem[26] = {
+    { 0x02, 0x40 }, { 0x03, 0x40 }, { 0x05, 0x80 }, { 0x06, 0x80 },
+    { 0x07, 0x50 }, { 0x2c, 0x40 }, { 0x2d, 0x40 }, { 0x2e, 0x80 },
+    { 0x2f, 0x50 }, { 0x49, 0x40 }, { 0x4a, 0x40 }, { 0x53, 0x40 },
+    { 0x55, 0x40 }, { 0x6f, 0x40 }, { 0x70, 0x80 }, { 0x72, 0x40 },
+    { 0x01, 0xff }, { 0x01, 0xff }, { 0x01, 0xff }, { 0x01, 0xff },
+    { 0x01, 0xff }, { 0x01, 0xff }, { 0x01, 0xff }, { 0x01, 0xff },
+    { 0x01, 0xff }, { 0x00, 0x00 },
+};
+status::MonsterParty g_monster; //g_monster
+
+
+THUMB status::MonsterParty::~MonsterParty(){
+    return;
+}
+
+THUMB int status::MonsterParty::add(int monsterGroup, int monsterIndex, int flag)
+{
+    int sortIndex;
+    int i;
+
+    sortIndex = getSortIndexInGroup(monsterIndex);
+
+    for (i = 0; i < 12; i++) {
+        if (!monster_[i].isEnable()) {
+            monster_[i].setup(monsterGroup, monsterIndex, sortIndex);
+
+            monster_[i].arrayIndex_ = i;
+            monster_[i].ctrlId_ = i;
+            monster_[i].haveStatusInfo_.drawCtrlId_ = i;
+
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+THUMB void status::MonsterParty::del(int ctrl)
+{
+    if (monster_[ctrl].isEnable()) {
+        monster_[ctrl].cleanup();
+    }
+}
+
+THUMB void status::MonsterParty::clear()
+{
+    int i;
+
+    for (i = 0; i < 12; i++) {
+        if (monster_[i].isEnable()) {
+            del(i);          
+        }
+    }
+
+    dropItem_ = 0;
+}
 
 THUMB int status::MonsterParty::getCount() {
     this->monsterCount_ = 0;
@@ -285,14 +348,180 @@ THUMB int status::MonsterParty::getSortIndexInGroup(int index)
 
     for (i = 0; i < 4; i++) {
         if (index == sortIndex_[i]) {
-            result = func_ov003_0212e8e8(i);
+            result = isSortIndexInGroup(i);
             break;
         }
 
         if (sortIndex_[i] == -1) {
             sortIndex_[i] = index;
-            result = func_ov003_0212e8e8(i);
+            result = isSortIndexInGroup(i);
             break;
+        }
+    }
+
+    return result;
+}
+
+
+THUMB int status::MonsterParty::isSortIndexInGroup(int index)
+{
+    int i;
+    int v;
+
+    for (i = 0; i < 16; i++) {
+        v = sortCount_[index];
+
+        if (isSortIndex(v, sortIndex_[index]) != 0) {
+            sortCount_[index]++;
+            if (sortCount_[index] > 15)
+                sortCount_[index] = 0;
+        } else {
+            sortCount_[index]++;
+            if (sortCount_[index] > 15)
+                sortCount_[index] = 0;
+            break;
+        }
+    }
+
+    return v;
+}
+
+
+
+THUMB int status::MonsterParty::isSortIndex(int sortIndex, int monsterIndex)
+{
+    int count;
+    int i;
+
+    count = g_monster.getCount();
+
+    for (i = 0; i < count; i++) {
+        if (monsterIndex == g_monster.getMonsterStatus(i)->characterIndex_ &&
+            sortIndex     == g_monster.getMonsterStatus(i)->sortIndex_) {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+THUMB int status::MonsterPartyWithDraw::add(int monsterGroup, int monsterIndex, int flag)
+{
+    int index;
+    int drawId;
+
+    index  = MonsterParty::add(monsterGroup, monsterIndex, 1);
+    drawId = func_ov003_02121f54(func_ov003_02121d04(), monsterGroup, monsterIndex);
+
+    monster_[index].haveStatusInfo_.drawCtrlId_ = drawId;
+    monster_[index].haveStatusInfo_.drawCtrlId_ = drawId;
+
+    if (flag == 0) {
+        if (monsterIndex == 0x6B) {
+            BattleMonsterDraw2* draw = func_ov003_02121d04();
+            BattleMonster*      m    = &draw->monster_[drawId];
+
+            func_ov003_02121ab0(m, 0x21);
+
+            dss::Fx32Vector3 v(0, 0, 0);
+
+            func_ov003_02121878(&func_ov003_02121d04()->monster_[drawId], &v);
+        } else if (monsterIndex == 0x44) {
+            func_ov003_02121ab0(&func_ov003_02121d04()->monster_[drawId], 0x1F);
+        } else {
+            dss::Vector3int pos;
+            int spacePos;
+            int spaceWidth;
+
+            spacePos   = func_ov003_02121d04()->spacePos_;
+            spaceWidth = func_ov003_02121d04()->spaceWidth_;
+
+            pos.vx = data_ov003_0213c5fc.vx;
+            pos.vy = data_ov003_0213c5fc.vz;
+            pos.vz = data_ov003_0213c5fc.vy;
+            pos.vx = spacePos;
+
+            BattleMonsterDraw2* draw = func_ov003_02121d04();
+            BattleMonster*      m    = &draw->monster_[drawId];
+            func_0205b2f0(m, pos);
+
+            func_ov003_02121d04()->monster_[drawId].screenPosition_ = spacePos - spaceWidth / 2;
+            func_ov003_02121d04()->monster_[drawId].screenWidth_    = spaceWidth;
+
+            func_ov003_02121ab0(&func_ov003_02121d04()->monster_[drawId], 0x21);
+        }
+    }
+
+    return index;
+}
+
+THUMB void status::MonsterPartyWithDraw::del(int ctrl)
+{
+    BattleMonsterDraw2* draw = func_ov003_02121d04();
+    func_ov003_02121fb8(draw, monster_[ctrl].haveStatusInfo_.drawCtrlId_);
+    MonsterParty::del(ctrl);
+}
+
+THUMB void status::MonsterParty::checkDropItem(int ctrl) {
+    if (getMonsterStatus(ctrl)->getHaveDropItem()) {
+        if (!getMonsterStatus(ctrl)->haveStatusInfo_.isEscapeFlag()) {
+            this->dropItem_ = getMonsterStatus(ctrl)->getDropItem();
+            this->dropItemMonster_ = getMonsterStatus(ctrl)->characterIndex_;
+            if (this->dropItem_ == 0) {
+                this->dropItem_ = getSpecialDropItem();
+            }
+        }
+    }
+}
+
+THUMB void status::MonsterParty::setDropItem(int itemIndex_)
+{
+  this->dropItem_ = itemIndex_;
+}
+
+THUMB int status::MonsterParty::getDropItem()
+{
+  return this->dropItem_;
+}
+
+THUMB void status::MonsterParty::setDropItemMonster(int monsterIndex)
+{
+  this->dropItemMonster_ = monsterIndex;
+}
+
+THUMB int status::MonsterParty::getDropItemMonster()
+{
+    return dropItemMonster_;
+}
+
+THUMB int status::MonsterParty::getSpecialDropItem()
+{
+    int result;
+    int base;
+    int i;
+
+    if (status::g_Story.chapter_ != 3)
+        return 0;
+
+    base   = dssrand::rand(0x10);
+    result = 0;
+
+    for (i = 0; i < 16; i++) {
+        SpecialItem* e = &specialItem[(base + i) & 0xF];
+
+        if (e->rate == 0x50) {
+            int level = status::PartyStatus::getPlayerStatusForPlayerIndex(7)
+                            ->haveStatusInfo_.haveStatus_.level_;
+
+            if (dssrand::rand(e->rate) <= level - 1) {
+                result = e->item;
+                break;
+            }
+        } else {
+            if (dssrand::rand(e->rate) == 0) {
+                result = e->item;
+                break;
+            }
         }
     }
 

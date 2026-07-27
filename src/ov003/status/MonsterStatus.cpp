@@ -3,6 +3,15 @@
 #include "main/dss/Random.hpp"
 
 
+THUMB status::MonsterStatus::MonsterStatus() {
+    this->eventFlag_.flag_ = 0;
+    this->eventFlag_.flag_ = 0;
+}
+
+THUMB status::MonsterStatus::~MonsterStatus(){
+    return;
+}
+
 THUMB void status::MonsterStatus::setup(int monsterGroup, int monsterIndex, int sortIndex) {
     this->characterGroup_ = monsterGroup;
     this->characterIndex_ = monsterIndex;

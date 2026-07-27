@@ -9,11 +9,14 @@ namespace status{
     struct MonsterParty {
         static int sortIndex_[4]; //data_ov003_0213c608
         static int sortCount_[4];//data_ov003_0216638c
-        int unk; //vtable
         MonsterStatus monster_[12];
         int monsterCount_;
         int dropItem_;
         int dropItemMonster_;
+        ~MonsterParty();
+        virtual int add(int monsterGroup, int monsterIndex,int flag);
+        virtual void del(int ctrl);
+        virtual void clear();
         int getCount();
         int getBattleCount();
         int getMonsterCountDeadOrAlive(int monsterIndex);
@@ -33,6 +36,15 @@ namespace status{
         int getMonsterCallIndex();
         void initializeSortIndex();
         static int getSortIndexInGroup(int index);
+        static int isSortIndexInGroup(int index);
+        int getSortIndex(int monsterGroup, int monsterIndex);
+        static int isSortIndex(int sortIndex, int monsterIndex);
+        void checkDropItem(int ctrl);
+        void setDropItem(int itemIndex_);
+        int getDropItem();
+        void setDropItemMonster(int monsterIndex);
+        int getDropItemMonster();
+        int getSpecialDropItem();
 
     };
 }
@@ -43,6 +55,17 @@ struct GroupIndices {
 struct MonsterFormation {
     int v[4];
 };
+
+struct SpecialItem
+{
+    unsigned char item;                 // +0
+    unsigned char rate;                 // +1
+};
+
+extern SpecialItem specialItem[26];//data_ov003_0213c618
+extern status::MonsterParty g_monster; //data_ov003_0216639c
 extern MonsterFormation monsterFormationTable; //data_ov003_02139050
 extern GroupIndices monsterCallTypeTable; // data_ov003_02139040
+
 extern "C" int func_ov003_0212e8e8(int index);
+extern "C" int func_ov003_0212e938(int, int);

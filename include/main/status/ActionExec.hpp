@@ -69,4 +69,3 @@ extern "C" int   func_ov003_0212e6c4(void*, int);              // MonsterParty::
 extern "C" int   func_ov003_0212e7bc(void*);   // MonsterParty::getMonsterCallIndex
 extern "C" int   func_ov003_0212e5fc(void*, int);   // MonsterParty::getCtrlId
 extern "C" void  func_ov003_0212ea84(void*, int);   // MonsterPartyWithDraw::del(party, ctrlId)
-extern status::MonsterParty data_ov003_0216639c; //g_monster

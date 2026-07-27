@@ -57,13 +57,13 @@ THUMB void status::BaseActionMessage::setResultMessage(status::CharacterStatus* 
         && target->haveStatusInfo_.isEscapeFlag() == 0
         && target->haveStatusInfo_.isDisappearFlag() == 0) {
         int i = 0;
-        if (data_ov003_0216639c.getCount() > 0) {
+        if (g_monster.getCount() > 0) {
             do {
-                 if ((status::CharacterStatus*)data_ov003_0216639c.getMonsterStatus(i) == target) {
-                    func_ov003_0212eab0(&data_ov003_0216639c, i);
+                 if ((status::CharacterStatus*)g_monster.getMonsterStatus(i) == target) {
+                    g_monster.checkDropItem(i);
                 }
                 i++;
-            } while (i < data_ov003_0216639c.getCount());
+            } while (i < g_monster.getCount());
         }
     }
     if (this->instantDeath_ != 0) {
@@ -305,7 +305,7 @@ THUMB int status::BaseActionMessage::getMessageMonster1G(status::CharacterStatus
     if (messageData_.splitMsg_[splitIndex].monsterOne == 0) {
         return 0;
     }
-    if (data_ov003_0216639c.getMonsterCallType() == 0) {
+    if (g_monster.getMonsterCallType() == 0) {
         result = messageData_.splitMsg_[splitIndex].monsterOne;
         this->splitFlag_ = 1;
     }
@@ -319,7 +319,7 @@ THUMB int status::BaseActionMessage::getMessageMonster2G(status::CharacterStatus
     if (messageData_.splitMsg_[splitIndex].monsterTwo == 0) {
         return 0;
     }
-    if (data_ov003_0216639c.getMonsterCallType() == 1) {
+    if (g_monster.getMonsterCallType() == 1) {
         result = messageData_.splitMsg_[splitIndex].monsterTwo;
         this->splitFlag_ = 1;
     }
@@ -333,7 +333,7 @@ THUMB int status::BaseActionMessage::getMessageMonsterD(status::CharacterStatus*
     if (messageData_.splitMsg_[splitIndex].monsterMore == 0) {
         return 0;
     }
-    if (data_ov003_0216639c.getMonsterCallType() == 2) {
+    if (g_monster.getMonsterCallType() == 2) {
         result = messageData_.splitMsg_[splitIndex].monsterMore;
         this->splitFlag_ = 1;
     }

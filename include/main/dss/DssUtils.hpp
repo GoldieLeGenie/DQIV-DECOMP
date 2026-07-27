@@ -58,6 +58,8 @@ namespace dss{
         Fx32 vy;
         Fx32 vz;
         Fx32Vector3();                                      // func_02088740
+        Fx32Vector3(const int x, const int y, const int z);                // func_0208877c
+
         Fx32Vector3(const Fx32& x, const Fx32& y, const Fx32& z)
             : vx(x), vy(y), vz(z) {}
         Fx32Vector3& operator=(const Fx32Vector3& o);       // func_020888bc

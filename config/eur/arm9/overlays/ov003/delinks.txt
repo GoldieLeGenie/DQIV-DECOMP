@@ -8,8 +8,10 @@
 
 
 src/ov003/status/MonsterStatus.cpp:
-    .text start:0x0212384c end:0x02123cf4
-    .data start:0x02139e84 end:0x02139e98
+    .text start:0x02123820 end:0x02123cf4
+    .data start:0x02139e7c end:0x02139e98
 
 src/ov003/status/MonsterParty.cpp:
-    .text start:0x0212e37c end:0x0212e8e8
+    .text start:0x0212e2a4 end:0x0212ebac
+    .data start:0x0213c608 end:0x0213c674
+    .bss start:0x0216638c end:0x0216a03c
