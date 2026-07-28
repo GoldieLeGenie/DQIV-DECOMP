@@ -4,6 +4,7 @@
 #include "main/status/MonsterStatus.hpp"
 #include "main/dss/Random.hpp"
 #include "ov003/status/MonsterParty.hpp"
+#include "ov003/status/MonsterPartyWithDraw.hpp"
 
 status::CallMonsterInfo CallMonster;//data_020d06c8
 status::CharacterStatus* callMonsterStatus_[12];  //data_020d06e8
@@ -182,7 +183,7 @@ THUMB int status::callDifferentMonster(int index, int monsterIndex)
             if (g_monster.getMonsterCountInGroup(index) == 8) {
                 return 0;
             }
-            addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, index, monsterIndex, 0)));
+            addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(((status::MonsterPartyWithDraw*)&g_monster)->MonsterPartyWithDraw::add(index, monsterIndex, 0)));
             setCallMonster(1);
             return 1;
         } else {
@@ -191,27 +192,27 @@ THUMB int status::callDifferentMonster(int index, int monsterIndex)
                 if (g_monster.getMonsterCountInGroup(found) == 8) {
                     return 0;
                 }
-                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, found, monsterIndex, 0)));
+                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(((status::MonsterPartyWithDraw*)&g_monster)->MonsterPartyWithDraw::add(found, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
             if (g_monster.getMonsterCountInGroupExist(0) == 0) {
-                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, 0, monsterIndex, 0)));
+                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(((status::MonsterPartyWithDraw*)&g_monster)->MonsterPartyWithDraw::add(0, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
             if (g_monster.getMonsterCountInGroupExist(1) == 0) {
-                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, 1, monsterIndex, 0)));
+                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(((status::MonsterPartyWithDraw*)&g_monster)->MonsterPartyWithDraw::add(1, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
             if (g_monster.getMonsterCountInGroupExist(2) == 0) {
-                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, 2, monsterIndex, 0)));
+                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(((status::MonsterPartyWithDraw*)&g_monster)->MonsterPartyWithDraw::add(2, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
             if (g_monster.getMonsterCountInGroupExist(3) == 0) {
-                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, 3, monsterIndex, 0)));
+                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(((status::MonsterPartyWithDraw*)&g_monster)->MonsterPartyWithDraw::add(3, monsterIndex, 0)));
                 setCallMonster(1);
                 return 1;
             }
@@ -274,7 +275,7 @@ THUMB void status::parupunteMetalSlime2(int actionIndex)
             do {
                 v = *src;
                 if (v != -1) {
-                    func_ov003_0212ea84(&g_monster,v);
+                    ((status::MonsterPartyWithDraw*)&g_monster)->MonsterPartyWithDraw::del(v);
                 }
                 src = src + 1;
                 count = count + 1;
@@ -291,7 +292,7 @@ THUMB void status::parupunteMetalSlime3(int actionIndex)
         int i = 0;
         if (0 < CallMonster.metalSlimeCount_) {
             do {
-                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(func_ov003_0212e988(&g_monster, 0, 0x44, 0)));
+                addCallMonster((status::CharacterStatus*)g_monster.getMonsterStatus(((status::MonsterPartyWithDraw*)&g_monster)->MonsterPartyWithDraw::add(0, 0x44, 0)));
                 i = i + 1;
             } while (i < CallMonster.metalSlimeCount_);
         }

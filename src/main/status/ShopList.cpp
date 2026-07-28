@@ -5,7 +5,14 @@
 #include "main/param/ShopDataSecond.hpp"
 
 status::ShopData status::ShopData_;
+
+char s_cd[4] = "cd"; // 0x020bdc84
+char s_mb[4] = "mb"; // 0x020bdc80
+char s_md[4] = "md"; // 0x020bdc7c
+char s_hc[4] = "hc"; // 0x020bdc88
 char check_map[4] = "en";
+char s_mj[4] = "mj"; // 0x020bdc78
+
 
 THUMB status::ShopList::ShopList(){
     return;
@@ -30,7 +37,7 @@ THUMB int status::ShopList::getDataIndex(int shop)
         func_020033e0(name, check_map);
         name[2] = '\0';
     } else {
-        char* check = "ss";
+        char* check = "ss\0";
         name[0] = g_Stage.getMapName()[0];
         name[1] = g_Stage.getMapName()[1];
         name[2] = '\0';
@@ -77,8 +84,8 @@ THUMB int status::ShopList::getShopCount(int shop)
     {
         case 2:
         {
-            char* town = data_020bdc7c;
-            if (func_020882b0(buf, data_020bdc78) == 0 && g_Story.chapter_ >= 5)
+            char* town = s_md;
+            if (func_020882b0(buf, s_mj) == 0 && g_Story.chapter_ >= 5)
             {
                 limit = 0;
             }
@@ -93,15 +100,15 @@ THUMB int status::ShopList::getShopCount(int shop)
             break;
         }
         case 8:
-            if (func_020882b0(buf, data_020bdc80) == 0 && g_AreaFlag.check(0x147) == 0)
+            if (func_020882b0(buf, s_mb) == 0 && g_AreaFlag.check(0x147) == 0)
             { limit = 0; } else { limit = 6; }
             break;
         case 3:
-            if (func_020882b0(buf, data_020bdc84 ) == 0 && g_Story.chapter_ < 5)
+            if (func_020882b0(buf, s_cd ) == 0 && g_Story.chapter_ < 5)
             { limit = 0; } else { limit = 6; }
             break;
         case 9:
-            if (func_020882b0(buf, data_020bdc88) == 0 && g_AreaFlag.check(0x147) == 0)
+            if (func_020882b0(buf, s_hc) == 0 && g_AreaFlag.check(0x147) == 0)
             { limit = 0; } else { limit = 6; }
             break;
         case 4:

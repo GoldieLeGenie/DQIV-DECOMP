@@ -24,6 +24,8 @@ namespace status{
         unsigned int chapterWipeoutCount_;
         unsigned int chapterEscapeCount_;
         unsigned char restMonster_[3];
+        BattleHistory();
+        ~BattleHistory();
         void initialize();
         void setAdventureTime(unsigned int time);
         void regenesisAdventureTime();

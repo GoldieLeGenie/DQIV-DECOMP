@@ -83,7 +83,7 @@ THUMB void cmn::PartyTalk::setPartyTalkMessage()
     floor_ = param::FloorParam::getFloorIndex(floorParam, g_Global.getMapName());
     if (floor_ == -1)
     {
-        char* mapname = "field";
+        char* mapname = "field\0\0\0\0\0\0\0\0\0\0";
         func_020882b0(mapname, g_Global.getMapName());
         if (g_Global.getFieldType() == 2)
         {

@@ -26,4 +26,4 @@ namespace param{
     };
 }
 
-extern unsigned short data_020bc2f4[];
+extern unsigned short monsterAnimDataIndex[310];  // 0x020bc2f4

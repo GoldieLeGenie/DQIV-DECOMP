@@ -5,6 +5,8 @@
 
 namespace cmn{
     struct GameManager {
+        GameManager();
+        static GameManager* getSingleton();
         PlayerManager *playerManager_;
         void initialize();
         void terminate();

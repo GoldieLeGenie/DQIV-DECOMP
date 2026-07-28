@@ -3,6 +3,15 @@
 
 status::GameStatus status::g_Game;
 
+THUMB status::GameStatus::GameStatus(){
+    this->playTime_ = 0;
+    return;
+}
+
+
+THUMB status::GameStatus::~GameStatus(){
+    return;
+}
 THUMB void status::GameStatus::setPlayTime(unsigned int Playtime)
 {
     this->playTime_ = Playtime;

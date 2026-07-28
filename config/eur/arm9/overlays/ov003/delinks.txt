@@ -8,6 +8,7 @@
 
 
 src/ov003/status/MonsterStatus.cpp:
+    complete
     .text start:0x02123820 end:0x02123cf4
     .data start:0x02139e7c end:0x02139e98
 

@@ -1252,8 +1252,8 @@ _ZN6status11StageStatus14deliverMapFlagEN7profile8SAVETYPEEPNS1_13PROFILE_PARTYE
 _ZN6status11StageStatus11setFallFlagEi kind:function(thumb,size=0x8) addr:0x0201d394
 _ZN6status11StageStatus11getFallFlagEv kind:function(thumb,size=0x8) addr:0x0201d39c
 _ZN6status11StageStatus13restartChurchEv kind:function(thumb,size=0xbc) addr:0x0201d3a4
-func_0201d460 kind:function(thumb,size=0x6) addr:0x0201d460
-func_0201d468 kind:function(thumb,size=0x2) addr:0x0201d468
+_ZN6status10GameStatusC1Ev kind:function(thumb,size=0x6) addr:0x0201d460
+_ZN6status10GameStatusD1Ev kind:function(thumb,size=0x2) addr:0x0201d468
 _ZN6status10GameStatus11setPlayTimeEj kind:function(thumb,size=0x10) addr:0x0201d46c
 _ZN6status10GameStatus11addPlayTimeEj kind:function(thumb,size=0x14) addr:0x0201d47c
 _ZN6status10GameStatus11getPlayTimeEv kind:function(thumb,size=0x4) addr:0x0201d490
@@ -1413,8 +1413,8 @@ _ZN6status12BattleResult15getEncountCountEv kind:function(thumb,size=0x40) addr:
 _ZN6status12BattleResult21getAllMonsterTotalExpEv kind:function(thumb,size=0x1c) addr:0x02022d7c
 _ZN6status12BattleResult26setDisablePlayerDemolitionEb kind:function(thumb,size=0xc) addr:0x02022d98
 _ZN6status12BattleResult25isDisablePlayerDemolitionEv kind:function(thumb,size=0xc) addr:0x02022da4
-func_02022db0 kind:function(thumb,size=0x2) addr:0x02022db0
-func_02022db4 kind:function(thumb,size=0x2) addr:0x02022db4
+_ZN6status13BattleHistoryC1Ev kind:function(thumb,size=0x2) addr:0x02022db0
+_ZN6status13BattleHistoryD1Ev kind:function(thumb,size=0x2) addr:0x02022db4
 _ZN6status13BattleHistory10initializeEv kind:function(thumb,size=0x44) addr:0x02022db8
 _ZN6status13BattleHistory16setAdventureTimeEj kind:function(thumb,size=0xa) addr:0x02022dfc
 _ZN6status13BattleHistory22regenesisAdventureTimeEv kind:function(thumb,size=0x34) addr:0x02022e08
@@ -1944,8 +1944,8 @@ func_0202c284 kind:function(thumb,size=0x7c) addr:0x0202c284
 func_0202c300 kind:function(thumb,size=0x30) addr:0x0202c300
 func_0202c330 kind:function(thumb,size=0x20) addr:0x0202c330
 func_0202c350 kind:function(thumb,size=0x2c) addr:0x0202c350
-func_0202c37c kind:function(thumb,size=0x34) addr:0x0202c37c
-func_0202c3b0 kind:function(thumb,size=0x1c) addr:0x0202c3b0
+_ZN6status11StoryStatusC1Ev kind:function(thumb,size=0x34) addr:0x0202c37c
+_ZN6status11StoryStatusD1Ev kind:function(thumb,size=0x1c) addr:0x0202c3b0
 _ZN6status11StoryStatus8setTarotEi kind:function(thumb,size=0x16) addr:0x0202c3cc
 _ZN6status11StoryStatus7isTarotEv kind:function(thumb,size=0xc) addr:0x0202c3e4
 _ZN6status11StoryStatus10setUseBankEb kind:function(thumb,size=0x16) addr:0x0202c3f0
@@ -2109,8 +2109,8 @@ _ZN7profile7Profile15collectGameFlagEPhPN6status8GameFlagE kind:function(arm,siz
 _ZN7profile7Profile15deliverGameFlagEPN6status8GameFlagEPh kind:function(arm,size=0x64) addr:0x02030e4c
 _ZN7profile7Profile12calcCheckSumEv kind:function(arm,size=0x40) addr:0x02030eb0
 _ZN7profile7Profile11isValidDataEv kind:function(arm,size=0x34) addr:0x02030ef0
-func_02030f24 kind:function(thumb,size=0x2) addr:0x02030f24
-func_02030f28 kind:function(thumb,size=0x28) addr:0x02030f28
+_ZN3cmn11GameManagerC1Ev kind:function(thumb,size=0x2) addr:0x02030f24
+_ZN3cmn11GameManager12getSingletonEv  kind:function(thumb,size=0x28) addr:0x02030f28
 _ZN3cmn11GameManager10initializeEv kind:function(thumb,size=0x6) addr:0x02030f50
 _ZN3cmn11GameManager9terminateEv kind:function(thumb,size=0x2) addr:0x02030f58
 _ZN3cmn11GameManager7executeEv kind:function(thumb,size=0x2) addr:0x02030f5c
@@ -5473,15 +5473,15 @@ __sinit_0208a914 kind:function(thumb,size=0xc) addr:0x0208a914
 __sinit_OptionStatus.cpp kind:function(thumb,size=0x20) addr:0x0208a920 local
 __sinit_0208a940 kind:function(thumb,size=0x30) addr:0x0208a940
 __sinit_0208a970 kind:function(thumb,size=0x1c) addr:0x0208a970
-__sinit_0208a98c kind:function(thumb,size=0x20) addr:0x0208a98c
-__sinit_0208a9ac kind:function(thumb,size=0x20) addr:0x0208a9ac
-__sinit_0208a9cc kind:function(thumb,size=0x20) addr:0x0208a9cc
+__sinit_StageStatus.cpp kind:function(thumb,size=0x20) addr:0x0208a98c
+__sinit_GameStatus.cpp kind:function(thumb,size=0x20) addr:0x0208a9ac local
+__sinit_0208a9cc kind:function(thumb,size=0x20) addr:0x0208a9cc 
 __sinit_GameFlag.cpp kind:function(thumb,size=0x50) addr:0x0208a9ec local
 __sinit_0208aa3c kind:function(arm,size=0x14c) addr:0x0208aa3c
 __sinit_0208ab88 kind:function(thumb,size=0x20) addr:0x0208ab88
 __sinit_0208aba8 kind:function(arm,size=0x140) addr:0x0208aba8
 __sinit_BattleResult.cpp kind:function(thumb,size=0x20) addr:0x0208ace8 local
-__sinit_0208ad08 kind:function(thumb,size=0x20) addr:0x0208ad08
+__sinit_BattleHistory.cpp kind:function(thumb,size=0x20) addr:0x0208ad08 local
 __sinit_0208ad28 kind:function(thumb,size=0x1bc) addr:0x0208ad28
 __sinit_0208aee4 kind:function(thumb,size=0x60) addr:0x0208aee4
 __sinit_0208af44 kind:function(arm,size=0x14) addr:0x0208af44
@@ -5490,13 +5490,13 @@ __sinit_0208afe0 kind:function(arm,size=0x18) addr:0x0208afe0
 __sinit_0208aff8 kind:function(thumb,size=0x20) addr:0x0208aff8
 __sinit_0208b018 kind:function(thumb,size=0x54) addr:0x0208b018
 __sinit_0208b06c kind:function(thumb,size=0x1d4) addr:0x0208b06c
-__sinit_0208b240 kind:function(thumb,size=0x20) addr:0x0208b240
+__sinit_StoryStatus.cpp kind:function(thumb,size=0x20) addr:0x0208b240 local
 __sinit_0208b260 kind:function(thumb,size=0x20) addr:0x0208b260
 __sinit_0208b280 kind:function(thumb,size=0x20) addr:0x0208b280
 __sinit_0208b2a0 kind:function(thumb,size=0xc) addr:0x0208b2a0
 __sinit_0208b2ac kind:function(arm,size=0x18) addr:0x0208b2ac
 __sinit_0208b2c4 kind:function(arm,size=0x64) addr:0x0208b2c4
-__sinit_CommonPartyInfo.cpp kind:function(arm,size=0x14) addr:0x0208b328
+__sinit_CommonPartyInfo.cpp kind:function(arm,size=0x14) addr:0x0208b328 local
 __sinit_0208b33c kind:function(thumb,size=0x20) addr:0x0208b33c
 __sinit_0208b35c kind:function(thumb,size=0x40) addr:0x0208b35c
 __sinit_0208b39c kind:function(thumb,size=0x10) addr:0x0208b39c
@@ -5789,15 +5789,15 @@ data_020bb2ec kind:data(any) addr:0x020bb2ec
 .p__sinit_OptionStatus.cpp kind:data(word) addr:0x020bb398 local
 .p__sinit_0208a940 kind:data(word) addr:0x020bb39c
 .p__sinit_0208a970 kind:data(word) addr:0x020bb3a0
-.p__sinit_0208a98c kind:data(word) addr:0x020bb3a4
-.p__sinit_0208a9ac kind:data(word) addr:0x020bb3a8
+.p__sinit_StageStatus.cpp kind:data(word) addr:0x020bb3a4
+.p__sinit_GameStatus.cpp kind:data(word) addr:0x020bb3a8 local
 .p__sinit_0208a9cc kind:data(word) addr:0x020bb3ac
 .p__sinit_GameFlag.cpp kind:data(word) addr:0x020bb3b0 local
 .p__sinit_0208aa3c kind:data(word) addr:0x020bb3b4
 .p__sinit_0208ab88 kind:data(word) addr:0x020bb3b8
 .p__sinit_0208aba8 kind:data(word) addr:0x020bb3bc
 .p__sinit_BattleResult.cpp kind:data(word) addr:0x020bb3c0 local
-.p__sinit_0208ad08 kind:data(word) addr:0x020bb3c4
+.p__sinit_BattleHistory.cpp kind:data(word) addr:0x020bb3c4 local
 .p__sinit_0208ad28 kind:data(word) addr:0x020bb3c8
 .p__sinit_0208aee4 kind:data(word) addr:0x020bb3cc
 .p__sinit_0208af44 kind:data(word) addr:0x020bb3d0
@@ -5806,13 +5806,13 @@ data_020bb2ec kind:data(any) addr:0x020bb2ec
 .p__sinit_0208aff8 kind:data(word) addr:0x020bb3dc
 .p__sinit_0208b018 kind:data(word) addr:0x020bb3e0
 .p__sinit_0208b06c kind:data(word) addr:0x020bb3e4
-.p__sinit_0208b240 kind:data(word) addr:0x020bb3e8
+.p__sinit_StoryStatus.cpp kind:data(word) addr:0x020bb3e8 local
 .p__sinit_0208b260 kind:data(word) addr:0x020bb3ec
 .p__sinit_0208b280 kind:data(word) addr:0x020bb3f0
 .p__sinit_0208b2a0 kind:data(word) addr:0x020bb3f4
 .p__sinit_0208b2ac kind:data(word) addr:0x020bb3f8
 .p__sinit_0208b2c4 kind:data(word) addr:0x020bb3fc
-.p__sinit_CommonPartyInfo.cpp kind:data(word) addr:0x020bb400
+.p__sinit_CommonPartyInfo.cpp kind:data(word) addr:0x020bb400 local
 .p__sinit_0208b33c kind:data(word) addr:0x020bb404
 .p__sinit_0208b35c kind:data(word) addr:0x020bb408
 .p__sinit_0208b39c kind:data(word) addr:0x020bb40c
@@ -6034,7 +6034,7 @@ data_020bc2c0 kind:data(any) addr:0x020bc2c0
 data_020bc2c8 kind:data(any) addr:0x020bc2c8
 data_020bc2d0 kind:data(any) addr:0x020bc2d0
 data_020bc2e8 kind:data(any) addr:0x020bc2e8
-data_020bc2f4 kind:data(any) addr:0x020bc2f4
+monsterAnimDataIndex kind:data(any) addr:0x020bc2f4
 data_020bc560 kind:data(any) addr:0x020bc560
 player_event1 kind:data(any) addr:0x020bc584
 player_event2 kind:data(any) addr:0x020bc5a8
@@ -6177,12 +6177,12 @@ map_btl_wd_d kind:data(any) addr:0x020bdc4c
 map_btldougu_d kind:data(any) addr:0x020bdc58
 map_btlyado_d kind:data(any) addr:0x020bdc64
 check_map kind:data(any) addr:0x020bdc70
-@260 kind:data(any) addr:0x020bdc74
-data_020bdc78 kind:data(any) addr:0x020bdc78
-data_020bdc7c kind:data(any) addr:0x020bdc7c
-data_020bdc80 kind:data(any) addr:0x020bdc80
-data_020bdc84 kind:data(any) addr:0x020bdc84
-data_020bdc88 kind:data(any) addr:0x020bdc88
+@349 kind:data(any) addr:0x020bdc74
+s_mj kind:data(any) addr:0x020bdc78
+s_md kind:data(any) addr:0x020bdc7c
+s_mb kind:data(any) addr:0x020bdc80
+s_cd kind:data(any) addr:0x020bdc84
+s_hc kind:data(any) addr:0x020bdc88
 data_020bdc8c kind:data(any) addr:0x020bdc8c
 data_020bdc90 kind:data(any) addr:0x020bdc90
 data_020bdca0 kind:data(any) addr:0x020bdca0
@@ -6647,7 +6647,7 @@ data_020c12c4 kind:data(any) addr:0x020c12c4
 data_020c12f0 kind:data(any) addr:0x020c12f0
 data_020c130c kind:data(any) addr:0x020c130c
 data_020c1328 kind:data(any) addr:0x020c1328
-@770 kind:data(any) addr:0x020c1330
+@798 kind:data(any) addr:0x020c1330 local local
 data_020c1340 kind:data(any) addr:0x020c1340
 data_020c135c kind:data(any) addr:0x020c135c
 data_020c1384 kind:data(any) addr:0x020c1384
@@ -7397,17 +7397,17 @@ initData_ kind:bss(size=0x1c) addr:0x020d0894
 _ZN6status16HaveBattleStatus15groupRoopIndex_E kind:bss addr:0x020d08b0
 _ZN6status16HaveBattleStatus13groupControl_E kind:bss addr:0x020d08c0
 _ZN6status11StageStatus9toramana_E kind:bss addr:0x020d08d0
-data_020d08d4 kind:bss addr:0x020d08d4
+@765 kind:bss addr:0x020d08d4
 g_Stage kind:bss(size=0x2d4) addr:0x020d08e0
-data_020d0bb4 kind:bss addr:0x020d0bb4
+@14 kind:bss addr:0x020d0bb4 local
 _ZN6status6g_GameE kind:bss addr:0x020d0bc0
 _ZN6status9ShopData_E kind:bss addr:0x020d0bcc
 data_020d0bd8 kind:bss addr:0x020d0bd8
 darts kind:bss addr:0x020d0be4
 g_NeneItemSack kind:bss addr:0x020d0c00
-@33 kind:bss addr:0x020d0e98 local
-@32 kind:bss addr:0x020d0ea4 local
-@34 kind:bss addr:0x020d0eb0 local
+@36 kind:bss addr:0x020d0e98 local
+@35 kind:bss addr:0x020d0ea4 local
+@37 kind:bss addr:0x020d0eb0 local
 g_GlobalFlag kind:bss addr:0x020d0ebc
 g_LocalFlag kind:bss addr:0x020d0f3c
 g_AreaFlag kind:bss addr:0x020d0fbc
@@ -7456,7 +7456,7 @@ data_020ec61c kind:bss addr:0x020ec61c
 data_020ec630 kind:bss addr:0x020ec630
 @401 kind:bss addr:0x020ec658 local
 _ZN6status14g_BattleResultE kind:bss(size=0x6cc) addr:0x020ec664
-data_020ecd30 kind:bss addr:0x020ecd30
+@427 kind:bss addr:0x020ecd30 local
 _ZN6status15g_BattleHistoryE kind:bss(size=0x78) addr:0x020ecd3c
 data_020ecdb4 kind:bss addr:0x020ecdb4
 data_020ecdbc kind:bss addr:0x020ecdbc
@@ -7575,7 +7575,7 @@ data_020edf88 kind:bss addr:0x020edf88
 data_020ee188 kind:bss addr:0x020ee188
 data_020ee190 kind:bss addr:0x020ee190
 data_020ee19c kind:bss addr:0x020ee19c
-data_020ee1c0 kind:bss addr:0x020ee1c0
+@372 kind:bss addr:0x020ee1c0 local
 _ZN6status7g_StoryE kind:bss(size=0xABC) addr:0x020ee1cc
 data_020eec88 kind:bss addr:0x020eec88
 data_020eec94 kind:bss addr:0x020eec94
@@ -7595,8 +7595,8 @@ data_020eecfc kind:bss addr:0x020eecfc
 data_020eed00 kind:bss addr:0x020eed00
 data_020eed04 kind:bss addr:0x020eed04
 data_020eed14 kind:bss addr:0x020eed14
-data_020eed18 kind:bss addr:0x020eed18
-data_020eed1c kind:bss addr:0x020eed1c
+_ZGVinstance$22 kind:bss addr:0x020eed18
+instance$22 kind:bss addr:0x020eed1c
 playerManagerData_ kind:bss(size=0xc) addr:0x020eed20
 data_020eed2c kind:bss addr:0x020eed2c
 data_020eed30 kind:bss addr:0x020eed30

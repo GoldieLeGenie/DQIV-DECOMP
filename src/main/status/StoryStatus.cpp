@@ -6,6 +6,13 @@
 status::StoryStatus status::g_Story; //data_020ee1cc
 
 
+THUMB status::StoryStatus::StoryStatus() : flag_(0), chapter_(0) {
+    this->flag_ = 0;
+}
+
+THUMB status::StoryStatus::~StoryStatus(){
+    return;
+}
 THUMB void status::StoryStatus::setTarot(int flag) {
     if (flag) {
         this->flag_ |= 1;

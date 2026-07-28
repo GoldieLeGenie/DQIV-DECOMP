@@ -9,6 +9,8 @@ namespace status{
         Language language;
         unsigned int playTime_;
         unsigned int uniqueID_;
+        GameStatus();
+        ~GameStatus();
         unsigned int getPlayTime();
         unsigned int getUniqueID();
         void resetUniqueID();

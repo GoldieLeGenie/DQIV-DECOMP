@@ -6,6 +6,15 @@
 
 status::BattleHistory status::g_BattleHistory;
 
+THUMB status::BattleHistory::BattleHistory(){
+    return;
+}
+
+
+THUMB status::BattleHistory::~BattleHistory(){
+    return;
+}
+
 THUMB void status::BattleHistory::initialize()
 {
     int i;

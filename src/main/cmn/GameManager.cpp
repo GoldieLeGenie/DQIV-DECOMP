@@ -1,6 +1,18 @@
 #include "main/cmn/GameManager.hpp"
 
 
+THUMB cmn::GameManager::GameManager(){
+  return;
+}
+
+THUMB cmn::GameManager* cmn::GameManager::getSingleton()
+{
+    static cmn::GameManager instance;
+
+    return &instance;
+}
+
+
 THUMB void cmn::GameManager::initialize()
 {
   this->playerManager_ = 0;

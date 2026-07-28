@@ -19,7 +19,8 @@ namespace status{
         char heroName[32];
         int endorEventItemCount_[2];
         int giveEventItemCount_[2];
-
+        StoryStatus();
+        ~StoryStatus();
         void setTarot(int index);
         bool isTarot();
         void setUseBank(bool flag);
