@@ -6,7 +6,7 @@
 
 namespace status {
     struct BaseActionValue {
-        int unk_00;         
+        volatile int flag_;   // 020eecec
         int unk_04;
         int unk_08;
         int unk_0c;

@@ -8,6 +8,7 @@
 
 
 src/main/Commands/CommandFunction.cpp:
+    complete
     .text start:0x02020030 end:0x02022a3c
 
 src/main/dss/DssUtils.cpp:
@@ -332,3 +333,10 @@ src/main/MenuDataCommon/MenuDataCommon.cpp:
 
 src/main/FLDObject/FLDObject.cpp:
     .text start:0x02046f64 end:0x02046fe0
+
+src/main/FormationIdManager/FormationIdManager.cpp:
+    .text start:0x0200b374 end:0x0200b54c
+
+src/main/FormationId/FormationId.cpp:
+    .text start:0x0200af28 end:0x0200b228
+    .rodata start:0x0208ca04 end:0x0208ca10
