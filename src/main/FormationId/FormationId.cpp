@@ -2,6 +2,21 @@
 
 const EncountFormNumHeader encountFormNumHeader = { 18, 1670, 16 }; //data_0208ca04
 
+
+
+THUMB FormationId::FormationId()
+{
+  return;
+}
+
+
+THUMB FormationId::~FormationId()
+{
+  return;
+}
+
+
+
 THUMB void FormationId::setup(int id)
 {
     param::EncountFormationID* tbl = status::excelParam.encountFormationID_;
@@ -134,15 +149,15 @@ THUMB int FormationId::getMonsterCount(EncountType type)
     }
 
     if (isRange(type, 5, 9)) {
-        count = func_0200b228(this, type);
+        count = getMonsterCountF_J(type);
     }
 
     if (type == TYPE_K || type == TYPE_L) {
-        count = func_0200b250(this);
+        count = getMonsterCountK_L();
     }
 
     if (type == TYPE_M || type == TYPE_N) {
-        count = func_0200b254(this);
+        count = getMonsterCountM_N();
     }
 
     return count;
@@ -181,4 +196,110 @@ THUMB int FormationId::getMonsterCountA_E()
 THUMB unsigned int FormationId::getEncountFormNumCount()
 {
     return encountFormNumHeader.count;
+}
+
+THUMB int FormationId::getMonsterCountF_J(EncountType type)
+{
+    int max = countMax_[type];
+    int min = countMin_[type];
+    if (min != max) {
+        int count = dssrand::rand(max - countMin_[type] + 1);
+        return countMin_[type] + count;
+    }
+    return min;
+}
+
+
+THUMB int FormationId::getMonsterCountK_L()
+
+{
+  return 1;
+}
+
+
+THUMB int FormationId::getMonsterCountM_N()
+
+{
+  return 0;
+}
+
+THUMB int FormationId::setMonsterCountLimit(int count)
+{
+    
+    param::EncountFormNum *tbl = status::excelParam.encountFormNum_;
+    unsigned int i = 0;
+    while (i < getEncountFormNumCount()) {
+        if (chapter_ == tbl[i].section && partyCount_ == tbl[i].party) {
+            count = func_02008ea0(count, 0, tbl[i].groupmax);
+            break;
+        }
+        i++;
+    }
+    return count;
+}
+
+THUMB int FormationId::isThirdGroup()
+{
+    int third = thirdGroup_;
+    if (third == 0) {
+        return 0;
+    }
+    if (isRange(dssrand::rand(0x100), 0, third)) {
+        return 1;
+    }
+    return 0;
+}
+
+THUMB int FormationId::isForthGroup()
+{
+    int forth = forthGroup_;
+    if (forth == 0) {
+        return 0;
+    }
+    if (isRange(dssrand::rand(0x100), 0, forth)) {
+        return 1;
+    }
+    return 0;
+}
+
+THUMB void FormationId::setTimeZone(int time)
+{
+    if (formationId_ != 8) {
+        if (time == 2 || time == 3) {
+            setDaytime();
+            return;
+        }
+        if (time == 4 || time == 1) {
+            setNight();
+        }
+    }
+}
+
+THUMB void  FormationId::setDaytime()
+{
+  typeRate_[4] = 0;
+  typeRate_[9] = 0;
+  typeRate_[13] = 0;
+}
+
+THUMB void FormationId::setNight()
+{
+  typeRate_[0] = 0;
+  typeRate_[5] = 0;
+  typeRate_[12] = 0;
+}
+
+THUMB void FormationId::setClear(EncountType type)
+{
+  typeRate_[type] = 0;
+}
+
+THUMB void FormationId::setChapter(int chp)
+{
+  chapter_ = chp;
+}
+
+THUMB void FormationId::setPartyCount(int cnt)
+{
+    partyCount_ = cnt;
 }

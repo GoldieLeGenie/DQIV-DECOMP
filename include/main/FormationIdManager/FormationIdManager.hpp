@@ -17,6 +17,8 @@ struct FormationIdManager {
     FormationId formationId_;
     EncountGroup group_[4];
     int none_group_[14];
+    FormationIdManager();
+    ~FormationIdManager();
     void clear();
     void select();
     void selectA_E();

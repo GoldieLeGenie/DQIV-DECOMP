@@ -334,9 +334,15 @@ src/main/MenuDataCommon/MenuDataCommon.cpp:
 src/main/FLDObject/FLDObject.cpp:
     .text start:0x02046f64 end:0x02046fe0
 
-src/main/FormationIdManager/FormationIdManager.cpp:
-    .text start:0x0200b374 end:0x0200b54c
-
 src/main/FormationId/FormationId.cpp:
-    .text start:0x0200af28 end:0x0200b228
+    complete
+    .text start:0x0200af20 end:0x0200b344
     .rodata start:0x0208ca04 end:0x0208ca10
+
+src/main/FormationIdManager/FormationIdManager.cpp:
+    complete
+    .text start:0x0200b344 end:0x0200b54c
+
+src/main/SpecialParty/SpecialParty.cpp:
+    complete
+    .text start:0x0200b54c end:0x0200b5cc

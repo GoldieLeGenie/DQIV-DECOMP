@@ -1,6 +1,16 @@
 #include "main/FormationIdManager/FormationIdManager.hpp"
 
 
+THUMB FormationIdManager::FormationIdManager() : id_(0), chapter_(1), partyCount_(1)
+{
+    clear();
+}
+
+THUMB FormationIdManager::~FormationIdManager(){
+    return;
+}
+
+
 THUMB void FormationIdManager::clear()
 {
     int i;
@@ -24,14 +34,14 @@ THUMB void FormationIdManager::select()
     EncountType type;
     int         i;
 
-    func_0200b33c(&formationId_, chapter_);
-    func_0200b340(&formationId_, partyCount_);
+    formationId_.setChapter(chapter_);
+    formationId_.setPartyCount(partyCount_);
     formationId_.setup(id_);
-    func_0200b2f4(&formationId_, timeZone_);
+    formationId_.setTimeZone(timeZone_);
 
     for (i = 0; i < 14; i++) {
         if (none_group_[i] != 0) {
-            func_0200b330(&formationId_, i);
+            formationId_.setClear((EncountType)i);
         }
     }
 
@@ -59,21 +69,21 @@ THUMB void FormationIdManager::select()
 THUMB void FormationIdManager::selectA_E()
 {
     group_[0].count = formationId_.getMonsterCount(group_[0].type);
-    group_[0].count = func_0200b258(&formationId_, group_[0].count);
+    group_[0].count = formationId_.setMonsterCountLimit(group_[0].count);
 
     group_[1].type  = formationId_.selectA_E();
     group_[1].count = formationId_.getMonsterCount(group_[1].type);
-    group_[1].count = func_0200b258(&formationId_, group_[1].count);
+    group_[1].count = formationId_.setMonsterCountLimit(group_[1].count);
 
-    if (func_0200b2a4(&formationId_)) {
+    if (formationId_.isThirdGroup()) {
         group_[2].type  = formationId_.selectA_E();
         group_[2].count = formationId_.getMonsterCount(group_[2].type);
-        group_[2].count = func_0200b258(&formationId_, group_[2].count);
+        group_[2].count = formationId_.setMonsterCountLimit(group_[2].count);
 
-        if (func_0200b2cc(&formationId_)) {
+        if (formationId_.isForthGroup()) {
             group_[3].type  = formationId_.selectA_E();
             group_[3].count = formationId_.getMonsterCount(group_[3].type);
-            group_[3].count = func_0200b258(&formationId_, group_[3].count);
+            group_[3].count = formationId_.setMonsterCountLimit(group_[3].count);
         }
     }
 }
@@ -89,7 +99,7 @@ THUMB void FormationIdManager::selectK()
     group_[0].count = 1;
     group_[1].type  = formationId_.selectA_E();
     group_[1].count = dssrand::rand(5) + 3;
-    group_[1].count = func_0200b258(&formationId_, group_[1].count);
+    group_[1].count = formationId_.setMonsterCountLimit(group_[1].count);
 }
 
 
@@ -134,4 +144,7 @@ THUMB void FormationIdManager::setMonsterNone(EncountType type)
 {
   none_group_[type] = 1;
 }
+
+
+
 

@@ -14,6 +14,8 @@ struct FormationId {
     short typeRate_[14];
     unsigned char countMin_[14];
     unsigned char countMax_[14];
+    FormationId();
+    ~FormationId();
     void setup(int id);
     EncountType select();
     static int isRange(int value, int min, int max);
@@ -21,7 +23,19 @@ struct FormationId {
     EncountType selectA_E();
     int getMonsterCount(EncountType type);
     int getMonsterCountA_E();
-    unsigned int getEncountFormNumCount();
+    static unsigned int getEncountFormNumCount();
+    int getMonsterCountF_J(EncountType type);
+    int getMonsterCountK_L();
+    int getMonsterCountM_N();
+    int setMonsterCountLimit(int count);
+    int isThirdGroup();
+    int isForthGroup();
+    void setTimeZone(int time);
+    void setDaytime();
+    void setNight();
+    void setClear(EncountType type);
+    void setChapter(int chp);
+    void setPartyCount(int cnt);
 };
 
 struct EncountFormNumHeader {
@@ -38,6 +52,8 @@ extern "C"
     int func_0200b228(FormationId*, EncountType type);   // getMonsterCountF_J
     int func_0200b250(FormationId*);                     // getMonsterCountK_L
     int func_0200b254(FormationId*);                     // getMonsterCountM_N
+    int func_02008ea0(int value, int min, int max);
+
 }
 
 
