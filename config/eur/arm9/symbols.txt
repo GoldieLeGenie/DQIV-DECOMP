@@ -6078,7 +6078,7 @@ _ZTVN6status13HaveEquipmentE kind:data(byte[12]) addr:0x020bc8c0
 _ZTVN6status12BaseHaveItemE kind:data(byte[20]) addr:0x020bc8cc
 _ZTVN6status12HaveItemSackE kind:data(byte[20]) addr:0x020bc8e0
 _ZTVN6status10BaseActionE kind:data(any) addr:0x020bc8f4
-@997 kind:data(any) addr:0x020bc900 local
+@1080 kind:data(any) addr:0x020bc900 local
 @1005 kind:data(any) addr:0x020bc91c local
 @1015 kind:data(any) addr:0x020bc938 local
 @1021 kind:data(any) addr:0x020bc960 local

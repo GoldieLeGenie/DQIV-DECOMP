@@ -90,7 +90,7 @@ namespace status{
         virtual void setEffectValue(status::CharacterStatus *target);
         void setEffectValueAdd(int ratio, int offset);
         void setEffectValueException(status::CharacterStatus *actor,status::CharacterStatus *target);
-        static void setBreakPrayRing(bool flag);
+        static void setBreakPrayRing(int flag);
         static bool isBreakPrayRing();
 
 

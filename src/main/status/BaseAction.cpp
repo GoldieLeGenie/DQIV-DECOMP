@@ -2915,7 +2915,7 @@ THUMB void status::BaseAction::setEffectValueException(status::CharacterStatus *
     }
 }
 
-THUMB void status::BaseAction::setBreakPrayRing(bool flag)
+THUMB void status::BaseAction::setBreakPrayRing(int flag)
 {
     if (flag) {
         BaseActionData_.workParam_ |= 1;
