@@ -154,7 +154,7 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
         message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0]);
         message_.setResultMessage(status::BaseActionData_.useActionParam_->actorCharacterStatus_,
                                   &status::BaseActionData_.useActionParam_->message_[0]);
-        this->execMain(status::BaseActionData_.useActionParam_->actorCharacterStatus_, 0);
+        this->execMainRoot(status::BaseActionData_.useActionParam_->actorCharacterStatus_, 0);
         message_.setSplitMessage(status::BaseActionData_.useActionParam_->actorCharacterStatus_, 0,
                                  &status::BaseActionData_.useActionParam_->message_[0],
                                  actionIndex_);
@@ -194,7 +194,7 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
                 status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setMahokantaCounter(true);
             }
 
-            if (this->execMain(status::BaseActionData_.useActionParam_->actorCharacterStatus_,
+            if (this->execMainRoot(status::BaseActionData_.useActionParam_->actorCharacterStatus_,
                               status::BaseActionData_.useActionParam_->targetCharacterStatus_[i])) {
                 status::BaseActionData_.useActionParam_->result_ = resultFlag_;
                 status::BaseActionData_.useActionParam_->targetResult_[i] = resultFlag_;

@@ -25,7 +25,7 @@ namespace status {
         PartyStatus();
         void unkfunc_0200e9cc();
         ~PartyStatus();
-        void initialize();
+        static void initialize();
         void add(int playerIndex);
         int addMemberOutside(int playerIndex);
         void removeMemberOutside(int playerIndex);

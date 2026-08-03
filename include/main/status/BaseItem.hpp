@@ -7,7 +7,7 @@ namespace status{
     struct BaseItem {
         int itemIndex_;
         int available_;
-        void initialize();
+        static void initialize();
     };
 }
 

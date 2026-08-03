@@ -3258,7 +3258,6 @@ from:0x0201680a kind:thumb_call to:0x0202d178 module:main
 from:0x0201681c kind:thumb_call_arm to:0x02080d48 module:main
 from:0x02016826 kind:thumb_call to:0x0201a3ec module:main
 from:0x0201683c kind:thumb_call to:0x0202d178 module:main
-from:0x02016846 kind:thumb_call to:0x0201706c module:main
 from:0x0201684c kind:thumb_call to:0x02019d64 module:main
 from:0x02016874 kind:thumb_call to:0x020122c0 module:main
 from:0x02016896 kind:thumb_call to:0x0202d178 module:main

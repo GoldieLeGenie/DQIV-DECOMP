@@ -172,5 +172,4 @@ namespace param{
 
 extern char player_fukuro1[];                       //data_020bc614 ./param/param_player_fukuro1.dat
 extern "C" int  data_020c7980[];                       //  ExcelBinaryData
-extern "C" int  func_02057f58(int *excel, char *name); // ExcelBinaryData::readFileData
-extern "C" void* func_02057f50(int id, int key); // ExcelBinaryData::checkSum
+/* func_02057f58 and func_02057f50 declared in Event.hpp */

@@ -1,4 +1,5 @@
 #include "main/param/Fukuro.hpp"
+#include "main/param/Event.hpp"
 
 char player_fukuro1[36] = "data/param/param_player_fukuro1.dat"; // 0x020bc5cc
 

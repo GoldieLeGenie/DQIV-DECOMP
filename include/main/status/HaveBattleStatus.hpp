@@ -101,7 +101,7 @@ namespace status
 
         HaveBattleStatus();
         ~HaveBattleStatus();
-        void initialize();
+        static void initialize();
         void setup(CharacterType type, int group, int index);
         void newBaseChangeMonster(int index);
         void newBaseChangeMonsterFromPlayer(int index);

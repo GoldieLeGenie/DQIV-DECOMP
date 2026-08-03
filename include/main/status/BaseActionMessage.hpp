@@ -25,7 +25,7 @@ namespace status {
         int splitFlag_;       // 0x8
         BaseActionMessage();
         ~BaseActionMessage();
-        void initialize();
+        static void initialize();
         void setup(status::UseActionParam* useActionParam);
         void setExecMessage(status::UseActionMessage* message);
         void setExecMessageAdd(int actionIndex, status::UseActionMessage* message);

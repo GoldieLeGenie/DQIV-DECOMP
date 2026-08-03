@@ -79,7 +79,7 @@ namespace status
             DamageTypeMAX = 43
         };
             static status::ParamAction ParamAction_;//data_020d0718
-            void initialize();
+            static void initialize();
             static ActionDefenceKind getActionDefenceKind(int actionIndex);
             static ActionDefenceType getActionDefenceType(int actionIndex);
             static bool isUsuallyUse(int ItemIndex);

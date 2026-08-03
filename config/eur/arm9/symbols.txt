@@ -447,8 +447,8 @@ func_0200d78c kind:function(thumb,size=0x1c) addr:0x0200d78c
 func_0200d7a8 kind:function(thumb,size=0x10) addr:0x0200d7a8
 func_0200d7b8 kind:function(thumb,size=0x10) addr:0x0200d7b8
 func_0200d7c8 kind:function(thumb,size=0xc) addr:0x0200d7c8
-func_0200d7d4 kind:function(thumb,size=0x84) addr:0x0200d7d4
-func_0200d858 kind:function(thumb,size=0x70) addr:0x0200d858
+_ZN6status6Status10initializeEv kind:function(thumb,size=0x84) addr:0x0200d7d4
+_ZN6status6Status20initialize_characterEv kind:function(thumb,size=0x70) addr:0x0200d858
 func_0200d8c8 kind:function(thumb,size=0x260) addr:0x0200d8c8
 func_0200db28 kind:function(thumb,size=0x37c) addr:0x0200db28
 func_0200dea4 kind:function(thumb,size=0xc) addr:0x0200dea4
@@ -1021,7 +1021,6 @@ _ZN6status10BaseAction4execERNS_14UseActionParamEi kind:function(thumb,size=0x62
 _ZN6status10BaseAction10execBeforeEv kind:function(thumb,size=0x1e8) addr:0x020162c0
 _ZN6status10BaseAction12execAfterOneEi kind:function(thumb,size=0x2c0) addr:0x020164a8
 _ZN6status10BaseAction9execAfterEi kind:function(thumb,size=0x948) addr:0x02016768
-.L_0201706c kind:label(thumb) addr:0x0201706c
 _ZN6status10BaseAction12execMainRootEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x48) addr:0x020170b0
 _ZN6status10BaseAction8execMainEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x2b8) addr:0x020170f8
 _ZN6status10BaseAction16execActionEffectEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x1d4) addr:0x020173b0
@@ -1070,6 +1069,7 @@ _ZN6status10BaseAction18checkItemRecoveryIEPNS_15CharacterStatusES2_ kind:functi
 _ZN6status10BaseAction18checkItemRecoveryJEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x28) addr:0x02019914
 _ZN6status10BaseAction14checkItemOtherEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x400) addr:0x0201993c
 _ZN6status10BaseAction10checkSleepEPNS_15CharacterStatusE kind:function(thumb,size=0x28) addr:0x02019d3c
+.L_0201706c kind:label(thumb) addr:0x0201706c
 _ZN6status10BaseAction5useMpEv kind:function(thumb,size=0x1c8) addr:0x02019d64
 _ZN6status10BaseAction14setEffectValueEPNS_15CharacterStatusE kind:function(thumb,size=0x4c) addr:0x02019f2c
 _ZN6status10BaseAction17setEffectValueAddEii kind:function(thumb,size=0x64) addr:0x02019f78
@@ -5684,16 +5684,16 @@ data_020b5d8c kind:data(any) addr:0x020b5d8c
 data_020b5d98 kind:data(any) addr:0x020b5d98
 data_020b5da0 kind:data(any) addr:0x020b5da0
 data_020b5db0 kind:data(any) addr:0x020b5db0
-suretigaiSexTable_ kind:data(any) addr:0x020b5dbc
-opponentTable_ kind:data(any) addr:0x020b5dc8
-equipKindTable_ kind:data(any) addr:0x020b5ddc
-suretigaiRootMenuTable_ kind:data(any) addr:0x020b5df0
-ItemUseCommand_ kind:data(any) addr:0x020b5e04
-rootMenuKindTable_ kind:data(any) addr:0x020b5e1c
-rootMenuNameTable_ kind:data(any) addr:0x020b5e34
-abilityKindTable_ kind:data(any) addr:0x020b5e4c
-itemMessageTable_ kind:data(any) addr:0x020b5e70
-ruraMoveName_ kind:data(any) addr:0x020b5ed0
+suretigaiSexTable_ kind:data(any) addr:0x020b5dbc local
+opponentTable_ kind:data(any) addr:0x020b5dc8 local
+equipKindTable_ kind:data(any) addr:0x020b5ddc local
+suretigaiRootMenuTable_ kind:data(any) addr:0x020b5df0 local
+ItemUseCommand_ kind:data(any) addr:0x020b5e04 local
+rootMenuKindTable_ kind:data(any) addr:0x020b5e1c local
+rootMenuNameTable_ kind:data(any) addr:0x020b5e34 local
+abilityKindTable_ kind:data(any) addr:0x020b5e4c local
+itemMessageTable_ kind:data(any) addr:0x020b5e70 local
+ruraMoveName_ kind:data(any) addr:0x020b5ed0 local
 data_020b5f78 kind:data(any) addr:0x020b5f78
 data_020b5f90 kind:data(any) addr:0x020b5f90
 data_020b5faa kind:data(any) addr:0x020b5faa
@@ -6079,16 +6079,16 @@ _ZTVN6status12BaseHaveItemE kind:data(byte[20]) addr:0x020bc8cc
 _ZTVN6status12HaveItemSackE kind:data(byte[20]) addr:0x020bc8e0
 _ZTVN6status10BaseActionE kind:data(any) addr:0x020bc8f4
 @1080 kind:data(any) addr:0x020bc900 local
-@1005 kind:data(any) addr:0x020bc91c local
-@1015 kind:data(any) addr:0x020bc938 local
-@1021 kind:data(any) addr:0x020bc960 local
-@1261 kind:data(any) addr:0x020bc980 local
-@1323 kind:data(any) addr:0x020bc9b4 local
-@1439 kind:data(any) addr:0x020bc9dc local
-@1836 kind:data(any) addr:0x020bca04 local
-@1007 kind:data(any) addr:0x020bca28 local
-@1963 kind:data(any) addr:0x020bca68 local
-@2025 kind:data(any) addr:0x020bcaa4 local
+@1088 kind:data(any) addr:0x020bc91c local
+@1102 kind:data(any) addr:0x020bc938 local
+@1108 kind:data(any) addr:0x020bc960 local
+@1348 kind:data(any) addr:0x020bc980 local
+@1410 kind:data(any) addr:0x020bc9b4 local
+@1526 kind:data(any) addr:0x020bc9dc local
+@1921 kind:data(any) addr:0x020bca04 local
+@1935 kind:data(any) addr:0x020bca28 local
+@2042 kind:data(any) addr:0x020bca68 local
+@2102 kind:data(any) addr:0x020bcaa4 local
 @2087 kind:data(any) addr:0x020bcae8 local
 @2148 kind:data(any) addr:0x020bcb28 local
 @2160 kind:data(any) addr:0x020bcb74 local
@@ -6106,7 +6106,7 @@ _ZTVN6status10BaseActionE kind:data(any) addr:0x020bc8f4
 @2433 kind:data(any) addr:0x020bcdd8 local
 @2448 kind:data(any) addr:0x020bcdfc local
 @2463 kind:data(any) addr:0x020bce24 local
-@2482 kind:data(any) addr:0x020bce50 local
+@2552 kind:data(any) addr:0x020bce50 local
 @2573 kind:data(any) addr:0x020bce90 local
 @2613 kind:data(any) addr:0x020bced4 local
 @2633 kind:data(any) addr:0x020bcf20 local
@@ -6137,9 +6137,9 @@ _ZTVN6status10BaseActionE kind:data(any) addr:0x020bc8f4
 @3708 kind:data(any) addr:0x020bd5e4 local
 @3724 kind:data(any) addr:0x020bd604 local
 @3739 kind:data(any) addr:0x020bd644 local
-@3912 kind:data(any) addr:0x020bd674 local
-@3921 kind:data(any) addr:0x020bd6c0 local
-@3929 kind:data(any) addr:0x020bd6ec local
+@3941 kind:data(any) addr:0x020bd674 local
+@3950 kind:data(any) addr:0x020bd6c0 local
+@3958 kind:data(any) addr:0x020bd6ec local
 data_020bd718 kind:data(any) addr:0x020bd718
 JP_tbl kind:data(any) addr:0x020bd730
 DE_tbl kind:data(any) addr:0x020bd7d4

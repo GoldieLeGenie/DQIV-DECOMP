@@ -30,7 +30,7 @@ namespace status{
         BaseActionMessage message_;
         BaseAction();
         ~BaseAction();
-        void initialize();
+        static void initialize();
         void clear();
         void exec(UseActionParam& useActionParam, int flag);
         int execBefore();

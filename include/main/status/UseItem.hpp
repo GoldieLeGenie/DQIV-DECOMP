@@ -45,7 +45,7 @@ namespace status{
             SELL_DIFFICULT = 2,
             SELL_MAX = 3
         };
-        void initialize();
+        static void initialize();
         static ItemType getItemType(int itemIndex);
         static ThrowType getThrowType(int itemIndex);
         static SellType getSellType(int itemIndex);
