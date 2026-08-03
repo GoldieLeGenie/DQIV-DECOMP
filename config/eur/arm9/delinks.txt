@@ -138,14 +138,13 @@ src/main/status/BaseActionMessage:
     .bss start:0x020eecc0 end:0x020eeccc
 
 src/main/status/BaseAction.cpp:
-    complete
-    .text start:0x02015c2c end:0x020164a8
-    .data start:0x020bc938 end:0x020bc9dc
+    .text start:0x02015bb8 end:0x0201a464
+    .data start:0x020bc8f4 end:0x020bd718
     .bss start:0x020d07f0 end:0x020d07fc
 
 src/main/status/UseAction.cpp:
-    .text start:0x0201532c end:0x02015b34
-    .bss start:0x020d0718 end:0x020d0730
+    .text start:0x0201532c end:0x02015bb8
+    .bss start:0x020d0718 end:0x020d07d0
 
 src/main/status/UseActionMessage.cpp:
     complete
@@ -210,9 +209,12 @@ src/main/status/CharacterStatus.cpp:
 
 src/main/status/UseItem.cpp:
     complete
-    .text start:0x0201a464 end:0x0201a990
+    .text start:0x0201a464 end:0x0201ad24
     .data start:0x020bd730 end:0x020bdb08
 
+src/main/status/BaseItem.cpp:
+    .text start:0x0201ad24 end:0x0201ad3c
+    .bss start:0x020d0890 end:0x020d0894
 
 src/main/profile/Profile.cpp:
     .text start:0x02030da8 end:0x02030f24

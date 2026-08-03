@@ -12,7 +12,6 @@ namespace status{
         param::ItemData* itemData_;
         int unk_8;
         param::AppriseItem* judgeItem_;     // 0x0C  
-        int unk_0c;                         // 0x0C
         int unk_10;                         // 0x10
         int actionIndex_;                   // 0x14
         int itemIndex_;                     // 0x18
@@ -46,7 +45,6 @@ namespace status{
             SELL_DIFFICULT = 2,
             SELL_MAX = 3
         };
-        static status::UseitemData UseitemData_; //data_020d0820
         void initialize();
         static ItemType getItemType(int itemIndex);
         static ThrowType getThrowType(int itemIndex);
@@ -69,8 +67,22 @@ namespace status{
         static int getNameSortIndex(int itemIndex);
         static int getJudgeMessageCount(int itemIndex);
         static int getJudgeMessage(int itemIndex, int index);
-        
+        static void execUse(status::UseActionParam* useActionParam);
+        static void execBattleUse(status::UseActionParam* useActionParam);
+        static void give(status::BaseHaveItem* src, int index, status::BaseHaveItem* dst);
+        static void give(status::HaveStatusInfo *status, int index,
+                           status::BaseHaveItem *sack, int sackIndex);
+        static void give2(status::BaseHaveItem *sack, int sackIndex,
+                            status::HaveStatusInfo *status, int index);
+        static void give2(status::HaveStatusInfo *status, int index,
+                            status::HaveStatusInfo *target, int targetIndex);
+
     };
 }
 
+extern status::UseitemData UseitemData_; //data_020d0820
 
+extern "C" {
+int  func_0201a430(void);                           // BaseAction::isBreakPrayRing
+void func_0201a3ec(int flag);                       // BaseAction::setBreakPrayRing
+}

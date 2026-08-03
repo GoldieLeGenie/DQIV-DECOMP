@@ -9,6 +9,8 @@
 
 namespace status
 {
+    struct BaseAction;   // forward decl for getAction()
+
     struct ParamAction {
         param::ActionParam* actionParam_;
         int unk_4;
@@ -119,6 +121,9 @@ namespace status
             static AIType getAIType(int actionIndex);
             static bool isMosyasAction(int actionIndex);
             static ActionType getActionType(int actionIndex);
+            static BaseAction* getAction(); //not decompiled
+            static void execUse(UseActionParam* useActionParam);
+
         };
         
 } 

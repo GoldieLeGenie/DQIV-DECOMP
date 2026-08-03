@@ -6,6 +6,7 @@
 #include "main/global/Global.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/param/FloorParam.hpp"
+
 cmn::PartyTalk cmn::PartyTalk::s_partyTalk;
 
 THUMB cmn::PartyTalk* cmn::PartyTalk::getSingleton()

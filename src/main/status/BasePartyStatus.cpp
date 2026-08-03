@@ -1096,7 +1096,7 @@ THUMB int status::PartyStatus::destroyPoisonForMantan(status::UseActionParam& pa
         }
     }
 
-    func_02015b70(&param);
+    status::UseAction::execUse(&param);
     return 1;
 }
 
@@ -1252,7 +1252,7 @@ THUMB int status::PartyStatus::recoveryForMantan(status::UseActionParam& param) 
     } while (idx < 0xC);
     param.targetCount_ = n;
 }
-    func_02015b70(&param);
+    status::UseAction::execUse(&param);
     return 1;
 }
 

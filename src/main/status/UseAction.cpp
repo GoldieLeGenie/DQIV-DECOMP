@@ -1,4 +1,6 @@
 #include "main/status/UseAction.hpp"
+#include "main/status/BaseAction.hpp"
+#include "main/status/HaveAction.hpp"
 
 status::ParamAction status::UseAction::ParamAction_;
 
@@ -447,15 +449,21 @@ THUMB status::UseAction::ActionType status::UseAction::getActionType(int actionI
     }
 }
 
-// THUMB void status::UseAction::execUse(UseActionParam* useActionParam) {
-//     ParamAction_.useActionParam_ = useActionParam;
-//     ParamAction_.actionIndex_ = useActionParam->actionIndex_;
-//     BaseAction* action = getAction();
-//     if (HaveAction::isBattleMode()) {
-//         BaseAction::exec(action, useActionParam, true);
-//     }
-//     else {
-//         BaseAction::exec(action, useActionParam, false);
-//     }
-//     ParamAction_.useActionParam_->result_ = action->resultFlag_;
-// }
+THUMB status::BaseAction* status::UseAction::getAction()
+{
+    static status::BaseAction action;
+    return &action;
+}
+
+THUMB void status::UseAction::execUse(UseActionParam* useActionParam) {
+    ParamAction_.useActionParam_ = useActionParam;
+    ParamAction_.actionIndex_ = useActionParam->actionIndex_;
+    status::BaseAction* action = getAction();
+    if (status::HaveAction::isBattleMode()) {
+        action->exec(*useActionParam, 1);
+    }
+    else {
+        action->exec(*useActionParam, 0);
+    }
+    ParamAction_.useActionParam_->result_ = action->resultFlag_;
+}

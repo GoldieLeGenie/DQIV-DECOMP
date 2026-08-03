@@ -1011,71 +1011,71 @@ _ZN6status9UseAction5isUseEiPNS_14HaveStatusInfoE kind:function(thumb,size=0x36)
 _ZN6status9UseAction9getAITypeEi kind:function(thumb,size=0x64) addr:0x02015a80
 _ZN6status9UseAction14isMosyasActionEi kind:function(thumb,size=0x28) addr:0x02015ae4
 _ZN6status9UseAction13getActionTypeEi kind:function(thumb,size=0x28) addr:0x02015b0c
-func_02015b34 kind:function(thumb,size=0x3c) addr:0x02015b34
-func_02015b70 kind:function(thumb,size=0x48) addr:0x02015b70
-func_02015bb8 kind:function(thumb,size=0x44) addr:0x02015bb8
-func_02015bfc kind:function(thumb,size=0x30) addr:0x02015bfc
+_ZN6status9UseAction9getActionEv kind:function(thumb,size=0x3c) addr:0x02015b34
+_ZN6status9UseAction7execUseEPNS_14UseActionParamE kind:function(thumb,size=0x48) addr:0x02015b70
+_ZN6status10BaseActionC1Ev kind:function(thumb,size=0x44) addr:0x02015bb8
+_ZN6status10BaseActionD1Ev kind:function(thumb,size=0x30) addr:0x02015bfc
 _ZN6status10BaseAction10initializeEv kind:function(thumb,size=0x34) addr:0x02015c2c
 _ZN6status10BaseAction5clearEv kind:function(thumb,size=0x38) addr:0x02015c60
 _ZN6status10BaseAction4execERNS_14UseActionParamEi kind:function(thumb,size=0x628) addr:0x02015c98
 _ZN6status10BaseAction10execBeforeEv kind:function(thumb,size=0x1e8) addr:0x020162c0
-func_020164a8 kind:function(thumb,size=0x2c0) addr:0x020164a8
-func_02016768 kind:function(thumb,size=0x948) addr:0x02016768
+_ZN6status10BaseAction12execAfterOneEi kind:function(thumb,size=0x2c0) addr:0x020164a8
+_ZN6status10BaseAction9execAfterEi kind:function(thumb,size=0x948) addr:0x02016768
 .L_0201706c kind:label(thumb) addr:0x0201706c
-func_020170b0 kind:function(thumb,size=0x48) addr:0x020170b0
-func_020170f8 kind:function(thumb,size=0x2b8) addr:0x020170f8
-func_020173b0 kind:function(thumb,size=0x1d4) addr:0x020173b0
-func_02017584 kind:function(thumb,size=0x1f4) addr:0x02017584
-func_02017778 kind:function(thumb,size=0x1b0) addr:0x02017778
-func_02017928 kind:function(thumb,size=0x50) addr:0x02017928
-func_02017978 kind:function(thumb,size=0x58) addr:0x02017978
-func_020179d0 kind:function(thumb,size=0x88) addr:0x020179d0
-func_02017a58 kind:function(thumb,size=0xe0) addr:0x02017a58
-func_02017b38 kind:function(thumb,size=0x108) addr:0x02017b38
-func_02017c40 kind:function(thumb,size=0x214) addr:0x02017c40
-func_02017e54 kind:function(thumb,size=0x4c) addr:0x02017e54
-func_02017ea0 kind:function(thumb,size=0x48) addr:0x02017ea0
-func_02017ee8 kind:function(thumb,size=0xb0) addr:0x02017ee8
-func_02017f98 kind:function(thumb,size=0x124) addr:0x02017f98
-func_020180bc kind:function(thumb,size=0x5c) addr:0x020180bc
-func_02018118 kind:function(thumb,size=0x64) addr:0x02018118
-func_0201817c kind:function(thumb,size=0x60) addr:0x0201817c
-func_020181dc kind:function(thumb,size=0x98) addr:0x020181dc
-func_02018274 kind:function(thumb,size=0x98) addr:0x02018274
-func_0201830c kind:function(thumb,size=0x88) addr:0x0201830c
-func_02018394 kind:function(thumb,size=0x70) addr:0x02018394
-func_02018404 kind:function(thumb,size=0xfc) addr:0x02018404
-func_02018500 kind:function(thumb,size=0x58) addr:0x02018500
-func_02018558 kind:function(thumb,size=0x7c) addr:0x02018558
-func_020185d4 kind:function(thumb,size=0xb4) addr:0x020185d4
-func_02018688 kind:function(thumb,size=0xa0) addr:0x02018688
-func_02018728 kind:function(thumb,size=0x6c) addr:0x02018728
-func_02018794 kind:function(thumb,size=0x104) addr:0x02018794
-func_02018898 kind:function(thumb,size=0x148) addr:0x02018898
-func_020189e0 kind:function(thumb,size=0xfc) addr:0x020189e0
-func_02018adc kind:function(thumb,size=0x178) addr:0x02018adc
-func_02018c54 kind:function(thumb,size=0x6c) addr:0x02018c54
-func_02018cc0 kind:function(thumb,size=0xe0) addr:0x02018cc0
-func_02018da0 kind:function(thumb,size=0x398) addr:0x02018da0
-func_02019138 kind:function(thumb,size=0xa8) addr:0x02019138
-func_020191e0 kind:function(thumb,size=0x8c) addr:0x020191e0
-func_0201926c kind:function(thumb,size=0x12c) addr:0x0201926c
-func_02019398 kind:function(thumb,size=0x64) addr:0x02019398
-func_020193fc kind:function(thumb,size=0x9c) addr:0x020193fc
-func_02019498 kind:function(thumb,size=0x128) addr:0x02019498
-func_020195c0 kind:function(thumb,size=0xa8) addr:0x020195c0
-func_02019668 kind:function(thumb,size=0x6c) addr:0x02019668
-func_020196d4 kind:function(thumb,size=0x16c) addr:0x020196d4
-func_02019840 kind:function(thumb,size=0xd4) addr:0x02019840
-func_02019914 kind:function(thumb,size=0x28) addr:0x02019914
-func_0201993c kind:function(thumb,size=0x400) addr:0x0201993c
-func_02019d3c kind:function(thumb,size=0x28) addr:0x02019d3c
-func_02019d64 kind:function(thumb,size=0x1c8) addr:0x02019d64
-func_02019f2c kind:function(thumb,size=0x4c) addr:0x02019f2c
-func_02019f78 kind:function(thumb,size=0x64) addr:0x02019f78
-func_02019fdc kind:function(thumb,size=0x410) addr:0x02019fdc
-func_0201a3ec kind:function(thumb,size=0x44) addr:0x0201a3ec
-func_0201a430 kind:function(thumb,size=0x34) addr:0x0201a430
+_ZN6status10BaseAction12execMainRootEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x48) addr:0x020170b0
+_ZN6status10BaseAction8execMainEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x2b8) addr:0x020170f8
+_ZN6status10BaseAction16execActionEffectEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x1d4) addr:0x020173b0
+_ZN6status10BaseAction13execAddDamageEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x1f4) addr:0x02017584
+_ZN6status10BaseAction23execAddDamageItemForceEEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x1b0) addr:0x02017778
+_ZN6status10BaseAction18checkStatusReleaseEv kind:function(thumb,size=0x50) addr:0x02017928
+_ZN6status10BaseAction29checkActorStatusChangeReleaseEPNS_15CharacterStatusE kind:function(thumb,size=0x58) addr:0x02017978
+_ZN6status10BaseAction17checkActorAstoronEv kind:function(thumb,size=0x88) addr:0x020179d0
+_ZN6status10BaseAction10checkSpazzEv kind:function(thumb,size=0xe0) addr:0x02017a58
+_ZN6status10BaseAction10checkSleepEv kind:function(thumb,size=0x108) addr:0x02017b38
+_ZN6status10BaseAction10checkPath1Ev kind:function(thumb,size=0x214) addr:0x02017c40
+_ZN6status10BaseAction13checkTimeStopEv kind:function(thumb,size=0x4c) addr:0x02017e54
+_ZN6status10BaseAction14checkConfusionEv kind:function(thumb,size=0x48) addr:0x02017ea0
+_ZN6status10BaseAction17execActionDefenceEPNS_15CharacterStatusE kind:function(thumb,size=0xb0) addr:0x02017ee8
+_ZN6status10BaseAction26execActionDefenceExceptionEPNS_15CharacterStatusE kind:function(thumb,size=0x124) addr:0x02017f98
+_ZN6status10BaseAction24setActionDefenceValueAddEi kind:function(thumb,size=0x5c) addr:0x020180bc
+_ZN6status10BaseAction10checkUseMpEv kind:function(thumb,size=0x64) addr:0x02018118
+_ZN6status10BaseAction7isUseMpEv kind:function(thumb,size=0x60) addr:0x0201817c
+_ZN6status10BaseAction12checkMahotonEv kind:function(thumb,size=0x98) addr:0x020181dc
+_ZN6status10BaseAction15checkFizzleZoneEv kind:function(thumb,size=0x98) addr:0x02018274
+_ZN6status10BaseAction14checkPowerSaveEPNS_15CharacterStatusE kind:function(thumb,size=0x88) addr:0x0201830c
+_ZN6status10BaseAction19checkActorBaikirutoEPNS_15CharacterStatusE kind:function(thumb,size=0x70) addr:0x02018394
+_ZN6status10BaseAction24checkTargetSpecialSelectEPNS_15CharacterStatusES2_ kind:function(thumb,size=0xfc) addr:0x02018404
+_ZN6status10BaseAction25checkTargetZaoraruZaorikuEPNS_15CharacterStatusE kind:function(thumb,size=0x58) addr:0x02018500
+_ZN6status10BaseAction20checkTargetBaikirutoEPNS_15CharacterStatusE kind:function(thumb,size=0x7c) addr:0x02018558
+_ZN6status10BaseAction19checkTargetMahosuteEPNS_15CharacterStatusES2_ kind:function(thumb,size=0xb4) addr:0x020185d4
+_ZN6status10BaseAction18checkTargetAstoronEPNS_15CharacterStatusE kind:function(thumb,size=0xa0) addr:0x02018688
+_ZN6status10BaseAction17checkTargetFubahaEPNS_15CharacterStatusE kind:function(thumb,size=0x6c) addr:0x02018728
+_ZN6status10BaseAction18checkTargetDefenceEPNS_15CharacterStatusE kind:function(thumb,size=0x104) addr:0x02018794
+_ZN6status10BaseAction15checkTargetJoukEPNS_15CharacterStatusE kind:function(thumb,size=0x148) addr:0x02018898
+_ZN6status10BaseAction20checkTargetSplitJoukEPNS_15CharacterStatusE kind:function(thumb,size=0xfc) addr:0x020189e0
+_ZN6status10BaseAction32checkTargetReleaseConfusionSleepEPNS_15CharacterStatusE kind:function(thumb,size=0x178) addr:0x02018adc
+_ZN6status10BaseAction31checkTargetReleaseItetsukuhadouEPNS_15CharacterStatusE kind:function(thumb,size=0x6c) addr:0x02018c54
+_ZN6status10BaseAction20checkTargetMahokantaEPNS_15CharacterStatusES2_ kind:function(thumb,size=0xe0) addr:0x02018cc0
+_ZN6status10BaseAction20checkTargetEquipmentEPNS_15CharacterStatusE kind:function(thumb,size=0x398) addr:0x02018da0
+_ZN6status10BaseAction16checkActorManusaEPNS_15CharacterStatusES2_ kind:function(thumb,size=0xa8) addr:0x02019138
+_ZN6status10BaseAction18checkTargetFeatherEPNS_15CharacterStatusE kind:function(thumb,size=0x8c) addr:0x020191e0
+_ZN6status10BaseAction17checkActorKaishinEPNS_15CharacterStatusE kind:function(thumb,size=0x12c) addr:0x0201926c
+_ZN6status10BaseAction16checkActorDoubleEPNS_15CharacterStatusE kind:function(thumb,size=0x64) addr:0x02019398
+_ZN6status10BaseAction14checkItemMissAEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x9c) addr:0x020193fc
+_ZN6status10BaseAction15checkItemMuchiBEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x128) addr:0x02019498
+_ZN6status10BaseAction16checkItemDamageCEPNS_15CharacterStatusES2_ kind:function(thumb,size=0xa8) addr:0x020195c0
+_ZN6status10BaseAction16checkItemDamageDEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x6c) addr:0x02019668
+_ZN6status10BaseAction15checkItemForceEEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x16c) addr:0x020196d4
+_ZN6status10BaseAction18checkItemRecoveryIEPNS_15CharacterStatusES2_ kind:function(thumb,size=0xd4) addr:0x02019840
+_ZN6status10BaseAction18checkItemRecoveryJEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x28) addr:0x02019914
+_ZN6status10BaseAction14checkItemOtherEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x400) addr:0x0201993c
+_ZN6status10BaseAction10checkSleepEPNS_15CharacterStatusE kind:function(thumb,size=0x28) addr:0x02019d3c
+_ZN6status10BaseAction5useMpEv kind:function(thumb,size=0x1c8) addr:0x02019d64
+_ZN6status10BaseAction14setEffectValueEPNS_15CharacterStatusE kind:function(thumb,size=0x4c) addr:0x02019f2c
+_ZN6status10BaseAction17setEffectValueAddEii kind:function(thumb,size=0x64) addr:0x02019f78
+_ZN6status10BaseAction23setEffectValueExceptionEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x410) addr:0x02019fdc
+_ZN6status10BaseAction16setBreakPrayRingEi kind:function(thumb,size=0x44) addr:0x0201a3ec
+_ZN6status10BaseAction15isBreakPrayRingEv kind:function(thumb,size=0x34) addr:0x0201a430
 _ZN6status7UseItem10initializeEv kind:function(thumb,size=0x18) addr:0x0201a464
 _ZN6status7UseItem11getItemTypeEi kind:function(thumb,size=0x6c) addr:0x0201a47c
 _ZN6status7UseItem12getThrowTypeEi kind:function(thumb,size=0x34) addr:0x0201a4e8
@@ -1098,13 +1098,13 @@ _ZN6status7UseItem16getTypeSortIndexEi kind:function(thumb,size=0x10) addr:0x020
 _ZN6status7UseItem16getNameSortIndexEi kind:function(thumb,size=0x48) addr:0x0201a86c
 _ZN6status7UseItem20getJudgeMessageCountEi kind:function(thumb,size=0x5c) addr:0x0201a8b4
 _ZN6status7UseItem15getJudgeMessageEii kind:function(thumb,size=0x80) addr:0x0201a910
-func_0201a990 kind:function(thumb,size=0xdc) addr:0x0201a990
-func_0201aa6c kind:function(thumb,size=0x64) addr:0x0201aa6c
-func_0201aad0 kind:function(thumb,size=0x8e) addr:0x0201aad0
-func_0201ab60 kind:function(thumb,size=0x88) addr:0x0201ab60
-func_0201abe8 kind:function(thumb,size=0x78) addr:0x0201abe8
-func_0201ac60 kind:function(thumb,size=0xc4) addr:0x0201ac60
-func_0201ad24 kind:function(thumb,size=0x18) addr:0x0201ad24
+_ZN6status7UseItem7execUseEPNS_14UseActionParamE kind:function(thumb,size=0xdc) addr:0x0201a990
+_ZN6status7UseItem13execBattleUseEPNS_14UseActionParamE kind:function(thumb,size=0x64) addr:0x0201aa6c
+_ZN6status7UseItem4giveEPNS_12BaseHaveItemEiS2_ kind:function(thumb,size=0x8e) addr:0x0201aad0
+_ZN6status7UseItem4giveEPNS_14HaveStatusInfoEiPNS_12BaseHaveItemEi kind:function(thumb,size=0x88) addr:0x0201ab60
+_ZN6status7UseItem5give2EPNS_12BaseHaveItemEiPNS_14HaveStatusInfoEi kind:function(thumb,size=0x78) addr:0x0201abe8
+_ZN6status7UseItem5give2EPNS_14HaveStatusInfoEiS2_i kind:function(thumb,size=0xc4) addr:0x0201ac60
+_ZN6status8BaseItem10initializeEv kind:function(thumb,size=0x18) addr:0x0201ad24
 _ZN6status16HaveBattleStatusC1Ev kind:function(thumb,size=0x14) addr:0x0201ad3c
 _ZN6status16HaveBattleStatusD1Ev kind:function(thumb,size=0x2) addr:0x0201ad50
 _ZN6status16HaveBattleStatus10initializeEv kind:function(thumb,size=0x1c) addr:0x0201ad54
@@ -1754,7 +1754,7 @@ _ZN6status15CharacterStatus17isEscapeAnimationEv kind:function(thumb,size=0x14) 
 _ZN6status15CharacterStatus19setRebirthAnimationEv kind:function(thumb,size=0x10) addr:0x02026fe0
 _ZN6status15CharacterStatus21clearRebirthAnimationEv kind:function(thumb,size=0x14) addr:0x02026ff0
 _ZN6status15CharacterStatus18isRebirthAnimationEv kind:function(thumb,size=0x16) addr:0x02027004
-_ZN6status15CharacterStatus5printEv kind:function(arm,size=0x4) addr:0x0202701c 
+_ZN6status15CharacterStatus5printEv kind:function(arm,size=0x4) addr:0x0202701c
 _ZN6status15CharacterStatus11printActionEv kind:function(arm,size=0x4) addr:0x02027020
 func_02027024 kind:function(arm,size=0x10) addr:0x02027024
 func_02027034 kind:function(arm,size=0x4) addr:0x02027034
@@ -1980,7 +1980,7 @@ func_0202ce0c kind:function(thumb,size=0x4c) addr:0x0202ce0c
 func_0202ce58 kind:function(thumb,size=0x1a8) addr:0x0202ce58
 func_0202d000 kind:function(thumb,size=0x12) addr:0x0202d000
 func_0202d014 kind:function(thumb,size=0x2) addr:0x0202d014
-_ZN6status17BaseActionMessageC2Ev kind:function(thumb,size=0x2) addr:0x0202d018
+_ZN6status17BaseActionMessageC1Ev kind:function(thumb,size=0x2) addr:0x0202d018
 _ZN6status17BaseActionMessageD1Ev kind:function(thumb,size=0x2) addr:0x0202d01c
 _ZN6status17BaseActionMessage10initializeEv kind:function(thumb,size=0x18) addr:0x0202d020
 _ZN6status17BaseActionMessage5setupEPNS_14UseActionParamE kind:function(thumb,size=0x14) addr:0x0202d038
@@ -2110,7 +2110,7 @@ _ZN7profile7Profile15deliverGameFlagEPN6status8GameFlagEPh kind:function(arm,siz
 _ZN7profile7Profile12calcCheckSumEv kind:function(arm,size=0x40) addr:0x02030eb0
 _ZN7profile7Profile11isValidDataEv kind:function(arm,size=0x34) addr:0x02030ef0
 _ZN3cmn11GameManagerC1Ev kind:function(thumb,size=0x2) addr:0x02030f24
-_ZN3cmn11GameManager12getSingletonEv  kind:function(thumb,size=0x28) addr:0x02030f28
+_ZN3cmn11GameManager12getSingletonEv kind:function(thumb,size=0x28) addr:0x02030f28
 _ZN3cmn11GameManager10initializeEv kind:function(thumb,size=0x6) addr:0x02030f50
 _ZN3cmn11GameManager9terminateEv kind:function(thumb,size=0x2) addr:0x02030f58
 _ZN3cmn11GameManager7executeEv kind:function(thumb,size=0x2) addr:0x02030f5c
@@ -5059,7 +5059,7 @@ func_02083024 kind:function(arm,size=0x10) addr:0x02083024
 func_02083034 kind:function(arm,size=0x8) addr:0x02083034
 func_0208303c kind:function(arm,size=0x10) addr:0x0208303c
 func_0208304c kind:function(arm,size=0x8) addr:0x0208304c
-dss::Camera::setAngle kind:function(arm,size=0x1c) addr:0x02083054
+func_02083054 kind:function(arm,size=0x1c) addr:0x02083054
 func_02083070 kind:function(arm,size=0x8) addr:0x02083070
 func_02083078 kind:function(arm,size=0x38) addr:0x02083078
 func_020830b0 kind:function(arm,size=0x8) addr:0x020830b0
@@ -5475,7 +5475,7 @@ __sinit_0208a940 kind:function(thumb,size=0x30) addr:0x0208a940
 __sinit_0208a970 kind:function(thumb,size=0x1c) addr:0x0208a970
 __sinit_StageStatus.cpp kind:function(thumb,size=0x20) addr:0x0208a98c
 __sinit_GameStatus.cpp kind:function(thumb,size=0x20) addr:0x0208a9ac local
-__sinit_0208a9cc kind:function(thumb,size=0x20) addr:0x0208a9cc 
+__sinit_0208a9cc kind:function(thumb,size=0x20) addr:0x0208a9cc
 __sinit_GameFlag.cpp kind:function(thumb,size=0x50) addr:0x0208a9ec local
 __sinit_0208aa3c kind:function(arm,size=0x14c) addr:0x0208aa3c
 __sinit_0208ab88 kind:function(thumb,size=0x20) addr:0x0208ab88
@@ -5619,7 +5619,7 @@ data_020b0000 kind:data(any) addr:0x020b0000
 data_020b000a kind:data(any) addr:0x020b000a
 data_020b1001 kind:data(any) addr:0x020b1001
 data_020b2a49 kind:data(any) addr:0x020b2a49
-data_020b4d5c kind:data(any) addr:0x020b4d5c
+splitJoukTable kind:data(any) addr:0x020b4d5c
 confusePlayer12 kind:data(any) addr:0x020b4d68
 confusePlayer7 kind:data(any) addr:0x020b4d74
 confusePlayer3 kind:data(any) addr:0x020b4d80
@@ -6077,70 +6077,69 @@ _ZTVN6status8HaveItemE kind:data(byte[20]) addr:0x020bc8ac
 _ZTVN6status13HaveEquipmentE kind:data(byte[12]) addr:0x020bc8c0
 _ZTVN6status12BaseHaveItemE kind:data(byte[20]) addr:0x020bc8cc
 _ZTVN6status12HaveItemSackE kind:data(byte[20]) addr:0x020bc8e0
-data_020bc8f4 kind:data(any) addr:0x020bc8f4
-data_020bc8fc kind:data(any) addr:0x020bc8fc
-data_020bc900 kind:data(any) addr:0x020bc900
-data_020bc91c kind:data(any) addr:0x020bc91c
-@836 kind:data(any) addr:0x020bc938 local
-@842 kind:data(any) addr:0x020bc960 local
-@1082 kind:data(any) addr:0x020bc980 local
-@1235 kind:data(any) addr:0x020bc9b4 local
-data_020bc9dc kind:data(any) addr:0x020bc9dc
-data_020bca04 kind:data(any) addr:0x020bca04
-data_020bca28 kind:data(any) addr:0x020bca28
-data_020bca68 kind:data(any) addr:0x020bca68
-data_020bcaa4 kind:data(any) addr:0x020bcaa4
-data_020bcae8 kind:data(any) addr:0x020bcae8
-data_020bcb28 kind:data(any) addr:0x020bcb28
-data_020bcb74 kind:data(any) addr:0x020bcb74
-data_020bcba4 kind:data(any) addr:0x020bcba4
-data_020bcbf4 kind:data(any) addr:0x020bcbf4
-data_020bcc20 kind:data(any) addr:0x020bcc20
-data_020bcc48 kind:data(any) addr:0x020bcc48
-data_020bcc70 kind:data(any) addr:0x020bcc70
-data_020bcc98 kind:data(any) addr:0x020bcc98
-data_020bccc0 kind:data(any) addr:0x020bccc0
-data_020bccec kind:data(any) addr:0x020bccec
-data_020bcd30 kind:data(any) addr:0x020bcd30
-data_020bcd7c kind:data(any) addr:0x020bcd7c
-data_020bcdb0 kind:data(any) addr:0x020bcdb0
-data_020bcdd8 kind:data(any) addr:0x020bcdd8
-data_020bcdfc kind:data(any) addr:0x020bcdfc
-data_020bce24 kind:data(any) addr:0x020bce24
-data_020bce50 kind:data(any) addr:0x020bce50
-data_020bce90 kind:data(any) addr:0x020bce90
-data_020bced4 kind:data(any) addr:0x020bced4
-data_020bcf20 kind:data(any) addr:0x020bcf20
-data_020bcf6c kind:data(any) addr:0x020bcf6c
-data_020bcfb0 kind:data(any) addr:0x020bcfb0
-data_020bcff8 kind:data(any) addr:0x020bcff8
-data_020bd03c kind:data(any) addr:0x020bd03c
-data_020bd080 kind:data(any) addr:0x020bd080
-data_020bd0c4 kind:data(any) addr:0x020bd0c4
-data_020bd104 kind:data(any) addr:0x020bd104
-data_020bd148 kind:data(any) addr:0x020bd148
-data_020bd198 kind:data(any) addr:0x020bd198
-data_020bd1e8 kind:data(any) addr:0x020bd1e8
-data_020bd230 kind:data(any) addr:0x020bd230
-data_020bd274 kind:data(any) addr:0x020bd274
-data_020bd2b8 kind:data(any) addr:0x020bd2b8
-data_020bd2fc kind:data(any) addr:0x020bd2fc
-data_020bd340 kind:data(any) addr:0x020bd340
-data_020bd380 kind:data(any) addr:0x020bd380
-data_020bd3c4 kind:data(any) addr:0x020bd3c4
-data_020bd408 kind:data(any) addr:0x020bd408
-data_020bd44c kind:data(any) addr:0x020bd44c
-data_020bd490 kind:data(any) addr:0x020bd490
-data_020bd4d4 kind:data(any) addr:0x020bd4d4
-data_020bd51c kind:data(any) addr:0x020bd51c
-data_020bd564 kind:data(any) addr:0x020bd564
-data_020bd5a8 kind:data(any) addr:0x020bd5a8
-data_020bd5e4 kind:data(any) addr:0x020bd5e4
-data_020bd604 kind:data(any) addr:0x020bd604
-data_020bd644 kind:data(any) addr:0x020bd644
-data_020bd674 kind:data(any) addr:0x020bd674
-data_020bd6c0 kind:data(any) addr:0x020bd6c0
-data_020bd6ec kind:data(any) addr:0x020bd6ec
+_ZTVN6status10BaseActionE kind:data(any) addr:0x020bc8f4
+@997 kind:data(any) addr:0x020bc900 local
+@1005 kind:data(any) addr:0x020bc91c local
+@1015 kind:data(any) addr:0x020bc938 local
+@1021 kind:data(any) addr:0x020bc960 local
+@1261 kind:data(any) addr:0x020bc980 local
+@1323 kind:data(any) addr:0x020bc9b4 local
+@1439 kind:data(any) addr:0x020bc9dc local
+@1836 kind:data(any) addr:0x020bca04 local
+@1007 kind:data(any) addr:0x020bca28 local
+@1963 kind:data(any) addr:0x020bca68 local
+@2025 kind:data(any) addr:0x020bcaa4 local
+@2087 kind:data(any) addr:0x020bcae8 local
+@2148 kind:data(any) addr:0x020bcb28 local
+@2160 kind:data(any) addr:0x020bcb74 local
+@2180 kind:data(any) addr:0x020bcba4 local
+@2192 kind:data(any) addr:0x020bcbf4 local
+@2208 kind:data(any) addr:0x020bcc20 local
+@2230 kind:data(any) addr:0x020bcc48 local
+@2270 kind:data(any) addr:0x020bcc70 local
+@2280 kind:data(any) addr:0x020bcc98 local
+@2289 kind:data(any) addr:0x020bccc0 local
+@2324 kind:data(any) addr:0x020bccec local
+@2388 kind:data(any) addr:0x020bcd30 local
+@2402 kind:data(any) addr:0x020bcd7c local
+@2417 kind:data(any) addr:0x020bcdb0 local
+@2433 kind:data(any) addr:0x020bcdd8 local
+@2448 kind:data(any) addr:0x020bcdfc local
+@2463 kind:data(any) addr:0x020bce24 local
+@2482 kind:data(any) addr:0x020bce50 local
+@2573 kind:data(any) addr:0x020bce90 local
+@2613 kind:data(any) addr:0x020bced4 local
+@2633 kind:data(any) addr:0x020bcf20 local
+@2651 kind:data(any) addr:0x020bcf6c local
+@2685 kind:data(any) addr:0x020bcfb0 local
+@2713 kind:data(any) addr:0x020bcff8 local
+@2732 kind:data(any) addr:0x020bd03c local
+@2783 kind:data(any) addr:0x020bd080 local
+@2836 kind:data(any) addr:0x020bd0c4 local
+@2880 kind:data(any) addr:0x020bd104 local
+@2964 kind:data(any) addr:0x020bd148 local
+@2984 kind:data(any) addr:0x020bd198 local
+@3016 kind:data(any) addr:0x020bd1e8 local
+@3164 kind:data(any) addr:0x020bd230 local
+@3201 kind:data(any) addr:0x020bd274 local
+@3221 kind:data(any) addr:0x020bd2b8 local
+@3277 kind:data(any) addr:0x020bd2fc local
+@3297 kind:data(any) addr:0x020bd340 local
+@3325 kind:data(any) addr:0x020bd380 local
+@3367 kind:data(any) addr:0x020bd3c4 local
+@3394 kind:data(any) addr:0x020bd408 local
+@3415 kind:data(any) addr:0x020bd44c local
+@3446 kind:data(any) addr:0x020bd490 local
+@3481 kind:data(any) addr:0x020bd4d4 local
+@3489 kind:data(any) addr:0x020bd51c local
+@3607 kind:data(any) addr:0x020bd564 local
+@3617 kind:data(any) addr:0x020bd5a8 local
+@3708 kind:data(any) addr:0x020bd5e4 local
+@3724 kind:data(any) addr:0x020bd604 local
+@3739 kind:data(any) addr:0x020bd644 local
+@3912 kind:data(any) addr:0x020bd674 local
+@3921 kind:data(any) addr:0x020bd6c0 local
+@3929 kind:data(any) addr:0x020bd6ec local
 data_020bd718 kind:data(any) addr:0x020bd718
 JP_tbl kind:data(any) addr:0x020bd730
 DE_tbl kind:data(any) addr:0x020bd7d4
@@ -6647,7 +6646,7 @@ data_020c12c4 kind:data(any) addr:0x020c12c4
 data_020c12f0 kind:data(any) addr:0x020c12f0
 data_020c130c kind:data(any) addr:0x020c130c
 data_020c1328 kind:data(any) addr:0x020c1328
-@798 kind:data(any) addr:0x020c1330 local local
+@798 kind:data(any) addr:0x020c1330 local
 data_020c1340 kind:data(any) addr:0x020c1340
 data_020c135c kind:data(any) addr:0x020c135c
 data_020c1384 kind:data(any) addr:0x020c1384
@@ -6754,11 +6753,11 @@ data_020c19c8 kind:data(any) addr:0x020c19c8
 data_020c19ec kind:data(any) addr:0x020c19ec
 data_020c1a10 kind:data(any) addr:0x020c1a10
 @49 kind:data(any) addr:0x020c1a40 local
-@55 kind:data(any) addr:0x020c1a6c local
+@60 kind:data(any) addr:0x020c1a6c local
 @70 kind:data(any) addr:0x020c1a98 local
-@79 kind:data(any) addr:0x020c1ac0 local 
-@101 kind:data(any) addr:0x020c1ae8 local
-@145 kind:data(any) addr:0x020c1b18 local
+@84 kind:data(any) addr:0x020c1ac0 local
+@106 kind:data(any) addr:0x020c1ae8 local
+@150 kind:data(any) addr:0x020c1b18 local
 @163 kind:data(any) addr:0x020c1b4c local
 data_020c1b7c kind:data(any) addr:0x020c1b7c
 data_020c1b88 kind:data(any) addr:0x020c1b88
@@ -7378,8 +7377,8 @@ g_Option kind:bss addr:0x020d06b4
 CallMonster kind:bss addr:0x020d06c8
 callMonsterStatus_ kind:bss addr:0x020d06e8
 _ZN6status9UseAction12ParamAction_E kind:bss addr:0x020d0718
-data_020d0730 kind:bss addr:0x020d0730
-data_020d0748 kind:bss addr:0x020d0748
+@1454 kind:bss addr:0x020d0730
+action$1451 kind:bss addr:0x020d0748
 _ZN6status15BaseActionData_E kind:bss addr:0x020d07d0
 data_020d07e4 kind:bss addr:0x020d07e4
 data_020d07e8 kind:bss addr:0x020d07e8
@@ -7392,8 +7391,9 @@ _ZN6status10BaseAction9joukFlag_E kind:bss addr:0x020d0804
 _ZN6status10BaseAction10splitFlag_E kind:bss addr:0x020d0808
 _ZN6status10BaseAction11doubleFlag_E kind:bss addr:0x020d080c
 data_020d0810 kind:bss addr:0x020d0810
-_ZN6status7UseItem12UseitemData_E kind:bss(size=0x74) addr:0x020d0820
-initData_ kind:bss(size=0x1c) addr:0x020d0894
+UseitemData_ kind:bss addr:0x020d0820
+dataItem_ kind:bss addr:0x020d0890
+initData_ kind:bss addr:0x020d0894
 _ZN6status16HaveBattleStatus15groupRoopIndex_E kind:bss addr:0x020d08b0
 _ZN6status16HaveBattleStatus13groupControl_E kind:bss addr:0x020d08c0
 _ZN6status11StageStatus9toramana_E kind:bss addr:0x020d08d0
@@ -7576,20 +7576,20 @@ data_020ee188 kind:bss addr:0x020ee188
 data_020ee190 kind:bss addr:0x020ee190
 data_020ee19c kind:bss addr:0x020ee19c
 @372 kind:bss addr:0x020ee1c0 local
-_ZN6status7g_StoryE kind:bss(size=0xABC) addr:0x020ee1cc
+_ZN6status7g_StoryE kind:bss(size=0xabc) addr:0x020ee1cc
 data_020eec88 kind:bss addr:0x020eec88
 data_020eec94 kind:bss addr:0x020eec94
 data_020eeca4 kind:bss addr:0x020eeca4
 data_020eecb0 kind:bss addr:0x020eecb0
 _ZN6status12messageData_E kind:bss addr:0x020eecc0
 BaseActionStatus_ kind:bss addr:0x020eeccc
-data_020eecd0 kind:bss addr:0x020eecd0
-data_020eecd4 kind:bss addr:0x020eecd4
-data_020eecd8 kind:bss addr:0x020eecd8
-data_020eecdc kind:bss addr:0x020eecdc
+unkFlag_020eecd0 kind:bss addr:0x020eecd0
+sleepMessFlag kind:bss addr:0x020eecd4
+confusionMessFlag kind:bss addr:0x020eecd8
+mahokantaMessFlag kind:bss addr:0x020eecdc
 data_020eece0 kind:bss addr:0x020eece0
 data_020eece4 kind:bss addr:0x020eece4
-data_020eece8 kind:bss addr:0x020eece8
+workMess kind:bss addr:0x020eece8
 BaseActionValue_ kind:bss addr:0x020eecec
 data_020eecfc kind:bss addr:0x020eecfc
 data_020eed00 kind:bss addr:0x020eed00
@@ -7603,7 +7603,7 @@ data_020eed30 kind:bss addr:0x020eed30
 data_020eed34 kind:bss addr:0x020eed34
 data_020eed38 kind:bss addr:0x020eed38
 data_020eed44 kind:bss addr:0x020eed44
-g_cmnPartyInfo kind:bss(size=0x9a4)  addr:0x020eed50
+g_cmnPartyInfo kind:bss(size=0x9a4) addr:0x020eed50
 data_020ef6f4 kind:bss addr:0x020ef6f4
 data_020ef6f8 kind:bss addr:0x020ef6f8
 data_020ef6fc kind:bss addr:0x020ef6fc

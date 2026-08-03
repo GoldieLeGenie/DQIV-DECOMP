@@ -1,5 +1,6 @@
 #include "main/status/UseItem.hpp"
 #include "main/status/UseAction.hpp"
+#include "main/status/BaseAction.hpp"
 #include "main/status/ExcelParam.hpp"
 
 
@@ -461,94 +462,189 @@ THUMB int status::UseItem::getJudgeMessage(int itemIndex, int index)
     }
 }
 
-// THUMB void status::UseItem::execUse(status::UseActionParam* useActionParam)
-// {
-//     status::HaveItemSack* actorHaveItemSack;
-//     int index = useActionParam->itemSortIndex_;
-//     actorHaveItemSack = useActionParam->actorHaveItemSack_;
-//     int Item;
-//     if (actorHaveItemSack) {
-//         Item = actorHaveItemSack->getItem(index);
-//         UseitemData_.itemIndex_ = Item;
-//     }
-//     else if (useActionParam->actorCharacterStatus_ != 0) {
-//         Item = useActionParam->actorCharacterStatus_->haveStatusInfo_.haveItem_.getItem(index);
-//         UseitemData_.itemIndex_ = Item;
-//         useActionParam->itemIndex_ = Item;
-//     }
+ 
 
-//     UseitemData_.actionIndex_ = getAction(UseitemData_.itemIndex_);
-//     useActionParam->actionIndex_ = UseitemData_.actionIndex_;
+THUMB void status::UseItem::execUse(status::UseActionParam* useActionParam)
+{
+    status::HaveItemSack* actorHaveItemSack;
+    int index = useActionParam->itemSortIndex_;
+    actorHaveItemSack = useActionParam->actorHaveItemSack_;
+    int Item;
 
-//     UseAction::execUse(useActionParam);
+    if (actorHaveItemSack) {
+        Item = actorHaveItemSack->getItem(index);
+        UseitemData_.itemIndex_ = Item;
+    } else if (useActionParam->actorCharacterStatus_ != 0) {
+        Item = useActionParam->actorCharacterStatus_->haveStatusInfo_.haveItem_.getItem(index);
+        UseitemData_.itemIndex_ = Item;
+        useActionParam->itemIndex_ = Item;
+    }
 
-//     if (useActionParam->result_ != 0 || UseitemData_.itemIndex_ == 0x80) {
-//         if (isLost(UseitemData_.itemIndex_) != 0) {
-//             if (useActionParam->actorHaveItemSack_ != 0) {
-//                 UseitemData_.itemIndex_ = useActionParam->actorHaveItemSack_->del(index);
-//             }
-//             else if (useActionParam->actorCharacterStatus_ != 0) {
-//                 useActionParam->actorCharacterStatus_->haveStatusInfo_.haveItem_.del(index);
-//             }
-//         }
+    UseitemData_.actionIndex_ = getAction(UseitemData_.itemIndex_);
+    useActionParam->actionIndex_ = UseitemData_.actionIndex_;
 
-//         if (BaseAction::isBreakPrayRing() != 0) {
-//             BaseAction::setBreakPrayRing(false);
-//             if (useActionParam->actorHaveItemSack_ != 0) {
-//                 UseitemData_.itemIndex_ = useActionParam->actorHaveItemSack_->del(index);
-//                 return;
-//             }
-//             if (useActionParam->actorCharacterStatus_ != 0) {
-//                 useActionParam->actorCharacterStatus_->haveStatusInfo_.resetEquipment2(ITEM_ACCESSORY);
-//                 useActionParam->actorCharacterStatus_->haveStatusInfo_.haveItem_.del(index);
-//             }
-//         }
-//     }
-// }
+    UseAction::execUse(useActionParam);
+
+    if (useActionParam->result_ != 0 || UseitemData_.itemIndex_ == 0x80) {
+        if (isLost(UseitemData_.itemIndex_) != 0) {
+            if (useActionParam->actorHaveItemSack_ != 0) {
+                UseitemData_.itemIndex_ = useActionParam->actorHaveItemSack_->del(index);
+            } else if (useActionParam->actorCharacterStatus_ != 0) {
+                useActionParam->actorCharacterStatus_->haveStatusInfo_.haveItem_.del(index);
+            }
+        }
+
+        if (status::BaseAction::isBreakPrayRing() != 0) {
+            status::BaseAction::setBreakPrayRing(0);
+            if (useActionParam->actorHaveItemSack_ != 0) {
+                UseitemData_.itemIndex_ = useActionParam->actorHaveItemSack_->del(index);
+                return;
+            }
+            if (useActionParam->actorCharacterStatus_ != 0) {
+                useActionParam->actorCharacterStatus_->haveStatusInfo_.resetEquipment2(ITEM_ACCESSORY);
+                useActionParam->actorCharacterStatus_->haveStatusInfo_.haveItem_.del(index);
+            }
+        }
+    }
+}
 
 
-// THUMB void status::UseItem::execBattleUse(status::UseActionParam* useActionParam)
-// {
-//     int itemSortIndex = useActionParam->itemSortIndex_;
-//     int item = useActionParam->actorCharacterStatus_->haveStatusInfo_.haveItem_.getItem(itemSortIndex);
+THUMB void status::UseItem::execBattleUse(status::UseActionParam* useActionParam)
+{
+    int itemSortIndex = useActionParam->itemSortIndex_;
+    int item = useActionParam->actorCharacterStatus_->haveStatusInfo_.haveItem_.getItem(itemSortIndex);
 
-//     UseitemData_.itemIndex_ = item;
-//     useActionParam->itemIndex_ = item;
+    UseitemData_.itemIndex_ = item;
+    useActionParam->itemIndex_ = item;
 
-//     UseitemData_.actionIndex_ = getBattleUseAction(UseitemData_.itemIndex_);
-//     useActionParam->actionIndex_ = UseitemData_.actionIndex_;
+    UseitemData_.actionIndex_ = getBattleUseAction(UseitemData_.itemIndex_);
+    useActionParam->actionIndex_ = UseitemData_.actionIndex_;
 
-//     UseAction::execUse(useActionParam);
+    UseAction::execUse(useActionParam);
 
-//     if ((useActionParam->result_ || UseitemData_.itemIndex_ == 0x80) && isLost(UseitemData_.itemIndex_)) {
-//         useActionParam->actorCharacterStatus_->haveStatusInfo_.haveItem_.del(itemSortIndex);
-//     }
-// }
+    if ((useActionParam->result_ || UseitemData_.itemIndex_ == 0x80) && isLost(UseitemData_.itemIndex_)) {
+        useActionParam->actorCharacterStatus_->haveStatusInfo_.haveItem_.del(itemSortIndex);
+    }
+}
 
-// THUMB void status::UseItem::give(status::BaseHaveItem* src, int index, status::BaseHaveItem* dst)
-// {
-//     int count = dst->getCount();
-//     int max = dst->getItemMax();
+THUMB void status::UseItem::give(status::BaseHaveItem* src, int index, status::BaseHaveItem* dst)
+{
+    int count = dst->getCount();
+    int max = dst->getItemMax();
 
-//     if (count == max) {
-//         if (dst->getItemMax() != 0xa2) {
-//             int lastIndex = dst->getCount();
-//             lastIndex--;
-//             unsigned char lastItem = dst->getItem(lastIndex);
-//             lastIndex = dst->getCount();
-//             lastIndex--;
-//             dst->del(lastIndex);                    // vtable +8
+    if (count == max) {
+        if (dst->getItemMax() != 0xa2) {
+            int lastIndex = dst->getCount();
+            lastIndex--;
+            int lastItem = dst->getItem(lastIndex);
+            lastIndex = dst->getCount();
+            lastIndex--;
+            dst->del(lastIndex);                    // vtable +8
 
-//             unsigned char srcItem = src->getItem(index);
-//             dst->add(srcItem);                      // vtable +4
+            int srcItem = src->getItem(index);
+            dst->add(srcItem);                      // vtable +4
 
-//             src->del(index);                        // vtable +8
-//             src->add(lastItem);                     // vtable +4
-//         }
-//     }
-//     else {
-//         unsigned char srcItem = src->getItem(index);
-//         dst->add(srcItem);                          // vtable +4
-//         src->del(index);                            // vtable +8
-//     }
-// }
+            src->del(index);                        // vtable +8
+            src->add(lastItem);                     // vtable +4
+        }
+    }
+    else {
+        int srcItem = src->getItem(index);
+        dst->add(srcItem);                          // vtable +4
+        src->del(index);                            // vtable +8
+    }
+}
+
+THUMB void status::UseItem::give(status::HaveStatusInfo *status, int index,
+                           status::BaseHaveItem *sack, int sackIndex)
+{
+    int itemIndex = 0;
+
+    if (sackIndex == -1) {
+
+        if (status->haveItem_.isEquipment(index)) {
+            itemIndex = status->haveItem_.getItem(index);
+        }
+
+        give(&status->haveItem_, index, sack);
+        status->haveEquipment_.removeItem(itemIndex);
+
+    } else {
+
+        if (status->haveItem_.isEquipment(index)) {
+            status->resetEquipment1(index);
+        }
+
+        status::ItemData* data = status->haveItem_.getItemData(index);
+        int other = sack->getItem(sackIndex);
+
+        sack->add(data->index_);
+        sack->del(sackIndex);
+
+        data->index_ = other;
+    }
+}
+
+THUMB void status::UseItem::give2(status::BaseHaveItem *sack, int sackIndex,
+                            status::HaveStatusInfo *status, int index)
+{
+    if (index == -1) {
+        give(sack, sackIndex, &status->haveItem_);
+        return;
+    }
+
+    int itemIndex = 0;
+
+    if (status->haveItem_.isEquipment(index)) {
+        itemIndex = status->haveItem_.getItem(index);
+    }
+    status->haveEquipment_.removeItem(itemIndex);
+
+    status::ItemData* src = sack->getItemData(sackIndex);
+    status::ItemData* dst = status->haveItem_.getItemData(index);
+
+    int old = dst->index_;
+
+    dst->index_ = src->index_;
+    dst->equip_ = 0;
+
+    sack->del(sackIndex);
+    sack->add(old);
+}
+
+THUMB void status::UseItem::give2(status::HaveStatusInfo *status, int index,
+                            status::HaveStatusInfo *target, int targetIndex)
+{
+    int itemIndex = 0;
+
+    if (targetIndex == -1) {
+
+        if (status->haveItem_.isEquipment(index)) {
+            itemIndex = status->haveItem_.getItem(index);
+        }
+
+        give(&status->haveItem_, index, &target->haveItem_);
+        status->haveEquipment_.removeItem(itemIndex);
+        return;
+    }
+
+    if (status->haveItem_.isEquipment(index)) {
+        status->haveEquipment_.removeItem(status->haveItem_.getItem(index));
+    }
+    if (target->haveItem_.isEquipment(targetIndex)) {
+        target->haveEquipment_.removeItem(target->haveItem_.getItem(targetIndex));
+    }
+
+    status::ItemData* src = status->haveItem_.getItemData(index);
+    status::ItemData* dst = target->haveItem_.getItemData(targetIndex);
+
+    src->equip_ = 0;
+    dst->equip_ = 0;
+
+    int tmp = src->index_;
+    src->index_ = dst->index_;
+    dst->index_ = tmp;
+
+    status->haveItem_.sortEquipment();
+    target->haveItem_.sortEquipment();
+}

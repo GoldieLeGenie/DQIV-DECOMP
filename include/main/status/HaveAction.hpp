@@ -17,9 +17,9 @@ namespace status {
         HaveAction();
         ~HaveAction();
         void setBattleMode();
-        int isBattleMode();
+        static int isBattleMode();
         static void setTownMode();
-        int isTownMode();
+        static int isTownMode();
         ActionMode getActionMode();
         static void setActionMode(ActionMode md);
         void setup(int index);
