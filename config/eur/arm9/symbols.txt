@@ -1069,7 +1069,6 @@ _ZN6status10BaseAction18checkItemRecoveryIEPNS_15CharacterStatusES2_ kind:functi
 _ZN6status10BaseAction18checkItemRecoveryJEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x28) addr:0x02019914
 _ZN6status10BaseAction14checkItemOtherEPNS_15CharacterStatusES2_ kind:function(thumb,size=0x400) addr:0x0201993c
 _ZN6status10BaseAction10checkSleepEPNS_15CharacterStatusE kind:function(thumb,size=0x28) addr:0x02019d3c
-.L_0201706c kind:label(thumb) addr:0x0201706c
 _ZN6status10BaseAction5useMpEv kind:function(thumb,size=0x1c8) addr:0x02019d64
 _ZN6status10BaseAction14setEffectValueEPNS_15CharacterStatusE kind:function(thumb,size=0x4c) addr:0x02019f2c
 _ZN6status10BaseAction17setEffectValueAddEii kind:function(thumb,size=0x64) addr:0x02019f78
@@ -7591,7 +7590,7 @@ data_020eece0 kind:bss addr:0x020eece0
 data_020eece4 kind:bss addr:0x020eece4
 workMess kind:bss addr:0x020eece8
 BaseActionValue_ kind:bss addr:0x020eecec
-data_020eecfc kind:bss addr:0x020eecfc
+indexAction kind:bss addr:0x020eecfc
 data_020eed00 kind:bss addr:0x020eed00
 data_020eed04 kind:bss addr:0x020eed04
 data_020eed14 kind:bss addr:0x020eed14

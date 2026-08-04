@@ -9,6 +9,6 @@ func_ov031_02189720 kind:function(arm,size=0x4) addr:0x02189720
 func_ov031_02189724 kind:function(arm,size=0x4) addr:0x02189724
 data_ov031_02189748 kind:data(any) addr:0x02189748
 data_ov031_0218975c kind:data(any) addr:0x0218975c
-data_ov031_02189768 kind:data(any) addr:0x02189768 ambiguous
+data_ov031_02189760 kind:data(any) addr:0x02189760
 data_ov031_02189780 kind:data(any) addr:0x02189780
 data_ov031_02189788 kind:data(any) addr:0x02189788

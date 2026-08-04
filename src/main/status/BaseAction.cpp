@@ -800,7 +800,7 @@ THUMB void status::BaseAction::execActionEffect(status::CharacterStatus* actor, 
     if (target == 0) {
         return;
     }
-    data_020eecfc = actionIndex_;
+    indexAction = actionIndex_;
     status::BaseActionStatus::setEffectValue(effectValue_, playerEffectValue_, monsterEffectValue_);
     if (target != 0) { 
         target->haveStatusInfo_.setUseActionEffectValue(0);

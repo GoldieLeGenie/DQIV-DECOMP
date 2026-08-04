@@ -177,7 +177,6 @@ struct ConfuseArray8 { int v[8]; };
 
 extern const ConfuseArray4       confusePlayer8;
 extern const ConfuseArray4       confusePlayer5;
-
 extern const ConfuseArray3       confusePlayer12;
 extern const ConfuseArray3       confusePlayer7;
 extern const ConfuseArray3       confusePlayer3;

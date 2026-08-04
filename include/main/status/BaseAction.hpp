@@ -122,8 +122,7 @@ struct SplitJoukTable { int v[3]; };
 extern SplitJoukTable splitJoukTable;   /* data_020b4d5c */
 
 extern int data_020d0810[4];
-extern int data_020eecfc; //actionIndex
-extern int baikirutoMessFlag;   // data_020eeccc
+extern int indexAction; //data_020eecfc
 extern int unkFlag_020eecd0;    // data_020eecd0
 extern int sleepMessFlag;       // data_020eecd4
 extern int confusionMessFlag;   // data_020eecd8
@@ -134,54 +133,3 @@ extern int workMess;            // data_020eece8
 extern "C" void func_02019f78(status::BaseAction*, int, int);
 extern "C" void func_ov015_021721cc(status::UseActionParam*);
 extern "C" void func_ov015_02172784(status::UseActionParam*);
-extern "C" int  func_020170b0(status::BaseAction* action, status::CharacterStatus* actor, status::CharacterStatus* target);  // execMain
-extern "C" void func_02016768(status::BaseAction* action, int flag);            // execAfter
-extern "C" void func_020164a8(status::BaseAction* action, int targetIndex);     // execAfterOne
-extern "C" void func_02017ea0(status::BaseAction* action);                      // checkConfusion
-extern "C" void func_02019d64(status::BaseAction* action);                      // useMp
-extern "C" void func_020162c0(status::BaseAction* action);                      // execBefore
-extern "C" int  func_02017978(status::BaseAction* action, status::CharacterStatus* actor);  // checkActorStatusChangeRelease
-extern "C" int  func_020179d0(status::BaseAction* action);                      // checkAstron
-extern "C" int  func_02017a58(status::BaseAction* action);                      // checkSpazz
-extern "C" int  func_02017b38(status::BaseAction* action);                      // checkSleep
-extern "C" int  func_02017c40(status::BaseAction* action);                      // checkPath1
-extern "C" int  func_02017e54(status::BaseAction* action);                      // checkTimeStop
-extern "C" int  func_02018118(status::BaseAction* action);                      // checkMp
-extern "C" int  func_020181dc(status::BaseAction* action);                      // checkMahoton
-extern "C" int  func_02018274(status::BaseAction* action);                      // checkFizzleZone
-extern "C" void func_02017928(status::BaseAction* action);                      // checkStatusRelease
-extern "C" int  func_02018cc0(status::BaseAction* action, status::CharacterStatus* actor, status::CharacterStatus* target);  // checkTargetMahokanta
-extern "C" int  func_02019398(status::BaseAction* action, status::CharacterStatus* actor);  // checkActorDouble
-extern "C" int func_0201926c(status::BaseAction*, status::CharacterStatus*);                             // checkActorKaishin
-extern "C" status::CharacterStatus* func_02018404(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // checkTargetSpecialSelect
-extern "C" void func_02019fdc(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*);  // setEffectValueException
-extern "C" int func_02018500(status::BaseAction*, status::CharacterStatus*);  // checkTargetZaoraruZaoriku
-extern "C" int func_0201830c(status::BaseAction*, status::CharacterStatus*);  // checkPowerSave
-extern "C" int func_02018558(status::BaseAction*, status::CharacterStatus*);  // checkTargetBaikiruto
-extern "C" int func_02018688(status::BaseAction*, status::CharacterStatus*);  // checkTargetAstoron
-extern "C" int func_020185d4(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // checkTargetMahosute
-extern "C" int func_020191e0(status::BaseAction*, status::CharacterStatus*);  // checkTargetFeather
-extern "C" int func_02018728(status::BaseAction*, status::CharacterStatus*);  // checkTargetFubaha
-extern "C" int func_02018794(status::BaseAction*, status::CharacterStatus*);  // checkTargetDefence
-extern "C" int func_02018898(status::BaseAction*, status::CharacterStatus*);  // checkTargetJouk
-extern "C" int func_020189e0(status::BaseAction*, status::CharacterStatus*);  // checkTargetSplitJouk
-extern "C" int func_02018da0(status::BaseAction*, status::CharacterStatus*);  // checkTargetEquipment
-extern "C" int func_02019138(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // checkActorManusa
-extern "C" int func_020193fc(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // checkItemMissA
-extern "C" int func_02019498(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // checkItemMuchiB
-extern "C" int func_020195c0(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // checkItemDamageC
-extern "C" int func_02019668(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // checkItemDamageD
-extern "C" int func_020196d4(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // checkItemForceE
-extern "C" int func_02018394(status::BaseAction*, status::CharacterStatus*);  // checkActorBaikiruto
-extern "C" void func_02017ee8(status::BaseAction*, status::CharacterStatus*); // execActionDefence
-extern "C" void func_02017f98(status::BaseAction*, status::CharacterStatus*); // execActionDefenceException
-extern "C" void func_020173b0(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // execActionEffect
-extern "C" void func_02017584(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // execAddDamage
-extern "C" void func_02017778(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // execAddDamageItemForceE
-extern "C" void func_02019d3c(status::BaseAction*, status::CharacterStatus*); // checkSleep
-extern "C" int func_02018adc(status::BaseAction*, status::CharacterStatus*);  // checkTargetReleaseConfusionSleep
-extern "C" int func_02018c54(status::BaseAction*, status::CharacterStatus*);  // checkTargetReleaseItetsukuhadou
-extern "C" int func_02019840(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // checkItemRecoveryI
-extern "C" int func_02019914(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // checkItemRecoveryJ
-extern "C" int func_0201993c(status::BaseAction*, status::CharacterStatus*, status::CharacterStatus*); // checkItemOther
-

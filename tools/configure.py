@@ -55,7 +55,7 @@ LD_FLAGS = " ".join([
     "-map closure,unused",  # Generate map file
     "-msgstyle gcc",        # Use GCC-like messages (some IDEs will make file names clickable)
     "-dead",                # Strip unused code
-    "-force_active func_ov036_02189360,data_ov036_02189768",  # Keep ov036 (orphan overlay)
+    "-force_active _ZN30MaterielMenuExtraChangeHostage9menuSetupEv,_ZTV30MaterielMenuExtraChangeHostage",  # Keep ov036 (orphan overlay)
 ])
 DSD_OBJDIFF_ARGS = " ".join([
     "--scratch",                        # Metadata for creating decomp.me scratches

@@ -6,9 +6,6 @@
 #include "main/encount/Encount.hpp"
 
 
-
-
-
 namespace status { struct PlayerStatus; }
 namespace status { struct UseActionParam; }
 namespace status { struct UseAction; }

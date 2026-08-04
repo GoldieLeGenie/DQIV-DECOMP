@@ -3,3 +3,7 @@
     .data       start:0x021894c0 end:0x021894e0 kind:data align:32
     .bss        start:0x021894e0 end:0x021894e0 kind:bss align:32
 
+
+src/ov034/MaterielMenuExtraChapterTitle/MaterielMenuExtraChapterTitle.cpp:
+    .text start:0x02189360 end:0x021894b0
+    .data start:0x021894c0 end:0x021894e0

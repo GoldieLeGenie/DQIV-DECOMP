@@ -5,6 +5,7 @@
 
 namespace cmn {
     struct PlayerManager{
+        void* unk;
         int flagMapLink_;  
         int charaColl_;
         void initLock(void);
