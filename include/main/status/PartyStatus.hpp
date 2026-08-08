@@ -136,7 +136,7 @@ extern "C" {
     void func_0200f144(void);
     int func_0200efb0(void);
     int func_0201c9b8(status::StageStatus* stage);
-    Encount* func_0200a6c8(void);
+    encount::Encount* func_0200a6c8(void);
     void func_0201123c(void);
     int  func_020100f4(void* self, int actionIndex, int* valueBMax, int* valueCMax);   /* calcRecoveryValue */
     void func_020102ec(void* self, int *target);                                /* getBehomalaTargetIndex */

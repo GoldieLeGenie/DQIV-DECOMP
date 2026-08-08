@@ -1,0 +1,434 @@
+#include "ov015/btl/BattleMenuPlayerControl.hpp"
+#include "main/status/PartyStatus.hpp"
+#include "main/status/PlayerStatus.hpp"
+#include "main/status/HaveBattleStatus.hpp"
+#include "main/status/StoryStatus.hpp"
+#include "main/status/UseItem.hpp"
+#include "main/status/StatusChange.hpp"
+#include "ov003/status/MonsterParty.hpp"
+#include "ov003/status/MonsterStatus.hpp"
+#include "main/menu/MenuDataCommon.hpp"
+
+
+const CondMessageTable CONDITION_MESSAGE_TABLE = { {
+    0xA000001A, 0xA0000019, 0xA0000018,
+    0xA0000017, 0xA0000016, 0xA0000015,
+    0,
+} };
+
+const CondCheckTable CONDITION_STATUS_TABLE = { { 1, 0, 5, 3, 2, 4 } };
+
+
+
+const int AUTO_COMMAND_NAME_TABLE[6] = {
+    0x90000001, 0x90000002, 0x90000005,
+    0x90000003, 0x90000004, 0x90000006,
+};
+
+THUMB int btl::BattleMenuPlayerControl::getPlayerItemId()   
+{
+    return status::g_Party.getPlayerStatus(activeChara_)->haveStatusInfo_.haveItem_.getItem(activeItem_);
+}
+
+THUMB void btl::BattleMenuPlayerControl::clear()
+{
+    status::g_Party.setBattleMode();
+
+    activeChara_ = -1;
+    activeItem_ = -1;
+    activeMagic_ = -1;
+    targetChara_ = -1;
+
+    func_020882d4(secondHistory_, -1, sizeof(secondHistory_));
+    func_020882d4(firstHistory_, -1, sizeof(firstHistory_));
+    func_020882d4(memberHP_, 0, sizeof(memberHP_));
+    func_020882d4(memberMP_, 0, sizeof(memberMP_));
+    func_020882d4(memberLv_, 1, sizeof(memberLv_));
+    func_020882d4(memberHPColor_, 0, sizeof(memberHPColor_));
+    func_020882d4(memberCondition_, 0, sizeof(memberCondition_));
+    func_020882d4(conditionChange_, 0, sizeof(conditionChange_));
+
+    tacticsSex_ = 0;
+    if (status::g_Story.sex_ == 1) {
+        tacticsSex_ = 6;
+    }
+
+    for (int i = 0; i < status::g_Party.getCarriageOutCount(); i++) {
+        if (status::g_Story.chapter_ >= 5) {
+            status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(i)->haveStatusInfo_;
+
+            if (info->haveStatus_.playerIndex_ != 1 && info->haveStatus_.playerIndex_ != 2
+             && info->haveStatus_.isPlayer_ != 0 && info->isDeath() == 0) {
+                firstHistory_[i] = AUTO_COMMAND_NAME_TABLE[status::g_Party.getPlayerStatus(i)->haveStatusInfo_.battleCommand_];
+                firstHistory_[i] += tacticsSex_;
+            }
+        }
+        flashStatus(i);
+    }
+}
+
+
+THUMB void btl::BattleMenuPlayerControl::allClear()
+{
+    clear();
+    func_020882d4(magicPosition_, 0, sizeof(magicPosition_));
+}
+
+THUMB void btl::BattleMenuPlayerControl::setNoSelectHistory(int index)
+{
+    status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(index)->haveStatusInfo_;
+
+    if (info->haveStatus_.playerIndex_ != 1 && info->haveStatus_.playerIndex_ != 2
+     && info->haveStatus_.isPlayer_ != 0 && status::g_Story.chapter_ >= 5) {
+        secondHistory_[index] = -1;
+        firstHistory_[index] = tacticsSex_ + AUTO_COMMAND_NAME_TABLE[info->battleCommand_];
+    } else {
+        secondHistory_[index] = -1;
+        firstHistory_[index] = -1;
+    }
+}
+
+THUMB int btl::BattleMenuPlayerControl::makePlayerHistory()
+{
+    int chara = activeChara_;
+
+    if (chara < 0 || chara >= status::g_Party.getCarriageOutCount()) {
+        return 0;
+    }
+
+    status::PlayerStatus* player;
+    int* second;
+    int oldFirst;
+    int oldSecond;
+
+    int* first = firstHistory_;
+    oldFirst = first[chara];
+    second = secondHistory_;
+    oldSecond = second[chara];
+    player = status::g_Party.getPlayerStatus(chara);
+    status::HaveBattleStatus* hbs = &player->haveBattleStatus_;
+
+    if (status::g_Party.getPlayerStatus(chara)->haveStatusInfo_.battleCommand_ == COMMAND_DEBUG) {
+        second[chara] = -1;
+        first[chara] = -1;
+        return 0;
+    }
+
+
+    switch (hbs->getSelectCommand()) {
+    case status::HaveBattleStatus::NoSelect:
+        setNoSelectHistory(chara);
+        break;
+    case status::HaveBattleStatus::Attack:
+        setAttackHistory();
+        break;
+    case status::HaveBattleStatus::Defence:
+        setDefenceHistory();
+        break;
+    case status::HaveBattleStatus::UseAction:
+        setUseActionHistory();
+        break;
+    case status::HaveBattleStatus::UseItem:
+        setUseItemHistory();
+        break;
+    }
+
+    if (oldFirst == first[chara] && oldSecond == second[chara]) {
+        return 0;
+    }
+    return 1;
+}
+
+THUMB int btl::BattleMenuPlayerControl::resetPlayerHistory(int playerNum)
+{
+    int i;
+    int* first;
+    int oldFirst;
+    int oldSecond;
+    status::HaveBattleStatus* hbs;
+    int playerIndex;
+    int v;
+
+    hbs = &status::g_Party.getPlayerStatus(playerNum)->haveBattleStatus_;
+    status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(playerNum)->haveStatusInfo_;
+    int* second = secondHistory_;
+    int group;
+    int monsterIndex;
+    int sel;
+
+    first = firstHistory_;
+    oldFirst = first[playerNum];
+    oldSecond = second[playerNum];
+    playerIndex = status::g_Party.getPlayerStatus(playerNum)->haveStatusInfo_.haveStatus_.playerIndex_;
+
+    if (info->isDeath() != 0 || info->haveStatus_.isPlayer_ == 0 || info->battleCommand_ == COMMAND_DEBUG) {
+        second[playerNum] = -1;
+        firstHistory_[playerNum] = -1;          
+        if (oldFirst == firstHistory_[playerNum] && oldSecond == second[playerNum]) {
+            return 0;
+        }
+        return 1;
+    }
+
+    if ((info->battleCommand_ != COMMAND_MEIREISASERO || func_ov015_0216cb2c(func_ov015_0216c7b0(), playerNum) == 0)
+     && status::g_Story.chapter_ >= 5) {
+        second[playerNum] = -1;
+        firstHistory_[playerNum] = tacticsSex_ + AUTO_COMMAND_NAME_TABLE[info->battleCommand_];
+        if (oldFirst == firstHistory_[playerNum] && oldSecond == second[playerNum]) {
+            return 0;
+        }
+        return 1;
+    }
+
+    switch (hbs->getSelectCommand()) {
+    case status::HaveBattleStatus::NoSelect:
+        if (playerIndex != 1 && playerIndex != 2 && status::g_Story.chapter_ >= 5) {
+            second[playerNum] = -1;
+            first[playerNum] = tacticsSex_ + AUTO_COMMAND_NAME_TABLE[info->battleCommand_];
+        } else {
+            second[playerNum] = -1;
+            first[playerNum] = -1;
+        }
+        break;
+
+    case status::HaveBattleStatus::Attack: {
+        group = hbs->selectedGroup_;
+        for (i = 0; i < g_monster.getCount(); i++) {
+            if (group == g_monster.getMonsterGroup(i))
+                break;
+        }
+        monsterIndex = g_monster.getMonsterIndex(i);
+        if (i < g_monster.getCount()) {
+            second[playerNum] = monsterIndex + 0x60000000;
+            first[playerNum] = 0x80000004;
+            status::MonsterStatus* ms = g_monster.getMonsterStatus(i);
+            if (ms->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusMosyasu)) {
+                int base = 0x60000000;
+                second[playerNum] = (int)((char*)(ms->mosyasIndex_ + 0xD6) + base);//weird cast, but it matches the original code
+                if (ms->mosyasIndex_ == 0x19) {
+                    second[playerNum] = base + 0xE0;
+                }
+            }
+        }
+        break;
+    }
+
+    case status::HaveBattleStatus::Defence:
+        second[playerNum] = -1;
+        first[playerNum] = 0x80000007;
+        break;
+
+    case status::HaveBattleStatus::UseAction:
+        if (hbs->selectIndex_ > 0) {
+            second[playerNum] = hbs->selectIndex_ + 0x70000000;
+            first[playerNum] = 0x80000005;
+        } else {
+            setNoSelectHistory(playerNum);
+        }
+        break;
+
+    case status::HaveBattleStatus::UseItem: {
+        sel = hbs->selectIndex_;
+        status::UseItem::getAction(info->haveItem_.getItem(sel));
+        second[playerNum] = info->haveItem_.getItem(sel) + 0x40000000;
+        first[playerNum] = 0x80000006;
+        break;
+    }
+    }
+
+    if (oldFirst == first[playerNum] && oldSecond == second[playerNum]) {
+        return 0;
+    }
+    return 1;
+}
+
+
+THUMB void btl::BattleMenuPlayerControl::setAttackHistory()
+{
+    int i;
+    int monsterIndex;
+    status::MonsterStatus* ms;
+
+    status::CharacterStatus* player = status::g_Party.getPlayerStatus(activeChara_);
+    status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(activeChara_)->haveStatusInfo_; 
+    int group = player->haveBattleStatus_.selectedGroup_;
+
+    if (group < 0) {
+        ms = g_monster.getMonsterInGroup(targetChara_, 0);
+        secondHistory_[activeChara_] = ms->characterIndex_ + 0x60000000;
+        firstHistory_[activeChara_] = 0x80000004;
+        if (ms->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusMosyasu)) {
+            int base = 0x60000000;
+            secondHistory_[activeChara_] = (int)((char*)(ms->mosyasIndex_ + 0xD6) + base);//weird cast, but it matches the original code
+            if (ms->mosyasIndex_ == 0x19) {
+                secondHistory_[activeChara_] = base + 0xE0;
+            }
+        }
+        return;
+    }
+
+    for (i = 0; i < g_monster.getCount(); i++) {
+        if (group == g_monster.getMonsterGroup(i)) {
+            break;
+        }
+    }
+    monsterIndex = g_monster.getMonsterIndex(i);
+    if (i < g_monster.getCount()) {
+        secondHistory_[activeChara_] = monsterIndex + 0x60000000;
+        firstHistory_[activeChara_] = 0x80000004;
+        ms = g_monster.getMonsterStatus(i);
+        if (ms->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusMosyasu)) {
+            int base = 0x60000000;
+            secondHistory_[activeChara_] = (int)((char*)(ms->mosyasIndex_ + 0xD6) + base);//same here
+            if (ms->mosyasIndex_ == 0x19) {
+                secondHistory_[activeChara_] = base + 0xE0;
+            }
+        }
+    }
+}
+
+
+THUMB void btl::BattleMenuPlayerControl::setDefenceHistory()
+{
+    status::CharacterStatus* player = status::g_Party.getPlayerStatus(activeChara_);
+    status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(activeChara_)->haveStatusInfo_; // morts tous les deux — garder
+    secondHistory_[activeChara_] = -1;
+    firstHistory_[activeChara_] = 0x80000007;
+}
+
+THUMB void btl::BattleMenuPlayerControl::setUseItemHistory()
+{
+    status::CharacterStatus* player = status::g_Party.getPlayerStatus(activeChara_);
+    status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(activeChara_)->haveStatusInfo_;
+    int sel = player->haveBattleStatus_.selectIndex_;
+
+    if (sel < 0) {
+        secondHistory_[activeChara_] = info->haveItem_.getItem(activeItem_) + 0x40000000;
+        firstHistory_[activeChara_] = 0x80000006;
+    } else {
+        secondHistory_[activeChara_] = info->haveItem_.getItem(sel) + 0x40000000;
+        firstHistory_[activeChara_] = 0x80000006;
+    }
+}
+
+
+THUMB void btl::BattleMenuPlayerControl::setUseActionHistory()
+{
+    status::CharacterStatus* player = status::g_Party.getPlayerStatus(activeChara_);
+    status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(activeChara_)->haveStatusInfo_;
+    int sel = player->haveBattleStatus_.selectIndex_;
+
+    if (sel < 0) {
+        secondHistory_[activeChara_] = info->haveAction_.getAction(activeMagic_) + 0x70000000;
+        firstHistory_[activeChara_] = 0x80000005;
+    } else if (sel != 0) {
+        secondHistory_[activeChara_] = sel + 0x70000000;
+        firstHistory_[activeChara_] = 0x80000005;
+    } else {
+        setNoSelectHistory(activeChara_);
+    }
+}
+
+THUMB bool btl::BattleMenuPlayerControl::flashStatus(int memberNum)
+{
+    bool result = false;
+    status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(memberNum)->haveStatusInfo_;
+
+    if (flashHP(memberNum) != 0) {
+        result = true;
+    }
+    if (flashMP(memberNum) != 0) {
+        result = true;
+    }
+    if (func_ov015_021706e4(this,memberNum) != 0) {
+        result = true;
+    }
+    if (flashHPColor(memberNum) != 0) {
+        result = true;
+    }
+    memberLv_[memberNum] = info->haveStatus_.level_;
+
+    return result;
+}
+
+
+THUMB bool btl::BattleMenuPlayerControl::flashHP(int memberNum)
+{
+    status::CharacterStatus* player = status::g_Party.getPlayerStatus(memberNum);
+    status::HaveStatusInfo* info = &player->haveStatusInfo_;
+    short old = memberHP_[memberNum];
+
+    if (player->isMenuStatusFlag(status::HaveStatusInfo::BeforeAction) != 0) {
+        memberHP_[memberNum] = info->getHpInBattle(status::HaveStatusInfo::BeforeAction);
+    } else if (player->isMenuStatusFlag(status::HaveStatusInfo::ExecuteAction) != 0) {
+        memberHP_[memberNum] = info->getHpInBattle(status::HaveStatusInfo::ExecuteAction);
+    } else if (player->isMenuStatusFlag(status::HaveStatusInfo::ResultAction) != 0) {
+        memberHP_[memberNum] = info->getHpInBattle(status::HaveStatusInfo::ResultAction);
+    } else if (player->isMenuStatusFlag(status::HaveStatusInfo::SpecialAction) != 0) {
+        memberHP_[memberNum] = info->getHpInBattle(status::HaveStatusInfo::SpecialAction);
+    } else {
+        memberHP_[memberNum] = info->getHp();
+    }
+
+    return old != memberHP_[memberNum];
+}
+
+THUMB bool btl::BattleMenuPlayerControl::flashMP(int memberNum)
+{
+    status::CharacterStatus* player = status::g_Party.getPlayerStatus(memberNum);
+    status::HaveStatusInfo* info = &player->haveStatusInfo_;
+    short old = memberMP_[memberNum];
+
+    if (player->isMenuStatusFlag(status::HaveStatusInfo::BeforeAction) != 0) {
+        memberMP_[memberNum] = info->getMpInBattle(status::HaveStatusInfo::BeforeAction);
+    } else if (player->isMenuStatusFlag(status::HaveStatusInfo::ExecuteAction) != 0) {
+        memberMP_[memberNum] = info->getMpInBattle(status::HaveStatusInfo::ExecuteAction);
+    } else if (player->isMenuStatusFlag(status::HaveStatusInfo::ResultAction) != 0) {
+        memberMP_[memberNum] = info->getMpInBattle(status::HaveStatusInfo::ResultAction);
+    } else if (player->isMenuStatusFlag(status::HaveStatusInfo::SpecialAction) != 0) {
+        memberMP_[memberNum] = info->getMpInBattle(status::HaveStatusInfo::SpecialAction);
+    } else {
+        memberMP_[memberNum] = info->getMp();
+    }
+
+    return old != memberMP_[memberNum];
+}
+
+THUMB bool btl::BattleMenuPlayerControl::flashHPColor(int index)
+{
+    status::CharacterStatus* player = status::g_Party.getPlayerStatus(index);
+    status::HaveStatusInfo* info;
+    info = (status::HaveStatusInfo*)player;  
+    info = &player->haveStatusInfo_;
+    short old = memberHPColor_[index];
+
+    if (player->isMenuStatusFlag(status::HaveStatusInfo::BeforeAction) != 0) {
+        memberHPColor_[index] = isFlashHPColor(index, status::HaveStatusInfo::BeforeAction);
+    } else if (player->isMenuStatusFlag(status::HaveStatusInfo::ExecuteAction) != 0) {
+        memberHPColor_[index] = isFlashHPColor(index, status::HaveStatusInfo::ExecuteAction);
+    } else if (player->isMenuStatusFlag(status::HaveStatusInfo::ResultAction) != 0) {
+        memberHPColor_[index] = isFlashHPColor(index, status::HaveStatusInfo::ResultAction);
+    } else if (player->isMenuStatusFlag(status::HaveStatusInfo::SpecialAction) != 0) {
+        memberHPColor_[index] = isFlashHPColor(index, status::HaveStatusInfo::SpecialAction);
+    } else {
+        memberHPColor_[index] = func_ov015_0216b980(info);
+    }
+
+    return old != memberHPColor_[index];
+}
+
+THUMB int btl::BattleMenuPlayerControl::isFlashHPColor(int index, status::HaveStatusInfo::DiffStatus timing)
+{
+    status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(index)->haveStatusInfo_;
+
+    if (info->isDeathInBattle(timing) != 0) {
+        return 2;
+    }
+    if (info->isNearDeathInBattle(timing) != 0) {
+        return 1;
+    }
+    return 0;
+}
+
+
+

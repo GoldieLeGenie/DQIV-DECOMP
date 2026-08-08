@@ -25,8 +25,8 @@ namespace status{
         virtual int del(int itemIndex);
         void execThrow(int itemIndex);
         void sortOutSack(status::HaveItemSack::SortType type);
-        void sortOutItemOne(status::HaveItem *haveItem);
         void sortOutItem(status::HaveItem *haveItem);
+        void sortOutItemOne(status::HaveItem *haveItem);
     };
 }
 

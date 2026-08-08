@@ -14,7 +14,7 @@ src/main/Commands/CommandFunction.cpp:
 src/main/dss/DssUtils.cpp:
     .text start:0x02088360 end:0x020883d8
 
-src/main/EncountParam/EncountParam.cpp:
+src/main/encount/EncountParam.cpp:
     complete
     .text start:0x0200b6b0 end:0x0200b82c
 
@@ -84,7 +84,7 @@ src/main/status/BasePartyStatus.cpp:
     .data start:0x020bc88c end:0x020bc8ac
 
 src/main/status/HaveItemSack.cpp:
-    .text start:0x02014028 end:0x02014280
+    .text start:0x02014028 end:0x020142dc
     .data start:0x020bc8e0 end:0x020bc8f4
 
 
@@ -167,7 +167,7 @@ src/main/status/BaseHaveItem.cpp:
 src/main/status/StageStatus.cpp:
     .init start:0x0208a98c end:0x0208a9ac
     .ctor start:0x020bb3a4 end:0x020bb3a8
-    .text start:0x0201c294 end:0x0201d3a4
+    .text start:0x0201c294 end:0x0201d460
     .data start:0x020bdb80 end:0x020bdc70
     .bss  start:0x020d08d4 end:0x020d0bb4
 
@@ -225,7 +225,7 @@ src/main/profile/Profile.cpp:
     .text start:0x02030da8 end:0x02030f24
 
 src/main/profile/Profile_2.cpp:
-    .text start:0x02038458 end:0x02039460
+    .text start:0x020383cc end:0x02039460
     .data start:0x020c1398 end:0x020c13a0
 
 
@@ -332,22 +332,22 @@ src/main/PartTaskManager/PartTaskManager.cpp:
     complete
     .text start:0x020350ac end:0x02035150
 
-src/main/MenuDataCommon/MenuDataCommon.cpp:
+src/main/menu/MenuDataCommon.cpp:
     complete
     .text start:0x02030580 end:0x02030aa8
     .rodata start:0x020b5dbc end:0x020b5f78
     .data start:0x020bebd8 end:0x020bebe8
 
 
-src/main/FLDObject/FLDObject.cpp:
+src/main/fld/FLDObject.cpp:
     .text start:0x02046f64 end:0x02046fe0
 
-src/main/FormationId/FormationId.cpp:
+src/main/formation/FormationId.cpp:
     complete
     .text start:0x0200af20 end:0x0200b344
     .rodata start:0x0208ca04 end:0x0208ca10
 
-src/main/FormationIdManager/FormationIdManager.cpp:
+src/main/formation/FormationIdManager.cpp:
     complete
     .text start:0x0200b344 end:0x0200b54c
 

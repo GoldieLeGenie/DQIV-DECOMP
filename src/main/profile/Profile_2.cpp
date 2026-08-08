@@ -36,7 +36,7 @@ THUMB int profile::Profile::collectDATA(int bookNo, int saveType)
     collectDATA_PLAYER();
     collectDATA_MONSTER();
     collectDATA_ENVOY();
-    func_02030eb0(this);
+    calcCheckSum();
     return 1;
 }
 

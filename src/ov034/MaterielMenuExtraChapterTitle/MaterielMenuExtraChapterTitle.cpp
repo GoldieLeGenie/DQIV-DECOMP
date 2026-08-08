@@ -3,6 +3,10 @@
 #include "main/status/StoryStatus.hpp"
 #include "main/global/Global.hpp"
 
+extern int data_020c7678[];         /* object fade black */
+extern "C" void func_ov016_0216b020(void);
+extern "C" int  func_0200bef8(void*);          /* IsFadeEnd(FadeObj*) */
+
 THUMB void MaterielMenuExtraChapterTitle::menuSetup()
 {
     if (m_chapter_end == 1) {

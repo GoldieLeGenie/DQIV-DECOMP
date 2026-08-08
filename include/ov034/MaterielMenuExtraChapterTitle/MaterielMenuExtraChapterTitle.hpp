@@ -4,7 +4,7 @@
 #include "main/cmn/GameManager.hpp"
 #include "main/cmn/PlayerManager.hpp"
 #include "main/global/Global.hpp"
-#include "ov036/MaterielMenuExtraChangeHostage/MaterielMenuExtraChangeHostage.hpp"
+#include "main/menu/MenuBase.hpp"
 
 struct MaterielMenuWindowManager {   
     enum MATERIEL_MENU_WINDOW {
@@ -56,7 +56,7 @@ struct MaterielMenuWindowManager {
     int editMessageForScript_;         /* 0x2C */
 };
 
-struct MaterielMenuExtraChapterTitle : MenuBase 
+struct MaterielMenuExtraChapterTitle : menu::MenuBase
 {                                       
     int m_fade;
     int m_mode;

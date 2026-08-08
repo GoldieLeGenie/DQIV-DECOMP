@@ -57,7 +57,7 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
     switch (hostageStatus_) {
     case HOSTAGE_ISCHANGE:
         if (func_0205241c(&data_020ed1bc) != 0) {
-            if (data_020ed1bc.stat_ == MenuBase::MENUBASE_STAT_OK) {
+            if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
                 func_02052408(&data_020ed1bc);
                 func_020259a8(&data_020ed1bc);
                 func_02025a1c(&data_020ed1bc, 0x1A049);
@@ -65,7 +65,7 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
                 hostageStatus_ = HOSTAGE_SELECT;
                 break;
             }
-            if (data_020ed1bc.stat_ == MenuBase::MENUBASE_STAT_CANCEL) {
+            if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_CANCEL) {
                 hostageStatus_ = HOSTAGE_END;
                 func_02052408(&data_020ed1bc);
             }

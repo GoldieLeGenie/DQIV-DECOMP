@@ -2,6 +2,8 @@
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 
+namespace encount {
+
 struct Encount{
     enum BattleMode {
         Normal=0,
@@ -17,3 +19,5 @@ struct Encount{
     int enable_;
     int brewCount_;
 };
+
+}  // namespace encount

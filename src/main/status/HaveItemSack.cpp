@@ -104,7 +104,6 @@ THUMB void status::HaveItemSack::sortOutSack(status::HaveItemSack::SortType type
             rank++;
         } while (rank < this->itemMax_);
     }
-
     int j = 0;
     if (this->itemMax_ > 0) {
         status::ItemData* sp = sp10;
@@ -116,7 +115,14 @@ THUMB void status::HaveItemSack::sortOutSack(status::HaveItemSack::SortType type
             j++;
         } while (j < this->itemMax_);
     }
+}
 
+THUMB void status::HaveItemSack::sortOutItem(status::HaveItem *haveItem)
+{
+    for (int i = 0; i < haveItem->getMaxCount(); i++)
+    {
+        sortOutItemOne(haveItem);
+    }
 }
 
 THUMB void status::HaveItemSack::sortOutItemOne(status::HaveItem *haveItem)
@@ -135,10 +141,3 @@ THUMB void status::HaveItemSack::sortOutItemOne(status::HaveItem *haveItem)
     }
 }
 
-THUMB void status::HaveItemSack::sortOutItem(status::HaveItem *haveItem)
-{
-    for (int i = 0; i < haveItem->getMaxCount(); i++)
-    {
-        sortOutItemOne(haveItem);
-    }
-}

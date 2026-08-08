@@ -2,7 +2,7 @@
 #include "globaldefs.h"
 #include "GameInfo.hpp"
 #include "main/dss/DssUtils.hpp"
-#include "main/FLDObject/FLDObject.hpp"
+#include "main/fld/FLDObject.hpp"
 
 namespace cmn{
     struct CommonEffectLocation
@@ -28,7 +28,7 @@ namespace cmn{
 struct BattleStage {
     dss::Fx32Vector3 m_rgb_rate;   // 0x00
     char             _pad0c[0x4c]; // 0x0c
-    FLDObject        m_fld;        // 0x58
+    fld::FLDObject        m_fld;        // 0x58
 };
 
 struct TownStageManager;
@@ -42,7 +42,7 @@ extern "C"
     TownStageManager* func_ov000_02139668(void);                   // TownStageManager::getSingleton
     void func_ov000_02139f1c(TownStageManager*, dss::Fx32Vector3*, int); // SetRGBRate
     BattleStage* func_ov003_0212dfe8(void);                        // BattleStage::getSingleton
-    void func_02046f74(FLDObject*, dss::VecFx32*, int);    // FLDObject::SetRGBRate
+    void func_02046f74(fld::FLDObject*, dss::VecFx32*, int);    // fld::FLDObject::SetRGBRate
     int func_0203ea64(cmn::CommonEffectLocation*,int index);
     int func_0203eb24(cmn::CommonEffectLocation*);
 }
