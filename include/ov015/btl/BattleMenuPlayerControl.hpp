@@ -21,6 +21,7 @@ namespace btl {
         int conditionChange_[4];
         short targetMonsterGroup_[4];
         short magicPosition_[26];
+        BattleMenuPlayerControl* getSingleton();
         int getPlayerItemId();
         void clear();
         void allClear();
@@ -36,7 +37,12 @@ namespace btl {
         bool flashMP(int memberNum);
         bool flashHPColor(int index);
         int isFlashHPColor(int index, status::HaveStatusInfo::DiffStatus timing);
-        bool flashCondition(int memberNum);
+        int flashCondition(int memberNum);
+        int isFlashCondition(status::HaveStatusInfo* info, status::HaveStatusInfo::MenuStatusChange menuStatus);
+        int getTargetGroup();
+        void setTargetGroup(int monsterNum);
+        void setMagicPosition(int position);
+        int getMagicPosition();
     };
 }
 

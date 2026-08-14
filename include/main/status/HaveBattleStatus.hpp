@@ -78,7 +78,7 @@ namespace status
         int tarotActionIndex_;
         unsigned char brains_;
         unsigned char group_[6];
-        char crossFire_;
+        unsigned char crossFire_;
         int crossFireTarget_;
         unsigned char multi_;
         char multiCount_;

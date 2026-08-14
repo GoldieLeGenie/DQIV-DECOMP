@@ -3,7 +3,7 @@
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/BasePartyStatus.hpp"
 #include "ov003/status/MonsterParty.hpp"
-
+#include "ov015/btl/BattleSelectTarget.hpp"
 
 // status::BaseActionData status::BaseActionData_; //data_020d07d0
 int status::BaseAction::tsukonFlag_;
@@ -1393,18 +1393,18 @@ THUMB status::CharacterStatus* status::BaseAction::checkTargetSpecialSelect(
     if (UseAction::isSpecialSelectTarget(actionIndex_) != 0) {
 
         if (target->characterType_ == PLAYER) {
-            func_ov015_021721cc(BaseActionData_.useActionParam_);
+            btl::BattleSelectTarget::setTargetSpecial(BaseActionData_.useActionParam_);
             playerEffectValue_ = originalEffectValue_ = BaseActionData_.useActionParam_->damage_;
         }
         if (target->characterType_ == MONSTER) {
-            func_ov015_021721cc(BaseActionData_.useActionParam_);
+            btl::BattleSelectTarget::setTargetSpecial(BaseActionData_.useActionParam_);
             monsterEffectValue_ = originalEffectValue_ = BaseActionData_.useActionParam_->damage_;
         }
         return BaseActionData_.useActionParam_->targetCharacterStatus_[0];
     }
 
     if (UseAction::isCrossFire(actionIndex_) != 0) {
-        func_ov015_02172784(BaseActionData_.useActionParam_);
+        btl::BattleSelectTarget::setTargetCrossFire(BaseActionData_.useActionParam_);
         return BaseActionData_.useActionParam_->targetCharacterStatus_[0];
     }
 

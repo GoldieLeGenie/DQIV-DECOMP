@@ -230,7 +230,7 @@ THUMB void status::HaveBattleStatus::setupPlayer()
 
 THUMB void status::HaveBattleStatus::setupMonster() {    
     this->brains_ = initData_.monsterData_[this->index_].integer;        
-    this->multi_ = initData_.monsterData_[this->index_].times;           
+    this->multi_ = (char)initData_.monsterData_[this->index_].times;           
     this->multiCount_ = 0;                              
     this->multiCount2_ = 0;
     

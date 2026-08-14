@@ -15,15 +15,21 @@ const CondMessageTable CONDITION_MESSAGE_TABLE = { {
     0xA0000017, 0xA0000016, 0xA0000015,
     0,
 } };
+btl::BattleMenuPlayerControl gBattleMenuPlayerControl;   // = data_ov015_0217acd4
 
 const CondCheckTable CONDITION_STATUS_TABLE = { { 1, 0, 5, 3, 2, 4 } };
-
-
 
 const int AUTO_COMMAND_NAME_TABLE[6] = {
     0x90000001, 0x90000002, 0x90000005,
     0x90000003, 0x90000004, 0x90000006,
 };
+
+
+THUMB btl::BattleMenuPlayerControl * btl::BattleMenuPlayerControl::getSingleton()
+{
+  return &gBattleMenuPlayerControl;
+}
+
 
 THUMB int btl::BattleMenuPlayerControl::getPlayerItemId()   
 {
@@ -340,7 +346,7 @@ THUMB bool btl::BattleMenuPlayerControl::flashStatus(int memberNum)
     if (flashMP(memberNum) != 0) {
         result = true;
     }
-    if (func_ov015_021706e4(this,memberNum) != 0) {
+    if (flashCondition(memberNum) != 0) {
         result = true;
     }
     if (flashHPColor(memberNum) != 0) {
@@ -432,3 +438,123 @@ THUMB int btl::BattleMenuPlayerControl::isFlashHPColor(int index, status::HaveSt
 
 
 
+THUMB int btl::BattleMenuPlayerControl::flashCondition(int memberNum)
+{
+    int* flag;          
+    int* msg;           
+    int old;            
+    int found;          
+    int i;              
+
+    status::PlayerStatus* player = status::g_Party.getPlayerStatus(memberNum);
+    status::HaveStatusInfo* info = &player->haveStatusInfo_;
+
+    msg = memberCondition_;
+    old = msg[memberNum];
+
+    CondCheckTable statusTable = CONDITION_STATUS_TABLE;      
+    CondMessageTable messageTable = CONDITION_MESSAGE_TABLE;  
+
+    i = 0;
+    msg[memberNum] = 0xA0000013;
+    flag = conditionChange_;
+    flag[memberNum] = 0;
+    found = -1;
+
+    for (; messageTable.v[i] != 0; i++) {
+        if (isFlashCondition(info, (status::HaveStatusInfo::MenuStatusChange)statusTable.v[i]) != 0) {
+            conditionChange_[memberNum] = 1;        
+            memberCondition_[memberNum] = menu::MenuDataCommon::convMessage(info, messageTable.v[i]);
+            found = i;
+        }
+    }
+
+    if (memberHP_[memberNum] == 0) {
+        flag[memberNum] = 1;                       
+        msg[memberNum] = menu::MenuDataCommon::convMessage(info, 0xA0000014);
+        found = 6;
+    }
+
+    if (found < 3 && info->haveEquipment_.isEquipment(0x5A) != 0) {
+        flag[memberNum] = 1;
+        msg[memberNum] = menu::MenuDataCommon::convMessage(info, 0xA0000017);
+    }
+
+    if (old != msg[memberNum]) {
+        return 1;
+    }
+    return 0;
+}
+
+THUMB int btl::BattleMenuPlayerControl::isFlashCondition(status::HaveStatusInfo* info, status::HaveStatusInfo::MenuStatusChange menuStatus)
+{
+    status::CharacterStatus* chr = status::PartyStatus::getPlayerStatusForPlayerIndex(info->haveStatus_.playerIndex_);
+
+    if (chr->isMenuStatusFlag(status::HaveStatusInfo::BeforeAction) != 0) {
+        return info->isStatusChangeInBattle(status::HaveStatusInfo::BeforeAction, menuStatus);
+    }
+    if (chr->isMenuStatusFlag(status::HaveStatusInfo::ExecuteAction) != 0) {
+        return info->isStatusChangeInBattle(status::HaveStatusInfo::ExecuteAction, menuStatus);
+    }
+    if (chr->isMenuStatusFlag(status::HaveStatusInfo::ResultAction) != 0) {
+        return info->isStatusChangeInBattle(status::HaveStatusInfo::ResultAction, menuStatus);
+    }
+    if (chr->isMenuStatusFlag(status::HaveStatusInfo::SpecialAction) != 0) {
+        return info->isStatusChangeInBattle(status::HaveStatusInfo::SpecialAction, menuStatus);
+    }
+
+    switch (menuStatus) {
+    case status::HaveStatusInfo::Manusa:
+        return info->statusChange_.isEnable(status::StatusChange::StatusManusa);
+    case status::HaveStatusInfo::Mahoton: {
+        int enabled = info->statusChange_.isEnable(status::StatusChange::StatusMahoton);
+        if (enabled == 0) {
+            return enabled;
+        }
+        if (info->haveStatus_.getMpMax() != 0) {
+            return 1;
+        }
+        return 0;
+    }
+    case status::HaveStatusInfo::Sleep:
+        return info->statusChange_.isEnable(status::StatusChange::StatusSleep);
+    case status::HaveStatusInfo::Confusion:
+        return info->statusChange_.isEnable(status::StatusChange::StatusConfusion);
+    case status::HaveStatusInfo::Spazz:
+        return info->statusChange_.isEnable(status::StatusChange::StatusSpazz);
+    case status::HaveStatusInfo::Spazz|status::HaveStatusInfo::Mahoton:
+        return info->statusChange_.isEnable(status::StatusChange::StatusPoison);
+    }
+    return 0;
+}
+
+THUMB int btl::BattleMenuPlayerControl::getTargetGroup()
+{
+    
+    int count;
+    int group = targetMonsterGroup_[activeChara_];
+    count = g_monster.getCount();
+    for (int i = 0; i < count; i++) {
+        if (group == g_monster.getMonsterStatus(i)->characterGroup_   
+         && g_monster.getMonsterStatus(i)->isBattleEnable() != 0) {
+            return group;
+        }
+    }
+    return 0;
+}
+
+THUMB void btl::BattleMenuPlayerControl::setTargetGroup(int monsterNum)
+{
+  targetMonsterGroup_[activeChara_] = monsterNum;
+}
+
+
+THUMB void btl::BattleMenuPlayerControl::setMagicPosition(int position)
+{
+    magicPosition_[status::g_Party.getPlayerStatus(activeChara_)->haveStatusInfo_.haveStatus_.playerIndex_] = position;
+}
+
+THUMB int btl::BattleMenuPlayerControl::getMagicPosition()
+{
+    return magicPosition_[status::g_Party.getPlayerStatus(activeChara_)->haveStatusInfo_.haveStatus_.playerIndex_];
+}
