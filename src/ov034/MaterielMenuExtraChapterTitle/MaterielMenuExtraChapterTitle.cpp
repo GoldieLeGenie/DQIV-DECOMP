@@ -37,6 +37,7 @@ THUMB void MaterielMenuExtraChapterTitle::menuDraw()
         } else {
             func_020848a8();
             func_ov016_0216fe50(m_chapter, m_chapter_end);
+            
         }
 
         switch (m_fade) {
@@ -49,11 +50,11 @@ THUMB void MaterielMenuExtraChapterTitle::menuDraw()
         if (m_chapter_end == 1 && m_chapter != 0) {
             func_02035180();
             if (func_020352d0() != 0) {
-               return;
+                break;
             }
         } else if (m_draw_count < 0x78) {
             m_draw_count++;
-            return;
+            break;
         }
         m_fade = 2;
         func_0200bcc4(&g_Global, 0x2D);
@@ -76,6 +77,7 @@ THUMB void MaterielMenuExtraChapterTitle::menuDraw()
             if (func_0200bef8(data_020c7678) != 0) {
                 func_ov016_0216aca4();
                 func_ov016_0216b020();
+                
             }
             break;
         }

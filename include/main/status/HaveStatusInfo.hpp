@@ -255,7 +255,7 @@ namespace status{
         static void setGlbMeganteRing(bool flag);
         bool isGlbMeganteRing();
         static void setGlbMegazaruRing(bool flag);
-        bool isGlbMegazaruRing();
+        static bool isGlbMegazaruRing();
         void releaseMosyas();
         void execStartOfBattle();
         int isActionEnable();

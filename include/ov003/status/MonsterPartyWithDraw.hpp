@@ -8,7 +8,7 @@
 namespace status{
     struct MonsterPartyWithDraw : MonsterParty
     {
-        virtual int add(int monsterGroup, int monsterIndex, int flag);
+        virtual int add(int monsterGroup, int monsterIndex, int flag); 
         virtual void del(int ctrl);
     };
     

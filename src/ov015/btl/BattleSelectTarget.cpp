@@ -569,347 +569,149 @@ THUMB int btl::BattleSelectTarget::setTargetEnemy(status::CharacterStatus* chara
 }
 
 //no matching 
-THUMB int btl::BattleSelectTarget::setTargetOne(
-    btl::BattleSelectTargetParam* param)
+THUMB int btl::BattleSelectTarget::setTargetOne(btl::BattleSelectTargetParam* param)
 {
     int group;
     int index;
     status::CharacterStatus* target;
     status::CharacterStatus* actor;
-    int result;
-    int flag;
+    int result = 1;
+    int flag = 0;
     int i;
     int action;
-    CharacterType type;
+    CharacterType playertype;
 
-    result = 1;
-    flag = 0;
-
-    if (param->callTarget_ == BattleSelectTargetParam::StartTurn) {
-
+    switch (param->callTarget_) {
+    case BattleSelectTargetParam::StartTurn:
         if (param->targetCount_ > 0) {
             flag = result;
-
             for (i = 0; i < param->targetCount_; i++) {
-                if (param->getTargetCharacterStatus(i)
-                        ->haveStatusInfo_.isDeath() != 0) {
+                if (param->getTargetCharacterStatus(i)->haveStatusInfo_.isDeath() != 0) {
                     flag = 0;
                 }
             }
-
-            if (flag != 0 &&
-                status::UseAction::isTargetDeadOrAlive(
-                    param->actionIndex_) != 0) {
-
+            if (flag != 0 && status::UseAction::isTargetDeadOrAlive(param->actionIndex_) != 0) {
                 group = param->targetGroup_;
-
-                for (i = 0;
-                     i < param->getSourceCountForGroup(group);
-                     i++) {
-
-                    target = param->getSourceCharacterStatusForGroup(
-                        group, i);
-
+                for (i = 0; i < param->getSourceCountForGroup(group); i++) {
+                    target = param->getSourceCharacterStatusForGroup(group, i);
                     if (target == param->getTargetCharacterStatus(0)) {
                         param->targetIndex_ = i;
                     }
                 }
-
                 actor = param->actorCharacterStatus_;
-                type = actor->characterType_;
-                action = param->actionIndex_;
+                playertype = actor->characterType_;
 
-                if (type == PLAYER && action == 0x47) {
+                action = param->actionIndex_;
+                if (playertype == PLAYER && action == 0x47) {
                     if (actor->haveStatusInfo_.haveEquipment_.isEquipment(0x27) != 0 ||
                         actor->haveStatusInfo_.haveEquipment_.isEquipment(0x28) != 0) {
                         flag = 0;
                     }
                 }
             }
-            else if (flag == 0 &&
-                     status::UseAction::isTargetDeadOrAlive(
-                         param->actionIndex_) == 0) {
-
+            else if (flag == 0 && status::UseAction::isTargetDeadOrAlive(param->actionIndex_) == 0) {
                 group = param->targetGroup_;
-
-                for (i = 0;
-                     i < param->getSourceCharacterStatusForGroupDead(group, i);
-                     i++) {
-
-                    target = param->getSourceCharacterStatusForGroup2(
-                        group, i);
-
+                for (i = 0; i < param->getSourceCountForGroupDead(group); i++) {
+                    target = param->getSourceCharacterStatusForGroupDead(group, i);
                     if (target == param->getTargetCharacterStatus(0)) {
                         param->targetIndex_ = i;
                     }
                 }
             }
         }
+        break;
+    default:
+        break;
     }
 
     if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 2) {
         switch (status::excelParam.actionParam_[param->actionIndex_].god) {
-        case 3:
-            result = func_ov015_02172ae8(param);
-            break;
-
-        case 0xa:
-            result = func_ov015_021739f4(param);
-            break;
-
-        case 8:
-            result = func_ov015_02172cbc(param);
-            break;
-
-        case 0xf:
-            result = func_ov015_02173bec(param);
-            break;
-
-        case 0x44:
-            result = func_ov015_02172de0(param);
-            break;
-
-        case 0x45:
-            result = func_ov015_02173de4(param);
-            break;
-
-        case 0x13:
-            result = func_ov015_02174278(param);
-            break;
-
-        case 0x17:
-            result = func_ov015_02174498(param);
-            break;
-
-        case 0x1f:
-            result = func_ov015_02174690(param);
-            break;
-
-        case 0x2a:
-            result = func_ov015_02173fd0(param);
-            break;
-
-        case 0x21:
-            result = func_ov015_021732f4(param);
-            break;
-
-        case 0x22:
-            result = func_ov015_021734b4(param);
-            break;
-
-        case 0x23:
-            result = func_ov015_02173504(param);
-            break;
-
-        case 0x25:
-            result = func_ov015_0217377c(param);
-            break;
-
-        case 0x3c:
-            result = func_ov015_021739a8(param);
-            break;
-
-        case 0x3e:
-            result = func_ov015_02174c94(param);
-            break;
-
-        case 0x37:
-            result = func_ov015_02174cf0(param);
-            break;
-
-        case 0x36:
-            result = func_ov015_02174e3c(param);
-            break;
-
-        case 1:
-        case 0x40:
-            result = func_ov015_02172964(param);
-            break;
-
-        case 0x20:
-            result = func_ov015_02174888(param);
-            break;
-
-        case 0x2e:
-            result = func_ov015_02174d30(param);
-            break;
-
-        case 0x2c:
-            result = func_ov015_02174c4c(param);
-            break;
-
-        case 0x11:
-            result = func_ov015_02174fd0(param);
-            break;
-
-        case 0x34:
-            result = func_ov015_02174d78(param);
-            break;
-
-        case 0x31:
-            result = func_ov015_02174f14(param);
-            break;
-
-        case 0x42:
-            result = func_ov015_02172d04(param);
-            break;
-
-        case 0:
-            result = func_ov015_021750f8(param);
-            break;
-
-        default:
-            result = func_ov015_021763ac();
-            break;
+        case 3:    result = func_ov015_02172ae8(param); break;
+        case 0xa:  result = func_ov015_021739f4(param); break;
+        case 8:    result = func_ov015_02172cbc(param); break;
+        case 0xf:  result = func_ov015_02173bec(param); break;
+        case 0x44: result = func_ov015_02172de0(param); break;
+        case 0x45: result = func_ov015_02173de4(param); break;
+        case 0x13: result = func_ov015_02174278(param); break;
+        case 0x17: result = func_ov015_02174498(param); break;
+        case 0x1f: result = func_ov015_02174690(param); break;
+        case 0x2a: result = func_ov015_02173fd0(param); break;
+        case 0x21: result = func_ov015_021732f4(param); break;
+        case 0x22: result = func_ov015_021734b4(param); break;
+        case 0x23: result = func_ov015_02173504(param); break;
+        case 0x25: result = func_ov015_0217377c(param); break;
+        case 0x3c: result = func_ov015_021739a8(param); break;
+        case 0x3e: result = func_ov015_02174c94(param); break;
+        case 0x37: result = func_ov015_02174cf0(param); break;
+        case 0x36: result = func_ov015_02174e3c(param); break;
+        case 1:    // fall-through
+        case 0x40: result = func_ov015_02172964(param); break;
+        case 0x20: result = func_ov015_02174888(param); break;
+        case 0x2e: result = func_ov015_02174d30(param); break;
+        case 0x2c: result = func_ov015_02174c4c(param); break;
+        case 0x11: result = func_ov015_02174fd0(param); break;
+        case 0x34: result = func_ov015_02174d78(param); break;
+        case 0x31: result = func_ov015_02174f14(param); break;
+        case 0x42: result = func_ov015_02172d04(param); break;
+        case 0:    result = func_ov015_021750f8(param); break;
+        case 0x14: case 0x15:
+        default:   result = func_ov015_021763ac(); break;
         }
     }
-    else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 1 &&
-             flag == 0) {
-
+    else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 1 && flag == 0) {
         switch (status::excelParam.actionParam_[param->actionIndex_].human) {
-        case 3:
-            result = func_ov015_02172ae8(param);
-            break;
-
-        case 8:
-            result = func_ov015_02172cbc(param);
-            break;
-
-        case 0xe:
-            result = func_ov015_02172ce0(param);
-            break;
-
-        case 0x44:
-            result = func_ov015_02172de0(param);
-            break;
-
-        case 0x12:
-            result = func_ov015_02172f80(param);
-            break;
-
-        case 0x16:
-            result = func_ov015_02173124(param);
-            break;
-
-        case 0x1d:
-            result = func_ov015_021732d0(param);
-            break;
-
-        case 0x21:
-            result = func_ov015_021732f4(param);
-            break;
-
-        case 0x22:
-            result = func_ov015_021734b4(param);
-            break;
-
-        case 0x23:
-            result = func_ov015_02173504(param);
-            break;
-
-        case 0x25:
-            result = func_ov015_0217377c(param);
-            break;
-
-        case 0x3c:
-            result = func_ov015_021739a8(param);
-            break;
-
-        case 0x3e:
-            result = func_ov015_02174c94(param);
-            break;
-
-        case 0x37:
-            result = func_ov015_02174cf0(param);
-            break;
-
-        case 0x36:
-            result = func_ov015_02174e3c(param);
-            break;
-
-        case 1:
-        case 0x1e:
-        case 0x40:
-            result = func_ov015_02172964(param);
-            break;
-
-        case 0x2e:
-            result = func_ov015_02174d30(param);
-            break;
-
-        case 0x2c:
-            result = func_ov015_02174c4c(param);
-            break;
-
-        case 0x10:
-            result = func_ov015_02174bf4(param);
-            break;
-
-        case 0x34:
-            result = func_ov015_02174d78(param);
-            break;
-
-        case 0x31:
-            result = func_ov015_02174f14(param);
-            break;
-
-        case 0x42:
-            result = func_ov015_02172d04(param);
-            break;
-
-        case 0:
-            result = func_ov015_021750f8(param);
-            break;
-
-        default:
-            result = func_ov015_021763ac();
-            break;
+        case 3:    result = func_ov015_02172ae8(param); break;
+        case 8:    result = func_ov015_02172cbc(param); break;
+        case 0xe:  result = func_ov015_02172ce0(param); break;
+        case 0x44: result = func_ov015_02172de0(param); break;
+        case 0x12: result = func_ov015_02172f80(param); break;
+        case 0x16: result = func_ov015_02173124(param); break;
+        case 0x1d: result = func_ov015_021732d0(param); break;
+        case 0x21: result = func_ov015_021732f4(param); break;
+        case 0x22: result = func_ov015_021734b4(param); break;
+        case 0x23: result = func_ov015_02173504(param); break;
+        case 0x25: result = func_ov015_0217377c(param); break;
+        case 0x3c: result = func_ov015_021739a8(param); break;
+        case 0x3e: result = func_ov015_02174c94(param); break;
+        case 0x37: result = func_ov015_02174cf0(param); break;
+        case 0x36: result = func_ov015_02174e3c(param); break;
+        case 1:    // fall-through
+        case 0x1e: // fall-through
+        case 0x40: result = func_ov015_02172964(param); break;
+        case 0x2e: result = func_ov015_02174d30(param); break;
+        case 0x2c: result = func_ov015_02174c4c(param); break;
+        case 0x10: result = func_ov015_02174bf4(param); break;
+        case 0x34: result = func_ov015_02174d78(param); break;
+        case 0x31: result = func_ov015_02174f14(param); break;
+        case 0x42: result = func_ov015_02172d04(param); break;
+        case 0:    result = func_ov015_021750f8(param); break;
+        case 0x17:
+        default:   result = func_ov015_021763ac(); break;
         }
     }
-    else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 0 &&
-             flag == 0) {
-
+    else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 0 && flag == 0) {
         switch (status::excelParam.actionParam_[param->actionIndex_].fool) {
-        case 0x25:
-            result = func_ov015_0217377c(param);
-            break;
-
-        case 1:
-        case 0x1e:
-        case 0x40:
-        case 0x41:
-            result = func_ov015_021751e4(param);
-            break;
-
-        case 0x42:
-            result = func_ov015_02172d04(param);
-            break;
-
-        case 0:
-            result = func_ov015_021750f8(param);
-            break;
-
-        default:
-            result = func_ov015_02172964(param);
-            break;
+        case 0x25: result = func_ov015_0217377c(param); break;
+        case 1:    // fall-through
+        case 0x1e: // fall-through
+        case 0x40: // fall-through
+        case 0x41: result = func_ov015_021751e4(param); break;
+        case 0x42: result = func_ov015_02172d04(param); break;
+        case 0:    result = func_ov015_021750f8(param); break;
+        default:   result = func_ov015_02172964(param); break;
         }
     }
 
     if (result == 0) {
         param->actorCharacterStatus_->haveBattleStatus_.setActionDisable2nd();
-        param->actorCharacterStatus_->haveBattleStatus_.setActionSelect(
-            status::HaveBattleStatus::StartRound);
-
+        param->actorCharacterStatus_->haveBattleStatus_.setActionSelect(status::HaveBattleStatus::StartRound);
         return 0;
     }
 
     if (status::UseAction::isTargetDeadOrAlive(param->actionIndex_) != 0) {
-
         group = param->targetGroup_;
         index = param->targetIndex_;
-
         param->getSourceCountForGroup(group);
-
         if (param->targetCount_ == 1) {
             target = param->getSourceCharacterStatusForGroup(group, index);
             param->setTargetCharacterStatus(0, target);
@@ -917,21 +719,18 @@ THUMB int btl::BattleSelectTarget::setTargetOne(
         }
     }
     else {
-
         group = param->targetGroup_;
         index = param->targetIndex_;
-
-        param->getSourceCharacterStatusForGroupDead(group, index);
-
+        param->getSourceCountForGroupDead(group);
         if (param->targetCount_ == 1) {
-            target = param->getSourceCharacterStatusForGroup2(group, index);
+            target = param->getSourceCharacterStatusForGroupDead(group, index);
             param->setTargetCharacterStatus(0, target);
             param->targetCount_ = 1;
         }
     }
-
     return 1;
 }
+
 THUMB int btl::BattleSelectTarget::setTargetGroup(btl::BattleSelectTargetParam* param)
 {
     int result;

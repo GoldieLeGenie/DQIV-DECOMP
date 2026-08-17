@@ -79,7 +79,7 @@ THUMB status::CharacterStatus * btl::BattleSelectTargetParam::getSourceCharacter
     return 0;
 }                                                           
 
-THUMB int btl::BattleSelectTargetParam::getSourceCharacterStatusForGroupDead(int group,int index)
+THUMB int btl::BattleSelectTargetParam::getSourceCountForGroupDead(int group)
 {
     int count;
     int i;
@@ -95,7 +95,7 @@ THUMB int btl::BattleSelectTargetParam::getSourceCharacterStatusForGroupDead(int
     return count;
 }
 
-THUMB status::CharacterStatus * btl::BattleSelectTargetParam::getSourceCharacterStatusForGroup2(int group,int index)
+THUMB status::CharacterStatus * btl::BattleSelectTargetParam::getSourceCharacterStatusForGroupDead(int group,int index)
 {
     int count;
     int i;

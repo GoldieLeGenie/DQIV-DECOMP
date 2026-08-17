@@ -81,7 +81,17 @@ struct BattleMonsterDraw2 {
     int  spaceWidth_;                      // 
 };
 struct BattleActorManager2 {
-    char pad_[0x66B8];
+    enum EventType
+    {                                       // XREF: 
+        EventNone    = 0x0,
+        Velorinman   = 0x1,
+        EvilPriest   = 0x2,
+        DeathPissaro = 0x3,
+        End          = 0x4,
+    };
+    char pad_[0x6698];
+    int  eventType_;                         // 0x6698
+    char pad2_[0x66B8 - 0x669C];
     short deathLog_;                       // 0x66B8
 };
 struct BattleMonsterDrawParam {

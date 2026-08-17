@@ -120,7 +120,7 @@ namespace status
         static int getClampValue(int value, int min, int max);
         void setActionIndexForMonster();
         int getActionIndex(int index);
-        int getActionAnimation(int index);
+        int getActionAnimation();
         void setActionFailed(int index);
         bool isActionFailed();
         void setActionDisable(int index);

@@ -594,11 +594,10 @@ THUMB int status::HaveBattleStatus::getActionIndex(int index) {
     }
 }
 
-THUMB int status::HaveBattleStatus::getActionAnimation(int index)
+THUMB int status::HaveBattleStatus::getActionAnimation()
 {
-    index = this->index_; 
 
-    if (index >= 0xFA && index <= 0x103) {
+    if (this->index_ >= 0xFA && this->index_ <= 0x103) {
         if (this->actionIndex_ == 0x47) {
             return 0;
         }
@@ -608,22 +607,22 @@ THUMB int status::HaveBattleStatus::getActionAnimation(int index)
 
     switch (this->patternIndex_) {
         case 0:
-            result = initData_.monsterData_[index].animation1;
+            result = initData_.monsterData_[this->index_].animation1;
             break;
         case 1:
-            result = initData_.monsterData_[index].animation2;
+            result = initData_.monsterData_[this->index_].animation2;
             break;
         case 2:
-            result = initData_.monsterData_[index].animation3;
+            result = initData_.monsterData_[this->index_].animation3;
             break;
         case 3:
-            result = initData_.monsterData_[index].animation4;
+            result = initData_.monsterData_[this->index_].animation4;
             break;
         case 4:
-            result = initData_.monsterData_[index].animation5;
+            result = initData_.monsterData_[this->index_].animation5;
             break;
         case 5:
-            result = initData_.monsterData_[index].animation6;
+            result = initData_.monsterData_[this->index_].animation6;
             break;
         default:
             break;

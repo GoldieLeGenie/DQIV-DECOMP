@@ -19,14 +19,14 @@ namespace btl {
         int targetIndex_;
         CallTargetSelect callTarget_;
         BattleSelectTargetParam();                                   
-        ~BattleSelectTargetParam();                                                                                         //  c'est lui que mwcc émet sur chaque return)
+        ~BattleSelectTargetParam();                                                                                         
         void clear();
         void setSourceCharacterStatus(int index,status::CharacterStatus *characterStatus);
         status::CharacterStatus* getSourceCharacterStatus(int index);               
         int getSourceCountForGroup(int group);
         status::CharacterStatus* getSourceCharacterStatusForGroup(int group, int index);
-        int getSourceCharacterStatusForGroupDead(int group,int index);
-        status::CharacterStatus* getSourceCharacterStatusForGroup2(int group, int index);
+        int getSourceCountForGroupDead(int group);
+        status::CharacterStatus* getSourceCharacterStatusForGroupDead(int group, int index);
         void setTargetCharacterStatus(int index, status::CharacterStatus* target); 
         status::CharacterStatus* getTargetCharacterStatus(int index);
     };

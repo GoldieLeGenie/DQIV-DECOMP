@@ -1,8 +1,7 @@
-#include "main/PartTaskManager/PartTaskManager.hpp"
+#include "main/task/PartTaskManager.hpp"
 
 
-
-THUMB void PartTaskManager::run() {
+THUMB void task::PartTaskManager::run() {
     if (currentTask_) {
         currentTask_->execute();
     }
@@ -26,42 +25,42 @@ THUMB void PartTaskManager::run() {
 }
 
 
-THUMB void PartTaskManager::registerTask(int id, PartTask *task)
+THUMB void task::PartTaskManager::registerTask(int id, PartTask *task)
 {
   this->parts_[id] = task;
 }
 
-THUMB void PartTaskManager::setNextTask(int id)
+THUMB void task::PartTaskManager::setNextTask(int id)
 {
   this->nextTaskID_ = id;
   return;
 }
 
-THUMB int PartTaskManager::getCurrentTask()
+THUMB int task::PartTaskManager::getCurrentTask()
 {
   return this->currentTaskID_;
 }
 
 
-THUMB bool PartTaskManager::checkTask(int id) {
+THUMB bool task::PartTaskManager::checkTask(int id) {
     return this->currentTaskID_ == id;
 }
 
 
-THUMB void PartTaskManager::setNextTaskWithSleep(int id) {
+THUMB void task::PartTaskManager::setNextTaskWithSleep(int id) {
     sleepTaskID_ = currentTaskID_;
     setNextTask(id);
 }
 
 
-THUMB void PartTaskManager::wakeup() {
+THUMB void task::PartTaskManager::wakeup() {
     currentTaskID_ = sleepTaskID_;
     sleepTaskID_ = -1;
     currentTask_ = parts_[currentTaskID_];
 }
 
 
-THUMB void PartTaskManager::initialize() {
+THUMB void task::PartTaskManager::initialize() {
     this->currentTask_ = 0;
     this->currentTaskID_ = 0;
     this->previousTaskID_ = -1;

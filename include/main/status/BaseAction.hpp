@@ -8,12 +8,13 @@
 
 namespace status{
     struct BaseAction {
+        static int multiFlag_;    //data_020d07e4
         static int kaishinFlag_;   // data_020d07f8
         static int tsukonFlag_;    // data_020d07f4
         static int tsukon2Flag_;   // data_020d07f0
         static int doubleFlag_;    // data_020d080c
-        static int splitFlag_;  // data_020d0808
-        static int joukFlag_;  //data_020d0804
+        static int splitFlag_;     // data_020d0808
+        static int joukFlag_;      //data_020d0804
         int actionIndex_;
         CharacterType targetType_;
         int effectValue_;
