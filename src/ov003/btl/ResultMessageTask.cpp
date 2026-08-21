@@ -1,6 +1,7 @@
 #include "ov003/btl/ResultMessageTask.hpp"
 #include "main/task/PartTaskManager.hpp"
 #include "ov003/btl/SpecialMessageTask.hpp"
+#include "ov003/btl/BattleActorManager2.hpp"
 ARM void btl::ResultMessageTask::setup(status::UseActionParam *useActionParam)
 {
   useActionParam_ = useActionParam;
@@ -39,7 +40,7 @@ ARM void btl::ResultMessageTask::initialize()
 
     func_ov003_0212a3c4(useActionParam_, currentTarget_);
 
-    if (func_ov003_02126ee8()->eventType_ != BattleActorManager2::Velorinman) {
+    if (btl::BattleActorManager2::getSingleton()->eventType_ != BattleActorManager2::Velorinman) {
         message_ = func_ov003_0212bfc8(useActionParam_, currentTarget_);
     }
     else if (useActionParam_->actorCharacterStatus_->characterType_ == PLAYER &&

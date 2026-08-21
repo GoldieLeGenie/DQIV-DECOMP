@@ -1,4 +1,6 @@
 #include "main/status/BaseActionStatus.hpp"
+#include "ov003/btl/BattleActorManager2.hpp"
+#include "ov003/status/MonsterPartyWithDraw.hpp"
 #include "main/status/BaseActionMessage.hpp"
 #include "main/status/UseAction.hpp"
 #include "main/status/ActionExec.hpp"
@@ -223,11 +225,11 @@ THUMB int status::BaseActionStatus::actionTypeRebirth(status::CharacterStatus *t
                 {
                     if (g_monster.getMonsterStatus(i) == (status::MonsterStatus*)target)
                     {
-                        log = func_ov003_02126ee8()->deathLog_;
+                        log = btl::BattleActorManager2::getSingleton()->deathLog_;
                         if (log & (1 << g_monster.getCtrlId(i)))
                         {
                             int val = log ^ (1 << g_monster.getCtrlId(i));
-                            func_ov003_02126ee8()->deathLog_ = val;
+                            btl::BattleActorManager2::getSingleton()->deathLog_ = val;
                         }
                     }
                 }
@@ -255,11 +257,11 @@ THUMB int status::BaseActionStatus::actionTypeRebirth(status::CharacterStatus *t
             {
                 if (g_monster.getMonsterStatus(i) == (status::MonsterStatus*)target)
                 {
-                    log = func_ov003_02126ee8()->deathLog_;
+                    log = btl::BattleActorManager2::getSingleton()->deathLog_;
                     if (log & (1 << g_monster.getCtrlId(i)))
                     {
                         int val = log ^ (1 << g_monster.getCtrlId(i));
-                        func_ov003_02126ee8()->deathLog_ = val;
+                        btl::BattleActorManager2::getSingleton()->deathLog_ = val;
                     }
                 }
             }
@@ -279,11 +281,11 @@ THUMB int status::BaseActionStatus::actionTypeRebirth(status::CharacterStatus *t
         pos.vx = spacePos;
 
         BattleMonsterDraw2* draw = func_ov000_02121d04();
-        BattleMonsterDrawEntry* m = &draw->monsters_[idx];
+        BattleMonster* m = &draw->monster_[idx];
         func_0205b2f0(m, pos);
 
-        func_ov000_02121d04()->monsters_[idx].screenPosition_ = spacePos - spaceWidth / 2;
-        func_ov000_02121d04()->monsters_[idx].screenWidth_    = spaceWidth;
+        func_ov000_02121d04()->monster_[idx].screenPosition_ = spacePos - spaceWidth / 2;
+        func_ov000_02121d04()->monster_[idx].screenWidth_    = spaceWidth;
     }
 
     return ret;
@@ -793,9 +795,9 @@ THUMB int status::BaseActionStatus::actionTypeNone(status::CharacterStatus *acto
                 pos.vx = spacePos;               
                 int idx = target->haveStatusInfo_.drawCtrlId_;
                 BattleMonsterDraw2* draw = func_ov000_02121d04();          
-                func_0205b2f0(&draw->monsters_[idx], pos);
-                func_ov000_02121d04()->monsters_[idx].screenPosition_ = spacePos - spaceWidth / 2;
-                func_ov000_02121d04()->monsters_[idx].screenWidth_ = spaceWidth;
+                func_0205b2f0(&draw->monster_[idx], pos);
+                func_ov000_02121d04()->monster_[idx].screenPosition_ = spacePos - spaceWidth / 2;
+                func_ov000_02121d04()->monster_[idx].screenWidth_ = spaceWidth;
             }
         }
     }

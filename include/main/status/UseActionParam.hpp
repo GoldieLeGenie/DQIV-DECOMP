@@ -23,6 +23,7 @@ namespace status{
         UseActionMessage message_[18];
         int result_;
         int exec_;
+        UseActionParam() { clear(); };
         void clear();
         void clearMessage();
     };

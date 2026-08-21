@@ -253,7 +253,7 @@ namespace status{
         void setAllKaishin(bool flag);
         bool isAllKaishin();
         static void setGlbMeganteRing(bool flag);
-        bool isGlbMeganteRing();
+        static bool isGlbMeganteRing();
         static void setGlbMegazaruRing(bool flag);
         static bool isGlbMegazaruRing();
         void releaseMosyas();

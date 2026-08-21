@@ -32,7 +32,7 @@ namespace btl {
         ~BattleActorExec();
         void setup(status::UseActionParam* param);
         void execute();
-        bool isEnd();
+        int isEnd();
         bool isActionEnd();
     };
 

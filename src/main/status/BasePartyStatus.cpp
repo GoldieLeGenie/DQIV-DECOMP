@@ -7,6 +7,8 @@
 #include "main/status/UseAction.hpp"
 #include "main/status/UseActionParam.hpp"
 
+extern status::PlayerStatus dummyPlayer_;
+
 // extern int originalPlayerFlag_[26];
 
 
@@ -208,7 +210,7 @@ THUMB void status::PartyStatus::initialize(void) {
         p->setup(i);
         p->arrayIndex_ = i;
     }
-    data_020c7e48.setup(1);
+    dummyPlayer_.setup(1);
 }
 
 THUMB void status::PartyStatus::add(int playerIndex)

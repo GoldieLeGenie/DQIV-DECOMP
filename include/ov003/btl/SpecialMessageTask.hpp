@@ -28,7 +28,9 @@ struct BattleEffectUnit {
 
 struct BattleEffectManager {
     char _pad0[0xC130];            // 
-    BattleEffectUnit unit_[1];     // 
+    BattleEffectUnit unit_[8];     // 
+    int wait_;
+
 };
 
 

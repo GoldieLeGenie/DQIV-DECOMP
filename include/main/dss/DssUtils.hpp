@@ -1,8 +1,9 @@
 #pragma once
 #include <globaldefs.h>
 
-
+#pragma always_inline on
 namespace dss{
+    
     typedef signed int fx32;
     struct VecFx32 {
         fx32 x;
@@ -17,6 +18,14 @@ namespace dss{
         Fx32& operator=(fx32 v);
         Fx32 operator-(const Fx32& o);
     };
+
+    template <typename T>
+    void swap(T* a, T* b)
+    {
+        T temp = *b;
+        *b = *a;
+        *a = temp;
+    }
 
     template <typename T>
     struct BitFlag

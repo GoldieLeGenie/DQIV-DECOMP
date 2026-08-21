@@ -7,7 +7,6 @@
 namespace btl {
     struct EndTask2 : task::PartTask
     {
-        status::UseActionParam *useActionParam_;
         virtual void initialize();
         virtual void terminate();
         virtual void execute();

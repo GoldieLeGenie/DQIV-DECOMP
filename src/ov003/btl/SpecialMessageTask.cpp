@@ -1,5 +1,6 @@
 #include "ov003/btl/SpecialMessageTask.hpp"
 #include "main/status/BaseAction.hpp"
+#include "ov003/btl/BattleActorManager2.hpp"
 
 
 
@@ -83,7 +84,7 @@ ARM void btl::SpecialMessageTask::execute()
 
     counter_++;
     if (counter_ == 4) {
-        if (func_ov003_02126ee8()->eventType_ != BattleActorManager2::Velorinman ||
+        if (btl::BattleActorManager2::getSingleton()->eventType_ != BattleActorManager2::Velorinman ||
             (id = useActionParam_->targetCharacterStatus_[0]
                       ->haveStatusInfo_.drawCtrlId_,
              id == func_ov003_021249e4())) {

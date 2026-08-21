@@ -1,6 +1,7 @@
 #include "main/encount/EncountParam.hpp"
 #include "main/status/ExcelParam.hpp"
 #include "main/dss/Random.hpp"
+using namespace btl;
 
 
 THUMB encount::EncountParam::EncountParam()
@@ -106,7 +107,7 @@ THUMB int encount::EncountParam::getFormationId()
   return this->formationId_;
 }
 
-THUMB FirstAttack  encount::EncountParam::getFirstAttack()
+THUMB btl::FirstAttack  encount::EncountParam::getFirstAttack()
 {
   return this->firstAttack_;
 }

@@ -160,6 +160,14 @@ enum CharacterType {
     MONSTER = 0x1,
 };
 
+namespace btl {
+    enum FirstAttack {
+        FirstAttackNone = 0x0,
+        FirstAttackPlayer = 0x1,
+        FirstAttackMonster = 0x2,
+    };
+}
+
 enum EncountType {
     TYPE_NONE=-1,
     TYPE_A=0,
@@ -178,11 +186,7 @@ enum EncountType {
     TYPE_N=13
 };
 
-enum FirstAttack {
-    FirstAttackNone = 0x0,
-    FirstAttackPlayer = 0x1,
-    FirstAttackMonster = 0x2,
-};
+
 
 enum ItemType
 {

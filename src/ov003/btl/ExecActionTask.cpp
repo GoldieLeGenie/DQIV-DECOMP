@@ -1,4 +1,5 @@
 #include "ov003/btl/ExecActionTask.hpp"
+#include "ov003/btl/BattleActorManager2.hpp"
 
 int actionAnimation;//data_ov003_0216a97c
 ARM void btl::ExecActionTask::initialize()
@@ -32,7 +33,7 @@ ARM void btl::ExecActionTask::initialize()
     }
 
     setupTorunekoAction();
-    func_ov003_021289d8(func_ov003_02126ee8(), useActionParam_);
+    btl::BattleActorManager2::getSingleton()->setMegazaruRing(useActionParam_);
 
     useActionParam_->actorCharacterStatus_->printAction();
     btl::BattleSelectTarget::printTarget(useActionParam_);

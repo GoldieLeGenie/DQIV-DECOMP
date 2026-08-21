@@ -1,4 +1,6 @@
 #include "ov003/btl/AfterMessageTask.hpp"
+#include "ov003/btl/BattleActorManager2.hpp"
+#include "ov003/status/MonsterPartyWithDraw.hpp"
 
 
 
@@ -35,19 +37,19 @@ ARM void btl::AfterMessageTask::initialize()
         return;
     }
 
-    if (func_ov003_02126ee8()->eventType_ == 1) {
+    if (btl::BattleActorManager2::getSingleton()->eventType_ == 1) {
         func_0208988c();
         int i;
         int drawCtrlId = useActionParam_->targetCharacterStatus_[0]->haveStatusInfo_.drawCtrlId_;
         if (useActionParam_->actorCharacterStatus_->characterType_ == 0) {
             for (i = 0; i < 4; i++) {
                 if (i != func_ov003_021249e4()) {
-                    func_ov003_02121970(&func_ov003_02121d04()->monsters_[i], 0, 0x1f);
+                    func_ov003_02121970(&func_ov003_02121d04()->monster_[i], 0, 0x1f);
                 }
             }
             if (drawCtrlId != func_ov003_021249e4()) {
                 int real = func_ov003_021249e4();
-                func_ov003_02121970(&func_ov003_02121d04()->monsters_[real], 0, 0x1b);
+                func_ov003_02121970(&func_ov003_02121d04()->monster_[real], 0, 0x1b);
             }
         }
     }
@@ -62,9 +64,9 @@ ARM void btl::AfterMessageTask::initialize()
             int drawCtrlId = actor->haveStatusInfo_.drawCtrlId_;
             if (actor->haveStatusInfo_.addDamage_ > 0) {
                 if (actor->haveStatusInfo_.isDeath()) {
-                    func_ov003_02121970(&func_ov003_02121d04()->monsters_[drawCtrlId], 0, 0x22);
+                    func_ov003_02121970(&func_ov003_02121d04()->monster_[drawCtrlId], 0, 0x22);
                 } else {
-                    func_ov003_02121970(&func_ov003_02121d04()->monsters_[drawCtrlId], 0, 0x23);
+                    func_ov003_02121970(&func_ov003_02121d04()->monster_[drawCtrlId], 0, 0x23);
                 }
                 func_02026cc8(0x192, 0);
             }

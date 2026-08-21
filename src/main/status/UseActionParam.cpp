@@ -1,5 +1,6 @@
 #include "main/status/UseActionParam.hpp"
 
+
 THUMB void status::UseActionParam::clear()
 {
     this->actorCharacterStatus_ = 0;

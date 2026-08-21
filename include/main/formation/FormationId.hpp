@@ -2,7 +2,7 @@
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 #include "main/param/Param.hpp"
-#include "main/status/excelParam.hpp"
+#include "main/status/ExcelParam.hpp"
 #include "main/dss/Random.hpp"
 
 namespace formation {
@@ -56,7 +56,6 @@ extern "C"
     int func_0200b228(formation::FormationId*, EncountType type);   // getMonsterCountF_J
     int func_0200b250(formation::FormationId*);                     // getMonsterCountK_L
     int func_0200b254(formation::FormationId*);                     // getMonsterCountM_N
-    int func_02008ea0(int value, int min, int max);
 
 }
 

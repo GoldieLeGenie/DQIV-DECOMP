@@ -1,5 +1,6 @@
 #include "ov003/status/MonsterParty.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
+#include "main/status/BaseActionStatus.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/dss/Random.hpp"

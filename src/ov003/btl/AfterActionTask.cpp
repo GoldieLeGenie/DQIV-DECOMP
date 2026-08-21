@@ -1,4 +1,5 @@
 #include "ov003/btl/AfterActionTask.hpp"
+#include "ov003/status/MonsterPartyWithDraw.hpp"
 
 ARM void btl::AfterActionTask::cleanup()
 {
@@ -63,7 +64,7 @@ ARM void btl::AfterActionTask::execute()
 
     int drawCtrlId = useActionParam_->actorCharacterStatus_->haveStatusInfo_.drawCtrlId_;
     if (useActionParam_->actorCharacterStatus_->haveStatusInfo_.addDamage_ > 0) {
-        func_ov003_02121970(&func_ov003_02121d04()->monsters_[drawCtrlId], 0, 0x23);
+        func_ov003_02121970(&func_ov003_02121d04()->monster_[drawCtrlId], 0, 0x23);
     }
 }
 

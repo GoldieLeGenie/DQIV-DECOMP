@@ -2,7 +2,7 @@
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 #include "main/dss/Random.hpp"
-#include "main/status/excelParam.hpp"
+#include "main/status/ExcelParam.hpp"
 struct SpecialParty
 {
     unsigned short id_;

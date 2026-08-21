@@ -1980,7 +1980,7 @@ from:0x02127bdc kind:thumb_call_arm to:0x02079d98 module:main
 from:0x02127be8 kind:load to:0x0213ab70 module:overlay(3)
 from:0x02127bec kind:load to:0x020c7b1c module:main
 from:0x02127bf0 kind:load to:0x0216639c module:overlay(3)
-from:0x02127bf4 kind:load to:0x020c7e50 module:main
+from:0x02127bf4 kind:load to:0x020c7e48 add:0x8 module:main
 from:0x02127bf8 kind:load to:0x020ec664 add:0x500 module:main
 from:0x02127c04 kind:thumb_call_arm to:0x02079d94 module:main
 from:0x02127c2a kind:thumb_call to:0x0212e37c module:overlay(3)

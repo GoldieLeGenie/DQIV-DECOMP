@@ -7358,8 +7358,7 @@ data_020c7a9c kind:bss addr:0x020c7a9c
 data_020c7aa8 kind:bss addr:0x020c7aa8
 originalPlayerFlag_ kind:bss addr:0x020c7ab4
 _ZN6status7g_PartyE kind:bss(size=0x32c) addr:0x020c7b1c
-data_020c7e48 kind:bss addr:0x020c7e48
-data_020c7e50 kind:bss addr:0x020c7e50
+dummyPlayer_ kind:bss(size=0x50c) addr:0x020c7e48
 originalPlayer_ kind:bss addr:0x020c8354
 data_020c8860 kind:bss addr:0x020c8860
 data_020d0000 kind:bss addr:0x020d0000

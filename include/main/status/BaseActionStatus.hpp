@@ -68,32 +68,8 @@ namespace status {
 extern status::BaseActionStatus BaseActionStatus_;
 extern status::BaseActionValue BaseActionValue_;   // data_020eeccc
 
-struct BattleMonsterDrawEntry {
-    char pad_[0xD40];
-    int  screenPosition_;                 // 0xD40
-    int  screenWidth_;                    // 0xD44
-    char pad2_[0x244];
-};
-struct BattleMonsterDraw2 {
-    BattleMonsterDrawEntry monsters_[12];  // 
-    char pad_[0x1B8];
-    int  spacePos_;                        // 
-    int  spaceWidth_;                      // 
-};
-struct BattleActorManager2 {
-    enum EventType
-    {                                       // XREF: 
-        EventNone    = 0x0,
-        Velorinman   = 0x1,
-        EvilPriest   = 0x2,
-        DeathPissaro = 0x3,
-        End          = 0x4,
-    };
-    char pad_[0x6698];
-    int  eventType_;                         // 0x6698
-    char pad2_[0x66B8 - 0x669C];
-    short deathLog_;                       // 0x66B8
-};
+struct BattleMonster;
+struct BattleMonsterDraw2;
 struct BattleMonsterDrawParam {
     int unk_00;        // +0
     int unk_04;        // +4
@@ -104,7 +80,6 @@ struct BattleMonsterDrawParam {
 };
 extern BattleMonsterDrawParam data_020beb98;
 
-extern "C" BattleActorManager2* func_ov003_02126ee8(void);
 extern "C" void func_0205b2f0(void* obj, dss::Vector3int pos);   // DSSACharacter::setPositionInt
 extern "C" void func_0200ad08(encount::Encount*);         // self = func_0200a6c8()
 extern "C" void func_0200ad18(encount::Encount*, int);    // "disableEncount" (a3/cf)

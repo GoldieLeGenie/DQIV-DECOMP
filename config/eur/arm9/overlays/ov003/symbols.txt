@@ -313,63 +313,63 @@ func_ov003_021267a8 kind:function(thumb,size=0x130) addr:0x021267a8
 func_ov003_021268d8 kind:function(thumb,size=0x2) addr:0x021268d8
 func_ov003_021268dc kind:function(thumb,size=0x2) addr:0x021268dc
 func_ov003_021268e0 kind:function(thumb,size=0x150) addr:0x021268e0
-func_ov003_02126a30 kind:function(thumb,size=0x58) addr:0x02126a30
-func_ov003_02126a88 kind:function(thumb,size=0x34) addr:0x02126a88
-func_ov003_02126abc kind:function(thumb,size=0x68) addr:0x02126abc
-func_ov003_02126b24 kind:function(thumb,size=0x2c) addr:0x02126b24
-func_ov003_02126b50 kind:function(thumb,size=0x48) addr:0x02126b50
-func_ov003_02126b98 kind:function(thumb,size=0x48) addr:0x02126b98
-func_ov003_02126be0 kind:function(thumb,size=0x4c) addr:0x02126be0
-func_ov003_02126c2c kind:function(thumb,size=0x4c) addr:0x02126c2c
-func_ov003_02126c78 kind:function(thumb,size=0x60) addr:0x02126c78
-func_ov003_02126cd8 kind:function(thumb,size=0x60) addr:0x02126cd8
-func_ov003_02126d38 kind:function(thumb,size=0x28) addr:0x02126d38
-func_ov003_02126d60 kind:function(thumb,size=0x30) addr:0x02126d60
-func_ov003_02126d90 kind:function(thumb,size=0x48) addr:0x02126d90
-func_ov003_02126dd8 kind:function(thumb,size=0x24) addr:0x02126dd8
-func_ov003_02126dfc kind:function(thumb,size=0x58) addr:0x02126dfc
-func_ov003_02126e54 kind:function(thumb,size=0x58) addr:0x02126e54
-func_ov003_02126eac kind:function(thumb,size=0x3c) addr:0x02126eac
-func_ov003_02126ee8 kind:function(thumb,size=0x54) addr:0x02126ee8
-func_ov003_02126f3c kind:function(thumb,size=0x3c) addr:0x02126f3c
-func_ov003_02126f78 kind:function(thumb,size=0x44) addr:0x02126f78
-func_ov003_02126fbc kind:function(thumb,size=0x128) addr:0x02126fbc
-func_ov003_021270e4 kind:function(thumb,size=0x158) addr:0x021270e4
-func_ov003_0212723c kind:function(thumb,size=0x44) addr:0x0212723c
-func_ov003_02127280 kind:function(thumb,size=0xb8) addr:0x02127280
-func_ov003_02127338 kind:function(thumb,size=0x5a8) addr:0x02127338
-func_ov003_021278e0 kind:function(thumb,size=0x54) addr:0x021278e0
-func_ov003_02127934 kind:function(thumb,size=0x2c) addr:0x02127934
-func_ov003_02127960 kind:function(thumb,size=0x2c) addr:0x02127960
-func_ov003_0212798c kind:function(thumb,size=0x180) addr:0x0212798c
-func_ov003_02127b0c kind:function(thumb,size=0xf4) addr:0x02127b0c
-func_ov003_02127c00 kind:function(thumb,size=0x1f0) addr:0x02127c00
-func_ov003_02127df0 kind:function(thumb,size=0x18c) addr:0x02127df0
-func_ov003_02127f7c kind:function(thumb,size=0xe8) addr:0x02127f7c
-func_ov003_02128064 kind:function(thumb,size=0x70) addr:0x02128064
-func_ov003_021280d4 kind:function(thumb,size=0x98) addr:0x021280d4
-func_ov003_0212816c kind:function(thumb,size=0x88) addr:0x0212816c
-func_ov003_021281f4 kind:function(thumb,size=0x194) addr:0x021281f4
-func_ov003_02128388 kind:function(thumb,size=0x154) addr:0x02128388
-func_ov003_021284dc kind:function(thumb,size=0x68) addr:0x021284dc
-func_ov003_02128544 kind:function(thumb,size=0x2c) addr:0x02128544
-func_ov003_02128570 kind:function(thumb,size=0x2c) addr:0x02128570
-func_ov003_0212859c kind:function(thumb,size=0x30) addr:0x0212859c
-func_ov003_021285cc kind:function(thumb,size=0x1bc) addr:0x021285cc
-func_ov003_02128788 kind:function(thumb,size=0xa8) addr:0x02128788
-func_ov003_02128830 kind:function(thumb,size=0x94) addr:0x02128830
-func_ov003_021288c4 kind:function(thumb,size=0x30) addr:0x021288c4
-func_ov003_021288f4 kind:function(thumb,size=0x2c) addr:0x021288f4
-func_ov003_02128920 kind:function(thumb,size=0x30) addr:0x02128920
-func_ov003_02128950 kind:function(thumb,size=0x2c) addr:0x02128950
-func_ov003_0212897c kind:function(thumb,size=0x30) addr:0x0212897c
-func_ov003_021289ac kind:function(thumb,size=0x2c) addr:0x021289ac
-func_ov003_021289d8 kind:function(thumb,size=0x9c) addr:0x021289d8
-func_ov003_02128a74 kind:function(thumb,size=0x88) addr:0x02128a74
-func_ov003_02128afc kind:function(thumb,size=0xd4) addr:0x02128afc
-func_ov003_02128bd0 kind:function(thumb,size=0x1e4) addr:0x02128bd0
-func_ov003_02128db4 kind:function(thumb,size=0x6c) addr:0x02128db4
-func_ov003_02128e20 kind:function(thumb,size=0x11c) addr:0x02128e20
+_ZN3btl12BattleActor2C1Ev kind:function(thumb,size=0x58) addr:0x02126a30
+_ZN3btl12BattleActor2D1Ev kind:function(thumb,size=0x34) addr:0x02126a88
+_ZN3btl12BattleActor25setupEPN6status15CharacterStatusE kind:function(thumb,size=0x68) addr:0x02126abc
+_ZN3btl12BattleActor25setupEv kind:function(thumb,size=0x2c) addr:0x02126b24
+_ZN3btl12BattleActor28reattackEv kind:function(thumb,size=0x48) addr:0x02126b50
+_ZN3btl12BattleActor26changeEv kind:function(thumb,size=0x48) addr:0x02126b98
+_ZN3btl12BattleActor25tarotEv kind:function(thumb,size=0x4c) addr:0x02126be0
+_ZN3btl12BattleActor29parupunteEv kind:function(thumb,size=0x4c) addr:0x02126c2c
+_ZN3btl12BattleActor211meganteRingEv kind:function(thumb,size=0x60) addr:0x02126c78
+_ZN3btl12BattleActor212megazaruRingEv kind:function(thumb,size=0x60) addr:0x02126cd8
+_ZN3btl12BattleActor27executeEv kind:function(thumb,size=0x28) addr:0x02126d38
+_ZN3btl12BattleActor25isEndEv kind:function(thumb,size=0x30) addr:0x02126d60
+_ZN3btl12BattleActor29setActionEv kind:function(thumb,size=0x48) addr:0x02126d90
+_ZN3btl12BattleActor29setTargetEv kind:function(thumb,size=0x24) addr:0x02126dd8
+_ZN3btl12BattleActor214isActionEnableEv kind:function(thumb,size=0x58) addr:0x02126dfc
+_ZN3btl19BattleActorManager2C1Ev kind:function(thumb,size=0x58) addr:0x02126e54
+_ZN3btl19BattleActorManager2D1Ev kind:function(thumb,size=0x3c) addr:0x02126eac
+_ZN3btl19BattleActorManager212getSingletonEv kind:function(thumb,size=0x54) addr:0x02126ee8
+_ZN3btl19BattleActorManager210initializeEv kind:function(thumb,size=0x3c) addr:0x02126f3c
+_ZN3btl19BattleActorManager211selectActorEv kind:function(thumb,size=0x44) addr:0x02126f78
+_ZN3btl19BattleActorManager217selectActorPlayerEv kind:function(thumb,size=0x128) addr:0x02126fbc
+_ZN3btl19BattleActorManager218selectActorMonsterEv kind:function(thumb,size=0x158) addr:0x021270e4
+_ZN3btl19BattleActorManager23addEPN6status15CharacterStatusE kind:function(thumb,size=0x44) addr:0x0212723c
+_ZN3btl19BattleActorManager213setActorOrderEv kind:function(thumb,size=0xb8) addr:0x02127280
+_ZN3dss4swapIN3btl12BattleActor2EEEvPT_S4_ kind:function(thumb,size=0x5a8) addr:0x02127338
+_ZN3btl19BattleActorManager214setActorActionEv kind:function(thumb,size=0x54) addr:0x021278e0
+_ZN3btl19BattleActorManager213getActorCountEv kind:function(thumb,size=0x2c) addr:0x02127934
+_ZN3btl19BattleActorManager214getBattleActorEi kind:function(thumb,size=0x2c) addr:0x02127960
+_ZN3btl19BattleActorManager216execStartOfRoundEv kind:function(thumb,size=0x180) addr:0x0212798c
+_ZN3btl19BattleActorManager214execEndOfRoundEv kind:function(thumb,size=0xf4) addr:0x02127b0c
+_ZN3btl19BattleActorManager211retireActorEv kind:function(thumb,size=0x1f0) addr:0x02127c00
+_ZN3btl19BattleActorManager217checkDeathMonsterEv kind:function(thumb,size=0x18c) addr:0x02127df0
+_ZN3btl19BattleActorManager216clearDeadMonsterEi kind:function(thumb,size=0xe8) addr:0x02127f7c
+_ZN3btl19BattleActorManager217execStartOfBattleEv kind:function(thumb,size=0x70) addr:0x02128064
+_ZN3btl19BattleActorManager215execEndOfBattleEv kind:function(thumb,size=0x98) addr:0x021280d4
+_ZN3btl19BattleActorManager211isBattleEndEv kind:function(thumb,size=0x88) addr:0x0212816c
+_ZN3btl19BattleActorManager216execMonsterDeathEi kind:function(thumb,size=0x194) addr:0x021281f4
+_ZN3btl19BattleActorManager223execMonsterDeathForItemEv kind:function(thumb,size=0x154) addr:0x02128388
+_ZN3btl19BattleActorManager214isActionEnableEv kind:function(thumb,size=0x68) addr:0x021284dc
+_ZN3btl19BattleActorManager214setFirstAttackENS_11FirstAttackE kind:function(thumb,size=0x2c) addr:0x02128544
+_ZN3btl19BattleActorManager214getFirstAttackEv kind:function(thumb,size=0x2c) addr:0x02128570
+_ZN3btl19BattleActorManager216clearFirstAttackEv kind:function(thumb,size=0x30) addr:0x0212859c
+_ZN3btl19BattleActorManager29setEscapeEi kind:function(thumb,size=0x1bc) addr:0x021285cc
+_ZN3btl19BattleActorManager214setEventBattleEii kind:function(thumb,size=0xa8) addr:0x02128788
+_ZN3btl19BattleActorManager216isImpEventBattleEv kind:function(thumb,size=0x94) addr:0x02128830
+_ZN3btl19BattleActorManager220addMonsterDeathCountEi kind:function(thumb,size=0x30) addr:0x021288c4
+_ZN3btl19BattleActorManager220getMonsterDeathCountEv kind:function(thumb,size=0x2c) addr:0x021288f4
+_ZN3btl19BattleActorManager221addMonsterEscapeCountEi kind:function(thumb,size=0x30) addr:0x02128920
+_ZN3btl19BattleActorManager221getMonsterEscapeCountEv kind:function(thumb,size=0x2c) addr:0x02128950
+_ZN3btl19BattleActorManager224addMonsterDisappearCountEi kind:function(thumb,size=0x30) addr:0x0212897c
+_ZN3btl19BattleActorManager224getMonsterDisappearCountEv kind:function(thumb,size=0x2c) addr:0x021289ac
+_ZN3btl19BattleActorManager215setMegazaruRingEPN6status14UseActionParamE kind:function(thumb,size=0x9c) addr:0x021289d8
+_ZN3btl17BattleActorEffect13setExecEffectEPN6status14UseActionParamE kind:function(thumb,size=0x88) addr:0x02128a74
+_ZN3btl17BattleActorEffect21checkCommonExecEffectEPN6status14UseActionParamE kind:function(thumb,size=0xd4) addr:0x02128afc
+_ZN3btl17BattleActorEffect15setPlayerEffectEPN6status14UseActionParamE kind:function(thumb,size=0x1e4) addr:0x02128bd0
+_ZN3btl17BattleActorEffect21checkPlayerExecEffectEPN6status14UseActionParamE kind:function(thumb,size=0x6c) addr:0x02128db4
+_ZN3btl17BattleActorEffect14setEnemyEffectEPN6status14UseActionParamE kind:function(thumb,size=0x11c) addr:0x02128e20
 func_ov003_02128f3c kind:function(thumb,size=0x1c) addr:0x02128f3c
 func_ov003_02128f58 kind:function(thumb,size=0x9c) addr:0x02128f58
 func_ov003_02128ff4 kind:function(thumb,size=0x3c) addr:0x02128ff4
@@ -832,58 +832,58 @@ data_ov003_0213a678 kind:data(any) addr:0x0213a678
 data_ov003_0213a68c kind:data(any) addr:0x0213a68c
 data_ov003_0213a6a0 kind:data(any) addr:0x0213a6a0
 data_ov003_0213a6b4 kind:data(any) addr:0x0213a6b4
-data_ov003_0213a6c0 kind:data(any) addr:0x0213a6c0
-data_ov003_0213a6dc kind:data(any) addr:0x0213a6dc
-data_ov003_0213a6f8 kind:data(any) addr:0x0213a6f8
-data_ov003_0213a730 kind:data(any) addr:0x0213a730
-data_ov003_0213a750 kind:data(any) addr:0x0213a750
-data_ov003_0213a774 kind:data(any) addr:0x0213a774
-data_ov003_0213a794 kind:data(any) addr:0x0213a794
-data_ov003_0213a7b4 kind:data(any) addr:0x0213a7b4
-data_ov003_0213a7d8 kind:data(any) addr:0x0213a7d8
-data_ov003_0213a800 kind:data(any) addr:0x0213a800
-data_ov003_0213a828 kind:data(any) addr:0x0213a828
-data_ov003_0213a848 kind:data(any) addr:0x0213a848
-data_ov003_0213a868 kind:data(any) addr:0x0213a868
-data_ov003_0213a88c kind:data(any) addr:0x0213a88c
-data_ov003_0213a8b0 kind:data(any) addr:0x0213a8b0
-data_ov003_0213a8d8 kind:data(any) addr:0x0213a8d8
-data_ov003_0213a8fc kind:data(any) addr:0x0213a8fc
-data_ov003_0213a920 kind:data(any) addr:0x0213a920
-data_ov003_0213a950 kind:data(any) addr:0x0213a950
-data_ov003_0213a97c kind:data(any) addr:0x0213a97c
-data_ov003_0213a9a8 kind:data(any) addr:0x0213a9a8
-data_ov003_0213a9dc kind:data(any) addr:0x0213a9dc
-data_ov003_0213aa10 kind:data(any) addr:0x0213aa10
-data_ov003_0213aa50 kind:data(any) addr:0x0213aa50
-data_ov003_0213aa80 kind:data(any) addr:0x0213aa80
-data_ov003_0213aaac kind:data(any) addr:0x0213aaac
-data_ov003_0213aadc kind:data(any) addr:0x0213aadc
-data_ov003_0213ab0c kind:data(any) addr:0x0213ab0c
-data_ov003_0213ab3c kind:data(any) addr:0x0213ab3c
-data_ov003_0213ab70 kind:data(any) addr:0x0213ab70
-data_ov003_0213aba0 kind:data(any) addr:0x0213aba0
-data_ov003_0213abcc kind:data(any) addr:0x0213abcc
-data_ov003_0213ac00 kind:data(any) addr:0x0213ac00
-data_ov003_0213ac34 kind:data(any) addr:0x0213ac34
-data_ov003_0213ac68 kind:data(any) addr:0x0213ac68
-data_ov003_0213ac98 kind:data(any) addr:0x0213ac98
-data_ov003_0213acc4 kind:data(any) addr:0x0213acc4
-data_ov003_0213acf8 kind:data(any) addr:0x0213acf8
-data_ov003_0213ad30 kind:data(any) addr:0x0213ad30
-data_ov003_0213ad60 kind:data(any) addr:0x0213ad60
-data_ov003_0213ada0 kind:data(any) addr:0x0213ada0
-data_ov003_0213add0 kind:data(any) addr:0x0213add0
-data_ov003_0213ae04 kind:data(any) addr:0x0213ae04
-data_ov003_0213ae30 kind:data(any) addr:0x0213ae30
-data_ov003_0213ae60 kind:data(any) addr:0x0213ae60
-data_ov003_0213ae94 kind:data(any) addr:0x0213ae94
-data_ov003_0213aecc kind:data(any) addr:0x0213aecc
-data_ov003_0213af04 kind:data(any) addr:0x0213af04
-data_ov003_0213af3c kind:data(any) addr:0x0213af3c
-data_ov003_0213af74 kind:data(any) addr:0x0213af74
-data_ov003_0213afb0 kind:data(any) addr:0x0213afb0
-data_ov003_0213afec kind:data(any) addr:0x0213afec
+@1266 kind:data(any) addr:0x0213a6c0 local
+@1289 kind:data(any) addr:0x0213a6dc local
+@1301 kind:data(any) addr:0x0213a6f8 local
+@1308 kind:data(any) addr:0x0213a730 local
+@1315 kind:data(any) addr:0x0213a750 local
+@1322 kind:data(any) addr:0x0213a774 local
+@1330 kind:data(any) addr:0x0213a794 local
+@1338 kind:data(any) addr:0x0213a7b4 local
+@1346 kind:data(any) addr:0x0213a7d8 local
+@1354 kind:data(any) addr:0x0213a800 local
+@1361 kind:data(any) addr:0x0213a828 local
+@1374 kind:data(any) addr:0x0213a848 local
+@1381 kind:data(any) addr:0x0213a868 local
+@1388 kind:data(any) addr:0x0213a88c local
+@1408 kind:data(any) addr:0x0213a8b0 local
+@1353 kind:data(any) addr:0x0213a8d8 local
+@1361 kind:data(any) addr:0x0213a8fc local
+@1374 kind:data(any) addr:0x0213a920 local
+@1381 kind:data(any) addr:0x0213a950 local
+@1388 kind:data(any) addr:0x0213a97c local
+@1449 kind:data(any) addr:0x0213a9a8 local
+@1527 kind:data(any) addr:0x0213a9dc local
+@1546 kind:data(any) addr:0x0213aa10 local
+@1592 kind:data(any) addr:0x0213aa50 local
+@1825 kind:data(any) addr:0x0213aa80 local
+@1827 kind:data(any) addr:0x0213aaac local
+@1834 kind:data(any) addr:0x0213aadc local
+@1842 kind:data(any) addr:0x0213ab0c local
+@1886 kind:data(any) addr:0x0213ab3c local
+@1924 kind:data(any) addr:0x0213ab70 local
+@2055 kind:data(any) addr:0x0213aba0 local
+@2116 kind:data(any) addr:0x0213abcc local
+@2183 kind:data(any) addr:0x0213ac00 local
+@2201 kind:data(any) addr:0x0213ac34 local
+@2222 kind:data(any) addr:0x0213ac68 local
+@2248 kind:data(any) addr:0x0213ac98 local
+@2319 kind:data(any) addr:0x0213acc4 local
+@2384 kind:data(any) addr:0x0213acf8 local
+@2407 kind:data(any) addr:0x0213ad30 local
+@2415 kind:data(any) addr:0x0213ad60 local
+@2422 kind:data(any) addr:0x0213ada0 local
+@2429 kind:data(any) addr:0x0213add0 local
+@2508 kind:data(any) addr:0x0213ae04 local
+@2528 kind:data(any) addr:0x0213ae30 local
+@2555 kind:data(any) addr:0x0213ae60 local
+@2564 kind:data(any) addr:0x0213ae94 local
+@2571 kind:data(any) addr:0x0213aecc local
+@2580 kind:data(any) addr:0x0213af04 local
+@2587 kind:data(any) addr:0x0213af3c local
+@2596 kind:data(any) addr:0x0213af74 local
+@2603 kind:data(any) addr:0x0213afb0 local
+@2645 kind:data(any) addr:0x0213afec local
 data_ov003_0213b038 kind:data(any) addr:0x0213b038
 data_ov003_0213b05c kind:data(any) addr:0x0213b05c
 data_ov003_0213b080 kind:data(any) addr:0x0213b080
@@ -1144,10 +1144,10 @@ data_ov003_02150211 kind:bss addr:0x02150211 ambiguous
 data_ov003_0215028c kind:bss addr:0x0215028c ambiguous
 data_ov003_02150fdd kind:bss addr:0x02150fdd ambiguous
 data_ov003_0215237c kind:bss addr:0x0215237c
-data_ov003_02152384 kind:bss addr:0x02152384
-data_ov003_02152388 kind:bss addr:0x02152388
-data_ov003_02152394 kind:bss addr:0x02152394
-data_ov003_02158a50 kind:bss addr:0x02158a50
+_ZGVsingleton$1369 kind:bss addr:0x02152384
+@1372 kind:bss addr:0x02152388
+singleton$1369 kind:bss addr:0x02152394
+_ZN3btl17BattleActorEffect5wait_E kind:bss addr:0x02158a50
 data_ov003_02158a54 kind:bss addr:0x02158a54
 data_ov003_02158a58 kind:bss addr:0x02158a58
 data_ov003_02158a5c kind:bss addr:0x02158a5c

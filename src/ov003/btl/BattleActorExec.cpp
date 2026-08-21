@@ -55,7 +55,7 @@ THUMB void btl::BattleActorExec::execute()
     partTaskManager.run();
 }
 
-THUMB bool btl::BattleActorExec::isEnd()
+THUMB int btl::BattleActorExec::isEnd()
 {
     return partTaskManager.checkTask(9) != 0;
 }

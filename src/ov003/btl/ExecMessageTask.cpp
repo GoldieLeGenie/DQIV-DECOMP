@@ -1,6 +1,7 @@
 #include "ov003/btl/ExecMessageTask.hpp"
 #include "main/status/ActionExec.hpp"
 #include "ov003/btl/SpecialMessageTask.hpp"
+#include "ov003/status/MonsterPartyWithDraw.hpp"
 #include "ov003/status/MonsterParty.hpp"
 #include "ov003/status/MonsterStatus.hpp"
 #include "main/task/PartTaskManager.hpp"
@@ -34,7 +35,7 @@ ARM void btl::ExecMessageTask::initialize()
         }
     }
  
-    func_ov003_02128a74(useActionParam_);
+    btl::BattleActorEffect::setExecEffect(useActionParam_);
  
     {
         status::UseActionParam* uap = useActionParam_;
@@ -71,7 +72,7 @@ ARM void btl::ExecMessageTask::terminate()
     for (int i = 0; i < count; i++) {
         if (!g_monster.getMonsterStatus(i)->haveStatusInfo_.isDeath()) {
             int id = g_monster.getMonsterStatus(i)->haveStatusInfo_.drawCtrlId_;
-            func_ov003_02121ab0(&func_ov003_02121d04()->monsters_[id], 0x20);
+            func_ov003_02121ab0(&func_ov003_02121d04()->monster_[id], 0x20);
         }
     }
 }

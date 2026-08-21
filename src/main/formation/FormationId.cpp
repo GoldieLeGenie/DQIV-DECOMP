@@ -1,4 +1,5 @@
 #include "main/formation/FormationId.hpp"
+#include "main/status/BaseStatus.hpp"
 
 const EncountFormNumHeader encountFormNumHeader = { 18, 1670, 16 }; //data_0208ca04
 

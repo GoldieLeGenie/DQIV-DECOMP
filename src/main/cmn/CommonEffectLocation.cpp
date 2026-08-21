@@ -1,6 +1,6 @@
 #include "main/cmn/CommonEffectLocation.hpp"
 #include "main/param/Param.hpp"
-#include "main/status/excelParam.hpp"
+#include "main/status/ExcelParam.hpp"
 
 
 #pragma profile on
