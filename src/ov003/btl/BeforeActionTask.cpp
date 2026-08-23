@@ -1,9 +1,9 @@
 #include "ov003/btl/BeforeActionTask.hpp"
-
+#include "ov003/btl/selectAI.hpp"
 
 ARM void btl::BeforeActionTask::initialize()
 {
-    func_ov003_02125ccc(useActionParam_);
+    selectAI(useActionParam_);
     useActionParam_->clearMessage();
 
     unsigned int actionIndex = useActionParam_->actionIndex_;

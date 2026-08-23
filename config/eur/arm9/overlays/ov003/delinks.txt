@@ -74,6 +74,10 @@ src/ov003/btl/BattleActorExec.cpp:
     .text start:0x02125a7c end:0x02125ccc
     .data start:0x0213a3d0 end:0x0213a4bc
 
+src/ov003/btl/selectAI.cpp:
+    .text start:0x02125ccc end:0x02125d78
+    .data start:0x0213a4bc end:0x0213a4e8
+
 src/ov003/btl/BattleActor2.cpp:
     complete
     .text start:0x02126a30 end:0x02126e54
@@ -85,4 +89,21 @@ src/ov003/btl/BattleActorManager2.cpp:
     .data start:0x0213a8d8 end:0x0213b038
 
 src/ov003/btl/BattleActorEffect.cpp:
+    complete
     .text start:0x02128a74 end:0x02129238
+    .bss start:0x02158a50 end:0x02158a54
+
+src/ov003/btl/AutoActionParam.cpp:
+    .text start:0x0212cd30 end:0x0212d2f0
+    .data start:0x0213be60 end:0x0213c19c
+
+src/ov003/btl/AttackAutoActionParam.cpp:
+    .text start:0x0212d2f0 end:0x0212d6f0
+    .data start:0x0213c19c end:0x0213c344
+
+src/ov003/btl/RecoveryAutoActionParam.cpp:
+    .text start:0x0212d6f0 end:0x0212db00
+    .data start:0x0213c344 end:0x0213c504
+
+src/ov003/btl/BattleMessage.cpp:
+    .text start:0x0212be8c end:0x0212c0e8

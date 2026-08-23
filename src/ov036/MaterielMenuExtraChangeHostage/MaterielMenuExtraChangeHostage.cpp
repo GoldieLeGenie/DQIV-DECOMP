@@ -5,7 +5,6 @@
 #include "main/cmn/PlayerManager.hpp"
 #include "main/global/Global.hpp"
 
-
 THUMB void MaterielMenuExtraChangeHostage::menuSetup()
 {
     status::g_Party.setBattleMode();

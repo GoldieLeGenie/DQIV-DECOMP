@@ -3277,13 +3277,13 @@ from:0x0212cd4c kind:thumb_call to:0x0212bd08 module:overlay(3)
 from:0x0212cd52 kind:thumb_call to:0x0212ce90 module:overlay(3)
 from:0x0212cd5e kind:thumb_call_arm to:0x02079d98 module:main
 from:0x0212cd68 kind:load to:0x0213be7c module:overlay(3)
-from:0x0212cd6c kind:load to:0x0213be68 module:overlay(3)
+from:0x0212cd6c kind:load to:0x0213be60 add:0x8 module:overlay(3)
 from:0x0212cd74 kind:thumb_call_arm to:0x02079d94 module:main
 from:0x0212cd8c kind:thumb_call to:0x0212bd08 module:overlay(3)
 from:0x0212cd92 kind:thumb_call to:0x0212ce90 module:overlay(3)
 from:0x0212cd9e kind:thumb_call_arm to:0x02079d98 module:main
 from:0x0212cda8 kind:load to:0x0213be9c module:overlay(3)
-from:0x0212cdac kind:load to:0x0213be68 module:overlay(3)
+from:0x0212cdac kind:load to:0x0213be60 add:0x8 module:overlay(3)
 from:0x0212cdb4 kind:thumb_call_arm to:0x02079d94 module:main
 from:0x0212cdc6 kind:thumb_call to:0x0212bd14 module:overlay(3)
 from:0x0212cdd2 kind:thumb_call_arm to:0x02079d98 module:main

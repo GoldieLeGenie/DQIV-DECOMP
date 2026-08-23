@@ -18,7 +18,7 @@ THUMB void btl::BattleActorEffect::setExecEffect(status::UseActionParam* useActi
     if (useActionParam->actorCharacterStatus_->characterType_ == PLAYER) {
         wait_ = setPlayerEffect(useActionParam);
     } else if (useActionParam->actorCharacterStatus_->characterType_ == MONSTER) {
-        wait_ = func_ov003_02128e20(useActionParam);
+        wait_ = setEnemyEffect(useActionParam);
 
         if (status::UseAction::getActionType(useActionParam->actionIndex_) == status::UseAction::ActionTypeMagic) {
             if (actor->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusMahoton)) {
@@ -28,7 +28,7 @@ THUMB void btl::BattleActorEffect::setExecEffect(status::UseActionParam* useActi
             }
         }
 
-        wait_ += func_ov003_02128f58(useActionParam);
+        wait_ += setResultEnemyEffect(useActionParam);
     }
 
     int w = wait_;
@@ -198,14 +198,14 @@ THUMB int btl::BattleActorEffect::checkPlayerExecEffect(status::UseActionParam* 
     return 1;
 }
 
-int btl::BattleActorEffect::setEnemyEffect(status::UseActionParam* useActionParam)
+THUMB int btl::BattleActorEffect::setEnemyEffect(status::UseActionParam* useActionParam)
 {
     int actionIndex = useActionParam->actionIndex_;
     int ctrlId = useActionParam->actorCharacterStatus_->haveStatusInfo_.drawCtrlId_;
     int animIndex = useActionParam->actorCharacterStatus_->haveBattleStatus_.getActionAnimation();
     int monsterNo = func_ov003_02121d04()->monster_[ctrlId].monsterIndex_;
 
-    if (!func_ov003_02128f3c(useActionParam)) {
+    if (!checkEnemyExecEffect(useActionParam)) {
         return 0;
     }
 
@@ -249,4 +249,152 @@ int btl::BattleActorEffect::setEnemyEffect(status::UseActionParam* useActionPara
     }
 
     return 0;
+}
+
+THUMB int btl::BattleActorEffect::checkEnemyExecEffect(status::UseActionParam* useActionParam)
+{
+    if (useActionParam->targetCharacterStatus_[0] == 0) {
+        return 0;
+    }
+    if (useActionParam->actionIndex_ == 0) {
+        return 0;
+    }
+    return 1;
+}
+
+THUMB int btl::BattleActorEffect::setResultEnemyEffect(status::UseActionParam* useActionParam)
+{
+    param::ActionParam* actionParam = status::excelParam.actionParam_;
+
+    if (!checkEnemyResultEffect(useActionParam)) {
+        return 0;
+    }
+
+    int effectID = actionParam[useActionParam->actionIndex_].effectEnemy;
+    if (effectID != 0) {
+        if (effectID == 116) {
+            return setMegazaruEffect(useActionParam);
+        }
+
+        func_ov003_0212a980(func_ov003_0212a678(), effectID);
+
+        int unitIndex = func_ov003_0212a9d4(func_ov003_0212a678(), effectID);
+        if (unitIndex < 0) {
+            return 0;
+        }
+
+        BattleEffectManager* mgr = func_ov003_0212a678();
+        func_ov003_0212ad64(&mgr->unit_[unitIndex], useActionParam, 0);
+
+        int wait = wait_;
+        mgr = func_ov003_0212a678();
+        func_ov003_0212b844(&mgr->unit_[unitIndex], wait);
+
+        mgr = func_ov003_0212a678();
+        return func_ov003_0212b7ec(&mgr->unit_[unitIndex]);
+    }
+
+    return 0;
+}
+
+
+THUMB int btl::BattleActorEffect::checkEnemyResultEffect(status::UseActionParam* useActionParam)
+{
+    status::CharacterStatus* actor = useActionParam->actorCharacterStatus_;
+
+    if (useActionParam->targetCharacterStatus_[0] == 0) {
+        return 0;
+    }
+    if (useActionParam->actionIndex_ == 0) {
+        return 0;
+    }
+
+    if (status::UseAction::getActionType(useActionParam->actionIndex_) == status::UseAction::ActionTypeMagic) {
+        if (actor->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusFizzleZone)) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+THUMB int btl::BattleActorEffect::setMegazaruEffect(status::UseActionParam* useActionParam)
+{
+    unsigned short effectNo;                                                     
+    int ret;                                                                 
+    int rebirthNum = 0;                                                      
+    int normalNum = 0;
+                                                  
+    effectNo =                                            
+    status::excelParam.actionParam_[useActionParam->actionIndex_].effectEnemy;
+ 
+    if (useActionParam->targetCount_ > 6) {
+        return 0;
+    }
+ 
+    for (int i = 0; i < useActionParam->targetCount_; i++) {                 
+        if (useActionParam->targetCharacterStatus_[i]->haveStatusInfo_.isMegazaruRebirth()) {
+            rebirthNum++;
+        } else {
+            normalNum++;
+        }
+    }
+    
+    if (normalNum != 0) {
+
+        func_ov003_0212a980(func_ov003_0212a678(), effectNo);
+        int index = func_ov003_0212a9d4(func_ov003_0212a678(), effectNo);    
+        if (index < 0) {
+            return 0;
+        }
+        for (int i = 0; i < useActionParam->targetCount_; i++) {
+            if (useActionParam->targetCharacterStatus_[i]->haveStatusInfo_.isMegazaruRebirth()) {
+                BattleEffectManager* mgr = func_ov003_0212a678();
+                func_ov003_0212b878(&mgr->unit_[index], i, 0);
+            } else {
+                BattleEffectManager* mgr = func_ov003_0212a678();
+                func_ov003_0212b878(&mgr->unit_[index], i, 1);
+            }
+        }
+        BattleEffectManager* mgr = func_ov003_0212a678();
+        func_ov003_0212ad64(&mgr->unit_[index], useActionParam, 0);
+
+        int w = wait_;
+        mgr = func_ov003_0212a678();
+        func_ov003_0212b844(&mgr->unit_[index], w);
+    }
+ 
+    if (rebirthNum != 0) {
+        func_ov003_0212a980(func_ov003_0212a678(), effectNo + 1);
+        int index = func_ov003_0212a9d4(func_ov003_0212a678(), effectNo + 1);
+        if (index < 0) {
+            return 0;
+        }
+        for (int i = 0; i < useActionParam->targetCount_; i++) {
+            if (useActionParam->targetCharacterStatus_[i]->haveStatusInfo_.isMegazaruRebirth()) {
+                BattleEffectManager* mgr = func_ov003_0212a678();
+                func_ov003_0212b878(&mgr->unit_[index], i, 1);
+            } else {
+                BattleEffectManager* mgr = func_ov003_0212a678();
+                func_ov003_0212b878(&mgr->unit_[index], i, 0);
+            }
+        }
+        BattleEffectManager* mgr = func_ov003_0212a678();
+        func_ov003_0212ad64(&mgr->unit_[index], useActionParam, 0);
+
+        int w = wait_;
+        mgr = func_ov003_0212a678();
+        func_ov003_0212b844(&mgr->unit_[index], w);
+
+        mgr = func_ov003_0212a678();
+        ret = func_ov003_0212b7ec(&mgr->unit_[index]);
+    }
+
+    for (int i = 0; i < useActionParam->targetCount_; i++) {
+        if (useActionParam->targetCharacterStatus_[i]->haveStatusInfo_.isMegazaruRebirth()) {
+            useActionParam->targetCharacterStatus_[i]->haveStatusInfo_.setMegazaruRebirth(false);
+        }
+    }
+
+    return ret;
 }
