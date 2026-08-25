@@ -1,6 +1,7 @@
 #include "ov003/btl/SpecialMessageTask.hpp"
 #include "main/status/BaseAction.hpp"
 #include "ov003/btl/BattleActorManager2.hpp"
+#include "ov003/btl/BattleMessage.hpp"
 
 
 
@@ -68,7 +69,7 @@ ARM void btl::SpecialMessageTask::initialize()
         func_ov003_0212a398(useActionParam_);
     }
 
-    message_ = func_ov003_0212bf88(useActionParam_, currentTarget_);
+    message_ = btl::BattleMessage::setSpecialMessage(useActionParam_, currentTarget_);
     counter_ = 0;
 }
 

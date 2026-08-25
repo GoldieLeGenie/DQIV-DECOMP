@@ -528,3 +528,4 @@ THUMB int status::MonsterParty::getSpecialDropItem()
 
     return result;
 }
+

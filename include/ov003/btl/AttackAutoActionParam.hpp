@@ -8,6 +8,8 @@
 namespace btl { 
     struct AttackAutoActionParam : btl::AutoActionParam
     {
+        AttackAutoActionParam();
+        ~AttackAutoActionParam();
         virtual void setupTarget();
         virtual void calcEffectValue();
         virtual void calcEffectValueException();

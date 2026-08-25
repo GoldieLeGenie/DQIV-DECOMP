@@ -33,4 +33,3 @@ extern "C" void  func_ov003_0212a3f8(status::CharacterStatus* actor, int a);
 extern "C" void  func_02035020(status::CharacterStatus* actor);
 extern "C" void  func_ov003_0212a4b0(status::CharacterStatus* target, int a, int b);
 extern "C" void  func_ov003_02129d40(status::CharacterStatus* target);
-extern "C" void  func_ov003_0212be8c(int message, int a, int b, int c);

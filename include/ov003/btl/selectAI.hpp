@@ -8,6 +8,6 @@ namespace btl {
     
 }
 
-extern char data_ov003_02149350[];   // taille inconnue — manager IA
+extern char data_ov003_02149350[];   //  manager IA
 extern "C" void func_ov003_0212c384(void* aiMgr);
 extern "C" void func_ov003_0212c400(void* aiMgr, status::CharacterStatus* chara);

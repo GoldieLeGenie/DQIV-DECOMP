@@ -5,6 +5,7 @@
 #include "ov003/status/MonsterParty.hpp"
 #include "ov003/status/MonsterStatus.hpp"
 #include "main/task/PartTaskManager.hpp"
+#include "ov003/btl/BattleMessage.hpp"
 
 ARM void btl::ExecMessageTask::initialize()
 {
@@ -46,7 +47,7 @@ ARM void btl::ExecMessageTask::initialize()
     }
  
     func_ov003_0212a398(useActionParam_);
-    message_ = func_ov003_0212bf48(useActionParam_);
+    message_ = btl::BattleMessage::setExecMessage(useActionParam_);
     func_0208978c();
     useActionParam_->actorCharacterStatus_->setMenuStatusFlag(
         (status::HaveStatusInfo::DiffStatus)1);

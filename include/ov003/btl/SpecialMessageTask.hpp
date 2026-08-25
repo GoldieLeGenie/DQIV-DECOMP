@@ -44,7 +44,6 @@ extern "C" int  func_ov003_0212a9d4(BattleEffectManager* p, int id);
 extern "C" void func_ov003_0212ad64(BattleEffectUnit* u, status::UseActionParam* uap, int a);
 extern "C" void func_ov003_0212b844(BattleEffectUnit* u, int a);
 extern "C" void func_ov003_0212a398(status::UseActionParam* uap);
-extern "C" int  func_ov003_0212bf88(status::UseActionParam* uap, int idx);
 extern "C" int  func_ov003_021249e4();
 extern "C" void func_02026cc8(int a, int b);
 extern "C" int  func_020897a0();

@@ -27,7 +27,6 @@ extern int targetCount_;   //targetCount_
 extern "C" int func_02089820();
 extern "C" void func_ov003_02129d40(status::CharacterStatus* target);
 extern "C" void func_ov003_0212a3c4(status::UseActionParam* uap, int idx);
-extern "C" int  func_ov003_0212bfc8(status::UseActionParam* uap, int idx);
 extern "C" int  func_ov003_021249e4();
 extern "C" void func_0208980c();
 extern "C" void func_ov003_0212c09c(status::UseActionParam* uap, int idx);

@@ -1,5 +1,6 @@
 #include "ov003/btl/AfterActionTask.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
+#include "ov003/btl/BattleMessage.hpp"
 
 ARM void btl::AfterActionTask::cleanup()
 {
@@ -118,7 +119,7 @@ ARM int btl::AfterActionTask::isMessageStatusChangeRelease()
         }
 
         int message = actor->haveStatusInfo_.statusChange_.getReleaseMessage();
-        func_ov003_0212be8c(message, 0, 0, 0);
+        btl::BattleMessage::setMessage(message, 0, 0, 0);
         if (message != 0)
             result = 1;
     }

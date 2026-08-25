@@ -20,6 +20,13 @@ namespace status
         param::AbreactTurn* abreactTurn_;
     };
     struct UseAction {
+        enum UseType {
+            Myself = 0,
+            Friend = 1,
+            Enemy = 2,
+            Both = 3,
+            None = 4
+        };
         enum ActionType {
             ActionTypeNone = 0,
             ActionTypeMagic = 1,

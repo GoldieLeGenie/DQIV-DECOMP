@@ -2,6 +2,10 @@
 #include "main/task/PartTaskManager.hpp"
 #include "ov003/btl/SpecialMessageTask.hpp"
 #include "ov003/btl/BattleActorManager2.hpp"
+#include "ov003/btl/BattleMessage.hpp"
+
+
+
 ARM void btl::ResultMessageTask::setup(status::UseActionParam *useActionParam)
 {
   useActionParam_ = useActionParam;
@@ -41,7 +45,7 @@ ARM void btl::ResultMessageTask::initialize()
     func_ov003_0212a3c4(useActionParam_, currentTarget_);
 
     if (btl::BattleActorManager2::getSingleton()->eventType_ != BattleActorManager2::Velorinman) {
-        message_ = func_ov003_0212bfc8(useActionParam_, currentTarget_);
+        message_ = btl::BattleMessage::setResultMessage(useActionParam_, currentTarget_);
     }
     else if (useActionParam_->actorCharacterStatus_->characterType_ == PLAYER &&
              (id = useActionParam_->targetCharacterStatus_[0]
@@ -50,11 +54,11 @@ ARM void btl::ResultMessageTask::initialize()
         message_ = 0;
     }
     else {
-        message_ = func_ov003_0212bfc8(useActionParam_, currentTarget_);
+        message_ = btl::BattleMessage::setResultMessage(useActionParam_, currentTarget_);
     }
 
     func_0208980c();
-    func_ov003_0212c09c(useActionParam_, currentTarget_);
+    btl::BattleMessage::setShakeMessage(useActionParam_, currentTarget_);
     func_ov003_02129480(useActionParam_, currentTarget_);
 
     target = useActionParam_->targetCharacterStatus_[currentTarget_];

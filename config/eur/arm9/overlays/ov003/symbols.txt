@@ -475,45 +475,45 @@ _ZN3btl23BattleSelectTargetParam26getSourceCountForGroupDeadEi kind:function(thu
 _ZN3btl23BattleSelectTargetParam36getSourceCharacterStatusForGroupDeadEii kind:function(thumb,size=0x44) addr:0x0212be38
 _ZN3btl23BattleSelectTargetParam24setTargetCharacterStatusEiPN6status15CharacterStatusE kind:function(thumb,size=0x8) addr:0x0212be7c
 _ZN3btl23BattleSelectTargetParam24getTargetCharacterStatusEi kind:function(thumb,size=0x8) addr:0x0212be84
-func_ov003_0212be8c kind:function(thumb,size=0x48) addr:0x0212be8c
-func_ov003_0212bed4 kind:function(thumb,size=0x40) addr:0x0212bed4
-func_ov003_0212bf14 kind:function(thumb,size=0x34) addr:0x0212bf14
-func_ov003_0212bf48 kind:function(thumb,size=0x3e) addr:0x0212bf48
-func_ov003_0212bf88 kind:function(thumb,size=0x40) addr:0x0212bf88
-func_ov003_0212bfc8 kind:function(thumb,size=0x38) addr:0x0212bfc8
-func_ov003_0212c000 kind:function(thumb,size=0x9c) addr:0x0212c000
-func_ov003_0212c09c kind:function(thumb,size=0x38) addr:0x0212c09c
-func_ov003_0212c0d4 kind:function(thumb,size=0x8) addr:0x0212c0d4
-func_ov003_0212c0dc kind:function(thumb,size=0xc) addr:0x0212c0dc
-func_ov003_0212c0e8 kind:function(thumb,size=0x1c) addr:0x0212c0e8
-func_ov003_0212c104 kind:function(thumb,size=0xc) addr:0x0212c104
-func_ov003_0212c110 kind:function(thumb,size=0x2) addr:0x0212c110
-func_ov003_0212c114 kind:function(thumb,size=0x2) addr:0x0212c114
-func_ov003_0212c118 kind:function(thumb,size=0xb0) addr:0x0212c118
-func_ov003_0212c1c8 kind:function(thumb,size=0x38) addr:0x0212c1c8
-func_ov003_0212c200 kind:function(thumb,size=0x30) addr:0x0212c200
-func_ov003_0212c230 kind:function(thumb,size=0x38) addr:0x0212c230
-func_ov003_0212c268 kind:function(thumb,size=0x30) addr:0x0212c268
-func_ov003_0212c298 kind:function(thumb,size=0x38) addr:0x0212c298
-func_ov003_0212c2d0 kind:function(thumb,size=0x30) addr:0x0212c2d0
-func_ov003_0212c300 kind:function(thumb,size=0x84) addr:0x0212c300
-func_ov003_0212c384 kind:function(thumb,size=0x7c) addr:0x0212c384
-func_ov003_0212c400 kind:function(thumb,size=0x60) addr:0x0212c400
-func_ov003_0212c460 kind:function(thumb,size=0xbc) addr:0x0212c460
-func_ov003_0212c51c kind:function(thumb,size=0xcc) addr:0x0212c51c
-func_ov003_0212c5e8 kind:function(thumb,size=0xa0) addr:0x0212c5e8
-func_ov003_0212c688 kind:function(thumb,size=0x38) addr:0x0212c688
-func_ov003_0212c6c0 kind:function(thumb,size=0xdc) addr:0x0212c6c0
-func_ov003_0212c79c kind:function(thumb,size=0x88) addr:0x0212c79c
-func_ov003_0212c824 kind:function(thumb,size=0x80) addr:0x0212c824
-func_ov003_0212c8a4 kind:function(thumb,size=0x38) addr:0x0212c8a4
-func_ov003_0212c8dc kind:function(thumb,size=0x78) addr:0x0212c8dc
-func_ov003_0212c954 kind:function(thumb,size=0x78) addr:0x0212c954
-func_ov003_0212c9cc kind:function(thumb,size=0x8c) addr:0x0212c9cc
-func_ov003_0212ca58 kind:function(thumb,size=0xac) addr:0x0212ca58
-func_ov003_0212cb04 kind:function(thumb,size=0xc0) addr:0x0212cb04
-func_ov003_0212cbc4 kind:function(thumb,size=0x94) addr:0x0212cbc4
-func_ov003_0212cc58 kind:function(thumb,size=0xd8) addr:0x0212cc58
+_ZN3btl13BattleMessage10setMessageEiiii kind:function(thumb,size=0x48) addr:0x0212be8c
+_ZN3btl13BattleMessage16setMessageInTownEiiii kind:function(thumb,size=0x40) addr:0x0212bed4
+_ZN3btl13BattleMessage16setBeforeMessageEPN6status14UseActionParamE kind:function(thumb,size=0x34) addr:0x0212bf14
+_ZN3btl13BattleMessage14setExecMessageEPN6status14UseActionParamE kind:function(thumb,size=0x3e) addr:0x0212bf48
+_ZN3btl13BattleMessage17setSpecialMessageEPN6status14UseActionParamEi kind:function(thumb,size=0x40) addr:0x0212bf88
+_ZN3btl13BattleMessage16setResultMessageEPN6status14UseActionParamEi kind:function(thumb,size=0x38) addr:0x0212bfc8
+_ZN3btl13BattleMessage15setAfterMessageEPN6status14UseActionParamEi kind:function(thumb,size=0x9c) addr:0x0212c000
+_ZN3btl13BattleMessage15setShakeMessageEPN6status14UseActionParamEi kind:function(thumb,size=0x38) addr:0x0212c09c
+_ZN3btl13BattleMessage18openEncountMessageEv kind:function(thumb,size=0x8) addr:0x0212c0d4
+_ZN3btl13BattleMessage17addEncountMessageEi kind:function(thumb,size=0xc) addr:0x0212c0dc
+_ZN6status13ExcelParamBis11setupBattleEPNS_10ExcelParamE kind:function(thumb,size=0x1c) addr:0x0212c0e8
+_ZN6status13ExcelParamBis13cleanupBattleEPNS_10ExcelParamE kind:function(thumb,size=0xc) addr:0x0212c104
+_ZN6status13ExcelParamBis21setupBattleInitializeEPNS_10ExcelParamE kind:function(thumb,size=0x2) addr:0x0212c110
+_ZN6status13ExcelParamBis23cleanupBattleInitializeEPNS_10ExcelParamE kind:function(thumb,size=0x2) addr:0x0212c114
+_ZN3btl10AutoActionC1Ev kind:function(thumb,size=0xb0) addr:0x0212c118
+_ZN3btl21AttackAutoActionParamC1Ev kind:function(thumb,size=0x38) addr:0x0212c1c8
+_ZN3btl21AttackAutoActionParamD1Ev kind:function(thumb,size=0x30) addr:0x0212c200
+_ZN3btl23RecoveryAutoActionParamC1Ev kind:function(thumb,size=0x38) addr:0x0212c230
+_ZN3btl23RecoveryAutoActionParamD1Ev kind:function(thumb,size=0x30) addr:0x0212c268
+_ZN3btl22DefenceAutoActionParamC1Ev kind:function(thumb,size=0x38) addr:0x0212c298
+_ZN3btl22DefenceAutoActionParamD1Ev kind:function(thumb,size=0x30) addr:0x0212c2d0
+_ZN3btl10AutoActionD1Ev kind:function(thumb,size=0x84) addr:0x0212c300
+_ZN3btl10AutoAction5clearEv kind:function(thumb,size=0x7c) addr:0x0212c384
+_ZN3btl10AutoAction5setupEPN6status12PlayerStatusE kind:function(thumb,size=0x60) addr:0x0212c400
+_ZN3btl10AutoAction12selectActionEv kind:function(thumb,size=0xbc) addr:0x0212c460
+_ZN3btl10AutoAction15selectMaxActionEv kind:function(thumb,size=0xcc) addr:0x0212c51c
+_ZN3btl10AutoAction18setLevelDifferenceEv kind:function(thumb,size=0xa0) addr:0x0212c5e8
+_ZN3btl10AutoAction15setSelectActionEv kind:function(thumb,size=0x38) addr:0x0212c688
+_ZN3btl10AutoAction3addEii kind:function(thumb,size=0xdc) addr:0x0212c6c0
+_ZN3btl10AutoAction11validActionEi kind:function(thumb,size=0x88) addr:0x0212c79c
+_ZN3btl10AutoAction21setSelectAttackActionEv kind:function(thumb,size=0x80) addr:0x0212c824
+_ZN3btl10AutoAction23setSelectRecoveryActionEv kind:function(thumb,size=0x38) addr:0x0212c8a4
+_ZN3btl10AutoAction22setSelectDefenceActionEv kind:function(thumb,size=0x78) addr:0x0212c8dc
+_ZN3btl10AutoAction18setDefenceActionOMEv kind:function(thumb,size=0x78) addr:0x0212c954
+_ZN3btl10AutoAction18setDefenceActionBGEv kind:function(thumb,size=0x8c) addr:0x0212c9cc
+_ZN3btl10AutoAction17setRecoveryActionEv kind:function(thumb,size=0xac) addr:0x0212ca58
+_ZN3btl10AutoAction16setRebirthActionEv kind:function(thumb,size=0xc0) addr:0x0212cb04
+_ZN3btl10AutoAction18setAntiSpazzActionEv kind:function(thumb,size=0x94) addr:0x0212cbc4
+_ZN3btl10AutoAction9setActionEiiii kind:function(thumb,size=0xd8) addr:0x0212cc58
 _ZN3btl15AutoActionParamC2Ev kind:function(thumb,size=0x40) addr:0x0212cd30
 _ZN3btl15AutoActionParamC1Ev kind:function(thumb,size=0x40) addr:0x0212cd70
 _ZN3btl15AutoActionParamD1Ev kind:function(thumb,size=0x30) addr:0x0212cdb0
@@ -547,10 +547,10 @@ _ZN3btl23RecoveryAutoActionParam31calcCorrectEffectVelueExceptionEv kind:functio
 _ZN3btl23RecoveryAutoActionParam14isMemberHpDownEi kind:function(thumb,size=0x94) addr:0x0212d9b0
 _ZN3btl23RecoveryAutoActionParam13isMemberDeathEv kind:function(thumb,size=0x5c) addr:0x0212da44
 _ZN3btl23RecoveryAutoActionParam14getMemberSpazzEv kind:function(thumb,size=0x60) addr:0x0212daa0
-func_ov003_0212db00 kind:function(thumb,size=0x50) addr:0x0212db00
-func_ov003_0212db50 kind:function(thumb,size=0x4c) addr:0x0212db50
-func_ov003_0212db9c kind:function(thumb,size=0x120) addr:0x0212db9c
-func_ov003_0212dcbc kind:function(thumb,size=0x2ec) addr:0x0212dcbc
+_ZN3btl22DefenceAutoActionParam11setupTargetEv kind:function(thumb,size=0x50) addr:0x0212db00
+_ZN3btl22DefenceAutoActionParam15calcEffectValueEv kind:function(thumb,size=0x4c) addr:0x0212db50
+_ZN3btl22DefenceAutoActionParam24calcEffectValueExceptionEv kind:function(thumb,size=0x120) addr:0x0212db9c
+_ZN3btl22DefenceAutoActionParam22calcCorrectEffectVelueEv kind:function(thumb,size=0x2ec) addr:0x0212dcbc
 func_ov003_0212dfa8 kind:function(thumb,size=0x34) addr:0x0212dfa8
 func_ov003_0212dfdc kind:function(thumb,size=0xc) addr:0x0212dfdc
 func_ov003_0212dfe8 kind:function(thumb,size=0x3c) addr:0x0212dfe8
@@ -941,72 +941,72 @@ data_ov003_0213b984 kind:data(any) addr:0x0213b984
 data_ov003_0213b9b4 kind:data(any) addr:0x0213b9b4
 data_ov003_0213b9f4 kind:data(any) addr:0x0213b9f4
 data_ov003_0213ba1c kind:data(any) addr:0x0213ba1c
-data_ov003_0213ba40 kind:data(any) addr:0x0213ba40
-data_ov003_0213ba58 kind:data(any) addr:0x0213ba58
-data_ov003_0213ba7c kind:data(any) addr:0x0213ba7c
-data_ov003_0213baa0 kind:data(any) addr:0x0213baa0
-data_ov003_0213bac8 kind:data(any) addr:0x0213bac8
-data_ov003_0213baf0 kind:data(any) addr:0x0213baf0
-data_ov003_0213bb14 kind:data(any) addr:0x0213bb14
-data_ov003_0213bb38 kind:data(any) addr:0x0213bb38
-data_ov003_0213bb50 kind:data(any) addr:0x0213bb50
-data_ov003_0213bb6c kind:data(any) addr:0x0213bb6c
-data_ov003_0213bba0 kind:data(any) addr:0x0213bba0
-data_ov003_0213bbc4 kind:data(any) addr:0x0213bbc4
-data_ov003_0213bbec kind:data(any) addr:0x0213bbec
-data_ov003_0213bc18 kind:data(any) addr:0x0213bc18
-data_ov003_0213bc40 kind:data(any) addr:0x0213bc40
-data_ov003_0213bc5c kind:data(any) addr:0x0213bc5c
-data_ov003_0213bc80 kind:data(any) addr:0x0213bc80
-data_ov003_0213bcb0 kind:data(any) addr:0x0213bcb0
-data_ov003_0213bce0 kind:data(any) addr:0x0213bce0
-data_ov003_0213bd10 kind:data(any) addr:0x0213bd10
-data_ov003_0213bd3c kind:data(any) addr:0x0213bd3c
-data_ov003_0213bd68 kind:data(any) addr:0x0213bd68
-data_ov003_0213bd94 kind:data(any) addr:0x0213bd94
-data_ov003_0213bdbc kind:data(any) addr:0x0213bdbc
-data_ov003_0213bde8 kind:data(any) addr:0x0213bde8
-_ZTVN3btl21AttackAutoActionParamE kind:data(any) addr:0x0213be14
-_ZTVN3btl23RecoveryAutoActionParamE kind:data(any) addr:0x0213be30
-data_ov003_0213be4c kind:data(any) addr:0x0213be4c
+@1042 kind:data(any) addr:0x0213ba40 local
+@1060 kind:data(any) addr:0x0213ba58 local
+@1057 kind:data(any) addr:0x0213ba7c local
+@1054 kind:data(any) addr:0x0213baa0 local
+@1051 kind:data(any) addr:0x0213bac8 local
+@1048 kind:data(any) addr:0x0213baf0 local
+@1045 kind:data(any) addr:0x0213bb14 local
+@1071 kind:data(any) addr:0x0213bb38 local
+@1098 kind:data(any) addr:0x0213bb50 local
+@1112 kind:data(any) addr:0x0213bb6c local
+@1154 kind:data(any) addr:0x0213bba0 local
+@1242 kind:data(any) addr:0x0213bbc4 local
+@1277 kind:data(any) addr:0x0213bbec local
+@1284 kind:data(any) addr:0x0213bc18 local
+@1307 kind:data(any) addr:0x0213bc40 local
+@1335 kind:data(any) addr:0x0213bc5c local
+@1350 kind:data(any) addr:0x0213bc80 local
+@1357 kind:data(any) addr:0x0213bcb0 local
+@1373 kind:data(any) addr:0x0213bce0 local
+@1394 kind:data(any) addr:0x0213bd10 local
+@1419 kind:data(any) addr:0x0213bd3c local
+@1453 kind:data(any) addr:0x0213bd68 local
+@1500 kind:data(any) addr:0x0213bd94 local
+@1531 kind:data(any) addr:0x0213bdbc local
+@1566 kind:data(any) addr:0x0213bde8 local
+_ZTVN3btl21AttackAutoActionParamE kind:data(byte[28]) addr:0x0213be0c
+_ZTVN3btl23RecoveryAutoActionParamE kind:data(byte[28]) addr:0x0213be28
+_ZTVN3btl22DefenceAutoActionParamE kind:data(byte[28]) addr:0x0213be44
 _ZTVN3btl15AutoActionParamE kind:data(byte[28]) addr:0x0213be60
-@1016 kind:data(any) addr:0x0213be7c
-@1019 kind:data(any) addr:0x0213be9c
-@1027 kind:data(any) addr:0x0213bebc
-@1035 kind:data(any) addr:0x0213bedc
-@1046 kind:data(any) addr:0x0213befc
-@1073 kind:data(any) addr:0x0213bf3c
-@1084 kind:data(any) addr:0x0213bf60
-@1104 kind:data(any) addr:0x0213bf88
-@1125 kind:data(any) addr:0x0213bfb4
-@1148 kind:data(any) addr:0x0213bfec
-@1166 kind:data(any) addr:0x0213c01c
-@1186 kind:data(any) addr:0x0213c050
-@1192 kind:data(any) addr:0x0213c084
-@1217 kind:data(any) addr:0x0213c0c0
-@1223 kind:data(any) addr:0x0213c0ec
-@1276 kind:data(any) addr:0x0213c118
-@1300 kind:data(any) addr:0x0213c144
-@1324 kind:data(any) addr:0x0213c170
-@1020 kind:data(any) addr:0x0213c19c
-@1040 kind:data(any) addr:0x0213c1cc
-@1150 kind:data(any) addr:0x0213c200
-@1170 kind:data(any) addr:0x0213c23c
-@1177 kind:data(any) addr:0x0213c278
-@1201 kind:data(any) addr:0x0213c2bc
-@1225 kind:data(any) addr:0x0213c300
-@969 kind:data(any) addr:0x0213c344
-@992 kind:data(any) addr:0x0213c374
-@1043 kind:data(any) addr:0x0213c3a8
-@1066 kind:data(any) addr:0x0213c3e8
-@1101 kind:data(any) addr:0x0213c424
-@1132 kind:data(any) addr:0x0213c468
-@1151 kind:data(any) addr:0x0213c49c
-@1171 kind:data(any) addr:0x0213c4d0
-data_ov003_0213c504 kind:data(any) addr:0x0213c504
-data_ov003_0213c534 kind:data(any) addr:0x0213c534
-data_ov003_0213c568 kind:data(any) addr:0x0213c568
-data_ov003_0213c5a4 kind:data(any) addr:0x0213c5a4
+@1016 kind:data(any) addr:0x0213be7c local
+@1019 kind:data(any) addr:0x0213be9c local
+@1027 kind:data(any) addr:0x0213bebc local
+@1035 kind:data(any) addr:0x0213bedc local
+@1046 kind:data(any) addr:0x0213befc local
+@1073 kind:data(any) addr:0x0213bf3c local
+@1084 kind:data(any) addr:0x0213bf60 local
+@1104 kind:data(any) addr:0x0213bf88 local
+@1125 kind:data(any) addr:0x0213bfb4 local
+@1148 kind:data(any) addr:0x0213bfec local
+@1166 kind:data(any) addr:0x0213c01c local
+@1186 kind:data(any) addr:0x0213c050 local
+@1192 kind:data(any) addr:0x0213c084 local
+@1217 kind:data(any) addr:0x0213c0c0 local
+@1223 kind:data(any) addr:0x0213c0ec local
+@1276 kind:data(any) addr:0x0213c118 local
+@1300 kind:data(any) addr:0x0213c144 local
+@1324 kind:data(any) addr:0x0213c170 local
+@1020 kind:data(any) addr:0x0213c19c local
+@1040 kind:data(any) addr:0x0213c1cc local
+@1150 kind:data(any) addr:0x0213c200 local
+@1170 kind:data(any) addr:0x0213c23c local
+@1177 kind:data(any) addr:0x0213c278 local
+@1201 kind:data(any) addr:0x0213c2bc local
+@1225 kind:data(any) addr:0x0213c300 local
+@969 kind:data(any) addr:0x0213c344 local
+@992 kind:data(any) addr:0x0213c374 local
+@1043 kind:data(any) addr:0x0213c3a8 local
+@1066 kind:data(any) addr:0x0213c3e8 local
+@1101 kind:data(any) addr:0x0213c424 local
+@1132 kind:data(any) addr:0x0213c468 local
+@1151 kind:data(any) addr:0x0213c49c local
+@1171 kind:data(any) addr:0x0213c4d0 local
+@967 kind:data(any) addr:0x0213c504 local
+@988 kind:data(any) addr:0x0213c534 local
+@1076 kind:data(any) addr:0x0213c568 local
+@1239 kind:data(any) addr:0x0213c5a4 local
 data_ov003_0213c5e0 kind:data(any) addr:0x0213c5e0
 data_ov003_0213c5e4 kind:data(any) addr:0x0213c5e4
 data_ov003_0213c5f0 kind:data(any) addr:0x0213c5f0

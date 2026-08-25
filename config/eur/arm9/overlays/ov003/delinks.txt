@@ -93,17 +93,14 @@ src/ov003/btl/BattleActorEffect.cpp:
     .text start:0x02128a74 end:0x02129238
     .bss start:0x02158a50 end:0x02158a54
 
-src/ov003/btl/AutoActionParam.cpp:
-    .text start:0x0212cd30 end:0x0212d2f0
-    .data start:0x0213be60 end:0x0213c19c
-
-src/ov003/btl/AttackAutoActionParam.cpp:
-    .text start:0x0212d2f0 end:0x0212d6f0
-    .data start:0x0213c19c end:0x0213c344
-
-src/ov003/btl/RecoveryAutoActionParam.cpp:
-    .text start:0x0212d6f0 end:0x0212db00
-    .data start:0x0213c344 end:0x0213c504
-
 src/ov003/btl/BattleMessage.cpp:
+    complete
     .text start:0x0212be8c end:0x0212c0e8
+
+src/ov003/status/ExcelParamBis.cpp:
+    .text start:0x0212c0e8 end:0x0212c118
+    .rodata start:0x02130e9c end:0x02139040
+
+src/ov003/btl/AutoAction.cpp:
+    .text start:0x0212c118 end:0x0212dfa8
+    .data start:0x0213ba40 end:0x0213c5e0

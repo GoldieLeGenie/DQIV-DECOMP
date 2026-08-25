@@ -3,7 +3,7 @@
 
 ARM void btl::BeforeActionTask::initialize()
 {
-    selectAI(useActionParam_);
+    btl::selectAI(useActionParam_);
     useActionParam_->clearMessage();
 
     unsigned int actionIndex = useActionParam_->actionIndex_;

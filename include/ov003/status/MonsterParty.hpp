@@ -45,6 +45,7 @@ namespace status{
         void setDropItemMonster(int monsterIndex);
         int getDropItemMonster();
         int getSpecialDropItem();
+        
 
     };
 }
