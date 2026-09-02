@@ -32,4 +32,3 @@ extern "C" int   func_ov003_0212fba0(btl::AfterActionTask* thisptr);
 extern "C" void  func_ov003_0212a3f8(status::CharacterStatus* actor, int a);
 extern "C" void  func_02035020(status::CharacterStatus* actor);
 extern "C" void  func_ov003_0212a4b0(status::CharacterStatus* target, int a, int b);
-extern "C" void  func_ov003_02129d40(status::CharacterStatus* target);

@@ -3,7 +3,7 @@
 #include "ov003/btl/SpecialMessageTask.hpp"
 #include "ov003/btl/BattleActorManager2.hpp"
 #include "ov003/btl/BattleMessage.hpp"
-
+#include "ov003/btl/BattleActorAnimation.hpp"
 
 
 ARM void btl::ResultMessageTask::setup(status::UseActionParam *useActionParam)
@@ -39,7 +39,7 @@ ARM void btl::ResultMessageTask::initialize()
 
     target = useActionParam_->targetCharacterStatus_[currentTarget_];
     if (target != 0 && target->haveStatusInfo_.isMosyasRelease() != 0) {
-        func_ov003_02129d40(useActionParam_->targetCharacterStatus_[currentTarget_]);
+        btl::BattleActorAnimation::setMosyasReverse(useActionParam_->targetCharacterStatus_[currentTarget_]);
     }
 
     func_ov003_0212a3c4(useActionParam_, currentTarget_);
@@ -59,7 +59,7 @@ ARM void btl::ResultMessageTask::initialize()
 
     func_0208980c();
     btl::BattleMessage::setShakeMessage(useActionParam_, currentTarget_);
-    func_ov003_02129480(useActionParam_, currentTarget_);
+    btl::BattleActorAnimation::setResultAnimation(useActionParam_, currentTarget_);
 
     target = useActionParam_->targetCharacterStatus_[currentTarget_];
     if (target != 0) {

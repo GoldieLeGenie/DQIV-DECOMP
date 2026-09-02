@@ -2,7 +2,7 @@
 #include "ov003/btl/BattleActorManager2.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
 #include "ov003/btl/BattleMessage.hpp"
-
+#include "ov003/btl/BattleActorAnimation.hpp"
 
 ARM void btl::AfterMessageTask::setup(status::UseActionParam *useActionParam)
 {
@@ -101,14 +101,14 @@ ARM void btl::AfterMessageTask::initialize()
         useActionParam_->targetCharacterStatus_[currentTarget_]->haveStatusInfo_.setAddEffectMahotora(false);
     }
 
-    func_ov003_02129c58(useActionParam_->actorCharacterStatus_, 0, targetCount_, currentTarget_);
+    btl::BattleActorAnimation::setAfterAnimation(useActionParam_->actorCharacterStatus_, 0, targetCount_, currentTarget_);
 }
 
 
 
 ARM void btl::AfterMessageTask::terminate()
 {
-    func_ov003_02129ca0(useActionParam_->actorCharacterStatus_, 0);
+    btl::BattleActorAnimation::setAfterAnimation2(useActionParam_->actorCharacterStatus_, 0);
 
     if (useActionParam_->actorCharacterStatus_ == 0) {
         return;
@@ -139,3 +139,4 @@ ARM void btl::AfterMessageTask::execute()
         cleanup();
     }
 }
+

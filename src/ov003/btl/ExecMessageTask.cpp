@@ -6,12 +6,13 @@
 #include "ov003/status/MonsterStatus.hpp"
 #include "main/task/PartTaskManager.hpp"
 #include "ov003/btl/BattleMessage.hpp"
+#include "ov003/btl/BattleActorAnimation.hpp"
 
 ARM void btl::ExecMessageTask::initialize()
 {
-    func_ov003_02129238(useActionParam_);
-    func_ov003_021293b0(useActionParam_->actorCharacterStatus_);
-    func_ov003_02129e3c(useActionParam_->actorCharacterStatus_,
+    btl::BattleActorAnimation::setExecAnimation(useActionParam_);
+    btl::BattleActorAnimation::setExecAnimationMonster(useActionParam_->actorCharacterStatus_);
+    btl::BattleActorAnimation::gattaiSlimeStart(useActionParam_->actorCharacterStatus_,
                         useActionParam_->actionIndex_);
  
     if ((unsigned int)(useActionParam_->actionIndex_ - 0x201) <= 1 &&
@@ -83,12 +84,12 @@ ARM void btl::ExecMessageTask::execute()
     int endWait;
     int flag;
 
-    if (func_ov003_0212a064()) {
+    if (btl::BattleActorAnimation::isMonsterChangeSetupEnd()) {
         endWait = func_ov003_0212aa5c(func_ov003_0212a678());
         flag = 1;
         if (useActionParam_->actionIndex_ == 0xe5) {
             if (func_ov003_021223f4(func_ov003_02121d04())) {
-                func_ov003_02129f0c(useActionParam_->actorCharacterStatus_,
+                btl::BattleActorAnimation::gattaiSlime(useActionParam_->actorCharacterStatus_,
                                     useActionParam_->actionIndex_);
                 flag = 1;
             }

@@ -1,9 +1,10 @@
 #include "ov003/btl/selectAI.hpp"
+#include "main/status/PlayerStatus.hpp"
 
 #pragma profile on
 THUMB void btl::selectAI(status::UseActionParam* useActionParam)
 {
-    status::CharacterStatus* actor = useActionParam->actorCharacterStatus_;
+    status::PlayerStatus* actor =  (status::PlayerStatus *)useActionParam->actorCharacterStatus_;
 
     if (actor->characterType_ != PLAYER) {
         return;
@@ -24,8 +25,8 @@ THUMB void btl::selectAI(status::UseActionParam* useActionParam)
         return;
     }
 
-    func_ov003_0212c384(&data_ov003_02149350);
-    func_ov003_0212c400(&data_ov003_02149350, actor);
+    autoAction.clear();
+    autoAction.setup(actor);
 
     if (actor->haveBattleStatus_.getSelectCommand() == 3) {
         actor->haveStatusInfo_.haveItem_.getItem(actor->haveBattleStatus_.selectIndex_);

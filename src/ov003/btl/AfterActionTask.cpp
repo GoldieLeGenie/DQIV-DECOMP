@@ -1,6 +1,8 @@
 #include "ov003/btl/AfterActionTask.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
 #include "ov003/btl/BattleMessage.hpp"
+#include "ov003/btl/BattleActorAnimation.hpp"
+
 
 ARM void btl::AfterActionTask::cleanup()
 {
@@ -91,7 +93,7 @@ ARM int btl::AfterActionTask::isMessageStatusChangeRelease()
         if (releaseStatus == status::StatusChange::StatusMosyasu) {
             useActionParam_->actorCharacterStatus_->setMosyasRelease();
             func_ov003_0212a4b0(useActionParam_->actorCharacterStatus_, 0, 0);
-            func_ov003_02129d40(useActionParam_->actorCharacterStatus_);
+            btl::BattleActorAnimation::setMosyasReverse(useActionParam_->actorCharacterStatus_);
         }
 
         if (releaseStatus == status::StatusChange::StatusTimeStop) {

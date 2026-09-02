@@ -619,7 +619,6 @@ THUMB int btl::BattleSelectTarget::setTargetOne(btl::BattleSelectTargetParam* pa
                 }
             }
         }
-        break;
     default:
         break;
     }
@@ -654,7 +653,6 @@ THUMB int btl::BattleSelectTarget::setTargetOne(btl::BattleSelectTargetParam* pa
         case 0x31: result = func_ov015_02174f14(param); break;
         case 0x42: result = func_ov015_02172d04(param); break;
         case 0:    result = func_ov015_021750f8(param); break;
-        case 0x14: case 0x15:
         default:   result = func_ov015_021763ac(); break;
         }
     }
@@ -685,7 +683,6 @@ THUMB int btl::BattleSelectTarget::setTargetOne(btl::BattleSelectTargetParam* pa
         case 0x31: result = func_ov015_02174f14(param); break;
         case 0x42: result = func_ov015_02172d04(param); break;
         case 0:    result = func_ov015_021750f8(param); break;
-        case 0x17:
         default:   result = func_ov015_021763ac(); break;
         }
     }

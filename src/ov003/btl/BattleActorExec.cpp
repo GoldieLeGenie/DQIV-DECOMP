@@ -1,4 +1,7 @@
 #include "ov003/btl/BattleActorExec.hpp"
+#include "ov003/btl/AutoAction.hpp"
+
+btl::AutoAction autoAction; //data_ov003_02149350
 
 #pragma profile on
 
