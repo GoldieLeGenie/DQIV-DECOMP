@@ -1,4 +1,5 @@
 #include "ov015/btl/BattleSelectTarget.hpp"
+#include "ov015/btl/BattleSecondCheck.hpp"
 #include "ov003/btl/BattleSelectTargetParam.hpp"
 #include "main/status/CharacterStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
@@ -569,7 +570,8 @@ THUMB int btl::BattleSelectTarget::setTargetEnemy(status::CharacterStatus* chara
 }
 
 //no matching 
-THUMB int btl::BattleSelectTarget::setTargetOne(btl::BattleSelectTargetParam* param)
+THUMB int btl::BattleSelectTarget::setTargetOne(
+    btl::BattleSelectTargetParam* param)
 {
     int group;
     int index;
@@ -581,48 +583,59 @@ THUMB int btl::BattleSelectTarget::setTargetOne(btl::BattleSelectTargetParam* pa
     int action;
     CharacterType playertype;
 
-    switch (param->callTarget_) {
-    case BattleSelectTargetParam::StartTurn:
-        if (param->targetCount_ > 0) {
-            flag = result;
-            for (i = 0; i < param->targetCount_; i++) {
-                if (param->getTargetCharacterStatus(i)->haveStatusInfo_.isDeath() != 0) {
-                    flag = 0;
-                }
-            }
-            if (flag != 0 && status::UseAction::isTargetDeadOrAlive(param->actionIndex_) != 0) {
-                group = param->targetGroup_;
-                for (i = 0; i < param->getSourceCountForGroup(group); i++) {
-                    target = param->getSourceCharacterStatusForGroup(group, i);
-                    if (target == param->getTargetCharacterStatus(0)) {
-                        param->targetIndex_ = i;
-                    }
-                }
-                actor = param->actorCharacterStatus_;
-                playertype = actor->characterType_;
-
-                action = param->actionIndex_;
-                if (playertype == PLAYER && action == 0x47) {
-                    if (actor->haveStatusInfo_.haveEquipment_.isEquipment(0x27) != 0 ||
-                        actor->haveStatusInfo_.haveEquipment_.isEquipment(0x28) != 0) {
-                        flag = 0;
-                    }
-                }
-            }
-            else if (flag == 0 && status::UseAction::isTargetDeadOrAlive(param->actionIndex_) == 0) {
-                group = param->targetGroup_;
-                for (i = 0; i < param->getSourceCountForGroupDead(group); i++) {
-                    target = param->getSourceCharacterStatusForGroupDead(group, i);
-                    if (target == param->getTargetCharacterStatus(0)) {
-                        param->targetIndex_ = i;
-                    }
-                }
-            }
-        }
-    default:
-        break;
+    if (param->callTarget_ != BattleSelectTargetParam::StartTurn) {
+        goto select_target;
     }
 
+    if (param->targetCount_ <= 0) {
+        goto select_target;
+    }
+
+    flag = result;
+
+    for (i = 0; i < param->targetCount_; i++) {
+        if (param->getTargetCharacterStatus(i)->haveStatusInfo_.isDeath() != 0) {
+            flag = 0;
+        }
+    }
+
+    if (flag != 0 &&
+        status::UseAction::isTargetDeadOrAlive(param->actionIndex_) != 0) {
+        group = param->targetGroup_;
+
+        for (i = 0; i < param->getSourceCountForGroup(group); i++) {
+            target = param->getSourceCharacterStatusForGroup(group, i);
+
+            if (target == param->getTargetCharacterStatus(0)) {
+                param->targetIndex_ = i;
+            }
+        }
+
+        actor = param->actorCharacterStatus_;
+        playertype = actor->characterType_;
+        action = param->actionIndex_;
+
+        if (playertype == PLAYER && action == 0x47) {
+            if (actor->haveStatusInfo_.haveEquipment_.isEquipment(0x27) != 0 ||
+                actor->haveStatusInfo_.haveEquipment_.isEquipment(0x28) != 0) {
+                flag = 0;
+            }
+        }
+    }
+    else if (flag == 0 &&
+             status::UseAction::isTargetDeadOrAlive(param->actionIndex_) == 0) {
+        group = param->targetGroup_;
+
+        for (i = 0; i < param->getSourceCountForGroupDead(group); i++) {
+            target = param->getSourceCharacterStatusForGroupDead(group, i);
+
+            if (target == param->getTargetCharacterStatus(0)) {
+                param->targetIndex_ = i;
+            }
+        }
+    }
+
+select_target:
     if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 2) {
         switch (status::excelParam.actionParam_[param->actionIndex_].god) {
         case 3:    result = func_ov015_02172ae8(param); break;
@@ -643,8 +656,8 @@ THUMB int btl::BattleSelectTarget::setTargetOne(btl::BattleSelectTargetParam* pa
         case 0x3e: result = func_ov015_02174c94(param); break;
         case 0x37: result = func_ov015_02174cf0(param); break;
         case 0x36: result = func_ov015_02174e3c(param); break;
-        case 1:    // fall-through
-        case 0x40: result = func_ov015_02172964(param); break;
+        case 1:
+        case 0x40: result = btl::BattleSecondCheck::personalCheckRandom(param); break;
         case 0x20: result = func_ov015_02174888(param); break;
         case 0x2e: result = func_ov015_02174d30(param); break;
         case 0x2c: result = func_ov015_02174c4c(param); break;
@@ -656,7 +669,8 @@ THUMB int btl::BattleSelectTarget::setTargetOne(btl::BattleSelectTargetParam* pa
         default:   result = func_ov015_021763ac(); break;
         }
     }
-    else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 1 && flag == 0) {
+    else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 1 &&
+             flag == 0) {
         switch (status::excelParam.actionParam_[param->actionIndex_].human) {
         case 3:    result = func_ov015_02172ae8(param); break;
         case 8:    result = func_ov015_02172cbc(param); break;
@@ -673,9 +687,9 @@ THUMB int btl::BattleSelectTarget::setTargetOne(btl::BattleSelectTargetParam* pa
         case 0x3e: result = func_ov015_02174c94(param); break;
         case 0x37: result = func_ov015_02174cf0(param); break;
         case 0x36: result = func_ov015_02174e3c(param); break;
-        case 1:    // fall-through
-        case 0x1e: // fall-through
-        case 0x40: result = func_ov015_02172964(param); break;
+        case 1:
+        case 0x1e:
+        case 0x40: result = btl::BattleSecondCheck::personalCheckRandom(param); break;
         case 0x2e: result = func_ov015_02174d30(param); break;
         case 0x2c: result = func_ov015_02174c4c(param); break;
         case 0x10: result = func_ov015_02174bf4(param); break;
@@ -686,22 +700,24 @@ THUMB int btl::BattleSelectTarget::setTargetOne(btl::BattleSelectTargetParam* pa
         default:   result = func_ov015_021763ac(); break;
         }
     }
-    else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 0 && flag == 0) {
+    else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 0 &&
+             flag == 0) {
         switch (status::excelParam.actionParam_[param->actionIndex_].fool) {
         case 0x25: result = func_ov015_0217377c(param); break;
-        case 1:    // fall-through
-        case 0x1e: // fall-through
-        case 0x40: // fall-through
+        case 1:
+        case 0x1e:
+        case 0x40:
         case 0x41: result = func_ov015_021751e4(param); break;
         case 0x42: result = func_ov015_02172d04(param); break;
         case 0:    result = func_ov015_021750f8(param); break;
-        default:   result = func_ov015_02172964(param); break;
+        default:   result = btl::BattleSecondCheck::personalCheckRandom(param); break;
         }
     }
 
     if (result == 0) {
         param->actorCharacterStatus_->haveBattleStatus_.setActionDisable2nd();
-        param->actorCharacterStatus_->haveBattleStatus_.setActionSelect(status::HaveBattleStatus::StartRound);
+        param->actorCharacterStatus_->haveBattleStatus_.setActionSelect(
+            status::HaveBattleStatus::StartRound);
         return 0;
     }
 
@@ -709,6 +725,7 @@ THUMB int btl::BattleSelectTarget::setTargetOne(btl::BattleSelectTargetParam* pa
         group = param->targetGroup_;
         index = param->targetIndex_;
         param->getSourceCountForGroup(group);
+
         if (param->targetCount_ == 1) {
             target = param->getSourceCharacterStatusForGroup(group, index);
             param->setTargetCharacterStatus(0, target);
@@ -719,12 +736,14 @@ THUMB int btl::BattleSelectTarget::setTargetOne(btl::BattleSelectTargetParam* pa
         group = param->targetGroup_;
         index = param->targetIndex_;
         param->getSourceCountForGroupDead(group);
+
         if (param->targetCount_ == 1) {
             target = param->getSourceCharacterStatusForGroupDead(group, index);
             param->setTargetCharacterStatus(0, target);
             param->targetCount_ = 1;
         }
     }
+
     return 1;
 }
 

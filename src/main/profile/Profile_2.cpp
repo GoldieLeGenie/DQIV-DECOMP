@@ -308,13 +308,11 @@ THUMB int profile::Profile::deliverDATA()
     return 1;
 }
 
-
-
 extern "C" void _ZN6status11PartyStatus11setLoadDataEPN7profile13PROFILE_PARTYEPNS1_15PROFILE_HISTORYE(void *, void *);
 
 THUMB void profile::Profile::deliverDATA_PARTY()
 {
-    func_0200b864(&g_Global);
+    g_Global.initialize();
     func_0205594c(15);
 
     g_Stage.profileBank_ = pSYSTEM->BOOKNO;                       

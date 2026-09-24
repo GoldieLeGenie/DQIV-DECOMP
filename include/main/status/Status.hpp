@@ -4,7 +4,7 @@
 
 namespace status{
     struct Status {
-        void initialize();
-        void initialize_character();
+        static void initialize();
+        static void initialize_character();
     };
 }

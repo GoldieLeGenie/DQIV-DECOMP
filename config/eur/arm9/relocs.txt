@@ -7347,7 +7347,7 @@ from:0x020296f8 kind:arm_call_thumb to:0x020259b4 module:main
 from:0x02029704 kind:arm_call_thumb to:0x02025a34 module:main
 from:0x0202970c kind:load to:0x020c7b1c module:main
 from:0x02029710 kind:load to:0x020ed1bc module:main
-from:0x02029728 kind:load to:0x02178aa9 module:overlays(15,16)
+from:0x02029728 kind:load to:0x02178aa9 module:overlay(16)
 from:0x0202972c kind:load to:0x02187b08 module:overlay(16)
 from:0x02029740 kind:arm_call to:0x020292c0 module:main
 from:0x02029754 kind:load to:0x020bea00 module:main

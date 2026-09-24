@@ -81,7 +81,6 @@ extern "C" {
     status::CharacterStatus* func_ov003_0212be84(btl::BattleSelectTargetParam* param, int index);
     int func_ov003_0212be08(btl::BattleSelectTargetParam* param, int group);
     status::CharacterStatus* func_ov003_0212be38(btl::BattleSelectTargetParam* param, int group, int index);
-    int func_ov015_02172964(btl::BattleSelectTargetParam*);
     int func_ov015_02172ae8(btl::BattleSelectTargetParam*);
     int func_ov015_02172cbc(btl::BattleSelectTargetParam*);
     int func_ov015_02172ce0(btl::BattleSelectTargetParam*);

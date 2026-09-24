@@ -8,7 +8,7 @@ namespace cmn {
         void* unk;
         int flagMapLink_;  
         int charaColl_;
-        void initLock(void);
+        static void initLock(void);
         static void setLock(int flag);
         bool isLock();
         int getLockCount();

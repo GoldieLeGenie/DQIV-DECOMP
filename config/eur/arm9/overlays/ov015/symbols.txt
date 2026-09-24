@@ -249,66 +249,66 @@ _ZN3btl18BattleSelectTarget31setTargetSpecialToMonsterHpMin2Ei kind:function(thu
 _ZN3btl18BattleSelectTarget24setTargetSpecialToParam2EPN6status14UseActionParamE kind:function(thumb,size=0x4c) addr:0x02172738
 _ZN3btl18BattleSelectTarget18setTargetCrossFireEPN6status14UseActionParamE kind:function(thumb,size=0x16c) addr:0x02172784
 _ZN3btl18BattleSelectTarget14setActorActionEPN6status14UseActionParamENS_23BattleSelectTargetParam16CallTargetSelectE kind:function(thumb,size=0x74) addr:0x021728f0
-func_ov015_02172964 kind:function(thumb,size=0x184) addr:0x02172964
-func_ov015_02172ae8 kind:function(thumb,size=0x1d4) addr:0x02172ae8
-func_ov015_02172cbc kind:function(thumb,size=0x24) addr:0x02172cbc
-func_ov015_02172ce0 kind:function(thumb,size=0x24) addr:0x02172ce0
-func_ov015_02172d04 kind:function(thumb,size=0xdc) addr:0x02172d04
-func_ov015_02172de0 kind:function(thumb,size=0x1a0) addr:0x02172de0
-func_ov015_02172f80 kind:function(thumb,size=0x1a4) addr:0x02172f80
-func_ov015_02173124 kind:function(thumb,size=0x1ac) addr:0x02173124
-func_ov015_021732d0 kind:function(thumb,size=0x24) addr:0x021732d0
-func_ov015_021732f4 kind:function(thumb,size=0x1c0) addr:0x021732f4
-func_ov015_021734b4 kind:function(thumb,size=0x50) addr:0x021734b4
-func_ov015_02173504 kind:function(thumb,size=0x278) addr:0x02173504
-func_ov015_0217377c kind:function(thumb,size=0x22c) addr:0x0217377c
-func_ov015_021739a8 kind:function(thumb,size=0x4c) addr:0x021739a8
-func_ov015_021739f4 kind:function(thumb,size=0x1f8) addr:0x021739f4
-func_ov015_02173bec kind:function(thumb,size=0x1f8) addr:0x02173bec
-func_ov015_02173de4 kind:function(thumb,size=0x1ec) addr:0x02173de4
-func_ov015_02173fd0 kind:function(thumb,size=0x2a8) addr:0x02173fd0
-func_ov015_02174278 kind:function(thumb,size=0x220) addr:0x02174278
-func_ov015_02174498 kind:function(thumb,size=0x1f8) addr:0x02174498
-func_ov015_02174690 kind:function(thumb,size=0x1f8) addr:0x02174690
-func_ov015_02174888 kind:function(thumb,size=0x1bc) addr:0x02174888
-func_ov015_02174a44 kind:function(thumb,size=0x1b0) addr:0x02174a44
-func_ov015_02174bf4 kind:function(thumb,size=0x58) addr:0x02174bf4
-func_ov015_02174c4c kind:function(thumb,size=0x48) addr:0x02174c4c
-func_ov015_02174c94 kind:function(thumb,size=0x5c) addr:0x02174c94
-func_ov015_02174cf0 kind:function(thumb,size=0x40) addr:0x02174cf0
-func_ov015_02174d30 kind:function(thumb,size=0x48) addr:0x02174d30
-func_ov015_02174d78 kind:function(thumb,size=0xc4) addr:0x02174d78
-func_ov015_02174e3c kind:function(thumb,size=0xd8) addr:0x02174e3c
-func_ov015_02174f14 kind:function(thumb,size=0xbc) addr:0x02174f14
-func_ov015_02174fd0 kind:function(thumb,size=0x128) addr:0x02174fd0
-func_ov015_021750f8 kind:function(thumb,size=0xec) addr:0x021750f8
-func_ov015_021751e4 kind:function(thumb,size=0xc0) addr:0x021751e4
-func_ov015_021752a4 kind:function(thumb,size=0xcc) addr:0x021752a4
-func_ov015_02175370 kind:function(thumb,size=0x104) addr:0x02175370
-func_ov015_02175474 kind:function(thumb,size=0x24) addr:0x02175474
-func_ov015_02175498 kind:function(thumb,size=0x24) addr:0x02175498
-func_ov015_021754bc kind:function(thumb,size=0x24) addr:0x021754bc
-func_ov015_021754e0 kind:function(thumb,size=0x24) addr:0x021754e0
-func_ov015_02175504 kind:function(thumb,size=0x24) addr:0x02175504
-func_ov015_02175528 kind:function(thumb,size=0x24) addr:0x02175528
-func_ov015_0217554c kind:function(thumb,size=0xd8) addr:0x0217554c
-func_ov015_02175624 kind:function(thumb,size=0xe0) addr:0x02175624
-func_ov015_02175704 kind:function(thumb,size=0xd8) addr:0x02175704
-func_ov015_021757dc kind:function(thumb,size=0x124) addr:0x021757dc
-func_ov015_02175900 kind:function(thumb,size=0x118) addr:0x02175900
-func_ov015_02175a18 kind:function(thumb,size=0x14c) addr:0x02175a18
-func_ov015_02175b64 kind:function(thumb,size=0xe0) addr:0x02175b64
-func_ov015_02175c44 kind:function(thumb,size=0xc4) addr:0x02175c44
-func_ov015_02175d08 kind:function(thumb,size=0x80) addr:0x02175d08
-func_ov015_02175d88 kind:function(thumb,size=0x70) addr:0x02175d88
-func_ov015_02175df8 kind:function(thumb,size=0xf8) addr:0x02175df8
-func_ov015_02175ef0 kind:function(thumb,size=0xe0) addr:0x02175ef0
-func_ov015_02175fd0 kind:function(thumb,size=0xe0) addr:0x02175fd0
-func_ov015_021760b0 kind:function(thumb,size=0x94) addr:0x021760b0
-func_ov015_02176144 kind:function(thumb,size=0xc4) addr:0x02176144
-func_ov015_02176208 kind:function(thumb,size=0x94) addr:0x02176208
-func_ov015_0217629c kind:function(thumb,size=0x110) addr:0x0217629c
-func_ov015_021763ac kind:function(thumb,size=0x28) addr:0x021763ac
+_ZN3btl17BattleSecondCheck19personalCheckRandomEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x184) addr:0x02172964
+_ZN3btl17BattleSecondCheck22personalCheckMahokantaEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x1d4) addr:0x02172ae8
+_ZN3btl17BattleSecondCheck21personalCheckRarihomaEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x24) addr:0x02172cbc
+_ZN3btl17BattleSecondCheck21personalCheckMedapaniEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x24) addr:0x02172ce0
+_ZN3btl17BattleSecondCheck20personalCheckBothOneEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xdc) addr:0x02172d04
+_ZN3btl17BattleSecondCheck21personalCheckMahotoraEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x1a0) addr:0x02172de0
+_ZN3btl17BattleSecondCheck19personalCheckRukaniEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x1a4) addr:0x02172f80
+_ZN3btl17BattleSecondCheck19personalCheckSukaraEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x1ac) addr:0x02173124
+_ZN3btl17BattleSecondCheck22personalCheckBaikirutoEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x24) addr:0x021732d0
+_ZN3btl17BattleSecondCheck18personalCheckHoimiEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x1c0) addr:0x021732f4
+_ZN3btl17BattleSecondCheck20personalCheckMyHoimiEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x50) addr:0x021734b4
+_ZN3btl17BattleSecondCheck23personalCheckThereHoimiEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x278) addr:0x02173504
+_ZN3btl17BattleSecondCheck20personalCheckZaorikuEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x22c) addr:0x0217377c
+_ZN3btl17BattleSecondCheck21personalCheckTaiatariEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x4c) addr:0x021739a8
+_ZN3btl17BattleSecondCheck27personalCheckRarihomaForGodEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x1f8) addr:0x021739f4
+_ZN3btl17BattleSecondCheck27personalCheckMedapaniForGodEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x1f8) addr:0x02173bec
+_ZN3btl17BattleSecondCheck27personalCheckMahotoraForGodEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x1ec) addr:0x02173de4
+_ZN3btl17BattleSecondCheck21personalCheckMahosuteEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x2a8) addr:0x02173fd0
+_ZN3btl17BattleSecondCheck25personalCheckRukaniForGodEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x220) addr:0x02174278
+_ZN3btl17BattleSecondCheck25personalCheckSukaraForGodEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x1f8) addr:0x02174498
+_ZN3btl17BattleSecondCheck28personalCheckBaikirutoForGodEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x1f8) addr:0x02174690
+_ZN3btl17BattleSecondCheck20personalCheckMosyasuEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x1bc) addr:0x02174888
+_ZN3btl17BattleSecondCheck28personalCheckNormalCharacterEPNS_23BattleSelectTargetParamEN6status12StatusChange6StatusE kind:function(thumb,size=0x1b0) addr:0x02174a44
+_ZN3btl17BattleSecondCheck24personalCheckMyMahokantaEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x58) addr:0x02174bf4
+_ZN3btl17BattleSecondCheck25personalCheckChargeAttackEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x48) addr:0x02174c4c
+_ZN3btl17BattleSecondCheck22personalCheckPartThreeEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x5c) addr:0x02174c94
+_ZN3btl17BattleSecondCheck19personalCheckAnkokuEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x40) addr:0x02174cf0
+_ZN3btl17BattleSecondCheck23personalCheckFizzleZoneEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x48) addr:0x02174d30
+_ZN3btl17BattleSecondCheck19personalCheckEscapeEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xc4) addr:0x02174d78
+_ZN3btl17BattleSecondCheck23personalCheckNakamayobiEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xd8) addr:0x02174e3c
+_ZN3btl17BattleSecondCheck19personalCheckGattaiEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xbc) addr:0x02174f14
+_ZN3btl17BattleSecondCheck28personalCheckMahokantaForGodEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x128) addr:0x02174fd0
+_ZN3btl17BattleSecondCheck20personalCheckFreeOneEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xec) addr:0x021750f8
+_ZN3btl17BattleSecondCheck19personalCheckWeaponEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xc0) addr:0x021751e4
+_ZN3btl17BattleSecondCheck24personalCheckRandomGroupEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xcc) addr:0x021752a4
+_ZN3btl17BattleSecondCheck27personalCheckMahokantaGroupEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x104) addr:0x02175370
+_ZN3btl17BattleSecondCheck19personalCheckRarihoEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x24) addr:0x02175474
+_ZN3btl17BattleSecondCheck19personalCheckManusaEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x24) addr:0x02175498
+_ZN3btl17BattleSecondCheck20personalCheckMahotonEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x24) addr:0x021754bc
+_ZN3btl17BattleSecondCheck22personalCheckDokunoikiEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x24) addr:0x021754e0
+_ZN3btl17BattleSecondCheck24personalCheckYaketukuikiEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x24) addr:0x02175504
+_ZN3btl17BattleSecondCheck26personalCheckMedapaniDanceEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x24) addr:0x02175528
+_ZN3btl17BattleSecondCheck20personalCheckRukananEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xd8) addr:0x0217554c
+_ZN3btl17BattleSecondCheck21personalCheckSukurutoEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xe0) addr:0x02175624
+_ZN3btl17BattleSecondCheck20personalCheckPiorimuEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xd8) addr:0x02175704
+_ZN3btl17BattleSecondCheck25personalCheckRarihoForGodEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x124) addr:0x021757dc
+_ZN3btl17BattleSecondCheck26personalCheckMahotonForGodEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x118) addr:0x02175900
+_ZN3btl17BattleSecondCheck26personalCheckRukananForGodEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x14c) addr:0x02175a18
+_ZN3btl17BattleSecondCheck25personalCheckNormalMemberEPNS_23BattleSelectTargetParamEN6status12StatusChange6StatusE kind:function(thumb,size=0xe0) addr:0x02175b64
+_ZN3btl17BattleSecondCheck25personalCheckMahokantaAllEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xc4) addr:0x02175c44
+_ZN3btl17BattleSecondCheck20personalCheckMeganteEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x80) addr:0x02175d08
+_ZN3btl17BattleSecondCheck26personalCheckMeganteForGodEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x70) addr:0x02175d88
+_ZN3btl17BattleSecondCheck21personalCheckBehomaraEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xf8) addr:0x02175df8
+_ZN3btl17BattleSecondCheck20personalCheckKiarikuEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xe0) addr:0x02175ef0
+_ZN3btl17BattleSecondCheck19personalCheckZamehaEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xe0) addr:0x02175fd0
+_ZN3btl17BattleSecondCheck19personalCheckHubahaEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x94) addr:0x021760b0
+_ZN3btl17BattleSecondCheck21personalCheckMegazaruEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0xc4) addr:0x02176144
+_ZN3btl17BattleSecondCheck20personalCheckOtakebiEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x94) addr:0x02176208
+_ZN3btl17BattleSecondCheck18personalCheckHadouEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x110) addr:0x0217629c
+_ZN3btl17BattleSecondCheck17personalCheckFreeEv kind:function(thumb,size=0x28) addr:0x021763ac
 data_ov015_021763d4 kind:data(any) addr:0x021763d4
 data_ov015_021763e4 kind:data(any) addr:0x021763e4
 data_ov015_021763f0 kind:data(any) addr:0x021763f0
@@ -447,7 +447,7 @@ data_ov015_02177888 kind:data(any) addr:0x02177888
 @8 kind:data(any) addr:0x02177a68
 @9 kind:data(any) addr:0x02177ab8
 @10 kind:data(any) addr:0x02177ae9 
-@11 kind:data(any) addr:0x02177b05 
+@11 kind:data(any) addr:0x02177b05
 @12 kind:data(any) addr:0x02177b10
 @13 kind:data(any) addr:0x02177b60
 @14 kind:data(any) addr:0x02177bb8
@@ -471,67 +471,66 @@ data_ov015_02177888 kind:data(any) addr:0x02177888
 @32 kind:data(any) addr:0x0217818c
 @33 kind:data(any) addr:0x021781e0
 @719 kind:data(any) addr:0x0217822c
-data_ov015_021782a4 kind:data(any) addr:0x021782a4
-data_ov015_021782f4 kind:data(any) addr:0x021782f4
-data_ov015_02178348 kind:data(any) addr:0x02178348
-data_ov015_0217839c kind:data(any) addr:0x0217839c
-data_ov015_021783f0 kind:data(any) addr:0x021783f0
-data_ov015_02178440 kind:data(any) addr:0x02178440
-data_ov015_02178494 kind:data(any) addr:0x02178494
-data_ov015_021784e4 kind:data(any) addr:0x021784e4
-data_ov015_02178534 kind:data(any) addr:0x02178534
-data_ov015_02178588 kind:data(any) addr:0x02178588
-data_ov015_021785d8 kind:data(any) addr:0x021785d8
-data_ov015_02178628 kind:data(any) addr:0x02178628
-data_ov015_0217867c kind:data(any) addr:0x0217867c
-data_ov015_021786cc kind:data(any) addr:0x021786cc
-data_ov015_02178720 kind:data(any) addr:0x02178720
-data_ov015_02178778 kind:data(any) addr:0x02178778
-data_ov015_021787d0 kind:data(any) addr:0x021787d0
-data_ov015_02178828 kind:data(any) addr:0x02178828
-data_ov015_0217887c kind:data(any) addr:0x0217887c
-data_ov015_021788d4 kind:data(any) addr:0x021788d4
-data_ov015_0217892c kind:data(any) addr:0x0217892c
-data_ov015_02178984 kind:data(any) addr:0x02178984
-data_ov015_021789d4 kind:data(any) addr:0x021789d4
-data_ov015_02178a4c kind:data(any) addr:0x02178a4c
-data_ov015_02178aa0 kind:data(any) addr:0x02178aa0
-data_ov015_02178aa9 kind:data(any) addr:0x02178aa9 ambiguous
-data_ov015_02178af8 kind:data(any) addr:0x02178af8
-data_ov015_02178b4c kind:data(any) addr:0x02178b4c
-data_ov015_02178b9c kind:data(any) addr:0x02178b9c
-data_ov015_02178bf0 kind:data(any) addr:0x02178bf0
-data_ov015_02178c40 kind:data(any) addr:0x02178c40
-data_ov015_02178c94 kind:data(any) addr:0x02178c94
-data_ov015_02178ce4 kind:data(any) addr:0x02178ce4
-data_ov015_02178d3c kind:data(any) addr:0x02178d3c
-data_ov015_02178d8c kind:data(any) addr:0x02178d8c
-data_ov015_02178ddc kind:data(any) addr:0x02178ddc
-data_ov015_02178e30 kind:data(any) addr:0x02178e30
-data_ov015_02178e88 kind:data(any) addr:0x02178e88
-data_ov015_02178ed8 kind:data(any) addr:0x02178ed8
-data_ov015_02178f28 kind:data(any) addr:0x02178f28
-data_ov015_02178f78 kind:data(any) addr:0x02178f78
-data_ov015_02178fcc kind:data(any) addr:0x02178fcc
-data_ov015_02179020 kind:data(any) addr:0x02179020
-data_ov015_02179078 kind:data(any) addr:0x02179078
-data_ov015_021790c8 kind:data(any) addr:0x021790c8
-data_ov015_0217911c kind:data(any) addr:0x0217911c
-data_ov015_0217916c kind:data(any) addr:0x0217916c
-data_ov015_021791c4 kind:data(any) addr:0x021791c4
-data_ov015_0217921c kind:data(any) addr:0x0217921c
-data_ov015_02179274 kind:data(any) addr:0x02179274
-data_ov015_021792e8 kind:data(any) addr:0x021792e8
-data_ov015_02179340 kind:data(any) addr:0x02179340
-data_ov015_02179390 kind:data(any) addr:0x02179390
-data_ov015_021793e8 kind:data(any) addr:0x021793e8
-data_ov015_0217943c kind:data(any) addr:0x0217943c
-data_ov015_0217948c kind:data(any) addr:0x0217948c
-data_ov015_021794dc kind:data(any) addr:0x021794dc
-data_ov015_0217952c kind:data(any) addr:0x0217952c
-data_ov015_02179580 kind:data(any) addr:0x02179580
-data_ov015_021795d0 kind:data(any) addr:0x021795d0
-data_ov015_02179620 kind:data(any) addr:0x02179620
+@1046 kind:data(any) addr:0x021782a4 local
+@1148 kind:data(any) addr:0x021782f4 local
+@1156 kind:data(any) addr:0x02178348 local
+@1164 kind:data(any) addr:0x0217839c local
+@1234 kind:data(any) addr:0x021783f0 local
+@1328 kind:data(any) addr:0x02178440 local
+@1422 kind:data(any) addr:0x02178494 local
+@1516 kind:data(any) addr:0x021784e4 local
+@1524 kind:data(any) addr:0x02178534 local
+@1624 kind:data(any) addr:0x02178588 local
+@1640 kind:data(any) addr:0x021785d8 local
+@1774 kind:data(any) addr:0x02178628 local
+@1898 kind:data(any) addr:0x0217867c local
+@1915 kind:data(any) addr:0x021786cc local
+@2021 kind:data(any) addr:0x02178720 local
+@2127 kind:data(any) addr:0x02178778 local
+@2237 kind:data(any) addr:0x021787d0 local
+@2390 kind:data(any) addr:0x02178828 local
+@2506 kind:data(any) addr:0x0217887c local
+@2616 kind:data(any) addr:0x021788d4 local
+@2722 kind:data(any) addr:0x0217892c local
+@2820 kind:data(any) addr:0x02178984 local
+@2915 kind:data(any) addr:0x021789d4 local
+@2933 kind:data(any) addr:0x02178a4c local
+@2947 kind:data(any) addr:0x02178aa0 local
+@2966 kind:data(any) addr:0x02178af8 local
+@2980 kind:data(any) addr:0x02178b4c local
+@2994 kind:data(any) addr:0x02178b9c local
+@3035 kind:data(any) addr:0x02178bf0 local
+@3067 kind:data(any) addr:0x02178c40 local
+@3105 kind:data(any) addr:0x02178c94 local
+@3172 kind:data(any) addr:0x02178ce4 local
+@3219 kind:data(any) addr:0x02178d3c local
+@3257 kind:data(any) addr:0x02178d8c local
+@3301 kind:data(any) addr:0x02178ddc local
+@3360 kind:data(any) addr:0x02178e30 local
+@3368 kind:data(any) addr:0x02178e88 local
+@3376 kind:data(any) addr:0x02178ed8 local
+@3384 kind:data(any) addr:0x02178f28 local
+@3392 kind:data(any) addr:0x02178f78 local
+@3400 kind:data(any) addr:0x02178fcc local
+@3408 kind:data(any) addr:0x02179020 local
+@3462 kind:data(any) addr:0x02179078 local
+@3516 kind:data(any) addr:0x021790c8 local
+@3570 kind:data(any) addr:0x0217911c local
+@3634 kind:data(any) addr:0x0217916c local
+@3697 kind:data(any) addr:0x021791c4 local
+@3767 kind:data(any) addr:0x0217921c local
+@3822 kind:data(any) addr:0x02179274 local
+@3863 kind:data(any) addr:0x021792e8 local
+@3888 kind:data(any) addr:0x02179340 local
+@3911 kind:data(any) addr:0x02179390 local
+@3966 kind:data(any) addr:0x021793e8 local
+@4013 kind:data(any) addr:0x0217943c local
+@4060 kind:data(any) addr:0x0217948c local
+@4097 kind:data(any) addr:0x021794dc local
+@4149 kind:data(any) addr:0x0217952c local
+@4186 kind:data(any) addr:0x02179580 local
+@4249 kind:data(any) addr:0x021795d0 local
+@4254 kind:data(any) addr:0x02179620 local
 data_ov015_02179660 kind:bss addr:0x02179660
 data_ov015_021796ac kind:bss addr:0x021796ac
 data_ov015_021796b4 kind:bss addr:0x021796b4

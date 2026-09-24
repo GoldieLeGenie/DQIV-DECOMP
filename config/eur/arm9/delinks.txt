@@ -178,7 +178,7 @@ src/main/status/HaveBattleStatus.cpp:
     .bss  start:0x020d08b0 end:0x020d08d0
 
 src/main/global/Global.cpp:
-    .text start:0x0200b954 end:0x0200ba58
+    .text start:0x0200b82c end:0x0200ba58
     .bss start:0x020c768c end:0x020c774c
 
 src/main/status/ActionDefence.cpp:
@@ -272,7 +272,7 @@ src/main/cmn/CommonCounterInfo.cpp:
     .bss start:0x020ef9ac end:0x020ef9c8
 
 src/main/cmn/CommonWalkDamage.cpp:
-    .text start:0x02032cec end:0x02032db4
+    .text start:0x02032cec end:0x02032ee8
 
 src/main/cmn/CommonEffectLocation.cpp:
     complete
@@ -354,3 +354,9 @@ src/main/formation/FormationIdManager.cpp:
 src/main/SpecialParty/SpecialParty.cpp:
     complete
     .text start:0x0200b54c end:0x0200b5cc
+
+src/main/btl/BattleScriptManager.cpp:
+    complete
+    .text start:0x02030aa8 end:0x02030cb0
+    .bss start:0x020eed00 end:0x020eed14
+    .data start:0x020bebe8 end:0x020bec68

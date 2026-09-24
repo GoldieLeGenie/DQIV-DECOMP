@@ -1,6 +1,70 @@
 #include "main/global/Global.hpp"
+#include "main/status/ExcelParam.hpp"
+#include "main/status/Status.hpp"
+#include "main/status/StageStatus.hpp"
+#include "main/status/OptionStatus.hpp"
+#include "main/status/PartyStatus.hpp"
+#include "main/cmn/PlayerManager.hpp"
 
 Global g_Global; //data_020c768c
+
+THUMB Global::Global()
+{
+    dss::DssUtils::strcpy_s(nextMapName_, 32, mlb1a);
+    dss::DssUtils::strcpy_s(battleMapName, 32, data_020bc268);
+    fightingarenaFlag_ = 0;
+    partChangeFlag_ = 0;
+}
+
+THUMB Global::~Global(){
+
+}
+
+THUMB void Global::initialize()
+{
+    status::excelParam.setup();
+    func_0200a6c8();
+    func_0200a734();
+    status::Status::initialize();
+    status::Status::initialize_character();
+    cmn::PlayerManager::initLock();
+    g_Stage.playerFlagClear();
+    g_Option.initialize();
+}
+
+
+THUMB void Global::startGame()
+{
+    func_0200bdb8(data_020c7658, 3);
+    func_02058294(data_0210bc18, data_020c7658);
+    func_0200bcc4(this, 30);
+}
+
+THUMB void Global::startFirstTown()
+{
+    setMapName(mlb1a);
+    func_0200bdb8(data_020c7658, 12);
+    func_02058294(data_0210bc18, data_020c7658);
+    func_0200bcc4(this, 30);
+}
+
+THUMB void Global::startDebugTown()
+{
+    setMapName(za1f1);
+    func_0200bdb8(data_020c7658, 12);
+    func_02058294(data_0210bc18, data_020c7658);
+    func_0200bcc4(this, 30);
+}
+
+THUMB void Global::startTown(char* name)
+{
+    setMapName(name);
+    func_0200bdb8(data_020c7658, 12);
+    func_02058294(data_0210bc18, data_020c7658);
+    func_0200bcc4(this, 30);
+    partChangeFlag_ = 1;
+}
+
 
 THUMB void Global::startCasino() {
     setMapName(data_020bc270);
@@ -61,9 +125,9 @@ THUMB char* Global::getPrevMapName() {
     return this->prevMapName_;
 }
 
-THUMB void Global::setMapName(char *name) {
+THUMB void Global::setMapName(const char *name) {
     char temp[32];
-    dss::DssUtils::strcpy_s(temp, 0x20, name);
+    dss::DssUtils::strcpy_s(temp, 0x20, (char*)name);
     dss::DssUtils::strcpy_s(this->prevMapName_, 0x20, this->nextMapName_);
     dss::DssUtils::strcpy_s(this->nextMapName_, 0x20, temp);
 }
