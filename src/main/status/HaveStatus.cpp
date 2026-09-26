@@ -1,6 +1,8 @@
 #include "main/status/HaveStatus.hpp"
 #include "main/dss/Random.hpp"
 
+status::BaseStatus data_020d0698;
+
 
 THUMB status::HaveStatus::HaveStatus(){
     return;
@@ -170,66 +172,66 @@ THUMB void status::HaveStatus::levelup(int flag) {
 
     // Strength
     localStatus.strength_ = (unsigned char)(levelData[this->level_].strength - levelData[this->level_ - 1].strength);
-    data_020d068c.strength_ = levelupAdd(localStatus.strength_) & 0xFF;
+    data_020d0698.strength_ = levelupAdd(localStatus.strength_) & 0xFF;
     localStatus.strength_ = this->baseStatus_.strength_;
     this->baseStatus_.strength_ = status::BaseStatus::getClampValue2(
-        levelupAjust(this->baseStatus_.strength_, data_020d068c.strength_, levelData[this->level_].strength),
+        levelupAjust(this->baseStatus_.strength_, data_020d0698.strength_, levelData[this->level_].strength),
         0, 255) & 0xFF;
-    data_020d068c.strength_ = (this->baseStatus_.strength_ - localStatus.strength_) & 0xFF;
+    data_020d0698.strength_ = (this->baseStatus_.strength_ - localStatus.strength_) & 0xFF;
 
     // Agility
     localStatus.agility_ = (unsigned char)(levelData[this->level_].agility - levelData[this->level_ - 1].agility);
-    data_020d068c.agility_ = levelupAdd(localStatus.agility_);
+    data_020d0698.agility_ = levelupAdd(localStatus.agility_);
     localStatus.agility_ = this->baseStatus_.agility_;
     this->baseStatus_.agility_ = status::BaseStatus::getClampValue2(
-        levelupAjust(this->baseStatus_.agility_, data_020d068c.agility_, levelData[this->level_].agility),
+        levelupAjust(this->baseStatus_.agility_, data_020d0698.agility_, levelData[this->level_].agility),
         0, 255);
-    data_020d068c.agility_ = this->baseStatus_.agility_ - localStatus.agility_;
+    data_020d0698.agility_ = this->baseStatus_.agility_ - localStatus.agility_;
 
     // Protection
     localStatus.protection_ = (unsigned char)(levelData[this->level_].agility / 2 - levelData[this->level_ - 1].agility / 2);
-    data_020d068c.protection_ = levelupAdd(localStatus.protection_) & 0xFF;
+    data_020d0698.protection_ = levelupAdd(localStatus.protection_) & 0xFF;
     localStatus.protection_ = this->baseStatus_.protection_;
     this->baseStatus_.protection_ = status::BaseStatus::getClampValue2(
-        levelupAjust(this->baseStatus_.protection_, data_020d068c.protection_, levelData[this->level_].agility >> 1),
+        levelupAjust(this->baseStatus_.protection_, data_020d0698.protection_, levelData[this->level_].agility >> 1),
         0, 255) & 0xFF;
-    data_020d068c.protection_ = (this->baseStatus_.protection_ - localStatus.protection_) & 0xFF;
+    data_020d0698.protection_ = (this->baseStatus_.protection_ - localStatus.protection_) & 0xFF;
 
     // Wisdom
     localStatus.wisdom_ = (unsigned char)(levelData[this->level_].wisdom - levelData[this->level_ - 1].wisdom);
-    data_020d068c.wisdom_ = levelupAdd(localStatus.wisdom_);
+    data_020d0698.wisdom_ = levelupAdd(localStatus.wisdom_);
     localStatus.wisdom_ = this->baseStatus_.wisdom_;
     this->baseStatus_.wisdom_ = status::BaseStatus::getClampValue2(
-        levelupAjust(this->baseStatus_.wisdom_, data_020d068c.wisdom_, levelData[this->level_].wisdom),
+        levelupAjust(this->baseStatus_.wisdom_, data_020d0698.wisdom_, levelData[this->level_].wisdom),
         0, 255);
-    data_020d068c.wisdom_ = this->baseStatus_.wisdom_ - localStatus.wisdom_;
+    data_020d0698.wisdom_ = this->baseStatus_.wisdom_ - localStatus.wisdom_;
 
     // Luck
     localStatus.luck_ = (unsigned char)(levelData[this->level_].luck - levelData[this->level_ - 1].luck);
-    data_020d068c.luck_ = levelupAdd(localStatus.luck_);
+    data_020d0698.luck_ = levelupAdd(localStatus.luck_);
     localStatus.luck_ = this->baseStatus_.luck_;
     this->baseStatus_.luck_ = status::BaseStatus::getClampValue2(
-        levelupAjust(this->baseStatus_.luck_, data_020d068c.luck_, levelData[this->level_].luck),
+        levelupAjust(this->baseStatus_.luck_, data_020d0698.luck_, levelData[this->level_].luck),
         0, 255);
-    data_020d068c.luck_ = this->baseStatus_.luck_ - localStatus.luck_;
+    data_020d0698.luck_ = this->baseStatus_.luck_ - localStatus.luck_;
 
     // HP Max
     localStatus.hpMax_ = (unsigned char)(levelData[this->level_].hpMax - levelData[this->level_ - 1].hpMax);
-    data_020d068c.hpMax_ = levelupAdd(localStatus.hpMax_) & 0xFF;
+    data_020d0698.hpMax_ = levelupAdd(localStatus.hpMax_) & 0xFF;
     localStatus.hpMax_ = this->baseStatus_.hpMax_;
     this->baseStatus_.hpMax_ = status::BaseStatus::getClampValue2(
-        levelupAjust(this->baseStatus_.hpMax_, data_020d068c.hpMax_, levelData[this->level_].hpMax),
+        levelupAjust(this->baseStatus_.hpMax_, data_020d0698.hpMax_, levelData[this->level_].hpMax),
         0, 999);
-    data_020d068c.hpMax_ = this->baseStatus_.hpMax_ - localStatus.hpMax_;
+    data_020d0698.hpMax_ = this->baseStatus_.hpMax_ - localStatus.hpMax_;
 
     // MP Max
     localStatus.mpMax_ = (unsigned char)(levelData[this->level_].mpMax - levelData[this->level_ - 1].mpMax);
-    data_020d068c.mpMax_ = levelupAdd(localStatus.mpMax_) & 0xFF;
+    data_020d0698.mpMax_ = levelupAdd(localStatus.mpMax_) & 0xFF;
     localStatus.mpMax_ = this->baseStatus_.mpMax_;
     this->baseStatus_.mpMax_ = status::BaseStatus::getClampValue2(
-        levelupAjust(this->baseStatus_.mpMax_, data_020d068c.mpMax_, levelData[this->level_].mpMax),
+        levelupAjust(this->baseStatus_.mpMax_, data_020d0698.mpMax_, levelData[this->level_].mpMax),
         0, 999);
-    data_020d068c.mpMax_ = this->baseStatus_.mpMax_ - localStatus.mpMax_;
+    data_020d0698.mpMax_ = this->baseStatus_.mpMax_ - localStatus.mpMax_;
 
     // Next level exp
     this->baseStatus_.exp_ = levelData[this->level_ + 1].exp;

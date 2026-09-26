@@ -5,3 +5,12 @@
     .data       start:0x0217f840 end:0x02185860 kind:data align:32
     .bss        start:0x02185860 end:0x02189340 kind:bss align:32
 
+
+
+src/ov016/status/PlayerItemInfo.cpp:
+    complete
+    .text start:0x021758f8 end:0x02175b9c
+
+src/ov016/status/FukuroItemInfo.cpp:
+    complete
+    .text start:0x02175b9c end:0x02175db0

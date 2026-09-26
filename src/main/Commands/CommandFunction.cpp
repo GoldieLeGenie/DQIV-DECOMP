@@ -1,13 +1,12 @@
 #include "globaldefs.h"
 #include "GameInfo.hpp"
 #include "main/CommandParameter/CommandParameter.hpp"
+#include "ov000/Commands/TownCommand.hpp"
 
 
 
 extern "C" int func_0201f70c(void *);
-extern "C" int func_ov000_0213db98(void *);
 extern "C" int func_02023f74(void *);
-extern "C" int func_ov000_0213f00c(void *);
 extern "C" int func_0201f6f0(void *);
 extern "C" int func_0201f7d8(void *);
 extern "C" int func_0201f9a8(void *);
@@ -100,84 +99,6 @@ extern "C" int func_0202561c(void *);
 extern "C" int func_02025688(void *);
 extern "C" int func_02025698(void *);
 extern "C" int func_020256e4(void *);
-extern "C" int func_ov000_0213cda8(void *);
-extern "C" int func_ov000_0213cdd4(void *);
-extern "C" int func_ov000_0213ce18(void *);
-extern "C" int func_ov000_0213ce30(void *);
-extern "C" int func_ov000_0213cefc(void *);
-extern "C" int func_ov000_0213cf58(void *);
-extern "C" int func_ov000_0213d068(void *);
-extern "C" int func_ov000_0213d36c(void *);
-extern "C" int func_ov000_0213d39c(void *);
-extern "C" void func_ov000_0213d3b8(void *);
-extern "C" int func_ov000_0213d3d4(void *);
-extern "C" int func_ov000_0213d3f0(void *);
-extern "C" int func_ov000_0213d40c(void *);
-extern "C" int func_ov000_0213d424(void *);
-extern "C" int func_ov000_0213d468(void *);
-extern "C" int func_ov000_0213d4c8(void *);
-extern "C" int func_ov000_0213d4ec(void *);
-extern "C" int func_ov000_0213d544(void *);
-extern "C" int func_ov000_0213d72c(void *);
-extern "C" int func_ov000_0213d730(void *);
-extern "C" int func_ov000_0213d754(void *);
-extern "C" int func_ov000_0213d778(void *);
-extern "C" int func_ov000_0213d79c(void *);
-extern "C" int func_ov000_0213d7bc(void *);
-extern "C" int func_ov000_0213d7dc(void *);
-extern "C" int func_ov000_0213d7fc(void *);
-extern "C" int func_ov000_0213d818(void *);
-extern "C" int func_ov000_0213d864(void *);
-extern "C" int func_ov000_0213d8f8(void *);
-extern "C" int func_ov000_0213d9ac(void *);
-extern "C" int func_ov000_0213da5c(void *);
-extern "C" int func_ov000_0213daec(void *);
-extern "C" int func_ov000_0213dbd8(void *);
-extern "C" int func_ov000_0213ee4c(void *);
-extern "C" int func_ov000_0213ee6c(void *);
-extern "C" int func_ov000_0213f040(void *);
-extern "C" int func_ov000_0213f074(void *);
-extern "C" int func_ov000_0213f0d0(void *);
-extern "C" int func_ov000_0213f130(void *);
-extern "C" int func_ov000_0213f14c(void *);
-extern "C" int func_ov000_0213f168(void *);
-extern "C" int func_ov000_0213f17c(void *);
-extern "C" int func_ov000_0213f198(void *);
-extern "C" int func_ov000_0213f1c4(void *);
-extern "C" int func_ov000_0213f214(void *);
-extern "C" int func_ov000_0213f224(void *);
-extern "C" int func_ov000_0213f244(void *);
-extern "C" int func_ov000_0213f294(void *);
-extern "C" int func_ov000_0213f404(void *);
-extern "C" int func_ov000_0213f42c(void *);
-extern "C" int func_ov000_0213f9d8(void *);
-extern "C" int func_ov000_0213fa08(void *);
-extern "C" int func_ov000_0213fa3c(void *);
-extern "C" int func_ov000_0213fa58(void);
-extern "C" int func_ov000_0213fa70(void *);
-extern "C" int func_ov000_0213fa90(void *);
-extern "C" int func_ov000_0213faa4(void *);
-extern "C" int func_ov000_0213fac4(void *);
-extern "C" int func_ov000_0213fadc(void *);
-extern "C" int func_ov000_0213faf0(void *);
-extern "C" int func_ov000_0213fc44(void *);
-extern "C" int func_ov000_0213fccc(void);
-extern "C" int func_ov000_0213fd74(void *);
-extern "C" int func_ov000_0213fe00(void *);
-extern "C" int func_ov000_0213fe14(void *);
-extern "C" int func_ov000_0213fe3c(void *);
-extern "C" int func_ov000_0213fe50(void *);
-extern "C" int func_ov000_0213fe80(void *);
-extern "C" int func_ov000_0213feac(void *);
-extern "C" int func_ov000_0213ff50(void *);
-extern "C" int func_ov000_0213ffac(void *);
-extern "C" int func_ov000_0213ffe0(void *);
-extern "C" int func_ov000_02140024(void *);
-extern "C" int func_ov000_02140040(void *);
-extern "C" int func_ov000_0214005c(void *);
-extern "C" int func_ov000_02140078(void *);
-extern "C" int func_ov000_02140108(void *);
-extern "C" int func_ov000_02140154(void *);
 extern "C" int func_ov000_0214040c(void *);
 extern "C" int func_ov000_0214048c(void *);
 extern "C" int func_ov000_021404a0(void *);
@@ -399,17 +320,17 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x4A:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213ce30(arg0->param_);
+            var_r4 = cmd_is_speaked(arg0->param_);
         }
         break;
     case 0x5:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213cefc(arg0->param_);
+            var_r4 = cmd_speak_to_player(arg0->param_);
         }
         break;
     case 0x6:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213cf58(arg0->param_);
+            var_r4 = cmd_speak_to_player2(arg0->param_);
         }
         break;
     case 0x19:
@@ -424,7 +345,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x8E:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213ee4c(arg0->param_);
+            var_r4 = cmd_debug_print(arg0->param_);
         }
         break;
     case 0x8:
@@ -434,32 +355,32 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x4D:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d36c(arg0->param_);
+            var_r4 = cmd_set_character_position(arg0->param_);
         }
         break;
     case 0x4E:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d39c(arg0->param_);
+            var_r4 = cmd_set_character_direction(arg0->param_);
         }
         break;
     case 0x16D:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213cda8(arg0->param_);
+            var_r4 = cmd_set_overview_point(arg0->param_);
         }
         break;
     case 0x79:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213cdd4(arg0->param_);
+            var_r4 = cmd_set_player_position(arg0->param_);
         }
         break;
     case 0x7A:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213ce18(arg0->param_);
+            var_r4 = cmd_set_player_direction(arg0->param_);
         }
         break;
     case 0x11B:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d068(arg0->param_);
+            var_r4 = cmd_set_x_wins(arg0->param_);
         }
         break;
     case 0x10E:
@@ -479,12 +400,12 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x1D:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d40c(arg0->param_);
+            var_r4 = cmd_map_animation_a(arg0->param_);
         }
         break;
     case 0x1E:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d424(arg0->param_);
+            var_r4 = cmd_set_map_collision(arg0->param_);
         }
         break;
     case 0x1B:
@@ -494,42 +415,42 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x52:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d730(arg0->param_);
+            var_r4 = cmd_character_action_stepping(arg0->param_);
         }
         break;
     case 0x53:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d754(arg0->param_);
+            var_r4 = cmd_character_action_still(arg0->param_);
         }
         break;
     case 0x54:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d778(arg0->param_);
+            var_r4 = cmd_character_action_wriggle(arg0->param_);
         }
         break;
     case 0x58:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d3d4(arg0->param_);
+            var_r4 = cmd_character_action_display(arg0->param_);
         }
         break;
     case 0x55:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d3f0(arg0->param_);
+            var_r4 = cmd_character_action_near(arg0->param_);
         }
         break;
     case 0x7B:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d7dc(arg0->param_);
+            var_r4 = cmd_player_action_wriggle(arg0->param_);
         }
         break;
     case 0x7C:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d79c(arg0->param_);
+            var_r4 = cmd_player_action_stepping(arg0->param_);
         }
         break;
     case 0x50:
         if (func_02020008(arg0) != 0) {
-            func_ov000_0213d3b8(arg0->param_);
+            cmd_character_action_sleep(arg0->param_);
             var_r4 = 0;
         }
         break;
@@ -540,32 +461,32 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x7D:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d7bc(arg0->param_);
+            var_r4 = cmd_player_action_still(arg0->param_);
         }
         break;
     case 0x59:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d7fc(arg0->param_);
+            var_r4 = cmd_set_character_collision(arg0->param_);
         }
         break;
     case 0xA:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d818(arg0->param_);
+            var_r4 = cmd_is_trigger(arg0->param_);
         }
         break;
     case 0xB:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d864(arg0->param_);
+            var_r4 = cmd_is_trigger2(arg0->param_);
         }
         break;
     case 0x5A:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d8f8(arg0->param_);
+            var_r4 = cmd_character_action_pursue(arg0->param_);
         }
         break;
     case 0x5B:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d9ac(arg0->param_);
+            var_r4 = cmd_character_move_roam(arg0->param_);
         }
         break;
     case 0x78:
@@ -590,12 +511,12 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x64:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213db98(arg0->param_);
+            var_r4 = cmd_party_join(arg0->param_);
         }
         break;
     case 0x65:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213dbd8(arg0->param_);
+            var_r4 = cmd_party_quit(arg0->param_);
         }
         break;
     case 0x66:
@@ -610,7 +531,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0xAF:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fccc();
+            var_r4 = cmd_set_hostage();
         }
         break;
     case 0x120:
@@ -635,27 +556,27 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x12:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213ee6c(arg0->param_);
+            var_r4 = cmd_set_item(arg0->param_);
         }
         break;
     case 0x49:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f074(arg0->param_);
+            var_r4 = cmd_is_procure_item(arg0->param_);
         }
         break;
     case 0x13:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f00c(arg0->param_);
+            var_r4 = cmd_set_gold(arg0->param_);
         }
         break;
     case 0x14:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f040(arg0->param_);
+            var_r4 = cmd_set_coin(arg0->param_);
         }
         break;
     case 0x11:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f0d0(arg0->param_);
+            var_r4 = cmd_mini_game(arg0->param_);
         }
         break;
     case 0x6A:
@@ -730,12 +651,12 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x28:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fa3c(arg0->param_);
+            var_r4 = cmd_map_change_timezone(arg0->param_);
         }
         break;
     case 0xC9:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fa58();
+            var_r4 = cmd_map_effect_sepia();
         }
         break;
     case 0xCA:
@@ -780,7 +701,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x27:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fa08(arg0->param_);
+            var_r4 = cmn_set_event_door(arg0->param_);
         }
         break;
     case 0x176:
@@ -790,7 +711,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0xFD:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fe14(arg0->param_);
+            var_r4 = cmd_set_map_texture(arg0->param_);
         }
         break;
     case 0x42:
@@ -800,12 +721,12 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x43:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213da5c(arg0->param_);
+            var_r4 = cmd_is_trigger_character(arg0->param_);
         }
         break;
     case 0x44:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213daec(arg0->param_);
+            var_r4 = cmd_is_trigger2_character(arg0->param_);
         }
         break;
     case 0x47:
@@ -820,27 +741,27 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x34:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fa70(arg0->param_);
+            var_r4 = cmd_character_not_change_direction(arg0->param_);
         }
         break;
     case 0x38:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fa90(arg0->param_);
+            var_r4 = cmd_player_action_not_change_direction(arg0->param_);
         }
         break;
     case 0x35:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213faa4(arg0->param_);
+            var_r4 = cmd_is_character_direction(arg0->param_);
         }
         break;
     case 0x39:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fac4(arg0->param_);
+            var_r4 = cmd_is_player_direction(arg0->param_);
         }
         break;
     case 0x97:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fadc(arg0->param_);
+            var_r4 = cmd_map_animation(arg0->param_);
         }
         break;
     case 0x81:
@@ -855,32 +776,32 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x29:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fe3c(arg0->param_);
+            var_r4 = cmd_map_shake(arg0->param_);
         }
         break;
     case 0xB2:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fe50(arg0->param_);
+            var_r4 = cmd_effect_blur(arg0->param_);
         }
         break;
     case 0x3A:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fe80(arg0->param_);
+            var_r4 = cmd_party_display(arg0->param_);
         }
         break;
     case 0x37:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213feac(arg0->param_);
+            var_r4 = cmd_is_character_front(arg0->param_);
         }
         break;
     case 0x36:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213ff50(arg0->param_);
+            var_r4 = cmd_is_talked_at_shop(arg0->param_);
         }
         break;
     case 0x2A:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213ffac(arg0->param_);
+            var_r4 = cmd_search_map_object(arg0->param_);
         }
         break;
     case 0x3E:
@@ -915,22 +836,22 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x2B:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213ffe0(arg0->param_);
+            var_r4 = cmd_set_floor_map_object(arg0->param_);
         }
         break;
     case 0x16:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f130(arg0->param_);
+            var_r4 = cmd_is_hostage(arg0->param_);
         }
         break;
     case 0x9E:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_02140108(arg0->param_);
+            var_r4 = cmd_character_set_coll_stage(arg0->param_);
         }
         break;
     case 0x9D:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_02140078(arg0->param_);
+            var_r4 = cmd_is_trigger_distance(arg0->param_);
         }
         break;
     case 0xA7:
@@ -950,7 +871,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x123:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f42c(arg0->param_);
+            var_r4 = cmd_furniture_move_request(arg0->param_);
         }
         break;
     case 0xB0:
@@ -980,7 +901,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0xA5:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_02140154(arg0->param_);
+            var_r4 = cmd_party_redisplay(arg0->param_);
         }
         break;
     case 0xB7:
@@ -990,7 +911,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0xB8:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f9d8(arg0->param_);
+            var_r4 = cmd_enable_event_item(arg0->param_);
         }
         break;
     case 0xBB:
@@ -1000,17 +921,17 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0xC2:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f14c(arg0->param_);
+            var_r4 = cmd_set_ruura_lock(arg0->param_);
         }
         break;
     case 0x169:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f168(arg0->param_);
+            var_r4 = cmd_set_ranaruta(arg0->param_);
         }
         break;
     case 0xFB:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f17c(arg0->param_);
+            var_r4 = cmd_invalidation_rula(arg0->param_);
         }
         break;
     case 0xBE:
@@ -1020,7 +941,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0xC4:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f198(arg0->param_);
+            var_r4 = cmd_check_money(arg0->param_);
         }
         break;
     case 0x100:
@@ -1045,27 +966,27 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x103:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d468(arg0->param_);
+            var_r4 = cmd_chara_set_priority_sure_appointment(arg0->param_);
         }
         break;
     case 0x104:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d4c8(arg0->param_);
+            var_r4 = cmd_chara_set_normal_sure_appointment(arg0->param_);
         }
         break;
     case 0x105:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d4ec(arg0->param_);
+            var_r4 = cmd_chara_set_normal_sure(arg0->param_);
         }
         break;
     case 0x106:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d544(arg0->param_);
+            var_r4 = cmd_chara_talk_to_player_sure(arg0->param_);
         }
         break;
     case 0x107:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213d72c(arg0->param_);
+            var_r4 = cmd_set_surechigai_level(arg0->param_);
         }
         break;
     case 0x108:
@@ -1180,7 +1101,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x9A:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_02140024(arg0->param_);
+            var_r4 = cmd_character_move_passive(arg0->param_);
         }
         break;
     case 0x85:
@@ -1190,7 +1111,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x9B:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_02140040(arg0->param_);
+            var_r4 = cmd_character_move_random(arg0->param_);
         }
         break;
     case 0xD4:
@@ -1225,7 +1146,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0xEA:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fd74(arg0->param_);
+            var_r4 = cmd_set_party_reserve_order(arg0->param_);
         }
         break;
     case 0xEB:
@@ -1250,7 +1171,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0xF3:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fe00(arg0->param_);
+            var_r4 = cmd_map_texture(arg0->param_);
         }
         break;
     case 0xF5:
@@ -1260,7 +1181,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x9C:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0214005c(arg0->param_);
+            var_r4 = cmd_character_move_reverse(arg0->param_);
         }
         break;
     case 0xF6:
@@ -1295,7 +1216,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0xFC:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f1c4(arg0->param_);
+            var_r4 = cmd_set_macro_target_index(arg0->param_);
         }
         break;
     case 0xEE:
@@ -1315,12 +1236,12 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x75:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213faf0(arg0->param_);
+            var_r4 = cmd_is_party_item(arg0->param_);
         }
         break;
     case 0x76:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213fc44(arg0->param_);
+            var_r4 = cmd_is_not_party_item(arg0->param_);
         }
         break;
     case 0xFE:
@@ -1345,17 +1266,17 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x10F:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f214(arg0->param_);
+            var_r4 = cmd_reset_sidejob_pay(arg0->param_);
         }
         break;
     case 0x110:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f224(arg0->param_);
+            var_r4 = cmd_get_sidejob_pay(arg0->param_);
         }
         break;
     case 0x111:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f244(arg0->param_);
+            var_r4 = cmd_check_sidejob_pay(arg0->param_);
         }
         break;
     case 0x175:
@@ -1380,12 +1301,12 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0x114:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f294(arg0->param_);
+            var_r4 = cmd_set_endor_event_item(arg0->param_);
         }
         break;
     case 0x115:
         if (func_02020008(arg0) != 0) {
-            var_r4 = func_ov000_0213f404(arg0->param_);
+            var_r4 = cmd_check_endor_event_item(arg0->param_);
         }
         break;
     case 0x12E:

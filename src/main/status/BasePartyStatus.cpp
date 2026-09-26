@@ -6,8 +6,24 @@
 #include "main/status/HaveAction.hpp"
 #include "main/status/UseAction.hpp"
 #include "main/status/UseActionParam.hpp"
+#include "main/status/PlayerStatus.hpp"
+#include "main/status/BaseAction.hpp"
+#include "main/status/HaveAction.hpp"
+#include "main/status/UseAction.hpp"
+#include "main/status/UseActionParam.hpp"
 
-extern status::PlayerStatus dummyPlayer_;
+extern "C" {
+    int func_0200ed54(status::PartyStatus*, int);
+    int func_02013ffc(status::BaseHaveItem*, int);    // isItem
+}
+
+THUMB
+int status::PartyStatus::noDamageEnable_;
+status::PlayerStatus originalPlayer_[26];   // data_020c8354
+status::PlayerFlag originalPlayerFlag_[26]; // data_020c7ab4
+status::PlayerStatus dummyPlayer_;          // data_020c7e48
+int status::PartyStatus::noDamageEnableForMonster_;
+status::PartyStatus status::g_Party;        // data_020c7b1c
 
 // extern int originalPlayerFlag_[26];
 
@@ -129,19 +145,7 @@ THUMB int status::BasePartyStatus::getBattleGold()
 }
 
 
-#include "main/status/PlayerStatus.hpp"
-#include "main/status/BaseAction.hpp"
-#include "main/status/HaveAction.hpp"
-#include "main/status/UseAction.hpp"
-#include "main/status/UseActionParam.hpp"
 
-extern "C" {
-    int func_0200ed54(status::PartyStatus*, int);
-    int func_02013ffc(status::BaseHaveItem*, int);    // isItem
-}
-
-status::PartyStatus status::g_Party; //data_020c7b1c
-int originalPlayerFlag_[26];      // data_020c7ab4
 
 THUMB void status::PartyStatus::setSaveData(profile::PROFILE_PARTY *data)
 {
@@ -165,7 +169,7 @@ THUMB void status::PartyStatus::setLoadData(profile::PROFILE_PARTY* data, profil
     BasePartyStatus::setLoadData(data, history);
 
     for (int i = 0; i < 0x19; i++) {
-        int* p = &originalPlayerFlag_[i + 1];
+        int* p = &originalPlayerFlag_[i + 1].flag_;
         *p = 0;
         *p |= data->PLAYERFLAG[i];
     }
@@ -187,25 +191,21 @@ THUMB status::PartyStatus::PartyStatus()
     return;
 }
 
-THUMB void status::PartyStatus::unkfunc_0200e9cc(){
-   *(unsigned int*)this = 0;
+THUMB status::PlayerFlag::PlayerFlag()
+{
+    flag_ = 0;
 }
 
 
-THUMB status::BasePartyStatus::~BasePartyStatus() {
-    return;
+THUMB status::PartyStatus::~PartyStatus()
+{
 }
 
-
-THUMB status::PartyStatus::~PartyStatus() {
-    clear();
-    return;
-}
 
 THUMB void status::PartyStatus::initialize(void) {
     int i;                     
     status::PlayerStatus* p;     
-    p = data_020c8860;
+    p = &originalPlayer_[1];
     for (i = 1; i < 0x1A; i++, p++) {
         p->setup(i);
         p->arrayIndex_ = i;
@@ -231,7 +231,7 @@ THUMB void status::PartyStatus::add(int playerIndex)
       addMemberBackside(playerIndex);
     }
     if (iVar2 != 0) {
-      originalPlayerFlag_[playerIndex] |= 0x100;
+      originalPlayerFlag_[playerIndex].flag_ |= 0x100;
     }
     if (isPlayer(playerIndex)) {
       setPlayerMode();
@@ -249,7 +249,7 @@ THUMB int status::PartyStatus::addMemberOutside(int playerIndex) {
     for (i = 0; i < 4; i++) {
         if (this->memberOutside_[i] == 0) {
             this->memberOutside_[i] = playerIndex;
-            originalPlayerFlag_[playerIndex] |= 0x1000;
+            originalPlayerFlag_[playerIndex].flag_ |= 0x1000;
             return 1;
         }
     }
@@ -317,8 +317,8 @@ THUMB void status::PartyStatus::clearMemberBackside()   // func_0200ebd4
 
 
 THUMB void status::PartyStatus::del(int playerIndex) {
-    originalPlayerFlag_[playerIndex] &= 0xFFFFFEFF;   
-    originalPlayerFlag_[playerIndex] &= 0xFFFFEFFF;   
+    originalPlayerFlag_[playerIndex].flag_ &= 0xFFFFFEFF;   
+    originalPlayerFlag_[playerIndex].flag_ &= 0xFFFFEFFF;   
     removeMemberOutside(playerIndex);
     removeMemberBackside(playerIndex);
 
@@ -327,7 +327,7 @@ THUMB void status::PartyStatus::del(int playerIndex) {
 
 THUMB void status::PartyStatus::clear() {
     for (int i = 0; i < 26; i++) {
-        originalPlayerFlag_[i] = 0;
+        originalPlayerFlag_[i].flag_ = 0;
     }
     clearMemberOutside();
     clearMemberBackside();
@@ -336,15 +336,15 @@ THUMB void status::PartyStatus::clear() {
 
 
  THUMB void status::PartyStatus::reorder(int od0, int od1, int od2, int od3) {
-    originalPlayerFlag_[this->memberOutside_[0]] &= 0xFFFFEFFF;  
-    originalPlayerFlag_[this->memberOutside_[1]] &= 0xFFFFEFFF;
-    originalPlayerFlag_[this->memberOutside_[2]] &= 0xFFFFEFFF;
-    originalPlayerFlag_[this->memberOutside_[3]] &= 0xFFFFEFFF;
+    originalPlayerFlag_[this->memberOutside_[0]].flag_ &= 0xFFFFEFFF;  
+    originalPlayerFlag_[this->memberOutside_[1]].flag_ &= 0xFFFFEFFF;
+    originalPlayerFlag_[this->memberOutside_[2]].flag_ &= 0xFFFFEFFF;
+    originalPlayerFlag_[this->memberOutside_[3]].flag_ &= 0xFFFFEFFF;
 
-    originalPlayerFlag_[od0] |= 0x1000;              
-    originalPlayerFlag_[od1] |= 0x1000;
-    originalPlayerFlag_[od2] |= 0x1000;
-    originalPlayerFlag_[od3] |= 0x1000;
+    originalPlayerFlag_[od0].flag_ |= 0x1000;              
+    originalPlayerFlag_[od1].flag_ |= 0x1000;
+    originalPlayerFlag_[od2].flag_ |= 0x1000;
+    originalPlayerFlag_[od3].flag_ |= 0x1000;
 
     this->memberOutside_[0] = od0;
     this->memberOutside_[1] = od1;
@@ -371,7 +371,7 @@ THUMB status::PlayerStatus* status::PartyStatus::getPlayerStatusForPlayerIndex(i
 
 THUMB int status::PartyStatus::isInsideBasha(int index) {
     int partyMember = this->party_[index];
-    int flag = originalPlayerFlag_[partyMember];
+    int flag = originalPlayerFlag_[partyMember].flag_;
     return (flag & 0x1000) ? BASHA_OUTSIDE : BASHA_INSIDE;
 }
 
@@ -386,7 +386,7 @@ THUMB int status::PartyStatus::isOutsideCarriage(int index) {
 
 
 THUMB int status::PartyStatus::isInsideCarriageForPlayerIndex(int playerIndex) {
-    return (originalPlayerFlag_[playerIndex] & 0x1000) ? OUTSIDE_CARRIAGE : INSIDE_CARRIAGE;
+    return (originalPlayerFlag_[playerIndex].flag_ & 0x1000) ? OUTSIDE_CARRIAGE : INSIDE_CARRIAGE;
 }
 
 THUMB void status::PartyStatus::execOfRoundInCarriage() {
@@ -577,7 +577,7 @@ THUMB void status::PartyStatus::setAllPlayerMode() {
 
     int out = 0;
     for (int i = 0; i < 0x1A; i++) {
-        if ((originalPlayerFlag_[i] & 0x100) && isPlayer(i) != 0) {
+        if ((originalPlayerFlag_[i].flag_ & 0x100) && isPlayer(i) != 0) {
             this->party_[out++] = i;
         }
     }
@@ -623,7 +623,7 @@ THUMB void status::PartyStatus::setPartyPlayerMode() {
     if (this->basha_ != 0 && g_Stage.isBashaEnable() != 0) {
         for (int i = 0; i < 0x1A; i++) {
 
-            if ((originalPlayerFlag_[i] & 0x100) && !(originalPlayerFlag_[i] & 0x1000) && isPlayer(i) != 0) {
+            if ((originalPlayerFlag_[i].flag_ & 0x100) && !(originalPlayerFlag_[i].flag_ & 0x1000) && isPlayer(i) != 0) {
                 this->party_[out++] = i;
             }
         }
@@ -647,7 +647,7 @@ THUMB void status::PartyStatus::setPartyBattleMode() {
 
     if (this->basha_ != 0 && g_Stage.isBashaEnable() != 0) {
         for (int i = 0; i < 0x1A; i++) {
-            if ((originalPlayerFlag_[i] & 0x100) && !(originalPlayerFlag_[i] & 0x1000)
+            if ((originalPlayerFlag_[i].flag_ & 0x100) && !(originalPlayerFlag_[i].flag_ & 0x1000)
                 && (isPlayer(i) != 0 || isBattleNpc(i) != 0)) {
                 this->party_[out++] = i;
             }
@@ -676,7 +676,7 @@ THUMB void status::PartyStatus::setPartyBattleModeWithCarriage() {
         && g_Stage.isBashaEnable() != 0
         && g_Stage.isBashaEnter() != 0) {
         for (int i = 0; i < 0x1A; i++) {
-            int f = originalPlayerFlag_[i];
+            int f = originalPlayerFlag_[i].flag_;
             if ((f & 0x100) && !(f & 0x1000)
                 && (isPlayer(i) != 0 || isBattleNpc(i) != 0)) {
                 this->party_[out++] = i;
@@ -702,7 +702,7 @@ THUMB void status::PartyStatus::setPartyMemberShiftMode() {
         && g_Stage.isBashaEnable() != 0
         && g_Stage.isBashaEnter() != 0) {
         for (int i = 0; i < 0x1A; i++) {
-            if ((originalPlayerFlag_[i] & 0x100) && !(originalPlayerFlag_[i] & 0x1000)
+            if ((originalPlayerFlag_[i].flag_ & 0x100) && !(originalPlayerFlag_[i].flag_ & 0x1000)
                 && (isPlayer(i) != 0 || isBattleNpc(i) != 0)) {
                 this->party_[out++] = i;
             }
@@ -728,7 +728,7 @@ THUMB void status::PartyStatus::setPartyNormalMode() {
 
     if (this->basha_ != 0 && g_Stage.isBashaEnable() != 0) {
         for (int i = 0; i < 0x1A; i++) {
-            if ((originalPlayerFlag_[i] & 0x100) && !(originalPlayerFlag_[i] & 0x1000)
+            if ((originalPlayerFlag_[i].flag_ & 0x100) && !(originalPlayerFlag_[i].flag_ & 0x1000)
                 && (isPlayer(i) != 0 || isBattleNpc(i) != 0)) {
                 this->party_[out++] = i;
             }
@@ -1038,15 +1038,15 @@ THUMB int status::PartyStatus::isEquipItem(int itemIndex) {
 
 THUMB void status::PartyStatus::setHostage(int index, bool flag) {
     if (flag != 0) {
-        originalPlayerFlag_[index] = originalPlayerFlag_[index] | 0x10000;
+        originalPlayerFlag_[index].flag_ = originalPlayerFlag_[index].flag_ | 0x10000;
         return;
     }
-    originalPlayerFlag_[index] = originalPlayerFlag_[index] & 0xFFFEFFFF;
+    originalPlayerFlag_[index].flag_ = originalPlayerFlag_[index].flag_ & 0xFFFEFFFF;
 }
 
 
 THUMB int status::PartyStatus::isHostage(int index) {
-    if ((originalPlayerFlag_[index] & 0x10000)) {
+    if ((originalPlayerFlag_[index].flag_ & 0x10000)) {
         return 1;
     }
     return 0;
@@ -1516,17 +1516,14 @@ THUMB int status::PartyStatus::isMegazaruRingEnable()
     }
     return 0;
 }
+        
 
+THUMB void status::PartyStatus::setNoDamageEnable(bool enable)
+{
+    noDamageEnable_ = enable;
+}
 
-
-
-
-
-
-
-                           
-
-
-
-
-
+THUMB void status::PartyStatus::setNoDamageEnableForMonster(bool enable)
+{
+    noDamageEnableForMonster_ = enable;
+}

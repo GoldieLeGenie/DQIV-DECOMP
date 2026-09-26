@@ -111,19 +111,22 @@ struct PlayerManager {
 
 struct FieldPlayerManager : PlayerManager {          
     virtual void vf00();
-    virtual void vf04();
+    virtual dss::Fx32Vector3 vf04();       // getPosition
     virtual void vf08();
     virtual void vf0C();       
 };
 
 struct TownSystem {
-    char unk_[0x610];
-    int scriptLock_;
+    char unk_[0x60c];
+    int defaultSELock_;  // 0x60C
+    int scriptLock_;     // 0x610
+    int unk_614;         // 0x614
 };
 
 extern "C" void* func_ov000_02132228(); //TownSystem::getSingleton
-extern "C" void* func_ov000_02132a90();
-extern "C" void* func_ov001_02127b28();
+struct TownPlayerManager;
+extern "C" TownPlayerManager* func_ov000_02132a90();
+extern "C" FieldPlayerManager* func_ov001_02127b28();
 extern "C" void func_020888bc(dss::Fx32Vector3* dst, dss::Fx32Vector3* src);
 extern "C" int func_ov001_0212a460(void*, dss::Fx32Vector3*);             // FieldPlayerManager::checkBarronArea
 extern "C" int func_020882b0(const char*, const char*);                   // strcmp

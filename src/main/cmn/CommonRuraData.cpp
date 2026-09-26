@@ -13,8 +13,12 @@ const RuraMapEntry storyFlagCompare[42] = {   // 0x020b5fbc
     { 0x0E, 5 }, { 0x0F, 5 }, { 0x10, 5 }, { 0x11, 5 }, { 0x12, 5 }, { 0x13, 5 },
     { 0x14, 5 }, { 0x15, 5 }, { 0x16, 5 }, { 0x17, 5 }, { 0x18, 5 }, { 0x19, 5 }
 };
-char* p_tatop[2] = { tatop, 0 };  // 0x020becf0 (8 bytes pointer + 4 bytes padding)
-char  tatop[16]  = "tatop";       // 0x020becf8
+char* p_tatop = tatop;
+#pragma explicit_zero_data on
+int   unusedRuraData = 0;
+#pragma explicit_zero_data reset
+char  tatop[16]  = "tatop";
+int   unusedRuraBss;
 
 
 
@@ -198,5 +202,5 @@ ARM int cmn::CommonRuraData::getWorld(int townID)
 
 ARM char* cmn::CommonRuraData::get_TATOP_Name()
 {
-    return p_tatop[0];
+    return p_tatop;
 }

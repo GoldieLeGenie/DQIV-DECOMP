@@ -5,5 +5,6 @@
 
 
 src/ov034/MaterielMenuExtraChapterTitle/MaterielMenuExtraChapterTitle.cpp:
+    complete
     .text start:0x02189360 end:0x021894b0
-    .data start:0x021894c0 end:0x021894e0
+    .data start:0x021894c0 end:0x021894dc

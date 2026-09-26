@@ -23,8 +23,7 @@ ARM void cmn::TalkSoundManager::setMessageSound(int count, int index)
 {
     int order[33];
 
-    getDefaultMessageSound();
-    func_02056358();
+    func_02056358(getDefaultMessageSound());
 
     if (orderDataCount_ > 0) {
         int sound;
@@ -50,11 +49,10 @@ ARM void cmn::TalkSoundManager::setMessageSound(int count, int index)
     if (index == -1) {
         return;
     }
-    if (func_ov000_0212ebc8(func_ov000_02137f2c()->data[index]) != 1) {
+    if (func_ov000_0212ebc8(func_ov000_02137f2c()->chara_[index]) != 1) {
         return;
     }
-    func_ov000_0212ebdc(func_ov000_02137f2c()->data[index]);
-    func_02056358();
+    func_02056358(func_ov000_0212ebdc(func_ov000_02137f2c()->chara_[index]));
 }
 
 ARM cmn::TalkSoundManager::MESSAGESOUND cmn::TalkSoundManager::getOrderMessageSound()

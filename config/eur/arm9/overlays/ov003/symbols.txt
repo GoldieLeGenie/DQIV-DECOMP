@@ -289,9 +289,9 @@ func_ov003_02126464 kind:function(thumb,size=0x1c) addr:0x02126464
 func_ov003_02126480 kind:function(thumb,size=0x10) addr:0x02126480
 func_ov003_02126490 kind:function(thumb,size=0x2) addr:0x02126490
 func_ov003_02126494 kind:function(thumb,size=0x2) addr:0x02126494
-func_ov003_02126498 kind:function(thumb,size=0x4c) addr:0x02126498
-func_ov003_021264e4 kind:function(thumb,size=0x24) addr:0x021264e4
-func_ov003_02126508 kind:function(thumb,size=0x1c) addr:0x02126508
+_ZN3btl15TimeReverseTask10initializeEv kind:function(thumb,size=0x4c) addr:0x02126498
+_ZN3btl15TimeReverseTask9terminateEv kind:function(thumb,size=0x24) addr:0x021264e4
+_ZN3btl15TimeReverseTask7executeEv kind:function(thumb,size=0x1c) addr:0x02126508
 func_ov003_02126524 kind:function(thumb,size=0x2) addr:0x02126524
 func_ov003_02126528 kind:function(thumb,size=0x2c) addr:0x02126528
 func_ov003_02126554 kind:function(thumb,size=0x10) addr:0x02126554
@@ -560,8 +560,8 @@ func_ov003_0212e170 kind:function(thumb,size=0x40) addr:0x0212e170
 func_ov003_0212e1b0 kind:function(thumb,size=0x9c) addr:0x0212e1b0
 func_ov003_0212e24c kind:function(thumb,size=0x16) addr:0x0212e24c
 func_ov003_0212e264 kind:function(thumb,size=0x10) addr:0x0212e264
-func_ov003_0212e274 kind:function(thumb,size=0x30) addr:0x0212e274
-_ZN6status12MonsterPartyD1Ev kind:function(thumb,size=0x1c) addr:0x0212e2a4
+_ZN6status12MonsterPartyC2Ev kind:function(thumb,size=0x30) addr:0x0212e274
+_ZN6status12MonsterPartyD2Ev kind:function(thumb,size=0x1c) addr:0x0212e2a4
 _ZN6status12MonsterParty3addEiii kind:function(thumb,size=0x64) addr:0x0212e2c0
 _ZN6status12MonsterParty3delEi kind:function(thumb,size=0x20) addr:0x0212e324
 _ZN6status12MonsterParty5clearEv kind:function(thumb,size=0x38) addr:0x0212e344
@@ -594,7 +594,7 @@ _ZN6status12MonsterParty11getDropItemEv kind:function(thumb,size=0xc) addr:0x021
 _ZN6status12MonsterParty18setDropItemMonsterEi kind:function(thumb,size=0xc) addr:0x0212eb2c
 _ZN6status12MonsterParty18getDropItemMonsterEv kind:function(thumb,size=0xc) addr:0x0212eb38
 _ZN6status12MonsterParty18getSpecialDropItemEv kind:function(thumb,size=0x68) addr:0x0212eb44
-func_ov003_0212ebac kind:function(thumb,size=0xc) addr:0x0212ebac
+_ZN6status20MonsterPartyWithDrawD1Ev kind:function(thumb,size=0xc) addr:0x0212ebac
 func_ov003_0212ebb8 kind:function(thumb,size=0x5c) addr:0x0212ebb8
 func_ov003_0212ec14 kind:function(thumb,size=0x48) addr:0x0212ec14
 func_ov003_0212ec5c kind:function(thumb,size=0x130) addr:0x0212ec5c
@@ -666,15 +666,15 @@ __sinit_ov003_0213911c kind:function(thumb,size=0x2c) addr:0x0213911c
 __sinit_ov003_02139148 kind:function(thumb,size=0x38) addr:0x02139148
 __sinit_ov003_02139180 kind:function(thumb,size=0x20) addr:0x02139180
 __sinit_ov003_021391a0 kind:function(thumb,size=0x488) addr:0x021391a0
-__sinit_ov003_02139628 kind:function(thumb,size=0x54) addr:0x02139628
-__sinit_ov003_0213967c kind:function(thumb,size=0x30) addr:0x0213967c
+__sinit_battle_actor_exec.cpp kind:function(thumb,size=0x54) addr:0x02139628 local
+__sinit_MonsterPartyWithDraw.cpp kind:function(thumb,size=0x30) addr:0x0213967c local
 .p__sinit_ov003_02139108 kind:data(word) addr:0x021396ac
 .p__sinit_ov003_0213911c kind:data(word) addr:0x021396b0
 .p__sinit_ov003_02139148 kind:data(word) addr:0x021396b4
 .p__sinit_ov003_02139180 kind:data(word) addr:0x021396b8
 .p__sinit_ov003_021391a0 kind:data(word) addr:0x021396bc
-.p__sinit_ov003_02139628 kind:data(word) addr:0x021396c0
-.p__sinit_ov003_0213967c kind:data(word) addr:0x021396c4
+.p__sinit_battle_actor_exec.cpp kind:data(word) addr:0x021396c0 local
+.p__sinit_MonsterPartyWithDraw.cpp kind:data(word) addr:0x021396c4 local
 data_ov003_021396e0 kind:data(any) addr:0x021396e0
 data_ov003_021396e4 kind:data(any) addr:0x021396e4
 data_ov003_021396f8 kind:data(any) addr:0x021396f8
@@ -809,7 +809,7 @@ data_ov003_0213a3c0 kind:data(any) addr:0x0213a3c0
 @1378 kind:data(any) addr:0x0213a470 local
 @1385 kind:data(any) addr:0x0213a494 local
 @787 kind:data(any) addr:0x0213a4bc
-data_ov003_0213a4e8 kind:data(any) addr:0x0213a4e8
+@1576 kind:data(any) addr:0x0213a4e8 local
 data_ov003_0213a510 kind:data(any) addr:0x0213a510
 data_ov003_0213a524 kind:data(any) addr:0x0213a524
 data_ov003_0213a538 kind:data(any) addr:0x0213a538
@@ -821,7 +821,7 @@ data_ov003_0213a59c kind:data(any) addr:0x0213a59c
 data_ov003_0213a5b0 kind:data(any) addr:0x0213a5b0
 data_ov003_0213a5c4 kind:data(any) addr:0x0213a5c4
 data_ov003_0213a5d8 kind:data(any) addr:0x0213a5d8
-data_ov003_0213a5ec kind:data(any) addr:0x0213a5ec
+_ZTVN3btl15TimeReverseTaskE kind:data(byte[20]) addr:0x0213a5e4
 data_ov003_0213a600 kind:data(any) addr:0x0213a600
 data_ov003_0213a614 kind:data(any) addr:0x0213a614
 data_ov003_0213a628 kind:data(any) addr:0x0213a628
@@ -1010,7 +1010,7 @@ _ZTVN3btl15AutoActionParamE kind:data(byte[28]) addr:0x0213be60
 data_ov003_0213c5e0 kind:data(any) addr:0x0213c5e0
 data_ov003_0213c5e4 kind:data(any) addr:0x0213c5e4
 data_ov003_0213c5f0 kind:data(any) addr:0x0213c5f0
-data_ov003_0213c5fc kind:data(any) addr:0x0213c5fc
+g_monsterDrawPos kind:data(byte[12]) addr:0x0213c5fc
 _ZN6status12MonsterParty10sortIndex_E kind:data(any) addr:0x0213c608
 specialItem kind:data(any) addr:0x0213c618
 _ZTVN6status12MonsterPartyE kind:data(any) addr:0x0213c64c
@@ -1131,15 +1131,15 @@ data_ov003_02149254 kind:bss addr:0x02149254
 data_ov003_02149260 kind:bss addr:0x02149260
 currentTarget_  kind:bss addr:0x021492bc
 targetCount_ kind:bss addr:0x021492c0
-data_ov003_021492c4 kind:bss addr:0x021492c4
-data_ov003_021492d0 kind:bss addr:0x021492d0
+@1394 kind:bss addr:0x021492c4 local
+@1393 kind:bss addr:0x021492d0 local
 partTaskManager kind:bss addr:0x021492dc
-autoAction kind:bss addr:0x02149350
+autoAction kind:bss(size=0x902c) addr:0x02149350
 _ZGVsingleton$1369 kind:bss addr:0x02152384
 @1372 kind:bss addr:0x02152388
 singleton$1369 kind:bss addr:0x02152394
 _ZN3btl17BattleActorEffect5wait_E kind:bss addr:0x02158a50
-data_ov003_02158a54 kind:bss addr:0x02158a54
+monsterChangeCount kind:bss addr:0x02158a54
 data_ov003_02158a58 kind:bss addr:0x02158a58
 data_ov003_02158a5c kind:bss addr:0x02158a5c
 data_ov003_02158a68 kind:bss addr:0x02158a68
@@ -1240,7 +1240,7 @@ data_ov003_02165a74 kind:bss addr:0x02165a74
 data_ov003_02165a7c kind:bss addr:0x02165a7c
 data_ov003_02165a80 kind:bss addr:0x02165a80
 data_ov003_02165a8c kind:bss addr:0x02165a8c
-data_ov003_02166380 kind:bss addr:0x02166380
+@882 kind:bss addr:0x02166380 local
 _ZN6status12MonsterParty10sortCount_E kind:bss addr:0x0216638c
 g_monster kind:bss addr:0x0216639c
 data_ov003_0216a03c kind:bss addr:0x0216a03c

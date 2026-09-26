@@ -1,7 +1,11 @@
 #include "ov003/btl/BattleActorExec.hpp"
 #include "ov003/btl/AutoAction.hpp"
+#include "ov003/btl/selectAI.hpp"
+#include "main/status/PlayerStatus.hpp"
+#include "main/task/PartTaskManager.hpp"
 
-btl::AutoAction autoAction; //data_ov003_02149350
+task::PartTaskManager partTaskManager;
+btl::AutoAction autoAction;
 
 #pragma profile on
 
@@ -66,4 +70,38 @@ THUMB int btl::BattleActorExec::isEnd()
 THUMB bool btl::BattleActorExec::isActionEnd()
 {
     return partTaskManager.checkTask(9);
+}
+
+THUMB void btl::selectAI(status::UseActionParam* useActionParam)
+{
+    status::PlayerStatus* actor =  (status::PlayerStatus *)useActionParam->actorCharacterStatus_;
+
+    if (actor->characterType_ != PLAYER) {
+        return;
+    }
+    if (actor->haveStatusInfo_.battleCommand_ == COMMAND_MEIREISASERO) {
+        return;
+    }
+    if (actor->haveStatusInfo_.haveStatus_.isPlayer_ == 0) {
+        return;
+    }
+    if (!actor->haveStatusInfo_.isAttackEnable()) {
+        return;
+    }
+    if (useActionParam->actionIndex_ == 513) {
+        return;
+    }
+    if (useActionParam->actionIndex_ == 514) {
+        return;
+    }
+
+    autoAction.clear();
+    autoAction.setup(actor);
+
+    if (actor->haveBattleStatus_.getSelectCommand() == 3) {
+        actor->haveStatusInfo_.haveItem_.getItem(actor->haveBattleStatus_.selectIndex_);
+        actor->haveBattleStatus_.setActionSelect((status::HaveBattleStatus::CallStart)0);
+    }
+
+    useActionParam->actionIndex_ = actor->haveBattleStatus_.actionIndex_;
 }

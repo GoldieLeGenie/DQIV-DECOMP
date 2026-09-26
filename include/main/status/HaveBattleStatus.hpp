@@ -201,7 +201,6 @@ extern "C" {
     void func_02011e44(status::HaveStatusInfo*, unsigned char agi);
     unsigned char func_02013fb4(status::BaseHaveItem*, int index);
     int func_0201c270(status::HaveBattleStatus*, int index);
-    int func_0201d8c8(void* table, int randVal, int count);
     void func_0200efe0(status::PartyStatus*);
     int func_0200f5fc(status::PartyStatus*);
     int func_02013f88(status::BaseHaveItem*);

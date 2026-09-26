@@ -5,30 +5,28 @@
 #include "main/status/MonsterStatus.hpp"
 
 namespace status {
-    struct BaseActionValue {
-        volatile int flag_;   // 020eecec
-        int unk_04;
-        int unk_08;
-        int unk_0c;
-    };   
+    struct BaseActionFlag {
+        volatile int flag_;
+        BaseActionFlag() { flag_ = 0; }
+    };
     struct BaseActionStatus {
         enum MonsterDrop {
             GoldExp = 0x1,
             Gold    = 0x2,
         };
-        int baikirutoMessFlag_;                // 0x00  
-        int path1MessFlag_;
-        int sleepMessFlag_;
-        int confusionMessFlag_;
-        int mahokantaMessFlag_;
-        int execCallFriend_;
-        int eventBattle_;          // 0x18
-        int work_;                // 0x1c
-        int flag_;                 // 0x20
-        int monsterEffectValue_;   // 0x24
-        int playerEffectValue_;    // 0x28
-        int effectValue_;          // 0x2c
-        int actionIndex_;          // 0x30
+        static int baikirutoMessFlag_;
+        static int path1MessFlag_;
+        static int sleepMessFlag_;
+        static int confusionMessFlag_;
+        static int mahokantaMessFlag_;
+        static int execCallFriend_;
+        static int eventBattle_;
+        static int work_;
+        static BaseActionFlag flag_;
+        static int monsterEffectValue_;
+        static int playerEffectValue_;
+        static int effectValue_;
+        static int actionIndex_;
         static void setEffectValue(int effect, int player, int monster);
         static int getEffectValue(status::CharacterStatus *target);
         static int actionTypeDamage(status::CharacterStatus *target);
@@ -65,8 +63,6 @@ namespace status {
          
     };
 }
-extern status::BaseActionStatus BaseActionStatus_;
-extern status::BaseActionValue BaseActionValue_;   // data_020eeccc
 
 struct BattleMonster;
 struct BattleMonsterDraw2;
@@ -78,7 +74,7 @@ struct BattleMonsterDrawParam {
     dss::fx32 vx_;     // +0x10
     int unk_14;        // +0x14
 };
-extern BattleMonsterDrawParam data_020beb98;
+extern BattleMonsterDrawParam g_BattleMonsterDrawParam;
 
 extern "C" void func_0205b2f0(void* obj, dss::Vector3int pos);   // DSSACharacter::setPositionInt
 extern "C" void func_0200ad08(encount::Encount*);         // self = func_0200a6c8()

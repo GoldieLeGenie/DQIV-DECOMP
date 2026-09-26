@@ -14,6 +14,8 @@ namespace status{
     
 }
 
+extern status::MonsterPartyWithDraw g_monster;
+
 struct BattleMonster {
     char _pad000[0xD3C];
     int  monsterIndex_;               // 0xD3C
@@ -40,4 +42,4 @@ extern "C"
 
 }
 
-extern dss::Vector3int data_ov003_0213c5fc;
+extern dss::Vector3int g_monsterDrawPos;

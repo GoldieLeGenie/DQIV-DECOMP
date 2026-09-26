@@ -10,9 +10,9 @@ struct MenuBase {
     };
     virtual void menuSetup();
     virtual void menuExecute();
-    virtual void menuClose();
     virtual void menuDraw();
     virtual void menuUpdate();
+    virtual void menuClose(bool flag);
     int redraw_;
     int frame_;
     MENUBASE_STAT stat_;

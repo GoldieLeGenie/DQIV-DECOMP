@@ -583,54 +583,51 @@ THUMB int btl::BattleSelectTarget::setTargetOne(
     int action;
     CharacterType playertype;
 
-    if (param->callTarget_ != BattleSelectTargetParam::StartTurn) {
-        goto select_target;
-    }
+    if (param->callTarget_ == BattleSelectTargetParam::StartTurn) {
+        if (param->targetCount_ <= 0)
+            goto select_target;
 
-    if (param->targetCount_ <= 0) {
-        goto select_target;
-    }
+        flag = result;
 
-    flag = result;
-
-    for (i = 0; i < param->targetCount_; i++) {
-        if (param->getTargetCharacterStatus(i)->haveStatusInfo_.isDeath() != 0) {
-            flag = 0;
-        }
-    }
-
-    if (flag != 0 &&
-        status::UseAction::isTargetDeadOrAlive(param->actionIndex_) != 0) {
-        group = param->targetGroup_;
-
-        for (i = 0; i < param->getSourceCountForGroup(group); i++) {
-            target = param->getSourceCharacterStatusForGroup(group, i);
-
-            if (target == param->getTargetCharacterStatus(0)) {
-                param->targetIndex_ = i;
-            }
-        }
-
-        actor = param->actorCharacterStatus_;
-        playertype = actor->characterType_;
-        action = param->actionIndex_;
-
-        if (playertype == PLAYER && action == 0x47) {
-            if (actor->haveStatusInfo_.haveEquipment_.isEquipment(0x27) != 0 ||
-                actor->haveStatusInfo_.haveEquipment_.isEquipment(0x28) != 0) {
+        for (i = 0; i < param->targetCount_; i++) {
+            if (param->getTargetCharacterStatus(i)->haveStatusInfo_.isDeath() != 0) {
                 flag = 0;
             }
         }
-    }
-    else if (flag == 0 &&
-             status::UseAction::isTargetDeadOrAlive(param->actionIndex_) == 0) {
-        group = param->targetGroup_;
 
-        for (i = 0; i < param->getSourceCountForGroupDead(group); i++) {
-            target = param->getSourceCharacterStatusForGroupDead(group, i);
+        if (flag != 0 &&
+            status::UseAction::isTargetDeadOrAlive(param->actionIndex_) != 0) {
+            group = param->targetGroup_;
 
-            if (target == param->getTargetCharacterStatus(0)) {
-                param->targetIndex_ = i;
+            for (i = 0; i < param->getSourceCountForGroup(group); i++) {
+                target = param->getSourceCharacterStatusForGroup(group, i);
+
+                if (target == param->getTargetCharacterStatus(0)) {
+                    param->targetIndex_ = i;
+                }
+            }
+
+            actor = param->actorCharacterStatus_;
+            playertype = actor->characterType_;
+            action = param->actionIndex_;
+
+            if (playertype == PLAYER && action == 0x47) {
+                if (actor->haveStatusInfo_.haveEquipment_.isEquipment(0x27) != 0 ||
+                    actor->haveStatusInfo_.haveEquipment_.isEquipment(0x28) != 0) {
+                    flag = 0;
+                }
+            }
+        }
+        else if (flag == 0 &&
+                 status::UseAction::isTargetDeadOrAlive(param->actionIndex_) == 0) {
+            group = param->targetGroup_;
+
+            for (i = 0; i < param->getSourceCountForGroupDead(group); i++) {
+                target = param->getSourceCharacterStatusForGroupDead(group, i);
+
+                if (target == param->getTargetCharacterStatus(0)) {
+                    param->targetIndex_ = i;
+                }
             }
         }
     }
@@ -638,79 +635,79 @@ THUMB int btl::BattleSelectTarget::setTargetOne(
 select_target:
     if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 2) {
         switch (status::excelParam.actionParam_[param->actionIndex_].god) {
-        case 3:    result = func_ov015_02172ae8(param); break;
-        case 0xa:  result = func_ov015_021739f4(param); break;
-        case 8:    result = func_ov015_02172cbc(param); break;
-        case 0xf:  result = func_ov015_02173bec(param); break;
-        case 0x44: result = func_ov015_02172de0(param); break;
-        case 0x45: result = func_ov015_02173de4(param); break;
-        case 0x13: result = func_ov015_02174278(param); break;
-        case 0x17: result = func_ov015_02174498(param); break;
-        case 0x1f: result = func_ov015_02174690(param); break;
-        case 0x2a: result = func_ov015_02173fd0(param); break;
-        case 0x21: result = func_ov015_021732f4(param); break;
-        case 0x22: result = func_ov015_021734b4(param); break;
-        case 0x23: result = func_ov015_02173504(param); break;
-        case 0x25: result = func_ov015_0217377c(param); break;
-        case 0x3c: result = func_ov015_021739a8(param); break;
-        case 0x3e: result = func_ov015_02174c94(param); break;
-        case 0x37: result = func_ov015_02174cf0(param); break;
-        case 0x36: result = func_ov015_02174e3c(param); break;
+        case 3:    result = BattleSecondCheck::personalCheckMahokanta(param); break;
+        case 0xa:  result = BattleSecondCheck::personalCheckRarihomaForGod(param); break;
+        case 8:    result = BattleSecondCheck::personalCheckRarihoma(param); break;
+        case 0xf:  result = BattleSecondCheck::personalCheckMedapaniForGod(param); break;
+        case 0x44: result = BattleSecondCheck::personalCheckMahotora(param); break;
+        case 0x45: result = BattleSecondCheck::personalCheckMahotoraForGod(param); break;
+        case 0x13: result = BattleSecondCheck::personalCheckRukaniForGod(param); break;
+        case 0x17: result = BattleSecondCheck::personalCheckSukaraForGod(param); break;
+        case 0x1f: result = BattleSecondCheck::personalCheckBaikirutoForGod(param); break;
+        case 0x2a: result = BattleSecondCheck::personalCheckMahosute(param); break;
+        case 0x21: result = BattleSecondCheck::personalCheckHoimi(param); break;
+        case 0x22: result = BattleSecondCheck::personalCheckMyHoimi(param); break;
+        case 0x23: result = BattleSecondCheck::personalCheckThereHoimi(param); break;
+        case 0x25: result = BattleSecondCheck::personalCheckZaoriku(param); break;
+        case 0x3c: result = BattleSecondCheck::personalCheckTaiatari(param); break;
+        case 0x3e: result = BattleSecondCheck::personalCheckPartThree(param); break;
+        case 0x37: result = BattleSecondCheck::personalCheckAnkoku(param); break;
+        case 0x36: result = BattleSecondCheck::personalCheckNakamayobi(param); break;
         case 1:
-        case 0x40: result = btl::BattleSecondCheck::personalCheckRandom(param); break;
-        case 0x20: result = func_ov015_02174888(param); break;
-        case 0x2e: result = func_ov015_02174d30(param); break;
-        case 0x2c: result = func_ov015_02174c4c(param); break;
-        case 0x11: result = func_ov015_02174fd0(param); break;
-        case 0x34: result = func_ov015_02174d78(param); break;
-        case 0x31: result = func_ov015_02174f14(param); break;
-        case 0x42: result = func_ov015_02172d04(param); break;
-        case 0:    result = func_ov015_021750f8(param); break;
-        default:   result = func_ov015_021763ac(); break;
+        case 0x40: result = BattleSecondCheck::personalCheckRandom(param); break;
+        case 0x20: result = BattleSecondCheck::personalCheckMosyasu(param); break;
+        case 0x2e: result = BattleSecondCheck::personalCheckFizzleZone(param); break;
+        case 0x2c: result = BattleSecondCheck::personalCheckChargeAttack(param); break;
+        case 0x11: result = BattleSecondCheck::personalCheckMahokantaForGod(param); break;
+        case 0x34: result = BattleSecondCheck::personalCheckEscape(param); break;
+        case 0x31: result = BattleSecondCheck::personalCheckGattai(param); break;
+        case 0x42: result = BattleSecondCheck::personalCheckBothOne(param); break;
+        case 0:    result = BattleSecondCheck::personalCheckFreeOne(param); break;
+        default:   result = BattleSecondCheck::personalCheckFree(); break;
         }
     }
     else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 1 &&
              flag == 0) {
         switch (status::excelParam.actionParam_[param->actionIndex_].human) {
-        case 3:    result = func_ov015_02172ae8(param); break;
-        case 8:    result = func_ov015_02172cbc(param); break;
-        case 0xe:  result = func_ov015_02172ce0(param); break;
-        case 0x44: result = func_ov015_02172de0(param); break;
-        case 0x12: result = func_ov015_02172f80(param); break;
-        case 0x16: result = func_ov015_02173124(param); break;
-        case 0x1d: result = func_ov015_021732d0(param); break;
-        case 0x21: result = func_ov015_021732f4(param); break;
-        case 0x22: result = func_ov015_021734b4(param); break;
-        case 0x23: result = func_ov015_02173504(param); break;
-        case 0x25: result = func_ov015_0217377c(param); break;
-        case 0x3c: result = func_ov015_021739a8(param); break;
-        case 0x3e: result = func_ov015_02174c94(param); break;
-        case 0x37: result = func_ov015_02174cf0(param); break;
-        case 0x36: result = func_ov015_02174e3c(param); break;
+        case 3:    result = BattleSecondCheck::personalCheckMahokanta(param); break;
+        case 8:    result = BattleSecondCheck::personalCheckRarihoma(param); break;
+        case 0xe:  result = BattleSecondCheck::personalCheckMedapani(param); break;
+        case 0x44: result = BattleSecondCheck::personalCheckMahotora(param); break;
+        case 0x12: result = BattleSecondCheck::personalCheckRukani(param); break;
+        case 0x16: result = BattleSecondCheck::personalCheckSukara(param); break;
+        case 0x1d: result = BattleSecondCheck::personalCheckBaikiruto(param); break;
+        case 0x21: result = BattleSecondCheck::personalCheckHoimi(param); break;
+        case 0x22: result = BattleSecondCheck::personalCheckMyHoimi(param); break;
+        case 0x23: result = BattleSecondCheck::personalCheckThereHoimi(param); break;
+        case 0x25: result = BattleSecondCheck::personalCheckZaoriku(param); break;
+        case 0x3c: result = BattleSecondCheck::personalCheckTaiatari(param); break;
+        case 0x3e: result = BattleSecondCheck::personalCheckPartThree(param); break;
+        case 0x37: result = BattleSecondCheck::personalCheckAnkoku(param); break;
+        case 0x36: result = BattleSecondCheck::personalCheckNakamayobi(param); break;
         case 1:
         case 0x1e:
-        case 0x40: result = btl::BattleSecondCheck::personalCheckRandom(param); break;
-        case 0x2e: result = func_ov015_02174d30(param); break;
-        case 0x2c: result = func_ov015_02174c4c(param); break;
-        case 0x10: result = func_ov015_02174bf4(param); break;
-        case 0x34: result = func_ov015_02174d78(param); break;
-        case 0x31: result = func_ov015_02174f14(param); break;
-        case 0x42: result = func_ov015_02172d04(param); break;
-        case 0:    result = func_ov015_021750f8(param); break;
-        default:   result = func_ov015_021763ac(); break;
+        case 0x40: result = BattleSecondCheck::personalCheckRandom(param); break;
+        case 0x2e: result = BattleSecondCheck::personalCheckFizzleZone(param); break;
+        case 0x2c: result = BattleSecondCheck::personalCheckChargeAttack(param); break;
+        case 0x10: result = BattleSecondCheck::personalCheckMyMahokanta(param); break;
+        case 0x34: result = BattleSecondCheck::personalCheckEscape(param); break;
+        case 0x31: result = BattleSecondCheck::personalCheckGattai(param); break;
+        case 0x42: result = BattleSecondCheck::personalCheckBothOne(param); break;
+        case 0:    result = BattleSecondCheck::personalCheckFreeOne(param); break;
+        default:   result = BattleSecondCheck::personalCheckFree(); break;
         }
     }
     else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 0 &&
              flag == 0) {
         switch (status::excelParam.actionParam_[param->actionIndex_].fool) {
-        case 0x25: result = func_ov015_0217377c(param); break;
+        case 0x25: result = BattleSecondCheck::personalCheckZaoriku(param); break;
         case 1:
         case 0x1e:
         case 0x40:
-        case 0x41: result = func_ov015_021751e4(param); break;
-        case 0x42: result = func_ov015_02172d04(param); break;
-        case 0:    result = func_ov015_021750f8(param); break;
-        default:   result = btl::BattleSecondCheck::personalCheckRandom(param); break;
+        case 0x41: result = BattleSecondCheck::personalCheckWeapon(param); break;
+        case 0x42: result = BattleSecondCheck::personalCheckBothOne(param); break;
+        case 0:    result = BattleSecondCheck::personalCheckFreeOne(param); break;
+        default:   result = BattleSecondCheck::personalCheckRandom(param); break;
         }
     }
 
@@ -746,7 +743,6 @@ select_target:
 
     return 1;
 }
-
 THUMB int btl::BattleSelectTarget::setTargetGroup(btl::BattleSelectTargetParam* param)
 {
     int result;
@@ -769,47 +765,47 @@ THUMB int btl::BattleSelectTarget::setTargetGroup(btl::BattleSelectTargetParam* 
 
     if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 2) {
         switch (status::excelParam.actionParam_[param->actionIndex_].god) {
-        case 4:    result = func_ov015_02175370(param); break;
-        case 7:    result = func_ov015_02175474(param); break;
-        case 9:    result = func_ov015_021757dc(param); break;
-        case 0xc:  result = func_ov015_02175900(param); break;
-        case 8:    result = func_ov015_02175474(param); break;
-        case 0xd:  result = func_ov015_02175498(param); break;
-        case 0x15: result = func_ov015_02175a18(param); break;
-        case 0x1b: result = func_ov015_02175624(param); break;
-        case 0x29: result = func_ov015_02175704(param); break;
-        case 0x3d: result = func_ov015_02175528(param); break;
-        case 0x32: result = func_ov015_021754e0(param); break;
-        case 0x33: result = func_ov015_02175504(param); break;
+        case 4:    result = btl::BattleSecondCheck::personalCheckMahokantaGroup(param); break;
+        case 7:    result = btl::BattleSecondCheck::personalCheckRariho(param); break;
+        case 9:    result = btl::BattleSecondCheck::personalCheckRarihoForGod(param); break;
+        case 0xc:  result = btl::BattleSecondCheck::personalCheckMahotonForGod(param); break;
+        case 8:    result = btl::BattleSecondCheck::personalCheckRariho(param); break;
+        case 0xd:  result = btl::BattleSecondCheck::personalCheckManusa(param); break;
+        case 0x15: result = btl::BattleSecondCheck::personalCheckRukananForGod(param); break;
+        case 0x1b: result = btl::BattleSecondCheck::personalCheckSukuruto(param); break;
+        case 0x29: result = btl::BattleSecondCheck::personalCheckPiorimu(param); break;
+        case 0x3d: result = btl::BattleSecondCheck::personalCheckMedapaniDance(param); break;
+        case 0x32: result = btl::BattleSecondCheck::personalCheckDokunoiki(param); break;
+        case 0x33: result = btl::BattleSecondCheck::personalCheckYaketukuiki(param); break;
         case 0:
         case 2:
-        case 0x3f: result = func_ov015_021752a4(param); break;
-        default:   result = func_ov015_021752a4(param); break;
+        case 0x3f: result = btl::BattleSecondCheck::personalCheckRandomGroup(param); break;
+        default:   result = btl::BattleSecondCheck::personalCheckRandomGroup(param); break;
         }
     }
     else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 1 && flag == 0) {
         switch (status::excelParam.actionParam_[param->actionIndex_].human) {
-        case 7:    result = func_ov015_02175474(param); break;
-        case 0xd:  result = func_ov015_02175498(param); break;
-        case 0xb:  result = func_ov015_021754bc(param); break;
-        case 0x14: result = func_ov015_0217554c(param); break;
-        case 0x1b: result = func_ov015_02175624(param); break;
-        case 0x29: result = func_ov015_02175704(param); break;
-        case 0x3d: result = func_ov015_02175528(param); break;
-        case 0x32: result = func_ov015_021754e0(param); break;
-        case 0x33: result = func_ov015_02175504(param); break;
+        case 7:    result = btl::BattleSecondCheck::personalCheckRariho(param); break;
+        case 0xd:  result = btl::BattleSecondCheck::personalCheckManusa(param); break;
+        case 0xb:  result = btl::BattleSecondCheck::personalCheckMahoton(param); break;
+        case 0x14: result = btl::BattleSecondCheck::personalCheckRukanan(param); break;
+        case 0x1b: result = btl::BattleSecondCheck::personalCheckSukuruto(param); break;
+        case 0x29: result = btl::BattleSecondCheck::personalCheckPiorimu(param); break;
+        case 0x3d: result = btl::BattleSecondCheck::personalCheckMedapaniDance(param); break;
+        case 0x32: result = btl::BattleSecondCheck::personalCheckDokunoiki(param); break;
+        case 0x33: result = btl::BattleSecondCheck::personalCheckYaketukuiki(param); break;
         case 0:
         case 2:
-        case 0x3f: result = func_ov015_021752a4(param); break;
-        default:   result = func_ov015_021752a4(param); break;
+        case 0x3f: result = btl::BattleSecondCheck::personalCheckRandomGroup(param); break;
+        default:   result = btl::BattleSecondCheck::personalCheckRandomGroup(param); break;
         }
     }
     else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 0 && flag == 0) {
         switch (status::excelParam.actionParam_[param->actionIndex_].fool) {
         case 0:
         case 2:
-        case 0x3f: result = func_ov015_021752a4(param); break;
-        default:   result = func_ov015_021752a4(param); break;
+        case 0x3f: result = btl::BattleSecondCheck::personalCheckRandomGroup(param); break;
+        default:   result = btl::BattleSecondCheck::personalCheckRandomGroup(param); break;
         }
     }
 
@@ -852,40 +848,40 @@ THUMB int btl::BattleSelectTarget::setTargetAll(btl::BattleSelectTargetParam* pa
 
     if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 2) {
         switch (status::excelParam.actionParam_[param->actionIndex_].god) {
-        case 5:    result = func_ov015_02175c44(param); break;
-        case 0x30: result = func_ov015_02175d88(param); break;
-        case 0x2d: result = func_ov015_02175d08(param); break;
-        case 0x26: result = func_ov015_02176144(param); break;
-        case 0x35: result = func_ov015_02176208(param); break;
-        case 0x2f: result = func_ov015_0217629c(param); break;
-        case 0x24: result = func_ov015_02175df8(param); break;
-        case 0x28: result = func_ov015_02175ef0(param); break;
-        case 0x2b: result = func_ov015_02175fd0(param); break;
-        case 0x1c: result = func_ov015_021760b0(param); break;
+        case 5:    result = btl::BattleSecondCheck::personalCheckMahokantaAll(param); break;
+        case 0x30: result = btl::BattleSecondCheck::personalCheckMeganteForGod(param); break;
+        case 0x2d: result = btl::BattleSecondCheck::personalCheckMegante(param); break;
+        case 0x26: result = btl::BattleSecondCheck::personalCheckMegazaru(param); break;
+        case 0x35: result = btl::BattleSecondCheck::personalCheckOtakebi(param); break;
+        case 0x2f: result = btl::BattleSecondCheck::personalCheckHadou(param); break;
+        case 0x24: result = btl::BattleSecondCheck::personalCheckBehomara(param); break;
+        case 0x28: result = btl::BattleSecondCheck::personalCheckKiariku(param); break;
+        case 0x2b: result = btl::BattleSecondCheck::personalCheckZameha(param); break;
+        case 0x1c: result = btl::BattleSecondCheck::personalCheckHubaha(param); break;
         case 0:
-        case 0x3b: result = func_ov015_021763ac(); break;
-        default:   result = func_ov015_021763ac(); break;
+        case 0x3b: result = btl::BattleSecondCheck::personalCheckFree(); break;
+        default:   result = btl::BattleSecondCheck::personalCheckFree(); break;
         }
     }
     else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 1 && flag == 0) {
         switch (status::excelParam.actionParam_[param->actionIndex_].human) {
-        case 0x30: result = func_ov015_02175d88(param); break;
-        case 0x2d: result = func_ov015_02175d08(param); break;
-        case 0x26: result = func_ov015_02176144(param); break;
-        case 0x35: result = func_ov015_02176208(param); break;
-        case 0x2f: result = func_ov015_0217629c(param); break;
-        case 0x24: result = func_ov015_02175df8(param); break;
-        case 0x1c: result = func_ov015_021760b0(param); break;
+        case 0x30: result = btl::BattleSecondCheck::personalCheckMeganteForGod(param); break;
+        case 0x2d: result = btl::BattleSecondCheck::personalCheckMegante(param); break;
+        case 0x26: result = btl::BattleSecondCheck::personalCheckMegazaru(param); break;
+        case 0x35: result = btl::BattleSecondCheck::personalCheckOtakebi(param); break;
+        case 0x2f: result = btl::BattleSecondCheck::personalCheckHadou(param); break;
+        case 0x24: result = btl::BattleSecondCheck::personalCheckBehomara(param); break;
+        case 0x1c: result = btl::BattleSecondCheck::personalCheckHubaha(param); break;
         case 0:
-        case 0x3b: result = func_ov015_021763ac(); break;
-        default:   result = func_ov015_021763ac(); break;
+        case 0x3b: result = btl::BattleSecondCheck::personalCheckFree(); break;
+        default:   result = btl::BattleSecondCheck::personalCheckFree(); break;
         }
     }
     else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 0 && flag == 0) {
         switch (status::excelParam.actionParam_[param->actionIndex_].fool) {
         case 0:
-        case 0x3b: result = func_ov015_021763ac(); break;
-        default:   result = func_ov015_021763ac(); break;
+        case 0x3b: result = btl::BattleSecondCheck::personalCheckFree(); break;
+        default:   result = btl::BattleSecondCheck::personalCheckFree(); break;
         }
     }
 
@@ -929,22 +925,22 @@ THUMB int btl::BattleSelectTarget::setTargetAllWithCarriage(btl::BattleSelectTar
 
     if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 2) {
         switch (param->actionIndex_) {
-        case 0x24: result = func_ov015_02175df8(param); break;
-        case 0x28: result = func_ov015_02175ef0(param); break;
-        case 0x2b: result = func_ov015_02175fd0(param); break;
-        default:   result = func_ov015_021763ac(); break;
+        case 0x24: result = btl::BattleSecondCheck::personalCheckBehomara(param); break;
+        case 0x28: result = btl::BattleSecondCheck::personalCheckKiariku(param); break;
+        case 0x2b: result = btl::BattleSecondCheck::personalCheckZameha(param); break;
+        default:   result = btl::BattleSecondCheck::personalCheckFree(); break;
         }
     }
     else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 1 && flag == 0) {
         switch (param->actionIndex_) {
-        case 0x24: result = func_ov015_02175df8(param); break;
-        case 0x28: result = func_ov015_02175ef0(param); break;
-        case 0x2b: result = func_ov015_02175fd0(param); break;
-        default:   result = func_ov015_021763ac(); break;
+        case 0x24: result = btl::BattleSecondCheck::personalCheckBehomara(param); break;
+        case 0x28: result = btl::BattleSecondCheck::personalCheckKiariku(param); break;
+        case 0x2b: result = btl::BattleSecondCheck::personalCheckZameha(param); break;
+        default:   result = btl::BattleSecondCheck::personalCheckFree(); break;
         }
     }
     else if (param->actorCharacterStatus_->haveBattleStatus_.brains_ == 0 && flag == 0) {
-        result = func_ov015_021763ac();
+        result = btl::BattleSecondCheck::personalCheckFree();
     }
 
     if (result == 0) {
@@ -1007,16 +1003,16 @@ THUMB void btl::BattleSelectTarget::setTargetSpecialToPlayer(status::UseActionPa
         break;
     case 2: 
         SpecialPlayerRate2 table = specialPlayerRate2;
-        target = func_0201d8c8(table.rate_, dssrand::rand(256), 2);
+        target = dss::arrayToIndex(table.rate_, dssrand::rand(256), 2);
         break;
     
     case 3: 
         SpecialPlayerRate3 table2 = specialPlayerRate3;
-        target = func_0201d8c8(table2.rate_, dssrand::rand(256), 3);
+        target = dss::arrayToIndex(table2.rate_, dssrand::rand(256), 3);
         break;
     default: 
         SpecialPlayerRate4 table3 = specialPlayerRate4;
-        target = func_0201d8c8(table3.rate_, dssrand::rand(256), 4);
+        target = dss::arrayToIndex(table3.rate_, dssrand::rand(256), 4);
         break;
     }
     aliveIndex = 0;
@@ -1211,7 +1207,7 @@ THUMB int btl::BattleSelectTarget::setTargetSpecialToMonsterHpMin2(int targetCou
         damage = specialTarget_[i]->haveStatusInfo_.getSpecialTargetDamage();
         values[i] = specialTarget_[i]->haveStatusInfo_.getHp() - damage;
     }
-    index = func_0201d948(values, targetCount);
+    index = dss::arrayToMinIndex(values, targetCount);
     target = specialTarget_[index];
     for (int i = 0; i < 8; i++) {
         specialTarget_[i] = 0;
@@ -1285,7 +1281,7 @@ THUMB void btl::BattleSelectTarget::setTargetCrossFire(status::UseActionParam* p
         for (int i = 0; i < count; i++) {
             hp[i] = list.getSourceCharacterStatus(i)->haveStatusInfo_.getHp();
         }
-        int index = func_0201d948(hp, count);
+        int index =  dss::arrayToMinIndex(hp, count);
         param->targetCharacterStatus_[0] = list.getSourceCharacterStatus(index);
         param->targetCount_ = 1;
     }

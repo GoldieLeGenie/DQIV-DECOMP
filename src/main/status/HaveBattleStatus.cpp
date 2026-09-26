@@ -445,11 +445,11 @@ THUMB void status::HaveBattleStatus::setActionPatternForMonster() {
         case 2:
         case 4: {
             int r = dssrand::rand(0x100);
-            this->patternIndex_ = func_0201d8c8(actionPattern + pattern * 0x18, r, 6);
+            this->patternIndex_ = dss::arrayToIndex((int*)(actionPattern + pattern * 0x18), r, 6);
             if (pattern == 2) {
                 if ((this->disablePattern_.flag_ & 1) && (this->disablePattern_.flag_ & 2)) {
                     local_70 = tmpPattern;
-                    this->patternIndex_ = func_0201d8c8(&local_70, dssrand::rand(0x10), 4) + 2;
+                    this->patternIndex_ = dss::arrayToIndex(local_70.v, dssrand::rand(0x10), 4) + 2;
                 }
             }
             break;

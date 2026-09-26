@@ -1,4 +1,5 @@
 #include "main/profile/Profile.hpp"
+#include "main/cmn/ExtraMapLink.hpp"
 #include "main/global/Global.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
@@ -14,6 +15,7 @@
 
 // status::HaveItemSack g_NeneItemSack;
 char s_field[8] = "field"; // data_020c1398
+char data_020c13a0[8] = "field";
 
 
 THUMB int profile::Profile::collectDATA(int bookNo, int saveType)
@@ -220,7 +222,7 @@ THUMB void profile::Profile::collectDATA_PLAYER()
 
     for (int i = 0; i < 25; i++) {
         int k = i + 1;
-        if (originalPlayerFlag_[k] != 0) {
+        if (originalPlayerFlag_[k].flag_ != 0) {
             status::PlayerStatus* op = &originalPlayer_[k];
             int j = 0;
             int pi = op->haveStatusInfo_.haveStatus_.playerIndex_;
@@ -532,8 +534,8 @@ THUMB void profile::Profile::deliverRESTART_MAP(dss::Fx32Vector3* pos, short dir
         return;
     }
     if (func_020882b0((const char*)this->pPARTY->RESTART, data_020c13a0) == 0) {
-        func_02028e8c(&data_020ed28c, this->pPARTY->FIELDTYPE, pos, 4);
+        ((cmn::ExtraMapLink*)&data_020ed28c)->setExtraLinkFieldAbsPos(this->pPARTY->FIELDTYPE, *pos, 4);
         return;
     }
-    func_02028494(&data_020ed28c, this->pPARTY->RESTART, pos, dir);
+    ((cmn::ExtraMapLink*)&data_020ed28c)->setExtraLinkTown((const char*)this->pPARTY->RESTART, *pos, dir);
 }

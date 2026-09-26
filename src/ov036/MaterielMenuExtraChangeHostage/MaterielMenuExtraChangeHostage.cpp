@@ -4,6 +4,7 @@
 #include "main/cmn/GameManager.hpp"
 #include "main/cmn/PlayerManager.hpp"
 #include "main/global/Global.hpp"
+#include "main/cmn/ExtraMapLink.hpp"
 
 THUMB void MaterielMenuExtraChangeHostage::menuSetup()
 {
@@ -29,7 +30,7 @@ THUMB void MaterielMenuExtraChangeHostage::menuSetup()
 }
 
 
-THUMB void MaterielMenuExtraChangeHostage::menuClose()
+THUMB void MaterielMenuExtraChangeHostage::menuExecute()
 {
     if (hostageStatus_ == HOSTAGE_SELECT) {
         status::g_Party.setNormalMode();
@@ -49,7 +50,7 @@ THUMB void MaterielMenuExtraChangeHostage::menuDraw()
 
 THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
 {
-    if (func_0200bef8(data_020c7678) == 0) {
+    if (g_GlobalFade.isFadeEnd() == 0) {
         return;
     }
 
@@ -58,9 +59,9 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
         if (func_0205241c(&data_020ed1bc) != 0) {
             if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
                 func_02052408(&data_020ed1bc);
-                func_020259a8(&data_020ed1bc);
-                func_02025a1c(&data_020ed1bc, 0x1A049);
-                func_02025b60(&data_020ed1bc);
+                data_020ed1bc.openMessageForTALK();
+                data_020ed1bc.addMessageNOWAIT(0x1A049);
+                data_020ed1bc.addMessageWAITKEY();
                 hostageStatus_ = HOSTAGE_SELECT;
                 break;
             }
@@ -69,9 +70,9 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
                 func_02052408(&data_020ed1bc);
             }
         } else {
-            func_020259a8(&data_020ed1bc);
-            func_02025a34(&data_020ed1bc, 0x1A048);
-            func_02025b08(&data_020ed1bc);
+            data_020ed1bc.openMessageForTALK();
+            data_020ed1bc.addMessage(0x1A048);
+            data_020ed1bc.setYesNo();
         }
         break;
 
@@ -87,7 +88,7 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
         if (func_0205241c(&data_020ed1bc) != 0) {
             if ((unsigned int)(data_020ed1bc.stat_ - 1) <= 1) {
                 func_02052408(&data_020ed1bc);
-                func_0200bcc4(&g_Global, 0x3C);
+                g_Global.fadeOutBlack(0x3C);
             }
         } else {
             memberChange();
@@ -113,8 +114,8 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
                 func_ov016_0216b020();
             }
         } else {
-            func_020259a8(&data_020ed1bc);
-            func_02025a34(&data_020ed1bc, 0x19E42);
+            data_020ed1bc.openMessageForTALK();
+            data_020ed1bc.addMessage(0x19E42);
         }
         break;
     }
@@ -134,20 +135,20 @@ THUMB void MaterielMenuExtraChangeHostage::memberUpdate()
             if (isHostage() != 0) {
                 status::g_Party.setHostage(hostageID_, false);
                 status::g_Party.setHostage(newHostageID_, true);
-                func_020259a8(&data_020ed1bc);
+                data_020ed1bc.openMessageForTALK();
                 func_02054364(0x12, 0x50000000, newHostageID_);
-                func_02025a34(&data_020ed1bc, 0x1A051);
+                data_020ed1bc.addMessage(0x1A051);
                 func_02054364(0x10, 0x50000000, hostageID_);
-                func_02025a34(&data_020ed1bc, 0x1A052);
+                data_020ed1bc.addMessage(0x1A052);
                 hostageStatus_ = HOSTAGE_CHANGING;
                 return;
             }
 
-            func_020259a8(&data_020ed1bc);
+            data_020ed1bc.openMessageForTALK();
             func_02054364(0x12, 0x50000000, newHostageID_);
-            func_02025a34(&data_020ed1bc, 0x1A04D);
-            func_02025a34(&data_020ed1bc, 0x1A048);
-            func_02025b08(&data_020ed1bc);
+            data_020ed1bc.addMessage(0x1A04D);
+            data_020ed1bc.addMessage(0x1A048);
+            data_020ed1bc.setYesNo();
             hostageStatus_ = HOSTAGE_ISCHANGE;
             return;
         } else if (r == 3) {
@@ -176,7 +177,7 @@ THUMB void MaterielMenuExtraChangeHostage::memberChange()
 
     hostageStatus_ = HOSTAGE_END;
 
-    func_02028944(&data_020ed28c);                 /* g_ExtraMapLink */
+    ((cmn::ExtraMapLink*)&data_020ed28c)->setTownINN();   /* g_ExtraMapLink */
 
     cmn::GameManager::getSingleton();             
     cmn::PlayerManager::setLock(1);

@@ -1,7 +1,6 @@
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/StageStatus.hpp"
 
-
 THUMB status::PlayerStatus::PlayerStatus()
 {
     clearWalkDamage();
@@ -11,7 +10,6 @@ THUMB status::PlayerStatus::PlayerStatus()
 THUMB status::PlayerStatus::~PlayerStatus(){
     return;
 }
-
 
 THUMB void status::PlayerStatus::setup(int index)
 {
@@ -227,8 +225,11 @@ THUMB void status::PlayerStatus::execOfRound()
     return;
 }
 
+THUMB void status::PlayerStatus::print(){
+}
 
-
+THUMB void status::PlayerStatus::printAction(){
+}
 
 THUMB void status::PlayerStatus::setSaveDataForPlayer(profile::PROFILE_PLAYER* dat) {
     dat->LEVEL = this->haveStatusInfo_.haveStatus_.level_;
@@ -269,13 +270,6 @@ THUMB void status::PlayerStatus::setSaveDataForPlayer(profile::PROFILE_PLAYER* d
     }
 
     dat->POISON = this->haveStatusInfo_.isPoison();
-}
-
-THUMB void status::PlayerStatus::setMosyasRelease(){
-
-}
-
-THUMB void status::PlayerStatus::setMosyasChange(){
 }
 
 THUMB void status::PlayerStatus::setLoadDataForPlayer(profile::PROFILE_PLAYER* dat) {
@@ -326,23 +320,12 @@ THUMB void status::PlayerStatus::setLoadDataForPlayer(profile::PROFILE_PLAYER* d
 }
 
 
-ARM bool status::PlayerStatus::isDeathDisable(){
+extern "C" ARM bool _ZN6status15CharacterStatus14isDeathDisableEv(status::CharacterStatus* self) {
     return 0;
 }
 
-ARM void status::PlayerStatus::printAction()
-
-{
-    return;
+extern "C" ARM void _ZN6status15CharacterStatus16setMosyasReleaseEv(status::CharacterStatus* self) {
 }
 
-ARM void status::PlayerStatus::print()
-
-{
-    return;
+extern "C" ARM void _ZN6status15CharacterStatus15setMosyasChangeEi(status::CharacterStatus* self, int monsterIndex) {
 }
-
-
-
-
-

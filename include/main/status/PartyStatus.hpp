@@ -11,6 +11,11 @@ namespace status { struct UseAction; }
 namespace status { struct HaveAction; }
 
 namespace status {
+    struct PlayerFlag {
+        int flag_;
+        PlayerFlag();
+    };
+
     struct PartyStatus : BasePartyStatus {
         dss::BitFlaguint accessFlag_;
         int party_[13];
@@ -19,7 +24,6 @@ namespace status {
         virtual void setSaveData(profile::PROFILE_PARTY* data);
         virtual void setLoadData(profile::PROFILE_PARTY* data, profile::PROFILE_HISTORY* history);
         PartyStatus();
-        void unkfunc_0200e9cc();
         ~PartyStatus();
         static void initialize();
         void add(int playerIndex);
@@ -106,6 +110,11 @@ namespace status {
         int isChapter4BGM();
         int isPartyActionEnable();
         int isMegazaruRingEnable();
+        static void setNoDamageEnable(bool enable);
+        static void setNoDamageEnableForMonster(bool enable);
+
+        static int noDamageEnable_;               // data_020c7a88
+        static int noDamageEnableForMonster_;     // data_020c7a8c
         
     };
 
@@ -114,7 +123,7 @@ namespace status {
 
 
 extern status::PlayerStatus originalPlayer_[26];
-extern int originalPlayerFlag_[26];
+extern status::PlayerFlag originalPlayerFlag_[26];
 
 
 extern "C" {

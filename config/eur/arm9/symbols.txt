@@ -341,41 +341,41 @@ _ZN6Global14getPrevMapNameEv kind:function(thumb,size=0x4) addr:0x0200ba00
 _ZN6Global10setMapNameEPKc kind:function(thumb,size=0x2e) addr:0x0200ba04
 _ZN6Global12isAreaChangeEv kind:function(thumb,size=0x20) addr:0x0200ba34
 _ZN6Global12getFieldTypeEv kind:function(thumb,size=0x4) addr:0x0200ba54
-func_0200ba58 kind:function(thumb,size=0x34) addr:0x0200ba58
-func_0200ba8c kind:function(thumb,size=0x2c) addr:0x0200ba8c
-func_0200bab8 kind:function(thumb,size=0x3c) addr:0x0200bab8
-func_0200baf4 kind:function(thumb,size=0x50) addr:0x0200baf4
-func_0200bb44 kind:function(thumb,size=0xd0) addr:0x0200bb44
-func_0200bc14 kind:function(thumb,size=0x22) addr:0x0200bc14
-func_0200bc38 kind:function(thumb,size=0x48) addr:0x0200bc38
-func_0200bc80 kind:function(thumb,size=0x28) addr:0x0200bc80
-func_0200bca8 kind:function(thumb,size=0x1c) addr:0x0200bca8
-func_0200bcc4 kind:function(thumb,size=0x44) addr:0x0200bcc4
-func_0200bd08 kind:function(thumb,size=0x28) addr:0x0200bd08
-func_0200bd30 kind:function(thumb,size=0x1c) addr:0x0200bd30
-func_0200bd4c kind:function(thumb,size=0x1c) addr:0x0200bd4c
-func_0200bd68 kind:function(thumb,size=0x1c) addr:0x0200bd68
-func_0200bd84 kind:function(thumb,size=0x24) addr:0x0200bd84
-func_0200bda8 kind:function(thumb,size=0xe) addr:0x0200bda8
-func_0200bdb8 kind:function(thumb,size=0x4) addr:0x0200bdb8
-func_0200bdbc kind:function(thumb,size=0x14) addr:0x0200bdbc
-func_0200bdd0 kind:function(thumb,size=0x2) addr:0x0200bdd0
-func_0200bdd4 kind:function(thumb,size=0x78) addr:0x0200bdd4
-func_0200be4c kind:function(thumb,size=0x12) addr:0x0200be4c
-func_0200be60 kind:function(thumb,size=0x2a) addr:0x0200be60
-func_0200be8c kind:function(thumb,size=0xc) addr:0x0200be8c
-func_0200be98 kind:function(thumb,size=0x22) addr:0x0200be98
-func_0200bebc kind:function(thumb,size=0x16) addr:0x0200bebc
-func_0200bed4 kind:function(thumb,size=0x24) addr:0x0200bed4
-func_0200bef8 kind:function(thumb,size=0x10) addr:0x0200bef8
-func_0200bf08 kind:function(thumb,size=0x14) addr:0x0200bf08
-func_0200bf1c kind:function(thumb,size=0x14) addr:0x0200bf1c
-func_0200bf30 kind:function(thumb,size=0x14) addr:0x0200bf30
-func_0200bf44 kind:function(thumb,size=0x2) addr:0x0200bf44
-func_0200bf48 kind:function(thumb,size=0x16) addr:0x0200bf48
-func_0200bf60 kind:function(thumb,size=0x12) addr:0x0200bf60
-func_0200bf74 kind:function(thumb,size=0x20) addr:0x0200bf74
-func_0200bf94 kind:function(thumb,size=0x2) addr:0x0200bf94
+_ZN6Global10startFieldEv kind:function(thumb,size=0x34) addr:0x0200ba58
+_ZN6Global11startBattleEv kind:function(thumb,size=0x2c) addr:0x0200ba8c
+_ZN6Global12acceptBattleEv kind:function(thumb,size=0x3c) addr:0x0200bab8
+_ZN6Global17directStartBattleEv kind:function(thumb,size=0x50) addr:0x0200baf4
+_ZN6Global9endBattleEb kind:function(thumb,size=0xd0) addr:0x0200bb44
+_ZN6Global23setFightingArenaMapNameEPKcRN3dss11Fx32Vector3E kind:function(thumb,size=0x22) addr:0x0200bc14
+_ZN6Global10startTitleEv kind:function(thumb,size=0x48) addr:0x0200bc38
+_ZN6Global9startLogoEv kind:function(thumb,size=0x28) addr:0x0200bc80
+_ZN6Global10isNextPartEi kind:function(thumb,size=0x1c) addr:0x0200bca8
+_ZN6Global12fadeOutBlackEi kind:function(thumb,size=0x44) addr:0x0200bcc4
+_ZN6Global12fadeOutWhiteEi kind:function(thumb,size=0x28) addr:0x0200bd08
+_ZN6Global11fadeInBlackEi kind:function(thumb,size=0x1c) addr:0x0200bd30
+_ZN6Global11fadeInWhiteEi kind:function(thumb,size=0x1c) addr:0x0200bd4c
+_ZN6Global6fadeInEi kind:function(thumb,size=0x1c) addr:0x0200bd68
+_ZN16GlobalChangePart6updateEv kind:function(thumb,size=0x24) addr:0x0200bd84
+_ZN16GlobalChangePart5isEndEv kind:function(thumb,size=0xe) addr:0x0200bda8
+_ZN16GlobalChangePart11setNextPartEi kind:function(thumb,size=0x4) addr:0x0200bdb8
+_ZN10GlobalFadeC1Ev kind:function(thumb,size=0x14) addr:0x0200bdbc
+_ZN10GlobalFade6updateEv kind:function(thumb,size=0x2) addr:0x0200bdd0
+_ZN10GlobalFade4drawEv kind:function(thumb,size=0x78) addr:0x0200bdd4
+_ZN10GlobalFade5isEndEv kind:function(thumb,size=0x12) addr:0x0200be4c
+_ZN10GlobalFade12fadeOutBlackEi kind:function(thumb,size=0x2a) addr:0x0200be60
+_ZN10GlobalFade12fadeOutWhiteEi kind:function(thumb,size=0xc) addr:0x0200be8c
+_ZN10GlobalFade11fadeInBlackEi kind:function(thumb,size=0x22) addr:0x0200be98
+_ZN10GlobalFade11fadeInWhiteEi kind:function(thumb,size=0x16) addr:0x0200bebc
+_ZN10GlobalFade6fadeInEi kind:function(thumb,size=0x24) addr:0x0200bed4
+_ZN10GlobalFade9isFadeEndEv kind:function(thumb,size=0x10) addr:0x0200bef8
+_ZN10GlobalFade14isFadeOutBlackEv kind:function(thumb,size=0x14) addr:0x0200bf08
+_ZN10GlobalFade13isFadeInBlackEv kind:function(thumb,size=0x14) addr:0x0200bf1c
+_ZN10GlobalFade14isFadeOutWhiteEv kind:function(thumb,size=0x14) addr:0x0200bf30
+_ZN14GlobalWaitPart6updateEv kind:function(thumb,size=0x2) addr:0x0200bf44
+_ZN14GlobalWaitPart4drawEv kind:function(thumb,size=0x16) addr:0x0200bf48
+_ZN14GlobalWaitPart5isEndEv kind:function(thumb,size=0x12) addr:0x0200bf60
+_ZN14GlobalWaitPart9isRunningEv kind:function(thumb,size=0x20) addr:0x0200bf74
+_ZN14GlobalGamePart4drawEv kind:function(thumb,size=0x2) addr:0x0200bf94
 func_0200bf98 kind:function(thumb,size=0x2c) addr:0x0200bf98
 func_0200bfc4 kind:function(thumb,size=0x34) addr:0x0200bfc4
 func_0200bff8 kind:function(thumb,size=0xc) addr:0x0200bff8
@@ -388,7 +388,7 @@ _ZN5param11MonsterAnim12getDataIndexEi kind:function(thumb,size=0xc) addr:0x0200
 _ZN5param11MonsterAnim11getAnimDataEjtt kind:function(thumb,size=0x54) addr:0x0200c050
 _ZN5param10FloorParam13getFloorIndexEPS0_Pc kind:function(thumb,size=0x534) addr:0x0200c0a4
 _ZN5param12ColorCorrect15getCorrectIndexEPS0_Pc kind:function(thumb,size=0x2d8) addr:0x0200c5d8
-func_0200c8b0 kind:function(thumb,size=0x34a) addr:0x0200c8b0
+_ZN5param10MonsterMap13getFloorIndexEPS0_iPc kind:function(thumb,size=0x34a) addr:0x0200c8b0
 _ZN5param5Event11getFileDataEj kind:function(thumb,size=0x68) addr:0x0200cbfc
 _ZN5param13ShopDataFirst8getIndexEPc kind:function(thumb,size=0x1bc) addr:0x0200cc64
 _ZN5param14ShopDataSecond8getIndexEPc kind:function(thumb,size=0x104) addr:0x0200ce20
@@ -449,10 +449,10 @@ func_0200d7b8 kind:function(thumb,size=0x10) addr:0x0200d7b8
 func_0200d7c8 kind:function(thumb,size=0xc) addr:0x0200d7c8
 _ZN6status6Status10initializeEv kind:function(thumb,size=0x84) addr:0x0200d7d4
 _ZN6status6Status20initialize_characterEv kind:function(thumb,size=0x70) addr:0x0200d858
-func_0200d8c8 kind:function(thumb,size=0x260) addr:0x0200d8c8
-func_0200db28 kind:function(thumb,size=0x37c) addr:0x0200db28
-func_0200dea4 kind:function(thumb,size=0xc) addr:0x0200dea4
-func_0200deb0 kind:function(thumb,size=0x5c) addr:0x0200deb0
+_ZN6status6Status13setEventPartyEj kind:function(thumb,size=0x260) addr:0x0200d8c8
+_ZN6status6Status12setEventFlagEj kind:function(thumb,size=0x37c) addr:0x0200db28
+_ZN6status6Status16setFlagShopIndexEi kind:function(thumb,size=0xc) addr:0x0200dea4
+_ZN6status6Status15setFlagShopExecEv kind:function(thumb,size=0x5c) addr:0x0200deb0
 func_0200df0c kind:function(arm,size=0x8c) addr:0x0200df0c
 func_0200df98 kind:function(arm,size=0x44) addr:0x0200df98
 func_0200dfdc kind:function(arm,size=0x10) addr:0x0200dfdc
@@ -492,13 +492,13 @@ _ZN6status12PlayerStatus15clearWalkDamageEv kind:function(thumb,size=0x34) addr:
 _ZN6status12PlayerStatus12setNearDeathEi kind:function(thumb,size=0x2e) addr:0x0200e438
 _ZN6status12PlayerStatus16execStartOfRoundEv kind:function(thumb,size=0x1a) addr:0x0200e468
 _ZN6status12PlayerStatus11execOfRoundEv kind:function(thumb,size=0x58) addr:0x0200e484
-_ZN6status12PlayerStatus16setMosyasReleaseEv kind:function(thumb,size=0x2) addr:0x0200e4dc
-_ZN6status12PlayerStatus15setMosyasChangeEv kind:function(thumb,size=0x2) addr:0x0200e4e0
+_ZN6status12PlayerStatus5printEv kind:function(thumb,size=0x2) addr:0x0200e4dc
+_ZN6status12PlayerStatus11printActionEv kind:function(thumb,size=0x2) addr:0x0200e4e0
 _ZN6status12PlayerStatus20setSaveDataForPlayerEPN7profile14PROFILE_PLAYERE kind:function(thumb,size=0xf4) addr:0x0200e4e4
 _ZN6status12PlayerStatus20setLoadDataForPlayerEPN7profile14PROFILE_PLAYERE kind:function(thumb,size=0xf4) addr:0x0200e5d8
-_ZN6status12PlayerStatus14isDeathDisableEv kind:function(arm,size=0x8) addr:0x0200e6cc
-_ZN6status12PlayerStatus11printActionEv kind:function(arm,size=0x4) addr:0x0200e6d4
-_ZN6status12PlayerStatus5printEv kind:function(arm,size=0x4) addr:0x0200e6d8
+_ZN6status15CharacterStatus14isDeathDisableEv kind:function(arm,size=0x8) addr:0x0200e6cc
+_ZN6status15CharacterStatus16setMosyasReleaseEv kind:function(arm,size=0x4) addr:0x0200e6d4
+_ZN6status15CharacterStatus15setMosyasChangeEi kind:function(arm,size=0x4) addr:0x0200e6d8
 _ZN6status15BasePartyStatusC2Ev kind:function(thumb,size=0x24) addr:0x0200e6dc
 _ZN6status15BasePartyStatus15isCarriageEnterEv kind:function(thumb,size=0x28) addr:0x0200e700
 _ZN6status15BasePartyStatus7setGoldEi kind:function(thumb,size=0x20) addr:0x0200e728
@@ -522,8 +522,8 @@ _ZN6status15BasePartyStatus13getBattleGoldEv kind:function(thumb,size=0x8) addr:
 _ZN6status11PartyStatus11setSaveDataEPN7profile13PROFILE_PARTYE kind:function(thumb,size=0x6c) addr:0x0200e8e8
 _ZN6status11PartyStatus11setLoadDataEPN7profile13PROFILE_PARTYEPNS1_15PROFILE_HISTORYE kind:function(thumb,size=0x78) addr:0x0200e954
 _ZN6status11PartyStatusC1Ev kind:function(thumb,size=0x24) addr:0x0200e9cc
-_ZN6status11PartyStatus16unkfunc_0200e9ccEv kind:function(thumb,size=0x6) addr:0x0200e9f0
-_ZN6status15BasePartyStatusD2Ev kind:function(thumb,size=0xe) addr:0x0200e9f8
+_ZN6status10PlayerFlagC1Ev kind:function(thumb,size=0x6) addr:0x0200e9f0
+_ZN6status11PartyStatusD1Ev kind:function(thumb,size=0xe) addr:0x0200e9f8
 _ZN6status11PartyStatus10initializeEv kind:function(thumb,size=0x34) addr:0x0200ea08
 _ZN6status11PartyStatus3addEi kind:function(thumb,size=0x8c) addr:0x0200ea3c
 _ZN6status11PartyStatus16addMemberOutsideEi kind:function(thumb,size=0x40) addr:0x0200eac8
@@ -609,9 +609,9 @@ _ZN6status11PartyStatus11getMaxLevelEv kind:function(thumb,size=0x34) addr:0x020
 _ZN6status11PartyStatus13isChapter4BGMEv kind:function(thumb,size=0x58) addr:0x02010484
 _ZN6status11PartyStatus19isPartyActionEnableEv kind:function(thumb,size=0x48) addr:0x020104dc
 _ZN6status11PartyStatus20isMegazaruRingEnableEv kind:function(thumb,size=0x1a) addr:0x02010524
-func_02010540 kind:function(thumb,size=0xc) addr:0x02010540
-func_0201054c kind:function(thumb,size=0xc) addr:0x0201054c
-func_02010558 kind:function(thumb,size=0x1c) addr:0x02010558
+_ZN6status11PartyStatus17setNoDamageEnableEb kind:function(thumb,size=0xc) addr:0x02010540
+_ZN6status11PartyStatus27setNoDamageEnableForMonsterEb kind:function(thumb,size=0xc) addr:0x0201054c
+__arraydtor$1093 kind:function(thumb,size=0x1c) addr:0x02010558 local
 _ZN6status8HaveItemC1Ev kind:function(thumb,size=0x44) addr:0x02010574
 _ZN6status8HaveItemD1Ev kind:function(thumb,size=0x20) addr:0x020105b8
 _ZN6status8HaveItem5setupEi kind:function(thumb,size=0x74) addr:0x020105d8
@@ -1183,17 +1183,17 @@ _ZN6status11StageStatus11setShopIconEi kind:function(thumb,size=0x16) addr:0x020
 _ZN6status11StageStatus10isShopIconEv kind:function(thumb,size=0x10) addr:0x0201c81c
 _ZN6status11StageStatus13setCameraIconEi kind:function(thumb,size=0x16) addr:0x0201c82c
 _ZN6status11StageStatus12isCameraIconEv kind:function(thumb,size=0x10) addr:0x0201c844
-_ZN6status11StageStatus7setRulaEb kind:function(thumb,size=0x16) addr:0x0201c854
+_ZN6status11StageStatus7setRulaEi kind:function(thumb,size=0x16) addr:0x0201c854
 _ZN6status11StageStatus6isRulaEv kind:function(thumb,size=0x10) addr:0x0201c86c
-_ZN6status11StageStatus14setRulaDisableEb kind:function(thumb,size=0x1c) addr:0x0201c87c
+_ZN6status11StageStatus14setRulaDisableEi kind:function(thumb,size=0x1c) addr:0x0201c87c
 _ZN6status11StageStatus13isRulaDisableEv kind:function(thumb,size=0x12) addr:0x0201c898
-_ZN6status11StageStatus11setRiremitoEb kind:function(thumb,size=0x16) addr:0x0201c8ac
+_ZN6status11StageStatus11setRiremitoEi kind:function(thumb,size=0x16) addr:0x0201c8ac
 _ZN6status11StageStatus10isRiremitoEv kind:function(thumb,size=0x10) addr:0x0201c8c4
-_ZN6status11StageStatus18setRiremitoDisableEb kind:function(thumb,size=0x1c) addr:0x0201c8d4
+_ZN6status11StageStatus18setRiremitoDisableEi kind:function(thumb,size=0x1c) addr:0x0201c8d4
 _ZN6status11StageStatus17isRiremitoDisableEv kind:function(thumb,size=0x12) addr:0x0201c8f0
 _ZN6status11StageStatus11setLanarutaEi kind:function(thumb,size=0x16) addr:0x0201c904
 _ZN6status11StageStatus10isLanarutaEv kind:function(thumb,size=0x10) addr:0x0201c91c
-_ZN6status11StageStatus18setLanarutaDisableEb kind:function(thumb,size=0x1c) addr:0x0201c92c
+_ZN6status11StageStatus18setLanarutaDisableEi kind:function(thumb,size=0x1c) addr:0x0201c92c
 _ZN6status11StageStatus17isLanarutaDisableEv kind:function(thumb,size=0x12) addr:0x0201c948
 _ZN6status11StageStatus11setToramanaEi kind:function(thumb,size=0xc) addr:0x0201c95c
 _ZN6status11StageStatus10isToramanaEv kind:function(thumb,size=0xc) addr:0x0201c968
@@ -1274,9 +1274,9 @@ _ZN6status8GameFlag3setEj kind:function(thumb,size=0x1c) addr:0x0201d864
 _ZN6status8GameFlag6removeEj kind:function(thumb,size=0x1c) addr:0x0201d880
 _ZN6status8GameFlag5checkEj kind:function(thumb,size=0x1a) addr:0x0201d89c
 _ZN6status8GameFlag5clearEv kind:function(thumb,size=0xe) addr:0x0201d8b8
-func_0201d8c8 kind:function(thumb,size=0x64) addr:0x0201d8c8
-func_0201d92c kind:function(thumb,size=0x1c) addr:0x0201d92c
-func_0201d948 kind:function(thumb,size=0x2c) addr:0x0201d948
+_ZN3dss12arrayToIndexEPiii kind:function(thumb,size=0x64) addr:0x0201d8c8
+_ZN3dss18getRandomVariationEiii kind:function(thumb,size=0x1c) addr:0x0201d92c
+_ZN3dss15arrayToMinIndexEPii kind:function(thumb,size=0x2c) addr:0x0201d948
 func_0201d974 kind:function(arm,size=0x2c) addr:0x0201d974
 func_0201d9a0 kind:function(arm,size=0x14) addr:0x0201d9a0
 _ZN13CameraControl9terminateEv kind:function(arm,size=0x20) addr:0x0201d9b4
@@ -1630,33 +1630,33 @@ func_02025754 kind:function(thumb,size=0x34) addr:0x02025754
 func_02025788 kind:function(thumb,size=0x54) addr:0x02025788
 func_020257dc kind:function(thumb,size=0x14) addr:0x020257dc
 func_020257f0 kind:function(thumb,size=0x1ac) addr:0x020257f0
-func_0202599c kind:function(thumb,size=0xc) addr:0x0202599c
-func_020259a8 kind:function(thumb,size=0xc) addr:0x020259a8
-func_020259b4 kind:function(thumb,size=0xc) addr:0x020259b4
-func_020259c0 kind:function(thumb,size=0xc) addr:0x020259c0
-func_020259cc kind:function(thumb,size=0xc) addr:0x020259cc
-func_020259d8 kind:function(thumb,size=0x44) addr:0x020259d8
-func_02025a1c kind:function(thumb,size=0x18) addr:0x02025a1c
-func_02025a34 kind:function(thumb,size=0x2c) addr:0x02025a34
-func_02025a60 kind:function(thumb,size=0x14) addr:0x02025a60
-func_02025a74 kind:function(thumb,size=0x1e) addr:0x02025a74
-func_02025a94 kind:function(thumb,size=0x26) addr:0x02025a94
-func_02025abc kind:function(thumb,size=0x1e) addr:0x02025abc
-func_02025adc kind:function(thumb,size=0xc) addr:0x02025adc
-func_02025ae8 kind:function(thumb,size=0x20) addr:0x02025ae8
-func_02025b08 kind:function(thumb,size=0xa) addr:0x02025b08
-func_02025b14 kind:function(thumb,size=0x8) addr:0x02025b14
-func_02025b1c kind:function(thumb,size=0x6) addr:0x02025b1c
-func_02025b24 kind:function(thumb,size=0x4) addr:0x02025b24
-func_02025b28 kind:function(thumb,size=0x38) addr:0x02025b28
-func_02025b60 kind:function(thumb,size=0x8) addr:0x02025b60
-func_02025b68 kind:function(thumb,size=0x10) addr:0x02025b68
-func_02025b78 kind:function(thumb,size=0x14) addr:0x02025b78
-func_02025b8c kind:function(thumb,size=0x18) addr:0x02025b8c
-func_02025ba4 kind:function(thumb,size=0x14) addr:0x02025ba4
-func_02025bb8 kind:function(thumb,size=0x14) addr:0x02025bb8
-func_02025bcc kind:function(thumb,size=0x28) addr:0x02025bcc
-func_02025bf4 kind:function(arm,size=0x4) addr:0x02025bf4
+_ZN16TownMenu_MESSAGE18openMessageForTESTEv kind:function(thumb,size=0xc) addr:0x0202599c
+_ZN16TownMenu_MESSAGE18openMessageForTALKEv kind:function(thumb,size=0xc) addr:0x020259a8
+_ZN16TownMenu_MESSAGE18openMessageForMENUEv kind:function(thumb,size=0xc) addr:0x020259b4
+_ZN16TownMenu_MESSAGE21openMessageForENCOUNTEv kind:function(thumb,size=0xc) addr:0x020259c0
+_ZN16TownMenu_MESSAGE20openMessageForBATTLEEv kind:function(thumb,size=0xc) addr:0x020259cc
+_ZN16TownMenu_MESSAGE11openMessageE14eMessageWindow kind:function(thumb,size=0x44) addr:0x020259d8
+_ZN16TownMenu_MESSAGE16addMessageNOWAITEi kind:function(thumb,size=0x18) addr:0x02025a1c
+_ZN16TownMenu_MESSAGE10addMessageEi kind:function(thumb,size=0x2c) addr:0x02025a34
+_ZN16TownMenu_MESSAGE10addMessageEii kind:function(thumb,size=0x14) addr:0x02025a60
+_ZN16TownMenu_MESSAGE10addMessageEiii kind:function(thumb,size=0x1e) addr:0x02025a74
+_ZN16TownMenu_MESSAGE10addMessageEiiii kind:function(thumb,size=0x26) addr:0x02025a94
+_ZN16TownMenu_MESSAGE15addMessageCountEii kind:function(thumb,size=0x1e) addr:0x02025abc
+_ZN16TownMenu_MESSAGE16addMessageSerialEi kind:function(thumb,size=0xc) addr:0x02025adc
+_ZN16TownMenu_MESSAGE10addMessageEPKc kind:function(thumb,size=0x20) addr:0x02025ae8
+_ZN16TownMenu_MESSAGE8setYesNoEv kind:function(thumb,size=0xa) addr:0x02025b08
+_ZN16TownMenu_MESSAGE8setYesNoEi kind:function(thumb,size=0x8) addr:0x02025b14
+_ZN16TownMenu_MESSAGE16setYesNoPositionEii kind:function(thumb,size=0x6) addr:0x02025b1c
+_ZN16TownMenu_MESSAGE19setYesNoSuperCancelEb kind:function(thumb,size=0x4) addr:0x02025b24
+_ZN16TownMenu_MESSAGE14restartMessageEv kind:function(thumb,size=0x38) addr:0x02025b28
+_ZN16TownMenu_MESSAGE17addMessageWAITKEYEv kind:function(thumb,size=0x8) addr:0x02025b60
+_ZN16TownMenu_MESSAGE17isMessageWAITPROGEv kind:function(thumb,size=0x10) addr:0x02025b68
+_ZN16TownMenu_MESSAGE20clearMessageWAITPROGEv kind:function(thumb,size=0x14) addr:0x02025b78
+_ZN16TownMenu_MESSAGE16setMessageCursorEb kind:function(thumb,size=0x18) addr:0x02025b8c
+_ZN16TownMenu_MESSAGE24setMessageIntervalCursorEb kind:function(thumb,size=0x14) addr:0x02025ba4
+_ZN16TownMenu_MESSAGE20setMessageLastCursorEb kind:function(thumb,size=0x14) addr:0x02025bb8
+_ZN16TownMenu_MESSAGE10SetNoCloseEb kind:function(thumb,size=0x28) addr:0x02025bcc
+_ZN4menu8MenuBase9menuCloseEb kind:function(arm,size=0x4) addr:0x02025bf4
 func_02025bf8 kind:function(thumb,size=0x1c) addr:0x02025bf8
 func_02025c14 kind:function(thumb,size=0x238) addr:0x02025c14
 func_02025e4c kind:function(thumb,size=0x2) addr:0x02025e4c
@@ -1700,24 +1700,24 @@ func_0202692c kind:function(thumb,size=0x2) addr:0x0202692c
 func_02026930 kind:function(thumb,size=0x2) addr:0x02026930
 func_02026934 kind:function(thumb,size=0x18) addr:0x02026934
 func_0202694c kind:function(thumb,size=0x4c) addr:0x0202694c
-func_02026998 kind:function(thumb,size=0x28) addr:0x02026998
-func_020269c0 kind:function(thumb,size=0x24) addr:0x020269c0
-func_020269e4 kind:function(thumb,size=0x8) addr:0x020269e4
-func_020269ec kind:function(thumb,size=0x24) addr:0x020269ec
-func_02026a10 kind:function(thumb,size=0x40) addr:0x02026a10
-func_02026a50 kind:function(thumb,size=0xc) addr:0x02026a50
-func_02026a5c kind:function(thumb,size=0xc) addr:0x02026a5c
-func_02026a68 kind:function(thumb,size=0x170) addr:0x02026a68
-func_02026bd8 kind:function(thumb,size=0x5c) addr:0x02026bd8
-func_02026c34 kind:function(thumb,size=0x18) addr:0x02026c34
-func_02026c4c kind:function(thumb,size=0x54) addr:0x02026c4c
-func_02026ca0 kind:function(thumb,size=0xc) addr:0x02026ca0
-func_02026cac kind:function(thumb,size=0xc) addr:0x02026cac
-func_02026cb8 kind:function(thumb,size=0x8) addr:0x02026cb8
-func_02026cc0 kind:function(thumb,size=0x8) addr:0x02026cc0
-func_02026cc8 kind:function(thumb,size=0x8) addr:0x02026cc8
-func_02026cd0 kind:function(thumb,size=0x8) addr:0x02026cd0
-func_02026cd8 kind:function(thumb,size=0x60) addr:0x02026cd8
+_ZN12SoundManager4playEii kind:function(thumb,size=0x28) addr:0x02026998
+_ZN12SoundManager9playStartEii kind:function(thumb,size=0x24) addr:0x020269c0
+_ZN12SoundManager4stopEi kind:function(thumb,size=0x8) addr:0x020269e4
+_ZN12SoundManager11playRestartEii kind:function(thumb,size=0x24) addr:0x020269ec
+_ZN12SoundManager8townPlayEv kind:function(thumb,size=0x40) addr:0x02026a10
+_ZN12SoundManager18setTownPlayDisableEv kind:function(thumb,size=0xc) addr:0x02026a50
+_ZN12SoundManager17setTownPlayEnableEv kind:function(thumb,size=0xc) addr:0x02026a5c
+_ZN12SoundManager9fieldPlayEv kind:function(thumb,size=0x170) addr:0x02026a68
+_ZN12SoundManager10battlePlayEv kind:function(thumb,size=0x5c) addr:0x02026bd8
+_ZN12SoundManager12lastBossPlayEv kind:function(thumb,size=0x18) addr:0x02026c34
+_ZN12SoundManager17resetLastBossPlayEv kind:function(thumb,size=0x54) addr:0x02026c4c
+_ZN12SoundManager11crusingPlayEv kind:function(thumb,size=0xc) addr:0x02026ca0
+_ZN12SoundManager10battleStopEv kind:function(thumb,size=0xc) addr:0x02026cac
+_ZN12SoundManager7playBgmEii kind:function(thumb,size=0x8) addr:0x02026cb8
+_ZN12SoundManager7stopBgmEi kind:function(thumb,size=0x8) addr:0x02026cc0
+_ZN12SoundManager6playSeEii kind:function(thumb,size=0x8) addr:0x02026cc8
+_ZN12SoundManager15stopSeWithIndexEii kind:function(thumb,size=0x8) addr:0x02026cd0
+_ZN12SoundManager16getFloorBgmIndexEv kind:function(thumb,size=0x60) addr:0x02026cd8
 _ZN6status15CharacterStatusC2Ev kind:function(thumb,size=0x50) addr:0x02026d38
 _ZN6status15CharacterStatusD2Ev kind:function(thumb,size=0x1c) addr:0x02026d88
 _ZN6status15CharacterStatus14isActionEnableEv kind:function(thumb,size=0xc) addr:0x02026da4
@@ -1753,8 +1753,8 @@ _ZN6status15CharacterStatus17isEscapeAnimationEv kind:function(thumb,size=0x14) 
 _ZN6status15CharacterStatus19setRebirthAnimationEv kind:function(thumb,size=0x10) addr:0x02026fe0
 _ZN6status15CharacterStatus21clearRebirthAnimationEv kind:function(thumb,size=0x14) addr:0x02026ff0
 _ZN6status15CharacterStatus18isRebirthAnimationEv kind:function(thumb,size=0x16) addr:0x02027004
-_ZN6status15CharacterStatus5printEv kind:function(arm,size=0x4) addr:0x0202701c
-_ZN6status15CharacterStatus11printActionEv kind:function(arm,size=0x4) addr:0x02027020
+_ZN6status15CharacterStatus11printActionEv kind:function(arm,size=0x4) addr:0x0202701c
+_ZN6status15CharacterStatus5printEv kind:function(arm,size=0x4) addr:0x02027020
 func_02027024 kind:function(arm,size=0x10) addr:0x02027024
 func_02027034 kind:function(arm,size=0x4) addr:0x02027034
 func_02027038 kind:function(arm,size=0x4) addr:0x02027038
@@ -1771,30 +1771,30 @@ func_02027424 kind:function(arm,size=0x4) addr:0x02027424
 func_02027428 kind:function(arm,size=0x4) addr:0x02027428
 _ZN6status14UseActionParam5clearEv kind:function(thumb,size=0x7a) addr:0x0202742c
 _ZN6status14UseActionParam12clearMessageEv kind:function(thumb,size=0x1a) addr:0x020274a8
-func_020274c4 kind:function(arm,size=0xc04) addr:0x020274c4
-func_020280c8 kind:function(arm,size=0x8c) addr:0x020280c8
-func_02028154 kind:function(arm,size=0x12c) addr:0x02028154
-func_02028280 kind:function(arm,size=0x68) addr:0x02028280
-func_020282e8 kind:function(arm,size=0x174) addr:0x020282e8
-func_0202845c kind:function(arm,size=0x38) addr:0x0202845c
-func_02028494 kind:function(arm,size=0x48) addr:0x02028494
-func_020284dc kind:function(arm,size=0xe4) addr:0x020284dc
-func_020285c0 kind:function(arm,size=0xfc) addr:0x020285c0
-func_020286bc kind:function(arm,size=0x20c) addr:0x020286bc
-func_020288c8 kind:function(arm,size=0x7c) addr:0x020288c8
-func_02028944 kind:function(arm,size=0x60) addr:0x02028944
-func_020289a4 kind:function(arm,size=0xcc) addr:0x020289a4
-func_02028a70 kind:function(arm,size=0x54) addr:0x02028a70
-func_02028ac4 kind:function(arm,size=0x50) addr:0x02028ac4
-func_02028b14 kind:function(arm,size=0x48) addr:0x02028b14
-func_02028b5c kind:function(arm,size=0xb8) addr:0x02028b5c
-func_02028c14 kind:function(arm,size=0x84) addr:0x02028c14
-func_02028c98 kind:function(arm,size=0xa0) addr:0x02028c98
-func_02028d38 kind:function(arm,size=0x114) addr:0x02028d38
-func_02028e4c kind:function(arm,size=0x40) addr:0x02028e4c
-func_02028e8c kind:function(arm,size=0x54) addr:0x02028e8c
-func_02028ee0 kind:function(arm,size=0x104) addr:0x02028ee0
-func_02028fe4 kind:function(arm,size=0xb0) addr:0x02028fe4
+_ZN3cmn12ExtraMapLink5setupEv kind:function(arm,size=0xc04) addr:0x020274c4
+_ZN3cmn12ExtraMapLink16setExtraFieldPosERN3dss11Fx32Vector3ERs kind:function(arm,size=0x8c) addr:0x020280c8
+_ZN3cmn12ExtraMapLink14checkFieldLinkEi kind:function(arm,size=0x12c) addr:0x02028154
+_ZN3cmn12ExtraMapLink17checkExtraTownPosERN3dss11Fx32Vector3ERs kind:function(arm,size=0x68) addr:0x02028280
+_ZN3cmn12ExtraMapLink13startExitLoopEv kind:function(arm,size=0x174) addr:0x020282e8
+_ZN3cmn12ExtraMapLink16setExtraExitTownEPKci kind:function(arm,size=0x38) addr:0x0202845c
+_ZN3cmn12ExtraMapLink16setExtraLinkTownEPKcRN3dss11Fx32Vector3Es kind:function(arm,size=0x48) addr:0x02028494
+_ZN3cmn12ExtraMapLink11setLinkDataEiiNS_9LINK_TYPEEPKcS3_RN3dss11Fx32Vector3E kind:function(arm,size=0xe4) addr:0x020284dc
+_ZN3cmn12ExtraMapLink11setLinkDataEiiNS_9LINK_TYPEEPKcS3_ kind:function(arm,size=0xfc) addr:0x020285c0
+_ZN3cmn12ExtraMapLink16checkTownMapLinkEi kind:function(arm,size=0x20c) addr:0x020286bc
+_ZN3cmn12ExtraMapLink17setExtraExitFieldEiRN3dss11Fx32Vector3E kind:function(arm,size=0x7c) addr:0x020288c8
+_ZN3cmn12ExtraMapLink10setTownINNEv kind:function(arm,size=0x60) addr:0x02028944
+_ZN3cmn12ExtraMapLink18setMonstarBookLinkEv kind:function(arm,size=0xcc) addr:0x020289a4
+_ZN3cmn12ExtraMapLink21getFieldTypeBySurfaceEi kind:function(arm,size=0x54) addr:0x02028a70
+_ZN3cmn12ExtraMapLink12eraseSurfaceEiNS_9LINK_TYPEEPKc kind:function(arm,size=0x50) addr:0x02028ac4
+_ZN3cmn12ExtraMapLink20getFieldTypeBySymbolEi kind:function(arm,size=0x48) addr:0x02028b14
+_ZN3cmn12ExtraMapLink22setFieldRectLinkToTownERN3dss11Fx32Vector3ES3_iiPKcS2_ kind:function(arm,size=0xb8) addr:0x02028b5c
+_ZN3cmn12ExtraMapLink23setFieldRectLinkToFieldERN3dss11Fx32Vector3ES3_iS2_ kind:function(arm,size=0x84) addr:0x02028c14
+_ZN3cmn12ExtraMapLink20checkFieldRectLinkNoERN3dss11Fx32Vector3E kind:function(arm,size=0xa0) addr:0x02028c98
+_ZN3cmn12ExtraMapLink24checkFieldRectLinkByTypeERN3dss11Fx32Vector3Ei kind:function(arm,size=0x114) addr:0x02028d38
+_ZN3cmn12ExtraMapLink18checkEraseSymbolNoEi kind:function(arm,size=0x40) addr:0x02028e4c
+_ZN3cmn12ExtraMapLink23setExtraLinkFieldAbsPosEiRN3dss11Fx32Vector3Es kind:function(arm,size=0x54) addr:0x02028e8c
+_ZN3cmn12ExtraMapLink11setRuraLinkEv kind:function(arm,size=0x104) addr:0x02028ee0
+_ZN3cmn12ExtraMapLink11setRanaLinkEv kind:function(arm,size=0xb0) addr:0x02028fe4
 func_02029094 kind:function(arm,size=0x38) addr:0x02029094
 func_020290cc kind:function(arm,size=0xa0) addr:0x020290cc
 func_0202916c kind:function(arm,size=0x7c) addr:0x0202916c
@@ -2257,8 +2257,8 @@ func_020349b0 kind:function(thumb,size=0x2a4) addr:0x020349b0
 func_02034c54 kind:function(thumb,size=0x334) addr:0x02034c54
 func_02034f88 kind:function(thumb,size=0x98) addr:0x02034f88
 func_02035020 kind:function(thumb,size=0x78) addr:0x02035020
-func_02035098 kind:function(thumb,size=0x10) addr:0x02035098
-func_020350a8 kind:function(thumb,size=0x2) addr:0x020350a8
+_ZN4task15PartTaskManagerC1Ev kind:function(thumb,size=0x10) addr:0x02035098
+_ZN4task15PartTaskManagerD1Ev kind:function(thumb,size=0x2) addr:0x020350a8
 _ZN4task15PartTaskManager3runEv kind:function(thumb,size=0x54) addr:0x020350ac
 _ZN4task15PartTaskManager12registerTaskEiPNS_8PartTaskE kind:function(thumb,size=0x6) addr:0x02035100
 _ZN4task15PartTaskManager11setNextTaskEi kind:function(thumb,size=0x4) addr:0x02035108
@@ -2383,9 +2383,9 @@ _ZN3cmn17CommonCounterInfo11checkBottunEv kind:function(thumb,size=0x90) addr:0x
 _ZN3cmn17CommonCounterInfo13setDayCounterEih kind:function(thumb,size=0x8) addr:0x0203699c
 _ZN3cmn17CommonCounterInfo12setChangeDayEv kind:function(thumb,size=0x1a) addr:0x020369a4
 _ZN3cmn17CommonCounterInfo15isEndDayCounterEi kind:function(thumb,size=0x10) addr:0x020369c0
-func_020369d0 kind:function(arm,size=0xc) addr:0x020369d0
-func_020369dc kind:function(arm,size=0x690) addr:0x020369dc
-func_0203706c kind:function(arm,size=0x84) addr:0x0203706c
+_ZN3cmn22NonBattleActionManager12getSingletonEv kind:function(arm,size=0xc) addr:0x020369d0
+_ZN3cmn22NonBattleActionManager7executeEv kind:function(arm,size=0x690) addr:0x020369dc
+_ZN3cmn22NonBattleActionManager9setActionENS_13ACTION_EFFECTE kind:function(arm,size=0x84) addr:0x0203706c
 _ZN6status15StatusChangeOneC1Ev kind:function(thumb,size=0x12) addr:0x020370f0
 _ZN6status15StatusChangeOneD1Ev kind:function(thumb,size=0x2) addr:0x02037104
 _ZN6status15StatusChangeOne5setupEii kind:function(thumb,size=0x48) addr:0x02037108
@@ -2421,11 +2421,11 @@ _ZN3cmn9PartyTalk11setObjectNoEi kind:function(thumb,size=0x8) addr:0x020376bc
 _ZN3cmn9PartyTalk9setExitNoEi kind:function(thumb,size=0x20) addr:0x020376c4
 _ZN3cmn9PartyTalk10setPreItemEi kind:function(thumb,size=0x28) addr:0x020376e4
 _ZN3cmn9PartyTalk13setPreMessageEii kind:function(thumb,size=0x1c) addr:0x0203770c
-func_02037728 kind:function(thumb,size=0x314) addr:0x02037728
-func_02037a3c kind:function(thumb,size=0x1a8) addr:0x02037a3c
-func_02037be4 kind:function(thumb,size=0xb8) addr:0x02037be4
-func_02037c9c kind:function(arm,size=0x4) addr:0x02037c9c
-func_02037ca0 kind:function(arm,size=0x4) addr:0x02037ca0
+_ZN19TownMenu_PARTY_TALK9menuSetupEv kind:function(thumb,size=0x314) addr:0x02037728
+_ZN19TownMenu_PARTY_TALK10menuUpdateEv kind:function(thumb,size=0x1a8) addr:0x02037a3c
+_ZN19TownMenu_PARTY_TALK14setLeaderMacroEi kind:function(thumb,size=0xb8) addr:0x02037be4
+_ZN19TownMenu_PARTY_TALK8menuDrawEv kind:function(arm,size=0x4) addr:0x02037c9c
+_ZN19TownMenu_PARTY_TALK11menuExecuteEv kind:function(arm,size=0x4) addr:0x02037ca0
 func_02037ca4 kind:function(arm,size=0x84) addr:0x02037ca4
 func_02037d28 kind:function(arm,size=0x28) addr:0x02037d28
 func_02037d50 kind:function(arm,size=0x1c) addr:0x02037d50
@@ -5250,7 +5250,7 @@ func_02086e70 kind:function(arm,size=0xfc) addr:0x02086e70
 func_02086f6c kind:function(arm,size=0x190) addr:0x02086f6c
 _ZN3dss4Fx32C1Ev kind:function(arm,size=0xc) addr:0x020870fc
 _ZN3dss4Fx32C1Ei kind:function(arm,size=0x8) addr:0x02087108
-func_02087110 kind:function(arm,size=0x10) addr:0x02087110
+_ZN3dss4Fx32C1ERKl kind:function(arm,size=0x10) addr:0x02087110
 func_02087120 kind:function(arm,size=0x28) addr:0x02087120
 _ZN3dss4Fx32C1ERKS0_ kind:function(arm,size=0xc) addr:0x02087148
 func_02087154 kind:function(arm,size=0xc) addr:0x02087154
@@ -5275,7 +5275,7 @@ func_0208738c kind:function(arm,size=0x1c) addr:0x0208738c
 func_020873a8 kind:function(arm,size=0x18) addr:0x020873a8
 func_020873c0 kind:function(arm,size=0x18) addr:0x020873c0
 func_020873d8 kind:function(arm,size=0x18) addr:0x020873d8
-func_020873f0 kind:function(arm,size=0x18) addr:0x020873f0
+_ZNK3dss4Fx32geERKS0_ kind:function(arm,size=0x18) addr:0x020873f0
 func_02087408 kind:function(arm,size=0x18) addr:0x02087408
 func_02087420 kind:function(arm,size=0x18) addr:0x02087420
 func_02087438 kind:function(arm,size=0x20) addr:0x02087438
@@ -5341,7 +5341,7 @@ func_020882d4 kind:function(arm,size=0x18) addr:0x020882d4
 func_020882ec kind:function(arm,size=0x1c) addr:0x020882ec
 func_02088308 kind:function(arm,size=0x58) addr:0x02088308
 _ZN3dss8DssUtils8strcpy_sEPciS1_ kind:function(arm,size=0x78) addr:0x02088360
-func_020883d8 kind:function(arm,size=0xac) addr:0x020883d8
+_ZN3dss8DssUtils8strcat_sEPciS1_ kind:function(arm,size=0xac) addr:0x020883d8
 func_02088484 kind:function(arm,size=0xc0) addr:0x02088484
 func_02088544 kind:function(arm,size=0x10) addr:0x02088544
 func_02088554 kind:function(arm,size=0x38) addr:0x02088554
@@ -5358,12 +5358,12 @@ _ZN3dss11Fx32Vector3C1Ev kind:function(arm,size=0x3c) addr:0x02088740
 _ZN3dss11Fx32Vector3C1Eiii kind:function(arm,size=0x54) addr:0x0208877c
 func_020887d0 kind:function(arm,size=0x54) addr:0x020887d0
 func_02088824 kind:function(arm,size=0x30) addr:0x02088824
-func_02088854 kind:function(arm,size=0x8) addr:0x02088854
+_ZN3dss11Fx32Vector33setEiii kind:function(arm,size=0x8) addr:0x02088854
 func_0208885c kind:function(arm,size=0x30) addr:0x0208885c
 func_0208888c kind:function(arm,size=0x30) addr:0x0208888c
 _ZN3dss11Fx32Vector3aSERKS0_ kind:function(arm,size=0x2c) addr:0x020888bc
 _ZNK3dss11Fx32Vector3plERKS0_ kind:function(arm,size=0x74) addr:0x020888e8
-func_0208895c kind:function(arm,size=0x2c) addr:0x0208895c
+_ZN3dss11Fx32Vector3pLERKS0_ kind:function(arm,size=0x2c) addr:0x0208895c
 func_02088988 kind:function(arm,size=0x74) addr:0x02088988
 func_020889fc kind:function(arm,size=0x2c) addr:0x020889fc
 _ZNK3dss11Fx32Vector3mlERKNS_4Fx32E kind:function(arm,size=0x74) addr:0x02088a28
@@ -5376,7 +5376,7 @@ func_02088c50 kind:function(arm,size=0x2c) addr:0x02088c50
 func_02088c7c kind:function(arm,size=0x2c) addr:0x02088c7c
 func_02088ca8 kind:function(arm,size=0x4c) addr:0x02088ca8
 func_02088cf4 kind:function(arm,size=0x4c) addr:0x02088cf4
-func_02088d40 kind:function(arm,size=0x7c) addr:0x02088d40
+_ZNK3dss11Fx32Vector3mlERKS0_ kind:function(arm,size=0x7c) addr:0x02088d40
 func_02088dbc kind:function(arm,size=0xd4) addr:0x02088dbc
 func_02088e90 kind:function(arm,size=0x90) addr:0x02088e90
 func_02088f20 kind:function(arm,size=0x78) addr:0x02088f20
@@ -5443,7 +5443,7 @@ __sinit_0208a30c kind:function(arm,size=0x18) addr:0x0208a30c
 __sinit_0208a324 kind:function(arm,size=0x1b4) addr:0x0208a324
 __sinit_0208a4d8 kind:function(arm,size=0x68) addr:0x0208a4d8
 __sinit_0208a540 kind:function(thumb,size=0x34) addr:0x0208a540
-__sinit_0208a574 kind:function(thumb,size=0x44) addr:0x0208a574
+__sinit_Global.cpp kind:function(thumb,size=0x44) addr:0x0208a574 local
 __sinit_0208a5b8 kind:function(thumb,size=0x20) addr:0x0208a5b8
 __sinit_0208a5d8 kind:function(thumb,size=0x20) addr:0x0208a5d8
 __sinit_0208a5f8 kind:function(thumb,size=0x20) addr:0x0208a5f8
@@ -5466,18 +5466,18 @@ __sinit_0208a7f8 kind:function(thumb,size=0x20) addr:0x0208a7f8
 __sinit_0208a818 kind:function(thumb,size=0x20) addr:0x0208a818
 __sinit_ExcelParam.cpp kind:function(thumb,size=0x20) addr:0x0208a838 local
 __sinit_0208a858 kind:function(arm,size=0x18) addr:0x0208a858
-__sinit_0208a870 kind:function(thumb,size=0x84) addr:0x0208a870
-__sinit_0208a8f4 kind:function(thumb,size=0x20) addr:0x0208a8f4
+__sinit_BasePartyStatus.cpp kind:function(thumb,size=0x84) addr:0x0208a870 local
+__sinit_HaveStatus.cpp kind:function(thumb,size=0x20) addr:0x0208a8f4 local
 __sinit_0208a914 kind:function(thumb,size=0xc) addr:0x0208a914
 __sinit_OptionStatus.cpp kind:function(thumb,size=0x20) addr:0x0208a920 local
-__sinit_0208a940 kind:function(thumb,size=0x30) addr:0x0208a940
+__sinit_base_action.cpp kind:function(thumb,size=0x30) addr:0x0208a940 local
 __sinit_0208a970 kind:function(thumb,size=0x1c) addr:0x0208a970
-__sinit_StageStatus.cpp kind:function(thumb,size=0x20) addr:0x0208a98c
+__sinit_StageStatus.cpp kind:function(thumb,size=0x20) addr:0x0208a98c local
 __sinit_GameStatus.cpp kind:function(thumb,size=0x20) addr:0x0208a9ac local
 __sinit_0208a9cc kind:function(thumb,size=0x20) addr:0x0208a9cc
 __sinit_GameFlag.cpp kind:function(thumb,size=0x50) addr:0x0208a9ec local
 __sinit_0208aa3c kind:function(arm,size=0x14c) addr:0x0208aa3c
-__sinit_0208ab88 kind:function(thumb,size=0x20) addr:0x0208ab88
+__sinit_StatusChange.cpp kind:function(thumb,size=0x20) addr:0x0208ab88 local
 __sinit_0208aba8 kind:function(arm,size=0x140) addr:0x0208aba8
 __sinit_BattleResult.cpp kind:function(thumb,size=0x20) addr:0x0208ace8 local
 __sinit_BattleHistory.cpp kind:function(thumb,size=0x20) addr:0x0208ad08 local
@@ -5492,7 +5492,7 @@ __sinit_0208b06c kind:function(thumb,size=0x1d4) addr:0x0208b06c
 __sinit_StoryStatus.cpp kind:function(thumb,size=0x20) addr:0x0208b240 local
 __sinit_0208b260 kind:function(thumb,size=0x20) addr:0x0208b260
 __sinit_0208b280 kind:function(thumb,size=0x20) addr:0x0208b280
-__sinit_0208b2a0 kind:function(thumb,size=0xc) addr:0x0208b2a0
+__sinit_BaseActionStatus.cpp kind:function(thumb,size=0xc) addr:0x0208b2a0 local
 __sinit_0208b2ac kind:function(arm,size=0x18) addr:0x0208b2ac
 __sinit_0208b2c4 kind:function(arm,size=0x64) addr:0x0208b2c4
 __sinit_CommonPartyInfo.cpp kind:function(arm,size=0x14) addr:0x0208b328 local
@@ -5698,7 +5698,7 @@ data_020b5f90 kind:data(any) addr:0x020b5f90
 data_020b5faa kind:data(any) addr:0x020b5faa
 storyFlagCompare kind:data(any) addr:0x020b5fbc
 data_020b610c kind:data(any) addr:0x020b610c
-data_020b6114 kind:data(any) addr:0x020b6114
+@830 kind:data(any) addr:0x020b6114 local
 data_020b6144 kind:data(any) addr:0x020b6144
 charaVoiceCount_ kind:data(any) addr:0x020b614c
 data_020b6154 kind:data(any) addr:0x020b6154
@@ -5759,7 +5759,7 @@ data_020bb2ec kind:data(any) addr:0x020bb2ec
 .p__sinit_0208a324 kind:data(word) addr:0x020bb324
 .p__sinit_0208a4d8 kind:data(word) addr:0x020bb328
 .p__sinit_0208a540 kind:data(word) addr:0x020bb32c
-.p__sinit_0208a574 kind:data(word) addr:0x020bb330
+.p__sinit_Global.cpp kind:data(word) addr:0x020bb330 local
 .p__sinit_0208a5b8 kind:data(word) addr:0x020bb334
 .p__sinit_0208a5d8 kind:data(word) addr:0x020bb338
 .p__sinit_0208a5f8 kind:data(word) addr:0x020bb33c
@@ -5782,18 +5782,18 @@ data_020bb2ec kind:data(any) addr:0x020bb2ec
 .p__sinit_0208a818 kind:data(word) addr:0x020bb380
 .p__sinit_ExcelParam.cpp kind:data(word) addr:0x020bb384 local
 .p__sinit_0208a858 kind:data(word) addr:0x020bb388
-.p__sinit_0208a870 kind:data(word) addr:0x020bb38c
-.p__sinit_0208a8f4 kind:data(word) addr:0x020bb390
+.p__sinit_BasePartyStatus.cpp kind:data(word) addr:0x020bb38c local
+.p__sinit_HaveStatus.cpp kind:data(word) addr:0x020bb390 local
 .p__sinit_0208a914 kind:data(word) addr:0x020bb394
 .p__sinit_OptionStatus.cpp kind:data(word) addr:0x020bb398 local
-.p__sinit_0208a940 kind:data(word) addr:0x020bb39c
+.p__sinit_base_action.cpp kind:data(word) addr:0x020bb39c local
 .p__sinit_0208a970 kind:data(word) addr:0x020bb3a0
-.p__sinit_StageStatus.cpp kind:data(word) addr:0x020bb3a4
+.p__sinit_StageStatus.cpp kind:data(word) addr:0x020bb3a4 local
 .p__sinit_GameStatus.cpp kind:data(word) addr:0x020bb3a8 local
 .p__sinit_0208a9cc kind:data(word) addr:0x020bb3ac
 .p__sinit_GameFlag.cpp kind:data(word) addr:0x020bb3b0 local
 .p__sinit_0208aa3c kind:data(word) addr:0x020bb3b4
-.p__sinit_0208ab88 kind:data(word) addr:0x020bb3b8
+.p__sinit_StatusChange.cpp kind:data(word) addr:0x020bb3b8 local
 .p__sinit_0208aba8 kind:data(word) addr:0x020bb3bc
 .p__sinit_BattleResult.cpp kind:data(word) addr:0x020bb3c0 local
 .p__sinit_BattleHistory.cpp kind:data(word) addr:0x020bb3c4 local
@@ -5808,7 +5808,7 @@ data_020bb2ec kind:data(any) addr:0x020bb2ec
 .p__sinit_StoryStatus.cpp kind:data(word) addr:0x020bb3e8 local
 .p__sinit_0208b260 kind:data(word) addr:0x020bb3ec
 .p__sinit_0208b280 kind:data(word) addr:0x020bb3f0
-.p__sinit_0208b2a0 kind:data(word) addr:0x020bb3f4
+.p__sinit_BaseActionStatus.cpp kind:data(word) addr:0x020bb3f4 local
 .p__sinit_0208b2ac kind:data(word) addr:0x020bb3f8
 .p__sinit_0208b2c4 kind:data(word) addr:0x020bb3fc
 .p__sinit_CommonPartyInfo.cpp kind:data(word) addr:0x020bb400 local
@@ -6021,15 +6021,15 @@ data_020bc194 kind:data(any) addr:0x020bc194
 LandSubtractValue kind:data(any) addr:0x020bc19c
 TileSubtractValue kind:data(any) addr:0x020bc1bc
 CorrectValue kind:data(any) addr:0x020bc1dc
-data_020bc258 kind:data(any) addr:0x020bc258
-data_020bc260 kind:data(any) addr:0x020bc260
-data_020bc268 kind:data(any) addr:0x020bc268
-data_020bc270 kind:data(any) addr:0x020bc270
-data_020bc278 kind:data(any) addr:0x020bc278
-data_020bc28c kind:data(any) addr:0x020bc28c
-data_020bc2a0 kind:data(any) addr:0x020bc2a0
-data_020bc2b4 kind:data(any) addr:0x020bc2b4
-data_020bc2c0 kind:data(any) addr:0x020bc2c0
+s_mapBook kind:data(any) addr:0x020bc258
+s_mapField kind:data(any) addr:0x020bc260
+s_mapBtlda1 kind:data(any) addr:0x020bc268
+s_mapCasino kind:data(any) addr:0x020bc270
+s_mapSurechigai kind:data(any) addr:0x020bc278
+_ZTV10GlobalFade kind:data(byte[20]) addr:0x020bc284
+_ZTV14GlobalWaitPart kind:data(byte[20]) addr:0x020bc298
+_ZTV16GlobalChangePart kind:data(byte[20]) addr:0x020bc2ac
+s_mapEv01 kind:data(any) addr:0x020bc2c0
 data_020bc2c8 kind:data(any) addr:0x020bc2c8
 data_020bc2d0 kind:data(any) addr:0x020bc2d0
 data_020bc2e8 kind:data(any) addr:0x020bc2e8
@@ -6062,12 +6062,12 @@ data_020bc7a4 kind:data(any) addr:0x020bc7a4
 data_020bc7b4 kind:data(any) addr:0x020bc7b4
 data_020bc7c4 kind:data(any) addr:0x020bc7c4
 data_020bc7e4 kind:data(any) addr:0x020bc7e4
-data_020bc80c kind:data(any) addr:0x020bc80c
-data_020bc810 kind:data(any) addr:0x020bc810
-data_020bc818 kind:data(any) addr:0x020bc818
-data_020bc820 kind:data(any) addr:0x020bc820
-data_020bc828 kind:data(any) addr:0x020bc828
-data_020bc830 kind:data(any) addr:0x020bc830
+_ZN6status6Status14flagShopIndex_E kind:data(any) addr:0x020bc80c
+@1213 kind:data(any) addr:0x020bc810 local
+@1214 kind:data(any) addr:0x020bc818 local
+@1215 kind:data(any) addr:0x020bc820 local
+@1216 kind:data(any) addr:0x020bc828 local
+@1217 kind:data(byte[8]) addr:0x020bc830 local
 data_020bc840 kind:data(any) addr:0x020bc840
 _ZTVN6status12PlayerStatusE kind:data(byte[28]) addr:0x020bc870
 _ZTVN6status11PartyStatusE kind:data(byte[16]) addr:0x020bc88c
@@ -6139,7 +6139,7 @@ _ZTVN6status10BaseActionE kind:data(any) addr:0x020bc8f4
 @3941 kind:data(any) addr:0x020bd674 local
 @3950 kind:data(any) addr:0x020bd6c0 local
 @3958 kind:data(any) addr:0x020bd6ec local
-data_020bd718 kind:data(any) addr:0x020bd718
+@4163 kind:data(any) addr:0x020bd718
 JP_tbl kind:data(any) addr:0x020bd730
 DE_tbl kind:data(any) addr:0x020bd7d4
 EN_tbl kind:data(any) addr:0x020bd878
@@ -6175,7 +6175,7 @@ map_btl_wd_d kind:data(any) addr:0x020bdc4c
 map_btldougu_d kind:data(any) addr:0x020bdc58
 map_btlyado_d kind:data(any) addr:0x020bdc64
 check_map kind:data(any) addr:0x020bdc70
-@349 kind:data(any) addr:0x020bdc74
+@396 kind:data(any) addr:0x020bdc74 local
 s_mj kind:data(any) addr:0x020bdc78
 s_md kind:data(any) addr:0x020bdc7c
 s_mb kind:data(any) addr:0x020bdc80
@@ -6311,7 +6311,7 @@ data_020be694 kind:data(any) addr:0x020be694
 data_020be6a8 kind:data(any) addr:0x020be6a8
 data_020be6c0 kind:data(any) addr:0x020be6c0
 data_020be6d4 kind:data(any) addr:0x020be6d4
-data_020be6f4 kind:data(any) addr:0x020be6f4
+_ZN12SoundManager14townBgmEnable_E kind:data(any) addr:0x020be6f4
 _ZTVN6status15CharacterStatusE kind:data(byte[28]) addr:0x020be6f8
 data_020be71c kind:data(any) addr:0x020be71c
 data_020be74c kind:data(any) addr:0x020be74c
@@ -6326,32 +6326,32 @@ data_020be864 kind:data(any) addr:0x020be864
 data_020be878 kind:data(any) addr:0x020be878
 data_020be880 kind:data(any) addr:0x020be880
 data_020be894 kind:data(any) addr:0x020be894
-data_020be8a8 kind:data(any) addr:0x020be8a8
-data_020be8b0 kind:data(any) addr:0x020be8b0
-data_020be8b8 kind:data(any) addr:0x020be8b8
-data_020be8c0 kind:data(any) addr:0x020be8c0
-data_020be8c8 kind:data(any) addr:0x020be8c8
-data_020be8d0 kind:data(any) addr:0x020be8d0
-data_020be8d8 kind:data(any) addr:0x020be8d8
-data_020be8e0 kind:data(any) addr:0x020be8e0
-data_020be8e8 kind:data(any) addr:0x020be8e8
-data_020be8f0 kind:data(any) addr:0x020be8f0
-data_020be8f8 kind:data(any) addr:0x020be8f8
-data_020be900 kind:data(any) addr:0x020be900
-data_020be908 kind:data(any) addr:0x020be908
-data_020be910 kind:data(any) addr:0x020be910
-data_020be918 kind:data(any) addr:0x020be918
-data_020be920 kind:data(any) addr:0x020be920
-data_020be928 kind:data(any) addr:0x020be928
-data_020be930 kind:data(any) addr:0x020be930
-data_020be938 kind:data(any) addr:0x020be938
-data_020be940 kind:data(any) addr:0x020be940
-data_020be948 kind:data(any) addr:0x020be948
-data_020be950 kind:data(any) addr:0x020be950
-data_020be958 kind:data(any) addr:0x020be958
-data_020be960 kind:data(any) addr:0x020be960
+s_cccf1b kind:data(byte[8]) addr:0x020be8a8
+s_ckout kind:data(byte[8]) addr:0x020be8b0
+s_fk01 kind:data(byte[8]) addr:0x020be8b8
+s_cif1 kind:data(byte[8]) addr:0x020be8c0
+s_clf5b kind:data(byte[8]) addr:0x020be8c8
+s_tatop kind:data(byte[8]) addr:0x020be8d0
+s_taf2a kind:data(byte[8]) addr:0x020be8d8
+s_tbf3 kind:data(byte[8]) addr:0x020be8e0
+s_tcf2 kind:data(byte[8]) addr:0x020be8e8
+s_tcf3 kind:data(byte[8]) addr:0x020be8f0
+s_tcf4 kind:data(byte[8]) addr:0x020be8f8
+s_tcf5 kind:data(byte[8]) addr:0x020be900
+s_mcout1 kind:data(byte[8]) addr:0x020be908
+s_mcout2 kind:data(byte[8]) addr:0x020be910
+s_mrout kind:data(byte[8]) addr:0x020be918
+s_seout kind:data(byte[8]) addr:0x020be920
+s_sjm2f1 kind:data(byte[8]) addr:0x020be928
+s_sif1 kind:data(byte[8]) addr:0x020be930
+s_sqf4 kind:data(byte[8]) addr:0x020be938
+s_dpout kind:data(byte[8]) addr:0x020be940
+s_dkf1a kind:data(byte[8]) addr:0x020be948
+s_ev02 kind:data(byte[8]) addr:0x020be950
+s_mpout2 kind:data(byte[8]) addr:0x020be958
+s_dpb8b kind:data(byte[8]) addr:0x020be960
 data_020be970 kind:data(any) addr:0x020be970
-data_020be9a0 kind:data(any) addr:0x020be9a0
+_ZN5param9EventFlag9filename_E kind:data(any) addr:0x020be9a0
 data_020be9a4 kind:data(any) addr:0x020be9a4
 data_020be9c8 kind:data(any) addr:0x020be9c8
 data_020be9cc kind:data(any) addr:0x020be9cc
@@ -6410,7 +6410,7 @@ data_020beb58 kind:data(any) addr:0x020beb58
 data_020beb64 kind:data(any) addr:0x020beb64
 data_020beb78 kind:data(any) addr:0x020beb78
 data_020beb8c kind:data(any) addr:0x020beb8c
-data_020beb98 kind:data(any) addr:0x020beb98
+g_BattleMonsterDrawParam kind:data(byte[24]) addr:0x020beb98
 data_020bebb8 kind:data(any) addr:0x020bebb8
 data_020bebcc kind:data(any) addr:0x020bebcc
 takai kind:data(any) addr:0x020bebd8
@@ -6438,6 +6438,7 @@ data_020bece0 kind:data(any) addr:0x020bece0
 data_020bece4 kind:data(any) addr:0x020bece4
 s_srout_map kind:data(any) addr:0x020bece8
 p_tatop kind:data(any) addr:0x020becf0
+unusedRuraData kind:data(any) addr:0x020becf4
 tatop kind:data(any) addr:0x020becf8
 data_020bed08 kind:data(any) addr:0x020bed08
 data_020bed28 kind:data(any) addr:0x020bed28
@@ -6646,7 +6647,7 @@ data_020c12f0 kind:data(any) addr:0x020c12f0
 data_020c130c kind:data(any) addr:0x020c130c
 data_020c1328 kind:data(any) addr:0x020c1328
 @798 kind:data(any) addr:0x020c1330 local
-data_020c1340 kind:data(any) addr:0x020c1340
+_ZTV19TownMenu_PARTY_TALK kind:data(byte[28]) addr:0x020c1338
 data_020c135c kind:data(any) addr:0x020c135c
 data_020c1384 kind:data(any) addr:0x020c1384
 s_field kind:data(any) addr:0x020c1398
@@ -7301,9 +7302,10 @@ data_020c7498 kind:bss addr:0x020c7498
 data_020c74a8 kind:bss addr:0x020c74a8
 data_020c74ac kind:bss addr:0x020c74ac
 data_020c74b8 kind:bss addr:0x020c74b8
-data_020c7658 kind:bss addr:0x020c7658
-data_020c766c kind:bss addr:0x020c766c
-data_020c7678 kind:bss addr:0x020c7678
+g_GlobalChangePart kind:bss addr:0x020c7658
+g_GlobalWaitPart kind:bss addr:0x020c7660
+@639 kind:bss addr:0x020c766c local
+g_GlobalFade kind:bss addr:0x020c7678
 g_Global kind:bss(size=0xc0) addr:0x020c768c
 data_020c774c kind:bss addr:0x020c774c
 data_020c7768 kind:bss addr:0x020c7768
@@ -7351,23 +7353,17 @@ data_020c799c kind:bss addr:0x020c799c
 _ZN6status10excelParamE kind:bss(size=0xc4) addr:0x020c79b8
 data_020c7a7c kind:bss addr:0x020c7a7c
 data_020c7a84 kind:bss addr:0x020c7a84
-data_020c7a88 kind:bss addr:0x020c7a88
-data_020c7a8c kind:bss addr:0x020c7a8c
-data_020c7a90 kind:bss addr:0x020c7a90
-data_020c7a9c kind:bss addr:0x020c7a9c
-data_020c7aa8 kind:bss addr:0x020c7aa8
+_ZN6status11PartyStatus15noDamageEnable_E kind:bss addr:0x020c7a88
+_ZN6status11PartyStatus25noDamageEnableForMonster_E kind:bss addr:0x020c7a8c
+@1094 kind:bss addr:0x020c7a90 local
+@1095 kind:bss addr:0x020c7a9c local
+@1096 kind:bss addr:0x020c7aa8 local
 originalPlayerFlag_ kind:bss addr:0x020c7ab4
 _ZN6status7g_PartyE kind:bss(size=0x32c) addr:0x020c7b1c
 dummyPlayer_ kind:bss(size=0x50c) addr:0x020c7e48
-originalPlayer_ kind:bss addr:0x020c8354
-data_020c8860 kind:bss addr:0x020c8860
-data_020d0000 kind:bss addr:0x020d0000
-data_020d000c kind:bss addr:0x020d000c
-data_020d01b9 kind:bss addr:0x020d01b9
-data_020d0207 kind:bss addr:0x020d0207
-data_020d02bc kind:bss addr:0x020d02bc
-data_020d068c kind:bss addr:0x020d068c
-data_020d0698 kind:bss addr:0x020d0698
+originalPlayer_ kind:bss(size=0x8338) addr:0x020c8354
+@120 kind:bss addr:0x020d068c local
+data_020d0698 kind:bss(size=0x14) addr:0x020d0698
 _ZN6status10HaveAction5mode_E kind:bss addr:0x020d06ac
 _ZN6status14HaveStatusInfo11globalFlag_E kind:bss addr:0x020d06b0
 g_Option kind:bss addr:0x020d06b4
@@ -7377,25 +7373,30 @@ callMonsterStatus_ kind:bss addr:0x020d06e8
 _ZN6status9UseAction12ParamAction_E kind:bss addr:0x020d0718
 @1454 kind:bss addr:0x020d0730
 action$1451 kind:bss addr:0x020d0748
-_ZN6status15BaseActionData_E kind:bss addr:0x020d07d0
-_ZN6status10BaseAction10multiFlag_E kind:bss addr:0x020d07e4
-data_020d07e8 kind:bss addr:0x020d07e8
-_ZN6status10BaseAction12tsukon2Flag_E kind:bss addr:0x020d07f0
-_ZN6status10BaseAction11tsukonFlag_E kind:bss addr:0x020d07f4
-_ZN6status10BaseAction12kaishinFlag_E kind:bss addr:0x020d07f8
-data_020d07fc kind:bss addr:0x020d07fc
-data_020d0800 kind:bss addr:0x020d0800
-_ZN6status10BaseAction9joukFlag_E kind:bss addr:0x020d0804
-_ZN6status10BaseAction10splitFlag_E kind:bss addr:0x020d0808
-_ZN6status10BaseAction11doubleFlag_E kind:bss addr:0x020d080c
-data_020d0810 kind:bss addr:0x020d0810
-UseitemData_ kind:bss addr:0x020d0820
+_ZN6status10BaseAction15useActionParam_E kind:bss(size=0x4) addr:0x020d07d0
+_ZN6status10BaseAction13mirrorDamage_E kind:bss(size=0x4) addr:0x020d07d4
+_ZN6status10BaseAction10workParam_E kind:bss(size=0x4) addr:0x020d07d8
+_ZN6status10BaseAction12actionParam_E kind:bss(size=0x4) addr:0x020d07dc
+_ZN6status10BaseAction5flag_E kind:bss(size=0x4) addr:0x020d07e0
+_ZN6status10BaseAction10multiFlag_E kind:bss(size=0x4) addr:0x020d07e4
+_ZN6status10BaseAction12eventBattle_E kind:bss(size=0x4) addr:0x020d07e8
+_ZN6status10BaseAction9missFlag_E kind:bss(size=0x4) addr:0x020d07ec
+_ZN6status10BaseAction12tsukon2Flag_E kind:bss(size=0x4) addr:0x020d07f0
+_ZN6status10BaseAction11tsukonFlag_E kind:bss(size=0x4) addr:0x020d07f4
+_ZN6status10BaseAction12kaishinFlag_E kind:bss(size=0x4) addr:0x020d07f8
+_ZN6status10BaseAction15allKaishinFlag_E kind:bss(size=0x4) addr:0x020d07fc
+_ZN6status10BaseAction16timeReverseFlag_E kind:bss(size=0x4) addr:0x020d0800
+_ZN6status10BaseAction9joukFlag_E kind:bss(size=0x4) addr:0x020d0804
+_ZN6status10BaseAction10splitFlag_E kind:bss(size=0x4) addr:0x020d0808
+_ZN6status10BaseAction11doubleFlag_E kind:bss(size=0x4) addr:0x020d080c
+_ZN6status10BaseAction12callMonster_E kind:bss(size=0x10) addr:0x020d0810
+UseitemData_ kind:bss(size=0x70) addr:0x020d0820
 dataItem_ kind:bss addr:0x020d0890
 initData_ kind:bss addr:0x020d0894
 _ZN6status16HaveBattleStatus15groupRoopIndex_E kind:bss addr:0x020d08b0
 _ZN6status16HaveBattleStatus13groupControl_E kind:bss addr:0x020d08c0
 _ZN6status11StageStatus9toramana_E kind:bss addr:0x020d08d0
-@765 kind:bss addr:0x020d08d4
+@914 kind:bss addr:0x020d08d4 local
 g_Stage kind:bss(size=0x2d4) addr:0x020d08e0
 @14 kind:bss addr:0x020d0bb4 local
 _ZN6status6g_GameE kind:bss addr:0x020d0bc0
@@ -7428,7 +7429,7 @@ data_020d1b9c kind:bss addr:0x020d1b9c
 data_020d1cd4 kind:bss addr:0x020d1cd4
 data_020d22dc kind:bss addr:0x020d22dc
 _ZN6status12StatusChange22actionIndexFizzleZone_E kind:bss addr:0x020d2b90
-data_020d2b94 kind:bss addr:0x020d2b94
+@893 kind:bss addr:0x020d2b94 local
 _ZN6status12StatusChange17statusFizzleZone_E kind:bss addr:0x020d2ba0
 data_020d2bac kind:bss addr:0x020d2bac
 data_020d2bb0 kind:bss addr:0x020d2bb0
@@ -7495,8 +7496,12 @@ data_020ed11c kind:bss addr:0x020ed11c
 data_020ed168 kind:bss addr:0x020ed168
 data_020ed1bc kind:bss addr:0x020ed1bc
 data_020ed260 kind:bss addr:0x020ed260
-data_020ed268 kind:bss addr:0x020ed268
-data_020ed270 kind:bss addr:0x020ed270
+_ZN12SoundManager13finalFormBGM_E kind:bss(size=0x4) addr:0x020ed268
+_ZN12SoundManager13g_floor_paramE kind:bss(size=0x4) addr:0x020ed26c
+_ZN12SoundManager9bgmIndex_E kind:bss(size=0x4) addr:0x020ed270
+_ZN12SoundManager13nextBgmIndex_E kind:bss(size=0x4) addr:0x020ed274
+_ZN12SoundManager13prevBgmIndex_E kind:bss(size=0x4) addr:0x020ed278
+_ZN12SoundManager13nextBgmParam_E kind:bss(size=0x4) addr:0x020ed27c
 data_020ed284 kind:bss addr:0x020ed284
 data_020ed288 kind:bss addr:0x020ed288
 data_020ed28c kind:bss addr:0x020ed28c
@@ -7510,7 +7515,7 @@ data_020edb78 kind:bss addr:0x020edb78
 data_020edb84 kind:bss addr:0x020edb84
 data_020edb88 kind:bss addr:0x020edb88
 data_020edb94 kind:bss addr:0x020edb94
-data_020edba0 kind:bss addr:0x020edba0
+_ZN5param9EventFlag5data_E kind:bss addr:0x020edba0
 data_020edbb0 kind:bss addr:0x020edbb0
 data_020edbb4 kind:bss addr:0x020edbb4
 data_020edbb8 kind:bss addr:0x020edbb8
@@ -7580,21 +7585,24 @@ data_020eec94 kind:bss addr:0x020eec94
 data_020eeca4 kind:bss addr:0x020eeca4
 data_020eecb0 kind:bss addr:0x020eecb0
 _ZN6status12messageData_E kind:bss addr:0x020eecc0
-BaseActionStatus_ kind:bss addr:0x020eeccc
-unkFlag_020eecd0 kind:bss addr:0x020eecd0
-sleepMessFlag kind:bss addr:0x020eecd4
-confusionMessFlag kind:bss addr:0x020eecd8
-mahokantaMessFlag kind:bss addr:0x020eecdc
-data_020eece0 kind:bss addr:0x020eece0
-data_020eece4 kind:bss addr:0x020eece4
-workMess kind:bss addr:0x020eece8
-BaseActionValue_ kind:bss addr:0x020eecec
-indexAction kind:bss addr:0x020eecfc
+_ZN6status16BaseActionStatus18baikirutoMessFlag_E kind:bss(size=0x4) addr:0x020eeccc
+_ZN6status16BaseActionStatus14path1MessFlag_E kind:bss(size=0x4) addr:0x020eecd0
+_ZN6status16BaseActionStatus14sleepMessFlag_E kind:bss(size=0x4) addr:0x020eecd4
+_ZN6status16BaseActionStatus18confusionMessFlag_E kind:bss(size=0x4) addr:0x020eecd8
+_ZN6status16BaseActionStatus18mahokantaMessFlag_E kind:bss(size=0x4) addr:0x020eecdc
+_ZN6status16BaseActionStatus15execCallFriend_E kind:bss(size=0x4) addr:0x020eece0
+_ZN6status16BaseActionStatus12eventBattle_E kind:bss(size=0x4) addr:0x020eece4
+_ZN6status16BaseActionStatus5work_E kind:bss(size=0x4) addr:0x020eece8
+_ZN6status16BaseActionStatus5flag_E kind:bss(size=0x4) addr:0x020eecec
+_ZN6status16BaseActionStatus19monsterEffectValue_E kind:bss(size=0x4) addr:0x020eecf0
+_ZN6status16BaseActionStatus18playerEffectValue_E kind:bss(size=0x4) addr:0x020eecf4
+_ZN6status16BaseActionStatus12effectValue_E kind:bss(size=0x4) addr:0x020eecf8
+_ZN6status16BaseActionStatus12actionIndex_E kind:bss(size=0x4) addr:0x020eecfc
 _ZGVsingleton$515 kind:bss addr:0x020eed00 local
 singleton$515 kind:bss addr:0x020eed04 local
 data_020eed14 kind:bss addr:0x020eed14
-_ZGVinstance$22 kind:bss addr:0x020eed18
-instance$22 kind:bss addr:0x020eed1c
+_ZGVinstance$22 kind:bss addr:0x020eed18 local
+instance$22 kind:bss addr:0x020eed1c local
 playerManagerData_ kind:bss(size=0xc) addr:0x020eed20
 data_020eed2c kind:bss addr:0x020eed2c
 data_020eed30 kind:bss addr:0x020eed30
@@ -7612,9 +7620,10 @@ data_020ef70c kind:bss addr:0x020ef70c
 data_020ef710 kind:bss addr:0x020ef710
 data_020ef71c kind:bss addr:0x020ef71c
 data_020ef740 kind:bss addr:0x020ef740
-_ZGVfielTownData$274 kind:bss addr:0x020ef794
-fielTownData$274 kind:bss addr:0x020ef79c
-@277 kind:bss addr:0x020ef7a0
+_ZGVfielTownData$274 kind:bss addr:0x020ef794 local
+unusedRuraBss kind:bss(size=0x4) addr:0x020ef798
+fielTownData$274 kind:bss addr:0x020ef79c local
+@277 kind:bss addr:0x020ef7a0 local
 data_020ef7ac kind:bss addr:0x020ef7ac
 data_020ef7b8 kind:bss addr:0x020ef7b8
 data_020ef7c8 kind:bss addr:0x020ef7c8
@@ -7629,7 +7638,7 @@ data_020ef8e4 kind:bss addr:0x020ef8e4
 data_020ef8f0 kind:bss addr:0x020ef8f0
 data_020ef93c kind:bss addr:0x020ef93c
 _ZN3cmn19g_CommonCounterInfoE kind:bss addr:0x020ef9ac
-data_020ef9c8 kind:bss addr:0x020ef9c8
+_ZN3cmn24g_NonBattleActionManagerE kind:bss addr:0x020ef9c8
 _ZN3cmn9PartyTalk11s_partyTalkE kind:bss addr:0x020ef9d4
 data_020efba0 kind:bss addr:0x020efba0
 data_020efc54 kind:bss addr:0x020efc54

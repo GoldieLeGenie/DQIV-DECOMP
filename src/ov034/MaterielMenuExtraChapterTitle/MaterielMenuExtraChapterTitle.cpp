@@ -3,9 +3,7 @@
 #include "main/status/StoryStatus.hpp"
 #include "main/global/Global.hpp"
 
-extern int data_020c7678[];         /* object fade black */
 extern "C" void func_ov016_0216b020(void);
-extern "C" int  func_0200bef8(void*);          /* IsFadeEnd(FadeObj*) */
 
 THUMB void MaterielMenuExtraChapterTitle::menuSetup()
 {
@@ -26,7 +24,7 @@ THUMB void MaterielMenuExtraChapterTitle::menuSetup()
         func_020351dc(func_02035180(), m_chapter + 9);
     }
 
-    func_0200bd30(&g_Global, 0x3C);
+    g_Global.fadeInBlack(0x3C);
 }
 
 THUMB void MaterielMenuExtraChapterTitle::menuDraw()
@@ -41,7 +39,7 @@ THUMB void MaterielMenuExtraChapterTitle::menuDraw()
 
         switch (m_fade) {
         case 0:
-            if (func_0200bef8(data_020c7678) != 0) {
+            if (g_GlobalFade.isFadeEnd() != 0) {
                 m_fade = 1;
             }
             break;
@@ -59,10 +57,10 @@ THUMB void MaterielMenuExtraChapterTitle::menuDraw()
             }
         fade:
             m_fade = 2;
-            func_0200bcc4(&g_Global, 0x2D);
+            g_Global.fadeOutBlack(0x2D);
             break;
         case 2:
-            if (func_0200bef8(data_020c7678) != 0) {
+            if (g_GlobalFade.isFadeEnd() != 0) {
                 m_fade = 0;
                 m_mode = 0;
             }
@@ -71,12 +69,12 @@ THUMB void MaterielMenuExtraChapterTitle::menuDraw()
     } else {
         switch (m_fade) {
         case 0:
-            func_0200bd30(&g_Global, 0x1E);
+            g_Global.fadeInBlack(0x1E);
             func_ov016_0216aca4()->chapterEnd_ = 1;
             m_fade = 3;
             break;
         case 3:
-            if (func_0200bef8(data_020c7678) != 0) {
+            if (g_GlobalFade.isFadeEnd() != 0) {
                 func_ov016_0216aca4();
                 func_ov016_0216b020();
             }

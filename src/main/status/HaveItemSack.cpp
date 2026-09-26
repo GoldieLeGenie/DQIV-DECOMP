@@ -2,6 +2,8 @@
 #include "main/status/UseItem.hpp"
 
 
+extern "C" void func_02007a0c(void* buf, int count, int size, void* cmp1, void* cmp2);
+extern "C" void func_02007abc(void* buf, int count, int size, void* cmp);
 
 THUMB status::HaveItemSack::HaveItemSack() : sortType_(Kind) {
     item_ = itemArray_;
@@ -45,8 +47,7 @@ THUMB void status::HaveItemSack::execThrow(int itemIndex) {
 }
 
 
-extern "C" void func_02007a0c(void* buf, int count, int size, void* cmp1, void* cmp2);
-extern "C" void func_02007abc(void* buf, int count, int size, void* cmp);
+
 
 THUMB void status::HaveItemSack::sortOutSack(status::HaveItemSack::SortType type) {
     int t;

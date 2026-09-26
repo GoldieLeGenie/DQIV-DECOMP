@@ -7,14 +7,29 @@
 #include "main/dss/DssUtils.hpp"
 
 namespace status{
+    struct BaseActionWorkParam {
+        volatile int value_;
+        BaseActionWorkParam() { value_ = 0; }
+    };
+
     struct BaseAction {
-        static int multiFlag_;    //data_020d07e4
-        static int kaishinFlag_;   // data_020d07f8
-        static int tsukonFlag_;    // data_020d07f4
-        static int tsukon2Flag_;   // data_020d07f0
-        static int doubleFlag_;    // data_020d080c
-        static int splitFlag_;     // data_020d0808
-        static int joukFlag_;      //data_020d0804
+        static UseActionParam* useActionParam_;
+        static int mirrorDamage_;
+        static BaseActionWorkParam workParam_;
+        static param::ActionParam* actionParam_;
+        static int flag_;
+        static int multiFlag_;
+        static int eventBattle_;
+        static int missFlag_;
+        static int tsukon2Flag_;
+        static int tsukonFlag_;
+        static volatile int kaishinFlag_;
+        static int allKaishinFlag_;
+        static int timeReverseFlag_;
+        static int joukFlag_;
+        static int splitFlag_;
+        static int doubleFlag_;
+        static int callMonster_[4];
         int actionIndex_;
         CharacterType targetType_;
         int effectValue_;
@@ -97,38 +112,11 @@ namespace status{
 
     };
     
-    struct BaseActionData {
-        UseActionParam* useActionParam_;    // 0x00
-        int mirrorDamage_;                      // 0x04
-        volatile int workParam_;
-        param::ActionParam* actionParam_;   // 0x0C
-        int flag_;                          // 0x10
-        int multiFlag_;                     // 0x14
-        int eventBattle_;                   // 0x18
-        int missFlag_;                         // 0x1C
-        int tsukon2Flag_;                   // 0x20
-        int tsukonFlag_;                    // 0x24
-        volatile int kaishinFlag_;                   // 0x28
-        int allKaishinFlag_;                // 0x2C
-        int timeReverseFlag_;               // 0x30
-        int joukFlag_;                      // 0x34
-        int splitFlag_;                     // 0x38
-        int doubleFlag_;                    // 0x3C
-        int callMonster_[4];                // 0x40
-    };
-    extern BaseActionData BaseActionData_; //data_020d07d0
 }
 
 struct SplitJoukTable { int v[3]; };
-extern SplitJoukTable splitJoukTable;   /* data_020b4d5c */
+extern const SplitJoukTable splitJoukTable;
 
-extern int data_020d0810[4];
-extern int indexAction; //data_020eecfc
-extern int unkFlag_020eecd0;    // data_020eecd0
-extern int sleepMessFlag;       // data_020eecd4
-extern int confusionMessFlag;   // data_020eecd8
-extern int mahokantaMessFlag;   // data_020eecdc
-extern int workMess;            // data_020eece8
 
 
 extern "C" void func_02019f78(status::BaseAction*, int, int);

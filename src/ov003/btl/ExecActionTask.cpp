@@ -68,24 +68,24 @@ ARM void btl::ExecActionTask::initialize()
         if (useActionParam_->actorCharacterStatus_->characterType_ == MONSTER) {
             int actionIndex = useActionParam_->actionIndex_;
             if (actionParam[actionIndex].type == 1) {
-                func_02026cc8(306, 0);
+                SoundManager::playSe(306, 0);
             }
             else if (status::UseAction::getDamageType(actionIndex) == status::UseAction::DamageTypeDamage) {
                 unsigned char type = actionParam[useActionParam_->actionIndex_].type;
                 if (type != 5 && type != 6) {
-                    func_02026cc8(0x191, 0);
+                    SoundManager::playSe(0x191, 0);
                 }
             }
         }
         else {
             int actionIndex = useActionParam_->actionIndex_;
             if (actionParam[actionIndex].type == 1) {
-                func_02026cc8(306, 0);
+                SoundManager::playSe(306, 0);
             }
             else if (status::UseAction::getDamageType(actionIndex) == status::UseAction::DamageTypeDamage) {
                 unsigned char type = actionParam[useActionParam_->actionIndex_].type;
                 if (type != 5 && type != 6) {
-                    func_02026cc8(0x190, 0);
+                    SoundManager::playSe(0x190, 0);
                 }
             }
         }

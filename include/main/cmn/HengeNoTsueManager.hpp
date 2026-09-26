@@ -25,4 +25,10 @@ namespace cmn
     };
 }
 
+struct AlterMessageCount {
+    int count;
+    int unk;
+};
+
 extern cmn::HengeNoTsueManager g_HengeNoTsue; // data_020efc6c
+extern const AlterMessageCount data_020b6144;

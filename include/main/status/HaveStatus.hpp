@@ -22,6 +22,7 @@ namespace status{
         status::BaseStatus baseStatus_;
         HaveStatus();
         ~HaveStatus();
+        bool isPlayer() { return isPlayer_; }
         void setup(unsigned short playerIndex, int isPlayer);                            
         void setupPlayer(unsigned short index);    
         void setupMonster(unsigned short index, bool flag);                              
@@ -71,26 +72,7 @@ struct LevelEntry {
 };
 
 
-struct LevelUpUI {
-    int unk_0;
-    short unk_4;
-    short unk_6;
-    short unk_8;
-    short unk_a;
-    short unk_c;
-    short unk_e;
-    unsigned short strength_;        // 0x10
-    unsigned short protection_;      // 0x12
-    unsigned char agility_;          // 0x14
-    unsigned char wisdom_;           // 0x15
-    unsigned short unk_16;
-    unsigned short hpMax_;           // 0x18
-    unsigned short unk_1a;
-    unsigned short mpMax_;           // 0x1C
-    unsigned char luck_;             // 0x1E
-};
-
-extern LevelUpUI data_020d068c;
+extern status::BaseStatus data_020d0698;
 
 extern "C" unsigned int func_02008ea0(unsigned int value, unsigned int min, unsigned int max);
 extern "C" long long func_0200602c(int numerator, int denominator); 

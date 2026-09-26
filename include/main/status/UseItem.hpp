@@ -15,6 +15,7 @@ namespace status{
         int unk_10;                         // 0x10
         int actionIndex_;                   // 0x14
         int itemIndex_;                     // 0x18
+        char unk_1c[0x54];
     };
     struct UseItem {
         enum UseArea {

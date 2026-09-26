@@ -24,7 +24,6 @@ extern "C" void  func_ov003_0212a580(status::UseActionParam*, int);   //
 extern "C" void  func_0208988c(void);                                 // 
 extern "C" BattleMonsterDraw2* func_ov003_02121d04(void);             // 
 extern "C" void  func_ov003_02121970(BattleMonster*, int, int); // 
-extern "C" void  func_02026cd0(int, int);                             // 
 extern "C" void  func_ov003_02129c58(status::CharacterStatus*, int, int, int); // 
 extern "C" void func_ov003_02129ca0(status::CharacterStatus*, int);  // 
 

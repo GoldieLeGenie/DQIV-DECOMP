@@ -5,3 +5,20 @@
     .data       start:0x02147860 end:0x02149220 kind:data align:32
     .bss        start:0x02149220 end:0x02160c40 kind:bss align:32
 
+src/ov000/Commands/TownCommand1.cpp:
+    complete
+    .text start:0x0213cda8 end:0x0213d07c
+
+src/ov000/Commands/TownCommand2.cpp:
+    complete
+    .text start:0x0213d36c end:0x0213dcb0
+
+src/ov000/Commands/TownCommand.cpp:
+    complete
+    .text start:0x0213ee4c end:0x0213f4bc
+    .data start:0x02148fa0 end:0x02148fa4
+
+src/ov000/Commands/TownCommand3.cpp:
+    complete
+    .text start:0x0213f9d8 end:0x02140170
+

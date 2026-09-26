@@ -92,15 +92,15 @@ ARM void btl::SpecialMessageTask::execute()
 
             if (useActionParam_->actorCharacterStatus_->damageSound_ ==
                     status::CharacterStatus::KaishinSe) {
-                func_02026cc8(0x197, 0);
+                SoundManager::playSe(0x197, 0);
             }
             else if (useActionParam_->actorCharacterStatus_->damageSound_ ==
                      status::CharacterStatus::TsukonSe) {
                 if (useActionParam_->actorCharacterStatus_->characterType_ == PLAYER) {
-                    func_02026cc8(0x197, 0);
+                    SoundManager::playSe(0x197, 0);
                 }
                 else {
-                    func_02026cc8(0x196, 0);
+                    SoundManager::playSe(0x196, 0);
                 }
             }
         }

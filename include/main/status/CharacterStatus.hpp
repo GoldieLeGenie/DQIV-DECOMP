@@ -72,9 +72,9 @@ namespace status{
         bool isRebirthAnimation();
         
        
-        virtual void setMosyasChange(int monsterIndex); 
-        virtual void setMosyasRelease();    
-        virtual bool isDeathDisable();     
+        inline virtual void setMosyasChange(int monsterIndex);
+        inline virtual void setMosyasRelease();
+        inline virtual bool isDeathDisable();
         virtual void print();    
         virtual void printAction();        
     };

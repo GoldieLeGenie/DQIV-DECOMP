@@ -4,6 +4,8 @@
 #include "main/status/UseAction.hpp"
 #include "main/status/HaveEquipment.hpp"
 
+int monsterChangeCount;
+
 THUMB int btl::BattleActorAnimation::setExecAnimation(status::UseActionParam* useActionParam)
 {
     int actionIndex = useActionParam->actionIndex_;
@@ -47,7 +49,7 @@ THUMB int btl::BattleActorAnimation::setExecAnimation(status::UseActionParam* us
             int ctrlId = useActionParam->actorCharacterStatus_->haveStatusInfo_.drawCtrlId_;
             int animIndex = useActionParam->actorCharacterStatus_->haveBattleStatus_.getActionAnimation();
             func_ov003_02121970(&func_ov003_02121d04()->monster_[ctrlId], action, animIndex);
-            func_02026cc8(408, 0);
+            SoundManager::playSe(408, 0);
         }
     }
 
@@ -143,10 +145,10 @@ THUMB void btl::BattleActorAnimation::setResultAnimation(status::UseActionParam*
     if (!checkNormalAnimation(useActionParam)) {
         if (actor->haveStatusInfo_.isSleepAttack()) {
             if (target->haveStatusInfo_.effectValue_ > 0) {
-                func_02026cc8(403, 0);
+                SoundManager::playSe(403, 0);
                 return;
             }
-            func_02026cc8(404, 0);
+            SoundManager::playSe(404, 0);
             return;
         }
         return;
@@ -184,7 +186,7 @@ THUMB void btl::BattleActorAnimation::setResultAnimation(status::UseActionParam*
                         value = 32;
                     }
                     func_02050e88(a, value, effectValue, 0);
-                    func_02026cc8(402, 0);
+                    SoundManager::playSe(402, 0);
                 }
             }
         }
@@ -204,40 +206,40 @@ THUMB void btl::BattleActorAnimation::setPlayerSE(status::UseActionParam* useAct
     case status::UseAction::DamageTypeDamage:
         if (useActionParam->targetResult_[currentTarget] != 0) {
             if (target->haveStatusInfo_.effectValue_ > 0) {
-                func_02026cc8(403, 0);
+                SoundManager::playSe(403, 0);
                 return;
             }
-            func_02026cc8(404, 0);
+            SoundManager::playSe(404, 0);
             return;
         }
         break;
 
     case status::UseAction::DamageTypeRecovery:
-        func_02026cc8(501, 0);
+        SoundManager::playSe(501, 0);
         break;
 
     case status::UseAction::DamageTypeAgilityChange:
         if (target->haveStatusInfo_.effectValue_ > 0) {
-            func_02026cc8(506, 0);
+            SoundManager::playSe(506, 0);
         }
         break;
 
     case status::UseAction::DamageTypeRebirth:
-        func_02026cc8(553, 0);
+        SoundManager::playSe(553, 0);
         break;
 
     case status::UseAction::DamageTypeFubaha:
         if (currentTarget == 0) {
-            func_02026cc8(543, 0);
+            SoundManager::playSe(543, 0);
         }
         break;
 
     case status::UseAction::DamageTypeBaikiruto:
-        func_02026cc8(544, 0);
+        SoundManager::playSe(544, 0);
         break;
 
     case status::UseAction::DamageTypeMahokanta:
-        func_02026cc8(541, 0);
+        SoundManager::playSe(541, 0);
         break;
 
     case status::UseAction::DamageTypeDefenceChange:
@@ -248,33 +250,33 @@ THUMB void btl::BattleActorAnimation::setPlayerSE(status::UseActionParam* useAct
         case 42:
         case 479:
             if (target->haveStatusInfo_.effectValue_ > 0) {
-                func_02026cc8(502, 0);
+                SoundManager::playSe(502, 0);
             }
             break;
         case 37:
         case 38:
             if (target->haveStatusInfo_.effectValue_ > 0) {
-                func_02026cc8(503, 0);
+                SoundManager::playSe(503, 0);
             }
             break;
         }
         break;
 
     case status::UseAction::DamageTypeAstoron:
-        func_02026cc8(547, 0);
+        SoundManager::playSe(547, 0);
         break;
 
     case status::UseAction::DamageTypeMahosute:
-        func_02026cc8(559, 0);
+        SoundManager::playSe(559, 0);
         break;
 
     case status::UseAction::DamageTypePowerSave:
-        func_02026cc8(618, 0);
+        SoundManager::playSe(618, 0);
         break;
 
     default:
         if (useActionParam->actionIndex_ == 63) {
-            func_02026cc8(501, 0);
+            SoundManager::playSe(501, 0);
         }
         break;
     }
@@ -300,17 +302,17 @@ THUMB void btl::BattleActorAnimation::setCommonSE(status::UseActionParam* useAct
         }
         if (target->haveStatusInfo_.effectValue_ == 0 || target->haveStatusInfo_.isTargetJouk()) {
             if (actor->characterType_ == PLAYER) {
-                func_02026cc8(405, 0);
+                SoundManager::playSe(405, 0);
                 return;
             }
-            func_02026cc8(404, 0);
+            SoundManager::playSe(404, 0);
             return;
         }
         break;
 
     case status::UseAction::DamageTypeSubMp:
         if (useActionParam->actionIndex_ != 34) {
-            func_02026cc8(547, 0);
+            SoundManager::playSe(547, 0);
         }
         break;
 
@@ -324,37 +326,37 @@ THUMB void btl::BattleActorAnimation::setCommonSEFromAction(status::UseActionPar
 {
     switch (useActionParam->actionIndex_) {
     case 465:
-        func_02026cc8(504, 0);
+        SoundManager::playSe(504, 0);
         break;
     case 420:
-        func_02026cc8(459, 0);
+        SoundManager::playSe(459, 0);
         break;
     case 424:
-        func_02026cc8(457, 0);
+        SoundManager::playSe(457, 0);
         break;
     case 425:
-        func_02026cc8(1102, 0);
+        SoundManager::playSe(1102, 0);
         break;
     case 432:
-        func_02026cc8(456, 0);
+        SoundManager::playSe(456, 0);
         break;
     case 440:
-        func_02026cc8(460, 0);
+        SoundManager::playSe(460, 0);
         break;
     case 444:
-        func_02026cc8(461, 0);
+        SoundManager::playSe(461, 0);
         break;
     case 453:
-        func_02026cc8(646, 0);
+        SoundManager::playSe(646, 0);
         break;
     case 457:
-        func_02026cc8(641, 0);
+        SoundManager::playSe(641, 0);
         break;
     case 456:
-        func_02026cc8(462, 0);
+        SoundManager::playSe(462, 0);
         break;
     case 483:
-        func_02026cc8(501, 0);
+        SoundManager::playSe(501, 0);
         break;
     }
 }
@@ -467,7 +469,7 @@ THUMB void btl::BattleActorAnimation::setResultAnimationMonster(status::Characte
             target->clearDeathAnimation();
             if (target->haveStatusInfo_.isImmidiateDeath()) {
                 target->haveStatusInfo_.setImmidiateDeath(false);
-                func_02026cc8(402, 0);
+                SoundManager::playSe(402, 0);
             }
             BattleMonsterDraw2* mgr = func_ov003_02121d04();
             func_ov003_02121970(&mgr->monster_[ctrlId], 0, 34);
@@ -488,7 +490,7 @@ THUMB void btl::BattleActorAnimation::setResultAnimationMonster(status::Characte
         }
 
         if (target->isEscapeAnimation()) {
-            func_02026cc8(408, 0);
+            SoundManager::playSe(408, 0);
         }
     }
 }
@@ -610,7 +612,7 @@ THUMB void btl::BattleActorAnimation::gattaiSlimeStart(status::CharacterStatus* 
                 dss::Fx32Vector3 pos(0, 0, 0);
                 mgr = func_ov003_02121d04();
                 func_ov003_02121878(&mgr->monster_[ctrlId], &pos);
-                func_02026cc8(705, 0);
+                SoundManager::playSe(705, 0);
                 func_0204d0c4(107);
             } else {
                 func_ov003_02121b58(&func_ov003_02121d04()->monster_[ctrlId]);
@@ -665,23 +667,23 @@ THUMB void btl::BattleActorAnimation::gattaiSlime(status::CharacterStatus* actor
 
 THUMB void btl::BattleActorAnimation::setMonsterChangeSetup(status::CharacterStatus* actor)
 {
-    data_ov003_02158a54 = 0;
+    monsterChangeCount = 0;
 
     if (actor->haveStatusInfo_.isMonsterChange()) {
         if (!actor->haveStatusInfo_.isDisableTextureCache()) {
             func_0204d0c4(actor->haveBattleStatus_.index_);
         }
-        data_ov003_02158a54 = 1;
+        monsterChangeCount = 1;
     }
 }
 
 THUMB int btl::BattleActorAnimation::isMonsterChangeSetupEnd()
 {
-    if (data_ov003_02158a54 == 0) {
+    if (monsterChangeCount == 0) {
         return 1;
     }
-    data_ov003_02158a54 = data_ov003_02158a54 + 1;
-    if (data_ov003_02158a54 >= 6) {
+    monsterChangeCount = monsterChangeCount + 1;
+    if (monsterChangeCount >= 6) {
         return 1;
     }
     return 0;

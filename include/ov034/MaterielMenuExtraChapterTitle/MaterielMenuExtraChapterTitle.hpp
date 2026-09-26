@@ -77,7 +77,6 @@ extern "C" {
     void func_020848a8(void);                               
     int  func_02035180(void);
     int  func_020352d0(void);                               
-    void func_0200bd30(Global*, int frames);   
     void func_020351c8(int mgr);                  
     void func_020351c8(int mgr);
     void func_020351dc(int mgr, int soundIndex);

@@ -224,7 +224,7 @@ from:0x0212215c kind:thumb_call_arm to:0x02079d98 module:main
 from:0x02122168 kind:load to:0x02129d94 module:overlay(6)
 from:0x02122240 kind:load to:0x020b000a module:main
 from:0x02122254 kind:load to:0x020c000b module:main
-from:0x02122268 kind:load to:0x020d000c module:main
+from:0x02122268 kind:load to:0x020c8354 add:0x7cb8 module:main
 from:0x0212227c kind:load to:0x020e000d module:main
 from:0x021222a4 kind:load to:0x0209000f module:main
 from:0x021222b8 kind:load to:0x020a0010 module:main

@@ -23,7 +23,7 @@ namespace status{
         int battleExp_;
         int battleGold_;
         BasePartyStatus();
-        ~BasePartyStatus();
+        ~BasePartyStatus() {}
         bool isCarriageEnter();
         void setGold(int gold);
         static unsigned int getClampValue(unsigned int value, unsigned int min, unsigned int max);

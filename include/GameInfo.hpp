@@ -211,3 +211,13 @@ enum EquipType {
     Luck = 4,
     Wisdom = 5,
 };
+
+enum eMessageWindow 
+{
+    TEST_MESSAGE_WINDOW = 0x0,
+    TALK_MESSAGE_WINDOW = 0x1,
+    MENU_MESSAGE_WINDOW = 0x2,
+    ENCOUNT_MESSAGE_WINDOW = 0x3,
+    BATTLE_MESSAGE_WINDOW = 0x4,
+    BATTLE_SHOP_MESSAGE_WINDOW = 0x5,
+};

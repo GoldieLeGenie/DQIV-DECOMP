@@ -12,6 +12,8 @@ namespace task {
         int previousTaskID_;
         int nextTaskID_;
         int sleepTaskID_;
+        PartTaskManager();
+        ~PartTaskManager();
         void run();
         void registerTask(int id, PartTask *task);
         void setNextTask(int id);

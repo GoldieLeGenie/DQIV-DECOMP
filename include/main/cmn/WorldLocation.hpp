@@ -17,7 +17,7 @@ namespace cmn
         dss::Fx32Vector3 calcPaletteRate(int time);
         dss::Fx32Vector3 calcYamiPaletteRate();
         static void setCurrentTimeZone();
-        TIME_ZONE getCurrentTimeZone();
+        static TIME_ZONE getCurrentTimeZone();
     };
     
 }

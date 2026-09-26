@@ -3,4 +3,4 @@ _ZN29MaterielMenuExtraChapterTitle8menuDrawEv kind:function(thumb,size=0xcc) add
 _ZN29MaterielMenuExtraChapterTitle10menuUpdateEv kind:function(thumb,size=0x12) addr:0x02189490
 _ZN29MaterielMenuExtraChapterTitle19setChapterTitleInfoEii kind:function(thumb,size=0x6) addr:0x021894a4
 _ZN29MaterielMenuExtraChapterTitle11menuExecuteEv kind:function(arm,size=0x4) addr:0x021894ac
-_ZTV29MaterielMenuExtraChapterTitle kind:data(any) addr:0x021894c0
+_ZTV29MaterielMenuExtraChapterTitle kind:data(byte[28]) addr:0x021894c0

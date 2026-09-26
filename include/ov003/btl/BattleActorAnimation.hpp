@@ -1,6 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "GameInfo.hpp"
+#include "main/sound/SoundManager.hpp"
 #include "main/status/UseActionParam.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
 
@@ -34,12 +35,11 @@ namespace btl {
 
 }
 extern short data_020c04f4[310][5]; //MonsterTaiData
-extern int data_ov003_02158a54; //monsterChangeCount
+extern int monsterChangeCount;
 extern "C" int  func_ov003_021293c0(status::UseActionParam* uap);
 extern "C" int  func_ov003_021293e4(status::UseActionParam* uap);
 extern "C" void func_ov003_02121970(BattleMonster*, int, int);
 extern "C" int  func_0208995c(void);
-extern "C" void func_02026cc8(int a, int b);
 extern "C" void func_ov003_02121c08(BattleMonster*);
 extern "C" void func_ov003_0212a028(status::CharacterStatus* actor);
 extern "C" void func_ov003_021295e4(status::UseActionParam* uap, int idx);

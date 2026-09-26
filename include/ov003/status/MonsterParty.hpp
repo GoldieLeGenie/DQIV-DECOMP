@@ -13,6 +13,7 @@ namespace status{
         int monsterCount_;
         int dropItem_;
         int dropItemMonster_;
+        MonsterParty();
         ~MonsterParty();
         virtual int add(int monsterGroup, int monsterIndex,int flag);
         virtual void del(int ctrl);
@@ -64,9 +65,10 @@ struct SpecialItem
 };
 
 extern SpecialItem specialItem[26];//data_ov003_0213c618
-extern status::MonsterParty g_monster; //data_ov003_0216639c
-extern MonsterFormation monsterFormationTable; //data_ov003_02139050
-extern GroupIndices monsterCallTypeTable; // data_ov003_02139040
+extern const GroupIndices monsterCallTypeTable;
+extern const MonsterFormation monsterFormationTable;
 
 extern "C" int func_ov003_0212e8e8(int index);
 extern "C" int func_ov003_0212e938(int, int);
+
+#include "ov003/status/MonsterPartyWithDraw.hpp"

@@ -1,10 +1,5 @@
 #include "main/param/BattleMap.hpp"
 
-char btl_[8] = "btl_";//data_020bc638 
-char btlyado[8]= "btlyado";//data_020bc64c 
-char btldougu[12]= "btldougu";//data_020bc640 
-
-
 THUMB int param::BattleMap::getBattleMap(param::BattleMap *data, char *name)
 {
     int k;
@@ -86,3 +81,7 @@ THUMB int param::BattleMap::getBattleMap(param::BattleMap *data, char *name)
     }
     return -1;
 }
+
+char btl_[8] = "btl_";
+char btldougu[12] = "btldougu";
+char btlyado[8] = "btlyado";

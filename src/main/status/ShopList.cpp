@@ -6,12 +6,12 @@
 
 status::ShopData status::ShopData_;
 
-char s_cd[4] = "cd"; // 0x020bdc84
-char s_mb[4] = "mb"; // 0x020bdc80
-char s_md[4] = "md"; // 0x020bdc7c
-char s_hc[4] = "hc"; // 0x020bdc88
-char check_map[4] = "en";
-char s_mj[4] = "mj"; // 0x020bdc78
+char check_map[4] = "en";   // 0x020bdc70
+extern char s_mj[4];
+extern char s_md[4];
+extern char s_mb[4];
+extern char s_cd[4];
+extern char s_hc[4];
 
 
 THUMB status::ShopList::ShopList(){
@@ -229,3 +229,9 @@ THUMB status::ShopList::ChurchType status::ShopList::getChurchType(int first)
     }
     return Exist;
 }
+
+char s_mj[4] = "mj";        // 0x020bdc78
+char s_md[4] = "md";        // 0x020bdc7c
+char s_mb[4] = "mb";        // 0x020bdc80
+char s_cd[4] = "cd";        // 0x020bdc84
+char s_hc[4] = "hc";        // 0x020bdc88

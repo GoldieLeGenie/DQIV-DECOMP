@@ -32,11 +32,8 @@ namespace status{
         void setNearDeath(int damage);
         void execStartOfRound();
         void execOfRound();
-        virtual void printAction();
         virtual void print();
-        virtual bool isDeathDisable();
-        virtual void setMosyasRelease();
-        virtual void setMosyasChange();
+        virtual void printAction();
         void setSaveDataForPlayer(profile::PROFILE_PLAYER* dat);
         void setLoadDataForPlayer(profile::PROFILE_PLAYER* dat);
 
@@ -47,4 +44,3 @@ extern "C" unsigned char func_02013fb4(status::BaseHaveItem*, int index);
 extern "C" void func_02011348(status::HaveAction*);
 extern "C" void func_020106a4(status::HaveItem*, int index);
 
-extern status::PlayerStatus data_020c8860[16];

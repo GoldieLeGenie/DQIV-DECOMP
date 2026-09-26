@@ -10,9 +10,22 @@
 #include "main/cmn/PlayerManager.hpp"
 
 namespace status{
+    struct StageFlaguint : dss::BitFlaguint {
+        StageFlaguint() { flag_ = 0; }
+    };
+    struct StageFlagushort : dss::BitFlagushort {
+        StageFlagushort() { flag_ = 0; }
+    };
+    struct StageFlaguchar : dss::BitFlaguchar {
+        StageFlaguchar() { flag_ = 0; }
+    };
+    struct StageVector3short : dss::Vector3short {
+        StageVector3short() { vx = 0; vy = 0; vz = 0; }
+    };
+
     struct StageStatus {
         static int toramana_;  //data_020d08d0 
-        dss::BitFlaguint flag_;
+        StageFlaguint flag_;
         char mapName_[32];
         char* map_;
         char btlMapName_[32];
@@ -26,38 +39,42 @@ namespace status{
         int worldTime_;
         int symbolID_;
         int lastSave_;
-        dss::Vector3short backupCameraAngle_;
-
+        StageVector3short backupCameraAngle_;
         dss::Fx32Vector3 shipPosition_;
         dss::Fx32Vector3 balloonPosition_;
         int balloonFieldType_;
         dss::Fx32Vector3 overviewPosition_;
         dss::Fx32Vector3 overviewTempPosition_;
         int flagMapChange_;
-
-        dss::BitFlaguint ruraEnable_;
+        StageFlaguint ruraEnable_;
         int ruraFlag_;
         int ruraSymbol_;
         int maxKekai;
         int crusingPeopleEncount_;
-        dss::BitFlaguchar symbolFlag_[16];
-        dss::BitFlagushort mapVeil_[16];
-        dss::BitFlaguchar furnFlag_[256];
-        dss::BitFlaguchar openFlag_[16];
-        dss::BitFlaguchar breakFlag_[8];
+        StageFlaguchar symbolFlag_[16];
+        StageFlagushort mapVeil_[16];
+        StageFlaguchar furnFlag_[256];
+        StageFlaguchar openFlag_[16];
+        StageFlaguchar breakFlag_[8];
         int timestop_;
         int fallFlag_;
-        dss::Fx32 idoLinkPosX_;
-        dss::Fx32 idoLinkPosY_;
-
         struct IdoLink {
-            dss::Fx32 posZ_;
+            int posZ_;                      // idoLink_.pos_.vz
             short dirIdx_;
             int inFlag_;
             int outFlag_;
             int shipEncount_;
             int encount_;
-        } idoLink_;
+        };
+        struct IdoLinkData {
+            int posX_;                      // idoLink_.pos_.vx
+            int posY_;                      // idoLink_.pos_.vy
+            IdoLink link_;
+        };
+        union IdoLinkUnion {
+            dss::Fx32Vector3 pos_;
+            IdoLinkData data_;
+        } idoLink_;                         // 0x268
 
         int playerLockCount_;
         int lastFldSurface_;
@@ -90,17 +107,17 @@ namespace status{
         bool isShopIcon();
         void setCameraIcon(int flag);
         bool isCameraIcon();
-        void setRula(bool flag);
+        void setRula(int flag);
         bool isRula();
-        void setRulaDisable(bool flag);
+        void setRulaDisable(int flag);
         bool isRulaDisable();
-        void setRiremito(bool flag);
+        void setRiremito(int flag);
         bool isRiremito();
-        void setRiremitoDisable(bool flag);
+        void setRiremitoDisable(int flag);
         bool isRiremitoDisable();
         void setLanaruta(int flag);
         bool isLanaruta();
-        void setLanarutaDisable(bool flag);
+        void setLanarutaDisable(int flag);
         bool isLanarutaDisable();
         static void setToramana(int flag);
         static int isToramana();
@@ -163,16 +180,18 @@ namespace status{
 }
 extern status::StageStatus g_Stage; //data_020d08e0
 
+struct FieldPlayerManager;
+
 extern "C" {
     void* func_ov000_02132228();
     void func_ov000_021341ec(void*, int);
-    void* func_ov001_02127b28();
+    FieldPlayerManager* func_ov001_02127b28();
     void func_02087154(void*, int);
     void func_02087168(void*, int);
     void func_02088360(void* dest, int size, void* src); 
     int func_020882b0(const char*, const char*);
     void func_02037d28();
-    void func_02037da4();
+    void* func_02037da4();
     int func_02058114(void*, int);
     int func_ov000_02135b04();
     void func_02088740(dss::Fx32Vector3* vec);

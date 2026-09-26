@@ -5,17 +5,6 @@
 
 
 namespace status{
-    struct unkstruct {
-        int unk0;       // 0x00
-        int unk4;       // 0x04
-        int unk8;       // 0x08
-        int unkC;       // 0x0C
-        int unk10;      // 0x10
-        short unk14;    // 0x14
-        short unk16;    // 0x16
-        char unk18;     // 0x18
-        char turn_;     // 0x19
-    };
     struct StatusChange {
         StatusChangeOne status_[35];
         int actionIndex_[35];
@@ -59,8 +48,8 @@ namespace status{
             StatusPoison2 = 0x22,
             StatusMax = 0x23,
         };
-        static StatusChangeOne statusFizzleZone_; //data_020d2ba0 _ZN6status12StatusChange17statusFizzleZone_E
-        static unkstruct actionIndexFizzleZone_; //data_020d2b90 _ZN6status12StatusChange22actionIndexFizzleZone_E
+        static StatusChangeOne statusFizzleZone_;
+        static int actionIndexFizzleZone_;
         
         StatusChange();
         ~StatusChange();

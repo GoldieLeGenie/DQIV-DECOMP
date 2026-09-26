@@ -5829,7 +5829,7 @@ from:0x0217f70c kind:load to:0x02187b08 module:overlay(16)
 from:0x0217f710 kind:load to:0x02184928 module:overlay(16)
 from:0x0217f714 kind:load to:0x02187adc module:overlay(16)
 from:0x0217f718 kind:load to:0x02187b28 module:overlay(16)
-from:0x0217f71c kind:load to:0x020c1340 module:main
+from:0x0217f71c kind:load to:0x020c1338 add:0x8 module:main
 from:0x0217f720 kind:load to:0x02187b48 module:overlay(16)
 from:0x0217f724 kind:load to:0x02177225 module:overlay(16)
 from:0x0217f728 kind:load to:0x02187adc module:overlay(16)

@@ -2,6 +2,9 @@
 #include "main/status/UseAction.hpp"
 #include "main/dss/Random.hpp"
 
+int status::StatusChange::actionIndexFizzleZone_;
+status::StatusChangeOne status::StatusChange::statusFizzleZone_;
+
 THUMB status::StatusChange::StatusChange()
 {
    return;
@@ -106,7 +109,7 @@ THUMB bool status::StatusChange::setup(int actionIndex, bool flag)
         break;
     case 0x28:
         statusFizzleZone_.setup(damageType, flag);
-        actionIndexFizzleZone_.unk0 = actionIndex;
+        actionIndexFizzleZone_ = actionIndex;
         break;
     case 0x15:
         statusData[0x15].setup(damageType, flag);
@@ -157,7 +160,7 @@ THUMB bool status::StatusChange::setup(int actionIndex, bool flag)
     }
     if (actionIndex == 0x1d0) {
         statusFizzleZone_.setup(0x28, flag);
-        actionIndexFizzleZone_.unk0 = actionIndex;
+        actionIndexFizzleZone_ = actionIndex;
     }
     if (actionIndex == 0x4b || (unsigned int)(actionIndex - 0x9b) <= 1) {
         statusData[0x1b].setup(0x27, flag);
@@ -314,7 +317,7 @@ THUMB int status::StatusChange::isEnable(Status status)
 THUMB void status::StatusChange::setTurn(Status status, char turn)
 {
     if (status == StatusFizzleZone) {
-        actionIndexFizzleZone_.turn_ = turn;
+        statusFizzleZone_.turn_ = turn;
         return;
     }
     this->status_[status].turn_ = turn;
@@ -410,7 +413,7 @@ THUMB void status::StatusChange::release(Status status)
 THUMB int status::StatusChange::getActionIndex(Status status)
 {
     if (status == StatusFizzleZone) {
-        return actionIndexFizzleZone_.unk0;
+        return actionIndexFizzleZone_;
     }
     return this->actionIndex_[status];
 }
@@ -575,5 +578,3 @@ THUMB void status::StatusChange::print()
     this->isEnable(StatusFizzleZone);
     return;
 }
-
-

@@ -13,9 +13,18 @@ src/ov003/status/MonsterStatus.cpp:
     .data start:0x02139e7c end:0x02139e98
 
 src/ov003/status/MonsterParty.cpp:
-    .text start:0x0212e2a4 end:0x0212ebac
-    .data start:0x0213c608 end:0x0213c674
-    .bss start:0x0216638c end:0x0216a03c
+    complete
+    .text start:0x0212e274 end:0x0212e988
+    .rodata start:0x02139040 end:0x02139060
+    .data start:0x0213c5fc end:0x0213c660
+
+src/ov003/status/MonsterPartyWithDraw.cpp:
+    complete
+    .text start:0x0212e988 end:0x0212ebb8
+    .init start:0x0213967c end:0x021396ac
+    .ctor start:0x021396c4 end:0x021396c8
+    .data start:0x0213c660 end:0x0213c674
+    .bss start:0x02166380 end:0x0216a03c
 
 
 src/ov003/btl/BattleSelectTargetParam.cpp:
@@ -69,14 +78,12 @@ src/ov003/btl/ExecActionTask.cpp:
     .data start:0x0213ca28 end:0x0213ca3c
     .bss start:0x0216a97c end:0x0216a980
 
-src/ov003/btl/BattleActorExec.cpp:
-    .text start:0x02125a7c end:0x02125ccc
-    .data start:0x0213a3d0 end:0x0213a4bc
-    .bss start:0x02149350 end:0x02152384
-
-src/ov003/btl/selectAI.cpp:
-    .text start:0x02125ccc end:0x02125d78
-    .data start:0x0213a4bc end:0x0213a4e8
+src/ov003/btl/battle_actor_exec.cpp:
+    .init start:0x02139628 end:0x0213967c
+    .ctor start:0x021396c0 end:0x021396c4
+    .text start:0x02125a7c end:0x02125d78
+    .data start:0x0213a3d0 end:0x0213a510
+    .bss start:0x021492c4 end:0x02152384
 
 src/ov003/btl/BattleActor2.cpp:
     complete
@@ -107,8 +114,14 @@ src/ov003/btl/AutoAction.cpp:
 
 src/ov003/btl/BattleActorAnimation.cpp:
     .text start:0x02129238 end:0x0212a1d8
+    .bss start:0x02158a54 end:0x02158a58
 
 src/ov003/btl/BattleTurn.cpp:
     complete
     .text start:0x02123cf4 end:0x02123fa0
     .data start:0x02139e98 end:0x0213a060
+
+src/ov003/btl/TimeReverseTask.cpp:
+    complete
+    .text start:0x02126498 end:0x02126524
+    .data start:0x0213a5e4 end:0x0213a5f8

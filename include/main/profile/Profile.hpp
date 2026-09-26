@@ -253,14 +253,12 @@ extern "C" void func_0203a5bc(void* mgr, unsigned char type);     // setType
 extern "C" void func_0203a6f4(void* mgr, unsigned char sex);      // setSex
 extern "C" void func_0203a730(void* mgr, unsigned char age);      // setAge
 extern "C" void func_0203a76c(void* mgr, unsigned char skill);    // setSkill            
-extern "C" void func_02037da4(void);                              //
+extern "C" void* func_02037da4(void);                            //
 extern "C" void func_02037ca4(void);                              //
 extern "C" void* func_020882ec(void* dst, void* src, int n);      // memcpy
 extern "C" int func_0207c384(void* a, void* b);   // strcmp
 extern "C" int func_0201d3a4(void* stage);        // "restartChurch" 
-extern "C" void func_02028e8c(void* mgr, unsigned char fieldType, dss::Fx32Vector3* pos, int dir); //cmn::ExtraMapLink::setExtraLinkFieldAbsPos
-extern "C" void func_02028494(void* mgr, void* mapName, dss::Fx32Vector3* pos, int dir); //cmn::ExtraMapLink::setExtraLinkTown
-extern "C" char data_020c13a0[];                  // string map "field"
+extern char data_020c13a0[8];
 extern "C" void func_0200b864(Global *g);                        // init g_Global
 extern "C" void func_0205594c(int fade);                         // SoundManager::stopBgm
 extern "C" void func_0203ab20(void *mgr, int index, unsigned char value); // 

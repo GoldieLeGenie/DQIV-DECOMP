@@ -17,6 +17,8 @@ namespace dss{
         Fx32(const Fx32& other);
         Fx32& operator=(fx32 v);
         Fx32 operator-(const Fx32& o);
+        Fx32(const long& v);            // func_02087110
+        bool operator>=(const Fx32& o) const;
     };
 
     template <typename T>
@@ -71,14 +73,23 @@ namespace dss{
 
         Fx32Vector3(const Fx32& x, const Fx32& y, const Fx32& z)
             : vx(x), vy(y), vz(z) {}
+        void set(fx32 x, fx32 y, fx32 z);                   // func_02088854
         Fx32Vector3& operator=(const Fx32Vector3& o);       // func_020888bc
+        void operator+=(const Fx32Vector3& o);              // func_0208895c
         Fx32Vector3 operator*(const Fx32& s) const;         // func_02088a28
+        Fx32 operator*(const Fx32Vector3& o) const;         // func_02088d40 (dot product)
         Fx32Vector3 operator+(const Fx32Vector3& o) const;  // func_020888e8
     };
+    int arrayToIndex(int* array, int value, int max);
+    int getRandomVariation(int value, int under, int over);
+    int arrayToMinIndex(int* array, int count);
 
     struct DssUtils
     {
+    
        static int strcpy_s(char* dest, int size, char* src); 
+       static int strcat_s(char* dest, int size, char* src);
     };
     
 }
+

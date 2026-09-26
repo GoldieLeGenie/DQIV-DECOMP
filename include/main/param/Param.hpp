@@ -5,6 +5,7 @@
 #include "main/param/ColorCorrect.hpp"
 #include "main/param/ShopDataFirst.hpp"
 #include "main/param/ShopDataSecond.hpp"
+#include "main/param/MonsterMap.hpp"
 namespace param {
     struct PartyTalk
     {
@@ -299,13 +300,6 @@ namespace param {
         unsigned char daytile3;
         unsigned char daytile4;
         unsigned char nighttile;
-        unsigned char dmmy0;
-    };
-
-    struct MonsterMap {
-        unsigned short tileID;
-        unsigned char section;
-        char floorID[8];
         unsigned char dmmy0;
     };
 

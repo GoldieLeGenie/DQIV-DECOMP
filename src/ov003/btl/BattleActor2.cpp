@@ -1,4 +1,6 @@
 #include "ov003/btl/BattleActor2.hpp"
+#include "main/dss/DssUtils.hpp"
+
 
 #pragma profile on
 THUMB btl::BattleActor2::BattleActor2()
@@ -21,7 +23,7 @@ THUMB void btl::BattleActor2::setup(status::CharacterStatus* chara)
 
     agility_ = chara->haveStatusInfo_.getAgility(0);
     agility_ = agility_ * 10;
-    agility_ = func_0201d92c(agility_, 0x32, 0);
+    agility_ = dss::getRandomVariation(agility_, 0x32, 0);
 }
 
 THUMB void btl::BattleActor2::setup()

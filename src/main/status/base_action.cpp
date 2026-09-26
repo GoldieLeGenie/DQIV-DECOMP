@@ -5,13 +5,25 @@
 #include "ov003/status/MonsterParty.hpp"
 #include "ov015/btl/BattleSelectTarget.hpp"
 
-// status::BaseActionData status::BaseActionData_; //data_020d07d0
+status::UseActionParam* status::BaseAction::useActionParam_;
+int status::BaseAction::doubleFlag_;
+int status::BaseAction::splitFlag_;
+int status::BaseAction::joukFlag_;
+int status::BaseAction::timeReverseFlag_;
+int status::BaseAction::allKaishinFlag_;
+volatile int status::BaseAction::kaishinFlag_;
 int status::BaseAction::tsukonFlag_;
 int status::BaseAction::tsukon2Flag_;
-int status::BaseAction::kaishinFlag_;
-// int status::BaseAction::splitFlag_;
-// int status::BaseAction::joukFlag_;
-// int data_020d0810[4];
+int status::BaseAction::missFlag_;
+int status::BaseAction::eventBattle_;
+int status::BaseAction::multiFlag_;
+int status::BaseAction::flag_;
+param::ActionParam* status::BaseAction::actionParam_;
+status::BaseActionWorkParam status::BaseAction::workParam_;
+int status::BaseAction::mirrorDamage_;
+int status::BaseAction::callMonster_[4];
+
+const SplitJoukTable splitJoukTable = { { 9, 5, 2 } };
 
 
 
@@ -28,41 +40,41 @@ THUMB status::BaseAction::~BaseAction(){
 
 THUMB void status::BaseAction::initialize()
 {
-    BaseActionData_.actionParam_ = excelParam.actionParam_;
+    status::BaseAction::actionParam_ = excelParam.actionParam_;
 }
 
 
 THUMB void status::BaseAction::clear()
 {
-    BaseActionData_.doubleFlag_ = 0;
-    BaseActionData_.splitFlag_ = 0;
-    BaseActionData_.joukFlag_ = 0;
-    BaseActionData_.timeReverseFlag_ = 0;
-    BaseActionData_.allKaishinFlag_ = 0;
+    status::BaseAction::doubleFlag_ = 0;
+    status::BaseAction::splitFlag_ = 0;
+    status::BaseAction::joukFlag_ = 0;
+    status::BaseAction::timeReverseFlag_ = 0;
+    status::BaseAction::allKaishinFlag_ = 0;
 }
 
 THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int flag)
 {
     int i;
     this->executeAction_ = 0;
-    status::BaseActionData_.splitFlag_ = 0;
-    status::BaseActionData_.joukFlag_ = 0;
-    status::BaseActionData_.timeReverseFlag_ = 0;
-    status::BaseActionData_.multiFlag_ = 0;
+    status::BaseAction::splitFlag_ = 0;
+    status::BaseAction::joukFlag_ = 0;
+    status::BaseAction::timeReverseFlag_ = 0;
+    status::BaseAction::multiFlag_ = 0;
     this->rollingKick_ = 0;
     this->sleepTurn_ = 0;
-    status::BaseActionData_.tsukonFlag_ = 0;
-    status::BaseActionData_.tsukon2Flag_ = 0;
-    status::BaseActionData_.flag_ = 0;
-    status::BaseActionData_.workParam_ = 0;
+    status::BaseAction::tsukonFlag_ = 0;
+    status::BaseAction::tsukon2Flag_ = 0;
+    status::BaseAction::flag_ = 0;
+    status::BaseAction::workParam_.value_ = 0;
 
     for (int i = 0; i < 4; i++) {
-        data_020d0810[i] = 0;
+        status::BaseAction::callMonster_[i] = 0;
     }
-    BaseActionValue_.flag_ = 0;
+    status::BaseActionStatus::flag_.flag_ = 0;
 
     this->actionIndex_ = useActionParam.actionIndex_;
-    status::BaseActionData_.useActionParam_ = &useActionParam;
+    status::BaseAction::useActionParam_ = &useActionParam;
     message_.setup(&useActionParam);
 
     status::CharacterStatus* actor = useActionParam.actorCharacterStatus_;
@@ -72,7 +84,7 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
         actor->haveStatusInfo_.clearStatusChangeInBattle();
     }
 
-    int clearCount = status::BaseActionData_.useActionParam_->targetCount_;
+    int clearCount = status::BaseAction::useActionParam_->targetCount_;
     for (int i = 0; i < clearCount; i++) {
         status::CharacterStatus* target = useActionParam.targetCharacterStatus_[i];
         if (target) {
@@ -82,24 +94,24 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
         }
     }
 
-    if (status::BaseActionData_.useActionParam_->actorHaveItemSack_) {
-        status::CharacterStatus* a = status::BaseActionData_.useActionParam_->actorCharacterStatus_;
+    if (status::BaseAction::useActionParam_->actorHaveItemSack_) {
+        status::CharacterStatus* a = status::BaseAction::useActionParam_->actorCharacterStatus_;
         if (a) {
             a->haveStatusInfo_.clearHpInBattle();
             a->haveStatusInfo_.clearMpInBattle();
             a->haveStatusInfo_.clearStatusChangeInBattle();
         }
-        int count = status::BaseActionData_.useActionParam_->targetCount_;
+        int count = status::BaseAction::useActionParam_->targetCount_;
         for (i = 0; i < count; i++) {
-            execMainRoot(0, status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]);
-            status::BaseActionData_.useActionParam_->result_ = resultFlag_;
-            status::BaseActionData_.useActionParam_->targetResult_[i] = resultFlag_;
-            message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[i]);
-            message_.setResultMessage(status::BaseActionData_.useActionParam_->targetCharacterStatus_[i],
-                                      &status::BaseActionData_.useActionParam_->message_[i]);
-            message_.setSplitMessage(status::BaseActionData_.useActionParam_->actorCharacterStatus_,
-                                     status::BaseActionData_.useActionParam_->targetCharacterStatus_[i],
-                                     &status::BaseActionData_.useActionParam_->message_[0],
+            execMainRoot(0, status::BaseAction::useActionParam_->targetCharacterStatus_[i]);
+            status::BaseAction::useActionParam_->result_ = resultFlag_;
+            status::BaseAction::useActionParam_->targetResult_[i] = resultFlag_;
+            message_.setExecMessage(&status::BaseAction::useActionParam_->message_[i]);
+            message_.setResultMessage(status::BaseAction::useActionParam_->targetCharacterStatus_[i],
+                                      &status::BaseAction::useActionParam_->message_[i]);
+            message_.setSplitMessage(status::BaseAction::useActionParam_->actorCharacterStatus_,
+                                     status::BaseAction::useActionParam_->targetCharacterStatus_[i],
+                                     &status::BaseAction::useActionParam_->message_[0],
                                      actionIndex_);
         }
         this->execAfter(0);
@@ -110,7 +122,7 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
     if (flag) {
         this->checkStatusRelease();
     }
-    if (!this->checkActorStatusChangeRelease(status::BaseActionData_.useActionParam_->actorCharacterStatus_)) {
+    if (!this->checkActorStatusChangeRelease(status::BaseAction::useActionParam_->actorCharacterStatus_)) {
         ok = 0;
     } else if (!this->checkActorAstoron()) {
         ok = 0;
@@ -131,7 +143,7 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
     }
 
     if (!ok) {
-        status::CharacterStatus* a = status::BaseActionData_.useActionParam_->actorCharacterStatus_;
+        status::CharacterStatus* a = status::BaseAction::useActionParam_->actorCharacterStatus_;
         if (a) {
             a->haveBattleStatus_.setActionFailed(actionIndex_);
         }
@@ -142,8 +154,8 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
     this->checkConfusion();
     execBefore();
 
-    int count = status::BaseActionData_.useActionParam_->targetCount_;
-    status::CharacterStatus* a = status::BaseActionData_.useActionParam_->actorCharacterStatus_;
+    int count = status::BaseAction::useActionParam_->targetCount_;
+    status::CharacterStatus* a = status::BaseAction::useActionParam_->actorCharacterStatus_;
 
     if (count == 0) {
         if (a) {
@@ -151,12 +163,12 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
             a->haveStatusInfo_.clearMpInBattle();
             a->haveStatusInfo_.clearStatusChangeInBattle();
         }
-        message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0]);
-        message_.setResultMessage(status::BaseActionData_.useActionParam_->actorCharacterStatus_,
-                                  &status::BaseActionData_.useActionParam_->message_[0]);
-        this->execMainRoot(status::BaseActionData_.useActionParam_->actorCharacterStatus_, 0);
-        message_.setSplitMessage(status::BaseActionData_.useActionParam_->actorCharacterStatus_, 0,
-                                 &status::BaseActionData_.useActionParam_->message_[0],
+        message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0]);
+        message_.setResultMessage(status::BaseAction::useActionParam_->actorCharacterStatus_,
+                                  &status::BaseAction::useActionParam_->message_[0]);
+        this->execMainRoot(status::BaseAction::useActionParam_->actorCharacterStatus_, 0);
+        message_.setSplitMessage(status::BaseAction::useActionParam_->actorCharacterStatus_, 0,
+                                 &status::BaseAction::useActionParam_->message_[0],
                                  actionIndex_);
     } else {
         unsigned short savedHp = 0;
@@ -174,83 +186,83 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
         }
 
         for (int i = 0; i < count; i++) {
-            status::BaseActionData_.useActionParam_->currentTargetIndex_ = i;
-            message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[i]);
+            status::BaseAction::useActionParam_->currentTargetIndex_ = i;
+            message_.setExecMessage(&status::BaseAction::useActionParam_->message_[i]);
             message_.setExecMessageAdd(actionIndex_,
-                                       &status::BaseActionData_.useActionParam_->message_[i]);
+                                       &status::BaseAction::useActionParam_->message_[i]);
             mahokantaFlag_ = 0;
 
-            if (!status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusMahosute)
-             && !status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusAstoron)
-             && this->checkTargetMahokanta(status::BaseActionData_.useActionParam_->actorCharacterStatus_,
-                              status::BaseActionData_.useActionParam_->targetCharacterStatus_[i])) {
-                targetType_ = status::BaseActionData_.useActionParam_->actorCharacterStatus_->characterType_;
+            if (!status::BaseAction::useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusMahosute)
+             && !status::BaseAction::useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusAstoron)
+             && this->checkTargetMahokanta(status::BaseAction::useActionParam_->actorCharacterStatus_,
+                              status::BaseAction::useActionParam_->targetCharacterStatus_[i])) {
+                targetType_ = status::BaseAction::useActionParam_->actorCharacterStatus_->characterType_;
                 {
-                    status::UseActionParam* p = status::BaseActionData_.useActionParam_;
+                    status::UseActionParam* p = status::BaseAction::useActionParam_;
                     status::CharacterStatus* act = p->actorCharacterStatus_;
                     p->originalTargetCharacterStatus_[i] = p->targetCharacterStatus_[i];
                     p->targetCharacterStatus_[i] = act;
                 }
-                status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setMahokantaCounter(true);
+                status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setMahokantaCounter(true);
             }
 
-            if (this->execMainRoot(status::BaseActionData_.useActionParam_->actorCharacterStatus_,
-                              status::BaseActionData_.useActionParam_->targetCharacterStatus_[i])) {
-                status::BaseActionData_.useActionParam_->result_ = resultFlag_;
-                status::BaseActionData_.useActionParam_->targetResult_[i] = resultFlag_;
-                message_.setResultMessage(status::BaseActionData_.useActionParam_->targetCharacterStatus_[i],
-                                          &status::BaseActionData_.useActionParam_->message_[i]);
+            if (this->execMainRoot(status::BaseAction::useActionParam_->actorCharacterStatus_,
+                              status::BaseAction::useActionParam_->targetCharacterStatus_[i])) {
+                status::BaseAction::useActionParam_->result_ = resultFlag_;
+                status::BaseAction::useActionParam_->targetResult_[i] = resultFlag_;
+                message_.setResultMessage(status::BaseAction::useActionParam_->targetCharacterStatus_[i],
+                                          &status::BaseAction::useActionParam_->message_[i]);
 
-                if (status::BaseActionData_.kaishinFlag_) {
-                    status::BaseActionData_.kaishinFlag_ = 0;
-                    status::BaseActionData_.useActionParam_->message_[i].spclMessage_[0] = 801052;
-                    status::BaseActionData_.useActionParam_->actorCharacterStatus_->damageSound_ = status::CharacterStatus::KaishinSe;
-                    if (!status::BaseActionData_.multiFlag_ || i != 1) {
-                        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setFirstKaishin(true);
+                if (status::BaseAction::kaishinFlag_) {
+                    status::BaseAction::kaishinFlag_ = 0;
+                    status::BaseAction::useActionParam_->message_[i].spclMessage_[0] = 801052;
+                    status::BaseAction::useActionParam_->actorCharacterStatus_->damageSound_ = status::CharacterStatus::KaishinSe;
+                    if (!status::BaseAction::multiFlag_ || i != 1) {
+                        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setFirstKaishin(true);
                     }
-                    if (status::BaseActionData_.multiFlag_ && i == 1) {
-                        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setSecondKaishin(true);
+                    if (status::BaseAction::multiFlag_ && i == 1) {
+                        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setSecondKaishin(true);
                     }
                 }
 
                 if ((unsigned int)(actionIndex_ - 231) <= 1) {
-                    if (status::BaseActionData_.tsukonFlag_ || status::BaseActionData_.tsukon2Flag_) {
-                        if (status::BaseActionData_.useActionParam_->actorCharacterStatus_->characterType_ == PLAYER) {
-                            status::BaseActionData_.useActionParam_->message_[0].spclMessage_[0] = 801052;
-                            status::BaseActionData_.useActionParam_->actorCharacterStatus_->damageSound_ = status::CharacterStatus::TsukonSe;
+                    if (status::BaseAction::tsukonFlag_ || status::BaseAction::tsukon2Flag_) {
+                        if (status::BaseAction::useActionParam_->actorCharacterStatus_->characterType_ == PLAYER) {
+                            status::BaseAction::useActionParam_->message_[0].spclMessage_[0] = 801052;
+                            status::BaseAction::useActionParam_->actorCharacterStatus_->damageSound_ = status::CharacterStatus::TsukonSe;
                         } else {
-                            status::BaseActionData_.useActionParam_->message_[0].spclMessage_[1] = 801055;
-                            status::BaseActionData_.useActionParam_->actorCharacterStatus_->damageSound_ = status::CharacterStatus::TsukonSe;
+                            status::BaseAction::useActionParam_->message_[0].spclMessage_[1] = 801055;
+                            status::BaseAction::useActionParam_->actorCharacterStatus_->damageSound_ = status::CharacterStatus::TsukonSe;
                         }
                     }
                 }
 
-                if (status::BaseActionData_.multiFlag_) {
-                    status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]->setMultiDamageAnimation();
+                if (status::BaseAction::multiFlag_) {
+                    status::BaseAction::useActionParam_->targetCharacterStatus_[i]->setMultiDamageAnimation();
                     if (i == 0) {
-                        status::CharacterStatus* t0 = status::BaseActionData_.useActionParam_->targetCharacterStatus_[i];
+                        status::CharacterStatus* t0 = status::BaseAction::useActionParam_->targetCharacterStatus_[i];
                         if (t0) {
                             int v = t0->haveStatusInfo_.effectValue_;
                             t0->haveStatusInfo_.setUseActionEffectValueMulti(0, v);
                             if (v) {
-                                status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.setMultiAttack(true);
-                                if (status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.isDeath()) {
-                                    status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.setMultiFirstDeath(true);
+                                status::BaseAction::useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.setMultiAttack(true);
+                                if (status::BaseAction::useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.isDeath()) {
+                                    status::BaseAction::useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.setMultiFirstDeath(true);
                                 }
-                                status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]->setMultiDamageAnimation1();
+                                status::BaseAction::useActionParam_->targetCharacterStatus_[i]->setMultiDamageAnimation1();
                             }
                         }
                     }
                     if (i == 1) {
-                        status::CharacterStatus* t1 = status::BaseActionData_.useActionParam_->targetCharacterStatus_[i];
+                        status::CharacterStatus* t1 = status::BaseAction::useActionParam_->targetCharacterStatus_[i];
                         if (t1) {
                             int v = t1->haveStatusInfo_.effectValue_;
                             t1->haveStatusInfo_.setUseActionEffectValueMulti(1, v);
                             if (v) {
-                                if (status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.isDeath()) {
-                                    status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]->setMultiDamageAnimation2nd();
+                                if (status::BaseAction::useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.isDeath()) {
+                                    status::BaseAction::useActionParam_->targetCharacterStatus_[i]->setMultiDamageAnimation2nd();
                                 }
-                                status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]->setMultiDamageAnimation2();
+                                status::BaseAction::useActionParam_->targetCharacterStatus_[i]->setMultiDamageAnimation2();
                             }
                         }
                     }
@@ -260,12 +272,12 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
                     mahokantaFlag_ = 0;
                 }
                 if (actionIndex_ == 475) {
-                    status::BaseActionData_.useActionParam_->message_[0].resultMessage_[0] = 700017;
+                    status::BaseAction::useActionParam_->message_[0].resultMessage_[0] = 700017;
                 }
             }
 
             {
-                status::UseActionParam* p = status::BaseActionData_.useActionParam_;
+                status::UseActionParam* p = status::BaseAction::useActionParam_;
                 message_.setSplitMessage(p->actorCharacterStatus_,
                                          p->targetCharacterStatus_[i],
                                          &p->message_[i],
@@ -274,10 +286,10 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
             this->execAfterOne(i);
 
             if (i == 0
-             && this->checkActorDouble(status::BaseActionData_.useActionParam_->actorCharacterStatus_)
-             && status::BaseActionData_.useActionParam_->targetCharacterStatus_[0]->haveStatusInfo_.isDeath()) {
-                status::BaseActionData_.useActionParam_->targetCharacterStatus_[1] = 0;
-                status::BaseActionData_.useActionParam_->targetCount_ = 1;
+             && this->checkActorDouble(status::BaseAction::useActionParam_->actorCharacterStatus_)
+             && status::BaseAction::useActionParam_->targetCharacterStatus_[0]->haveStatusInfo_.isDeath()) {
+                status::BaseAction::useActionParam_->targetCharacterStatus_[1] = 0;
+                status::BaseAction::useActionParam_->targetCount_ = 1;
                 break;
             }
         }
@@ -289,68 +301,68 @@ THUMB void status::BaseAction::exec(status::UseActionParam& useActionParam, int 
 THUMB int status::BaseAction::execBefore()
 {
     if (actionIndex_ == 137) {
-        if (status::BaseActionData_.useActionParam_->actorCharacterStatus_->characterType_ == PLAYER) {
+        if (status::BaseAction::useActionParam_->actorCharacterStatus_->characterType_ == PLAYER) {
             moonSaltCount_ = g_monster.getCount();
         }
-        if (status::BaseActionData_.useActionParam_->actorCharacterStatus_->characterType_ == MONSTER) {
+        if (status::BaseAction::useActionParam_->actorCharacterStatus_->characterType_ == MONSTER) {
             g_Party.setBattleModeWithCarriage();
             moonSaltCount_ = g_Party.getCount();
         }
     }
 
-    if (status::BaseActionData_.useActionParam_->actorCharacterStatus_
+    if (status::BaseAction::useActionParam_->actorCharacterStatus_
      && !status::UseAction::isBaikiruto(actionIndex_)) {
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setBaikirutoDisable(true);
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setBaikirutoDisable(true);
     }
 
-    if (this->checkActorDouble(status::BaseActionData_.useActionParam_->actorCharacterStatus_)) {
-        status::BaseActionData_.useActionParam_->targetCharacterStatus_[1] =
-            status::BaseActionData_.useActionParam_->targetCharacterStatus_[0];
-        status::BaseActionData_.useActionParam_->targetCount_ = 2;
+    if (this->checkActorDouble(status::BaseAction::useActionParam_->actorCharacterStatus_)) {
+        status::BaseAction::useActionParam_->targetCharacterStatus_[1] =
+            status::BaseAction::useActionParam_->targetCharacterStatus_[0];
+        status::BaseAction::useActionParam_->targetCount_ = 2;
     }
 
     if (actionIndex_ == 459) {
-        status::BaseActionData_.callMonster_[0] = g_monster.getMonsterCallIndex();
-        status::BaseActionData_.callMonster_[1] = g_monster.getMonsterCallType();
+        status::BaseAction::callMonster_[0] = g_monster.getMonsterCallIndex();
+        status::BaseAction::callMonster_[1] = g_monster.getMonsterCallType();
     }
     if (actionIndex_ == 477) {
-        status::BaseActionData_.callMonster_[0] = g_monster.getMonsterCallIndex();
-        status::BaseActionData_.callMonster_[1] = g_monster.getMonsterCallType();
+        status::BaseAction::callMonster_[0] = g_monster.getMonsterCallIndex();
+        status::BaseAction::callMonster_[1] = g_monster.getMonsterCallType();
     }
     if (actionIndex_ == 480) {
-        status::BaseActionData_.callMonster_[0] = g_monster.getMonsterCallIndex();
+        status::BaseAction::callMonster_[0] = g_monster.getMonsterCallIndex();
     }
     if ((unsigned int)(actionIndex_ - 528) <= 1) {
         if (g_monster.getMonsterCallType() == 0) {
-            status::BaseActionData_.callMonster_[0] = 0;
+            status::BaseAction::callMonster_[0] = 0;
         }
         if (g_monster.getMonsterCallType() == 1) {
-            status::BaseActionData_.callMonster_[0] = 1;
+            status::BaseAction::callMonster_[0] = 1;
         }
         if (g_monster.getMonsterCallType() == 2) {
-            status::BaseActionData_.callMonster_[0] = 2;
+            status::BaseAction::callMonster_[0] = 2;
         }
-        status::BaseActionData_.callMonster_[1] = g_monster.getMonsterCallIndex();
+        status::BaseAction::callMonster_[1] = g_monster.getMonsterCallIndex();
     }
 
-    if (actionIndex_ == 371 && status::BaseActionData_.useActionParam_->actorCharacterStatus_) {
+    if (actionIndex_ == 371 && status::BaseAction::useActionParam_->actorCharacterStatus_) {
         if (dssrand::rand(8) < 5) {
-            unsigned int lv = status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.haveStatus_.level_;
-            status::BaseActionData_.flag_ = (lv >> 1) + 20;
-            status::BaseActionData_.flag_ = status::getRandomVariation(status::BaseActionData_.flag_, 20, 10);
+            unsigned int lv = status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.haveStatus_.level_;
+            status::BaseAction::flag_ = (lv >> 1) + 20;
+            status::BaseAction::flag_ = status::getRandomVariation(status::BaseAction::flag_, 20, 10);
         } else {
-            status::BaseActionData_.flag_ = 0;
+            status::BaseAction::flag_ = 0;
         }
     }
 
     if (actionIndex_ == 513) {
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setHp(0);
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setExecuteMeganteRing(true);
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.clearHpInBattle();
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setHp(0);
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setExecuteMeganteRing(true);
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.clearHpInBattle();
     }
     if (actionIndex_ == 514) {
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setHp(0);
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.clearHpInBattle();
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setHp(0);
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.clearHpInBattle();
     }
 
     return 1;
@@ -358,63 +370,63 @@ THUMB int status::BaseAction::execBefore()
 
 THUMB int status::BaseAction::execAfterOne(int index)
 {
-    unsigned int f = BaseActionValue_.flag_;
-    unsigned int* g = (unsigned int*)&BaseActionValue_.flag_;
+    unsigned int f = status::BaseActionStatus::flag_.flag_;
+    unsigned int* g = (unsigned int*)&status::BaseActionStatus::flag_.flag_;
     if (*g & 3) {
         if (f & 1) {
-            BaseActionValue_.flag_ = *g & ~1;
-            this->message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[index], 801455, 0);
+            status::BaseActionStatus::flag_.flag_ = *g & ~1;
+            this->message_.setResultMessage(&status::BaseAction::useActionParam_->message_[index], 801455, 0);
         }
-        if (BaseActionValue_.flag_ & 2) {
-            BaseActionValue_.flag_ &= ~2;
-            this->message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[index], 801451, 0);
+        if (status::BaseActionStatus::flag_.flag_ & 2) {
+            status::BaseActionStatus::flag_.flag_ &= ~2;
+            this->message_.setResultMessage(&status::BaseAction::useActionParam_->message_[index], 801451, 0);
         }
     }
     if (actionIndex_ == 371) {
-        int t = status::BaseActionData_.useActionParam_->currentTargetIndex_;
-        if (status::BaseActionData_.useActionParam_->targetResult_[t]) {
-            if (status::BaseActionData_.useActionParam_->targetCharacterStatus_[t]->haveStatusInfo_.isDeath()) {
-                status::BaseActionData_.useActionParam_->message_[t].resultMessage_[0] = 801060; // 0xC3924
+        int t = status::BaseAction::useActionParam_->currentTargetIndex_;
+        if (status::BaseAction::useActionParam_->targetResult_[t]) {
+            if (status::BaseAction::useActionParam_->targetCharacterStatus_[t]->haveStatusInfo_.isDeath()) {
+                status::BaseAction::useActionParam_->message_[t].resultMessage_[0] = 801060; // 0xC3924
             } else {
-                status::BaseActionData_.useActionParam_->message_[t].resultMessage_[0] = 801058; // 0xC3922
+                status::BaseAction::useActionParam_->message_[t].resultMessage_[0] = 801058; // 0xC3922
             }
         }
     }
-    if (status::BaseActionData_.useActionParam_->targetCharacterStatus_[index]
-     && status::BaseActionData_.useActionParam_->targetCharacterStatus_[index]->haveStatusInfo_.isMahokantaCounter()) {
-        status::CharacterStatus* tgt = status::BaseActionData_.useActionParam_->targetCharacterStatus_[index];
+    if (status::BaseAction::useActionParam_->targetCharacterStatus_[index]
+     && status::BaseAction::useActionParam_->targetCharacterStatus_[index]->haveStatusInfo_.isMahokantaCounter()) {
+        status::CharacterStatus* tgt = status::BaseAction::useActionParam_->targetCharacterStatus_[index];
         tgt->haveStatusInfo_.mahokantaEffectValue_[index] = tgt->haveStatusInfo_.effectValue_;
     }
     if (actionIndex_ == 269) {
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.addHpInBattle(status::HaveStatusInfo::SpecialAction, -1023);
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setKillMyself(true);
-        this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[status::BaseActionData_.useActionParam_->targetCount_ - 1], 801257, 0); // 0xC39E9
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.addHpInBattle(status::HaveStatusInfo::SpecialAction, -1023);
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setKillMyself(true);
+        this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[status::BaseAction::useActionParam_->targetCount_ - 1], 801257, 0); // 0xC39E9
     }
-    if (mahokantaMessFlag) {
-        mahokantaMessFlag = 0;
-        this->message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[status::BaseActionData_.useActionParam_->currentTargetIndex_], 0, 0);
+    if (status::BaseActionStatus::mahokantaMessFlag_) {
+        status::BaseActionStatus::mahokantaMessFlag_ = 0;
+        this->message_.setResultMessage(&status::BaseAction::useActionParam_->message_[status::BaseAction::useActionParam_->currentTargetIndex_], 0, 0);
     }
-    if (confusionMessFlag) {
-        confusionMessFlag = 0;
-        this->message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[status::BaseActionData_.useActionParam_->currentTargetIndex_], workMess, 0);
+    if (status::BaseActionStatus::confusionMessFlag_) {
+        status::BaseActionStatus::confusionMessFlag_ = 0;
+        this->message_.setResultMessage(&status::BaseAction::useActionParam_->message_[status::BaseAction::useActionParam_->currentTargetIndex_], status::BaseActionStatus::work_, 0);
     }
-    if (sleepMessFlag) {
-        sleepMessFlag = 0;
-        this->message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[status::BaseActionData_.useActionParam_->currentTargetIndex_], workMess, 0);
+    if (status::BaseActionStatus::sleepMessFlag_) {
+        status::BaseActionStatus::sleepMessFlag_ = 0;
+        this->message_.setResultMessage(&status::BaseAction::useActionParam_->message_[status::BaseAction::useActionParam_->currentTargetIndex_], status::BaseActionStatus::work_, 0);
     }
-    if (unkFlag_020eecd0) {
-        unkFlag_020eecd0 = 0;
-        this->message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[status::BaseActionData_.useActionParam_->currentTargetIndex_], workMess, 0);
+    if (status::BaseActionStatus::path1MessFlag_) {
+        status::BaseActionStatus::path1MessFlag_ = 0;
+        this->message_.setResultMessage(&status::BaseAction::useActionParam_->message_[status::BaseAction::useActionParam_->currentTargetIndex_], status::BaseActionStatus::work_, 0);
     }
-    if (BaseActionStatus_.baikirutoMessFlag_) {
-        BaseActionStatus_.baikirutoMessFlag_ = 0;
-        this->message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[status::BaseActionData_.useActionParam_->currentTargetIndex_], workMess, 0);
+    if (status::BaseActionStatus::baikirutoMessFlag_) {
+        status::BaseActionStatus::baikirutoMessFlag_ = 0;
+        this->message_.setResultMessage(&status::BaseAction::useActionParam_->message_[status::BaseAction::useActionParam_->currentTargetIndex_], status::BaseActionStatus::work_, 0);
     }
     if (status::UseAction::getDamageType(actionIndex_) == 10 && this->resultFlag_ == 0) {
-        int t = status::BaseActionData_.useActionParam_->currentTargetIndex_;
-        if (status::BaseActionData_.useActionParam_->targetCharacterStatus_[t]) {
-            if (status::BaseActionData_.useActionParam_->targetCharacterStatus_[t]->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusSleep)) {
-                message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[t], 801999, 0); // 0xC3CCF
+        int t = status::BaseAction::useActionParam_->currentTargetIndex_;
+        if (status::BaseAction::useActionParam_->targetCharacterStatus_[t]) {
+            if (status::BaseAction::useActionParam_->targetCharacterStatus_[t]->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusSleep)) {
+                message_.setResultMessage(&status::BaseAction::useActionParam_->message_[t], 801999, 0); // 0xC3CCF
             }
         }
     }
@@ -423,28 +435,28 @@ THUMB int status::BaseAction::execAfterOne(int index)
 
 THUMB int status::BaseAction::execAfter(int flag)
 {
-    status::BaseActionData_.useActionParam_->exec_ = executeAction_;
+    status::BaseAction::useActionParam_->exec_ = executeAction_;
 
     if (actionIndex_ == 0xAD || actionIndex_ == 0x16D) {
         
         int i; 
-        int count = status::BaseActionData_.useActionParam_->targetCount_;
+        int count = status::BaseAction::useActionParam_->targetCount_;
         for (i = 0; i < count; i++) {
-            if (status::BaseActionData_.useActionParam_->targetResult_[i] != 0) {
+            if (status::BaseAction::useActionParam_->targetResult_[i] != 0) {
                 this->resultFlag_ = 1;
             }
         }
-        status::BaseActionData_.useActionParam_->result_ = this->resultFlag_;
+        status::BaseAction::useActionParam_->result_ = this->resultFlag_;
     }
 
     if (actionIndex_ == 0x15C && resultFlag_ != 0 && dssrand::rand(0xA) == 0) {
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.execThrow(status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveBattleStatus_.sortIndex_);
-        this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[0], 0xC3A2C, 0);
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.execThrow(status::BaseAction::useActionParam_->actorCharacterStatus_->haveBattleStatus_.sortIndex_);
+        this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0], 0xC3A2C, 0);
     }
 
     if (actionIndex_ == 0xA0 && resultFlag_ != 0 && dssrand::rand(0xA) == 0) {
         status::BaseAction::setBreakPrayRing(true);
-        this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[0], 0xC3A2C, 0);
+        this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0], 0xC3A2C, 0);
     }
 
     if (flag == 0) {
@@ -452,33 +464,33 @@ THUMB int status::BaseAction::execAfter(int flag)
     }
     this->useMp(); // useMp
 
-    if (actionIndex_ == 0x3F && (BaseActionValue_.flag_ & 4) != 0) {
-        BaseActionValue_.flag_ &= ~4;
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.addHpInBattle(status::HaveStatusInfo::SpecialAction, -0x3FF);
-        this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[status::BaseActionData_.useActionParam_->targetCount_ - 1], 0xC39E9, 0);
+    if (actionIndex_ == 0x3F && (status::BaseActionStatus::flag_.flag_ & 4) != 0) {
+        status::BaseActionStatus::flag_.flag_ &= ~4;
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.addHpInBattle(status::HaveStatusInfo::SpecialAction, -0x3FF);
+        this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[status::BaseAction::useActionParam_->targetCount_ - 1], 0xC39E9, 0);
     }
 
     if (actionIndex_ == 0x1B) {
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.addHpInBattle(status::HaveStatusInfo::SpecialAction, -0x3FF);
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setKillMyself(true);
-        this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[status::BaseActionData_.useActionParam_->targetCount_ - 1], 0xC39E9, 0);
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.addHpInBattle(status::HaveStatusInfo::SpecialAction, -0x3FF);
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setKillMyself(true);
+        this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[status::BaseAction::useActionParam_->targetCount_ - 1], 0xC39E9, 0);
     }
 
     if (actionIndex_ == 0x202) {
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.addHpInBattle(status::HaveStatusInfo::SpecialAction, -0x3FF);
-        this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[status::BaseActionData_.useActionParam_->targetCount_ - 1], 0xC39E9, 0);
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.addHpInBattle(status::HaveStatusInfo::SpecialAction, -0x3FF);
+        this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[status::BaseAction::useActionParam_->targetCount_ - 1], 0xC39E9, 0);
     }
 
     if (actionIndex_ == 0x201) {
-        status::BaseActionData_.useActionParam_->message_[status::BaseActionData_.useActionParam_->targetCount_ - 1].addMessage_[0] = 0xC3A4B;
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setExecuteMeganteRing(true);
+        status::BaseAction::useActionParam_->message_[status::BaseAction::useActionParam_->targetCount_ - 1].addMessage_[0] = 0xC3A4B;
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setExecuteMeganteRing(true);
     }
     if (actionIndex_ == 0x202) { // dup devs, 2e bloc 0x202 séparé — garder
-        status::BaseActionData_.useActionParam_->message_[status::BaseActionData_.useActionParam_->targetCount_ - 1].addMessage_[1] = 0xC3A4B;
+        status::BaseAction::useActionParam_->message_[status::BaseAction::useActionParam_->targetCount_ - 1].addMessage_[1] = 0xC3A4B;
     }
 
-    if (status::BaseActionData_.useActionParam_->actorCharacterStatus_) {
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setBaikirutoDisable(false);
+    if (status::BaseAction::useActionParam_->actorCharacterStatus_) {
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setBaikirutoDisable(false);
     }
 
     int msg;
@@ -493,7 +505,7 @@ THUMB int status::BaseAction::execAfter(int flag)
         if (action == 0x221) msg = 0xC3BFA;
         if (action == 0x222) {
             msg = 0xC3BFD;
-            status::BaseActionData_.doubleFlag_ = 1;
+            status::BaseAction::doubleFlag_ = 1;
         }
         action = actionIndex_; 
         if (action == 0x223) msg = 0xC3BFF;
@@ -501,7 +513,7 @@ THUMB int status::BaseAction::execAfter(int flag)
         if (action == 0x225) msg = 0xC3C05;
         if (action == 0x226) msg = 0xC3C08;
         if (msg != 0) {
-            status::BaseActionData_.useActionParam_->message_[0].execMessage_[1] = msg;
+            status::BaseAction::useActionParam_->message_[0].execMessage_[1] = msg;
         }
     }
 
@@ -537,36 +549,36 @@ THUMB int status::BaseAction::execAfter(int flag)
         if (action == 0x1E4) { msg = 0; msg2 = 0; }
         if (action == 0x1E5) { msg = 0; msg2 = 0; }
         if (msg != 0) {
-            status::BaseActionData_.useActionParam_->message_[0].execMessage_[0] = msg;
+            status::BaseAction::useActionParam_->message_[0].execMessage_[0] = msg;
         }
         if (msg2 != 0) {
-            status::BaseActionData_.useActionParam_->message_[0].execMessage_[1] = msg2;
+            status::BaseAction::useActionParam_->message_[0].execMessage_[1] = msg2;
         }
         if (actionIndex_ == 0x1D1) {
             g_Party.setPlayerMode();
             if (g_Party.getAlivePlayerCountOutsideCarriage() > 1) {
-                status::BaseActionData_.useActionParam_->message_[0].execMessage_[0] = 0xC3CCD;
+                status::BaseAction::useActionParam_->message_[0].execMessage_[0] = 0xC3CCD;
             }
         }
         if (actionIndex_ == 0x1CB) {
-            switch (status::BaseActionData_.callMonster_[1]) {
-            case 0: status::BaseActionData_.useActionParam_->message_[0].resultMessage_[0] = 0xC3B62; break;
-            case 1: status::BaseActionData_.useActionParam_->message_[0].resultMessage_[0] = 0xC3B65; break;
-            case 2: status::BaseActionData_.useActionParam_->message_[0].resultMessage_[0] = 0xC3B68; break;
+            switch (status::BaseAction::callMonster_[1]) {
+            case 0: status::BaseAction::useActionParam_->message_[0].resultMessage_[0] = 0xC3B62; break;
+            case 1: status::BaseAction::useActionParam_->message_[0].resultMessage_[0] = 0xC3B65; break;
+            case 2: status::BaseAction::useActionParam_->message_[0].resultMessage_[0] = 0xC3B68; break;
             }
         }
         if (actionIndex_ == 0x1DD) {
-            switch (status::BaseActionData_.callMonster_[1]) {
-            case 0: status::BaseActionData_.useActionParam_->message_[0].resultMessage_[0] = 0xC3B9B; break;
-            case 1: status::BaseActionData_.useActionParam_->message_[0].resultMessage_[0] = 0xC3B9E; break;
-            case 2: status::BaseActionData_.useActionParam_->message_[0].resultMessage_[0] = 0xC3BA1; break;
+            switch (status::BaseAction::callMonster_[1]) {
+            case 0: status::BaseAction::useActionParam_->message_[0].resultMessage_[0] = 0xC3B9B; break;
+            case 1: status::BaseAction::useActionParam_->message_[0].resultMessage_[0] = 0xC3B9E; break;
+            case 2: status::BaseAction::useActionParam_->message_[0].resultMessage_[0] = 0xC3BA1; break;
             }
         }
-        if (actionIndex_ == 0x1E2 && !status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.isDeath()) {
-            status::BaseActionData_.useActionParam_->message_[0].addMessage_[0] = 0xC3BAF;
+        if (actionIndex_ == 0x1E2 && !status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.isDeath()) {
+            status::BaseAction::useActionParam_->message_[0].addMessage_[0] = 0xC3BAF;
         }
         if (actionIndex_ == 0x1DA) {
-            status::BaseActionData_.useActionParam_->message_[status::BaseActionData_.useActionParam_->targetCount_ - 1].addMessage_[0] = 0xC3C9C;
+            status::BaseAction::useActionParam_->message_[status::BaseAction::useActionParam_->targetCount_ - 1].addMessage_[0] = 0xC3C9C;
         }
         if (actionIndex_ == 0x1DB) {
             parupunteMetalSlime1();
@@ -576,133 +588,133 @@ THUMB int status::BaseAction::execAfter(int flag)
     action = actionIndex_;
     if (action >= 0x1A1 && action <= 0x1CA) {
         if (action == 0x1AD) {
-            status::BaseActionData_.useActionParam_->message_[0].execMessage_[1] = 0xC3CC5;
+            status::BaseAction::useActionParam_->message_[0].execMessage_[1] = 0xC3CC5;
         }
         if (actionIndex_ == 0x1A7) {
-            status::BaseActionData_.useActionParam_->message_[0].execMessage_[1] = 0xC3CAC;
+            status::BaseAction::useActionParam_->message_[0].execMessage_[1] = 0xC3CAC;
         }
     }
 
     action = actionIndex_;
     if (action >= 0x210 && action <= 0x21D && action == 0x216) {
-        status::BaseActionData_.useActionParam_->message_[0].spclMessage_[0] = 0xC391C;
+        status::BaseAction::useActionParam_->message_[0].spclMessage_[0] = 0xC391C;
     }
 
     if (actionIndex_ == 0x61) {
-        status::BaseActionData_.useActionParam_->message_[0].execMessage_[1] = 0xC3CC1;
+        status::BaseAction::useActionParam_->message_[0].execMessage_[1] = 0xC3CC1;
     }
     if (actionIndex_ == 0x1D0) {
-        status::BaseActionData_.useActionParam_->message_[0].execMessage_[1] = 0xC3CC1;
+        status::BaseAction::useActionParam_->message_[0].execMessage_[1] = 0xC3CC1;
     }
 
     if (actionIndex_ >= 0x10E && actionIndex_ <= 0x11A && resultFlag_ != 0) {
         int count = getCallMonsterCount();
-        status::BaseActionData_.useActionParam_->targetCount_ = count;
+        status::BaseAction::useActionParam_->targetCount_ = count;
         for (int i = 0; i < count; i++) {
-            status::BaseActionData_.useActionParam_->targetCharacterStatus_[i] = getCallMonsterStatus(i);
-            status::BaseActionData_.useActionParam_->message_[i].resultMessage_[0] = status::BaseActionData_.useActionParam_->message_[0].resultMessage_[0];
+            status::BaseAction::useActionParam_->targetCharacterStatus_[i] = getCallMonsterStatus(i);
+            status::BaseAction::useActionParam_->message_[i].resultMessage_[0] = status::BaseAction::useActionParam_->message_[0].resultMessage_[0];
         }
     }
 
     if (actionIndex_ == 0x12F) {
-        status::BaseActionData_.useActionParam_->message_[0].execMessage_[1] = 0xC3CC3;
+        status::BaseAction::useActionParam_->message_[0].execMessage_[1] = 0xC3CC3;
     }
 
     if (actionIndex_ == 0x30 || actionIndex_ == 0x31) {
         int i; // R3
-        int count = status::BaseActionData_.useActionParam_->targetCount_;
+        int count = status::BaseAction::useActionParam_->targetCount_;
         for (i = 0; i < count; i++) {
             if (i != 0) {
-                status::BaseActionData_.useActionParam_->message_[i].resultMessage_[0] = 0;
+                status::BaseAction::useActionParam_->message_[i].resultMessage_[0] = 0;
             }
         }
     }
     if (actionIndex_ == 0x2B) {
         int i; // R3
-        int count = status::BaseActionData_.useActionParam_->targetCount_;
+        int count = status::BaseAction::useActionParam_->targetCount_;
         for (i = 0; i < count; i++) {
             if (i != 0) {
-                status::BaseActionData_.useActionParam_->message_[i].resultMessage_[0] = 0;
+                status::BaseAction::useActionParam_->message_[i].resultMessage_[0] = 0;
             }
         }
     }
     if (actionIndex_ == 0x210) {
         int i; // R3
-        int count = status::BaseActionData_.useActionParam_->targetCount_;
+        int count = status::BaseAction::useActionParam_->targetCount_;
         for (i = 0; i < count; i++) {
             if (i != 0) {
-                status::BaseActionData_.useActionParam_->message_[i].resultMessage_[0] = 0;
+                status::BaseAction::useActionParam_->message_[i].resultMessage_[0] = 0;
             }
         }
-        if (status::BaseActionData_.callMonster_[0] == 1) {
-            status::BaseActionData_.useActionParam_->message_[0].resultMessage_[0] = 0xC3BB8;
+        if (status::BaseAction::callMonster_[0] == 1) {
+            status::BaseAction::useActionParam_->message_[0].resultMessage_[0] = 0xC3BB8;
         }
-        if (status::BaseActionData_.callMonster_[0] == 2) {
-            status::BaseActionData_.useActionParam_->message_[0].resultMessage_[0] = 0xC3BBB;
+        if (status::BaseAction::callMonster_[0] == 2) {
+            status::BaseAction::useActionParam_->message_[0].resultMessage_[0] = 0xC3BBB;
         }
     }
     if (actionIndex_ == 0x211) {
         int i; // R3
-        int count = status::BaseActionData_.useActionParam_->targetCount_;
+        int count = status::BaseAction::useActionParam_->targetCount_;
         for (i= 0; i < count; i++) {
             if (i != 0) {
-                status::BaseActionData_.useActionParam_->message_[i].resultMessage_[0] = 0;
+                status::BaseAction::useActionParam_->message_[i].resultMessage_[0] = 0;
             }
         }
-        if (status::BaseActionData_.callMonster_[0] == 1) {
-            status::BaseActionData_.useActionParam_->message_[0].resultMessage_[0] = 0xC3BC0;
+        if (status::BaseAction::callMonster_[0] == 1) {
+            status::BaseAction::useActionParam_->message_[0].resultMessage_[0] = 0xC3BC0;
         }
-        if (status::BaseActionData_.callMonster_[0] == 2) {
-            status::BaseActionData_.useActionParam_->message_[0].resultMessage_[0] = 0xC3BC2;
+        if (status::BaseAction::callMonster_[0] == 2) {
+            status::BaseAction::useActionParam_->message_[0].resultMessage_[0] = 0xC3BC2;
         }
     }
 
     if (actionIndex_ == 0x173) {
-        if (status::BaseActionData_.useActionParam_->result_) {
-            status::BaseActionData_.useActionParam_->message_[0].execMessage_[1] = 0xC3ABF;
+        if (status::BaseAction::useActionParam_->result_) {
+            status::BaseAction::useActionParam_->message_[0].execMessage_[1] = 0xC3ABF;
         } else {
-            status::BaseActionData_.useActionParam_->message_[0].execMessage_[1] = 0xC3AC2;
+            status::BaseAction::useActionParam_->message_[0].execMessage_[1] = 0xC3AC2;
         }
     }
 
     if (actionIndex_ == 0x1CB) {
         int firstPlayer;   
         int firstMonster;
-        int count = status::BaseActionData_.useActionParam_->targetCount_;
+        int count = status::BaseAction::useActionParam_->targetCount_;
         firstPlayer = 1;
         firstMonster = 1;
         for (int i = 0; i < count; i++) {
-            if (status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]->characterType_ == PLAYER) {
+            if (status::BaseAction::useActionParam_->targetCharacterStatus_[i]->characterType_ == PLAYER) {
                 if (firstPlayer) {
                     firstPlayer = 0;
                 } else {
-                    status::BaseActionData_.useActionParam_->message_[i].clear();
+                    status::BaseAction::useActionParam_->message_[i].clear();
                 }
             }
-            if (status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]->characterType_ == MONSTER) {
+            if (status::BaseAction::useActionParam_->targetCharacterStatus_[i]->characterType_ == MONSTER) {
                 if (firstMonster) {
                     firstMonster = 0;
                 } else {
-                    status::BaseActionData_.useActionParam_->message_[i].clear();
+                    status::BaseAction::useActionParam_->message_[i].clear();
                 }
             }
         }
     }
 
     if (actionIndex_ == 0x1DD) {
-        int count = status::BaseActionData_.useActionParam_->targetCount_;
+        int count = status::BaseAction::useActionParam_->targetCount_;
         for (int i = 0; i < count; i++) {
             if (i != 0) {
-                status::BaseActionData_.useActionParam_->message_[i].clear();
+                status::BaseAction::useActionParam_->message_[i].clear();
             }
         }
     }
 
     if (actionIndex_ == 0x1B) {
-        int count = status::BaseActionData_.useActionParam_->targetCount_;
+        int count = status::BaseAction::useActionParam_->targetCount_;
         for (int i = 0; i < count; i++) {
-            if (!status::BaseActionData_.useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.isDeath()) {
-                status::BaseActionData_.useActionParam_->message_[i].resultMessage_[0] = 0xC3922;
+            if (!status::BaseAction::useActionParam_->targetCharacterStatus_[i]->haveStatusInfo_.isDeath()) {
+                status::BaseAction::useActionParam_->message_[i].resultMessage_[0] = 0xC3922;
             }
         }
     }
@@ -713,10 +725,10 @@ THUMB int status::BaseAction::execAfter(int flag)
 THUMB int status::BaseAction::execMainRoot(status::CharacterStatus* actor, status::CharacterStatus* target)
 {
     resultFlag_ = 0;
-    status::BaseActionData_.kaishinFlag_ = 0;
-    status::BaseActionData_.missFlag_ = 0;
-    status::BaseActionData_.splitFlag_ = 0;
-    status::BaseActionData_.joukFlag_ = 0;
+    status::BaseAction::kaishinFlag_ = 0;
+    status::BaseAction::missFlag_ = 0;
+    status::BaseAction::splitFlag_ = 0;
+    status::BaseAction::joukFlag_ = 0;
     if (target) {
         target->haveStatusInfo_.rebirthFlag_ = 0;
     }
@@ -744,11 +756,11 @@ THUMB int status::BaseAction::execMain(status::CharacterStatus* actor, status::C
         special->haveStatusInfo_.clearHpInBattle();
         special->haveStatusInfo_.clearMpInBattle();
         special->haveStatusInfo_.clearStatusChangeInBattle();
-        if (this->checkActorDouble(status::BaseActionData_.useActionParam_->actorCharacterStatus_)) { // checkActorDouble
-            if (status::BaseActionData_.useActionParam_->targetCount_ != 2) {
-                status::BaseActionData_.multiFlag_ = 1;
-                status::BaseActionData_.useActionParam_->targetCharacterStatus_[1] = status::BaseActionData_.useActionParam_->targetCharacterStatus_[0];
-                status::BaseActionData_.useActionParam_->targetCount_ = 2;
+        if (this->checkActorDouble(status::BaseAction::useActionParam_->actorCharacterStatus_)) { // checkActorDouble
+            if (status::BaseAction::useActionParam_->targetCount_ != 2) {
+                status::BaseAction::multiFlag_ = 1;
+                status::BaseAction::useActionParam_->targetCharacterStatus_[1] = status::BaseAction::useActionParam_->targetCharacterStatus_[0];
+                status::BaseAction::useActionParam_->targetCount_ = 2;
             }
         }
     }
@@ -791,7 +803,7 @@ THUMB int status::BaseAction::execMain(status::CharacterStatus* actor, status::C
     if (this->checkItemRecoveryJ(actor, target) == 0) return 0;
     if (this->checkItemOther(actor, target) == 0) return 0;
     executeAction_ = 1;
-    status::BaseActionData_.useActionParam_->result_ = resultFlag_;
+    status::BaseAction::useActionParam_->result_ = resultFlag_;
     return 1;
 }
 
@@ -800,7 +812,7 @@ THUMB void status::BaseAction::execActionEffect(status::CharacterStatus* actor, 
     if (target == 0) {
         return;
     }
-    indexAction = actionIndex_;
+    status::BaseActionStatus::actionIndex_ = actionIndex_;
     status::BaseActionStatus::setEffectValue(effectValue_, playerEffectValue_, monsterEffectValue_);
     if (target != 0) { 
         target->haveStatusInfo_.setUseActionEffectValue(0);
@@ -919,7 +931,7 @@ THUMB void status::BaseAction::execAddDamage(status::CharacterStatus* actor, sta
                 target->haveStatusInfo_.setStatusChangeInBattle(status::HaveStatusInfo::ResultAction); 
                 actor->haveStatusInfo_.setAddEffectSleep(true);
                 sleepTurn_ = 1;
-                this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[0], 801399 , 0);
+                this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0], 801399 , 0);
             }
         }
     }
@@ -934,7 +946,7 @@ THUMB void status::BaseAction::execAddDamage(status::CharacterStatus* actor, sta
             target->haveStatusInfo_.statusChange_.setup2(status::StatusChange::StatusPoison, 0);
             target->haveStatusInfo_.setStatusChangeInBattle(status::HaveStatusInfo::ResultAction);
             actor->haveStatusInfo_.setAddEffectPoison(true);
-            this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[0], 801403, 0);
+            this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0], 801403, 0);
         }
     }
     if (actionIndex_ == 0xEB) {
@@ -948,7 +960,7 @@ THUMB void status::BaseAction::execAddDamage(status::CharacterStatus* actor, sta
             target->haveStatusInfo_.statusChange_.setup2(status::StatusChange::StatusSpazz, 1);
             target->haveStatusInfo_.setStatusChangeInBattle(status::HaveStatusInfo::ResultAction);
             actor->haveStatusInfo_.setAddEffectSpazz(true);
-            this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[0], 801405, 0);
+            this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0], 801405, 0);
         }
     }
     if (actionIndex_ == 0x233 ) {
@@ -962,7 +974,7 @@ THUMB void status::BaseAction::execAddDamage(status::CharacterStatus* actor, sta
             target->haveStatusInfo_.statusChange_.setup2(status::StatusChange::StatusSpazz, 0);
             target->haveStatusInfo_.setStatusChangeInBattle(status::HaveStatusInfo::ResultAction);
             actor->haveStatusInfo_.setAddEffectSpazz(true);
-            this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[0], 801405 , 0);
+            this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0], 801405 , 0);
         }
     }
 }
@@ -983,13 +995,13 @@ THUMB void status::BaseAction::execAddDamageItemForceE(status::CharacterStatus* 
     }
     status::DQ4HaveEquipment* equip = &actor->haveStatusInfo_.haveEquipment_; 
     if (equip->isEquipment(0x19)) {
-        if (status::BaseActionData_.eventBattle_ == 0) {
+        if (status::BaseAction::eventBattle_ == 0) {
             if (monsterEffectValue_ != 0) {
                 if (dssrand::rand(8) == 0) {
                     target->haveStatusInfo_.statusChange_.setup2(status::StatusChange::StatusSpazz, 0);
                     target->haveStatusInfo_.setStatusChangeInBattle(status::HaveStatusInfo::ResultAction);
                     actor->haveStatusInfo_.setAddEffectSpazz(true);
-                    this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[0], 801405, 0);
+                    this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0], 801405, 0);
                 }
             }
         }
@@ -998,7 +1010,7 @@ THUMB void status::BaseAction::execAddDamageItemForceE(status::CharacterStatus* 
         if (target->haveStatusInfo_.effectValue_ == 0) {
             return;
         }
-        this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[0], 801463, 0);
+        this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0], 801463, 0);
     }
     if (equip->isEquipment(0x18)) {
         if (monsterEffectValue_ != 0) {
@@ -1007,7 +1019,7 @@ THUMB void status::BaseAction::execAddDamageItemForceE(status::CharacterStatus* 
                     target->haveStatusInfo_.statusChange_.setup2(status::StatusChange::StatusSleep, 1);
                     actor->haveStatusInfo_.setAddEffectSleep(true);
                     sleepTurn_ = 1;
-                    this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[0], 801399, 0);
+                    this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0], 801399, 0);
                 }
             }
         }
@@ -1018,7 +1030,7 @@ THUMB void status::BaseAction::execAddDamageItemForceE(status::CharacterStatus* 
             if (dssrand::rand(6) == 0) {
                 target->haveStatusInfo_.statusChange_.setup2(status::StatusChange::StatusPoison, 1);
                 actor->haveStatusInfo_.setAddEffectPoison(true);
-                this->message_.setAddMessage(&status::BaseActionData_.useActionParam_->message_[0], 801403, 0);
+                this->message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0], 801403, 0);
             }
         }
     }
@@ -1026,7 +1038,7 @@ THUMB void status::BaseAction::execAddDamageItemForceE(status::CharacterStatus* 
 
 THUMB int status::BaseAction::checkStatusRelease()
 {
-    status::StatusChange* sc = &status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
+    status::StatusChange* sc = &status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
     sc->execStartOfTurn();
     int release = sc->isRelease();
     if (release != 0 && release == status::StatusChange::StatusSleep) { 
@@ -1054,11 +1066,11 @@ THUMB int status::BaseAction::checkActorStatusChangeRelease(status::CharacterSta
 
 THUMB int status::BaseAction::checkActorAstoron()
 {
-    status::StatusChange* sc = &status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
+    status::StatusChange* sc = &status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
     if (sc->isEnable(status::StatusChange::StatusAstoron)) {
         resultFlag_ = 0;
-        this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], sc->getExecMessage(status::StatusChange::StatusAstoron), 0, 0, 0);
-        this->message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[0], 0, 0);
+        this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], sc->getExecMessage(status::StatusChange::StatusAstoron), 0, 0, 0);
+        this->message_.setResultMessage(&status::BaseAction::useActionParam_->message_[0], 0, 0);
         return 0;
     }
     return 1;
@@ -1066,18 +1078,18 @@ THUMB int status::BaseAction::checkActorAstoron()
 
 THUMB int status::BaseAction::checkSpazz()
 {
-    status::StatusChange* sc = &status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
+    status::StatusChange* sc = &status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
     if (sc->isEnable(status::StatusChange::StatusSpazz)) {
         resultFlag_ = 0;
-        this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], sc->getExecMessage(status::StatusChange::StatusSpazz), 0, 0, 0);
-        this->message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[0], 0, 0);
+        this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], sc->getExecMessage(status::StatusChange::StatusSpazz), 0, 0, 0);
+        this->message_.setResultMessage(&status::BaseAction::useActionParam_->message_[0], 0, 0);
         return 0;
     }
     if (sc->getExecMessage1(status::StatusChange::StatusSpazz) != 0) {
         resultFlag_ = 0;
-        this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], sc->getReleaseMessage(), 0, 0, 0);
-        this->message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[0], 0, 0);
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setStatusChangeRelease(true);
+        this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], sc->getReleaseMessage(), 0, 0, 0);
+        this->message_.setResultMessage(&status::BaseAction::useActionParam_->message_[0], 0, 0);
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setStatusChangeRelease(true);
         return 0;
     }
     return 1;
@@ -1085,24 +1097,24 @@ THUMB int status::BaseAction::checkSpazz()
 
 THUMB int status::BaseAction::checkSleep()
 {
-    status::CharacterStatus* actor = status::BaseActionData_.useActionParam_->actorCharacterStatus_;
+    status::CharacterStatus* actor = status::BaseAction::useActionParam_->actorCharacterStatus_;
     status::StatusChange* sc = &actor->haveStatusInfo_.statusChange_;
     if (sc->isEnable(status::StatusChange::StatusSleep)) {
         if (actionIndex_ == 0x144 || actionIndex_ == 0x145) {
-            status::BaseActionData_.useActionParam_->message_[0].beforeMessage_[0] = 801485; 
+            status::BaseAction::useActionParam_->message_[0].beforeMessage_[0] = 801485; 
             actor->haveStatusInfo_.setSleepAttack(true);
             return 1;
         }
         resultFlag_ = 0;
-        this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], sc->getExecMessage(status::StatusChange::StatusSleep), 0, 0, 0);
-        this->message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[0], 0, 0);
+        this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], sc->getExecMessage(status::StatusChange::StatusSleep), 0, 0, 0);
+        this->message_.setResultMessage(&status::BaseAction::useActionParam_->message_[0], 0, 0);
         return 0;
     }
     if (sc->getExecMessage1(status::StatusChange::StatusSleep) != 0) {
         resultFlag_ = 0;
-        this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], sc->getReleaseMessage(), 0, 0, 0);
-        this->message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[0], 0, 0);
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setStatusChangeRelease(true);
+        this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], sc->getReleaseMessage(), 0, 0, 0);
+        this->message_.setResultMessage(&status::BaseAction::useActionParam_->message_[0], 0, 0);
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setStatusChangeRelease(true);
         return 0;
     }
     return 1;
@@ -1110,40 +1122,40 @@ THUMB int status::BaseAction::checkSleep()
 
 THUMB int status::BaseAction::checkPath1()
 {
-    status::StatusChange* sc = &status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
+    status::StatusChange* sc = &status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
     if (sc->isEnable(status::StatusChange::StatusPath1)) {
         resultFlag_ = 0;
         if (sc->getActionIndex(status::StatusChange::StatusPath1) == 0x10A) {
-            this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], sc->getExecMessage(status::StatusChange::StatusPath1), 0, 0, 0);
+            this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], sc->getExecMessage(status::StatusChange::StatusPath1), 0, 0, 0);
         }
         if (sc->getActionIndex(status::StatusChange::StatusPath1) == 0x155) {
-            this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], 801500, 0, 0, 0);
+            this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], 801500, 0, 0, 0);
         }
         if (sc->getActionIndex(status::StatusChange::StatusPath1) == 0x1B8) {
-            this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], 801502, 0, 0, 0);
+            this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], 801502, 0, 0, 0);
         }
         if (sc->getActionIndex(status::StatusChange::StatusPath1) == 0x212) {
-            this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], 801204 , 0, 0, 0);
+            this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], 801204 , 0, 0, 0);
         }
         if (sc->getActionIndex(status::StatusChange::StatusPath1) == 0x212) { 
-            this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], 801514 , 0, 0, 0);
+            this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], 801514 , 0, 0, 0);
         }
         if (sc->getActionIndex(status::StatusChange::StatusPath1) == 0x218) {
-            this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], 801514 , 0, 0, 0);
+            this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], 801514 , 0, 0, 0);
         }
         if (sc->getActionIndex(status::StatusChange::StatusPath1) == 0x219) {
-            this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], 801516, 0, 0, 0);
+            this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], 801516, 0, 0, 0);
         }
         if (sc->getActionIndex(status::StatusChange::StatusPath1) == 0x21A) {
-            this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], 801498, 0, 0, 0);
+            this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], 801498, 0, 0, 0);
         }
         return 0;
     }
     if (sc->getExecMessage1(status::StatusChange::StatusPath1) != 0) {
         resultFlag_ = 0;
-        this->message_.setExecMessage(&status::BaseActionData_.useActionParam_->message_[0], sc->getReleaseMessage(), 0, 0, 0);
-        this->message_.setResultMessage(&status::BaseActionData_.useActionParam_->message_[0], 0, 0);
-        status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setStatusChangeRelease(true);
+        this->message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0], sc->getReleaseMessage(), 0, 0, 0);
+        this->message_.setResultMessage(&status::BaseAction::useActionParam_->message_[0], 0, 0);
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setStatusChangeRelease(true);
         return 0;
     }
     return 1;
@@ -1151,7 +1163,7 @@ THUMB int status::BaseAction::checkPath1()
 
 THUMB int status::BaseAction::checkTimeStop()
 {
-    if (status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusTimeStop)) {
+    if (status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusTimeStop)) {
         resultFlag_ = 0;
         return 0;
     }
@@ -1160,8 +1172,8 @@ THUMB int status::BaseAction::checkTimeStop()
 
 THUMB void status::BaseAction::checkConfusion()
 {
-    if (status::BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusConfusion)) {
-        status::BaseActionData_.useActionParam_->message_[0].beforeMessage_[0] = 801519;
+    if (status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusConfusion)) {
+        status::BaseAction::useActionParam_->message_[0].beforeMessage_[0] = 801519;
     }
 }
 
@@ -1252,11 +1264,11 @@ THUMB int status::BaseAction::checkUseMp()
 
     resultFlag_ = 0;
 
-    if (BaseActionData_.useActionParam_->actorCharacterStatus_ != NULL) {
-        BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.setMpFailure(true);
+    if (status::BaseAction::useActionParam_->actorCharacterStatus_ != NULL) {
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.setMpFailure(true);
     }
 
-    message_.setMessageNotEnoughMp(&BaseActionData_.useActionParam_->message_[0]);
+    message_.setMessageNotEnoughMp(&status::BaseAction::useActionParam_->message_[0]);
 
     return 0;
 }
@@ -1266,11 +1278,11 @@ THUMB int status::BaseAction::isUseMp()
     int useMp = UseAction::getUseMp(actionIndex_);
 
     if (useMp == 255 &&
-        BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.getMp() != 0) {
+        status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.getMp() != 0) {
         return 1;
     }
 
-    if (BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.getMp() >= useMp) {
+    if (status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.getMp() >= useMp) {
         return 1;
     }
     return 0;
@@ -1281,17 +1293,17 @@ THUMB int status::BaseAction::checkMahoton()
     if (UseAction::isMahoton(actionIndex_) != 0) {
 
         StatusChange* sc =
-            &BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
+            &status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
 
         if (sc->isEnable(StatusChange::StatusMahoton) != 0) {
 
             resultFlag_ = 0;
-            message_.setExecMessage(&BaseActionData_.useActionParam_->message_[0]);
-            message_.setResultMessage(&BaseActionData_.useActionParam_->message_[0],
+            message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0]);
+            message_.setResultMessage(&status::BaseAction::useActionParam_->message_[0],
                                       sc->getResultMessage1(StatusChange::StatusMahoton),
                                       0);
             executeAction_ = 1;
-            BaseActionData_.useActionParam_->actorCharacterStatus_
+            status::BaseAction::useActionParam_->actorCharacterStatus_
                 ->haveStatusInfo_.setMahotoneFailure(true);
             return 0;
         }
@@ -1304,17 +1316,17 @@ THUMB int status::BaseAction::checkFizzleZone()
     if (UseAction::isMahoton(actionIndex_) != 0) {
 
         StatusChange* sc =
-            &BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
+            &status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
 
         if (sc->isEnable(StatusChange::StatusFizzleZone) != 0) {
 
             resultFlag_ = 0;
-            message_.setExecMessage(&BaseActionData_.useActionParam_->message_[0]);
-            message_.setResultMessage(&BaseActionData_.useActionParam_->message_[0],
+            message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0]);
+            message_.setResultMessage(&status::BaseAction::useActionParam_->message_[0],
                                       sc->getResultMessage1(StatusChange::StatusFizzleZone),
                                       0);
             executeAction_ = 1;
-            BaseActionData_.useActionParam_->actorCharacterStatus_
+            status::BaseAction::useActionParam_->actorCharacterStatus_
                 ->haveStatusInfo_.setMahotoneFailure(true);
             return 0;
         }
@@ -1327,13 +1339,13 @@ THUMB int status::BaseAction::checkPowerSave(status::CharacterStatus* actor)
     if (UseAction::isPowerSave(actionIndex_) != 0) {
 
         StatusChange* sc =
-            &BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
+            &status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_.statusChange_;
 
         if (sc->isEnable(StatusChange::StatusPowerSave) != 0) {
 
             sc->release(StatusChange::StatusPowerSave);
 
-            if (BaseActionData_.kaishinFlag_ == 0) {
+            if (status::BaseAction::kaishinFlag_ == 0) {
                 effectValue_        = effectValue_        * 20 / 10;
                 playerEffectValue_  = playerEffectValue_  * 20 / 10;
                 monsterEffectValue_ = monsterEffectValue_ * 20 / 10;
@@ -1349,8 +1361,8 @@ THUMB int status::BaseAction::checkActorBaikiruto(status::CharacterStatus* actor
 
         if (actor->haveStatusInfo_.statusChange_.isEnable(StatusChange::StatusBaikiruto) != 0) {
 
-            if (BaseActionData_.kaishinFlag_ == 0 &&
-                BaseActionData_.useActionParam_->currentTargetIndex_ == 0) {
+            if (status::BaseAction::kaishinFlag_ == 0 &&
+                status::BaseAction::useActionParam_->currentTargetIndex_ == 0) {
 
                 effectValue_        *= 2;
                 playerEffectValue_  *= 2;
@@ -1386,26 +1398,26 @@ THUMB status::CharacterStatus* status::BaseAction::checkTargetSpecialSelect(
     if (actor->haveStatusInfo_.haveEquipment_.isEquipment(0x28)) {
         return NULL;
     }
-    if (BaseActionData_.multiFlag_ != 0) {
+    if (status::BaseAction::multiFlag_ != 0) {
         return NULL;
     }
 
     if (UseAction::isSpecialSelectTarget(actionIndex_) != 0) {
 
         if (target->characterType_ == PLAYER) {
-            btl::BattleSelectTarget::setTargetSpecial(BaseActionData_.useActionParam_);
-            playerEffectValue_ = originalEffectValue_ = BaseActionData_.useActionParam_->damage_;
+            btl::BattleSelectTarget::setTargetSpecial(status::BaseAction::useActionParam_);
+            playerEffectValue_ = originalEffectValue_ = status::BaseAction::useActionParam_->damage_;
         }
         if (target->characterType_ == MONSTER) {
-            btl::BattleSelectTarget::setTargetSpecial(BaseActionData_.useActionParam_);
-            monsterEffectValue_ = originalEffectValue_ = BaseActionData_.useActionParam_->damage_;
+            btl::BattleSelectTarget::setTargetSpecial(status::BaseAction::useActionParam_);
+            monsterEffectValue_ = originalEffectValue_ = status::BaseAction::useActionParam_->damage_;
         }
-        return BaseActionData_.useActionParam_->targetCharacterStatus_[0];
+        return status::BaseAction::useActionParam_->targetCharacterStatus_[0];
     }
 
     if (UseAction::isCrossFire(actionIndex_) != 0) {
-        btl::BattleSelectTarget::setTargetCrossFire(BaseActionData_.useActionParam_);
-        return BaseActionData_.useActionParam_->targetCharacterStatus_[0];
+        btl::BattleSelectTarget::setTargetCrossFire(status::BaseAction::useActionParam_);
+        return status::BaseAction::useActionParam_->targetCharacterStatus_[0];
     }
 
     return NULL;
@@ -1416,7 +1428,7 @@ THUMB int status::BaseAction::checkTargetZaoraruZaoriku(status::CharacterStatus 
     if (HaveAction::isTownMode() != 0) {
         if (actionIndex_ == 0xC8 || actionIndex_ == 0xC9) {
             if (target->haveStatusInfo_.isDeath() == 0) {
-                BaseActionData_.workParam_ |= 2;
+                status::BaseAction::workParam_.value_ |= 2;
             }
         }
     }
@@ -1435,8 +1447,8 @@ THUMB int status::BaseAction::checkTargetBaikiruto(status::CharacterStatus *targ
         StatusChange* sc = &target->haveStatusInfo_.statusChange_;
 
         if (sc->isEnable(StatusChange::StatusBaikiruto) != 0) {
-            message_.setExecMessage(&BaseActionData_.useActionParam_->message_[0]);
-            message_.setResultMessage(&BaseActionData_.useActionParam_->message_[0],
+            message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0]);
+            message_.setResultMessage(&status::BaseAction::useActionParam_->message_[0],
                                       sc->getAgainDisableMessage(StatusChange::StatusBaikiruto),
                                       0);
         }
@@ -1463,15 +1475,15 @@ THUMB int status::BaseAction::checkTargetMahosute(status::CharacterStatus *actor
 
         if (sc->isEnable(StatusChange::StatusMahosute) != 0) {
 
-            int index = BaseActionData_.useActionParam_->currentTargetIndex_;
+            int index = status::BaseAction::useActionParam_->currentTargetIndex_;
 
-            message_.setExecMessage(&BaseActionData_.useActionParam_->message_[index]);
+            message_.setExecMessage(&status::BaseAction::useActionParam_->message_[index]);
 
             message_.setResultMessage(
-                &BaseActionData_.useActionParam_->message_[index],
+                &status::BaseAction::useActionParam_->message_[index],
                 sc->getResultMessage2(
                     StatusChange::StatusMahosute,
-                    BaseActionData_.useActionParam_->actorCharacterStatus_->characterType_),
+                    status::BaseAction::useActionParam_->actorCharacterStatus_->characterType_),
                 0);
 
             resultFlag_ = 0;
@@ -1495,15 +1507,15 @@ THUMB int status::BaseAction::checkTargetAstoron(status::CharacterStatus *target
 
         if (sc->isEnable(StatusChange::StatusAstoron) != 0) {
 
-            int index = BaseActionData_.useActionParam_->currentTargetIndex_;
+            int index = status::BaseAction::useActionParam_->currentTargetIndex_;
 
-            message_.setExecMessage(&BaseActionData_.useActionParam_->message_[index]);
+            message_.setExecMessage(&status::BaseAction::useActionParam_->message_[index]);
 
             message_.setResultMessage(
-                &BaseActionData_.useActionParam_->message_[index],
+                &status::BaseAction::useActionParam_->message_[index],
                 sc->getResultMessage2(
                     StatusChange::StatusAstoron,
-                    BaseActionData_.useActionParam_->actorCharacterStatus_->characterType_),
+                    status::BaseAction::useActionParam_->actorCharacterStatus_->characterType_),
                 0);
 
             resultFlag_ = 0;
@@ -1583,13 +1595,13 @@ THUMB int status::BaseAction::checkTargetJouk(status::CharacterStatus *target)
     if (target == NULL) {
         return 1;
     }
-    if (BaseActionData_.kaishinFlag_ != 0) {
+    if (status::BaseAction::kaishinFlag_ != 0) {
         return 1;
     }
-    if (BaseActionData_.tsukonFlag_ != 0) {
+    if (status::BaseAction::tsukonFlag_ != 0) {
         return 1;
     }
-    if (BaseActionData_.tsukon2Flag_ != 0) {
+    if (status::BaseAction::tsukon2Flag_ != 0) {
         return 1;
     }
 
@@ -1606,10 +1618,10 @@ THUMB int status::BaseAction::checkTargetJouk(status::CharacterStatus *target)
 
         if (target->haveBattleStatus_.isJouk() != 0) {
 
-            int index = BaseActionData_.useActionParam_->currentTargetIndex_;
+            int index = status::BaseAction::useActionParam_->currentTargetIndex_;
 
-            message_.setExecMessage(&BaseActionData_.useActionParam_->message_[index]);
-            message_.setResultMessage(&BaseActionData_.useActionParam_->message_[index],
+            message_.setExecMessage(&status::BaseAction::useActionParam_->message_[index]);
+            message_.setResultMessage(&status::BaseAction::useActionParam_->message_[index],
                                       0xC392E, 0);
             resultFlag_ = 0;
             executeAction_ = 1;
@@ -1620,10 +1632,10 @@ THUMB int status::BaseAction::checkTargetJouk(status::CharacterStatus *target)
         if (target->haveStatusInfo_.haveEquipment_.isEquipment(0x3A) &&
             dssrand::rand(8) == 0) {
 
-            int index = BaseActionData_.useActionParam_->currentTargetIndex_;
+            int index = status::BaseAction::useActionParam_->currentTargetIndex_;
 
-            message_.setExecMessage(&BaseActionData_.useActionParam_->message_[index]);
-            message_.setResultMessage(&BaseActionData_.useActionParam_->message_[index],
+            message_.setExecMessage(&status::BaseAction::useActionParam_->message_[index]);
+            message_.setResultMessage(&status::BaseAction::useActionParam_->message_[index],
                                       0xC392E, 0);
             resultFlag_ = 0;
             executeAction_ = 1;
@@ -1648,13 +1660,13 @@ THUMB int status::BaseAction::checkTargetSplitJouk(status::CharacterStatus *targ
     if (target->characterIndex_ != 0xB && target->characterIndex_ != 0x83) {
         return 1;
     }
-    if (BaseActionData_.useActionParam_->currentTargetIndex_ != 0) {
+    if (status::BaseAction::useActionParam_->currentTargetIndex_ != 0) {
         return 1;
     }
 
     executeAction_ = 1;
 
-    if (BaseActionData_.kaishinFlag_ != 0) {
+    if (status::BaseAction::kaishinFlag_ != 0) {
         return 1;
     }
 
@@ -1663,13 +1675,13 @@ THUMB int status::BaseAction::checkTargetSplitJouk(status::CharacterStatus *targ
         SplitJoukTable tbl = splitJoukTable;
         int ret = 0;
 
-        int r = func_0201d8c8(&tbl, dssrand::rand(16), 3);
+        int r = dss::arrayToIndex(tbl.v, dssrand::rand(16), 3);
 
         if (r == 0) {
             ret = 1;
         }
         if (r == 1) {
-            BaseActionData_.joukFlag_ = 1;
+            status::BaseAction::joukFlag_ = 1;
             ret = 0;
         }
         if (r == 2) {
@@ -1679,12 +1691,12 @@ THUMB int status::BaseAction::checkTargetSplitJouk(status::CharacterStatus *targ
             initCallMonster();
 
             if (callDifferentMonster(group, monsterIndex) != 0) {
-                BaseActionData_.splitFlag_ = 1;
-                BaseActionData_.joukFlag_ = 0;
+                status::BaseAction::splitFlag_ = 1;
+                status::BaseAction::joukFlag_ = 0;
                 ret = 0;
             } else {
-                BaseActionData_.splitFlag_ = 0;
-                BaseActionData_.joukFlag_ = 1;
+                status::BaseAction::splitFlag_ = 0;
+                status::BaseAction::joukFlag_ = 1;
                 ret = 0;
             }
             resultFlag_ = 0;
@@ -1731,8 +1743,8 @@ THUMB int status::BaseAction::checkTargetReleaseConfusionSleep(status::Character
                     status::HaveStatusInfo::ResultAction);
                 target->haveStatusInfo_.setStatusChangeRelease(true);
                 message_.setAddMessage(
-                    &BaseActionData_.useActionParam_->message_
-                        [BaseActionData_.useActionParam_->currentTargetIndex_],
+                    &status::BaseAction::useActionParam_->message_
+                        [status::BaseAction::useActionParam_->currentTargetIndex_],
                     0xC3C14, 0);
             }
         }
@@ -1753,8 +1765,8 @@ THUMB int status::BaseAction::checkTargetReleaseConfusionSleep(status::Character
                     status::HaveStatusInfo::ResultAction);
                 target->haveStatusInfo_.setStatusChangeRelease(true);
                 message_.setAddMessage(
-                    &BaseActionData_.useActionParam_->message_
-                        [BaseActionData_.useActionParam_->currentTargetIndex_],
+                    &status::BaseAction::useActionParam_->message_
+                        [status::BaseAction::useActionParam_->currentTargetIndex_],
                     0xC3C0E, 0);
             }
         }
@@ -1770,8 +1782,8 @@ THUMB int status::BaseAction::checkTargetReleaseItetsukuhadou(status::CharacterS
 
     if (actionIndex_ == 0x6A || actionIndex_ == 0x154) {
         message_.setExecMessage(
-            &BaseActionData_.useActionParam_->message_
-                [BaseActionData_.useActionParam_->currentTargetIndex_],
+            &status::BaseAction::useActionParam_->message_
+                [status::BaseAction::useActionParam_->currentTargetIndex_],
             0, 0xAAE66, 0, 0);
     }
     return 1;
@@ -1798,9 +1810,9 @@ THUMB int status::BaseAction::checkTargetMahokanta(status::CharacterStatus *acto
 
             mahokantaFlag_ = 1;
 
-            int index = BaseActionData_.useActionParam_->currentTargetIndex_;
+            int index = status::BaseAction::useActionParam_->currentTargetIndex_;
 
-            BaseActionData_.useActionParam_->message_[index].spclMessage_[0] =
+            status::BaseAction::useActionParam_->message_[index].spclMessage_[0] =
                 sc->getResultMessage2(StatusChange::StatusMahokanta,
                                       target->characterType_);
 
@@ -1813,11 +1825,11 @@ THUMB int status::BaseAction::checkTargetMahokanta(status::CharacterStatus *acto
 
             mahokantaFlag_ = 1;
 
-            int index = BaseActionData_.useActionParam_->currentTargetIndex_;
+            int index = status::BaseAction::useActionParam_->currentTargetIndex_;
 
             sc->getResultMessage3(StatusChange::StatusMahokanta, target->characterType_);
 
-            BaseActionData_.useActionParam_->message_[index].spclMessage_[0] = 0xC3941;
+            status::BaseAction::useActionParam_->message_[index].spclMessage_[0] = 0xC3941;
 
             executeAction_ = 1;
             return 1;
@@ -1957,7 +1969,7 @@ THUMB int status::BaseAction::checkTargetEquipment(status::CharacterStatus *targ
 
     if (target->haveStatusInfo_.haveEquipment_.isEquipment(0x4D)) {
 
-        BaseActionData_.mirrorDamage_  = 0;
+        status::BaseAction::mirrorDamage_  = 0;
 
         switch (UseAction::getActionDefenceKind(actionIndex_)) {
         case ACT_DEF_IO:
@@ -1965,7 +1977,7 @@ THUMB int status::BaseAction::checkTargetEquipment(status::CharacterStatus *targ
         case ACT_DEF_MERA:
         case ACT_DEF_BAGI:
         case ACT_DEF_HYADO:
-            BaseActionData_.mirrorDamage_  = playerEffectValue_;
+            status::BaseAction::mirrorDamage_  = playerEffectValue_;
             setEffectValueAdd(0x29A, 0);
             break;
         }
@@ -2021,13 +2033,13 @@ THUMB int status::BaseAction::checkActorManusa(status::CharacterStatus *actor,
     if (target == NULL) {
         return 1;
     }
-    if (BaseActionData_.kaishinFlag_ != 0) {
+    if (status::BaseAction::kaishinFlag_ != 0) {
         return 1;
     }
-    if (BaseActionData_.tsukonFlag_ != 0) {
+    if (status::BaseAction::tsukonFlag_ != 0) {
         return 1;
     }
-    if (BaseActionData_.tsukon2Flag_ != 0) {
+    if (status::BaseAction::tsukon2Flag_ != 0) {
         return 1;
     }
 
@@ -2064,10 +2076,10 @@ THUMB int status::BaseAction::checkTargetFeather(status::CharacterStatus *target
 
         if (sc->isEnable(StatusChange::StatusFeather) != 0) {
 
-            int index = BaseActionData_.useActionParam_->currentTargetIndex_;
+            int index = status::BaseAction::useActionParam_->currentTargetIndex_;
 
             message_.setResultMessage(
-                &BaseActionData_.useActionParam_->message_[index],
+                &status::BaseAction::useActionParam_->message_[index],
                 sc->getResultMessage2(StatusChange::StatusFeather, MONSTER),
                 0);
 
@@ -2105,32 +2117,32 @@ THUMB int status::BaseAction::checkActorKaishin(status::CharacterStatus *target)
 
             if (target->haveStatusInfo_.haveEquipment_.isEquipment(0x13)) {
                 if (dssrand::rand(3) == 0) {
-                    BaseActionData_.kaishinFlag_ = 1;
+                    status::BaseAction::kaishinFlag_ = 1;
                 } else {
-                    BaseActionData_.missFlag_ = 1;
+                    status::BaseAction::missFlag_ = 1;
                 }
             } else if (target->haveStatusInfo_.haveStatus_.playerIndex_ == 4) {
 
                 int level = target->haveStatusInfo_.haveStatus_.level_;
 
                 if (dssrand::rand(512) < level + 15) {
-                    BaseActionData_.kaishinFlag_ = 1;
+                    status::BaseAction::kaishinFlag_ = 1;
                 }
             } else {
                 if (dssrand::rand(32) == 0) {
-                    BaseActionData_.kaishinFlag_ = 1;
+                    status::BaseAction::kaishinFlag_ = 1;
                 }
             }
         }
 
         if (target->haveStatusInfo_.isAllKaishin()) {
-            BaseActionData_.kaishinFlag_ = 1;
+            status::BaseAction::kaishinFlag_ = 1;
         }
         if (actionIndex_ == 0xE7 && dssrand::rand(4) == 0) {
-            BaseActionData_.tsukonFlag_ = 1;
+            status::BaseAction::tsukonFlag_ = 1;
         }
         if (actionIndex_ == 0xE8) {
-            BaseActionData_.tsukon2Flag_ = 1;
+            status::BaseAction::tsukon2Flag_ = 1;
         }
     }
     return 1;
@@ -2164,16 +2176,16 @@ THUMB int status::BaseAction::checkItemMissA(status::CharacterStatus *actor, sta
 
         if (actor->haveStatusInfo_.haveEquipment_.isEquipment(0x13)) {
 
-            if (BaseActionData_.kaishinFlag_ == 0 &&
-                BaseActionData_.missFlag_ == 0 &&
+            if (status::BaseAction::kaishinFlag_ == 0 &&
+                status::BaseAction::missFlag_ == 0 &&
                 dssrand::rand(3) == 0) {
-                BaseActionData_.missFlag_ = 1;
+                status::BaseAction::missFlag_ = 1;
             }
         }
     }
 
-    if (BaseActionData_.missFlag_ != 0) {
-        BaseActionData_.missFlag_ = 0;
+    if (status::BaseAction::missFlag_ != 0) {
+        status::BaseAction::missFlag_ = 0;
         playerEffectValue_ = 0;
         monsterEffectValue_ = 0;
     }
@@ -2205,7 +2217,7 @@ THUMB int status::BaseAction::checkItemMuchiB(status::CharacterStatus *actor,
             return 1;
         }
 
-        switch (BaseActionData_.useActionParam_->currentTargetIndex_) {
+        switch (status::BaseAction::useActionParam_->currentTargetIndex_) {
         case 0:
             break;
         case 1:
@@ -2247,14 +2259,14 @@ THUMB int status::BaseAction::checkItemDamageC(status::CharacterStatus *actor,
 
         if (equip->isEquipment(0xF) &&
             target->haveBattleStatus_.metal_ != 0 &&
-            BaseActionData_.kaishinFlag_ == 0) {
+            status::BaseAction::kaishinFlag_ == 0) {
             playerEffectValue_  = 2;
             monsterEffectValue_ = 2;
         }
 
         if (equip->isEquipment(0x15) &&
             target->haveBattleStatus_.dragon_ != 0 &&
-            BaseActionData_.kaishinFlag_ == 0) {
+            status::BaseAction::kaishinFlag_ == 0) {
             playerEffectValue_  = playerEffectValue_  * 3 / 2;
             monsterEffectValue_ = monsterEffectValue_ * 3 / 2;
         }
@@ -2273,7 +2285,7 @@ THUMB int status::BaseAction::checkItemDamageD(status::CharacterStatus *actor,
 
         if (actor->haveStatusInfo_.haveEquipment_.isEquipment(0xF) &&
             target->haveBattleStatus_.metal_ != 0 &&
-            BaseActionData_.kaishinFlag_ == 0) {
+            status::BaseAction::kaishinFlag_ == 0) {
             playerEffectValue_  = 2;
             monsterEffectValue_ = 2;
         }
@@ -2294,7 +2306,7 @@ THUMB int status::BaseAction::checkItemForceE(status::CharacterStatus *actor,
 
         if (equip->isEquipment(0x10)) {
 
-            if (dssrand::rand(8) == 0 && BaseActionData_.eventBattle_ == 0) {
+            if (dssrand::rand(8) == 0 && status::BaseAction::eventBattle_ == 0) {
 
                 target->haveStatusInfo_.addHpInBattle(
                     status::HaveStatusInfo::ResultAction, -1023);
@@ -2302,10 +2314,10 @@ THUMB int status::BaseAction::checkItemForceE(status::CharacterStatus *actor,
                 target->setDeathAnimation();
                 target->haveStatusInfo_.setImmidiateDeath(true);
 
-                message_.setExecMessage(&BaseActionData_.useActionParam_->message_[0]);
-                message_.setResultMessage(&BaseActionData_.useActionParam_->message_[0],
+                message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0]);
+                message_.setResultMessage(&status::BaseAction::useActionParam_->message_[0],
                                           0xC3AC9, 0);
-                message_.setAddMessage(&BaseActionData_.useActionParam_->message_[0],
+                message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0],
                                        0xC3A6D, 0);
                 return 0;
             } else {
@@ -2315,7 +2327,7 @@ THUMB int status::BaseAction::checkItemForceE(status::CharacterStatus *actor,
         }
 
         if (equip->isEquipment(0x26) &&
-            BaseActionData_.eventBattle_ == 0 &&
+            status::BaseAction::eventBattle_ == 0 &&
             dssrand::rand(8) == 0) {
 
             actor->haveStatusInfo_.setWeaponAddDamage(true);
@@ -2326,10 +2338,10 @@ THUMB int status::BaseAction::checkItemForceE(status::CharacterStatus *actor,
             target->setDeathAnimation();
             target->haveStatusInfo_.setImmidiateDeath(true);
 
-            message_.setExecMessage(&BaseActionData_.useActionParam_->message_[0]);
-            message_.setResultMessage(&BaseActionData_.useActionParam_->message_[0],
+            message_.setExecMessage(&status::BaseAction::useActionParam_->message_[0]);
+            message_.setResultMessage(&status::BaseAction::useActionParam_->message_[0],
                                       0xC3AC9, 0);
-            message_.setAddMessage(&BaseActionData_.useActionParam_->message_[0],
+            message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0],
                                    0xC3A6D, 0);
             return 0;
         }
@@ -2355,7 +2367,7 @@ THUMB int status::BaseAction::checkItemRecoveryI(status::CharacterStatus *actor,
                     status::HaveStatusInfo::ResultAction,
                     target->haveStatusInfo_.effectValue_ / 4);
                 target->haveStatusInfo_.setAddEffectRecovery(true);
-                message_.setAddMessage(&BaseActionData_.useActionParam_->message_[0],
+                message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0],
                                        0xC3CA6, 0);
             }
         }
@@ -2366,7 +2378,7 @@ THUMB int status::BaseAction::checkItemRecoveryI(status::CharacterStatus *actor,
                     status::HaveStatusInfo::ResultAction,
                     target->haveStatusInfo_.effectValue_ / 4);
                 target->haveStatusInfo_.setAddEffectRecovery(true);
-                message_.setAddMessage(&BaseActionData_.useActionParam_->message_[0],
+                message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0],
                                        0xC3CA6, 0);
             }
         }
@@ -2413,7 +2425,7 @@ THUMB int status::BaseAction::checkItemOther(status::CharacterStatus *actor,stat
             target->haveStatusInfo_.setAddEffectMahotora(true);
             target->haveStatusInfo_.addDamage_ = mp;
 
-            message_.setAddMessage(&BaseActionData_.useActionParam_->message_[0],
+            message_.setAddMessage(&status::BaseAction::useActionParam_->message_[0],
                                    0xC3A8B, 0);
         }
     }
@@ -2432,8 +2444,8 @@ THUMB int status::BaseAction::checkItemOther(status::CharacterStatus *actor,stat
             target->haveStatusInfo_.addDamage_ = mp;
 
             message_.setAddMessage(
-                &BaseActionData_.useActionParam_->message_
-                    [BaseActionData_.useActionParam_->currentTargetIndex_],
+                &status::BaseAction::useActionParam_->message_
+                    [status::BaseAction::useActionParam_->currentTargetIndex_],
                 0, 0xC3AC7);
         }
     }
@@ -2455,13 +2467,13 @@ THUMB int status::BaseAction::checkItemOther(status::CharacterStatus *actor,stat
             actor->haveStatusInfo_.setCounterDamage(true);
             actor->haveStatusInfo_.addDamage_ = playerEffectValue_ / 4;
 
-            int index = BaseActionData_.useActionParam_->currentTargetIndex_;
+            int index = status::BaseAction::useActionParam_->currentTargetIndex_;
 
-            message_.setAddMessage(&BaseActionData_.useActionParam_->message_[index],
+            message_.setAddMessage(&status::BaseAction::useActionParam_->message_[index],
                                    0xC3CB4, 0);
 
             if (actor->haveStatusInfo_.isDeath()) {
-                message_.setAddMessage(&BaseActionData_.useActionParam_->message_[index],
+                message_.setAddMessage(&status::BaseAction::useActionParam_->message_[index],
                                        0xC3CB6, 0);
             }
         }
@@ -2482,13 +2494,13 @@ THUMB int status::BaseAction::checkItemOther(status::CharacterStatus *actor,stat
             actor->haveStatusInfo_.setDamageMyself(true);
             actor->haveStatusInfo_.addDamage_ = monsterEffectValue_ / 4;
 
-            int index = BaseActionData_.useActionParam_->currentTargetIndex_;
+            int index = status::BaseAction::useActionParam_->currentTargetIndex_;
 
             if (actor->haveStatusInfo_.isDeath()) {
-                message_.setAddMessage(&BaseActionData_.useActionParam_->message_[index],
+                message_.setAddMessage(&status::BaseAction::useActionParam_->message_[index],
                                        0xC3CBA, 0);
             } else {
-                message_.setAddMessage(&BaseActionData_.useActionParam_->message_[index],
+                message_.setAddMessage(&status::BaseAction::useActionParam_->message_[index],
                                        0xC3CB8, 0);
             }
         }
@@ -2504,7 +2516,7 @@ THUMB int status::BaseAction::checkItemOther(status::CharacterStatus *actor,stat
         ActionDefenceType type = UseAction::getActionDefenceType(actionIndex_);
 
         int value = actor->haveStatusInfo_.actionDefence_.exec(kind, type)
-                        * BaseActionData_.mirrorDamage_ / 1000;
+                        * status::BaseAction::mirrorDamage_ / 1000;
 
         actor->haveStatusInfo_.addHpInBattle(
             status::HaveStatusInfo::ResultAction, -value / 4);
@@ -2516,13 +2528,13 @@ THUMB int status::BaseAction::checkItemOther(status::CharacterStatus *actor,stat
             actor->haveStatusInfo_.setCounterDamage(true);
             actor->haveStatusInfo_.addDamage_ = value / 4;
 
-            int index = BaseActionData_.useActionParam_->currentTargetIndex_;
+            int index = status::BaseAction::useActionParam_->currentTargetIndex_;
 
             if (actor->haveStatusInfo_.isDeath()) {
-                message_.setAddMessage(&BaseActionData_.useActionParam_->message_[index],
+                message_.setAddMessage(&status::BaseAction::useActionParam_->message_[index],
                                        0xC3CB6, 0);
             } else {
-                message_.setAddMessage(&BaseActionData_.useActionParam_->message_[index],
+                message_.setAddMessage(&status::BaseAction::useActionParam_->message_[index],
                                        0xC3CB4, 0);
             }
         }
@@ -2546,10 +2558,10 @@ THUMB void status::BaseAction::useMp()
 
             int total = 0;
             int i;
-            int count = BaseActionData_.useActionParam_->targetCount_;
+            int count = status::BaseAction::useActionParam_->targetCount_;
 
             for (i = 0; i < count; i++) {
-                total += BaseActionData_.useActionParam_->targetCharacterStatus_[i]
+                total += status::BaseAction::useActionParam_->targetCharacterStatus_[i]
                              ->haveStatusInfo_.effectValue_;
             }
             if (total == 0) {
@@ -2565,15 +2577,15 @@ THUMB void status::BaseAction::useMp()
             }
         }
 
-        if (BaseActionData_.workParam_ & 2) {
-            int work = BaseActionData_.workParam_;
-            BaseActionData_.workParam_ = work & ~2;
+        if (status::BaseAction::workParam_.value_ & 2) {
+            int work = status::BaseAction::workParam_.value_;
+            status::BaseAction::workParam_.value_ = work & ~2;
             return;
         }
 
         int mp = UseAction::getUseMp(actionIndex_);
 
-        if (BaseActionData_.useActionParam_->actorCharacterStatus_
+        if (status::BaseAction::useActionParam_->actorCharacterStatus_
                 ->haveStatusInfo_.haveEquipment_.isEquipment(0x11)) {
             if (actionIndex_ == 0x47 || actionIndex_ == 0x1A1 || actionIndex_ == 0x1A2) {
                 mp = 3;
@@ -2581,18 +2593,18 @@ THUMB void status::BaseAction::useMp()
         }
 
         if (mp == 0xFF) {
-            BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_
+            status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_
                 .addMpInBattle(status::HaveStatusInfo::ExecuteAction, -1024);
-            BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_
+            status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_
                 .addMpInBattle(status::HaveStatusInfo::ResultAction, 0);
-            BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_
+            status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_
                 .addMpInBattle(status::HaveStatusInfo::SpecialAction, 0);
         } else if (mp != 0) {
-            BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_
+            status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_
                 .addMpInBattle(status::HaveStatusInfo::ExecuteAction, -mp);
-            BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_
+            status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_
                 .addMpInBattle(status::HaveStatusInfo::ResultAction, 0);
-            BaseActionData_.useActionParam_->actorCharacterStatus_->haveStatusInfo_
+            status::BaseAction::useActionParam_->actorCharacterStatus_->haveStatusInfo_
                 .addMpInBattle(status::HaveStatusInfo::SpecialAction, 0);
         }
 
@@ -2659,7 +2671,7 @@ THUMB void status::BaseAction::setEffectValueException(status::CharacterStatus *
 
     if (actionIndex_ == 0x47 || actionIndex_ == 0x1A1 || actionIndex_ == 0x1A2) {
         value = originalEffectValue_;
-        if (BaseActionData_.kaishinFlag_ == 0) {
+        if (status::BaseAction::kaishinFlag_ == 0) {
             value = originalEffectValue_;
         } 
         
@@ -2838,10 +2850,10 @@ THUMB void status::BaseAction::setEffectValueException(status::CharacterStatus *
     }
 
     if (actionIndex_ == 0x173) {
-        if (BaseActionData_.flag_ != 0) {
+        if (status::BaseAction::flag_ != 0) {
             if ((target->type_.flag_ & 2) == 0) {
-                playerEffectValue_  = BaseActionData_.flag_;
-                monsterEffectValue_ = BaseActionData_.flag_;
+                playerEffectValue_  = status::BaseAction::flag_;
+                monsterEffectValue_ = status::BaseAction::flag_;
             } else {
                 playerEffectValue_  = 1;
                 monsterEffectValue_ = 1;
@@ -2899,34 +2911,32 @@ THUMB void status::BaseAction::setEffectValueException(status::CharacterStatus *
     }
 
     if (actionIndex_ == 0x1DE) {
-        BaseActionData_.doubleFlag_ = 1;
+        status::BaseAction::doubleFlag_ = 1;
     }
 
     if (actionIndex_ == 0x171) {
-        BaseActionData_.timeReverseFlag_ = 1;
+        status::BaseAction::timeReverseFlag_ = 1;
     }
 
     if (actionIndex_ == 0x1DC) {
-        BaseActionData_.timeReverseFlag_ = 1;
+        status::BaseAction::timeReverseFlag_ = 1;
     }
 
     if (actionIndex_ == 0x1D1) {
-        BaseActionData_.allKaishinFlag_ = 1;
+        status::BaseAction::allKaishinFlag_ = 1;
     }
 }
 
 THUMB void status::BaseAction::setBreakPrayRing(int flag)
 {
     if (flag) {
-        BaseActionData_.workParam_ |= 1;
+        status::BaseAction::workParam_.value_ |= 1;
     } else {
-        BaseActionData_.workParam_ &= ~1;
+        status::BaseAction::workParam_.value_ &= ~1;
     }
 }
 
 THUMB bool status::BaseAction::isBreakPrayRing()
 {
-    return (BaseActionData_.workParam_ & 1) != 0;
+    return (status::BaseAction::workParam_.value_ & 1) != 0;
 }
-
-#pragma profile off

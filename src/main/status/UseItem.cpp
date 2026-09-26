@@ -648,3 +648,5 @@ THUMB void status::UseItem::give2(status::HaveStatusInfo *status, int index,
     status->haveItem_.sortEquipment();
     target->haveItem_.sortEquipment();
 }
+
+status::UseitemData UseitemData_;

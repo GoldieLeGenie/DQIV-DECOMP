@@ -55,7 +55,7 @@ ARM void btl::AfterMessageTask::initialize()
     }
 
     if (useActionParam_->actionIndex_ == 0x1d7) {
-        func_02026cd0(0x454, 0x1e);
+        SoundManager::stopSeWithIndex(0x454, 0x1e);
     }
 
     if (useActionParam_->targetCharacterStatus_[currentTarget_]->haveStatusInfo_.isAddEffectDamage()) {
@@ -68,17 +68,17 @@ ARM void btl::AfterMessageTask::initialize()
                 } else {
                     func_ov003_02121970(&func_ov003_02121d04()->monster_[drawCtrlId], 0, 0x23);
                 }
-                func_02026cc8(0x192, 0);
+                SoundManager::playSe(0x192, 0);
             }
         } else if (actor->haveStatusInfo_.addDamage_ > 0) {
-            func_02026cc8(0x193, 0);
+            SoundManager::playSe(0x193, 0);
             func_0200d748();
         }
         useActionParam_->targetCharacterStatus_[currentTarget_]->haveStatusInfo_.setAddEffectDamage(false);
     }
 
     if (useActionParam_->targetCharacterStatus_[currentTarget_]->haveStatusInfo_.isAddEffectRecovery()) {
-        func_02026cc8(0x1f5, 0);
+        SoundManager::playSe(0x1f5, 0);
         useActionParam_->targetCharacterStatus_[currentTarget_]->haveStatusInfo_.setAddEffectRecovery(false);
     }
 

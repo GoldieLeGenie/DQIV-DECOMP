@@ -1,5 +1,15 @@
 #include "main/task/PartTaskManager.hpp"
 
+THUMB task::PartTaskManager::PartTaskManager() {
+    currentTask_ = 0;
+    currentTaskID_ = 0;
+    previousTaskID_ = -1;
+    nextTaskID_ = -1;
+    sleepTaskID_ = -1;
+}
+
+THUMB task::PartTaskManager::~PartTaskManager() {
+}
 
 THUMB void task::PartTaskManager::run() {
     if (currentTask_) {

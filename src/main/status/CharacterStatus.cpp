@@ -269,12 +269,12 @@ THUMB bool status::CharacterStatus::isRebirthAnimation()
     return 0;
 }
 
-ARM void status::CharacterStatus::print()
+ARM void status::CharacterStatus::printAction()
 {
     return;
 }
 
-ARM void status::CharacterStatus::printAction()
+ARM void status::CharacterStatus::print()
 {
     return;
 }

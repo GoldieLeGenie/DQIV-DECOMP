@@ -35,5 +35,7 @@ struct RuraMapEntry {
 };
 extern const RuraMapEntry storyFlagCompare[42];   // 0x020b5fbc
 
-extern char* p_tatop[2]; // 0x020becf0 (8 bytes)
-extern char  tatop[16];  // 0x020becf8 "tatop"
+extern char* p_tatop;
+extern int   unusedRuraData;
+extern char  tatop[16];
+extern int   unusedRuraBss;
