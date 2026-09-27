@@ -121,7 +121,7 @@ namespace status{
         bool isLanarutaDisable();
         static void setToramana(int flag);
         static int isToramana();
-        void setBashaEnter(bool flag);
+        void setBashaEnter(int flag);
         bool isBashaEnter();
         void setBashaEnable(bool flag);
         bool isBashaEnable();
@@ -186,7 +186,6 @@ extern "C" {
     void* func_ov000_02132228();
     void func_ov000_021341ec(void*, int);
     FieldPlayerManager* func_ov001_02127b28();
-    void func_02087154(void*, int);
     void func_02087168(void*, int);
     void func_02088360(void* dest, int size, void* src); 
     int func_020882b0(const char*, const char*);
@@ -202,7 +201,6 @@ struct MapChurchInfo {
     unsigned int unk4_;     // 0x020b6160
 };
 extern MapChurchInfo data_020b615c; // MapChurchInfo
-extern int data_020ed28c;           // g_ExtraMapLink
 
 
 struct ExternalData {

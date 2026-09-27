@@ -2,7 +2,7 @@
 #include "globaldefs.h"
 #include "main/param/Param.hpp"
 #include "GameInfo.hpp"
-#include "ov000/TownCharacterManager.hpp"
+#include "ov000/town/TownCharacterManager.hpp"
 
 namespace cmn
 {
@@ -29,7 +29,9 @@ namespace cmn
         MESSAGESOUND getPlayerVoice();
         MESSAGESOUND getPlayerVoice(int charaNo);
         MESSAGESOUND getMostHeroicVoice();
-    };   
+    };
+
+    extern TalkSoundManager g_talkSound;    // data_020efcc0
 }
 
 struct CharaVoiceCount {
@@ -45,8 +47,8 @@ extern "C" {
     void func_02056358(int sound);                   // ui_MsgSndSet
     int  func_02039838(cmn::TalkSoundManager* self); //
     void func_02056384(int* order);                  // 
-    int  func_ov000_0212ebc8(TownCharacter* chara);
-    int  func_ov000_0212ebdc(TownCharacter* chara);
+    int  func_ov000_0212ebc8(TownCharacterBase* chara);
+    int  func_ov000_0212ebdc(TownCharacterBase* chara);
     int func_ov000_02138eb8(TownCharacterManager* mgr, int charaNo);
 
 }

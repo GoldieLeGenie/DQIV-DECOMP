@@ -11,6 +11,34 @@ src/main/Commands/CommandFunction.cpp:
     complete
     .text start:0x02020030 end:0x02022a3c
 
+src/main/Commands/CommonCommand.cpp:
+    complete
+    .text start:0x02023ca0 end:0x02024c90
+
+src/main/Commands/ScriptCommand1.cpp:
+    .text start:0x0201f6f0 end:0x0201faa4
+
+src/main/Commands/ScriptCommand2.cpp:
+    .text start:0x0201fd80 end:0x02020030
+
+src/main/Commands/ScriptCommand3.cpp:
+    .text start:0x02023518 end:0x020235d0
+
+src/main/Commands/ScriptCommand4.cpp:
+    .text start:0x02023784 end:0x020238ac
+
+src/main/Commands/CommonCommand2.cpp:
+    .text start:0x02024cac end:0x02024cc0
+
+src/main/Commands/CommonCommand3.cpp:
+    .text start:0x02024e90 end:0x02024f10
+
+src/main/Commands/CommonCommand4.cpp:
+    .text start:0x02024f74 end:0x02025618
+
+src/main/Commands/CommonCommand5.cpp:
+    .text start:0x0202561c end:0x020256f4
+
 src/main/dss/arrayToIndex.cpp:
     complete
     .text start:0x0201d8c8 end:0x0201d92c
@@ -375,6 +403,7 @@ src/main/cmn/TalkSoundManager.cpp:
     complete
     .text start:0x02039750 end:0x02039b70
     .rodata start:0x020b614c end:0x020b6154
+    .bss start:0x020efcc0 end:0x020efd50
 
 src/main/cmn/WorldLocation.cpp:
     complete

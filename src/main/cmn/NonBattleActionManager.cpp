@@ -1,7 +1,7 @@
 #include "main/cmn/NonBattleActionManager.hpp"
-#include "ov000/TownStageManager.hpp"
-#include "ov001/FieldStage.hpp"
-#include "ov000/TownPlayerManager.hpp"
+#include "ov000/town/TownStageManager.hpp"
+#include "ov001/fld/FieldStage.hpp"
+#include "ov000/town/TownPlayerManager.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/cmn/PlayerManager.hpp"
 #include "main/cmn/ExtraMapLink.hpp"
@@ -42,7 +42,7 @@ ARM void cmn::NonBattleActionManager::execute()
                         g_Stage.setWorldTime(0x100);
                     }
                 } else if (func_02058114(data_0210bb94, 14)) {
-                    func_ov001_0212b948()->pause_ = 0;
+                    func_ov001_0212b948()->fieldData.pause_ = 0;
                     func_0204b694(1);
                     if (g_Stage.getWorldTime() < 0x840) {
                         g_Stage.setTimeZone(TIME_ZONE_NIGHT);
@@ -54,7 +54,7 @@ ARM void cmn::NonBattleActionManager::execute()
                 }
                 g_Global.fadeOutBlack(0xf);
                 func_020882b0(g_Global.getMapName(), data_020c1328);
-                ((ExtraMapLink*)&data_020ed28c)->setRanaLink();
+                cmn::g_extraMapLink.setRanaLink();
                 g_Global.setRanarutaFlag(false);
                 return;
             case ACTION_RIREMITO:
@@ -71,7 +71,7 @@ ARM void cmn::NonBattleActionManager::execute()
                     func_ov000_02139668()->fldObject_.m_flag &= ~4;
                     func_020499a4(1);
                 } else if (func_02058114(data_0210bb94, 14)) {
-                    func_ov001_0212b948()->pause_ = 0;
+                    func_ov001_0212b948()->fieldData.pause_ = 0;
                     func_0204b694(1);
                 }
                 g_cmnPartyInfo.setMenuAction(MENU_RIREMIT);
@@ -91,7 +91,7 @@ ARM void cmn::NonBattleActionManager::execute()
                     func_ov000_02139668()->fldObject_.m_flag &= ~4;
                     func_020499a4(1);
                 } else if (func_02058114(data_0210bb94, 14)) {
-                    func_ov001_0212b948()->pause_ = 0;
+                    func_ov001_0212b948()->fieldData.pause_ = 0;
                     func_0204b694(1);
                 }
                 g_Global.acceptBattle();
@@ -121,14 +121,14 @@ ARM void cmn::NonBattleActionManager::execute()
                     func_ov000_02139668()->fldObject_.m_flag &= ~4;
                     func_020499a4(1);
                 } else if (func_02058114(data_0210bb94, 14)) {
-                    func_ov001_0212b948()->pause_ = 0;
+                    func_ov001_0212b948()->fieldData.pause_ = 0;
                     func_0204b694(1);
                 }
                 if (func_0202adc4()->unk_150 != 0) {
                     func_ov000_02132a90()->flagMapLink_ = 1;
                     func_0202aea4(func_0202adc4());
                     func_02030278(func_0202adc4()->unk_130, 0);
-                    func_ov000_0213b5a0(&func_ov000_02132a90()->unk_c);
+                    func_ov000_0213b5a0(&func_ov000_02132a90()->partyDraw_);
                     func_ov000_02137f2c();
                     func_ov000_02138210();
                     func_02049b94();
@@ -206,7 +206,7 @@ ARM void cmn::NonBattleActionManager::setAction(ACTION_EFFECT action)
         func_ov000_02139668()->fldObject_.m_flag |= 4;
         func_020499a4(0);
     } else if (func_02058114(data_0210bb94, 14)) {
-        func_ov001_0212b948()->pause_ = 1;
+        func_ov001_0212b948()->fieldData.pause_ = 1;
         func_0204b694(0);
     }
     status_ = action;

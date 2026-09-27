@@ -173,7 +173,7 @@ THUMB int cmd_check_money(int* param)
     return result;
 }
 
-THUMB int cmd_set_macro_target_index(int* param)
+THUMB int cmd_check_hero_level(int* param)
 {
     int index = status::g_Party.getSortIndex(1);
     if (index == -1) {

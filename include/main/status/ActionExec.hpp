@@ -1,4 +1,6 @@
 #pragma once
+
+struct TownFurnitureManager;
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 #include "main/status/CharacterStatus.hpp"
@@ -57,7 +59,7 @@ struct TownPlayerManager;
 extern "C" TownPlayerManager* func_ov000_02132a90();                        // TownPlayerManager::getInstance → &m_singleton
 extern "C" int   func_ov000_02135358(void* self);              // TownPlayerManager::getInpasMapObj
 extern "C" int   func_ov000_021232d0(void* self);              // TownFurnitureManager::checkNothing
-extern "C" void* func_ov000_02122ad8();                        // TownFurnitureManager::getInstance → &m_singleton
+extern "C" TownFurnitureManager* func_ov000_02122ad8();                        // TownFurnitureManager::getInstance → &m_singleton
 extern "C" int   func_ov000_02123144(void* self, int mapObj);  // TownFurnitureManager::checkCoffer
 struct BattleMonsterDraw2;
 extern "C" BattleMonsterDraw2* func_ov000_02121d04();          // BattleMonsterDraw::getInstance

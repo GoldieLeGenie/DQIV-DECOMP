@@ -3,6 +3,7 @@
 #include "main/status/StageStatus.hpp"
 #include "main/global/Global.hpp"
 #include "main/status/BattleResult.hpp"
+#include "main/Commands/CommonCommand.hpp"
 
 char btldpou1[12] = "btldpou1";
 char btldpou2[12] = "btldpou2";
@@ -48,7 +49,7 @@ THUMB void btl::BattleScriptManager::checkScriptBattleResult()
                 param.value = (flagInfo_[i].victory == 1) ? 1 : 0;
             }
 
-            func_02023828(&param);
+            cmd_set_flag((int*)&param);
         }
     }
 

@@ -21175,13 +21175,13 @@ from:0x0208afa4 kind:arm_call to:0x02088740 module:main
 from:0x0208afac kind:arm_call to:0x02088740 module:main
 from:0x0208afb4 kind:arm_call to:0x02088740 module:main
 from:0x0208afbc kind:arm_call to:0x02088740 module:main
-from:0x0208afc4 kind:load to:0x020ed294 module:main
-from:0x0208afc8 kind:load to:0x020eda14 module:main
-from:0x0208afcc kind:load to:0x020edb40 module:main
-from:0x0208afd0 kind:load to:0x020edb4c module:main
-from:0x0208afd4 kind:load to:0x020edb58 module:main
-from:0x0208afd8 kind:load to:0x020edb6c module:main
-from:0x0208afdc kind:load to:0x020edb78 module:main
+from:0x0208afc4 kind:load to:0x020ed28c add:0x8 module:main
+from:0x0208afc8 kind:load to:0x020ed28c add:0x788 module:main
+from:0x0208afcc kind:load to:0x020ed28c add:0x8b4 module:main
+from:0x0208afd0 kind:load to:0x020ed28c add:0x8c0 module:main
+from:0x0208afd4 kind:load to:0x020ed28c add:0x8cc module:main
+from:0x0208afd8 kind:load to:0x020ed28c add:0x8e0 module:main
+from:0x0208afdc kind:load to:0x020ed28c add:0x8ec module:main
 from:0x0208aff0 kind:load to:0x020edb84 module:main
 from:0x0208aff4 kind:load to:0x020be970 module:main
 from:0x0208affc kind:thumb_call_arm to:0x020573e0 module:main

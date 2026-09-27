@@ -84,6 +84,8 @@ namespace cmn
         void setLinkData(int nowId, int nextId, LINK_TYPE type, const char* nowMapName, const char* nextMapName);
         void setLinkData(int nowId, int nextId, LINK_TYPE type, const char* nowMapName, const char* nextMapName,dss::Fx32Vector3& offset);
     };
+
+    extern ExtraMapLink g_extraMapLink;    // data_020ed28c
 }
 
 struct Global;

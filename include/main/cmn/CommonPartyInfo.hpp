@@ -110,7 +110,7 @@ struct PlayerManager {
 };
 
 struct FieldPlayerManager : PlayerManager {          
-    virtual void vf00();
+    virtual void setPosition(dss::Fx32Vector3& pos);
     virtual dss::Fx32Vector3 vf04();       // getPosition
     virtual void vf08();
     virtual void vf0C();       

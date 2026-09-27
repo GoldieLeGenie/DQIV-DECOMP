@@ -18,7 +18,18 @@ namespace dss{
         Fx32& operator=(fx32 v);
         Fx32 operator-(const Fx32& o);
         Fx32(const long& v);            // func_02087110
+        Fx32(const float& v);           // func_02087120
+        Fx32& operator=(long v);        // func_02087154
         bool operator>=(const Fx32& o) const;
+        Fx32& operator*=(const Fx32& o);       // func_020872fc
+        Fx32& operator+=(const Fx32& o);       // func_020871f4
+        Fx32 operator*(int v) const;           // func_02087268
+        Fx32 operator+(const Fx32& o) const;   // func_020871bc
+        Fx32 operator/(const Fx32& o) const;   // func_02087348
+        bool operator<(const Fx32& o) const;   // func_02087408
+        bool operator==(const Fx32& o) const;  // func_020873a8
+        bool operator!=(const Fx32& o) const;  // func_020873c0
+        Fx32 operator/(int v) const;           // func_02087320
     };
 
     template <typename T>
@@ -57,6 +68,14 @@ namespace dss{
         short vx;
         short vy;
         short vz;
+        void set(short x, short y, short z) { vx = x; vy = y; vz = z; }
+    };
+    template <typename T>
+    struct Vector3;
+
+    template <>
+    struct Vector3<short> : Vector3short {
+        Vector3() { vx = 0; vy = 0; vz = 0; }
     };
     struct Vector3int {
         int vx;
@@ -79,6 +98,7 @@ namespace dss{
         Fx32Vector3 operator*(const Fx32& s) const;         // func_02088a28
         Fx32 operator*(const Fx32Vector3& o) const;         // func_02088d40 (dot product)
         Fx32Vector3 operator+(const Fx32Vector3& o) const;  // func_020888e8
+        bool operator!=(const Fx32Vector3& o) const;        // func_02088cf4
     };
     int arrayToIndex(int* array, int value, int max);
     int getRandomVariation(int value, int under, int over);
@@ -93,3 +113,16 @@ namespace dss{
     
 }
 
+struct Mtx43 {
+    int m[12];
+};
+
+extern "C" {
+    int func_02080d94(dss::Fx32 value);
+    void func_020885f8(Mtx43* m);
+    void func_02088698(Mtx43* m, short angle);
+    void func_020886d0(Mtx43* m, short angle);
+    void func_0208888c(dss::Fx32Vector3* v, int x, int y, int z);
+    void func_02088b10(dss::Fx32Vector3* v, void* scale);
+    dss::Fx32Vector3 func_02088670(Mtx43* m, dss::Fx32Vector3* v);
+}

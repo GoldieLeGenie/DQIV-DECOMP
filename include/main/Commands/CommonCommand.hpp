@@ -1,0 +1,225 @@
+#pragma once
+struct TownPartyDraw;
+#include "main/window/CommandWindow.hpp"
+#include "globaldefs.h"
+#include "GameInfo.hpp"
+#include "main/dss/DssUtils.hpp"
+#include "main/encount/Encount.hpp"
+#include "main/cmn/GameManager.hpp"
+
+struct FieldPlayerManager;
+struct TownPlayerManager;
+struct TownCharacterManager;
+struct TownStageManager;
+
+struct ScriptObjectId {
+    int id_;
+};
+
+struct CommandParameter;
+
+struct ScriptCommand {
+    virtual void initialize(char* scriptParam);
+    virtual void execute() {}
+    virtual void vf08() {}
+    virtual bool isEnd();
+    ~ScriptCommand() {}
+    int exec(CommandParameter* command);
+};
+extern "C" int func_02020008(CommandParameter* command);
+
+enum TriggerCheck {
+    TRIGGER_CHECK_0,
+    TRIGGER_CHECK_1,
+    TRIGGER_CHECK_2,
+    TRIGGER_CHECK_3,
+    TRIGGER_CHECK_4,
+    TRIGGER_CHECK_5,
+};
+
+int cmd_setup(int* param);
+int cmd_message1(int* param);
+int cmd_message2(int* param);
+int cmd_random_message(int* param);
+int cmd_is_timezone(int* param);
+int cmd_set_timezone(int* param);
+int cmd_is_player_status_dead(int* param);
+int cmd_is_party_ride_carriage(int* param);
+int cmd_is_party_member(int* param);
+int cmd_is_party_order(int* param);
+int cmd_set_party_total_recovery(int* param);
+
+int cmd_get_flag(int* param);
+int cmd_set_flag(int* param);
+int cmd_encount(int* param);
+int cmd_encount_set_flag(int* param);
+int cmd_encount_first_strike(int* param);
+int cmd_set_party_join_carriage();
+int cmd_set_town_to_field_link(int* param);
+int cmn_set_field_to_town_link(int* param);
+int cmd_is_trigger_forward(int* param);
+int cmd_set_encount_disable(int* param);
+int cmd_set_encount_stage_disable(int* param);
+int cmd_set_demolition_fightingarena(int* param);
+int cmd_event_chapter_end(int* param);
+int cmd_chapter_restore(int* param);
+int cmd_chapter_restore_coin(int* param);
+int cmd_is_battle_turn(int* param);
+int cmd_set_random(int* param);
+int cmd_set_random2(int* param);
+int cmd_set_music(int* param);
+int cmd_music_pause(int* param);
+int cmd_play_music_now_map(int* param);
+int cmd_set_wait_counter(int* param);
+int cmd_is_wait_counter(int* param);
+int cmd_is_push_key(int* param);
+int cmd_wait_operation(int* param);
+int cmd_set_day_count(int* param);
+int cmd_is_day_count(int* param);
+int cmd_add_nene_count(int* param);
+int cmd_set_chapter(int* param);
+int cmd_chapter_store(int* param);
+int cmd_map_link_field_direct(int* param);
+int cmd_floor_change(int* param);
+int cmd_floor_exit(int* param);
+int cmd_set_map_link_on_off(int* param);
+int cmd_change_map_link(int* param);
+int cmd_set_vehicle(int* param);
+int cmd_not_play_normal_sound(int* param);
+int cmd_check_member_type(int* param);
+int cmd_check_member_num(int* param);
+int cmd_set_sleep_near(int* param);
+int cmd_string_print(int* param);
+int cmd_player_lock(int* param);
+int cmd_set_macro_actor();
+int cmd_set_macro_target();
+int cmd_set_macro_target_index(int* param);
+int cmd_set_macro_prisoner();
+int cmd_set_macro_x_item1(int* param);
+int cmd_set_macro_i_name(int* param);
+int cmd_barrier_disruption(int* param);
+int cmd_is_barrier_disruption(int* param);
+int cmd_set_party_join(int* param);
+int cmd_set_party_quit(int* param);
+int cmd_party_del2(int* param);
+int cmd_battle_end_flag_set(int* param);
+int cmd_not_use_load_message();
+int cmd_set_message_sound(int* param);
+int cmd_is_monster(int* param);
+int cmd_set_party_mark(int* param);
+int cmd_set_player_henge_endless(int* param);
+int cmd_set_party_call_carriage(int* param);
+int cmd_set_forward_counter(int* param);
+int cmd_setup_music(int* param);
+int cmd_check_hero_sex(int* param);
+int cmd_stream_play(int* param);
+int cmd_is_load_init(int* param);
+int cmd_check_search_action(int* param);
+int cmd_set_no_search_message(int* param);
+int cmd_set_timezone_pause(int* param);
+int cmd_is_party_top(int* param);
+int cmd_is_not_party_top(int* param);
+int cmd_is_party_all(int* param);
+int cmd_is_not_party_all(int* param);
+int cmd_is_party_head_count(int* param);
+int cmd_is_not_party_head_count(int* param);
+int cmd_set_se(int* param);
+int cmd_cut_se(int* param);
+int cmd_set_player_recovery(int* param);
+int cmd_set_player_in_carriage(int* param);
+int cmd_set_player_ride_on(int* param);
+int cmd_set_ship_pos(int* param);
+int cmd_set_title_part(int* param);
+
+extern char data_0210bb94[];
+
+struct MapNameTable5 {
+    const char* name_[5];
+};
+struct MapNameTable6 {
+    const char* name_[6];
+};
+
+extern MapNameTable6 data_020b4fe8;
+extern MapNameTable5 data_020b4fd4;
+extern const float data_020be058;
+extern const float data_020be064;
+extern const float data_020be06c;
+extern const float data_020be070;
+extern const float data_020be074;
+extern const float data_020be07c;
+extern const float data_020be084;
+extern const float data_020be088;
+extern const float data_020be09c;
+extern int data_020ecf3c;
+extern int data_ov000_0214eb98;
+extern const long data_020be04c;
+extern const long data_020be054;
+extern const long data_020be05c;
+extern const long data_020be060;
+extern const long data_020be068;
+extern const long data_020be080;
+extern const long data_020be090;
+extern const long data_020be098;
+extern const long data_020be0a0;
+extern const float data_020be050;
+extern const float data_020be078;
+extern const float data_020be08c;
+extern const float data_020be094;
+extern const float data_020be0a4;
+extern const float data_020be0a8;
+extern dss::Fx32 data_020f4e18;
+extern dss::Fx32 data_020f4e28;
+extern dss::Fx32 data_020f4e2c;
+
+extern "C" {
+    encount::Encount* func_0200a6c8(void);
+    void func_0200acc8(encount::Encount* encount, int id);
+    void func_0200acec(encount::Encount* encount, int id);
+    void* func_0201f16c(void);
+    int  func_02058114(void* global, int partId);
+    FieldPlayerManager* func_ov001_02127b28(void);
+    void func_ov001_0212a620(FieldPlayerManager* mgr, int lock);
+    TownPlayerManager* func_ov000_02132a90(void);
+    void func_ov000_02135ac0(TownPlayerManager* mgr, int lock);
+    dss::Fx32Vector3 func_02088bdc(const dss::Fx32Vector3& v, int div);
+    dss::Fx32Vector3 func_02088988(const dss::Fx32Vector3& a, const dss::Fx32Vector3& b);
+    int  func_020320ac(dss::Fx32Vector3* pos, int dir, dss::Fx32Vector3* min, dss::Fx32Vector3* max, TriggerCheck check, int type);
+    void func_02030f60(cmn::GameManager* mgr);
+    void func_0208718c(dss::Fx32* obj, const dss::Fx32& value);
+    void func_020499a4(int flag);
+    void func_ov000_02138ed0(TownCharacterManager* mgr);
+    void func_ov000_0213b118(TownPartyDraw* draw, int value);
+    void* func_ov000_02132228(void);
+    void* func_ov001_02127458(void);
+    dss::Fx32Vector3 func_02032424(int x, int y, int z);
+    short func_0203244c(int dir);
+    void* func_02037da4(void);
+    int func_02037d6c(void* obj, int type);
+    void func_ov000_021341ec(void* mgr, int lock);
+    void func_02054364(int slot, int type, int value);
+    void func_02054380(int slot, int type, int value);
+    void func_0205439c(int slot, int type, int value);
+    int func_ov000_0213556c(TownPlayerManager* mgr, int index);
+    short func_0202528c(int* param);
+    short func_020254a4(short count, short alive, int mode);
+    int func_020254b8(int index, int type);
+    int func_02025514(int index, int type);
+    int func_0202555c(int index, int type);
+    void func_ov000_021359ec(TownPlayerManager* mgr, int a, int b);
+    void func_02055980(int id);
+    int func_ov000_02135848(TownPlayerManager* mgr);
+    void func_02088b3c(dss::Fx32Vector3* v, int value);
+    int func_0202375c(void);
+    int func_020236a8(void);
+    int func_ov000_02138eb8(TownCharacterManager* mgr, int index);
+    void* func_ov001_0212aaac(void);
+    void func_ov001_0212ab8c(void* obj, int message, int count);
+    window::CommandWindow* func_ov000_021372e8(void);
+    void func_ov000_0213745c(void* obj, int message, int count);
+    void func_ov000_0213747c(void* obj);
+    void func_ov000_02137470(void* obj, int message);
+    void func_ov000_02139e30(TownStageManager* mgr, char* mapName);
+    TownStageManager* func_ov000_02139668(void);
+    void func_02023688(ScriptObjectId id, int enable);
+}

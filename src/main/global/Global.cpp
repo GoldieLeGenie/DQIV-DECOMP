@@ -216,7 +216,7 @@ THUMB void Global::endBattle(bool wipeout)
     if (fightingarenaFlag_ != 0) {
         g_GlobalFlag.clear();
         fightingarenaFlag_ = 0;
-        ((cmn::ExtraMapLink*)&data_020ed28c)->setExtraLinkTown(fightingarenaMapName_, fightingarenaPosition_, 0);
+        cmn::g_extraMapLink.setExtraLinkTown(fightingarenaMapName_, fightingarenaPosition_, 0);
     } else if (!wipeout) {
         g_GlobalChangePart.setNextPart(currentGamePart_);
         func_02058294(data_0210bc18, &g_GlobalChangePart);

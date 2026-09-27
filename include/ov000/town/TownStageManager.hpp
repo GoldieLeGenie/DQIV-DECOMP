@@ -9,21 +9,47 @@ extern "C" {
     void func_02047b04(TownStageManager* mgr, int id, int flag);
     void func_02046470(void* obj, int id);
     void func_02047b14(TownStageManager* mgr, int id, int flag);
+    void func_ov000_02139f1c(TownStageManager* mgr, dss::Fx32Vector3* rate, int flag);
+}
+
+struct TownDataManager {
+    int correctTime_;
+    dss::Fx32Vector3 rate_;
+    int nextIndex_;
+
+    void setNextBackColor(int index) { nextIndex_ = index; }
+    int getNextBackColor() { return nextIndex_; }
+};
+
+struct TownStageManager;
+extern "C" {
 }
 
 struct TownStageManager {
     char unk_000[0x58];
     fld::FLDObject fldObject_;                                                      // 0x58
-    char unk_638[0x8b4 - 0x638];
+    char unk_638[0x664 - 0x638];
+    int unk_664;                                                                    // 0x664
+    char unk_668[0x8b4 - 0x668];
     char coll_[0x5c];                                                               // 0x8B4
     int unk_910;                                                                    // 0x910
-    char unk_914[0xbb0 - 0x914];
+    char unk_914[0xabc - 0x914];
+    TownDataManager townData_;                                                      // 0xABC
+    char unk_ad0[0xb08 - 0xad0];
+    char mapEffect_[0xbb0 - 0xb08];                                                 // 0xB08
     int unk_bb0;                                                                    // 0xBB0
 
     void setCollision(int id, int flag) { func_02047b04(this, id, flag); }
     void setCollisionObject(int id) { func_02046470(&fldObject_, id); }
     void eventAnim(int id, int flag) { func_02047b14(this, id, flag); }
     void setMapTexture(int texture) { unk_bb0 = texture; }
+    void setClipping(int clip) { unk_664 = clip; }
+    dss::VecFx32& GetCameraCentFX32(int no) { return fldObject_.unk_254[no]; }
+    dss::VecFx32& GetCameraPosFX32(int no) { return fldObject_.unk_26c[no]; }
+    dss::VecFx32& GetCameraUpFX32(int no) { return fldObject_.unk_284[no]; }
+    void setNextBackColor(int index) { townData_.setNextBackColor(index); }
+    int getNextBackColor() { return townData_.getNextBackColor(); }
+    void setClipDistance(dss::Fx32 dist) { fldObject_.unk_2a8 = dist.value; }
 };
 
 extern "C" {

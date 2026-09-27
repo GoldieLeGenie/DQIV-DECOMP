@@ -1,6 +1,6 @@
 #include "ov000/Commands/TownCommand.hpp"
-#include "ov000/TownPlayerManager.hpp"
-#include "ov000/TownStageManager.hpp"
+#include "ov000/town/TownPlayerManager.hpp"
+#include "ov000/town/TownStageManager.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/StageStatus.hpp"
@@ -8,8 +8,6 @@
 #include "main/cmn/PartyTalk.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/cmn/NonBattleActionManager.hpp"
-
-extern "C" void func_02030f60(cmn::GameManager* mgr);
 
 void searchItem(int index, int* found, int* items);
 
@@ -241,7 +239,7 @@ THUMB int cmd_set_map_texture(int* param)
 
 THUMB int cmd_map_shake(int* param)
 {
-    func_ov000_02136d40(func_ov000_02135c88(), param[0], param[1]);
+    TownCamera::getSingleton()->setShake(param[0], param[1]);
     return 1;
 }
 
@@ -259,10 +257,10 @@ THUMB int cmd_effect_blur(int* param)
 THUMB int cmd_party_display(int* param)
 {
     if (param[0] == 1) {
-        func_ov000_0213b010(&func_ov000_02132a90()->unk_c);
-        func_ov000_0213afcc(&func_ov000_02132a90()->unk_c);
+        func_ov000_0213b010(&func_ov000_02132a90()->partyDraw_);
+        func_ov000_0213afcc(&func_ov000_02132a90()->partyDraw_);
     } else {
-        func_ov000_0213b0b0(&func_ov000_02132a90()->unk_c);
+        func_ov000_0213b0b0(&func_ov000_02132a90()->partyDraw_);
     }
     return 1;
 }
@@ -290,12 +288,12 @@ THUMB int cmd_is_talked_at_shop(int* param)
 {
     int index = func_0202375c();
     if (param[0] == 1) {
-        if (func_ov000_0212e9d8(func_ov000_02137f2c()->chara_[index]) == 1 &&
+        if (func_ov000_0212e9d8(func_ov000_02137f2c()->character_[index]) == 1 &&
             func_ov000_0213842c(func_ov000_02137f2c(), index) == 1) {
             return 1;
         }
     } else {
-        if (func_ov000_0212e9d8(func_ov000_02137f2c()->chara_[index]) == 0 &&
+        if (func_ov000_0212e9d8(func_ov000_02137f2c()->character_[index]) == 0 &&
             func_ov000_0213842c(func_ov000_02137f2c(), index) == 1) {
             return 1;
         }
@@ -305,8 +303,8 @@ THUMB int cmd_is_talked_at_shop(int* param)
 
 THUMB int cmd_search_map_object(int* param)
 {
-    if (param[0] == func_ov000_02132a90()->unk_1720) {
-        func_ov000_02132a90()->unk_1764 = 5;
+    if (param[0] == func_ov000_02132a90()->searchMapUid_) {
+        func_ov000_02132a90()->searchAction_ = 5;
         cmn::PartyTalk::getSingleton()->resetPartyTalk();
         return 1;
     }
@@ -326,21 +324,21 @@ THUMB int cmd_set_floor_map_object(int* param)
 THUMB int cmd_character_move_passive(int* param)
 {
     int index = func_0202375c();
-    func_ov000_0212de50(func_ov000_02137f2c()->chara_[index]);
+    func_ov000_0212de50(func_ov000_02137f2c()->character_[index]);
     return 1;
 }
 
 THUMB int cmd_character_move_random(int* param)
 {
     int index = func_0202375c();
-    func_ov000_0212e408(func_ov000_02137f2c()->chara_[index]);
+    func_ov000_0212e408(func_ov000_02137f2c()->character_[index]);
     return 1;
 }
 
 THUMB int cmd_character_move_reverse(int* param)
 {
     int index = func_0202375c();
-    func_ov000_0212e1a0(func_ov000_02137f2c()->chara_[index]);
+    func_ov000_0212e1a0(func_ov000_02137f2c()->character_[index]);
     return 1;
 }
 
@@ -351,7 +349,7 @@ THUMB int cmd_is_trigger_distance(int* param)
     dss::Fx32Vector3 charaPos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
     dss::Fx32 distance;
     distance.value = param[0];
-    func_020872fc(&distance, &distance);
+    distance *= distance;
     if (((TownSystem*)func_ov000_02132228())->unk_614 == 1) {
         dss::Fx32 length = func_0208908c(playerPos, charaPos);
         if (func_02087420(&length, &distance)) {
@@ -375,13 +373,13 @@ THUMB int cmd_character_set_coll_stage(int* param)
     if (param[2] == 1) {
         flag |= 4;
     }
-    func_ov000_02137f2c()->chara_[index]->unk_161 = flag;
+    func_ov000_02137f2c()->character_[index]->unk_161 = flag;
     return 1;
 }
 
 THUMB int cmd_party_redisplay(int* param)
 {
-    func_ov000_0213b010(&func_ov000_02132a90()->unk_c);
-    func_ov000_0213afcc(&func_ov000_02132a90()->unk_c);
+    func_ov000_0213b010(&func_ov000_02132a90()->partyDraw_);
+    func_ov000_0213afcc(&func_ov000_02132a90()->partyDraw_);
     return 1;
 }

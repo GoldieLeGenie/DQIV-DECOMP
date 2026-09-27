@@ -1,5 +1,5 @@
 #include "ov000/Commands/TownCommand.hpp"
-#include "ov000/TownPlayerManager.hpp"
+#include "ov000/town/TownPlayerManager.hpp"
 #include "main/status/StageStatus.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/cmn/HengeNoTsueManager.hpp"
@@ -23,7 +23,7 @@ THUMB int cmd_set_player_position(int* param)
     pos.vy.value = param[1];
     pos.vz.value = param[2];
     func_ov000_02132a90()->setPosition(pos);
-    if (func_ov000_02132a90()->unk_12fc == 9) {
+    if (func_ov000_02132a90()->actionType_ == 9) {
         func_ov000_021287e4(func_ov000_021285c0(), &pos);
     }
     return 1;
@@ -41,10 +41,10 @@ THUMB int cmd_is_speaked(int* param)
     int id = func_02023778(index);
     int voice = func_ov000_02138eb8(func_ov000_02137f2c(), index);
     if (func_ov000_0213842c(func_ov000_02137f2c(), index) != 0) {
-        if (func_ov000_0212e930(func_ov000_02137f2c()->chara_[index]) == 0 && g_HengeNoTsue.isMonster() == 1) {
+        if (func_ov000_0212e930(func_ov000_02137f2c()->character_[index]) == 0 && g_HengeNoTsue.isMonster() == 1) {
             int message = g_HengeNoTsue.getMessage(voice);
             if (message != -1) {
-                func_02056358(((cmn::TalkSoundManager*)data_020efcc0)->getCharacterVoice(index));
+                func_02056358(cmn::g_talkSound.getCharacterVoice(index));
                 func_ov000_0213747c(func_ov000_021372e8());
                 func_ov000_02137470(func_ov000_021372e8(), message);
                 cmn::PartyTalk::getSingleton()->resetPartyTalk();
@@ -54,7 +54,7 @@ THUMB int cmd_is_speaked(int* param)
                 return 0;
             }
         }
-        ((cmn::TalkSoundManager*)data_020efcc0)->setVoice(voice);
+        cmn::g_talkSound.setVoice(voice);
         cmn::PartyTalk::getSingleton()->resetPartyTalk();
         cmn::PartyTalk::getSingleton()->setObjectNo(id);
         g_cmnPartyInfo.playerTalk = 1;
@@ -67,8 +67,8 @@ THUMB int cmd_speak_to_player(int* param)
 {
     int index = func_0202375c();
     func_ov000_02138308(func_ov000_02137f2c(), index);
-    ((cmn::TalkSoundManager*)data_020efcc0)->setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
-    ((cmn::TalkSoundManager*)data_020efcc0)->setMessageSound(param[1], index);
+    cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
+    cmn::g_talkSound.setMessageSound(param[1], index);
     func_ov000_0213745c(func_ov000_021372e8(), param[0], param[1]);
     if (!g_HengeNoTsue.isMonster()) {
         cmn::PartyTalk::getSingleton()->setPreMessageNo(param[0]);
@@ -83,7 +83,7 @@ THUMB int cmd_speak_to_player2(int* param)
     if (!g_HengeNoTsue.isMonster()) {
         cmn::PartyTalk::getSingleton()->setPreMessageNo(param[0]);
     }
-    ((cmn::TalkSoundManager*)data_020efcc0)->setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
+    cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
     int message[8];
     message[0] = param[0];
     message[1] = param[1];
@@ -100,7 +100,7 @@ THUMB int cmd_speak_to_player2(int* param)
         }
         count++;
     }
-    ((cmn::TalkSoundManager*)data_020efcc0)->setMessageSound(count, index);
+    cmn::g_talkSound.setMessageSound(count, index);
     if (param[0] != 0) {
         func_ov000_0213747c(func_ov000_021372e8());
         func_ov000_02137470(func_ov000_021372e8(), param[0]);

@@ -534,8 +534,8 @@ THUMB void profile::Profile::deliverRESTART_MAP(dss::Fx32Vector3* pos, short dir
         return;
     }
     if (func_020882b0((const char*)this->pPARTY->RESTART, data_020c13a0) == 0) {
-        ((cmn::ExtraMapLink*)&data_020ed28c)->setExtraLinkFieldAbsPos(this->pPARTY->FIELDTYPE, *pos, 4);
+        cmn::g_extraMapLink.setExtraLinkFieldAbsPos(this->pPARTY->FIELDTYPE, *pos, 4);
         return;
     }
-    ((cmn::ExtraMapLink*)&data_020ed28c)->setExtraLinkTown((const char*)this->pPARTY->RESTART, *pos, dir);
+    cmn::g_extraMapLink.setExtraLinkTown((const char*)this->pPARTY->RESTART, *pos, dir);
 }

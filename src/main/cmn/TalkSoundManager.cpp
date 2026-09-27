@@ -5,6 +5,8 @@
 
 const CharaVoiceCount charaVoiceCount_ = { 0xd9, 0x1a };  // 0x020b614c
 
+cmn::TalkSoundManager cmn::g_talkSound;
+
 
 ARM void cmn::TalkSoundManager::setup()
 {
@@ -49,10 +51,10 @@ ARM void cmn::TalkSoundManager::setMessageSound(int count, int index)
     if (index == -1) {
         return;
     }
-    if (func_ov000_0212ebc8(func_ov000_02137f2c()->chara_[index]) != 1) {
+    if (func_ov000_0212ebc8(func_ov000_02137f2c()->character_[index]) != 1) {
         return;
     }
-    func_02056358(func_ov000_0212ebdc(func_ov000_02137f2c()->chara_[index]));
+    func_02056358(func_ov000_0212ebdc(func_ov000_02137f2c()->character_[index]));
 }
 
 ARM cmn::TalkSoundManager::MESSAGESOUND cmn::TalkSoundManager::getOrderMessageSound()

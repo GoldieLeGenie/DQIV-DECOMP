@@ -22,3 +22,74 @@ src/ov000/Commands/TownCommand3.cpp:
     complete
     .text start:0x0213f9d8 end:0x02140170
 
+src/ov000/Commands/TownCommand4.cpp:
+    complete
+    .text start:0x0214040c end:0x02140458
+
+src/ov000/Commands/TownCommand5.cpp:
+    complete
+    .text start:0x0214048c end:0x021405e0
+
+src/ov000/Commands/TownCommand6.cpp:
+    complete
+    .text start:0x02140624 end:0x02140670
+
+src/ov000/Commands/TownCommand7.cpp:
+    complete
+    .text start:0x02140718 end:0x02140820
+
+src/ov000/Commands/TownCommand8.cpp:
+    complete
+    .text start:0x021408b8 end:0x021408d0
+
+src/ov000/Commands/TownCommand9.cpp:
+    complete
+    .text start:0x02140dbc end:0x02140e8c
+
+src/ov000/Commands/TownCommand10.cpp:
+    complete
+    .text start:0x02140f64 end:0x02140fa4
+
+src/ov000/Commands/TownCommand11.cpp:
+    complete
+    .text start:0x02140fc4 end:0x02140fe8
+
+src/ov000/Commands/TownCommand12.cpp:
+    complete
+    .text start:0x02141144 end:0x02141180
+
+src/ov000/Commands/TownCommand13.cpp:
+    complete
+    .text start:0x0214139c end:0x02141424
+
+src/ov000/Commands/TownCommand20.cpp:
+    complete
+    .text start:0x0214151c end:0x0214159c
+
+src/ov000/Commands/TownCommand14.cpp:
+    complete
+    .text start:0x021415d4 end:0x021415f8
+
+src/ov000/Commands/TownCommand15.cpp:
+    complete
+    .text start:0x02141760 end:0x02141878
+
+src/ov000/Commands/TownCommand16.cpp:
+    complete
+    .text start:0x021418c8 end:0x02141a10
+
+src/ov000/Commands/TownCommand17.cpp:
+    complete
+    .text start:0x02141a28 end:0x02141a58
+
+src/ov000/Commands/TownCommand18.cpp:
+    complete
+    .text start:0x02141ab0 end:0x02141b44
+    .data start:0x02148fa4 end:0x02148fac
+
+src/ov000/Commands/TownCommand19.cpp:
+    complete
+    .text start:0x02141bb4 end:0x02141c14
+
+src/ov000/town/TownCamera.cpp:
+    .text start:0x02135b38 end:0x021372cc

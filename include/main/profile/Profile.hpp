@@ -262,4 +262,3 @@ extern char data_020c13a0[8];
 extern "C" void func_0200b864(Global *g);                        // init g_Global
 extern "C" void func_0205594c(int fade);                         // SoundManager::stopBgm
 extern "C" void func_0203ab20(void *mgr, int index, unsigned char value); // 
-extern int data_020ed28c;                         // cmn::g_extraMapLink

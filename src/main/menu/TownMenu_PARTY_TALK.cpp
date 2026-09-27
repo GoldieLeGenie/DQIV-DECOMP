@@ -6,10 +6,9 @@
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/StoryStatus.hpp"
 #include "main/dss/Random.hpp"
-#include "ov000/TownStageManager.hpp"
+#include "ov000/town/TownStageManager.hpp"
 
 extern char data_0210bb94[];
-extern cmn::TalkSoundManager data_020efcc0;
 
 static inline cmn::PartyTalk::PARTY_TALK_MESSAGE* getTalkMessage()
 {
@@ -123,10 +122,10 @@ THUMB void TownMenu_PARTY_TALK::menuSetup()
         int message = getTalkMessage()->message;
         func_02056358(cmn::TalkSoundManager::MESSAGESOUND_STOP);
         if (message == 0xc3ddb) {
-            func_02056358(data_020efcc0.getPlayerVoice(status::g_Party.getPlayerStatus(list[select])->haveStatusInfo_.haveStatus_.charaIndex_));
+            func_02056358(cmn::g_talkSound.getPlayerVoice(status::g_Party.getPlayerStatus(list[select])->haveStatusInfo_.haveStatus_.charaIndex_));
         }
         if (message != 0xc3df2 && message != 0xc3d97 && message != 0xc3d99 && message != 0x80092 && g_HengeNoTsue.change_ == 1) {
-            func_02056358(data_020efcc0.getPlayerVoice(g_HengeNoTsue.charNo_));
+            func_02056358(cmn::g_talkSound.getPlayerVoice(g_HengeNoTsue.charNo_));
         }
         data_020ed1bc.openMessageForTALK();
         for (; i < mesCount; i++) {

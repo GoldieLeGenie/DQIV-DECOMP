@@ -34,7 +34,6 @@ struct MaterielMenuExtraChangeHostage : menu::MenuBase
 
 };
 
-extern int data_020ed28c;
 extern "C" {
     MaterielMenuWindowManager* func_ov016_0216aca4(void);   
 

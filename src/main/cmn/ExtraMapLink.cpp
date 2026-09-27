@@ -4,8 +4,8 @@
 #include "main/cmn/PlayerManager.hpp"
 #include "main/status/StageStatus.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
-#include "ov000/TownStageManager.hpp"
-#include "ov000/TownPlayerManager.hpp"
+#include "ov000/town/TownStageManager.hpp"
+#include "ov000/town/TownPlayerManager.hpp"
 #include "main/status/ExcelParam.hpp"
 #include "main/cmn/CommonRuraData.hpp"
 
@@ -602,5 +602,3 @@ ARM void cmn::ExtraMapLink::setRanaLink()
         setExtraLinkFieldAbsPos(g_Global.getFieldType(), pos, 4);
     }
 }
-
-

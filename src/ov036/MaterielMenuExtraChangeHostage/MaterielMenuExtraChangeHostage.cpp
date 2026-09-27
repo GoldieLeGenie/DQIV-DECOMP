@@ -177,7 +177,7 @@ THUMB void MaterielMenuExtraChangeHostage::memberChange()
 
     hostageStatus_ = HOSTAGE_END;
 
-    ((cmn::ExtraMapLink*)&data_020ed28c)->setTownINN();   /* g_ExtraMapLink */
+    cmn::g_extraMapLink.setTownINN();
 
     cmn::GameManager::getSingleton();             
     cmn::PlayerManager::setLock(1);

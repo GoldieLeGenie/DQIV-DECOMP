@@ -1,6 +1,6 @@
 #include "ov000/Commands/TownCommand.hpp"
-#include "ov000/TownPlayerManager.hpp"
-#include "ov000/TownStageManager.hpp"
+#include "ov000/town/TownPlayerManager.hpp"
+#include "ov000/town/TownStageManager.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/global/Global.hpp"
@@ -8,8 +8,6 @@
 #include "main/menu/MenuDataCommon.hpp"
 #include "main/dss/Random.hpp"
 #include "main/profile/Profile.hpp"
-
-extern "C" TownPlayerManager* func_ov000_02132a90();
 
 THUMB int cmd_set_character_position(int* param)
 {
@@ -102,7 +100,7 @@ THUMB int cmd_chara_set_normal_sure(int* param)
     int result = func_02037ef4(func_02037da4(), id, param[0]);
     if (result != 0xff) {
         func_ov000_02137f2c()->setSureId(index, param[0]);
-        func_ov000_02137f2c()->chara_[index]->vf3c(result);
+        func_ov000_02137f2c()->character_[index]->vf3c(result);
     } else {
         func_ov000_021384c0(func_ov000_02137f2c(), index, 0);
     }
@@ -113,13 +111,13 @@ THUMB int cmd_chara_talk_to_player_sure(int* param)
 {
     int index = func_0202375c();
     if (index < func_020236a8()) {
-        func_02056358(((cmn::TalkSoundManager*)data_020efcc0)->getCharacterVoice(index));
+        func_02056358(cmn::g_talkSound.getCharacterVoice(index));
     }
     if (param[1] == 1) {
         data_020f0078 = 1;
     } else {
         int id = func_02023778(index);
-        int value = func_ov000_0212eb90(func_ov000_02137f2c()->chara_[index]);
+        int value = func_ov000_0212eb90(func_ov000_02137f2c()->character_[index]);
         func_0203a34c(&data_020f0078, func_02037f40(func_02037da4(), id, value));
     }
     if (param[0] == 1) {
@@ -201,22 +199,22 @@ THUMB int cmd_character_action_wriggle(int* param)
 
 THUMB int cmd_player_action_stepping(int* param)
 {
-    func_ov000_0213b17c(&func_ov000_02132a90()->unk_c, 0);
-    func_ov000_0213b118(&func_ov000_02132a90()->unk_c, 1);
+    func_ov000_0213b17c(&func_ov000_02132a90()->partyDraw_, 0);
+    func_ov000_0213b118(&func_ov000_02132a90()->partyDraw_, 1);
     return 1;
 }
 
 THUMB int cmd_player_action_still(int* param)
 {
-    func_ov000_0213b17c(&func_ov000_02132a90()->unk_c, 0);
-    func_ov000_0213b118(&func_ov000_02132a90()->unk_c, 0);
+    func_ov000_0213b17c(&func_ov000_02132a90()->partyDraw_, 0);
+    func_ov000_0213b118(&func_ov000_02132a90()->partyDraw_, 0);
     return 1;
 }
 
 THUMB int cmd_player_action_wriggle(int* param)
 {
-    func_ov000_0213b10c(&func_ov000_02132a90()->unk_c, 1);
-    func_ov000_0213b17c(&func_ov000_02132a90()->unk_c, 1);
+    func_ov000_0213b10c(&func_ov000_02132a90()->partyDraw_, 1);
+    func_ov000_0213b17c(&func_ov000_02132a90()->partyDraw_, 1);
     return 1;
 }
 
@@ -260,21 +258,21 @@ THUMB int cmd_character_action_pursue(int* param)
 {
     TownCharaMoveParam move;
     int index = func_0202375c();
-    if (func_ov000_02137f2c()->chara_[index]->moveType_ != 3) {
+    if (func_ov000_02137f2c()->character_[index]->moveType_ != 3) {
         func_ov000_02138670(func_ov000_02137f2c(), index, 0);
         index = func_0202375c();
         move.speed_.value = param[0];
-        func_020872fc(&move.speed_, &data_ov000_021487b0);
+        move.speed_ *= data_ov000_021487b0;
         move.unk_38 = 0;
         move.unk_34 = 0;
-        TownCharacter** chara = func_ov000_02137f2c()->chara_;
+        TownCharacterBase** chara = func_ov000_02137f2c()->character_;
         chara[index]->moveType_ = 3;
-        TownCharacter* c = chara[index];
+        TownCharacterBase* c = chara[index];
         c->movePos_[0] = move.pos_[0];
         c->movePos_[1] = move.pos_[1];
         c->movePos_[2] = move.pos_[2];
         c->movePos_[3] = move.pos_[3];
-        func_0208718c(&c->moveSpeed_, &move.speed_);
+        func_0208718c(&c->moveSpeed_, move.speed_);
         c->unk_c4 = move.unk_34;
         c->unk_c8 = move.unk_38;
     }
@@ -294,15 +292,15 @@ THUMB int cmd_character_move_roam(int* param)
     move.pos_[1].vy.value = param[4];
     move.pos_[1].vz.value = param[5];
     move.speed_.value = param[6];
-    func_020872fc(&move.speed_, &data_ov000_021487b0);
-    TownCharacter** chara = func_ov000_02137f2c()->chara_;
+    move.speed_ *= data_ov000_021487b0;
+    TownCharacterBase** chara = func_ov000_02137f2c()->character_;
     chara[index]->moveType_ = 1;
-    TownCharacter* c = chara[index];
+    TownCharacterBase* c = chara[index];
     c->movePos_[0] = move.pos_[0];
     c->movePos_[1] = move.pos_[1];
     c->movePos_[2] = move.pos_[2];
     c->movePos_[3] = move.pos_[3];
-    func_0208718c(&c->moveSpeed_, &move.speed_);
+    func_0208718c(&c->moveSpeed_, move.speed_);
     c->unk_c4 = move.unk_34;
     c->unk_c8 = move.unk_38;
     return 1;
@@ -374,7 +372,7 @@ THUMB int cmd_party_quit(int* param)
             order[i] = status::g_Party.getPlayerStatus(i)->haveStatusInfo_.haveStatus_.playerIndex_;
         }
     }
-    dss::Fx32Vector3 pos = func_ov000_0213beec((char*)func_ov000_02132a90() + 0x134c, sortIndex);
+    dss::Fx32Vector3 pos = func_ov000_02132a90()->getPartyDrawPosition(sortIndex);
     func_ov000_021384c0(func_ov000_02137f2c(), index, 1);
     func_ov000_02138670(func_ov000_02137f2c(), index, 1);
     func_ov000_02138598(func_ov000_02137f2c(), index, &pos);

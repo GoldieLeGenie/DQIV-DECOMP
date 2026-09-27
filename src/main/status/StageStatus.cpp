@@ -84,10 +84,10 @@ THUMB void status::StageStatus::initialize()
 
     func_02087168(&this->shipPosition_.vx.value, 0x451E8000);
     func_02087168(&this->shipPosition_.vy.value, 0x440C0000);
-    func_02087154(&this->shipPosition_.vz.value, 0);
+    this->shipPosition_.vz = 0L;
     func_02087168(&this->balloonPosition_.vx.value, 0x45230000);
     func_02087168(&this->balloonPosition_.vy.value, 0x44400000);
-    func_02087154(&this->balloonPosition_.vz.value, 0);
+    this->balloonPosition_.vz = 0L;
 
     this->idoLink_.data_.link_.inFlag_ = 0;
     this->idoLink_.data_.link_.outFlag_  = 0;
@@ -527,7 +527,7 @@ THUMB int status::StageStatus::isToramana()
     return toramana_;
 }
 
-THUMB void status::StageStatus::setBashaEnter(bool flag)
+THUMB void status::StageStatus::setBashaEnter(int flag)
 {
     if (flag)
     {
@@ -1239,7 +1239,7 @@ THUMB int status::StageStatus::restartChurch()
     pos.vx = tbl[found].playerX;
     pos.vy = tbl[found].playerY;
     pos.vz = tbl[found].playerZ;
-    ((cmn::ExtraMapLink*)&data_020ed28c)->setExtraLinkTown(this->churchMap_, pos, (short)tbl[found].direction);
+    cmn::g_extraMapLink.setExtraLinkTown(this->churchMap_, pos, (short)tbl[found].direction);
     setTimeZone(TIME_ZONE_DAYTIME);
     return 1;
 }

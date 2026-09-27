@@ -2,7 +2,7 @@
 #include "globaldefs.h"
 #include "main/dss/DssUtils.hpp"
 #include "main/global/Global.hpp"
-#include "ov000/TownCharacterManager.hpp"
+#include "ov000/town/TownCharacterManager.hpp"
 
 struct TownStageManager;
 struct TownPlayerManager;

@@ -13,7 +13,15 @@ struct FLDObject
     char         _pad004[0x224];            // 0x004
     FLDRes_Tbl*  field_228_;                // 0x228
     FLDRes_Dir*  field_22c_;                // 0x22C
-    char         _pad230[0x3A4];            // 0x230
+    char         _pad230[0x24c - 0x230];    // 0x230
+    int          unk_24c;                   // 0x24C
+    int          unk_250;                   // 0x250
+    dss::VecFx32 unk_254[2];                // 0x254
+    dss::VecFx32 unk_26c[2];                // 0x26C
+    dss::VecFx32 unk_284[2];                // 0x284
+    char         _pad29c[0x2a8 - 0x29c];    // 0x29C
+    int          unk_2a8;                   // 0x2A8
+    char         _pad2ac[0x5d4 - 0x2ac];    // 0x2AC
     dss::VecFx32      m_rgb_rate;                // 0x5D4
 
     void SetSepia();

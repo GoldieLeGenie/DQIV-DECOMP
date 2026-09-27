@@ -5,3 +5,8 @@
     .data       start:0x021606c0 end:0x02160e60 kind:data align:32
     .bss        start:0x02160e60 end:0x02164a60 kind:bss align:32
 
+src/ov001/Commands/FieldCommand1.cpp:
+    .text start:0x0212d954 end:0x0212da00
+
+src/ov001/Commands/FieldCommand2.cpp:
+    .text start:0x0212db3c end:0x0212db54
