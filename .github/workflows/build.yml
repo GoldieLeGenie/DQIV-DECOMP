@@ -32,9 +32,18 @@ jobs:
           chmod +x /usr/local/bin/wibo
           wibo --version || true
 
+      - name: Compiler check
+        run: |
+          echo "--- image /mwccarm (old) ---"
+          md5sum /mwccarm/2.0/sp1p6/* || true
+          echo "--- expected (tools/mwccarm from decomp.aetias.com) ---"
+          echo "166be7090f0ba72ac5acdc7811197dc4  mwccarm.exe"
+          echo "27e35a31c5635f2d66e79ed7600defab  mwldarm.exe"
+          echo "72e119db9ebe77f64142f4e7509166c3  MSL_All-DLL80_x86.dll"
+
       - name: Build
         run: |
-          python3 tools/configure.py -w wibo --compiler /mwccarm --no-extract ${{ matrix.version }}
+          python3 tools/configure.py -w wibo --no-extract ${{ matrix.version }}
           ninja arm9 report || true
           echo "--- CI SHA1 ---"
           sha1sum dqiv_eur.nds || true
