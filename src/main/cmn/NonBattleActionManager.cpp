@@ -133,7 +133,7 @@ ARM void cmn::NonBattleActionManager::execute()
                     func_ov000_02138210();
                     func_02049b94();
                     func_02047a28(func_ov000_02139668());
-                    ((TownSystem*)func_ov000_02132228())->defaultSELock_ = 0;
+                    func_ov000_02132228()->defaultSELock_ = 0;
                     func_0208214c(data_0211c4f0, 0, 0x10);
                     waitTurn_ = 1;
                     return;
@@ -189,7 +189,7 @@ ARM void cmn::NonBattleActionManager::execute()
             case ACTION_TRAVELDOOR:
                 SoundManager::playSe(0x464, 0);
                 func_0202aec4(func_0202adc4(), 3);
-                ((TownSystem*)func_ov000_02132228())->defaultSELock_ = 1;
+                func_ov000_02132228()->defaultSELock_ = 1;
                 break;
         }
         startFlag_ = 1;

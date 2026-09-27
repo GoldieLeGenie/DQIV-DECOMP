@@ -183,7 +183,6 @@ extern status::StageStatus g_Stage; //data_020d08e0
 struct FieldPlayerManager;
 
 extern "C" {
-    void* func_ov000_02132228();
     void func_ov000_021341ec(void*, int);
     FieldPlayerManager* func_ov001_02127b28();
     void func_02087168(void*, int);

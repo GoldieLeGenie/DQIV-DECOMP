@@ -49,7 +49,7 @@ THUMB int cmd_ikada_set_position(int* param)
 
 THUMB int cmd_crack_key_by_orin(int* param)
 {
-    *(int*)((char*)func_ov000_021267dc() + 0x20) = 1;
+    func_ov000_021267dc()->crackOrin_ = 1;
     return 1;
 }
 

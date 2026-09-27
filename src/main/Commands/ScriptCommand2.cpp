@@ -75,7 +75,7 @@ ARM int cmd_set_party_total_recovery(int* param)
         if (func_02058114(data_0210bb94, 0xc) != 0) {
             func_ov000_02132a90()->resetParty();
         } else {
-            func_ov001_02127b28()->vf0C();
+            func_ov001_02127b28()->resetParty();
         }
     }
     return 1;

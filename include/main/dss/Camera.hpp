@@ -24,6 +24,7 @@ extern "C" {
     dss::Vector3short* func_02083070(void* camera);
     void func_020830d4(void* camera, short fovy);
     void func_0208311c(void* camera, dss::Fx32 value);
+    void func_0208312c(dss::CameraSub* camera, int value);                      // Camera::setNear
     void func_02083024(void* camera, dss::Fx32Vector3* pos);
     dss::Fx32Vector3* func_02083034(void* camera);
     void func_0208303c(void* camera, dss::Fx32Vector3* target);
@@ -48,7 +49,7 @@ namespace dss {
         Fx32 unk_d8;                            // 0xD8
         short unk_dc;                           // 0xDC
         char unk_de[0xf0 - 0xde];
-        int unk_f0;                             // 0xF0
+        int m_pursue;                           // 0xF0
 
         Camera();
         ~Camera() {}
@@ -59,10 +60,16 @@ namespace dss {
             func_02083078(&unk_004, distance);
             func_02083078(&unk_068, distance);
         }
-        void setNear(Fx32 value)
+        void setNear(const int& value)
         {
-            func_0208311c(&unk_004, value);
-            func_0208311c(&unk_068, value);
+            func_0208312c(&unk_004, value);
+            func_0208312c(&unk_068, value);
+        }
+        void setUnk48(Fx32 value)
+        {
+            CameraSub* sub = &unk_004;
+            func_0208311c(sub, value);
+            func_0208311c(sub + 1, value);
         }
         void setOffset(Fx32 offset) { func_0208718c(&unk_d8, offset); }
     };

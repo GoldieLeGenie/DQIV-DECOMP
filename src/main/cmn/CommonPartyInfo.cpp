@@ -6,6 +6,7 @@
 #include "main/status/GameFlag.hpp"
 #include "main/global/Global.hpp"
 #include "main/cmn/PlayerManager.hpp"
+#include "ov000/town/TownPlayerManager.hpp"
 char s_srout_map[8] = "srout";
 cmn::CommonPartyInfo g_cmnPartyInfo;
 
@@ -178,10 +179,10 @@ ARM void cmn::CommonPartyInfo::callCarriage()
     g_Stage.setBashaEnter(1);
     this->barron_ = 1;
     if (func_02058114(&data_0210bb94, 0xE) != 0) {
-        ((FieldPlayerManager*)func_ov001_02127b28())->vf0C();
+        func_ov001_02127b28()->resetParty();
         return;
     }
-    ((FieldPlayerManager*)func_ov000_02132a90())->vf0C();
+    func_ov000_02132a90()->resetParty();
 }
 
 
@@ -245,7 +246,7 @@ ARM void cmn::CommonPartyInfo::setMenuAction(MENU_ACTION mode)
         }
     }
     if (mode == MENU_RURA_FAILED) {
-        ((TownSystem*)func_ov000_02132228())->scriptLock_ = 1;
+        func_ov000_02132228()->scriptLock_ = 1;
     }
     this->menuAction_ = mode;
 }

@@ -1,0 +1,51 @@
+#pragma once
+#include "globaldefs.h"
+#include "main/dss/DssUtils.hpp"
+#include "main/cmn/PlayerManager.hpp"
+
+struct FieldPlayer;
+struct FieldPartyDraw;
+struct FieldCarrirerDraw;
+struct FieldPlayerManager;
+
+extern "C" {
+    FieldPlayerManager* func_ov001_02127b28(void);                                  // FieldPlayerManager::getSingleton
+    void func_ov001_02125eac(FieldPlayer* self, int type);                          // FieldPlayer::setMoveType
+    void func_ov001_02122b28(FieldCarrirerDraw* self, dss::Fx32Vector3 pos);        // FieldCarrirerDraw::setPosition
+    void func_ov001_0212b7e0(FieldPartyDraw* self);                                 // FieldPartyDraw::setDrawNone
+}
+
+struct FieldPlayer {
+    char unk_0000[0xb0];
+
+    void setMoveType(int type) { func_ov001_02125eac(this, type); }
+};
+
+struct FieldParty {
+    char unk_0000[0x60];
+};
+
+struct FieldPartyDraw {
+    char unk_0000[0x70c];
+
+    void setDrawNone() { func_ov001_0212b7e0(this); }
+};
+
+struct FieldCarrirerDraw {
+    char unk_0000[0x18];
+
+    void setPosition(const dss::Fx32Vector3& pos) { func_ov001_02122b28(this, pos); }
+};
+
+struct FieldShipDraw : FieldCarrirerDraw {
+    char unk_0018[0x1b4];
+    int ride_;                                                                      // 0x1CC
+};
+
+struct FieldPlayerManager : cmn::PlayerManager {
+    char unk_000c[0x58];
+    FieldPlayer player_;                                                            // 0x064
+    FieldParty party_;                                                              // 0x114
+    FieldPartyDraw partyDraw_;                                                      // 0x174
+    FieldShipDraw shipDraw_;                                                        // 0x880
+};

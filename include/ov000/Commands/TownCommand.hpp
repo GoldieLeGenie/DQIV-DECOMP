@@ -6,6 +6,7 @@ struct TownPartyDraw;
 #include "main/dss/DssUtils.hpp"
 #include "ov000/town/TownCharacterManager.hpp"
 #include "ov000/town/TownCamera.hpp"
+#include "ov000/town/TownDoorAction.hpp"
 #include "main/Commands/CommonCommand.hpp"
 
 struct TownFurnitureManager;
@@ -243,8 +244,6 @@ extern "C" {
     int  func_ov000_021382a0(TownCharacterManager* mgr, int index);
     int  func_ov000_0212e930(TownCharacterBase* chara);
     void func_ov000_0213745c(void* obj, int message, int count);
-    void* func_ov000_021267dc(void);
-    void func_ov000_0212711c(void* obj, int door, int type);
     void* func_020835d8(void);
     void func_02085d88(void);
     int  func_0203232c(int param, short dir);
@@ -268,7 +267,6 @@ extern "C" {
     int func_ov000_02124028(void* obj, int id, dss::Fx32Vector3 pos, int a, int b);
     void func_ov000_02138248(TownCharacterManager* mgr, int index, int pose);
     void func_ov000_02135158(TownPlayerManager* mgr, int value);
-    void func_0208312c(void* obj, int value);
     void func_ov000_0212ea00(TownCharacterBase* chara, int value);
     void func_ov000_02138e20(TownCharacterManager* mgr, int index, short anim);
     TownFurnitureManager* func_ov000_02122ad8(void);

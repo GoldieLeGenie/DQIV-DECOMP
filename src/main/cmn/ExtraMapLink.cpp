@@ -598,7 +598,7 @@ ARM void cmn::ExtraMapLink::setRanaLink()
         setExtraExitTown(g_Stage.lastRanaStageName_, g_Stage.lastFldSurface_);
     } else if (func_02058114(data_0210bb94, 14)) {
         g_cmnPartyInfo.prevLocation_ = 1;
-        dss::Fx32Vector3 pos = func_ov001_02127b28()->vf04();
+        dss::Fx32Vector3 pos = func_ov001_02127b28()->getPosition();
         setExtraLinkFieldAbsPos(g_Global.getFieldType(), pos, 4);
     }
 }

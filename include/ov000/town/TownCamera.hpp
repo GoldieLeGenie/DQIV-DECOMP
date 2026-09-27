@@ -6,6 +6,7 @@
 
 extern "C" int func_02081254(void);
 extern int data_020f22c0;
+extern short cameraParam[4];
 
 struct TownCamera {
     dss::Camera camera_;                            // 0x000
@@ -33,11 +34,12 @@ struct TownCamera {
     int counter_;                                   // 0x24C
     int frame_;                                     // 0x250
     int targetChara_;                               // 0x254
-    int unk_258;                                    // 0x258
+    int changeAngle_;                               // 0x258
     int changeDefaultAngleFlag_;                    // 0x25C
     dss::Vector3<short> changeDefaultAngle_;        // 0x260
     dss::Vector3<short> preAngle_;                  // 0x266
     int notEqualPreAngle_;                          // 0x26C
+
 
     TownCamera();
     ~TownCamera();

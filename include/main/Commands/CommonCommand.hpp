@@ -6,6 +6,9 @@ struct TownPartyDraw;
 #include "main/dss/DssUtils.hpp"
 #include "main/encount/Encount.hpp"
 #include "main/cmn/GameManager.hpp"
+#include "main/script/ScriptSystem.hpp"
+#include "ov000/town/TownSystem.hpp"
+#include "ov001/fld/FieldSystem.hpp"
 
 struct FieldPlayerManager;
 struct TownPlayerManager;
@@ -176,7 +179,6 @@ extern "C" {
     encount::Encount* func_0200a6c8(void);
     void func_0200acc8(encount::Encount* encount, int id);
     void func_0200acec(encount::Encount* encount, int id);
-    void* func_0201f16c(void);
     int  func_02058114(void* global, int partId);
     FieldPlayerManager* func_ov001_02127b28(void);
     void func_ov001_0212a620(FieldPlayerManager* mgr, int lock);
@@ -190,8 +192,6 @@ extern "C" {
     void func_020499a4(int flag);
     void func_ov000_02138ed0(TownCharacterManager* mgr);
     void func_ov000_0213b118(TownPartyDraw* draw, int value);
-    void* func_ov000_02132228(void);
-    void* func_ov001_02127458(void);
     dss::Fx32Vector3 func_02032424(int x, int y, int z);
     short func_0203244c(int dir);
     void* func_02037da4(void);

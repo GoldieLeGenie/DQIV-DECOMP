@@ -76,6 +76,7 @@ namespace dss{
     template <>
     struct Vector3<short> : Vector3short {
         Vector3() { vx = 0; vy = 0; vz = 0; }
+        Vector3(const short& x, const short& y, const short& z) { vx = x; vy = y; vz = z; }
     };
     struct Vector3int {
         int vx;

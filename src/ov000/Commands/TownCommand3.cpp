@@ -350,10 +350,10 @@ THUMB int cmd_is_trigger_distance(int* param)
     dss::Fx32 distance;
     distance.value = param[0];
     distance *= distance;
-    if (((TownSystem*)func_ov000_02132228())->unk_614 == 1) {
+    if (func_ov000_02132228()->trigger_ == 1) {
         dss::Fx32 length = func_0208908c(playerPos, charaPos);
         if (func_02087420(&length, &distance)) {
-            ((TownSystem*)func_ov000_02132228())->unk_614 = 0;
+            func_ov000_02132228()->trigger_ = 0;
             return 1;
         }
     }

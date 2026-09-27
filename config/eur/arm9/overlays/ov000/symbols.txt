@@ -1426,7 +1426,7 @@ func_ov000_02143e30 kind:function(thumb,size=0x26) addr:0x02143e30
 func_ov000_02143e58 kind:function(thumb,size=0x12) addr:0x02143e58
 func_ov000_02143e6c kind:function(thumb,size=0x8) addr:0x02143e6c
 data_ov000_02143e74 kind:data(any) addr:0x02143e74
-TOWN_CAMERA_DISTANCE kind:data(any) addr:0x02143e78
+TOWN_CAMERA_DISTANCE kind:data(any) addr:0x02143e78 local
 data_ov000_02143e7c kind:data(any) addr:0x02143e7c
 data_ov000_02143e7e kind:data(any) addr:0x02143e7e
 data_ov000_02143e84 kind:data(any) addr:0x02143e84
@@ -1451,7 +1451,7 @@ __sinit_ov000_02146934 kind:function(arm,size=0x30) addr:0x02146934
 __sinit_ov000_02146964 kind:function(arm,size=0x1c) addr:0x02146964
 __sinit_ov000_02146980 kind:function(arm,size=0x1c) addr:0x02146980
 __sinit_ov000_0214699c kind:function(arm,size=0x20) addr:0x0214699c
-__sinit_ov000_021469bc kind:function(arm,size=0x70) addr:0x021469bc
+__sinit_TownCamera.cpp kind:function(arm,size=0x70) addr:0x021469bc local
 __sinit_ov000_02146a2c kind:function(arm,size=0x74) addr:0x02146a2c
 __sinit_ov000_02146aa0 kind:function(arm,size=0x14) addr:0x02146aa0
 __sinit_ov000_02146ab4 kind:function(arm,size=0x1c) addr:0x02146ab4
@@ -1476,7 +1476,7 @@ __sinit_ov000_021477d0 kind:function(arm,size=0x14) addr:0x021477d0
 .p__sinit_ov000_02146964 kind:data(word) addr:0x02147818
 .p__sinit_ov000_02146980 kind:data(word) addr:0x0214781c
 .p__sinit_ov000_0214699c kind:data(word) addr:0x02147820
-.p__sinit_ov000_021469bc kind:data(word) addr:0x02147824
+.p__sinit_TownCamera.cpp kind:data(word) addr:0x02147824 local
 .p__sinit_ov000_02146a2c kind:data(word) addr:0x02147828
 .p__sinit_ov000_02146aa0 kind:data(word) addr:0x0214782c
 .p__sinit_ov000_02146ab4 kind:data(word) addr:0x02147830
@@ -1672,14 +1672,14 @@ data_ov000_0214835c kind:data(any) addr:0x0214835c
 data_ov000_02148364 kind:data(any) addr:0x02148364
 data_ov000_0214836c kind:data(any) addr:0x0214836c
 cameraParam kind:data(any) addr:0x02148374
-@1969 kind:data(any) addr:0x02148384
-@2021 kind:data(any) addr:0x02148388
-@2046 kind:data(any) addr:0x0214838c
-@1906 kind:data(any) addr:0x02148390
-@1516 kind:data(any) addr:0x02148394
-@1911 kind:data(any) addr:0x02148398
-@1964 kind:data(any) addr:0x0214839c
-position kind:data(any) addr:0x021483a0
+@1832 kind:data(any) addr:0x02148384 local
+@2065 kind:data(any) addr:0x02148388 local
+@2081 kind:data(any) addr:0x0214838c local
+@1828 kind:data(any) addr:0x02148390 local
+@1854 kind:data(any) addr:0x02148394 local
+@1997 kind:data(any) addr:0x02148398 local
+@1836 kind:data(any) addr:0x0214839c local
+position kind:data(any) addr:0x021483a0 local
 data_ov000_021483ac kind:data(any) addr:0x021483ac
 data_ov000_021483b8 kind:data(any) addr:0x021483b8
 data_ov000_021483d8 kind:data(any) addr:0x021483d8
@@ -1991,12 +1991,12 @@ data_ov000_0215019f kind:bss addr:0x0215019f ambiguous
 data_ov000_021501f7 kind:bss addr:0x021501f7 ambiguous
 data_ov000_02150211 kind:bss addr:0x02150211 ambiguous
 data_ov000_0215028c kind:bss addr:0x0215028c ambiguous
-_ZGVm_singleton$1604 kind:bss addr:0x02150a04
-distance kind:bss addr:0x02150a08
-offset kind:bss addr:0x02150a0c
-default_angle kind:bss addr:0x02150a10
-@1607 kind:bss addr:0x02150a18
-m_singleton$1604 kind:bss addr:0x02150a24
+_ZGVm_singleton$1850 kind:bss addr:0x02150a04 local
+distance kind:bss addr:0x02150a08 local
+offset kind:bss addr:0x02150a0c local
+default_angle kind:bss(size=0x6) addr:0x02150a10 local
+@1853 kind:bss addr:0x02150a18 local
+m_singleton$1850 kind:bss addr:0x02150a24 local
 data_ov000_02150c94 kind:bss addr:0x02150c94
 data_ov000_02150c98 kind:bss addr:0x02150c98
 data_ov000_02150ca4 kind:bss addr:0x02150ca4

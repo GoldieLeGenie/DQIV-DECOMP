@@ -24,8 +24,6 @@ THUMB int cmd_camera_clip_distance(int* param)
 
 THUMB int cmd_map_camera_near(int* param)
 {
-    char* camera = (char*)TownCamera::getSingleton();
-    func_0208312c(camera + 4, param[0]);
-    func_0208312c(camera + 0x68, param[0]);
+    TownCamera::getSingleton()->camera_.setNear(param[0]);
     return 1;
 }

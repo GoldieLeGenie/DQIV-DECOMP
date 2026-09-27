@@ -1105,7 +1105,7 @@ THUMB void status::StageStatus::setRuraFlag(int rura)
             return;
         }
         func_ov000_021341ec(func_ov000_02132a90(), 1);
-        ((TownSystem*)func_ov000_02132228())->scriptLock_ = 1;
+        func_ov000_02132228()->scriptLock_ = 1;
     }
     return;
 }
