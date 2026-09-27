@@ -58,6 +58,14 @@ jobs:
           path: build/${{ matrix.version }}/report.json
           if-no-files-found: warn
 
+      - name: Upload compiled objects
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.version }}_objects
+          path: build/${{ matrix.version }}/src/
+          if-no-files-found: warn
+
       - name: Upload ROM and linked object
         if: always()
         uses: actions/upload-artifact@v4
