@@ -26,11 +26,12 @@ jobs:
           mv /extract/* ./extract
           cp /arm7_bios.bin ./arm7_bios.bin
 
-      - name: Update wibo
+      - name: Install wine
         run: |
-          curl -fsSL "https://github.com/decompals/wibo/releases/download/1.2.0/wibo-x86_64" -o /usr/local/bin/wibo
-          chmod +x /usr/local/bin/wibo
-          wibo --version || true
+          dpkg --add-architecture i386
+          apt-get update
+          apt-get install -y --no-install-recommends wine wine32
+          wine --version
 
       - name: Compiler check
         run: |
@@ -43,7 +44,10 @@ jobs:
 
       - name: Build
         run: |
-          python3 tools/configure.py -w wibo --no-extract ${{ matrix.version }}
+          export WINEDEBUG=-all
+          export WINEPREFIX=/tmp/wineprefix
+          wineboot --init || true
+          python3 tools/configure.py -w wine --no-extract ${{ matrix.version }}
           ninja arm9 report || true
           echo "--- CI SHA1 ---"
           sha1sum dqiv_eur.nds || true
