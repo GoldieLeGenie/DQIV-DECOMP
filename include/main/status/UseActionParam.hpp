@@ -24,6 +24,7 @@ namespace status{
         int result_;
         int exec_;
         UseActionParam() { clear(); };
+        ~UseActionParam() {}
         void clear();
         void clearMessage();
     };

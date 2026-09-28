@@ -33,7 +33,7 @@ THUMB int cmd_effect_dream(int* param)
 
 THUMB int cmd_set_script_object_direction(int* param)
 {
-    int index = func_0202376c(param[0]);
+    int index = getPlacementCtrlId(param[0]);
     func_ov000_021383bc(func_ov000_02137f2c(), index, param[1] << 14);
     return 1;
 }
@@ -47,7 +47,7 @@ THUMB int cmd_charcter_3d_rotate(int* param)
     rot.vx = param[0];
     rot.vy = param[1];
     rot.vz = param[2];
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_021383dc(func_ov000_02137f2c(), index, &rot);
     return 1;
 }
@@ -64,7 +64,7 @@ THUMB int cmd_effect_transfer(int* param)
 
 THUMB int cmd_character_pose_change(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_02138248(func_ov000_02137f2c(), index, param[0]);
     return 1;
 }

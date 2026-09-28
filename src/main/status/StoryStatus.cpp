@@ -159,7 +159,7 @@ THUMB void status::StoryStatus::restoreCoin(int chapter) {
 
 THUMB void status::StoryStatus::setHeroName(char *utf8name) {
     dss::DssUtils::strcpy_s(this->heroName, 0x20, utf8name);
-    func_0205461c(utf8name);
+    TextAPI::setHeroName(utf8name);
 }
 
 

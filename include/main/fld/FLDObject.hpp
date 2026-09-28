@@ -16,16 +16,16 @@ struct FLDObject
     char         _pad230[0x24c - 0x230];    // 0x230
     int          unk_24c;                   // 0x24C
     int          unk_250;                   // 0x250
-    dss::VecFx32 unk_254[2];                // 0x254
-    dss::VecFx32 unk_26c[2];                // 0x26C
-    dss::VecFx32 unk_284[2];                // 0x284
+    VecFx32 unk_254[2];                // 0x254
+    VecFx32 unk_26c[2];                // 0x26C
+    VecFx32 unk_284[2];                // 0x284
     char         _pad29c[0x2a8 - 0x29c];    // 0x29C
     int          unk_2a8;                   // 0x2A8
     char         _pad2ac[0x5d4 - 0x2ac];    // 0x2AC
-    dss::VecFx32      m_rgb_rate;                // 0x5D4
+    VecFx32      m_rgb_rate;                // 0x5D4
 
     void SetSepia();
-    void SetRGBRate(dss::VecFx32* rate, int real_time);
+    void SetRGBRate(VecFx32* rate, int real_time);
 };
 
 }  // namespace fld
@@ -75,6 +75,6 @@ struct FLD_PLTT_SET
 
 extern "C"
 {
-    int  func_0207c3b0(const char*, const char*, int);
+    int  STD_CompareNString(const char*, const char*, int);
     void func_0204718c(fld::FLDObject*, unsigned short*, unsigned short*, int);
 }

@@ -23,6 +23,6 @@ THUMB void btl::TimeReverseTask::terminate()
 THUMB void btl::TimeReverseTask::execute()
 {
     if (++counter_ > 30) {
-        data_020ef7e4.setNextTask(0xe);
+        g_PartTaskManager.setNextTask(0xe);
     }
 }

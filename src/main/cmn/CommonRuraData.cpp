@@ -179,8 +179,8 @@ ARM dss::Fx32Vector3 cmn::CommonRuraData::getBalloonTownPos(int townID)
         case 0x17:
         case 0x18:
         case 0x19:
-            pos.vx.value = (dss::fx32)0x4B8000;
-            pos.vy.value = (dss::fx32)0x5E8000;
+            pos.vx.value = (fx32)0x4B8000;
+            pos.vy.value = (fx32)0x5E8000;
             break;
         default:
             pos.vx.value = vehicle[townID].balloonX;

@@ -5,7 +5,7 @@ ARM void fld::FLDObject::SetSepia()
     m_flag |= 0x100;
 }
 
-ARM void fld::FLDObject::SetRGBRate(dss::VecFx32* rate, int real_time)
+ARM void fld::FLDObject::SetRGBRate(VecFx32* rate, int real_time)
 {
     m_rgb_rate = *rate;
     m_flag |= 0x80;

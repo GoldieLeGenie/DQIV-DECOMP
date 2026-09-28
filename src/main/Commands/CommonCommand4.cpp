@@ -204,6 +204,7 @@ THUMB int cmd_is_not_party_head_count(int* param)
     return 0;
 }
 
+//gonna check ingame soon to name it didn't find it in the mobile vers yet  
 extern "C" THUMB short func_0202528c(int* param)
 {
     status::g_Party.setNormalMode();
@@ -267,6 +268,7 @@ extern "C" THUMB short func_0202528c(int* param)
     return func_020254a4(npcCount - npcOut, npcAlive - npcOutAlive, param[2]);
 }
 
+//gonna check ingame soon to name it didn't find it in the mobile vers yet  
 extern "C" THUMB short func_020254a4(short count, short alive, int mode)
 {
     if (mode == 1) {
@@ -278,6 +280,8 @@ extern "C" THUMB short func_020254a4(short count, short alive, int mode)
     return count;
 }
 
+
+//gonna check ingame soon to name it didn't find it in the mobile vers yet  
 extern "C" THUMB int func_020254b8(int index, int type)
 {
     status::g_Party.setMemberShiftMode();
@@ -301,6 +305,7 @@ extern "C" THUMB int func_020254b8(int index, int type)
     return 1;
 }
 
+//gonna check ingame soon to name it didn't find it in the mobile vers yet  
 extern "C" THUMB int func_02025514(int index, int type)
 {
     status::g_Party.setMemberShiftMode();
@@ -320,6 +325,8 @@ extern "C" THUMB int func_02025514(int index, int type)
     return 1;
 }
 
+
+//gonna check ingame soon to name it didn't find it in the mobile vers yet  
 extern "C" THUMB int func_0202555c(int index, int type)
 {
     status::g_Party.setMemberShiftMode();

@@ -110,7 +110,7 @@ THUMB void TownMenu_PARTY_TALK::menuSetup()
     if (mesCount != 0 || talkPlayer != 0) {
         int i = 0;
         if (status::g_Party.getCount() > 1 && list[select] != -1) {
-            func_02054364(1, 0x50000000, status::g_Party.getPlayerStatus(list[select])->haveStatusInfo_.haveStatus_.playerIndex_);
+            TextAPI::setMACRO0(1, 0x50000000, status::g_Party.getPlayerStatus(list[select])->haveStatusInfo_.haveStatus_.playerIndex_);
         }
         setLeaderMacro(sortIndex);
         if (talkPlayer != 0) {
@@ -136,19 +136,19 @@ THUMB void TownMenu_PARTY_TALK::menuSetup()
             unk_1c = 1;
         }
     } else {
-        func_02052408(this);
+        close();
         data_ov016_02187c60.stat_ = menu::MenuBase::MENUBASE_STAT_OK;
     }
 }
 
 THUMB void TownMenu_PARTY_TALK::menuUpdate()
 {
-    if (func_0205241c(&data_020ed1bc) != 0) {
+    if (data_020ed1bc.isOpen() != 0) {
         int i = 0;
         if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
-            func_02052408(&data_020ed1bc);
+            data_020ed1bc.close();
             if (unk_1c == 2) {
-                func_02052408(this);
+                close();
                 data_ov016_02187c60.stat_ = menu::MenuBase::MENUBASE_STAT_OK;
                 return;
             }
@@ -159,7 +159,7 @@ THUMB void TownMenu_PARTY_TALK::menuUpdate()
                 data_020ed1bc.addMessage(message + i);
             }
         } else if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_CANCEL) {
-            func_02052408(&data_020ed1bc);
+            data_020ed1bc.close();
             data_020ed1bc.openMessageForTALK();
             if (getTalkMessage()->noMesCount == 0) {
                 int message = getMessageNo() + getMesCount();
@@ -201,10 +201,10 @@ THUMB void TownMenu_PARTY_TALK::setLeaderMacro(int sortIndex)
                 }
             }
             if (found != 0) {
-                func_02054364(14, 0x50000000, status::g_Party.getPlayerIndex(found));
+                TextAPI::setMACRO0(14, 0x50000000, status::g_Party.getPlayerIndex(found));
             }
         } else {
-            func_02054364(14, 0x50000000, status::g_Party.getPlayerIndex(i));
+            TextAPI::setMACRO0(14, 0x50000000, status::g_Party.getPlayerIndex(i));
         }
     }
 }

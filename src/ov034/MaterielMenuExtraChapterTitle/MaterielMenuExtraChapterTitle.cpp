@@ -20,8 +20,8 @@ THUMB void MaterielMenuExtraChapterTitle::menuSetup()
     m_draw_count = 0;
 
     if (status::g_Story.chapter_ != 0 && m_chapter_end != 0) {
-        func_020351c8(func_02035180());
-        func_020351dc(func_02035180(), m_chapter + 9);
+        MenuSoundManager::getSingleton()->initialize();
+        MenuSoundManager::getSingleton()->setPlaySound((MenuSoundManager::MENU_SOUND)(m_chapter + 9));
     }
 
     g_Global.fadeInBlack(0x3C);
@@ -45,8 +45,7 @@ THUMB void MaterielMenuExtraChapterTitle::menuDraw()
             break;
         case 1:
             if (m_chapter_end == 1 && m_chapter != 0) {
-                func_02035180();
-                if (func_020352d0() == 0) {
+                if (MenuSoundManager::getSingleton()->isPlaySound() == 0) {
                     goto fade;
                 }
                 break;

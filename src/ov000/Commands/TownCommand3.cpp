@@ -60,7 +60,7 @@ THUMB int cmd_map_effect_sepia()
 
 THUMB int cmd_character_not_change_direction(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_02137f2c()->setLockRot(index, param[0]);
     return 1;
 }
@@ -73,13 +73,13 @@ THUMB int cmd_player_action_not_change_direction(int* param)
 
 THUMB int cmd_is_character_direction(int* param)
 {
-    int index = func_0202375c();
-    return func_0203232c(param[0], func_ov000_02137f2c()->getDirection(index));
+    int index = getPlacementCtrlId();
+    return cmn::CommonCalculate::directionCheckByScriptParam(param[0], func_ov000_02137f2c()->getDirection(index));
 }
 
 THUMB int cmd_is_player_direction(int* param)
 {
-    return func_0203232c(param[0], func_ov000_02132a90()->getDirection());
+    return cmn::CommonCalculate::directionCheckByScriptParam(param[0], func_ov000_02132a90()->getDirection());
 }
 
 THUMB int cmd_map_animation(int* param)
@@ -267,7 +267,7 @@ THUMB int cmd_party_display(int* param)
 
 THUMB int cmd_is_character_front(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     dss::Fx32Vector3 playerPos = func_ov000_02132a90()->getPosition();
     dss::Fx32Vector3 charaPos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
     dss::Fx32Vector3 front;
@@ -286,7 +286,7 @@ THUMB int cmd_is_character_front(int* param)
 
 THUMB int cmd_is_talked_at_shop(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     if (param[0] == 1) {
         if (func_ov000_0212e9d8(func_ov000_02137f2c()->character_[index]) == 1 &&
             func_ov000_0213842c(func_ov000_02137f2c(), index) == 1) {
@@ -323,28 +323,28 @@ THUMB int cmd_set_floor_map_object(int* param)
 
 THUMB int cmd_character_move_passive(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_0212de50(func_ov000_02137f2c()->character_[index]);
     return 1;
 }
 
 THUMB int cmd_character_move_random(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_0212e408(func_ov000_02137f2c()->character_[index]);
     return 1;
 }
 
 THUMB int cmd_character_move_reverse(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_0212e1a0(func_ov000_02137f2c()->character_[index]);
     return 1;
 }
 
 THUMB int cmd_is_trigger_distance(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     dss::Fx32Vector3 playerPos = func_ov000_02132a90()->getPosition();
     dss::Fx32Vector3 charaPos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
     dss::Fx32 distance;
@@ -352,7 +352,7 @@ THUMB int cmd_is_trigger_distance(int* param)
     distance *= distance;
     if (func_ov000_02132228()->trigger_ == 1) {
         dss::Fx32 length = func_0208908c(playerPos, charaPos);
-        if (func_02087420(&length, &distance)) {
+        if (length <= distance) {
             func_ov000_02132228()->trigger_ = 0;
             return 1;
         }
@@ -362,7 +362,7 @@ THUMB int cmd_is_trigger_distance(int* param)
 
 THUMB int cmd_character_set_coll_stage(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     signed char flag = 0;
     if (param[0] == 1) {
         flag |= 2;

@@ -1,4 +1,5 @@
 #pragma once
+#include "string.h"
 #include "globaldefs.h"
 #include "main/dss/DssUtils.hpp"
 #include "GameInfo.hpp"
@@ -226,7 +227,6 @@ extern int data_020f0078;     // manager SELECTTAISHI
 extern "C" void* func_020882d4(void* dst, int c, int n);                   
 extern "C" void func_02030df8(void* prof, unsigned char* dst, void* flag);  // Profile::collectGameFlag 
 extern "C" void func_0201d288(void* stage, int savetype, void* pparty);     // collectMapFlag
-extern "C" int func_02003528(char* a, char* b);                             // strcmp 
 extern "C" unsigned char func_0203ab30(void* mgr, int index);               // getter SELECTTAISHI
 extern "C" int func_02030ef0(void* prof);    // isValidData (thumb)
 extern "C" int func_02030eb0(void* prof);    // calcCheckSum 
@@ -256,7 +256,7 @@ extern "C" void func_0203a76c(void* mgr, unsigned char skill);    // setSkill
 extern "C" void* func_02037da4(void);                            //
 extern "C" void func_02037ca4(void);                              //
 extern "C" void* func_020882ec(void* dst, void* src, int n);      // memcpy
-extern "C" int func_0207c384(void* a, void* b);   // strcmp
+extern "C" int STD_CompareString(void* a, void* b);   // strcmp
 extern "C" int func_0201d3a4(void* stage);        // "restartChurch" 
 extern char data_020c13a0[8];
 extern "C" void func_0200b864(Global *g);                        // init g_Global

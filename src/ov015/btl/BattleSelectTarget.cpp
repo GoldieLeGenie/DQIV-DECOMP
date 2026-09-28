@@ -569,7 +569,7 @@ THUMB int btl::BattleSelectTarget::setTargetEnemy(status::CharacterStatus* chara
     return result;
 }
 
-//no matching 
+
 THUMB int btl::BattleSelectTarget::setTargetOne(
     btl::BattleSelectTargetParam* param)
 {
@@ -630,6 +630,9 @@ THUMB int btl::BattleSelectTarget::setTargetOne(
                 }
             }
         }
+    }
+    else {
+        flag = 0;
     }
 
 select_target:

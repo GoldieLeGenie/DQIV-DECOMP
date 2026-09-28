@@ -7,6 +7,7 @@
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/status/StageStatus.hpp"
 #include "main/param/FloorParam.hpp"
+#include "main/status/ExcelParam.hpp"
 
 int SoundManager::nextBgmParam_;
 int SoundManager::prevBgmIndex_;
@@ -16,6 +17,33 @@ param::FloorParam * SoundManager::g_floor_param;
 int SoundManager::finalFormBGM_;
 
 int SoundManager::townBgmEnable_ = 1;
+
+THUMB SoundManager::SoundManager() {
+}
+
+THUMB SoundManager::~SoundManager() {
+}
+
+THUMB void SoundManager::initialize() {
+    g_floor_param = status::excelParam.floorParam_;
+    bgmIndex_ = 0;
+}
+
+THUMB void SoundManager::update() {
+    if (nextBgmIndex_ != 0 && !func_02055968()) {
+        bgmIndex_ = nextBgmIndex_;
+        nextBgmIndex_ = 0;
+        func_0205590c(bgmIndex_);
+        if (prevBgmIndex_ != 0) {
+            nextBgmIndex_ = prevBgmIndex_;
+            prevBgmIndex_ = 0;
+        }
+    }
+    if (!func_02055968()) {
+        bgmIndex_ = 0;
+    }
+    func_0205caa0(data_0210bd4c);
+}
 
 THUMB void SoundManager::play(int bgm, int param) {
     if (bgmIndex_ == bgm) {
@@ -28,7 +56,7 @@ THUMB void SoundManager::play(int bgm, int param) {
         func_0205594c(15);
     } else {
         bgmIndex_ = bgm;
-        func_0205590c(bgm, param);
+        func_0205590c(bgm);
     }
 }
 
@@ -39,7 +67,7 @@ THUMB void SoundManager::playStart(int bgm, int param) {
         func_0205594c(15);
     } else {
         bgmIndex_ = bgm;
-        func_0205590c(bgm, param);
+        func_0205590c(bgm);
     }
 }
 
@@ -55,7 +83,7 @@ THUMB void SoundManager::playRestart(int bgm, int param) {
         func_0205594c(15);
     } else {
         bgmIndex_ = bgm;
-        func_0205590c(bgm, param);
+        func_0205590c(bgm);
     }
 }
 
@@ -66,9 +94,9 @@ THUMB void SoundManager::townPlay() {
     }
     townBgmEnable_ = 1;
     for (int i = 0; i < 15; i++) {
-        func_0202694c();
+        update();
         func_020866d8(data_0211fc7c);
-        func_02079d78();
+        OS_Wait();
     }
 }
 
@@ -163,9 +191,9 @@ THUMB void SoundManager::fieldPlay() {
     }
     townBgmEnable_ = 1;
     for (int i = 0; i < 15; i++) {
-        func_0202694c();
+        update();
         func_020866d8(data_0211fc7c);
-        func_02079d78();
+        OS_Wait();
     }
 }
 

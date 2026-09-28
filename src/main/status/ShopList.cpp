@@ -34,7 +34,7 @@ THUMB int status::ShopList::getDataIndex(int shop)
     
 
     if (g_Stage.crusingPeopleEncount_ == 1) {
-        func_020033e0(name, check_map);
+        strcpy(name, check_map);
         name[2] = '\0';
     } else {
         char* check = "ss\0";

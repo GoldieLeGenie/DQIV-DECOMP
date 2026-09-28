@@ -124,7 +124,7 @@ THUMB int btl::BattleMessage::setAfterMessage(status::UseActionParam* useActionP
         if (useActionParam->actorCharacterStatus_->characterType_ == PLAYER) {
             if (ctrlId != func_ov003_021249e4()) {
                 if (status::UseAction::getDamageType(useActionParam->actionIndex_) == status::UseAction::DamageTypeDamage) {
-                    func_02054364(18, 0x60000000, 170);
+                    TextAPI::setMACRO0(18, 0x60000000, 170);
                     setMessage(0xc3936, 0, 0, 0);
                     return 1;
                 }

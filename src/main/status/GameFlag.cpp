@@ -1,8 +1,11 @@
 #include "main/status/GameFlag.hpp"
-
 status::GameFlag g_AreaFlag;
 status::GameFlag g_LocalFlag;
 status::GameFlag g_GlobalFlag;
+
+//added unreferenced 128-byte tables  only needed for the .bss order ig this work lol
+static const int unusedTable0[32] = {0};
+static const int unusedTable1[32] = {0};
 
 THUMB status::GameFlag::GameFlag()
 {

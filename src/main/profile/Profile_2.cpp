@@ -59,7 +59,7 @@ THUMB void profile::Profile::collectDATA_PARTY()
     if (this->pSYSTEM->SAVETYPE == profile::SAVETYPE_CHURCH) {
         map = church;
     }
-    if (func_02003528(map, s_field) == 0) {
+    if (strcmp(map, s_field) == 0) {
         fieldType = g_Global.getFieldType();
     }
     dss::DssUtils::strcpy_s((char*)this->pPARTY->CHURCH, 0x10, church);

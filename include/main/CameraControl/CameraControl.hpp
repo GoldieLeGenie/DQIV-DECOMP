@@ -1,13 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/dss/DssUtils.hpp"
-
-struct DataObject {
-    void *vtable_;
-    void *m_addr;
-    int m_flag;
-    long m_size;
-};
+#include "main/data/DataObject.hpp"
 
 struct CameraControl {
     struct SeqCameraControl {
@@ -33,6 +27,3 @@ struct CameraControl {
     void initCameraControl(dss::Fx32Vector3 position, dss::Vector3short angle);
 };
 
-
-extern "C" int  func_020574bc(DataObject* d);   // DataObject::getAddr()  
-extern "C" void func_02057474(DataObject* d);   // ExcelBinaryData::clearData

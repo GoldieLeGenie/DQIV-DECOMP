@@ -47,6 +47,30 @@ CC_FLAGS = " ".join([
     
 ])
 
+# Libraries (NitroSDK, MSL, runtime) are prebuilt SDK code, compiled with another compiler and flags
+LIBS_MWCC_VERSION = "2.0/sp1p5"
+LIBS_CC_FLAGS = " ".join([
+    "-O4,p",
+    "-enum int",
+    "-char signed",
+    "-proc arm946e",
+    "-gccext,on",
+    "-fp soft",
+    "-inline noauto",
+    "-RTTI off",
+    "-interworking",
+    "-w off",
+    "-sym on",
+    "-gccinc",
+    "-gccdep",
+    "-nolink",
+    "-msgstyle gcc",
+    "-ipa file",
+    "-str noreuse",
+    "-Cpp_exceptions off",
+])
+
+
 LD_FLAGS = " ".join([
     "-proc arm946e",        # Target processor
     "-nostdlib",            # No C/C++ standard library
@@ -101,6 +125,7 @@ WINE = args.wine if platform.system != "windows" else ""
 DSD = str(args.dsd or os.path.join('.', str(root_path / f"dsd{EXE}")))
 OBJDIFF = os.path.join('.', str(root_path / f"objdiff-cli{EXE}"))
 CC = os.path.join('.', str(mwcc_path / "mwccarm.exe"))
+CC_LIBS = os.path.join('.', str(mwcc_root / LIBS_MWCC_VERSION / "mwccarm.exe"))
 LD = os.path.join('.', str(mwcc_path / "mwldarm.exe"))
 PYTHON = sys.executable
 
@@ -218,6 +243,16 @@ def main():
         n.rule(
             name="mwcc",
             command=mwcc_cmd,
+            depfile="$basefile.d",
+        )
+        n.newline()
+
+        mwcc_libs_cmd = f'{WINE} "{CC_LIBS}" {LIBS_CC_FLAGS} {CC_INCLUDES} $cc_flags -MD -c $in -o $basedir'
+        if platform.system != "windows":
+            mwcc_libs_cmd += f" && $python {transform_dep} $basefile.d $basefile.d"
+        n.rule(
+            name="mwcc_libs",
+            command=mwcc_libs_cmd,
             depfile="$basefile.d",
         )
         n.newline()
@@ -424,10 +459,11 @@ def add_mwcc_builds(n: ninja_syntax.Writer, project: Project, mwcc_implicit: lis
         cc_flags = []
         if is_cpp(source_file): cc_flags.append("-lang=c++")
         elif is_c(source_file): cc_flags.append("-lang=c")
+        is_lib = libs_path in source_file.parents
         n.build(
             inputs=str(source_file),
-            implicit=mwcc_implicit,
-            rule="mwcc",
+            implicit=mwcc_implicit + ([CC_LIBS] if is_lib else []),
+            rule="mwcc_libs" if is_lib else "mwcc",
             outputs=str(src_obj_path.with_suffix(".o")),
             variables={
                 "game_version": project.game_version,

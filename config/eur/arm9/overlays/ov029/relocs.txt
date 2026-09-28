@@ -3,7 +3,7 @@ from:0x02189372 kind:thumb_call to:0x02051900 module:main
 from:0x0218937e kind:thumb_call to:0x02023324 module:main
 from:0x021893d8 kind:load to:0x020c7b1c module:main
 from:0x021893dc kind:load to:0x020ee1cc module:main
-from:0x021893f0 kind:load to:0x02177a41 module:overlays(15,16)
+from:0x021893f0 kind:load to:0x02177a41 module:overlay(16)
 from:0x021893fa kind:thumb_call to:0x02025b68 module:main
 from:0x0218940a kind:thumb_call to:0x0216fd34 module:overlay(16)
 from:0x02189426 kind:thumb_call to:0x02051968 module:main

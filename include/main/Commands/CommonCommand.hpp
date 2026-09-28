@@ -1,5 +1,8 @@
 #pragma once
+#include "main/text/TextAPI.hpp"
 struct TownPartyDraw;
+#include "main/cmn/CommonCalculate.hpp"
+#include "main/script/ScriptBaseCommand.hpp"
 #include "main/window/CommandWindow.hpp"
 #include "globaldefs.h"
 #include "GameInfo.hpp"
@@ -15,16 +18,13 @@ struct TownPlayerManager;
 struct TownCharacterManager;
 struct TownStageManager;
 
-struct ScriptObjectId {
-    int id_;
-};
 
 struct CommandParameter;
 
 struct ScriptCommand {
     virtual void initialize(char* scriptParam);
     virtual void execute() {}
-    virtual void vf08() {}
+    virtual void terminate() {}
     virtual bool isEnd();
     ~ScriptCommand() {}
     int exec(CommandParameter* command);
@@ -184,22 +184,13 @@ extern "C" {
     void func_ov001_0212a620(FieldPlayerManager* mgr, int lock);
     TownPlayerManager* func_ov000_02132a90(void);
     void func_ov000_02135ac0(TownPlayerManager* mgr, int lock);
-    dss::Fx32Vector3 func_02088bdc(const dss::Fx32Vector3& v, int div);
-    dss::Fx32Vector3 func_02088988(const dss::Fx32Vector3& a, const dss::Fx32Vector3& b);
-    int  func_020320ac(dss::Fx32Vector3* pos, int dir, dss::Fx32Vector3* min, dss::Fx32Vector3* max, TriggerCheck check, int type);
     void func_02030f60(cmn::GameManager* mgr);
-    void func_0208718c(dss::Fx32* obj, const dss::Fx32& value);
     void func_020499a4(int flag);
     void func_ov000_02138ed0(TownCharacterManager* mgr);
     void func_ov000_0213b118(TownPartyDraw* draw, int value);
-    dss::Fx32Vector3 func_02032424(int x, int y, int z);
-    short func_0203244c(int dir);
     void* func_02037da4(void);
     int func_02037d6c(void* obj, int type);
     void func_ov000_021341ec(void* mgr, int lock);
-    void func_02054364(int slot, int type, int value);
-    void func_02054380(int slot, int type, int value);
-    void func_0205439c(int slot, int type, int value);
     int func_ov000_0213556c(TownPlayerManager* mgr, int index);
     short func_0202528c(int* param);
     short func_020254a4(short count, short alive, int mode);
@@ -210,8 +201,6 @@ extern "C" {
     void func_02055980(int id);
     int func_ov000_02135848(TownPlayerManager* mgr);
     void func_02088b3c(dss::Fx32Vector3* v, int value);
-    int func_0202375c(void);
-    int func_020236a8(void);
     int func_ov000_02138eb8(TownCharacterManager* mgr, int index);
     void* func_ov001_0212aaac(void);
     void func_ov001_0212ab8c(void* obj, int message, int count);
@@ -221,5 +210,4 @@ extern "C" {
     void func_ov000_02137470(void* obj, int message);
     void func_ov000_02139e30(TownStageManager* mgr, char* mapName);
     TownStageManager* func_ov000_02139668(void);
-    void func_02023688(ScriptObjectId id, int enable);
 }

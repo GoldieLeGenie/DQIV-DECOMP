@@ -1,21 +1,27 @@
 #pragma once
+#include "nitro/os.hpp"
 #include <globaldefs.h>
 
 namespace param {
     struct FloorParam;
 }
 
-extern "C" void func_0205590c(int bgm, int param);  //  
+extern "C" void func_0205590c(int bgm);             // 
 extern "C" void func_0205594c(int fade);            // 
-extern "C" void func_0202694c();                    
 extern "C" void func_020866d8(void * arg);
-extern "C" void func_02079d78();
 extern "C" void func_020559b0(int seId, int param);
 extern "C" void func_020559cc(int seId, int index);
 
 extern "C" char data_0211fc7c[]; //g_SoundSystem 
+extern "C" char data_0210bd4c[];
+extern "C" int func_02055968();                     // current bgm still playing
+extern "C" void func_0205caa0(void* sound);
 
 struct SoundManager {
+    SoundManager();
+    ~SoundManager();
+    static void initialize();
+    static void update();
     static void play(int bgm, int param);
     static void playStart(int bgm, int param);
     static void stop(int fade);

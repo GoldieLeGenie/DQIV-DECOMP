@@ -42,7 +42,7 @@ THUMB int cmd_set_item(int* param)
         if (toSack) {
             status::g_Party.haveItemSack_.adds(param[0], param[1]);
         }
-        func_02054364(10, 0x40000000, param[0]);
+        TextAPI::setMACRO0(10, 0x40000000, param[0]);
         return 1;
     }
 
@@ -122,7 +122,7 @@ THUMB int cmd_mini_game(int* param)
         func_ov016_02178378(data_ov016_02186a14, param[1]);
         g_Global.startCasino();
     } else {
-        int index = func_0202375c();
+        int index = getPlacementCtrlId();
         func_ov000_02138308(func_ov000_02137f2c(), index);
         func_0202a860(func_ov000_021372e8(), 0xf);
         g_cmnPartyInfo.partyTalk = index;

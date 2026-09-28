@@ -112,7 +112,7 @@ extern "C" TownPlayerManager* func_ov000_02132a90();
 extern "C" void func_020888bc(dss::Fx32Vector3* dst, dss::Fx32Vector3* src);
 extern "C" int func_ov001_0212a460(void*, dss::Fx32Vector3*);             // FieldPlayerManager::checkBarronArea
 extern "C" int func_020882b0(const char*, const char*);                   // strcmp
-extern "C" int func_0207c384(void* a, void* b);   // strcmp
+extern "C" int STD_CompareString(void* a, void* b);   // strcmp
 
 extern "C" void  func_ov000_021341ec(void* mgr, int f);   // TownPlayerManager::setLock
 extern "C" dss::Fx32Vector3 func_020335ec(cmn::CommonRuraData* self, int townID);

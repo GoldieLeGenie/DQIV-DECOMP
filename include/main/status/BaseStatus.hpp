@@ -1,6 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "GameInfo.hpp"
+#include "main/dss/DssUtils.hpp"
 
 namespace status{
     struct BaseStatus {
@@ -34,4 +35,3 @@ namespace status{
     };
 }
 
-extern "C" unsigned int func_02008ea0(unsigned int value, unsigned int min, unsigned int max); 

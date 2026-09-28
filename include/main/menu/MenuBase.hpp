@@ -12,13 +12,22 @@ struct MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    virtual void menuClose(bool flag);
+    virtual void menuClose();
     int redraw_;
     int frame_;
     MENUBASE_STAT stat_;
     int exitCode_;
     int lock_;
     int lockRequest_;
+
+    MenuBase();
+    void menuBaseSetup();
+    void menuBaseExecute();
+    void menuBaseDraw();
+    void menuBaseUpdate();
+    void open();
+    void close();
+    int isOpen();
 };
 
 struct MenuItem {

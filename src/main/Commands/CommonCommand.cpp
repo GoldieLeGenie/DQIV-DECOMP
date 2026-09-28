@@ -29,7 +29,7 @@ THUMB int cmd_encount(int* param)
         btl::BattleScriptManager::getSingleton()->setEncountMap(param[1]);
         func_0200acec(func_0200a6c8(), param[1]);
     }
-    func_0201f16c()->executeEnable_ = 0;
+    ScriptSystem::getSingleton()->executeEnable_ = 0;
     if (func_02058114(data_0210bb94, 0xe) == 1) {
         func_ov001_0212a620(func_ov001_02127b28(), 1);
     } else {
@@ -51,7 +51,7 @@ THUMB int cmd_encount_set_flag(int* param)
     } else {
         func_ov000_02135ac0(func_ov000_02132a90(), 1);
     }
-    func_0201f16c()->executeEnable_ = 0;
+    ScriptSystem::getSingleton()->executeEnable_ = 0;
     return 1;
 }
 
@@ -75,7 +75,7 @@ THUMB int cmd_encount_first_strike(int* param)
     } else {
         func_ov000_02135ac0(func_ov000_02132a90(), 1);
     }
-    func_0201f16c()->executeEnable_ = 0;
+    ScriptSystem::getSingleton()->executeEnable_ = 0;
     return 1;
 }
 
@@ -111,7 +111,7 @@ THUMB int cmd_is_trigger_forward(int* param)
     dss::Fx32Vector3 diff = func_02088988(func_02088bdc(min + max, 2), pos);
     TriggerCheck check = param[6] == 0 ? TRIGGER_CHECK_0 : TRIGGER_CHECK_1;
     int type = param[7] == 0 ? 7 : 6;
-    return func_020320ac(&pos, dir, &min, &max, check, type);
+    return cmn::CommonCalculate::areaCheck(pos, dir, min, max, check, type);
 }
 
 THUMB int cmd_set_encount_disable(int* param)
@@ -374,9 +374,9 @@ THUMB int cmd_map_link_field_direct(int* param)
 
 THUMB int cmd_floor_change(int* param)
 {
-    dss::Fx32Vector3 pos = func_02032424(param[4], param[5], param[6]);
-    cmn::g_extraMapLink.setExtraLinkTown((const char*)param, pos, func_0203244c((unsigned char)param[7]));
-    func_0201f16c()->executeEnable_ = 0;
+    dss::Fx32Vector3 pos = cmn::CommonCalculate::setVecByParam(param[4], param[5], param[6]);
+    cmn::g_extraMapLink.setExtraLinkTown((const char*)param, pos, cmn::CommonCalculate::getIdxByParam((unsigned char)param[7]));
+    ScriptSystem::getSingleton()->executeEnable_ = 0;
     if (func_02058114(data_0210bb94, 0xc) != 0) {
         data_ov000_0214eb98 = 0;
         func_020499a4(1);
@@ -394,7 +394,7 @@ THUMB int cmd_floor_change(int* param)
 THUMB int cmd_floor_exit(int* param)
 {
     cmn::g_extraMapLink.setExtraExitTown((const char*)param, param[4]);
-    func_0201f16c()->executeEnable_ = 0;
+    ScriptSystem::getSingleton()->executeEnable_ = 0;
     if (func_02058114(data_0210bb94, 0xc) != 0) {
         data_ov000_0214eb98 = 0;
         func_020499a4(1);
@@ -538,7 +538,7 @@ THUMB int cmd_player_lock(int* param)
 
 THUMB int cmd_set_macro_actor()
 {
-    func_02054364(1, 0x50000000, g_cmnPartyInfo.actorIndex_);
+    TextAPI::setMACRO0(1, 0x50000000, g_cmnPartyInfo.actorIndex_);
     return 1;
 }
 
@@ -556,13 +556,13 @@ THUMB int cmd_set_macro_target()
             }
             if (info->haveItem_.getCount() != 12) {
                 target = status::g_Party.getPlayerIndex(i);
-                func_02054364(0x12, 0x50000000, target);
+                TextAPI::setMACRO0(0x12, 0x50000000, target);
                 break;
             }
         }
     }
     if (target == 0) {
-        func_02054364(0x12, 0x50000000, first);
+        TextAPI::setMACRO0(0x12, 0x50000000, first);
     }
     return 1;
 }
@@ -578,7 +578,7 @@ THUMB int cmd_set_macro_target_index(int* param)
             index = 2;
         }
     }
-    func_02054364(0x12, 0x50000000, index);
+    TextAPI::setMACRO0(0x12, 0x50000000, index);
     return 1;
 }
 
@@ -593,7 +593,7 @@ THUMB int cmd_set_macro_prisoner()
             break;
         }
     }
-    func_02054364(0x10, 0x50000000, index);
+    TextAPI::setMACRO0(0x10, 0x50000000, index);
     return 1;
 }
 
@@ -608,14 +608,14 @@ THUMB int cmd_set_macro_x_item1(int* param)
         sword = 6 - status::g_Story.getEndorEventItemCount(status::StoryStatus::EVENT_HAGANENOTURUGI);
         armor = 6 - status::g_Story.getEndorEventItemCount(status::StoryStatus::EVENT_TETUNOYOROI);
     }
-    func_02054380(0x4f, 0xf0000000, sword);
-    func_0205439c(0x4f, 0xf0000000, armor);
+    TextAPI::setMACRO1(0x4f, 0xf0000000, sword);
+    TextAPI::setMACRO2(0x4f, 0xf0000000, armor);
     return 1;
 }
 
 THUMB int cmd_set_macro_i_name(int* param)
 {
-    func_02054364(10, 0x40000000, param[0]);
+    TextAPI::setMACRO0(10, 0x40000000, param[0]);
     return 1;
 }
 

@@ -66,7 +66,7 @@ ARM int cmn::CommonEffectLocation::setPaletteRate(int index)
 
 static inline void setFieldRGBRate(const dss::Fx32Vector3& rgb)
 {
-    dss::VecFx32     v;
+    VecFx32     v;
     dss::Fx32Vector3 tmp(rgb.vx, rgb.vy, rgb.vz);
     BattleStage*     stage = func_ov003_0212dfe8();
 
@@ -92,8 +92,8 @@ ARM int cmn::CommonEffectLocation::calcPaletteRate()
         return 1;
     }
 
-    one.value  = (dss::fx32)0x1000;
-    rate.value = (dss::fx32)((this->counter_ << 12) / this->frame_);
+    one.value  = (fx32)0x1000;
+    rate.value = (fx32)((this->counter_ << 12) / this->frame_);
 
     rgb = this->prev_ * (one - rate) + this->next_ * rate;
 
@@ -113,8 +113,8 @@ ARM dss::Fx32Vector3 cmn::CommonEffectLocation::getPaletteRate()
     dss::Fx32 one;
     dss::Fx32 rate;
 
-    one.value  = (dss::fx32)0x1000;
-    rate.value = (dss::fx32)((this->counter_ << 12) / this->frame_);
+    one.value  = (fx32)0x1000;
+    rate.value = (fx32)((this->counter_ << 12) / this->frame_);
 
     return this->prev_ * (one - rate) + this->next_ * rate;
 }

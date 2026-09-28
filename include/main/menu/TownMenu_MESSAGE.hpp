@@ -68,7 +68,6 @@ extern Data020f6340 data_020f6340;
 
 extern "C" {
     void func_02056040(int type, int language);
-    void func_02052400(void* menu);
     void func_02056074(int messageID);
     void func_0203cc20(void* mgr, int messageID);
     void func_0205614c(void);

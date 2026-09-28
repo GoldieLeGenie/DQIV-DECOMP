@@ -15,6 +15,7 @@ src/ov015/btl/BattleMenuPlayerControl.cpp:
 
 
 src/ov015/btl/BattleSelectTarget.cpp:
+    complete
     .text start:0x021709a8 end:0x02172964
     .rodata start:0x02176530 end:0x02176554
     .bss start:0x0217ad84 end:0x0217adc0

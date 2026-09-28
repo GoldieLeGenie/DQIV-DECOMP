@@ -1245,7 +1245,7 @@ from:0x0218ce8c kind:thumb_call to:0x02025a1c module:main
 from:0x0218ce92 kind:thumb_call to:0x02025b60 module:main
 from:0x0218ce98 kind:load to:0x020c7b1c add:0x1c module:main
 from:0x0218ce9c kind:load to:0x020ed1bc module:main
-from:0x0218ceac kind:load to:0x02177ae9 module:overlays(15,16)
+from:0x0218ceac kind:load to:0x02177ae9 module:overlay(16)
 from:0x0218ceb6 kind:thumb_call to:0x02025b68 module:main
 from:0x0218cec0 kind:thumb_call to:0x0216fc2c module:overlay(16)
 from:0x0218cec8 kind:thumb_call to:0x02051968 module:main

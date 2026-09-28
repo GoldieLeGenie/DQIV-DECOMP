@@ -6,7 +6,7 @@
 namespace param{
     struct MonsterAnim    
     {
-        dss::fx32 scale;
+        fx32 scale;
         unsigned short monster;
         unsigned short action;
         unsigned short sound;

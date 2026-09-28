@@ -14,7 +14,7 @@ ARM void btl::BeforeMessageTask::initialize()
 
     func_ov003_0212a3f8(useActionParam_->actorCharacterStatus_, 0);
     func_ov003_0212a4b0(useActionParam_->targetCharacterStatus_[0], 0, 0);
-    func_02034974(useActionParam_->actorCharacterStatus_, useActionParam_->actionIndex_);
+    status::UseActionMacro::setBeforeMacro(useActionParam_->actorCharacterStatus_, useActionParam_->actionIndex_);
     message_ = btl::BattleMessage::setBeforeMessage(useActionParam_);
     func_0208988c();
 

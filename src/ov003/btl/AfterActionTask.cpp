@@ -83,7 +83,7 @@ ARM int btl::AfterActionTask::isMessageStatusChangeRelease()
 
     if (releaseStatus != 0 && death == 0 && battleCount != 0) {
         func_ov003_0212a3f8(useActionParam_->actorCharacterStatus_, result);
-        func_02035020(useActionParam_->actorCharacterStatus_);
+        status::UseActionMacro::setStatusChangeMacro(useActionParam_->actorCharacterStatus_);
 
         if (releaseStatus == status::StatusChange::StatusDragoram) {
             func_ov003_0212a4b0(useActionParam_->actorCharacterStatus_, result, result);

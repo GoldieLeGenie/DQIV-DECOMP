@@ -4,6 +4,7 @@
 #include "main/sound/SoundManager.hpp"
 #include "main/status/UseActionParam.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
+#include "main/object/DSSAObject.hpp"
 
 
 namespace btl {
@@ -55,7 +56,6 @@ extern "C" void func_ov003_02129810(status::UseActionParam* useActionParam);
 extern "C" void func_ov003_02129dbc(status::CharacterStatus* chara);  
 extern "C" void func_ov003_02129dec();                                  
 extern "C" void func_ov003_0212a084();
-extern "C" dss::Fx32Vector3* func_02083648(BattleMonster* monster);          
 extern "C" void func_ov003_0212243c(BattleMonsterDraw2* mgr, int ctrlId, int anim, int loop);
 extern "C" void func_ov003_02121af4(BattleMonster* monster);
 extern "C" void func_ov003_02121b58(BattleMonster* monster);

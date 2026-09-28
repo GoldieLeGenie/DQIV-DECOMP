@@ -2594,7 +2594,6 @@ from:0x021568c4 kind:load to:0x0218121a module:overlay(16)
 from:0x02156ec0 kind:load to:0x02142687 module:overlay(1)
 from:0x0215c1dc kind:load to:0x020a0f50 module:main
 from:0x0215d0d8 kind:load to:0x02152c35 module:overlay(1)
-from:0x0215d7e4 kind:load to:0x020d6062 module:main
 from:0x0215e4c8 kind:load to:0x02110143 module:main
 from:0x02160388 kind:arm_call to:0x02087108 module:main
 from:0x02160394 kind:arm_call to:0x02087108 module:main

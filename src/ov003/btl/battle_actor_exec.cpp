@@ -5,6 +5,8 @@
 #include "main/task/PartTaskManager.hpp"
 
 task::PartTaskManager partTaskManager;
+int targetCount_;
+int currentTarget_;
 btl::AutoAction autoAction;
 
 #pragma profile on

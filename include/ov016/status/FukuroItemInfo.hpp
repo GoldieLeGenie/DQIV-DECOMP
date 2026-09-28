@@ -1,6 +1,7 @@
 #pragma once
 #include "globaldefs.h"
 #include "GameInfo.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "main/status/UseActionParam.hpp"
 #include "main/status/UseItem.hpp"
 
@@ -21,5 +22,4 @@ struct FukuroItemInfo
 
 extern "C" {
     int func_02008ec4(int a, int b);
-    int func_02008eb8(int a, int b);
 }

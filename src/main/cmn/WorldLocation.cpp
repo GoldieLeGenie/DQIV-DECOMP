@@ -15,16 +15,16 @@ ARM void cmn::WorldLocation::terminate()
   return;
 }
 
-ARM void cmn::WorldLocation::calcWorldPos(dss::fx32* x, dss::fx32* y)
+ARM void cmn::WorldLocation::calcWorldPos(fx32* x, fx32* y)
 {
-    dss::fx32 vx = *x;
+    fx32 vx = *x;
     if (vx < 0) {
         *x = vx + 0x1000000;
     } else if (vx >= 0x1000000) {
         *x = vx - 0x1000000;
     }
 
-    dss::fx32 vy = *y;
+    fx32 vy = *y;
     if (vy < 0) {
         *y = vy + 0x1000000;
     } else if (vy >= 0x1000000) {

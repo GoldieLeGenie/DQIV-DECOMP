@@ -185,7 +185,6 @@ struct FieldPlayerManager;
 extern "C" {
     void func_ov000_021341ec(void*, int);
     FieldPlayerManager* func_ov001_02127b28();
-    void func_02087168(void*, int);
     void func_02088360(void* dest, int size, void* src); 
     int func_020882b0(const char*, const char*);
     void func_02037d28();

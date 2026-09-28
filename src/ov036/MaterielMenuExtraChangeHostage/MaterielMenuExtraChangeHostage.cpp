@@ -25,7 +25,7 @@ THUMB void MaterielMenuExtraChangeHostage::menuSetup()
     if (g_Global.bookingFlag_ == Global::BOOKING_HOSTAGE) {
         hostageStatus_ = HOSTAGE_END;
     } else {
-        ctrlID_ = func_0202375c();
+        ctrlID_ = getPlacementCtrlId();
     }
 }
 
@@ -56,9 +56,9 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
 
     switch (hostageStatus_) {
     case HOSTAGE_ISCHANGE:
-        if (func_0205241c(&data_020ed1bc) != 0) {
+        if (data_020ed1bc.isOpen() != 0) {
             if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
-                func_02052408(&data_020ed1bc);
+                data_020ed1bc.close();
                 data_020ed1bc.openMessageForTALK();
                 data_020ed1bc.addMessageNOWAIT(0x1A049);
                 data_020ed1bc.addMessageWAITKEY();
@@ -67,7 +67,7 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
             }
             if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_CANCEL) {
                 hostageStatus_ = HOSTAGE_END;
-                func_02052408(&data_020ed1bc);
+                data_020ed1bc.close();
             }
         } else {
             data_020ed1bc.openMessageForTALK();
@@ -77,17 +77,17 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
         break;
 
     case HOSTAGE_SELECT:
-        if (func_0205241c(&data_020ed1bc) != 0
+        if (data_020ed1bc.isOpen() != 0
          && (unsigned int)(data_020ed1bc.stat_ - 1) <= 1) {
-            func_02052408(&data_020ed1bc);
+            data_020ed1bc.close();
         }
         memberUpdate();
         break;
 
     case HOSTAGE_CHANGING:
-        if (func_0205241c(&data_020ed1bc) != 0) {
+        if (data_020ed1bc.isOpen() != 0) {
             if ((unsigned int)(data_020ed1bc.stat_ - 1) <= 1) {
-                func_02052408(&data_020ed1bc);
+                data_020ed1bc.close();
                 g_Global.fadeOutBlack(0x3C);
             }
         } else {
@@ -96,10 +96,10 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
         break;
 
     case HOSTAGE_END:
-        if (func_0205241c(&data_020ed1bc) != 0) {
+        if (data_020ed1bc.isOpen() != 0) {
             if ((unsigned int)(data_020ed1bc.stat_ - 1) <= 1) {
-                func_02052408(this);
-                func_02052408(&data_020ed1bc);
+                close();
+                data_020ed1bc.close();
 
                 if (g_Global.bookingFlag_ == Global::BOOKING_HOSTAGE) {
                     g_Global.bookingFlag_ = Global::BOOKING_NONE;
@@ -136,23 +136,23 @@ THUMB void MaterielMenuExtraChangeHostage::memberUpdate()
                 status::g_Party.setHostage(hostageID_, false);
                 status::g_Party.setHostage(newHostageID_, true);
                 data_020ed1bc.openMessageForTALK();
-                func_02054364(0x12, 0x50000000, newHostageID_);
+                TextAPI::setMACRO0(0x12, 0x50000000, newHostageID_);
                 data_020ed1bc.addMessage(0x1A051);
-                func_02054364(0x10, 0x50000000, hostageID_);
+                TextAPI::setMACRO0(0x10, 0x50000000, hostageID_);
                 data_020ed1bc.addMessage(0x1A052);
                 hostageStatus_ = HOSTAGE_CHANGING;
                 return;
             }
 
             data_020ed1bc.openMessageForTALK();
-            func_02054364(0x12, 0x50000000, newHostageID_);
+            TextAPI::setMACRO0(0x12, 0x50000000, newHostageID_);
             data_020ed1bc.addMessage(0x1A04D);
             data_020ed1bc.addMessage(0x1A048);
             data_020ed1bc.setYesNo();
             hostageStatus_ = HOSTAGE_ISCHANGE;
             return;
         } else if (r == 3) {
-            func_02052408(&data_020ed1bc);
+            data_020ed1bc.close();
             hostageStatus_ = HOSTAGE_END;
         }
     }

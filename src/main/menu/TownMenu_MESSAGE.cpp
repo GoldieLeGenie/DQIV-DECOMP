@@ -48,7 +48,7 @@ THUMB void TownMenu_MESSAGE::openMessage(eMessageWindow type)
         language = 5;
     }
     func_02056040(type, language);
-    func_02052400(this);
+    open();
     unk_38 = 0;
 }
 

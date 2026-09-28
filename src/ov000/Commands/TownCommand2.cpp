@@ -11,7 +11,7 @@
 
 THUMB int cmd_set_character_position(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     dss::Fx32Vector3 pos;
     pos.vx.value = param[0];
     pos.vy.value = param[1];
@@ -22,28 +22,28 @@ THUMB int cmd_set_character_position(int* param)
 
 THUMB int cmd_set_character_direction(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_021383bc(func_ov000_02137f2c(), index, param[0] << 14);
     return 1;
 }
 
 THUMB int cmd_character_action_sleep(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_021385b8(func_ov000_02137f2c(), index, param[0]);
     return 1;
 }
 
 THUMB int cmd_character_action_display(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_021384c0(func_ov000_02137f2c(), index, param[0]);
     return 1;
 }
 
 THUMB int cmd_character_action_near(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_021384a0(func_ov000_02137f2c(), index, param[0]);
     return 1;
 }
@@ -95,8 +95,8 @@ THUMB int cmd_chara_set_normal_sure_appointment(int* param)
 
 THUMB int cmd_chara_set_normal_sure(int* param)
 {
-    int index = func_0202375c();
-    int id = func_02023778(index);
+    int index = getPlacementCtrlId();
+    int id = getPlacementIndex(index);
     int result = func_02037ef4(func_02037da4(), id, param[0]);
     if (result != 0xff) {
         func_ov000_02137f2c()->setSureId(index, param[0]);
@@ -109,14 +109,14 @@ THUMB int cmd_chara_set_normal_sure(int* param)
 
 THUMB int cmd_chara_talk_to_player_sure(int* param)
 {
-    int index = func_0202375c();
-    if (index < func_020236a8()) {
+    int index = getPlacementCtrlId();
+    if (index < getObjectCount()) {
         func_02056358(cmn::g_talkSound.getCharacterVoice(index));
     }
     if (param[1] == 1) {
         data_020f0078 = 1;
     } else {
-        int id = func_02023778(index);
+        int id = getPlacementIndex(index);
         int value = func_ov000_0212eb90(func_ov000_02137f2c()->character_[index]);
         func_0203a34c(&data_020f0078, func_02037f40(func_02037da4(), id, value));
     }
@@ -134,35 +134,35 @@ THUMB int cmd_chara_talk_to_player_sure(int* param)
     char text1[0x40];
     char text2[0x40];
     func_ov016_0216fa48(text0, text1, text2, (int)comment);
-    func_0205462c(0, (int)name);
-    func_0205462c(1, (int)text0);
-    func_0205462c(2, (int)text1);
-    func_0205462c(3, (int)text2);
-    func_0205462c(4, (int)townName);
+    TextAPI::setUserString(0, (char*)name);
+    TextAPI::setUserString(1, (char*)text0);
+    TextAPI::setUserString(2, (char*)text1);
+    TextAPI::setUserString(3, (char*)text2);
+    TextAPI::setUserString(4, (char*)townName);
     func_ov000_0213747c(func_ov000_021372e8());
 
     if (param[1] == 1) {
-        func_02054364(0x1c, 0xd0000000, 0);
-        func_02054380(0x21, 0xd0000000, 1);
-        func_0205439c(0x21, 0xd0000000, 2);
-        func_020543b8(0x21, 0xd0000000, 3);
+        TextAPI::setMACRO0(0x1c, 0xd0000000, 0);
+        TextAPI::setMACRO1(0x21, 0xd0000000, 1);
+        TextAPI::setMACRO2(0x21, 0xd0000000, 2);
+        TextAPI::setMACRO3(0x21, 0xd0000000, 3);
         func_ov000_02137470(func_ov000_021372e8(), 0x92a8c);
     } else {
-        func_02054364(0x1d, 0xd0000000, 0);
-        func_02054380(0x20, 0xd0000000, 1);
-        func_0205439c(0x20, 0xd0000000, 2);
-        func_020543b8(0x20, 0xd0000000, 3);
+        TextAPI::setMACRO0(0x1d, 0xd0000000, 0);
+        TextAPI::setMACRO1(0x20, 0xd0000000, 1);
+        TextAPI::setMACRO2(0x20, 0xd0000000, 2);
+        TextAPI::setMACRO3(0x20, 0xd0000000, 3);
         func_ov000_02137470(func_ov000_021372e8(), 0x92ac0);
     }
 
     if (param[1] != 1) {
         func_02056358(0x30);
-        func_0205462c(0, (int)name);
-        func_02054364(0x1d, 0xd0000000, 0);
-        func_02054364(0x22, 0xa0000000, menu::MenuDataCommon::getSurechigaiAetas(aetas) & 0xfffffff);
-        func_02054364(0x23, 0xa0000000, menu::MenuDataCommon::getSuretigaiSex(sex) & 0xfffffff);
-        func_02054364(0x24, 0xe0000000, menu::MenuDataCommon::getSurechigaiSkill(skill) & 0xfffffff);
-        func_02054364(0x1e, 0xd0000000, 4);
+        TextAPI::setUserString(0, (char*)name);
+        TextAPI::setMACRO0(0x1d, 0xd0000000, 0);
+        TextAPI::setMACRO0(0x22, 0xa0000000, menu::MenuDataCommon::getSurechigaiAetas(aetas) & 0xfffffff);
+        TextAPI::setMACRO0(0x23, 0xa0000000, menu::MenuDataCommon::getSuretigaiSex(sex) & 0xfffffff);
+        TextAPI::setMACRO0(0x24, 0xe0000000, menu::MenuDataCommon::getSurechigaiSkill(skill) & 0xfffffff);
+        TextAPI::setMACRO0(0x1e, 0xd0000000, 4);
         func_ov000_02137470(func_ov000_021372e8(), 0x92ac1);
     }
     return 1;
@@ -175,7 +175,7 @@ THUMB int cmd_set_surechigai_level(int* param)
 
 THUMB int cmd_character_action_stepping(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_02138480(func_ov000_02137f2c(), index, 0);
     func_ov000_02138460(func_ov000_02137f2c(), index, 1);
     return 1;
@@ -183,7 +183,7 @@ THUMB int cmd_character_action_stepping(int* param)
 
 THUMB int cmd_character_action_still(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_02138480(func_ov000_02137f2c(), index, 0);
     func_ov000_02138460(func_ov000_02137f2c(), index, 0);
     return 1;
@@ -191,7 +191,7 @@ THUMB int cmd_character_action_still(int* param)
 
 THUMB int cmd_character_action_wriggle(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_02138460(func_ov000_02137f2c(), index, 1);
     func_ov000_02138480(func_ov000_02137f2c(), index, 1);
     return 1;
@@ -220,7 +220,7 @@ THUMB int cmd_player_action_wriggle(int* param)
 
 THUMB int cmd_set_character_collision(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_02138670(func_ov000_02137f2c(), index, param[0]);
     return 1;
 }
@@ -257,10 +257,10 @@ THUMB int cmd_is_trigger2(int* param)
 THUMB int cmd_character_action_pursue(int* param)
 {
     TownCharaMoveParam move;
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     if (func_ov000_02137f2c()->character_[index]->moveType_ != 3) {
         func_ov000_02138670(func_ov000_02137f2c(), index, 0);
-        index = func_0202375c();
+        index = getPlacementCtrlId();
         move.speed_.value = param[0];
         move.speed_ *= data_ov000_021487b0;
         move.unk_38 = 0;
@@ -281,7 +281,7 @@ THUMB int cmd_character_action_pursue(int* param)
 
 THUMB int cmd_character_move_roam(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     TownCharaMoveParam move;
     move.unk_38 = dssrand::rand(0x50);
     move.unk_34 = 0;
@@ -308,7 +308,7 @@ THUMB int cmd_character_move_roam(int* param)
 
 THUMB int cmd_is_trigger_character(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     dss::Fx32Vector3 pos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
     short dir = func_ov000_02138744(func_ov000_02137f2c(), index);
     dss::Fx32Vector3 min;
@@ -317,13 +317,13 @@ THUMB int cmd_is_trigger_character(int* param)
     max.set(param[3], param[4], param[5]);
     TriggerCheck check = param[6] == 0 ? TRIGGER_CHECK_0 : TRIGGER_CHECK_1;
     int type = param[7] == 0 ? 7 : 6;
-    return func_020320ac(&pos, dir, &min, &max, check, type);
+    return cmn::CommonCalculate::areaCheck(pos, dir, min, max, check, type);
 }
 
 THUMB int cmd_is_trigger2_character(int* param)
 {
     TriggerCheck check;
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     dss::Fx32Vector3 pos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
     short dir = func_ov000_02138744(func_ov000_02137f2c(), index);
     dss::Fx32Vector3 min;
@@ -345,12 +345,12 @@ THUMB int cmd_is_trigger2_character(int* param)
         break;
     }
     int type = param[7] == 0 ? 7 : 6;
-    return func_020320ac(&pos, dir, &min, &max, check, type);
+    return cmn::CommonCalculate::areaCheck(pos, dir, min, max, check, type);
 }
 
 THUMB int cmd_party_join(int* param)
 {
-    int index = func_0202376c(param[0]);
+    int index = getPlacementCtrlId(param[0]);
     status::g_Party.add(param[1]);
     func_ov000_02132a90()->resetParty();
     func_ov000_021384c0(func_ov000_02137f2c(), index, 0);
@@ -361,7 +361,7 @@ THUMB int cmd_party_join(int* param)
 THUMB int cmd_party_quit(int* param)
 {
     status::g_Party.setNormalMode();
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     int sortIndex = status::g_Party.getSortIndex(param[1]);
     int order[4] = {0, 0, 0, 0};
     if (sortIndex == -1) {

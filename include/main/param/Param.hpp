@@ -304,7 +304,7 @@ namespace param {
     };
 
     struct EffectParam {
-        dss::fx32 scale;
+        fx32 scale;
         unsigned short index;
         unsigned short frame;
         unsigned short homing;
@@ -320,9 +320,9 @@ namespace param {
     };
 
     struct EffectColorParam {
-        dss::fx32 rPoint;
-        dss::fx32 gPoint;
-        dss::fx32 bPoint;
+        fx32 rPoint;
+        fx32 gPoint;
+        fx32 bPoint;
         unsigned short frame;
         unsigned char dmmy0;
         unsigned char dmmy1;
@@ -332,8 +332,8 @@ namespace param {
 
 
     struct FloorFog {
-        dss::fx32 side00_rate;
-        dss::fx32 side01_rate;
+        fx32 side00_rate;
+        fx32 side01_rate;
         unsigned char side00_R;
         unsigned char side00_G;
         unsigned char side00_B;
@@ -349,9 +349,9 @@ namespace param {
     };
 
     struct CLUTCode {
-        dss::fx32 rPoint;
-        dss::fx32 gPoint;
-        dss::fx32 bPoint;
+        fx32 rPoint;
+        fx32 gPoint;
+        fx32 bPoint;
         unsigned char code;
         unsigned char dmmy0;
         unsigned char dmmy1;
@@ -456,22 +456,22 @@ namespace param {
     
 
     struct MapCamera {
-        dss::fx32 distance;
-        dss::fx32 angleX;
-        dss::fx32 angleY;
-        dss::fx32 angleZ;
-        dss::fx32 targetX;
-        dss::fx32 targetY;
-        dss::fx32 targetZ;
+        fx32 distance;
+        fx32 angleX;
+        fx32 angleY;
+        fx32 angleZ;
+        fx32 targetX;
+        fx32 targetY;
+        fx32 targetZ;
         char floor[8];
         char file[16];
     };
 
     struct VehicleData {
-        dss::fx32 shipX;
-        dss::fx32 shipY;
-        dss::fx32 balloonX;
-        dss::fx32 balloonY;
+        fx32 shipX;
+        fx32 shipY;
+        fx32 balloonX;
+        fx32 balloonY;
         unsigned char world;
         unsigned char id;
         char mapname[4];
@@ -488,9 +488,9 @@ namespace param {
     };
 
     struct MapChurch {
-        dss::fx32 playerX;
-        dss::fx32 playerY;
-        dss::fx32 playerZ;
+        fx32 playerX;
+        fx32 playerY;
+        fx32 playerZ;
         unsigned short direction;
         char floor[8];
         char byte_1;

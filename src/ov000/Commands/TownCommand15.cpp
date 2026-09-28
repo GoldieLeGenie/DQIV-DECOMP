@@ -30,7 +30,7 @@ THUMB int cmd_map_camera_default_angle(int* param)
 
 THUMB int cmd_chara_mortion_lock(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_02137f2c()->setAction(index, param[0]);
     func_ov000_02138460(func_ov000_02137f2c(), index, 0);
     return 1;

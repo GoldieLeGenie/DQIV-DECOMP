@@ -6,7 +6,6 @@
     .data       start:0x020bb4e0 end:0x020c4a20 kind:data align:32
     .bss        start:0x020c4a20 end:0x021210e0 kind:bss align:32
 
-
 src/main/Commands/CommandFunction.cpp:
     complete
     .text start:0x02020030 end:0x02022a3c
@@ -22,7 +21,9 @@ src/main/Commands/ScriptCommand2.cpp:
     .text start:0x0201fd80 end:0x02020030
 
 src/main/Commands/ScriptCommand3.cpp:
-    .text start:0x02023518 end:0x020235d0
+    complete
+    .text start:0x02023518 end:0x02023784
+    .bss start:0x020ecdb4 end:0x020ecf3c
 
 src/main/Commands/ScriptCommand4.cpp:
     .text start:0x02023784 end:0x020238ac
@@ -56,7 +57,7 @@ src/main/dss/DssUtils.cpp:
 
 src/main/sound/SoundManager.cpp:
     complete
-    .text start:0x02026998 end:0x02026d38
+    .text start:0x0202692c end:0x02026d38
     .data start:0x020be6f4 end:0x020be6f8
     .bss start:0x020ed268 end:0x020ed280
 
@@ -72,6 +73,87 @@ src/main/CountDown/CountDown.cpp:
 src/main/dss/Random.cpp:
     .text start:0x02080d48 end:0x02080d80
 
+src/main/cmn/CommonCalculate.cpp:
+    complete
+    .text start:0x02031fc0 end:0x02032588
+    .data start:0x020becd8 end:0x020bece8
+
+src/main/script/ScriptSystem.cpp:
+    complete
+    .text start:0x0201f12c end:0x0201f35c
+    .data start:0x020bdf64 end:0x020bdf78
+    .bss start:0x020d2bac end:0x020ec59c
+
+src/main/script/sys/ScriptTree.cpp:
+    complete
+    .text start:0x0205b658 end:0x0205bad4
+    .data start:0x020c3be0 end:0x020c3bf8
+    .bss start:0x0210bd0c end:0x0210bd24
+
+src/main/script/sys/ScriptParam.cpp:
+    complete
+    .text start:0x0205bcac end:0x0205c154
+    .bss start:0x0210bd28 end:0x0210bd34
+
+src/main/script/sys/ScriptObject.cpp:
+    complete
+    .text start:0x0205bad4 end:0x0205bcac
+    .bss start:0x0210bd24 end:0x0210bd28
+
+src/main/script/sys/ScriptGroup.cpp:
+    complete
+    .text start:0x0205c154 end:0x0205c4b4
+    .bss start:0x0210bd34 end:0x0210bd3c
+
+src/main/script/sys/ScriptEngine.cpp:
+    complete
+    .text start:0x0205c4b4 end:0x0205c5dc
+
+src/main/script/sys/PlacementParameter.cpp:
+    complete
+    .text start:0x0205c5dc end:0x0205c650
+    .bss start:0x0210bd3c end:0x0210bd40
+
+src/main/data/DataObject.cpp:
+    complete
+    .text start:0x020573c4 end:0x02057578
+    .data start:0x020c39a4 end:0x020c39c4
+    .bss start:0x0210bb10 end:0x0210bb14
+
+src/main/object/DSSAObject.cpp:
+    complete
+    .text start:0x02058c44 end:0x0205a02c
+    .init start:0x0208c43c end:0x0208c470
+    .rodata start:0x020b62c8 end:0x020b62d4
+    .ctor start:0x020bb47c end:0x020bb480
+    .data start:0x020c3ae4 end:0x020c3b60
+    .bss start:0x0210bcc0 end:0x0210bcfc
+
+src/main/object/DSSAObjectWithCamera.cpp:
+    complete
+    .text start:0x0205a02c end:0x0205a8b8
+    .init start:0x0208c470 end:0x0208c4a0
+    .ctor start:0x020bb480 end:0x020bb484
+    .data start:0x020c3b60 end:0x020c3ba0
+    .bss start:0x0210bcfc end:0x0210bd0c
+
+src/main/object/ModelObjectWithCamera.cpp:
+    complete
+    .text start:0x0205cafc end:0x0205d174
+    .init start:0x0208c4cc end:0x0208c4fc
+    .ctor start:0x020bb488 end:0x020bb48c
+    .data start:0x020c3bf8 end:0x020c3c18
+    .bss start:0x0210beac end:0x0210beb8
+
+src/main/dss/DualCamera.cpp:
+    complete
+    .text start:0x02057578 end:0x02057b88
+    .data start:0x020c39f8 end:0x020c3a18
+
+src/main/dss/Camera.cpp:
+    complete
+    .text start:0x02082c10 end:0x0208313c
+    .data start:0x020c42a0 end:0x020c42b0
 
 src/main/status/Status.cpp:
     complete
@@ -98,9 +180,10 @@ src/main/status/ExcelParam.cpp:
     .bss  start:0x020c79ac end:0x020c7a7c
 
 src/main/status/GameFlag.cpp:
+    complete
     .init start:0x0208a9ec end:0x0208aa3c
     .ctor start:0x020bb3b0 end:0x020bb3b4
-	.text start:0x0201d844 end:0x0201d8c8
+    .text start:0x0201d844 end:0x0201d8c8
     .bss start:0x020d0e98 end:0x020d103c
 
 src/main/status/GameStatus.cpp:
@@ -121,7 +204,6 @@ src/main/status/BattleResult.cpp:
     .text start:0x02022ac8 end:0x02022db0
     .bss start:0x020ec658 end:0x020ecd30
 
-
 src/main/status/BattleHistory.cpp:
     complete
     .init start:0x0208ad08 end:0x0208ad28
@@ -141,8 +223,6 @@ src/main/status/HaveItemSack.cpp:
     complete
     .text start:0x02014028 end:0x020142dc
     .data start:0x020bc8e0 end:0x020bc8f4
-
-
 
 src/main/status/PlayerStatus.cpp:
     complete
@@ -170,7 +250,6 @@ src/main/status/HaveAction.cpp:
     complete
     .text start:0x020111f8 end:0x020115d4
     .bss start:0x020d06ac end:0x020d06b0
-
 
 src/main/status/Action.cpp:
     complete
@@ -205,6 +284,7 @@ src/main/status/BaseActionMessage:
     .bss start:0x020eecc0 end:0x020eeccc
 
 src/main/status/base_action.cpp:
+    complete
     .init start:0x0208a940 end:0x0208a970
     .ctor start:0x020bb39c end:0x020bb3a0
     .text start:0x02015bb8 end:0x0201a464
@@ -279,7 +359,6 @@ src/main/status/OptionStatus.cpp:
     .text start:0x02013d00 end:0x02013d9c
     .bss  start:0x020d06b4 end:0x020d06c8
 
-
 src/main/status/CharacterStatus.cpp:
     complete 
     .text start:0x02026d38 end:0x02027024
@@ -299,10 +378,45 @@ src/main/status/BaseItem.cpp:
 src/main/profile/Profile.cpp:
     .text start:0x02030da8 end:0x02030f24
 
+src/main/menu/MenuManager.cpp:
+    complete
+    .text start:0x02052130 end:0x02052380
+    .bss start:0x02109990 end:0x02109a48
+
+src/main/sound/MenuSoundManager.cpp:
+    complete
+    .text start:0x02035180 end:0x02035348
+    .bss start:0x020ef858 end:0x020ef880
+
+src/main/text/TextHook.cpp:
+    complete
+    .text start:0x02035364 end:0x02035a80
+    .init start:0x0208b39c end:0x0208b3ac
+    .ctor start:0x020bb40c end:0x020bb410
+    .data start:0x020c1110 end:0x020c1164
+    .bss start:0x020ef880 end:0x020ef8e4
+
+src/main/text/TextAPI.cpp:
+    .text start:0x02054178 end:0x02054690
+
+src/main/menu/MenuSubManager.cpp:
+    complete
+    .text start:0x020526a0 end:0x020527f0
+
+src/main/menu/MenuBase.cpp:
+    complete
+    .text start:0x02052380 end:0x02052424
+    .data start:0x020c23d0 end:0x020c23ec
+
+src/main/menu/MaterielMenu_SlotEnter.cpp:
+    complete
+    .text start:0x0203831c end:0x020383cc
+    .data start:0x020c137c end:0x020c1398
+    .bss start:0x020efc54 end:0x020efc58
+
 src/main/profile/Profile_2.cpp:
     .text start:0x020383cc end:0x02039460
     .data start:0x020c1398 end:0x020c13a8
-
 
 src/main/param/Param.cpp:
     .rodata start:0x0208eb00 end:0x020919dc
@@ -346,6 +460,11 @@ src/main/param/MonsterAnim.cpp:
     .text start:0x0200c044 end:0x0200c0a4
     .data start:0x020bc2f4 end:0x020bc560
 
+src/main/cmn/CommonEffectData.cpp:
+    complete
+    .text start:0x02036058 end:0x020368a8
+    .data start:0x020c123c end:0x020c1328
+
 src/main/cmn/CommonCounterInfo.cpp:
     complete
     .text start:0x020368a8 end:0x020369d0
@@ -385,7 +504,6 @@ src/main/cmn/HengeNoTsueManager.cpp:
     .data start:0x020c13a8 end:0x020c13c8
     .bss start:0x020efc6c end:0x020efc88
 
-
 src/main/cmn/PartyTalk.cpp:
     complete
     .text start:0x02037494 end:0x02037728
@@ -398,6 +516,16 @@ src/main/cmn/CommonRuraData.cpp:
     .rodata start:0x020b5fbc end:0x020b610c
     .data start:0x020becf0 end:0x020bed08
     .bss start:0x020ef794 end:0x020ef7ac
+
+src/main/cmn/ResourceStorage.cpp:
+    complete
+    .text start:0x0203475c end:0x02034974
+    .data start:0x020bf360 end:0x020bf378
+    .bss start:0x020ef7c8 end:0x020ef7cc
+
+src/main/status/UseActionMacro.cpp:
+    complete
+    .text start:0x02034974 end:0x02035098
 
 src/main/cmn/TalkSoundManager.cpp:
     complete
@@ -422,10 +550,13 @@ src/main/cmn/GameManager.cpp:
 src/main/CameraControl/CameraControl.cpp:
     .text start:0x0201d9b4 end:0x0201da1c
 
-
 src/main/task/PartTaskManager.cpp:
     complete
-    .text start:0x02035098 end:0x02035150
+    .text start:0x02035098 end:0x02035180
+    .init start:0x0208b35c end:0x0208b39c
+    .ctor start:0x020bb408 end:0x020bb40c
+    .data start:0x020bf378 end:0x020bf3c8
+    .bss start:0x020ef7cc end:0x020ef858
 
 src/main/menu/MenuDataCommon.cpp:
     complete
@@ -440,6 +571,7 @@ src/main/menu/TownMenu_PARTY_TALK.cpp:
     .data start:0x020c1338 end:0x020c1354
 
 src/main/menu/TownMenu_MESSAGE.cpp:
+    complete
     .text start:0x0202599c end:0x02025bf4
 
 src/main/fld/FLDObject.cpp:
@@ -463,3 +595,97 @@ src/main/btl/BattleScriptManager.cpp:
     .text start:0x02030aa8 end:0x02030cb0
     .bss start:0x020eed00 end:0x020eed14
     .data start:0x020bebe8 end:0x020bec68
+
+libs/MSL/src/buffer_io.c:
+    complete
+    .text start:0x02000dcc end:0x02000e88
+
+libs/MSL/src/file_io.c:
+    complete
+    .text start:0x02000e88 end:0x02000f70
+
+libs/MSL/src/mem_funcs.c:
+    complete
+    .text start:0x020010b0 end:0x02001160
+
+libs/MSL/src/math/s_copysign.c:
+    complete
+    .text start:0x020036ac end:0x020036d4
+
+libs/MSL/src/math/s_fabs.c:
+    complete
+    .text start:0x020036d4 end:0x020036f4
+
+libs/MSL/src/math/s_frexp.c:
+    complete
+    .text start:0x020036f4 end:0x020037b0
+
+libs/MSL/src/math/s_ldexp.c:
+    complete
+    .text start:0x020037b0 end:0x020039fc
+
+libs/Runtime/src/console_io.c:
+    complete
+    .text start:0x02006420 end:0x020064e4
+
+libs/Runtime/src/CompressedNumbers.cpp:
+    complete
+    .text start:0x020064e4 end:0x020065fc
+
+libs/MSL/src/abort_exit_arm_eabi.c:
+    complete
+    .text start:0x02000bc0 end:0x02000d58
+    .bss start:0x020c4a20 end:0x020c4b30
+
+libs/MSL/src/signal.c:
+    complete
+    .text start:0x02003294 end:0x020033c4
+    .bss start:0x020c4f50 end:0x020c4f6c
+
+libs/Runtime/src/StaticInitializers.cpp:
+    complete
+    .text start:0x02007940 end:0x020079b0
+    .bss start:0x020c4f6c end:0x020c4f70
+
+libs/Runtime/src/__register_global_object.c:
+    complete
+    .text start:0x02007b48 end:0x02007b68
+
+libs/NitroSDK/src/os/init.c:
+    complete
+    .text start:0x02079230 end:0x02079298
+
+libs/NitroSDK/src/os/mutex.c:
+    complete
+    .text start:0x02078f5c end:0x0207914c
+
+libs/NitroSDK/src/fs/rom.c:
+    complete
+    .text start:0x020612ec end:0x02061544
+    .data start:0x020c3dac end:0x020c3db0
+    .bss start:0x0210cde4 end:0x0210ce58
+
+libs/MSL/src/mbstring.c:
+    complete
+    .text start:0x02000f70 end:0x02001050
+
+libs/MSL/src/mem.c:
+    complete
+    .text start:0x02001050 end:0x020010b0
+
+libs/MSL/src/string.c:
+    complete
+    .text start:0x020033c4 end:0x020036ac
+
+libs/NitroSDK/src/os/cache.c:
+    complete
+    .text start:0x0207914c end:0x02079230
+
+libs/NitroSDK/src/os/cpustat.c:
+    complete
+    .text start:0x02079ce8 end:0x02079d94
+
+libs/NitroSDK/src/fx/fx_atan.c:
+    complete
+    .text start:0x020634c4 end:0x0206366c
+    .rodata start:0x020ba38c end:0x020ba490

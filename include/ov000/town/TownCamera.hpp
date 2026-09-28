@@ -4,12 +4,11 @@
 #include "main/dss/Camera.hpp"
 #include "main/cmn/MoveBase.hpp"
 
-extern "C" int func_02081254(void);
 extern int data_020f22c0;
 extern short cameraParam[4];
 
 struct TownCamera {
-    dss::Camera camera_;                            // 0x000
+    dss::DualCamera camera_;                         // 0x000
     dss::Fx32 limitL;                               // 0x0F4
     dss::Fx32 limitR;                               // 0x0F8
     int flagRotateL;                                // 0x0FC

@@ -34,7 +34,7 @@ THUMB int cmd_is_open_door(int* param)
 
 THUMB int cmd_chara_lock_move(int* param)
 {
-    int index = func_0202376c(param[1]);
+    int index = getPlacementCtrlId(param[1]);
     func_ov000_02137f2c()->setLockMove(index, param[0]);
     return 1;
 }
@@ -43,6 +43,6 @@ THUMB int cmd_get_reward_tom(int* param)
 {
     int gold = dssrand::rand(11);
     status::g_Party.addGold(gold + 2);
-    func_02054364(0x35, 0xf0000000, gold + 2);
+    TextAPI::setMACRO0(0x35, 0xf0000000, gold + 2);
     return 1;
 }

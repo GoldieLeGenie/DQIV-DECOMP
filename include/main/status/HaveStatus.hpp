@@ -74,7 +74,6 @@ struct LevelEntry {
 
 extern status::BaseStatus data_020d0698;
 
-extern "C" unsigned int func_02008ea0(unsigned int value, unsigned int min, unsigned int max);
 extern "C" long long func_0200602c(int numerator, int denominator); 
 extern "C" void func_0200e004(status::BaseStatus*);
 extern "C" void func_0200e01c(status::BaseStatus*);

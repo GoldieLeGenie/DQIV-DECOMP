@@ -47,7 +47,7 @@ THUMB int cmd_check_taishi_max(int* param)
 
 THUMB int cmd_set_ikada_info(int* param)
 {
-    dss::Fx32Vector3 pos = func_02032424(param[4], param[5], param[6]);
+    dss::Fx32Vector3 pos = cmn::CommonCalculate::setVecByParam(param[4], param[5], param[6]);
     func_ov000_02128768(func_ov000_021285c0(), (const char*)param, &pos);
     return 1;
 }

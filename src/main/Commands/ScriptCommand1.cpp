@@ -16,14 +16,14 @@ ARM int cmd_setup(int* param)
 {
     ScriptObjectId id;
     id.id_ = param[0];
-    func_02023688(id, 1);
+    setScriptObjectEnable(*(int*)&id, true);
     return 1;
 }
 
 ARM int cmd_message1(int* param)
 {
-    int index = func_0202375c();
-    if (func_020236a8() > index) {
+    int index = getPlacementCtrlId();
+    if (getObjectCount() > index) {
         if (func_02058114(data_0210bb94, 0xc) != 0) {
             cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
         }
@@ -45,8 +45,8 @@ ARM int cmd_message1(int* param)
 
 ARM int cmd_message2(int* param)
 {
-    int index = func_0202375c();
-    if (func_020236a8() > index) {
+    int index = getPlacementCtrlId();
+    if (getObjectCount() > index) {
         if (func_02058114(data_0210bb94, 0xc) != 0) {
             cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
         }
@@ -104,8 +104,8 @@ ARM int cmd_message2(int* param)
 
 ARM int cmd_random_message(int* param)
 {
-    int index = func_0202375c();
-    if (func_020236a8() > index) {
+    int index = getPlacementCtrlId();
+    if (getObjectCount() > index) {
         if (func_02058114(data_0210bb94, 0xc) != 0) {
             cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
         }

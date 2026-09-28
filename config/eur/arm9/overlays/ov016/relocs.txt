@@ -5713,7 +5713,7 @@ from:0x0217f3fc kind:load to:0x02186a14 module:overlay(16)
 from:0x0217f400 kind:load to:0x021848d8 module:overlay(16)
 from:0x0217f404 kind:load to:0x021869a8 module:overlay(16)
 from:0x0217f408 kind:load to:0x021859b8 module:overlay(16)
-from:0x0217f40c kind:load to:0x020c1384 module:main
+from:0x0217f40c kind:load to:0x020c137c add:0x8 module:main
 from:0x0217f410 kind:load to:0x021859a8 module:overlay(16)
 from:0x0217f414 kind:load to:0x02186914 module:overlay(16)
 from:0x0217f418 kind:load to:0x020c1910 module:main

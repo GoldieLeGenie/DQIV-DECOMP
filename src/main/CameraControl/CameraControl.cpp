@@ -4,11 +4,11 @@
 
 ARM void CameraControl::terminate()
 {
-    if (func_020574bc(&this->data_) == 0)
+    if (this->data_.getAddr() == 0)
     {
         return;
     }
-    func_02057474(&this->data_);
+    this->data_.cleanup();
 }
 
 ARM void CameraControl::initCameraControl(dss::Fx32Vector3 position, dss::Vector3short angle)

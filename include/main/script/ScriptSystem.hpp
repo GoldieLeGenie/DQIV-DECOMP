@@ -1,11 +1,33 @@
 #pragma once
 #include "globaldefs.h"
+#include "main/data/DataObject.hpp"
+#include "main/data/FileLoader.hpp"
+#include "main/script/sys/ScriptEngine.hpp"
+#include "main/script/ScriptBaseCommand.hpp"
 
-struct ScriptSystem;
-
-extern "C" ScriptSystem* func_0201f16c(void);                                       // ScriptSystem::getSingleton
+struct CommandParameter;
 
 struct ScriptSystem {
-    char unk_00000[0x199dc];
-    int executeEnable_;                                                             // 0x199DC
+    int flag_;                                  // 0x00000
+    int chapter_;                               // 0x00004
+    DataObject dataObject_;                     // 0x00008
+    ScriptEngine scriptEngine_;                 // 0x00018
+    int executeEnable_;                         // 0x199DC
+
+    ScriptSystem();
+    ~ScriptSystem();
+    static ScriptSystem* getSingleton();
+    void setup(char* fname);
+    void setup();
+    void cleanup();
+    void initialize(int chapter);
+    void terminate();
+    void execute();
 };
+
+int CommandFunction(CommandParameter* param);
+
+
+extern "C" {
+    int func_02088308(char* buf, int size, const char* fmt, ...);
+}

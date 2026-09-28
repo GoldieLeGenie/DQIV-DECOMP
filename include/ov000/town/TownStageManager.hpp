@@ -44,9 +44,9 @@ struct TownStageManager {
     void eventAnim(int id, int flag) { func_02047b14(this, id, flag); }
     void setMapTexture(int texture) { unk_bb0 = texture; }
     void setClipping(int clip) { unk_664 = clip; }
-    dss::VecFx32& GetCameraCentFX32(int no) { return fldObject_.unk_254[no]; }
-    dss::VecFx32& GetCameraPosFX32(int no) { return fldObject_.unk_26c[no]; }
-    dss::VecFx32& GetCameraUpFX32(int no) { return fldObject_.unk_284[no]; }
+    VecFx32& GetCameraCentFX32(int no) { return fldObject_.unk_254[no]; }
+    VecFx32& GetCameraPosFX32(int no) { return fldObject_.unk_26c[no]; }
+    VecFx32& GetCameraUpFX32(int no) { return fldObject_.unk_284[no]; }
     void setNextBackColor(int index) { townData_.setNextBackColor(index); }
     int getNextBackColor() { return townData_.getNextBackColor(); }
     void setClipDistance(dss::Fx32 dist) { fldObject_.unk_2a8 = dist.value; }

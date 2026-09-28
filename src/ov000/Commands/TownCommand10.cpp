@@ -16,14 +16,14 @@
 
 THUMB int cmd_set_monster_talk(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_02137f2c()->setMonsterTalk(index, param[0]);
     return 1;
 }
 
 THUMB int cmd_set_monster_talk_all(int* param)
 {
-    func_0202375c();
+    getPlacementCtrlId();
     func_ov000_02139158(func_ov000_02137f2c(), param[0]);
     data_ov000_0214eb9c = param[0];
     return 1;

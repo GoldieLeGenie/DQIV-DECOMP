@@ -22,7 +22,7 @@ THUMB int cmd_set_basha_go_into(int* param)
 
 THUMB int cmd_chara_voice(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     int voice;
     switch (param[0]) {
     case 0:

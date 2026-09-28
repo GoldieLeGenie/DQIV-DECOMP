@@ -37,8 +37,8 @@ THUMB int cmd_set_player_direction(int* param)
 
 THUMB int cmd_is_speaked(int* param)
 {
-    int index = func_0202375c();
-    int id = func_02023778(index);
+    int index = getPlacementCtrlId();
+    int id = getPlacementIndex(index);
     int voice = func_ov000_02138eb8(func_ov000_02137f2c(), index);
     if (func_ov000_0213842c(func_ov000_02137f2c(), index) != 0) {
         if (func_ov000_0212e930(func_ov000_02137f2c()->character_[index]) == 0 && g_HengeNoTsue.isMonster() == 1) {
@@ -65,7 +65,7 @@ THUMB int cmd_is_speaked(int* param)
 
 THUMB int cmd_speak_to_player(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_02138308(func_ov000_02137f2c(), index);
     cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
     cmn::g_talkSound.setMessageSound(param[1], index);
@@ -78,7 +78,7 @@ THUMB int cmd_speak_to_player(int* param)
 
 THUMB int cmd_speak_to_player2(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_02138308(func_ov000_02137f2c(), index);
     if (!g_HengeNoTsue.isMonster()) {
         cmn::PartyTalk::getSingleton()->setPreMessageNo(param[0]);
@@ -131,6 +131,6 @@ THUMB int cmd_speak_to_player2(int* param)
 
 THUMB int cmd_set_x_wins(int* param)
 {
-    func_02054364(0x55, 0xf0000000, param[0]);
+    TextAPI::setMACRO0(0x55, 0xf0000000, param[0]);
     return 1;
 }

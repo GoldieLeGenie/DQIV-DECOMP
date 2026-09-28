@@ -22,21 +22,21 @@ THUMB int cmd_disable_demolition()
 
 THUMB int cmd_set_camera_target(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     TownCamera::getSingleton()->setMoveTragetChara(index);
     return 1;
 }
 
 THUMB int cmd_character_swing_round(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_02137f2c()->setSwingRound(index, param[0]);
     return 1;
 }
 
 THUMB int cmd_character_anim(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     int anim = param[0];
     if (anim == 0) {
         anim = -1;
@@ -47,7 +47,7 @@ THUMB int cmd_character_anim(int* param)
 
 THUMB int cmd_party_copy_character(int* param)
 {
-    int index = func_0202376c(param[1]);
+    int index = getPlacementCtrlId(param[1]);
     status::PlayerStatus* player = status::g_Party.getPlayerStatus(param[0]);
     func_ov000_02138248(func_ov000_02137f2c(), index, player->haveStatusInfo_.haveStatus_.charaIndex_);
     return 1;

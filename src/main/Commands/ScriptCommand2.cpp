@@ -81,6 +81,7 @@ ARM int cmd_set_party_total_recovery(int* param)
     return 1;
 }
 
+//IDK THe name yet
 extern "C" ARM int func_02020008(CommandParameter* command)
 {
     if (command->flag_ & 1) {

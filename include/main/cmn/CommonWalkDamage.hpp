@@ -37,9 +37,9 @@ struct CommonWalkDamageData {
     int walkCount_;      // 0x10
     int partyStride_;    // 0x14
     int topStride_;      // 0x18
-    int topDamage_;      // 0x1c  (partyDamage_ sur mobile)
+    int topDamage_;      // 0x1c  
     int unk20;           // 0x20
-    int topCount_;       // 0x24  (dword_295BB8 sur mobile)
+    int topCount_;       // 0x24  
 };
 extern CommonWalkDamageData data_020ef6f4;
 extern CommonWalkDamageEntry data_020ef71c[3];

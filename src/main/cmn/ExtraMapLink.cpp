@@ -492,7 +492,7 @@ ARM void cmn::ExtraMapLink::setFieldRectLinkToField(dss::Fx32Vector3& topLeft, d
 ARM int cmn::ExtraMapLink::checkFieldRectLinkNo(dss::Fx32Vector3& pos)
 {
     for (int i = 0; i < rectLinkCount_; i++) {
-        if (func_0203201c(&rectLinkData_[i].pos[0], &rectLinkData_[i].pos[1], pos) == 1) {
+        if (cmn::CommonCalculate::simpleAreaInCheck(rectLinkData_[i].pos[0], rectLinkData_[i].pos[1], pos) == 1) {
             return i;
         }
     }

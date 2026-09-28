@@ -1,3 +1,4 @@
+#pragma ipa file
 #include "main/status/BaseAction.hpp"
 #include "main/status/BaseActionStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
@@ -5,7 +6,9 @@
 #include "ov003/status/MonsterParty.hpp"
 #include "ov015/btl/BattleSelectTarget.hpp"
 
+
 status::UseActionParam* status::BaseAction::useActionParam_;
+int status::BaseAction::mirrorDamage_;
 int status::BaseAction::doubleFlag_;
 int status::BaseAction::splitFlag_;
 int status::BaseAction::joukFlag_;
@@ -20,7 +23,6 @@ int status::BaseAction::multiFlag_;
 int status::BaseAction::flag_;
 param::ActionParam* status::BaseAction::actionParam_;
 status::BaseActionWorkParam status::BaseAction::workParam_;
-int status::BaseAction::mirrorDamage_;
 int status::BaseAction::callMonster_[4];
 
 const SplitJoukTable splitJoukTable = { { 9, 5, 2 } };

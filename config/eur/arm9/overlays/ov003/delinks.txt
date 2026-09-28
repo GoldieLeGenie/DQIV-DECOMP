@@ -79,11 +79,12 @@ src/ov003/btl/ExecActionTask.cpp:
     .bss start:0x0216a97c end:0x0216a980
 
 src/ov003/btl/battle_actor_exec.cpp:
+    complete
     .init start:0x02139628 end:0x0213967c
     .ctor start:0x021396c0 end:0x021396c4
     .text start:0x02125a7c end:0x02125d78
-    .data start:0x0213a3d0 end:0x0213a510
-    .bss start:0x021492c4 end:0x02152384
+    .data start:0x0213a3d0 end:0x0213a508
+    .bss start:0x021492bc end:0x0215237c
 
 src/ov003/btl/BattleActor2.cpp:
     complete
@@ -92,7 +93,7 @@ src/ov003/btl/BattleActor2.cpp:
 
 src/ov003/btl/BattleActorManager2.cpp:
     .text start:0x02126e54 end:0x02128a74
-    .bss start:0x02152384 end:0x02158a50
+    .bss start:0x0215237c end:0x02158a50
     .data start:0x0213a8d8 end:0x0213b038
 
 src/ov003/btl/BattleActorEffect.cpp:
@@ -109,8 +110,14 @@ src/ov003/status/ExcelParamBis.cpp:
     .rodata start:0x02130e9c end:0x02139040
 
 src/ov003/btl/AutoAction.cpp:
-    .text start:0x0212c118 end:0x0212dfa8
-    .data start:0x0213ba40 end:0x0213c5e0
+    complete
+    .text start:0x0212c118 end:0x0212cd30
+    .data start:0x0213ba40 end:0x0213be0c
+
+src/ov003/btl/AutoActionParam.cpp:
+    complete
+    .text start:0x0212cd30 end:0x0212dfa8
+    .data start:0x0213be0c end:0x0213c5e0
 
 src/ov003/btl/BattleActorAnimation.cpp:
     complete

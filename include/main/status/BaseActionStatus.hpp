@@ -69,9 +69,9 @@ struct BattleMonsterDraw2;
 struct BattleMonsterDrawParam {
     int unk_00;        // +0
     int unk_04;        // +4
-    dss::fx32 vz_;     // +8
-    dss::fx32 vy_;     // +0xC
-    dss::fx32 vx_;     // +0x10
+    fx32 vz_;     // +8
+    fx32 vy_;     // +0xC
+    fx32 vx_;     // +0x10
     int unk_14;        // +0x14
 };
 extern BattleMonsterDrawParam g_BattleMonsterDrawParam;

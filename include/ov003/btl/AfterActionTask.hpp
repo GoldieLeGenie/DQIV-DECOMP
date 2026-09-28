@@ -5,6 +5,7 @@
 #include "main/task/PartTask.hpp"
 #include "main/status/BaseActionStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
+#include "main/status/UseActionMacro.hpp"
 #include "ov003/btl/SpecialMessageTask.hpp"
 
 namespace btl {
@@ -30,5 +31,4 @@ extern "C" int   func_02089684();                                            // 
 extern "C" void func_ov003_0212fa14(btl::AfterActionTask* thisptr);
 extern "C" int   func_ov003_0212fba0(btl::AfterActionTask* thisptr);
 extern "C" void  func_ov003_0212a3f8(status::CharacterStatus* actor, int a);
-extern "C" void  func_02035020(status::CharacterStatus* actor);
 extern "C" void  func_ov003_0212a4b0(status::CharacterStatus* target, int a, int b);

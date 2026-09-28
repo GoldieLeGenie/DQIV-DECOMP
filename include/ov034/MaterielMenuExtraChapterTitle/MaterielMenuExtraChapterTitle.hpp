@@ -6,6 +6,7 @@
 #include "main/global/Global.hpp"
 #include "main/menu/MenuBase.hpp"
 #include "main/menu/MaterielMenuWindowManager.hpp"
+#include "main/sound/MenuSoundManager.hpp"
 
 
 struct MaterielMenuExtraChapterTitle : menu::MenuBase
@@ -27,12 +28,6 @@ extern "C" {
     MaterielMenuWindowManager* func_ov016_0216aca4(void);   
     void func_ov016_0216fe50(int chapter, int chapterEnd);  
     void func_020848a8(void);                               
-    int  func_02035180(void);
-    int  func_020352d0(void);                               
-    void func_020351c8(int mgr);                  
-    void func_020351c8(int mgr);
-    void func_020351dc(int mgr, int soundIndex);
-    int  func_020352d0(void);                     /* isPlaySound — inchangé */  
         void func_ov001_0212aaac(void);
     void func_ov001_0212abc8(void);      
 }

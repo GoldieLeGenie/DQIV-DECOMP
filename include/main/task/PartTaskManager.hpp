@@ -34,4 +34,8 @@ namespace task {
 
 extern task::Data0211EC50 data_0211ec50;
 extern task::PartTaskManager partTaskManager;   // data_ov003_021492dc
+extern task::PartTaskManager g_PartTaskManager; // 0x020ef7e4
+extern task::Sample00Task g_Sample00Task;
+extern task::Sample01Task g_Sample01Task;
+extern task::Sample02Task g_Sample02Task;
 extern "C" void func_02089ab8();

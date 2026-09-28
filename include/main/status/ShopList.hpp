@@ -1,4 +1,5 @@
 #pragma once
+#include "string.h"
 #include <globaldefs.h>
 #include "main/param/Param.hpp"
 #include "main/status/ExcelParam.hpp"
@@ -37,6 +38,5 @@ namespace status{
 
 
 
-extern "C" char* func_020033e0(char* dst, const char* src);      // strcpy (MSL)
 extern "C" int func_0200ce20(char* name);                        //
 extern "C" int func_0200cc64(char* name);                        //

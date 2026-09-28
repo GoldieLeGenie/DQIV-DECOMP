@@ -1,5 +1,8 @@
 #pragma once
+#include "main/text/TextAPI.hpp"
 struct TownPartyDraw;
+#include "main/cmn/CommonCalculate.hpp"
+#include "main/script/ScriptBaseCommand.hpp"
 #include "main/window/CommandWindow.hpp"
 #include "globaldefs.h"
 #include "GameInfo.hpp"
@@ -199,18 +202,13 @@ extern "C" {
     int func_ov000_02141424(int* param);
     void func_0207e88c(void* console, int x, int y, const char* format, ...);
     void func_ov016_02178378(void* obj, int value);
-    int  func_0202375c(void);
     void func_ov000_02138308(TownCharacterManager* mgr, int index);
     window::CommandWindow* func_ov000_021372e8(void);
     TownStageManager* func_ov000_02139668(void);
     dss::Fx32Vector3 func_ov000_02139b74(TownStageManager* mgr, int index);
-    dss::Fx32 func_02088e90(const dss::Fx32Vector3& v);
     void* func_ov000_021221b4(void);
     int func_ov000_02122280(void* mgr, int index, int frame, dss::Fx32Vector3* pos);
 
-    int  func_0202376c(int id);
-    int  func_02023778(int index);
-    int  func_020236a8(void);
     void func_ov000_02138598(TownCharacterManager* mgr, int index, dss::Fx32Vector3* pos);
     void func_ov000_021383bc(TownCharacterManager* mgr, int index, int dir);
     void func_ov000_021385b8(TownCharacterManager* mgr, int index, int value);
@@ -228,8 +226,6 @@ extern "C" {
     int  func_02037f40(void* obj, int id, int value);
     int  func_ov000_0212eb90(TownCharacterBase* chara);
     void func_ov016_0216fa48(char* a, char* b, char* c, int value);
-    void func_0205462c(int slot, int value);
-    void func_020543b8(int slot, int type, int value);
     void func_ov000_0213747c(void* obj);
     void func_ov000_02137470(void* obj, int value);
     void func_ov000_0213b17c(TownPartyDraw* draw, int value);
@@ -246,7 +242,6 @@ extern "C" {
     void func_ov000_0213745c(void* obj, int message, int count);
     void* func_020835d8(void);
     void func_02085d88(void);
-    int  func_0203232c(int param, short dir);
     void func_ov000_02139fa4(TownStageManager* mgr, int flag);
     void func_ov000_0213b010(TownPartyDraw* draw);
     void func_ov000_0213afcc(TownPartyDraw* draw);
@@ -258,7 +253,6 @@ extern "C" {
     void func_ov000_0212e408(TownCharacterBase* chara);
     void func_ov000_0212e1a0(TownCharacterBase* chara);
     dss::Fx32 func_0208908c(const dss::Fx32Vector3& a, const dss::Fx32Vector3& b);
-    int  func_02087420(dss::Fx32* a, dss::Fx32* b);
     void func_ov000_0213b054(TownPartyDraw* draw);
     void func_ov000_02133f10(TownPlayerManager* mgr, dss::Fx32Vector3* pos);
     void func_ov000_021222e4(void* obj, int a, int b, int c, int d);

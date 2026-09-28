@@ -1,4 +1,5 @@
 #pragma once
+#include "main/text/TextAPI.hpp"
 #include "globaldefs.h"
 #include "main/menu/MenuBase.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
@@ -22,7 +23,4 @@ extern menu::MenuBase data_ov016_02187c60;
 extern "C" {
     int  func_02058114(void* global, int partId);
     int  func_ov000_0213a998(TownStageManager* self);
-    void func_02054364(int slot, int type, int value);
-    void func_02052408(void* mgr);
-    int  func_0205241c(void* mgr);
 }

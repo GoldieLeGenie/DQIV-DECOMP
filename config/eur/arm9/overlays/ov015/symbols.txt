@@ -325,9 +325,9 @@ data_ov015_021764cc kind:data(any) addr:0x021764cc
 CONDITION_STATUS_TABLE kind:data(any) addr:0x021764e4 local
 AUTO_COMMAND_NAME_TABLE kind:data(any) addr:0x021764fc local
 CONDITION_MESSAGE_TABLE kind:data(any) addr:0x02176514 local
-specialPlayerRate2 kind:data(any) addr:0x02176530
-specialPlayerRate3 kind:data(any) addr:0x02176538
-specialPlayerRate4 kind:data(any) addr:0x02176544
+specialPlayerRate2 kind:data(byte[8]) addr:0x02176530 local
+specialPlayerRate3 kind:data(byte[12]) addr:0x02176538 local
+specialPlayerRate4 kind:data(byte[16]) addr:0x02176544 local
 __sinit_ov015_02176554 kind:function(thumb,size=0x1f8) addr:0x02176554
 .p__sinit_ov015_02176554 kind:data(word) addr:0x0217674c
 data_ov015_02176768 kind:data(any) addr:0x02176768
@@ -437,40 +437,36 @@ data_ov015_02177834 kind:data(any) addr:0x02177834
 data_ov015_02177850 kind:data(any) addr:0x02177850
 data_ov015_0217786c kind:data(any) addr:0x0217786c
 data_ov015_02177888 kind:data(any) addr:0x02177888
-@1 kind:data(any) addr:0x0217789c
-@2 kind:data(any) addr:0x0217790c
-@3 kind:data(any) addr:0x02177980
-@4 kind:data(any) addr:0x021779c4
-@5 kind:data(any) addr:0x02177a10
-@6 kind:data(any) addr:0x02177a25 
-@7 kind:data(any) addr:0x02177a41 
-@8 kind:data(any) addr:0x02177a68
-@9 kind:data(any) addr:0x02177ab8
-@10 kind:data(any) addr:0x02177ae9 
-@11 kind:data(any) addr:0x02177b05
-@12 kind:data(any) addr:0x02177b10
-@13 kind:data(any) addr:0x02177b60
-@14 kind:data(any) addr:0x02177bb8
-@15 kind:data(any) addr:0x02177c04
-@16 kind:data(any) addr:0x02177c58
-@17 kind:data(any) addr:0x02177cac
-@18 kind:data(any) addr:0x02177d14
-@19 kind:data(any) addr:0x02177d7c
-@20 kind:data(any) addr:0x02177de4
-@21 kind:data(any) addr:0x02177e4c
-@22 kind:data(any) addr:0x02177e98
-@23 kind:data(any) addr:0x02177ee4
-@24 kind:data(any) addr:0x02177f30
-@25 kind:data(any) addr:0x02177f88
-@26 kind:data(any) addr:0x02177fd4
-@27 kind:data(any) addr:0x02178028
-@28 kind:data(any) addr:0x0217807c
-@29 kind:data(any) addr:0x021780c0
-@30 kind:data(any) addr:0x02178108
-@31 kind:data(any) addr:0x0217814c
-@32 kind:data(any) addr:0x0217818c
-@33 kind:data(any) addr:0x021781e0
-@719 kind:data(any) addr:0x0217822c
+@1410 kind:data(byte[112]) addr:0x0217789c local
+@1489 kind:data(byte[116]) addr:0x0217790c local
+@1495 kind:data(byte[68]) addr:0x02177980 local
+@1518 kind:data(byte[76]) addr:0x021779c4 local
+@1537 kind:data(byte[85]) addr:0x02177a10 local
+@1560 kind:data(byte[79]) addr:0x02177a68 local
+@1579 kind:data(byte[88]) addr:0x02177ab8 local
+@1602 kind:data(byte[77]) addr:0x02177b10 local
+@1621 kind:data(byte[86]) addr:0x02177b60 local
+@1771 kind:data(byte[75]) addr:0x02177bb8 local
+@1798 kind:data(byte[82]) addr:0x02177c04 local
+@1805 kind:data(byte[81]) addr:0x02177c58 local
+@1829 kind:data(byte[101]) addr:0x02177cac local
+@1846 kind:data(byte[103]) addr:0x02177d14 local
+@1906 kind:data(byte[104]) addr:0x02177d7c local
+@1944 kind:data(byte[103]) addr:0x02177de4 local
+@2189 kind:data(byte[73]) addr:0x02177e4c local
+@2296 kind:data(byte[75]) addr:0x02177e98 local
+@2399 kind:data(byte[73]) addr:0x02177ee4 local
+@2466 kind:data(byte[85]) addr:0x02177f30 local
+@2477 kind:data(byte[73]) addr:0x02177f88 local
+@2539 kind:data(byte[81]) addr:0x02177fd4 local
+@2630 kind:data(byte[82]) addr:0x02178028 local
+@2678 kind:data(byte[65]) addr:0x0217807c local
+@2726 kind:data(byte[69]) addr:0x021780c0 local
+@2804 kind:data(byte[67]) addr:0x02178108 local
+@2849 kind:data(byte[63]) addr:0x0217814c local
+@2863 kind:data(byte[81]) addr:0x0217818c local
+@2938 kind:data(byte[75]) addr:0x021781e0 local
+@2952 kind:data(byte[118]) addr:0x0217822c local
 @1046 kind:data(any) addr:0x021782a4 local
 @1148 kind:data(any) addr:0x021782f4 local
 @1156 kind:data(any) addr:0x02178348 local

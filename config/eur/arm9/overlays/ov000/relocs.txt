@@ -3209,8 +3209,8 @@ from:0x0212f060 kind:arm_call to:0x02007a0c module:main
 from:0x0212f06c kind:arm_call to:0x02083344 module:main
 from:0x0212f088 kind:arm_call to:0x020870fc module:main
 from:0x0212f094 kind:load to:0x021481a0 module:overlay(0)
-from:0x0212f098 kind:load to:0x020c44bc module:main
-from:0x0212f09c kind:load to:0x020c3ad4 module:main
+from:0x0212f098 kind:load to:0x020c44b4 add:0x8 module:main
+from:0x0212f09c kind:load to:0x020c3acc add:0x8 module:main
 from:0x0212f0a0 kind:load to:0x020573fc module:main
 from:0x0212f0a4 kind:load to:0x020573e0 module:main
 from:0x0212f0c0 kind:arm_call to:0x02007abc module:main
@@ -7917,7 +7917,7 @@ from:0x02142e44 kind:thumb_call_arm to:0x02087148 module:main
 from:0x02142e62 kind:thumb_call_arm to:0x02087148 module:main
 from:0x02142e8c kind:thumb_call to:0x02124824 module:overlay(0)
 from:0x02142ed0 kind:arm_call to:0x02058ea4 module:main
-from:0x02142ee4 kind:load to:0x020c3b00 module:main
+from:0x02142ee4 kind:load to:0x020c3af8 add:0x8 module:main
 from:0x02142ef0 kind:arm_call to:0x02058f00 module:main
 from:0x02142f08 kind:arm_call to:0x020573c4 module:main
 from:0x02142f18 kind:arm_call to:0x020573c4 module:main
@@ -7928,12 +7928,12 @@ from:0x02142f54 kind:arm_call to:0x020573e0 module:main
 from:0x02142f70 kind:arm_call to:0x02007a0c module:main
 from:0x02142f78 kind:arm_call to:0x0205a0e8 module:main
 from:0x02142f80 kind:arm_call to:0x02058ea4 module:main
-from:0x02142fa0 kind:load to:0x020c39ac module:main
+from:0x02142fa0 kind:load to:0x020c39a4 add:0x8 module:main
 from:0x02142fa4 kind:load to:0x020573fc module:main
 from:0x02142fa8 kind:load to:0x020573e0 module:main
 from:0x02142fac kind:load to:0x02142ee8 module:overlay(0)
 from:0x02142fb0 kind:load to:0x02142ec8 module:overlay(0)
-from:0x02142fb4 kind:load to:0x020c3b00 module:main
+from:0x02142fb4 kind:load to:0x020c3af8 add:0x8 module:main
 from:0x02142fc4 kind:arm_call to:0x02058f00 module:main
 from:0x02142fcc kind:arm_call to:0x02058f00 module:main
 from:0x02142fe0 kind:arm_call to:0x02007abc module:main

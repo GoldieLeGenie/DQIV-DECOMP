@@ -1,15 +1,10 @@
 #pragma once
 #include <globaldefs.h>
+#include "nitro/fx.hpp"
 
 #pragma always_inline on
 namespace dss{
     
-    typedef signed int fx32;
-    struct VecFx32 {
-        fx32 x;
-        fx32 y;
-        fx32 z;
-    };
     struct Fx32 {
         fx32 value;
         Fx32();                         // func_020870fc
@@ -21,9 +16,12 @@ namespace dss{
         Fx32(const float& v);           // func_02087120
         Fx32& operator=(long v);        // func_02087154
         bool operator>=(const Fx32& o) const;
+        bool operator>(const Fx32& o) const;
+        bool operator<=(const Fx32& o) const;
         Fx32& operator*=(const Fx32& o);       // func_020872fc
         Fx32& operator+=(const Fx32& o);       // func_020871f4
         Fx32 operator*(int v) const;           // func_02087268
+        Fx32 operator*(const Fx32& o) const;   // func_020872a0
         Fx32 operator+(const Fx32& o) const;   // func_020871bc
         Fx32 operator/(const Fx32& o) const;   // func_02087348
         bool operator<(const Fx32& o) const;   // func_02087408
@@ -45,6 +43,8 @@ namespace dss{
     {
         T flag_;
     };
+
+    typedef BitFlag<unsigned int> Flag;
 
     struct BitFlaguint
     {
@@ -78,10 +78,20 @@ namespace dss{
         Vector3() { vx = 0; vy = 0; vz = 0; }
         Vector3(const short& x, const short& y, const short& z) { vx = x; vy = y; vz = z; }
     };
+    template <typename T>
+    struct Vector2 {
+        T vx;
+        T vy;
+        Vector2() { vx = 0; vy = 0; }
+    };
     struct Vector3int {
         int vx;
         int vy;
         int vz;
+    };
+    template <>
+    struct Vector3<int> : Vector3int {
+        Vector3() { vx = 0; vy = 0; vz = 0; }
     };
     struct Fx32Vector3
     {
@@ -114,16 +124,20 @@ namespace dss{
     
 }
 
-struct Mtx43 {
-    int m[12];
-};
-
 extern "C" {
+    unsigned int func_02008ea0(unsigned int value, unsigned int min, unsigned int max);   // clamp
     int func_02080d94(dss::Fx32 value);
-    void func_020885f8(Mtx43* m);
-    void func_02088698(Mtx43* m, short angle);
-    void func_020886d0(Mtx43* m, short angle);
+    void func_020885f8(MtxFx43* m);
+    void func_02088698(MtxFx43* m, short angle);
+    void func_020886d0(MtxFx43* m, short angle);
     void func_0208888c(dss::Fx32Vector3* v, int x, int y, int z);
     void func_02088b10(dss::Fx32Vector3* v, void* scale);
-    dss::Fx32Vector3 func_02088670(Mtx43* m, dss::Fx32Vector3* v);
+    dss::Fx32Vector3 func_02088670(MtxFx43* m, dss::Fx32Vector3* v);
+    dss::Fx32Vector3 func_02088988(const dss::Fx32Vector3& a, const dss::Fx32Vector3& b);
+    dss::Fx32Vector3 func_02088bdc(const dss::Fx32Vector3& v, int div);
+    dss::Fx32Vector3 func_02088b68(const dss::Fx32Vector3& v, const dss::Fx32& div);
+    dss::Fx32 func_02088e90(const dss::Fx32Vector3& v);                      // length
+    int func_02008eb8(int a, int b);                                           // max
+    void func_0208718c(dss::Fx32* obj, const dss::Fx32& value);                // Fx32 assign
+    void func_02087168(void*, int);
 }

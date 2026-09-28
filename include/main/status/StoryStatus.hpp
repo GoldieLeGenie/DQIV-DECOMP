@@ -1,4 +1,5 @@
 #pragma once
+#include "main/text/TextAPI.hpp"
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 #include "main/status/HaveItemSack.hpp"
@@ -51,7 +52,6 @@ namespace status{
 
 
 extern "C" {
-    extern void func_0205461c(char* name);       
     extern void func_02014090(status::HaveItemSack* dst, status::HaveItemSack* src);
     extern int func_02013f88(status::BaseHaveItem* haveItem);
     extern unsigned char func_02013fb4(status::BaseHaveItem *p, int index);

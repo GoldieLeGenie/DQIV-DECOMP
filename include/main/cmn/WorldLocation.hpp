@@ -12,7 +12,7 @@ namespace cmn
         param::CLUTCode *pCLUTCode_;
         void initialize();
         void terminate();
-        static void calcWorldPos(dss::fx32* x, dss::fx32* y);
+        static void calcWorldPos(fx32* x, fx32* y);
         dss::Fx32Vector3 calcPaletteRate(int prev, int next, dss::Fx32 ratio);
         dss::Fx32Vector3 calcPaletteRate(int time);
         dss::Fx32Vector3 calcYamiPaletteRate();

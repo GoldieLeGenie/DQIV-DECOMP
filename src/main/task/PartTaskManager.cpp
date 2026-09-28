@@ -1,4 +1,10 @@
+#pragma ipa file
 #include "main/task/PartTaskManager.hpp"
+
+task::PartTaskManager g_PartTaskManager;
+task::Sample00Task g_Sample00Task;
+task::Sample01Task g_Sample01Task;
+task::Sample02Task g_Sample02Task;
 
 THUMB task::PartTaskManager::PartTaskManager() {
     currentTask_ = 0;
@@ -78,3 +84,38 @@ THUMB void task::PartTaskManager::initialize() {
     this->sleepTaskID_ = -1;
 }
 
+THUMB void task::PartTask::initialize() {
+}
+
+THUMB void task::PartTask::terminate() {
+}
+
+THUMB void task::PartTask::execute() {
+}
+
+THUMB void task::Sample00Task::initialize() {
+}
+
+THUMB void task::Sample00Task::terminate() {
+}
+
+THUMB void task::Sample00Task::execute() {
+}
+
+THUMB void task::Sample01Task::initialize() {
+}
+
+THUMB void task::Sample01Task::terminate() {
+}
+
+THUMB void task::Sample01Task::execute() {
+}
+
+THUMB void task::Sample02Task::initialize() {
+}
+
+THUMB void task::Sample02Task::terminate() {
+}
+
+THUMB void task::Sample02Task::execute() {
+}

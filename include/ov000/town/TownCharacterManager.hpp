@@ -59,6 +59,17 @@ extern "C" {
     int  func_ov000_02138744(TownCharacterManager* mgr, int index);
 }
 
+struct TOWN_CHARACTER {
+    bool enable;                                // 0x00
+    int index;                                  // 0x04
+    int charaIndex;                             // 0x08
+    int dir;                                    // 0x0C
+    int ctrlNo;                                 // 0x10
+    dss::Fx32Vector3 position;                  // 0x14
+    dss::Vector2<int> position2d[2];            // 0x20
+    dss::Flag flag;                             // 0x30
+};
+
 struct TownCharacterManager {
     int townCharacterCount_;
     TownCharacterBase* character_[32];
@@ -75,3 +86,4 @@ struct TownCharacterManager {
 };
 
 extern "C" TownCharacterManager* func_ov000_02137f2c(void);
+extern "C" int func_ov000_02138084(TownCharacterManager* manager, TOWN_CHARACTER* chara);   // TownCharacterManager::setup(TOWN_CHARACTER&)

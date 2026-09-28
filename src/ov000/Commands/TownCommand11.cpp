@@ -16,7 +16,7 @@
 
 THUMB int cmd_set_chara_map_uid(int* param)
 {
-    int index = func_0202375c();
+    int index = getPlacementCtrlId();
     func_ov000_02137f2c()->setMapUid(index, param[0]);
     return 1;
 }

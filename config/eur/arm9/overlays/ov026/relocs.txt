@@ -262,7 +262,7 @@ from:0x02189eae kind:thumb_call to:0x02051900 module:main
 from:0x02189eba kind:thumb_call to:0x02023324 module:main
 from:0x02189ec6 kind:thumb_call to:0x0216aca4 module:overlay(16)
 from:0x02189ed0 kind:load to:0x020c7b1c module:main
-from:0x02189ee0 kind:load to:0x02177b05 module:overlays(15,16)
+from:0x02189ee0 kind:load to:0x02177b05 module:overlay(16)
 from:0x02189eea kind:thumb_call to:0x02025b68 module:main
 from:0x02189ef2 kind:thumb_call to:0x0216fe58 module:overlay(16)
 from:0x02189efa kind:thumb_call to:0x02051968 module:main
