@@ -21,7 +21,7 @@ namespace btl {
         int conditionChange_[4];
         short targetMonsterGroup_[4];
         short magicPosition_[26];
-        BattleMenuPlayerControl* getSingleton();
+        static BattleMenuPlayerControl* getSingleton();
         int getPlayerItemId();
         void clear();
         void allClear();

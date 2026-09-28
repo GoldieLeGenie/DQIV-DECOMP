@@ -3,6 +3,7 @@
 #include "ov003/status/MonsterParty.hpp"
 #include "main/status/UseAction.hpp"
 #include "main/status/HaveEquipment.hpp"
+#include "ov003/btl/BattleExecVictory.hpp"
 
 int monsterChangeCount;
 
@@ -160,7 +161,7 @@ THUMB void btl::BattleActorAnimation::setResultAnimation(status::UseActionParam*
         int ctrlId = target->haveStatusInfo_.drawCtrlId_;
 
         if (btl::BattleActorManager2::getSingleton()->eventType_ == 1) {
-            if (ctrlId != func_ov003_021249e4()) {
+            if (ctrlId != btl::BattleExecEvent00::getRealVelorinman()) {
                 return;
             }
         }
@@ -532,7 +533,7 @@ THUMB void btl::BattleActorAnimation::setMosyasChange(status::CharacterStatus* a
 
     int ctrlId = actor->haveStatusInfo_.drawCtrlId_;
     int group = actor->characterGroup_;
-    dss::Fx32Vector3 pos = *func_02083648((Position*)&func_ov003_02121d04()->monster_[ctrlId]);
+    dss::Fix32Vector3 pos = *func_02083648((Position*)&func_ov003_02121d04()->monster_[ctrlId]);
 
     func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
 
@@ -550,7 +551,7 @@ THUMB void btl::BattleActorAnimation::setMosyasReverse(status::CharacterStatus* 
     if (actor->haveStatusInfo_.isMosyasRelease()) {
         int ctrlId = actor->haveStatusInfo_.drawCtrlId_;
         int group = actor->characterGroup_;
-        dss::Fx32Vector3 pos = *func_02083648((Position*)&func_ov003_02121d04()->monster_[ctrlId]);
+        dss::Fix32Vector3 pos = *func_02083648((Position*)&func_ov003_02121d04()->monster_[ctrlId]);
 
         func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
 
@@ -609,7 +610,7 @@ THUMB void btl::BattleActorAnimation::gattaiSlimeStart(status::CharacterStatus* 
                 actor->haveStatusInfo_.setMonsterChange(true);
                 BattleMonsterDraw2* mgr = func_ov003_02121d04();
                 func_ov003_02121af4(&mgr->monster_[ctrlId]);
-                dss::Fx32Vector3 pos(0, 0, 0);
+                dss::Fix32Vector3 pos(0, 0, 0);
                 mgr = func_ov003_02121d04();
                 func_ov003_02121878(&mgr->monster_[ctrlId], &pos);
                 SoundManager::playSe(705, 0);
@@ -642,7 +643,7 @@ THUMB void btl::BattleActorAnimation::gattaiSlime(status::CharacterStatus* actor
 
     int ctrlId = actor->haveStatusInfo_.drawCtrlId_;
     int group = actor->characterGroup_;
-    dss::Fx32Vector3 pos = *func_02083648((Position*)&func_ov003_02121d04()->monster_[ctrlId]);
+    dss::Fix32Vector3 pos = *func_02083648((Position*)&func_ov003_02121d04()->monster_[ctrlId]);
 
     func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
 
@@ -702,7 +703,7 @@ THUMB void btl::BattleActorAnimation::setMonsterChange(status::CharacterStatus* 
     int a = mgr->monster_[ctrlId].screenPosition_;
     int b = func_ov003_02121d04()->monster_[ctrlId].screenWidth_;
     int group = actor->characterGroup_;
-    dss::Fx32Vector3 pos = *func_02083648((Position*)&func_ov003_02121d04()->monster_[ctrlId]);
+    dss::Fix32Vector3 pos = *func_02083648((Position*)&func_ov003_02121d04()->monster_[ctrlId]);
 
     func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
 

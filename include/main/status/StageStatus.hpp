@@ -40,11 +40,11 @@ namespace status{
         int symbolID_;
         int lastSave_;
         StageVector3short backupCameraAngle_;
-        dss::Fx32Vector3 shipPosition_;
-        dss::Fx32Vector3 balloonPosition_;
+        dss::Fix32Vector3 shipPosition_;
+        dss::Fix32Vector3 balloonPosition_;
         int balloonFieldType_;
-        dss::Fx32Vector3 overviewPosition_;
-        dss::Fx32Vector3 overviewTempPosition_;
+        dss::Fix32Vector3 overviewPosition_;
+        dss::Fix32Vector3 overviewTempPosition_;
         int flagMapChange_;
         StageFlaguint ruraEnable_;
         int ruraFlag_;
@@ -72,7 +72,7 @@ namespace status{
             IdoLink link_;
         };
         union IdoLinkUnion {
-            dss::Fx32Vector3 pos_;
+            dss::Fix32Vector3 pos_;
             IdoLinkData data_;
         } idoLink_;                         // 0x268
 
@@ -191,7 +191,7 @@ extern "C" {
     void* func_02037da4();
     int func_02058114(void*, int);
     int func_ov000_02135b04();
-    void func_02088740(dss::Fx32Vector3* vec);
+    void func_02088740(dss::Fix32Vector3* vec);
 }
 
 struct MapChurchInfo {

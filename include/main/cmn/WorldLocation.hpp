@@ -13,9 +13,9 @@ namespace cmn
         void initialize();
         void terminate();
         static void calcWorldPos(fx32* x, fx32* y);
-        dss::Fx32Vector3 calcPaletteRate(int prev, int next, dss::Fx32 ratio);
-        dss::Fx32Vector3 calcPaletteRate(int time);
-        dss::Fx32Vector3 calcYamiPaletteRate();
+        dss::Fix32Vector3 calcPaletteRate(int prev, int next, dss::Fix32 ratio);
+        dss::Fix32Vector3 calcPaletteRate(int time);
+        dss::Fix32Vector3 calcYamiPaletteRate();
         static void setCurrentTimeZone();
         static TIME_ZONE getCurrentTimeZone();
     };

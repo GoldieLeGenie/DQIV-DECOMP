@@ -47,7 +47,7 @@ ARM void btl::AfterActionTask::terminate()
 
 ARM void btl::AfterActionTask::execute()
 {
-    if (func_ov003_02122948(func_ov003_021224b0()) == 0) {
+    if (BattleCamera::getSingleton()->isCameraAnimation() == 0) {
         if (this->mess_ == 0) {
             cleanup();
         }

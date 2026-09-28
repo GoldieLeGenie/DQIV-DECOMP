@@ -11,15 +11,15 @@ struct TownPartyDraw;
 #include "ov000/town/TownCamera.hpp"
 #include "ov000/town/TownDoorAction.hpp"
 #include "main/Commands/CommonCommand.hpp"
+#include "main/cmn/CommonEffectLocation.hpp"
 
 struct TownFurnitureManager;
 struct TownStageManager;
-namespace cmn { struct CommonEffectLocation; }
 struct TownPlayerManager;
 
 struct TownCharaMoveParam {
-    dss::Fx32Vector3 pos_[4];
-    dss::Fx32 speed_;
+    dss::Fix32Vector3 pos_[4];
+    dss::Fix32 speed_;
     int unk_34;
     int unk_38;
 };
@@ -196,7 +196,7 @@ extern char data_ov000_02148fa8[];
 extern char data_ov016_02186a14[];
 extern Data021487a8 data_ov000_021487a8;
 extern long data_ov000_021487ac;
-extern dss::Fx32 data_ov000_021487b0;
+extern dss::Fix32 data_ov000_021487b0;
 
 extern "C" {
     int func_ov000_02141424(int* param);
@@ -205,11 +205,11 @@ extern "C" {
     void func_ov000_02138308(TownCharacterManager* mgr, int index);
     window::CommandWindow* func_ov000_021372e8(void);
     TownStageManager* func_ov000_02139668(void);
-    dss::Fx32Vector3 func_ov000_02139b74(TownStageManager* mgr, int index);
+    dss::Fix32Vector3 func_ov000_02139b74(TownStageManager* mgr, int index);
     void* func_ov000_021221b4(void);
-    int func_ov000_02122280(void* mgr, int index, int frame, dss::Fx32Vector3* pos);
+    int func_ov000_02122280(void* mgr, int index, int frame, dss::Fix32Vector3* pos);
 
-    void func_ov000_02138598(TownCharacterManager* mgr, int index, dss::Fx32Vector3* pos);
+    void func_ov000_02138598(TownCharacterManager* mgr, int index, dss::Fix32Vector3* pos);
     void func_ov000_021383bc(TownCharacterManager* mgr, int index, int dir);
     void func_ov000_021385b8(TownCharacterManager* mgr, int index, int value);
     void func_ov000_021384c0(TownCharacterManager* mgr, int index, int value);
@@ -217,7 +217,7 @@ extern "C" {
     void func_ov000_02138480(TownCharacterManager* mgr, int index, int value);
     void func_ov000_02138460(TownCharacterManager* mgr, int index, int value);
     void func_ov000_02138670(TownCharacterManager* mgr, int index, int value);
-    dss::Fx32Vector3* func_ov000_021383ac(TownCharacterManager* mgr, int index);
+    dss::Fix32Vector3* func_ov000_021383ac(TownCharacterManager* mgr, int index);
     void func_ov000_02139e90(TownStageManager* mgr, int a, int b, int c);
     void func_ov000_0213a960(TownStageManager* mgr, int id);
     void func_02037db0(void* obj, int a, int b);
@@ -231,11 +231,11 @@ extern "C" {
     void func_ov000_0213b17c(TownPartyDraw* draw, int value);
     void func_ov000_0213b118(TownPartyDraw* draw, int value);
     void func_ov000_0213b10c(TownPartyDraw* draw, int value);
-    void func_ov000_02130f48(int dir, dss::Fx32Vector3* out);
-    dss::Fx32Vector3 func_ov000_02131b1c(int dir);
+    void func_ov000_02130f48(int dir, dss::Fix32Vector3* out);
+    dss::Fix32Vector3 func_ov000_02131b1c(int dir);
     void func_ov000_02133f3c(TownPlayerManager* mgr, short dir);
     void* func_ov000_021285c0(void);
-    void func_ov000_021287e4(void* obj, dss::Fx32Vector3* pos);
+    void func_ov000_021287e4(void* obj, dss::Fix32Vector3* pos);
     int  func_ov000_0213842c(TownCharacterManager* mgr, int index);
     int  func_ov000_021382a0(TownCharacterManager* mgr, int index);
     int  func_ov000_0212e930(TownCharacterBase* chara);
@@ -248,27 +248,27 @@ extern "C" {
     void func_ov000_0213b0b0(TownPartyDraw* draw);
     int  func_ov000_0212e9d8(TownCharacterBase* chara);
     void* func_ov000_02142964(void);
-    void func_ov000_021429c8(void* obj, int id, dss::Fx32Vector3 pos);
+    void func_ov000_021429c8(void* obj, int id, dss::Fix32Vector3 pos);
     void func_ov000_0212de50(TownCharacterBase* chara);
     void func_ov000_0212e408(TownCharacterBase* chara);
     void func_ov000_0212e1a0(TownCharacterBase* chara);
-    dss::Fx32 func_0208908c(const dss::Fx32Vector3& a, const dss::Fx32Vector3& b);
+    dss::Fix32 func_0208908c(const dss::Fix32Vector3& a, const dss::Fix32Vector3& b);
     void func_ov000_0213b054(TownPartyDraw* draw);
-    void func_ov000_02133f10(TownPlayerManager* mgr, dss::Fx32Vector3* pos);
+    void func_ov000_02133f10(TownPlayerManager* mgr, dss::Fix32Vector3* pos);
     void func_ov000_021222e4(void* obj, int a, int b, int c, int d);
     void func_ov000_021383dc(TownCharacterManager* mgr, int index, dss::Vector3short* rot);
     void* func_ov000_02123e28(void);
-    int func_ov000_02124028(void* obj, int id, dss::Fx32Vector3 pos, int a, int b);
+    int func_ov000_02124028(void* obj, int id, dss::Fix32Vector3 pos, int a, int b);
     void func_ov000_02138248(TownCharacterManager* mgr, int index, int pose);
     void func_ov000_02135158(TownPlayerManager* mgr, int value);
     void func_ov000_0212ea00(TownCharacterBase* chara, int value);
     void func_ov000_02138e20(TownCharacterManager* mgr, int index, short anim);
     TownFurnitureManager* func_ov000_02122ad8(void);
     int func_ov000_02123144(void* obj, int id);
-    void func_ov000_02139c18(TownStageManager* mgr, int id, dss::Fx32Vector3* pos);
+    void func_ov000_02139c18(TownStageManager* mgr, int id, dss::Fix32Vector3* pos);
     int func_0200c020(void);
-    int func_ov000_02135494(TownPlayerManager* mgr, int id, dss::Fx32Vector3* pos, short* dir, int* value);
-    void func_ov000_02138f70(TownCharacterManager* mgr, int index, dss::Fx32Vector3* pos, short dir, int value);
+    int func_ov000_02135494(TownPlayerManager* mgr, int id, dss::Fix32Vector3* pos, short* dir, int* value);
+    void func_ov000_02138f70(TownCharacterManager* mgr, int index, dss::Fix32Vector3* pos, short dir, int value);
     void func_ov000_02138440(TownCharacterManager* mgr, int index, int value);
     void func_ov000_02138578(TownCharacterManager* mgr, int index, unsigned char alpha);
     void func_ov000_0212e918(TownCharacterBase* chara, int value);
@@ -277,16 +277,15 @@ extern "C" {
     void func_0208a114(char* dst, int size, int id);
     void func_0203a7a8(void* mgr, char* name);
     int func_0203a388(void* mgr);
-    void func_ov000_02128768(void* obj, const char* name, dss::Fx32Vector3* pos);
+    void func_ov000_02128768(void* obj, const char* name, dss::Fix32Vector3* pos);
     int func_ov000_02122dc8(void* obj, int id);
     void func_ov000_0212e900(TownCharacterBase* chara, int value);
     void func_ov000_0212ea4c(TownCharacterBase* chara, int value);
     void func_02055998(int value);
-    cmn::CommonEffectLocation* func_0203e8f8(void);
     void func_ov000_02135ab0(TownPlayerManager* mgr);
     void func_ov000_0212eb9c(TownCharacterBase* chara, int voice);
     void func_02037f98(void* obj);
     void func_0202a81c(void* obj, int value);
-    void func_020857c8(void* obj, dss::Fx32Vector3 pos);
+    void func_020857c8(void* obj, dss::Fix32Vector3 pos);
     char* func_ov000_021439fc(void);
 }

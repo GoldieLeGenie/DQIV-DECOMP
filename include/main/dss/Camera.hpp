@@ -17,14 +17,14 @@ namespace dss {
     struct Camera {
         Vector3<short> m_angle;                 // 0x04
         char unk_0a[0x2];
-        Fx32Vector3 m_target_pos;               // 0x0C
-        Fx32Vector3 m_pos;                      // 0x18
-        Fx32Vector3 direction_;                 // 0x24
-        Fx32Vector3 m_up;                       // 0x30
-        Fx32 m_distance;                        // 0x3C
-        Fx32 m_distanceSq;                      // 0x40
+        Fix32Vector3 m_target_pos;               // 0x0C
+        Fix32Vector3 m_pos;                      // 0x18
+        Fix32Vector3 direction_;                 // 0x24
+        Fix32Vector3 m_up;                       // 0x30
+        Fix32 m_distance;                        // 0x3C
+        Fix32 m_distanceSq;                      // 0x40
         int m_fov2;                             // 0x44
-        Fx32 m_scaleW;                          // 0x48
+        Fix32 m_scaleW;                          // 0x48
         CameraPerspective m_perspective;        // 0x4C
         int unk_60;                             // 0x60
 
@@ -32,19 +32,19 @@ namespace dss {
         virtual void update();
         virtual void calcPosition();
         void setup();
-        void setPosition(const Fx32Vector3& pos);
-        Fx32Vector3& getPosition();
-        void setTarget(const Fx32Vector3& target);
-        Fx32Vector3& getTarget();
+        void setPosition(const Fix32Vector3& pos);
+        Fix32Vector3& getPosition();
+        void setTarget(const Fix32Vector3& target);
+        Fix32Vector3& getTarget();
         void setAngle(const Vector3short& angle);
         Vector3short& getAngle();
-        void setDistance(const Fx32& distance);
-        Fx32& getDistance();
-        Fx32& getDistanceSq();
-        Fx32Vector3& getDirection();
+        void setDistance(const Fix32& distance);
+        Fix32& getDistance();
+        Fix32& getDistanceSq();
+        Fix32Vector3& getDirection();
         void setFOV(unsigned int sin, unsigned int cos);
         void setFOV2(int fovy);
-        void setScaleW(Fx32 scaleW);
+        void setScaleW(Fix32 scaleW);
         void setNear(int value);
         void setFar(int value);
         void applyCamera();
@@ -52,12 +52,19 @@ namespace dss {
 
 }
 
+// dss::Camera subclass whose target follows position + angle (main 0x02057b88); idk the real name yet
+struct UnkCamera : dss::Camera {
+    UnkCamera();
+    virtual void update();
+    virtual void calcPosition();
+};
+
 extern short data_020c4158[4];
 
 extern "C" {
     int func_02081254(void);
-    dss::Fx32Vector3 func_02088a9c(const dss::Fx32Vector3* v, int s);
-    void func_02089168(dss::Fx32Vector3* v);
+    dss::Fix32Vector3 func_02088a9c(const dss::Fix32Vector3* v, int s);
+    void func_02089168(dss::Fix32Vector3* v);
     void func_02049984(dss::Camera* camera);
 }
 
@@ -77,15 +84,15 @@ namespace dss {
         void updateCameraNo();
         void applyCamera();
         void applyG3d();
-        Fx32Vector3& getPosition(int no);
-        void setTarget(const Fx32Vector3& target, int no);
-        Fx32Vector3& getTarget(int no);
+        Fix32Vector3& getPosition(int no);
+        void setTarget(const Fix32Vector3& target, int no);
+        Fix32Vector3& getTarget(int no);
     };
 
     struct DualCamera : DualCameraBase {
         int unk_d0;                             // 0xD0
         int unk_d4;                             // 0xD4
-        Fx32 m_offset;                          // 0xD8
+        Fix32 m_offset;                          // 0xD8
         short m_dirOffset;                      // 0xDC
         Vector3<short> unk_de;                  // 0xDE
         Vector3<short> unk_e4;                  // 0xE4
@@ -98,7 +105,7 @@ namespace dss {
         virtual void calcPosition();
 
         void setRotXYZ(Vector3short angle) { unk_004.setAngle(angle); }
-        void setDistance(Fx32 distance)
+        void setDistance(Fix32 distance)
         {
             unk_004.setDistance(distance);
             unk_068.setDistance(distance);
@@ -108,12 +115,12 @@ namespace dss {
             unk_004.setNear(value);
             unk_068.setNear(value);
         }
-        void setScaleW(Fx32 scaleW)
+        void setScaleW(Fix32 scaleW)
         {
             Camera* sub = &unk_004;
             sub->setScaleW(scaleW);
             (sub + 1)->setScaleW(scaleW);
         }
-        void setOffset(Fx32 offset) { func_0208718c(&m_offset, offset); }
+        void setOffset(Fix32 offset) { func_0208718c(&m_offset, offset); }
     };
 }

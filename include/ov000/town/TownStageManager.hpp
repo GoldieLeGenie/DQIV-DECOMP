@@ -9,12 +9,12 @@ extern "C" {
     void func_02047b04(TownStageManager* mgr, int id, int flag);
     void func_02046470(void* obj, int id);
     void func_02047b14(TownStageManager* mgr, int id, int flag);
-    void func_ov000_02139f1c(TownStageManager* mgr, dss::Fx32Vector3* rate, int flag);
+    void func_ov000_02139f1c(TownStageManager* mgr, dss::Fix32Vector3* rate, int flag);
 }
 
 struct TownDataManager {
     int correctTime_;
-    dss::Fx32Vector3 rate_;
+    dss::Fix32Vector3 rate_;
     int nextIndex_;
 
     void setNextBackColor(int index) { nextIndex_ = index; }
@@ -49,15 +49,15 @@ struct TownStageManager {
     VecFx32& GetCameraUpFX32(int no) { return fldObject_.unk_284[no]; }
     void setNextBackColor(int index) { townData_.setNextBackColor(index); }
     int getNextBackColor() { return townData_.getNextBackColor(); }
-    void setClipDistance(dss::Fx32 dist) { fldObject_.unk_2a8 = dist.value; }
+    void setClipDistance(dss::Fix32 dist) { fldObject_.unk_2a8 = dist.value; }
 };
 
 extern "C" {
     TownStageManager* func_ov000_02139668(void);                                    // TownStageManager::getSingleton
     int  func_ov000_0213a31c(TownStageManager* self, int type);                     // TownStageManager::getHitSurfaceIdByType
     int  func_ov000_02139fe8(TownStageManager* self, int exitNo, int group);
-    void func_ov000_0213a2c4(TownStageManager* self, dss::Fx32Vector3* dir, int id);
-    void func_02047d18(TownStageManager* self, int id, dss::Fx32Vector3* pos);
-    void func_ov000_02130f54(short* dirIdx, dss::Fx32Vector3* dir);
+    void func_ov000_0213a2c4(TownStageManager* self, dss::Fix32Vector3* dir, int id);
+    void func_02047d18(TownStageManager* self, int id, dss::Fix32Vector3* pos);
+    void func_ov000_02130f54(short* dirIdx, dss::Fix32Vector3* dir);
     void func_0204ccf4(void* obj, int surfaceId, int flag);
 }

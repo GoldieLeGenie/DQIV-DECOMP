@@ -26,7 +26,7 @@ THUMB int status::MonsterPartyWithDraw::add(int monsterGroup, int monsterIndex, 
 
             func_ov003_02121ab0(m, 0x21);
 
-            dss::Fx32Vector3 v(0, 0, 0);
+            dss::Fix32Vector3 v(0, 0, 0);
 
             func_ov003_02121878(&func_ov003_02121d04()->monster_[drawId], &v);
         } else if (monsterIndex == 0x44) {

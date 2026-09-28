@@ -293,6 +293,7 @@ src/main/status/base_action.cpp:
     .bss start:0x020d07d0 end:0x020d0820
 
 src/main/status/UseAction.cpp:
+    complete
     .text start:0x0201532c end:0x02015bb8
     .bss start:0x020d0718 end:0x020d07d0
 
@@ -322,7 +323,7 @@ src/main/status/HaveBattleStatus.cpp:
     .text start:0x0201ad3c end:0x0201c294
     .rodata start:0x020b4d68 end:0x020b4f8c
     .data start:0x020bdb08 end:0x020bdb80
-    .bss  start:0x020d08b0 end:0x020d08d0
+    .bss  start:0x020d0894 end:0x020d08d0
 
 src/main/global/Global.cpp:
     complete

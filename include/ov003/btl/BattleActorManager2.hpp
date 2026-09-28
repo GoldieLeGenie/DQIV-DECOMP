@@ -24,10 +24,10 @@ namespace btl {
         int eventTile_;
         int eventEnd_;
         FirstAttack firstAttack_;
-        int monsterDeathCount_;        // 0x6688
-        int monsterEscapeCount_;       // 0x668c
-        int monsterDisappearCount_;    // 0x6690
-        int winningStatus_;
+        int monsterDeathCount_;        // 0x66a8
+        int monsterEscapeCount_;       // 0x66ac
+        int monsterDisappearCount_;    // 0x66b0
+        int winningStatus_;            // 0x66b4
         short deathLog_;
         BattleActorManager2();
         ~BattleActorManager2();

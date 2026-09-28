@@ -268,11 +268,11 @@ THUMB int cmd_party_display(int* param)
 THUMB int cmd_is_character_front(int* param)
 {
     int index = getPlacementCtrlId();
-    dss::Fx32Vector3 playerPos = func_ov000_02132a90()->getPosition();
-    dss::Fx32Vector3 charaPos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
-    dss::Fx32Vector3 front;
+    dss::Fix32Vector3 playerPos = func_ov000_02132a90()->getPosition();
+    dss::Fix32Vector3 charaPos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
+    dss::Fix32Vector3 front;
     func_ov000_02130f48((short)func_ov000_02138744(func_ov000_02137f2c(), index), &front);
-    if (front * func_02088988(playerPos, charaPos) >= dss::Fx32(data_ov000_021487a8.unk_0)) {
+    if (front * func_02088988(playerPos, charaPos) >= dss::Fix32(data_ov000_021487a8.unk_0)) {
         if (param[0] == 1) {
             return 1;
         }
@@ -313,7 +313,7 @@ THUMB int cmd_search_map_object(int* param)
 
 THUMB int cmd_set_floor_map_object(int* param)
 {
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     pos.vx.value = param[1];
     pos.vy.value = param[2];
     pos.vz.value = param[3];
@@ -345,13 +345,13 @@ THUMB int cmd_character_move_reverse(int* param)
 THUMB int cmd_is_trigger_distance(int* param)
 {
     int index = getPlacementCtrlId();
-    dss::Fx32Vector3 playerPos = func_ov000_02132a90()->getPosition();
-    dss::Fx32Vector3 charaPos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
-    dss::Fx32 distance;
+    dss::Fix32Vector3 playerPos = func_ov000_02132a90()->getPosition();
+    dss::Fix32Vector3 charaPos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
+    dss::Fix32 distance;
     distance.value = param[0];
     distance *= distance;
     if (func_ov000_02132228()->trigger_ == 1) {
-        dss::Fx32 length = func_0208908c(playerPos, charaPos);
+        dss::Fix32 length = func_0208908c(playerPos, charaPos);
         if (length <= distance) {
             func_ov000_02132228()->trigger_ = 0;
             return 1;

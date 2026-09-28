@@ -8,25 +8,25 @@
 #include "main/status/PartyStatus.hpp"
 
 const ConfuseArray3         confusePlayer7          = { { 0x1ab, 0x1ac, 0x1ad } };                                                                         
-const ConfuseArray3         confusePlayer3          = { { 0x1a7, 0x1a8, 0x1a9 } };                                                                        
-const ConfuseArray4         confusePlayer4          = { { 0x1ae, 0x1af, 0x1b0, 0x1b1 } };                                                                                                                                                                                      // 0x020b4d8c
-const ConfuseArray4         confusePlayer8          = { { 0x1bc, 0x1bd, 0x1be, 0x1bf } }; 
-const ConfuseArray3         confusePlayer12         = { { 0x1a4, 0x1a5, 0x1a6 } };                                                                         
-const ConfuseArray4         confusePlayer6          = { { 0x1b8, 0x1b9, 0x1ba, 0x1bb } };
-const RoopCopy              roopPattern             = { { 8, 4, 3, 1 } };         
-const ConfuseArray4         confusePlayer5          = { { 0x1b2, 0x1b3, 0x1b4, 0x1b7 } };  
 const ConfuseArray4         confusePlayer9          = { { 0x1c0, 0x1c1, 0x1c2, 0x1c3 } }; 
+const TorunekoActionTable   torunekoParupunte       = { { 0x212, 0x213, 0x214, 0x215, 0x216, 0x217, 0x218, 0x219, 0x21a, 0x21b } };                        
+const ConfuseArray4         confusePlayer4          = { { 0x1ae, 0x1af, 0x1b0, 0x1b1 } };                                                                                                                                                                                      // 0x020b4d8c
 const ConfuseArray6         confuseOtherParupunte   = { { 0x1c4, 0x1c5, 0x1c6, 0x1c7, 0x1a3, 0x1a7 } };                                                    
 const ConfuseArray6         confuseOtherNormal      = { { 0x1c4, 0x1c5, 0x1c6, 0x1c7, 0x1c8, 0x1a7 } };                                                    
 const RestArray             restOneTable            = { { 1, 1, 1, 1, 1, 1 } };                                                                            
+const ConfuseArray3         confusePlayer3          = { { 0x1a7, 0x1a8, 0x1a9 } };                                                                        
 const RestArray             restNumTable            = { { 1, 1, 1, 1, 1, 1 } };                                                                            
+const RoopCopy              roopPattern             = { { 8, 4, 3, 1 } };         
+const ParupunteArrayLarge   parupunteLargeTable     = { { 0x1cb, 0x1cc, 0x1cd, 0x1ce, 0x1cf, 0x1d0, 0x1d1, 0x1d2, 0x1d5, 0x1d6, 0x1d7, 0x1d8, 0x1d9, 0x1da, 0x1dc, 0x1dd, 0x1de, 0x1df, 0x1e0, 0x1e1, 0x1e3, 0x1e4, 0x1e5 } };  
+const ConfuseArray4         confusePlayer6          = { { 0x1b8, 0x1b9, 0x1ba, 0x1bb } };
+const TorunekoActionTable   torunekoNormal          = { { 0x212, 0x213, 0x214, 0x215, 0x216, 0x217, 0x218, 0x219, 0x21a, 0x21b } };                        
+const ConfuseArray4         confusePlayer8          = { { 0x1bc, 0x1bd, 0x1be, 0x1bf } }; 
+const ConfuseArray4         confusePlayer5          = { { 0x1b2, 0x1b3, 0x1b4, 0x1b7 } };  
 const ConfuseArray8         confuseMonsterNormal    = { { 0x1c4, 0x1c5, 0x1c6, 0x1c7, 0x1a7, 0x1c8, 0x1c9, 0x1ca } };                                      
+const ConfuseArray3         confusePlayer12         = { { 0x1a4, 0x1a5, 0x1a6 } };                                                                         
+const ParupunteArraySmall   parupunteSmallTable     = { { 0x1cc, 0x1cd, 0x1d6, 0x1d7, 0x1d9, 0x1da, 0x1dc, 0x1de, 0x1df, 0x1e0, 0x1e1, 0x1e3, 0x1e4 } };   
 const TarotTable            tarotActionTable        = { { 0x21e, 0x220, 0x221, 0x222, 0x223, 0x224, 0x225, 0x226 } };                                      
 const ConfuseArray8         confuseMonsterParupunte = { { 0x1c4, 0x1c5, 0x1c6, 0x1c7, 0x1a7, 0x1a3, 0x1a3, 0x1a3 } };                                      
-const TorunekoActionTable   torunekoParupunte       = { { 0x212, 0x213, 0x214, 0x215, 0x216, 0x217, 0x218, 0x219, 0x21a, 0x21b } };                        
-const TorunekoActionTable   torunekoNormal          = { { 0x212, 0x213, 0x214, 0x215, 0x216, 0x217, 0x218, 0x219, 0x21a, 0x21b } };                        
-const ParupunteArraySmall   parupunteSmallTable     = { { 0x1cc, 0x1cd, 0x1d6, 0x1d7, 0x1d9, 0x1da, 0x1dc, 0x1de, 0x1df, 0x1e0, 0x1e1, 0x1e3, 0x1e4 } };   
-const ParupunteArrayLarge   parupunteLargeTable     = { { 0x1cb, 0x1cc, 0x1cd, 0x1ce, 0x1cf, 0x1d0, 0x1d1, 0x1d2, 0x1d5, 0x1d6, 0x1d7, 0x1d8, 0x1d9, 0x1da, 0x1dc, 0x1dd, 0x1de, 0x1df, 0x1e0, 0x1e1, 0x1e3, 0x1e4, 0x1e5 } };  
 
 
 unsigned char actionPattern[120] = {
@@ -47,6 +47,14 @@ unsigned char actionPattern[120] = {
     0x0F,0x00,0x00,0x00,0x0F,0x00,0x00,0x00
 };
 
+
+param::MonsterData* status::HaveBattleStatus::monsterData_;
+param::CharInitData* status::HaveBattleStatus::charInitData_;
+int status::HaveBattleStatus::tarotDebugIndex_;
+int status::HaveBattleStatus::parupunteDebugIndex_;
+int status::HaveBattleStatus::confusionDebugIndex_;
+int status::HaveBattleStatus::torunekoDebugIndex_;
+int status::HaveBattleStatus::eventFlag_;
 int status::HaveBattleStatus::groupControl_[4];
 int status::HaveBattleStatus::groupRoopIndex_[4];
 
@@ -68,8 +76,8 @@ THUMB status::HaveBattleStatus::~HaveBattleStatus()
 }
 
 THUMB void status::HaveBattleStatus::initialize() {
-    initData_.charaInitData_ = status::excelParam.getCharaInitData();
-    initData_.monsterData_ = status::excelParam.monsterData_;
+    charInitData_ = status::excelParam.getCharaInitData();
+    monsterData_ = status::excelParam.monsterData_;
 }
 
 
@@ -93,7 +101,7 @@ THUMB void status::HaveBattleStatus::setup(CharacterType type, int group, int in
         this->mosyasAction_[i] = 0x47; 
     }
 
-    this->monsterIndexForNpc_ = initData_.charaInitData_[index].monsterID;
+    this->monsterIndexForNpc_ = charInitData_[index].monsterID;
 
     if ((this->monsterIndexForNpc_ != 0) && (this->type_ == PLAYER)) {
         this->index_ = this->monsterIndexForNpc_;
@@ -229,29 +237,29 @@ THUMB void status::HaveBattleStatus::setupPlayer()
 }
 
 THUMB void status::HaveBattleStatus::setupMonster() {    
-    this->brains_ = initData_.monsterData_[this->index_].integer;        
-    this->multi_ = (char)initData_.monsterData_[this->index_].times;           
+    this->brains_ = monsterData_[this->index_].integer;        
+    this->multi_ = (char)monsterData_[this->index_].times;           
     this->multiCount_ = 0;                              
     this->multiCount2_ = 0;
     
-    this->group_[0] = initData_.monsterData_[this->index_].byte_8 & 7;              
-    this->group_[1] = ((initData_.monsterData_[this->index_].byte_8 & 0x38) >> 3);
-    this->group_[2] = initData_.monsterData_[this->index_].byte_9 & 7;              
-    this->group_[3] = ((initData_.monsterData_[this->index_].byte_9 & 0x38) >> 3);
-    this->group_[4] = initData_.monsterData_[this->index_].byte_10 & 7;             
-    this->group_[5] = ((initData_.monsterData_[this->index_].byte_10 & 0x38) >> 3);
+    this->group_[0] = monsterData_[this->index_].byte_8 & 7;              
+    this->group_[1] = ((monsterData_[this->index_].byte_8 & 0x38) >> 3);
+    this->group_[2] = monsterData_[this->index_].byte_9 & 7;              
+    this->group_[3] = ((monsterData_[this->index_].byte_9 & 0x38) >> 3);
+    this->group_[4] = monsterData_[this->index_].byte_10 & 7;             
+    this->group_[5] = ((monsterData_[this->index_].byte_10 & 0x38) >> 3);
     
-    this->crossFire_ = initData_.monsterData_[this->index_].focus;       
+    this->crossFire_ = monsterData_[this->index_].focus;       
     this->crossFireTarget_ = -1;                        
-    this->level_ = initData_.monsterData_[this->index_].level;          
+    this->level_ = monsterData_[this->index_].level;          
     
-    this->dragon_ = ((initData_.monsterData_[this->index_].byte_4 & 0xC0) >> 6);    
-    this->metal_ = initData_.monsterData_[this->index_].byte_5 & 3;                 
-    this->zombi_ = ((initData_.monsterData_[this->index_].byte_5 & 0x0C) >> 2);
-    this->air_ = ((initData_.monsterData_[this->index_].byte_5 & 0x30) >> 4);
-    this->slime_ = ((initData_.monsterData_[this->index_].byte_5 & 0xC0) >> 6);
+    this->dragon_ = ((monsterData_[this->index_].byte_4 & 0xC0) >> 6);    
+    this->metal_ = monsterData_[this->index_].byte_5 & 3;                 
+    this->zombi_ = ((monsterData_[this->index_].byte_5 & 0x0C) >> 2);
+    this->air_ = ((monsterData_[this->index_].byte_5 & 0x30) >> 4);
+    this->slime_ = ((monsterData_[this->index_].byte_5 & 0xC0) >> 6);
     
-    this->jouk_ = initData_.monsterData_[this->index_].avoid;            
+    this->jouk_ = monsterData_[this->index_].avoid;            
 }
 
 THUMB bool status::HaveBattleStatus::isJouk()
@@ -430,7 +438,7 @@ THUMB void status::HaveBattleStatus::setActionSelectForMonster(CallStart callSta
 THUMB void status::HaveBattleStatus::setActionPatternForMonster() {
     RoopCopy local_70;
     RoopCopy tmpPattern;
-    unsigned char pattern = initData_.monsterData_[this->index_].pattern;
+    unsigned char pattern = monsterData_[this->index_].pattern;
     this->patternIndex_ = 0;
     int offset;
     volatile int* vp = &offset;
@@ -545,22 +553,22 @@ THUMB void status::HaveBattleStatus::setActionIndexForMonster()
 {
     switch (this->patternIndex_) {
     case 0:
-        this->actionIndex_ = initData_.monsterData_[this->index_].action1;
+        this->actionIndex_ = monsterData_[this->index_].action1;
         return;
     case 1:
-        this->actionIndex_ = initData_.monsterData_[this->index_].action2;
+        this->actionIndex_ = monsterData_[this->index_].action2;
         return;
     case 2:
-        this->actionIndex_ = initData_.monsterData_[this->index_].action3;
+        this->actionIndex_ = monsterData_[this->index_].action3;
         return;
     case 3:
-        this->actionIndex_ = initData_.monsterData_[this->index_].action4;
+        this->actionIndex_ = monsterData_[this->index_].action4;
         return;
     case 4:
-        this->actionIndex_ = initData_.monsterData_[this->index_].action5;
+        this->actionIndex_ = monsterData_[this->index_].action5;
         return;
     case 5:
-        this->actionIndex_ = initData_.monsterData_[this->index_].action6;
+        this->actionIndex_ = monsterData_[this->index_].action6;
         return;
     case 7:
         this->actionIndex_ = 0x1e9;
@@ -578,17 +586,17 @@ THUMB int status::HaveBattleStatus::getActionIndex(int index) {
     }
     switch (this->patternIndex_) {
     case 0:
-        return initData_.monsterData_[index].action1;
+        return monsterData_[index].action1;
     case 1:
-        return initData_.monsterData_[index].action2;
+        return monsterData_[index].action2;
     case 2:
-        return initData_.monsterData_[index].action3;
+        return monsterData_[index].action3;
     case 3:
-        return initData_.monsterData_[index].action4;
+        return monsterData_[index].action4;
     case 4:
-        return initData_.monsterData_[idx].action5;
+        return monsterData_[idx].action5;
     case 5:
-        return initData_.monsterData_[idx].action6;
+        return monsterData_[idx].action6;
     default:
         return 0;
     }
@@ -607,22 +615,22 @@ THUMB int status::HaveBattleStatus::getActionAnimation()
 
     switch (this->patternIndex_) {
         case 0:
-            result = initData_.monsterData_[this->index_].animation1;
+            result = monsterData_[this->index_].animation1;
             break;
         case 1:
-            result = initData_.monsterData_[this->index_].animation2;
+            result = monsterData_[this->index_].animation2;
             break;
         case 2:
-            result = initData_.monsterData_[this->index_].animation3;
+            result = monsterData_[this->index_].animation3;
             break;
         case 3:
-            result = initData_.monsterData_[this->index_].animation4;
+            result = monsterData_[this->index_].animation4;
             break;
         case 4:
-            result = initData_.monsterData_[this->index_].animation5;
+            result = monsterData_[this->index_].animation5;
             break;
         case 5:
-            result = initData_.monsterData_[this->index_].animation6;
+            result = monsterData_[this->index_].animation6;
             break;
         default:
             break;
@@ -1002,9 +1010,9 @@ THUMB void status::HaveBattleStatus::setupTarotAction()
             this->actionIndex_ = 0x21F;
         }
 
-        if (initData_.unk_0c != 0) {
-            this->actionIndex_ = initData_.unk_0c;
-            initData_.unk_0c = 0;
+        if (tarotDebugIndex_ != 0) {
+            this->actionIndex_ = tarotDebugIndex_;
+            tarotDebugIndex_ = 0;
         }
 
         this->tarotActionIndex_ = this->actionIndex_;
@@ -1024,7 +1032,7 @@ THUMB void status::HaveBattleStatus::setupParupunteAction() {
     if (this->haveStatusInfo_ != 0) {
         StatusChange* sc = &this->haveStatusInfo_->statusChange_;
         if (!sc->isEnable(StatusChange::StatusFizzleZone) && this->actionIndex_ == 0x42) {
-            if (initData_.parupunteFlag_ != 0) {
+            if (eventFlag_ != 0) {
                 ParupunteArraySmall tmp = parupunteSmallTable;
                 int r = dssrand::rand(0xd);
                 this->actionIndex_ = tmp.v[r];
@@ -1033,9 +1041,9 @@ THUMB void status::HaveBattleStatus::setupParupunteAction() {
                 int r = dssrand::rand(0x17);
                 this->actionIndex_ = tmp.v[r];
             }
-            if (initData_.parupunteAction_ != 0) {
-                this->actionIndex_ = initData_.parupunteAction_;
-                initData_.parupunteAction_ = 0;
+            if (parupunteDebugIndex_ != 0) {
+                this->actionIndex_ = parupunteDebugIndex_;
+                parupunteDebugIndex_ = 0;
             }
             this->selectCommand_ = UseAction;
             this->selectedTarget_ = -1;
@@ -1149,7 +1157,7 @@ THUMB void status::HaveBattleStatus::setupConfuseAction() {
                             this->actionIndex_ = 0x1a3;
                         }
                     }
-                } else if (initData_.parupunteFlag_ != 0) {
+                } else if (eventFlag_ != 0) {
                     ConfuseArray6 tmp = confuseOtherParupunte;
                     r = dssrand::rand(6);
                     this->actionIndex_ = tmp.v[r];
@@ -1160,9 +1168,9 @@ THUMB void status::HaveBattleStatus::setupConfuseAction() {
                 }
             }
         }
-        if (initData_.confuseDebugAction_ != 0) {
-            this->actionIndex_ = initData_.confuseDebugAction_;
-            initData_.confuseDebugAction_ = 0;
+        if (confusionDebugIndex_ != 0) {
+            this->actionIndex_ = confusionDebugIndex_;
+            confusionDebugIndex_ = 0;
         }
     } else if (this->type_ == MONSTER) {
         int r = dssrand::rand(2);
@@ -1172,7 +1180,7 @@ THUMB void status::HaveBattleStatus::setupConfuseAction() {
             if (r == 0) {
                 this->haveStatusInfo_->setConfuseMissAttack(true);
             }
-        } else if (initData_.parupunteFlag_ != 0) {
+        } else if (eventFlag_ != 0) {
             ConfuseArray8 tmp = confuseMonsterParupunte;
             r = dssrand::rand(8);
             this->actionIndex_ = tmp.v[r];
@@ -1226,10 +1234,10 @@ THUMB int status::HaveBattleStatus::setupTorunekoAction()
     {
         return 0;
     }
-    if (initData_.torunekoDebugIndex_ != 0)
+    if (torunekoDebugIndex_ != 0)
     {
-        actionIndex_ = initData_.torunekoDebugIndex_;
-        initData_.torunekoDebugIndex_ = 0;
+        actionIndex_ = torunekoDebugIndex_;
+        torunekoDebugIndex_ = 0;
         selectCommand_ = UseAction;
         selectedTarget_ = -1;
         selectedGroup_ = -1;
@@ -1237,7 +1245,7 @@ THUMB int status::HaveBattleStatus::setupTorunekoAction()
     }
     if (dssrand::rand(4) == 0)
     {
-        if (initData_.parupunteFlag_ != 0)
+        if (eventFlag_ != 0)
         {
             TorunekoActionTable table = torunekoParupunte;
             actionIndex_ = table.v[dssrand::rand(10)];

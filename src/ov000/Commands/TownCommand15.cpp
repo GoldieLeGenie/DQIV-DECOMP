@@ -56,7 +56,7 @@ THUMB int cmd_set_fighting_colosseum_mode(int* param)
 
 THUMB int cmd_set_camera_limit(int* param)
 {
-    dss::Fx32 limit;
+    dss::Fix32 limit;
     if (param[0] == 0) {
         limit.value = -0x1000;
         TownCamera::getSingleton()->setLimitL(limit);

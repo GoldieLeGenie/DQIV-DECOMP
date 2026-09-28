@@ -3,7 +3,7 @@
 inline const long& enterLimitL() { return 0L; }
 inline const long& frontLimitL() { return 0L; }
 
-ARM void cmn::CommonCalculate::getDirByIdx(short dir, dss::Fx32Vector3& vec)
+ARM void cmn::CommonCalculate::getDirByIdx(short dir, dss::Fix32Vector3& vec)
 {
     vec.set(0, 0, 0x1000);
     MtxFx43 rot;
@@ -12,7 +12,7 @@ ARM void cmn::CommonCalculate::getDirByIdx(short dir, dss::Fx32Vector3& vec)
     vec = func_02088670(&rot, &vec);
 }
 
-ARM bool cmn::CommonCalculate::simpleAreaInCheck(dss::Fx32Vector3& min, dss::Fx32Vector3& max, dss::Fx32Vector3 pos)
+ARM bool cmn::CommonCalculate::simpleAreaInCheck(dss::Fix32Vector3& min, dss::Fix32Vector3& max, dss::Fix32Vector3 pos)
 {
     if (min.vx <= pos.vx && max.vx >= pos.vx &&
         min.vy <= pos.vy && max.vy >= pos.vy &&
@@ -22,7 +22,7 @@ ARM bool cmn::CommonCalculate::simpleAreaInCheck(dss::Fx32Vector3& min, dss::Fx3
     return false;
 }
 
-ARM bool cmn::CommonCalculate::areaCheck(dss::Fx32Vector3& pos, short dir, dss::Fx32Vector3& min, dss::Fx32Vector3& max, int check, int type)
+ARM bool cmn::CommonCalculate::areaCheck(dss::Fix32Vector3& pos, short dir, dss::Fix32Vector3& min, dss::Fix32Vector3& max, int check, int type)
 {
     if (min.vx < pos.vx && max.vx > pos.vx &&
         min.vy < pos.vy && max.vy > pos.vy &&
@@ -41,8 +41,8 @@ ARM bool cmn::CommonCalculate::areaCheck(dss::Fx32Vector3& pos, short dir, dss::
             return true;
         }
     }
-    dss::Fx32Vector3 diff = func_02088988(func_02088bdc(min + max, 2), pos);
-    dss::Fx32Vector3 vec;
+    dss::Fix32Vector3 diff = func_02088988(func_02088bdc(min + max, 2), pos);
+    dss::Fix32Vector3 vec;
     switch (check) {
     case 1:
         getDirByIdx(dir, vec);
@@ -60,13 +60,13 @@ ARM bool cmn::CommonCalculate::areaCheck(dss::Fx32Vector3& pos, short dir, dss::
         vec.set(-0x1000, 0, 0);
         break;
     }
-    dss::Fx32 dot = vec * diff;
+    dss::Fix32 dot = vec * diff;
     if (check == 1) {
-        if ((dot > dss::Fx32(enterLimitL()) && type == 6) || (dot < dss::Fx32(0L) && type == 7)) {
+        if ((dot > dss::Fix32(enterLimitL()) && type == 6) || (dot < dss::Fix32(0L) && type == 7)) {
             return true;
         }
     } else {
-        if (dot > dss::Fx32(frontLimitL())) {
+        if (dot > dss::Fix32(frontLimitL())) {
             return true;
         }
     }
@@ -89,17 +89,17 @@ ARM bool cmn::CommonCalculate::directionCheckByScriptParam(int param, short dir)
     return false;
 }
 
-ARM int cmn::CommonCalculate::getFrameByVector(dss::Fx32Vector3& from, dss::Fx32Vector3& to, dss::Fx32 speed)
+ARM int cmn::CommonCalculate::getFrameByVector(dss::Fix32Vector3& from, dss::Fix32Vector3& to, dss::Fix32 speed)
 {
-    if (speed == dss::Fx32(0L)) {
+    if (speed == dss::Fix32(0L)) {
         return 0;
     }
     return func_02008eb8(func_02088e90(func_02088b68(func_02088988(to, from), speed)).value / 0x1000, 1);
 }
 
-ARM dss::Fx32Vector3 cmn::CommonCalculate::setVecByParam(int x, int y, int z)
+ARM dss::Fix32Vector3 cmn::CommonCalculate::setVecByParam(int x, int y, int z)
 {
-    dss::Fx32Vector3 vec;
+    dss::Fix32Vector3 vec;
     vec.vx.value = x;
     vec.vy.value = y;
     vec.vz.value = z;
@@ -121,10 +121,10 @@ ARM short cmn::CommonCalculate::getIdxByParam(unsigned char param)
     return 0;
 }
 
-ARM dss::Fx32Vector3 cmn::CommonCalculate::getAxisMoveTargetByParam(unsigned int axis, unsigned int mode, int value, dss::Fx32Vector3& pos)
+ARM dss::Fix32Vector3 cmn::CommonCalculate::getAxisMoveTargetByParam(unsigned int axis, unsigned int mode, int value, dss::Fix32Vector3& pos)
 {
-    dss::Fx32Vector3 target = pos;
-    dss::Fx32 move;
+    dss::Fix32Vector3 target = pos;
+    dss::Fix32 move;
     move.value = value;
     if (mode == 1) {
         switch (axis) {

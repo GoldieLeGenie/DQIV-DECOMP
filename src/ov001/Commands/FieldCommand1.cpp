@@ -10,7 +10,7 @@ THUMB int cmd_field_erase_symbol(int* param)
 
 THUMB int cmd_field_player_set_ship(int* param)
 {
-    dss::Fx32Vector3 pos = func_ov001_02127b28()->getPosition();
+    dss::Fix32Vector3 pos = func_ov001_02127b28()->getPosition();
     func_ov001_02127b28()->player_.setMoveType(3);
     FieldPlayerManager* mgr = func_ov001_02127b28();
     mgr->shipDraw_.setPosition(pos);
@@ -22,7 +22,7 @@ THUMB int cmd_field_player_set_ship(int* param)
 
 THUMB int cmd_set_field_player_pos(int* param)
 {
-    dss::Fx32Vector3 pos = cmn::CommonCalculate::setVecByParam(param[0], param[1], param[2]);
+    dss::Fix32Vector3 pos = cmn::CommonCalculate::setVecByParam(param[0], param[1], param[2]);
     func_ov001_02127b28()->setPosition(pos);
     return 1;
 }

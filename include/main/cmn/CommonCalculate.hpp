@@ -6,14 +6,14 @@
 
 namespace cmn {
     struct CommonCalculate {
-        static void getDirByIdx(short dir, dss::Fx32Vector3& vec);
-        static bool simpleAreaInCheck(dss::Fx32Vector3& min, dss::Fx32Vector3& max, dss::Fx32Vector3 pos);
-        static bool areaCheck(dss::Fx32Vector3& pos, short dir, dss::Fx32Vector3& min, dss::Fx32Vector3& max, int check, int type);
+        static void getDirByIdx(short dir, dss::Fix32Vector3& vec);
+        static bool simpleAreaInCheck(dss::Fix32Vector3& min, dss::Fix32Vector3& max, dss::Fix32Vector3 pos);
+        static bool areaCheck(dss::Fix32Vector3& pos, short dir, dss::Fix32Vector3& min, dss::Fix32Vector3& max, int check, int type);
         static bool directionCheckByScriptParam(int param, short dir);
-        static int getFrameByVector(dss::Fx32Vector3& from, dss::Fx32Vector3& to, dss::Fx32 speed);
-        static dss::Fx32Vector3 setVecByParam(int x, int y, int z);
+        static int getFrameByVector(dss::Fix32Vector3& from, dss::Fix32Vector3& to, dss::Fix32 speed);
+        static dss::Fix32Vector3 setVecByParam(int x, int y, int z);
         static short getIdxByParam(unsigned char param);
-        static dss::Fx32Vector3 getAxisMoveTargetByParam(unsigned int axis, unsigned int mode, int value, dss::Fx32Vector3& pos);
+        static dss::Fix32Vector3 getAxisMoveTargetByParam(unsigned int axis, unsigned int mode, int value, dss::Fix32Vector3& pos);
     };
 }
 

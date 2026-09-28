@@ -215,7 +215,7 @@ public:
         void deliverDATA_PLAYER();
         void deliverDATA_MONSTER();
         void deliverDATA_ENVOY();
-        void deliverRESTART_MAP(dss::Fx32Vector3* pos, short dir);
+        void deliverRESTART_MAP(dss::Fix32Vector3* pos, short dir);
         void deliverDATA_PARTY();
         
     };  

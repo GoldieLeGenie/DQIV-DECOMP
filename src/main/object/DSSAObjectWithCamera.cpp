@@ -2,8 +2,8 @@
 #include "main/object/DSSAObject.hpp"
 
 dss::Camera* DSSAObjectWithCamera::camera_;
-dss::Fx32 DSSAObjectWithCamera::distance_(2.5f);
-dss::Fx32 DSSAObjectWithCamera::relativeScale_(0.4f);
+dss::Fix32 DSSAObjectWithCamera::distance_(2.5f);
+dss::Fix32 DSSAObjectWithCamera::relativeScale_(0.4f);
 
 ARM PaletteAnimation::PaletteAnimation()
 {
@@ -57,8 +57,8 @@ ARM DSSAObjectWithCamera::DSSAObjectWithCamera()
 
 ARM void DSSAObjectWithCamera::draw()
 {
-    dss::Fx32Vector3 position = *func_02083648(this);
-    dss::Fx32Vector3 scale = *func_02083650(this);
+    dss::Fix32Vector3 position = *func_02083648(this);
+    dss::Fix32Vector3 scale = *func_02083650(this);
     if (camera_) {
         if (type_ == Far) {
             execFar();
@@ -91,33 +91,33 @@ ARM void DSSAObjectWithCamera::execute()
 
 ARM void DSSAObjectWithCamera::execNormal2()
 {
-    static const dss::Fx32 rate(0xf33);
-    dss::Fx32Vector3 cameraPosition = camera_->getPosition();
-    dss::Fx32Vector3 position = *func_02083648(this);
-    dss::Fx32Vector3 distance = func_02088988(cameraPosition, position_);
-    dss::Fx32Vector3 move = distance;
+    static const dss::Fix32 rate(0xf33);
+    dss::Fix32Vector3 cameraPosition = camera_->getPosition();
+    dss::Fix32Vector3 position = *func_02083648(this);
+    dss::Fix32Vector3 distance = func_02088988(cameraPosition, position_);
+    dss::Fix32Vector3 move = distance;
     func_02089168(&move);
     setPosition(position_ + move);
-    dss::Fx32Vector3 rest = func_02088988(distance, move);
+    dss::Fix32Vector3 rest = func_02088988(distance, move);
     setScale(scale_ * (func_02088e90(rest) / func_02088e90(distance)) * rate);
 }
 
 ARM void DSSAObjectWithCamera::execNormal()
 {
-    dss::Fx32Vector3 cameraPosition = camera_->getPosition();
-    dss::Fx32Vector3 position = *func_02083648(this);
-    dss::Fx32Vector3 distance = func_02088988(cameraPosition, position_);
-    dss::Fx32Vector3 unk1;
-    dss::Fx32Vector3 unk2;
+    dss::Fix32Vector3 cameraPosition = camera_->getPosition();
+    dss::Fix32Vector3 position = *func_02083648(this);
+    dss::Fix32Vector3 distance = func_02088988(cameraPosition, position_);
+    dss::Fix32Vector3 unk1;
+    dss::Fix32Vector3 unk2;
     setPosition(position_ + func_02088bdc(distance, 2));
     setScale(func_02088bdc(scale_, 2));
 }
 
 ARM void DSSAObjectWithCamera::execFollow()
 {
-    dss::Fx32Vector3 cameraPosition;
-    dss::Fx32Vector3 target;
-    dss::Fx32Vector3 direction;
+    dss::Fix32Vector3 cameraPosition;
+    dss::Fix32Vector3 target;
+    dss::Fix32Vector3 direction;
     cameraPosition = camera_->getPosition();
     target = camera_->getTarget();
     direction = func_02088988(target, cameraPosition);
@@ -129,33 +129,33 @@ ARM void DSSAObjectWithCamera::execFollow()
 
 ARM void DSSAObjectWithCamera::execNear()
 {
-    dss::Fx32Vector3 cameraPosition = camera_->getPosition();
-    dss::Fx32Vector3 position = *func_02083648(this);
-    dss::Fx32Vector3 distance = func_02088988(cameraPosition, position_);
-    dss::Fx32Vector3 unk1;
-    dss::Fx32Vector3 unk2;
+    dss::Fix32Vector3 cameraPosition = camera_->getPosition();
+    dss::Fix32Vector3 position = *func_02083648(this);
+    dss::Fix32Vector3 distance = func_02088988(cameraPosition, position_);
+    dss::Fix32Vector3 unk1;
+    dss::Fix32Vector3 unk2;
     setPosition(position_ + func_02088bdc(func_02088a9c(&distance, 15), 16));
     setScale(func_02088bdc(scale_, 16));
 }
 
 ARM void DSSAObjectWithCamera::execNear2()
 {
-    dss::Fx32Vector3 cameraPosition = camera_->getPosition();
-    dss::Fx32Vector3 position = *func_02083648(this);
-    dss::Fx32Vector3 distance = func_02088988(cameraPosition, position_);
-    dss::Fx32Vector3 unk1;
-    dss::Fx32Vector3 unk2;
+    dss::Fix32Vector3 cameraPosition = camera_->getPosition();
+    dss::Fix32Vector3 position = *func_02083648(this);
+    dss::Fix32Vector3 distance = func_02088988(cameraPosition, position_);
+    dss::Fix32Vector3 unk1;
+    dss::Fix32Vector3 unk2;
     setPosition(position_ + func_02088bdc(func_02088a9c(&distance, 3), 4));
     setScale(func_02088bdc(scale_, 4));
 }
 
 ARM void DSSAObjectWithCamera::execFar()
 {
-    dss::Fx32Vector3 cameraPosition = camera_->getPosition();
-    dss::Fx32Vector3 position = *func_02083648(this);
-    dss::Fx32Vector3 distance = func_02088988(cameraPosition, position_);
-    dss::Fx32Vector3 unk1;
-    dss::Fx32Vector3 unk2;
+    dss::Fix32Vector3 cameraPosition = camera_->getPosition();
+    dss::Fix32Vector3 position = *func_02083648(this);
+    dss::Fix32Vector3 distance = func_02088988(cameraPosition, position_);
+    dss::Fix32Vector3 unk1;
+    dss::Fix32Vector3 unk2;
     setPosition(position_ + func_02088bdc(func_02088a9c(&distance, 1), 4));
     setScale(func_02088bdc(func_02088a9c(&scale_, 3), 4));
 }

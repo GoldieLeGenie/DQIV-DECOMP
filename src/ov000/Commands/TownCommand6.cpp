@@ -16,7 +16,7 @@
 
 THUMB int cmd_camera_clip_distance(int* param)
 {
-    dss::Fx32 dist;
+    dss::Fix32 dist;
     dist.value = param[0];
     func_ov000_02139668()->setClipDistance(dist);
     return 1;

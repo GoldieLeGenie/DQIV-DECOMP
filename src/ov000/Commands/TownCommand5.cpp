@@ -54,7 +54,7 @@ THUMB int cmd_charcter_3d_rotate(int* param)
 
 THUMB int cmd_effect_transfer(int* param)
 {
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     pos.vx.value = param[1];
     pos.vy.value = param[2];
     pos.vz.value = param[3];

@@ -11,15 +11,15 @@ struct UnkModelObjectBase {
     virtual void cleanup(int flag);         // slot 3
 
     unsigned char unk_004[0xa8c];           /* 0x004 */
-    dss::Fx32Vector3 m_scl;                 /* 0xA90 */
-    dss::Fx32Vector3 m_pos;                 /* 0xA9C */
-    dss::Fx32Vector3 m_rgb;                 /* 0xAA8 */
+    dss::Fix32Vector3 m_scl;                 /* 0xA90 */
+    dss::Fix32Vector3 m_pos;                 /* 0xA9C */
+    dss::Fix32Vector3 m_rgb;                 /* 0xAA8 */
     dss::Vector3<short> m_rot;              /* 0xAB4 */
     MtxFx43 m_matrix;                       /* 0xABC */
 
     UnkModelObjectBase() { func_020885f8(&m_matrix); }
-    dss::Fx32Vector3& getPosition() { return m_pos; }
-    dss::Fx32Vector3& getScale() { return m_scl; }
+    dss::Fix32Vector3& getPosition() { return m_pos; }
+    dss::Fix32Vector3& getScale() { return m_scl; }
 };
 
 struct UnkModelMember {
@@ -63,8 +63,8 @@ struct ModelObjectWithCamera : ModelObject {
     CameraType type_;                       /* 0xC34 */
 
     static dss::Camera* camera_;
-    static dss::Fx32 distance_;
-    static dss::Fx32 relativeScale_;
+    static dss::Fix32 distance_;
+    static dss::Fix32 relativeScale_;
 
     ModelObjectWithCamera();
     void execNormal();
@@ -79,7 +79,7 @@ extern "C" {
     void func_0205887c(ModelObjectWithCamera* self, void* animation, int index);   /* setAnimation */
     void func_02058a2c(ModelObjectWithCamera* self, int flag);                     /* start */
     void func_020589a4(ModelObjectWithCamera* self);                               /* ModelObject::draw */
-    void func_02058af4(ModelObjectWithCamera* self, dss::Fx32 scale);              /* setScale */
-    void func_02058b88(ModelObjectWithCamera* self, const dss::Fx32Vector3& scale);     /* setScale */
-    void func_02058bcc(ModelObjectWithCamera* self, const dss::Fx32Vector3& position);  /* setPosition */
+    void func_02058af4(ModelObjectWithCamera* self, dss::Fix32 scale);              /* setScale */
+    void func_02058b88(ModelObjectWithCamera* self, const dss::Fix32Vector3& scale);     /* setScale */
+    void func_02058bcc(ModelObjectWithCamera* self, const dss::Fix32Vector3& position);  /* setPosition */
 }

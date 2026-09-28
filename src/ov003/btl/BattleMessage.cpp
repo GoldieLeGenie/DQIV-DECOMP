@@ -1,5 +1,6 @@
 #include "ov003/btl/BattleMessage.hpp"
 #include "ov003/btl/BattleActorManager2.hpp"
+#include "ov003/btl/BattleExecVictory.hpp"
 
 
 
@@ -122,7 +123,7 @@ THUMB int btl::BattleMessage::setAfterMessage(status::UseActionParam* useActionP
     if (btl::BattleActorManager2::getSingleton()->eventType_ == btl::BattleActorManager2::Velorinman) {
         int ctrlId = useActionParam->targetCharacterStatus_[0]->haveStatusInfo_.drawCtrlId_;
         if (useActionParam->actorCharacterStatus_->characterType_ == PLAYER) {
-            if (ctrlId != func_ov003_021249e4()) {
+            if (ctrlId != btl::BattleExecEvent00::getRealVelorinman()) {
                 if (status::UseAction::getDamageType(useActionParam->actionIndex_) == status::UseAction::DamageTypeDamage) {
                     TextAPI::setMACRO0(18, 0x60000000, 170);
                     setMessage(0xc3936, 0, 0, 0);

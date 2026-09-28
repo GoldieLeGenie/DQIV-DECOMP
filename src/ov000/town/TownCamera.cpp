@@ -14,11 +14,11 @@
 inline bool isEven() { return (func_02081254() & 1) == 0; }
 inline const long& limitLockL() { return -1L; }
 static const float TOWN_CAMERA_DISTANCE = 39.55f;
-static const dss::Fx32Vector3 position(0, 0, 0);
+static const dss::Fix32Vector3 position(0, 0, 0);
 inline const long& limitFreeR() { return 0L; }
 inline const long& limitLockR() { return -1L; }
 static dss::Vector3<short> default_angle(cameraParam[0], cameraParam[2], cameraParam[6]);
-static dss::Fx32 distance(TOWN_CAMERA_DISTANCE);
+static dss::Fix32 distance(TOWN_CAMERA_DISTANCE);
 
 ARM TownCamera::TownCamera()
 {
@@ -34,7 +34,7 @@ ARM TownCamera* TownCamera::getSingleton()
     return &m_singleton;
 }
 
-static dss::Fx32 offset(2L);
+static dss::Fix32 offset(2L);
 
 ARM void TownCamera::initialize()
 {
@@ -51,7 +51,7 @@ ARM void TownCamera::initialize()
     short fov = cameraParam[3];
     camera_.unk_004.setFOV2(fov);
     camera_.unk_068.setFOV2(fov);
-    dss::Fx32 scaleW;
+    dss::Fix32 scaleW;
     scaleW.value = 0x100;
     camera_.setScaleW(scaleW);
     restore();
@@ -97,7 +97,7 @@ ARM void TownCamera::execute()
             camera_.unk_004.setTarget(*func_ov000_021383ac(func_ov000_02137f2c(), targetChara_));
             break;
         default:
-            dss::Fx32Vector3 pos = camera_.unk_004.getTarget();
+            dss::Fix32Vector3 pos = camera_.unk_004.getTarget();
             func_020310f4(&cameraMove_, &pos);
             camera_.unk_004.setTarget(pos);
             func_02031160(&cameraMove_);
@@ -133,7 +133,7 @@ ARM void TownCamera::execute()
         } else {
             effecter_.moveLock_ = 0;
         }
-        dss::Fx32Vector3 effpos = camera_.unk_004.getTarget();
+        dss::Fix32Vector3 effpos = camera_.unk_004.getTarget();
         func_020310f4(&effecter_, &effpos);
         camera_.unk_004.setTarget(effpos);
         if (func_02031160(&effecter_)) {
@@ -141,11 +141,11 @@ ARM void TownCamera::execute()
         }
     }
     if (povLock_ == 1) {
-        dss::Fx32Vector3 povPos = camera_.unk_004.getPosition();
+        dss::Fix32Vector3 povPos = camera_.unk_004.getPosition();
         switch (remote_) {
         case 5:
         case 6:
-            dss::Fx32Vector3 target = camera_.unk_004.getTarget();
+            dss::Fix32Vector3 target = camera_.unk_004.getTarget();
             dss::Vector3short* now = &camera_.unk_004.getAngle();
             dss::Vector3short angle;
             angle.vx = now->vx;
@@ -156,7 +156,7 @@ ARM void TownCamera::execute()
             break;
         }
         if (isPovMove_ == 1) {
-            dss::Fx32Vector3 oldPovPos = povPos;
+            dss::Fix32Vector3 oldPovPos = povPos;
             func_020310f4(&povMove_, &povPos);
             povOffset_ += func_02088988(povPos, oldPovPos);
             if (func_02031160(&povMove_) == 1) {
@@ -255,9 +255,9 @@ ARM void TownCamera::rotateL()
     dss::Vector3short angle;
     angle.set(now->vx, now->vy, now->vz);
     angle.vy += 0x100;
-    if (limitL == dss::Fx32(limitLockL())) {
+    if (limitL == dss::Fix32(limitLockL())) {
         angle.vy = 0;
-    } else if (limitL != dss::Fx32(0L)) {
+    } else if (limitL != dss::Fix32(0L)) {
         angle.vy = func_02008ea0(angle.vy, -func_02080d94(limitR), func_02080d94(limitL));
     }
     if (angle.vy == 0) {
@@ -274,9 +274,9 @@ ARM void TownCamera::rotateR()
     dss::Vector3short angle;
     angle.set(now->vx, now->vy, now->vz);
     angle.vy -= 0x100;
-    if (limitR == dss::Fx32(limitLockR())) {
+    if (limitR == dss::Fix32(limitLockR())) {
         angle.vy = 0;
-    } else if (limitR != dss::Fx32(limitFreeR())) {
+    } else if (limitR != dss::Fix32(limitFreeR())) {
         angle.vy = func_02008ea0(angle.vy, -func_02080d94(limitR), func_02080d94(limitL));
     }
     if (angle.vy == 0) {
@@ -287,18 +287,18 @@ ARM void TownCamera::rotateR()
     camera_.setRotXYZ(angle);
 }
 
-ARM void TownCamera::setLimitL(dss::Fx32 left)
+ARM void TownCamera::setLimitL(dss::Fix32 left)
 {
     func_0208718c(&limitL, left);
-    if (limitL != dss::Fx32(0L)) {
+    if (limitL != dss::Fix32(0L)) {
         camera_.setRotXYZ(changeDefaultAngle_);
     }
 }
 
-ARM void TownCamera::setLimitR(dss::Fx32 right)
+ARM void TownCamera::setLimitR(dss::Fix32 right)
 {
     func_0208718c(&limitR, right);
-    if (limitR != dss::Fx32(0L)) {
+    if (limitR != dss::Fix32(0L)) {
         camera_.setRotXYZ(changeDefaultAngle_);
     }
 }
@@ -330,10 +330,10 @@ ARM void TownCamera::store()
     g_Stage.pushCameraAngle(angle);
 }
 
-ARM void TownCamera::setMoveTo(dss::Fx32Vector3& target, int frame, bool absFlag)
+ARM void TownCamera::setMoveTo(dss::Fix32Vector3& target, int frame, bool absFlag)
 {
-    dss::Fx32Vector3 pos = camera_.unk_004.getTarget();
-    dss::Fx32Vector3 to;
+    dss::Fix32Vector3 pos = camera_.unk_004.getTarget();
+    dss::Fix32Vector3 to;
     to = absFlag ? target : target + pos;
     func_020311f0(&cameraMove_, &pos, &to);
     if (frame) {
@@ -385,8 +385,8 @@ ARM void TownCamera::setRotTo(dss::Vector3short& angle, int frame, bool absFlag)
 
 ARM void TownCamera::resetCameraMove(int frame)
 {
-    dss::Fx32Vector3 pos = camera_.unk_004.getTarget();
-    dss::Fx32Vector3 target = func_ov000_02132a90()->getPosition();
+    dss::Fix32Vector3 pos = camera_.unk_004.getTarget();
+    dss::Fix32Vector3 target = func_ov000_02132a90()->getPosition();
     if (pos != target) {
         func_020311f0(&cameraMove_, &pos, &target);
         func_020312e8(&cameraMove_, frame);
@@ -418,14 +418,14 @@ ARM void TownCamera::resetCameraMove(int frame)
 
 ARM void TownCamera::setShake(int type, int count)
 {
-    dss::Fx32Vector3 targetPos = camera_.unk_004.getTarget();
-    dss::Fx32Vector3 startPos = targetPos;
+    dss::Fix32Vector3 targetPos = camera_.unk_004.getTarget();
+    dss::Fix32Vector3 startPos = targetPos;
     int endframe = count << 3;
-    dss::Fx32 len;
+    dss::Fix32 len;
     len.value = 0x3e8;
     switch (type) {
     case 0: {
-        dss::Fx32Vector3 vec;
+        dss::Fix32Vector3 vec;
         func_ov000_02130f48((short)(camera_.unk_004.getAngle().vy + 0x4000), &vec);
         targetPos += vec * len;
         func_02031908(&effecter_, &startPos, &targetPos, count);
@@ -447,7 +447,7 @@ ARM void TownCamera::setShake(int type, int count)
     effect_ = 1;
 }
 
-ARM void TownCamera::setChangeDistance(int frame, dss::Fx32 distance)
+ARM void TownCamera::setChangeDistance(int frame, dss::Fix32 distance)
 {
     if (frame == 0) {
         camera_.setDistance(distance);
@@ -478,9 +478,9 @@ ARM bool TownCamera::isEndChangeDistance()
     return changeDistance_ == 0;
 }
 
-ARM void TownCamera::setPovMove(dss::Fx32Vector3 target, int frame, int flag)
+ARM void TownCamera::setPovMove(dss::Fix32Vector3 target, int frame, int flag)
 {
-    dss::Fx32Vector3 start = camera_.unk_004.getPosition();
+    dss::Fix32Vector3 start = camera_.unk_004.getPosition();
     if (flag) {
         target += start;
     }
@@ -489,13 +489,13 @@ ARM void TownCamera::setPovMove(dss::Fx32Vector3 target, int frame, int flag)
     povLock_ = 1;
 }
 
-ARM void TownCamera::calculatePursue(dss::Vector3short& angle, dss::Fx32Vector3& pos, dss::Fx32Vector3& target)
+ARM void TownCamera::calculatePursue(dss::Vector3short& angle, dss::Fix32Vector3& pos, dss::Fix32Vector3& target)
 {
     MtxFx43 rotX;
     func_020885f8(&rotX);
     MtxFx43 rotY;
     func_020885f8(&rotY);
-    dss::Fx32Vector3 vec;
+    dss::Fix32Vector3 vec;
     func_02088698(&rotX, angle.vx);
     func_020886d0(&rotY, angle.vy);
     func_0208888c(&vec, 0, 0, 1);
@@ -517,7 +517,7 @@ ARM void TownCamera::setTargetPlayer(int flag)
 
 ARM void TownCamera::setMoveTargetPlayer(int frame)
 {
-    dss::Fx32Vector3 target = func_ov000_02132a90()->getPosition();
+    dss::Fix32Vector3 target = func_ov000_02132a90()->getPosition();
     setMoveTo(target, frame, true);
 }
 
@@ -542,7 +542,7 @@ ARM void TownCamera::setLockPov(int flag)
     if (flag) {
         return;
     }
-    dss::Fx32 len = func_02088e90(func_02088988(camera_.getPosition(0), camera_.getTarget(0)));
+    dss::Fix32 len = func_02088e90(func_02088988(camera_.getPosition(0), camera_.getTarget(0)));
     camera_.setDistance(len);
 }
 

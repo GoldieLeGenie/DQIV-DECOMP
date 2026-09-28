@@ -47,7 +47,7 @@ namespace status{
         BaseAction();
         ~BaseAction();
         static void initialize();
-        void clear();
+        static void clear();
         void exec(UseActionParam& useActionParam, int flag);
         int execBefore();
         int execAfterOne(int index);

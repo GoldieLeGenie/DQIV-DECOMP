@@ -21,8 +21,8 @@ namespace cmn
         void setGlobalRuraFlagAll();
         int getRenameFlag();
         int getSymbolID(int townID);
-        dss::Fx32Vector3 getShipTownPos(int townID);
-        dss::Fx32Vector3 getBalloonTownPos(int townID);
+        dss::Fix32Vector3 getShipTownPos(int townID);
+        dss::Fix32Vector3 getBalloonTownPos(int townID);
         int getWorld(int townID);
         char* get_TATOP_Name();
 

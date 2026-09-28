@@ -1,3 +1,4 @@
+#pragma ipa file
 #include "ov003/btl/BattleActorManager2.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
@@ -134,9 +135,6 @@ THUMB void btl::BattleActorManager2::setActorOrder()
     }
 }
 
-//not matching
-#pragma always_inline on
-template void dss::swap<btl::BattleActor2>(btl::BattleActor2*, btl::BattleActor2*);
 
 
 THUMB void btl::BattleActorManager2::setActorAction()

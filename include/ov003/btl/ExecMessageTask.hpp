@@ -24,7 +24,6 @@ extern "C" void func_0208978c();
 extern "C" BattleMonsterDraw2* func_ov003_02121d04();
 extern "C" void func_ov003_02121d58();
 extern "C" void func_ov003_02121ab0(BattleMonster* p, int a);
-extern "C" int  func_ov003_0212aa5c(void* p);
 extern "C" int  func_ov003_0212a064();
 extern "C" int  func_ov003_021223f4(void* p);
 extern "C" int  func_020897a0();

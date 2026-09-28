@@ -7,8 +7,8 @@
 namespace cmn{
     struct CommonEffectLocation
     {
-        dss::Fx32Vector3 prev_;
-        dss::Fx32Vector3 next_;
+        dss::Fix32Vector3 prev_;
+        dss::Fix32Vector3 next_;
         int frame_;
         int counter_;
         int extend_;
@@ -20,13 +20,15 @@ namespace cmn{
         void start(int index, int extend);
         int setPaletteRate(int index);
         int calcPaletteRate();
-        dss::Fx32Vector3 getPaletteRate();
+        dss::Fix32Vector3 getPaletteRate();
     };
 }
 
+extern "C" cmn::CommonEffectLocation* func_0203e8f8(void);   // CommonEffectLocation::getSingleton
+
 
 struct BattleStage {
-    dss::Fx32Vector3 m_rgb_rate;   // 0x00
+    dss::Fix32Vector3 m_rgb_rate;   // 0x00
     char             _pad0c[0x4c]; // 0x0c
     fld::FLDObject        m_fld;        // 0x58
 };
@@ -38,9 +40,9 @@ extern char data_0210bb94[];
 extern "C"
 {
     int  func_02058114(void*, int);
-    int  func_02088ca8(dss::Fx32Vector3*, dss::Fx32Vector3*);
+    int  func_02088ca8(dss::Fix32Vector3*, dss::Fix32Vector3*);
     TownStageManager* func_ov000_02139668(void);                   // TownStageManager::getSingleton
-    void func_ov000_02139f1c(TownStageManager*, dss::Fx32Vector3*, int); // SetRGBRate
+    void func_ov000_02139f1c(TownStageManager*, dss::Fix32Vector3*, int); // SetRGBRate
     BattleStage* func_ov003_0212dfe8(void);                        // BattleStage::getSingleton
     void func_02046f74(fld::FLDObject*, VecFx32*, int);    // fld::FLDObject::SetRGBRate
     int func_0203ea64(cmn::CommonEffectLocation*,int index);

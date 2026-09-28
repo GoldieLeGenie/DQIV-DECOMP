@@ -67,22 +67,22 @@ ARM void dss::Camera::update()
 {
 }
 
-ARM void dss::Camera::setPosition(const Fx32Vector3& pos)
+ARM void dss::Camera::setPosition(const Fix32Vector3& pos)
 {
     m_pos = pos;
 }
 
-ARM dss::Fx32Vector3& dss::Camera::getPosition()
+ARM dss::Fix32Vector3& dss::Camera::getPosition()
 {
     return m_pos;
 }
 
-ARM void dss::Camera::setTarget(const Fx32Vector3& target)
+ARM void dss::Camera::setTarget(const Fix32Vector3& target)
 {
     m_target_pos = target;
 }
 
-ARM dss::Fx32Vector3& dss::Camera::getTarget()
+ARM dss::Fix32Vector3& dss::Camera::getTarget()
 {
     return m_target_pos;
 }
@@ -99,23 +99,23 @@ ARM dss::Vector3short& dss::Camera::getAngle()
     return m_angle;
 }
 
-ARM void dss::Camera::setDistance(const Fx32& distance)
+ARM void dss::Camera::setDistance(const Fix32& distance)
 {
     func_0208718c(&m_distance, distance);
     func_0208718c(&m_distanceSq, m_distance * m_distance);
 }
 
-ARM dss::Fx32& dss::Camera::getDistance()
+ARM dss::Fix32& dss::Camera::getDistance()
 {
     return m_distance;
 }
 
-ARM dss::Fx32& dss::Camera::getDistanceSq()
+ARM dss::Fix32& dss::Camera::getDistanceSq()
 {
     return m_distanceSq;
 }
 
-ARM dss::Fx32Vector3& dss::Camera::getDirection()
+ARM dss::Fix32Vector3& dss::Camera::getDirection()
 {
     return direction_;
 }
@@ -133,7 +133,7 @@ ARM void dss::Camera::setFOV2(int fovy)
     setFOV(data_020c4160[index][0], data_020c4160[index][1]);
 }
 
-ARM void dss::Camera::setScaleW(Fx32 scaleW)
+ARM void dss::Camera::setScaleW(Fix32 scaleW)
 {
     func_0208718c(&m_scaleW, scaleW);
 }

@@ -243,7 +243,7 @@ THUMB void Global::endBattle(bool wipeout)
     fadeOutBlack(0x1E);
 }
 
-THUMB void Global::setFightingArenaMapName(const char* name, dss::Fx32Vector3& pos)
+THUMB void Global::setFightingArenaMapName(const char* name, dss::Fix32Vector3& pos)
 {
     dss::DssUtils::strcpy_s(fightingarenaMapName_, 32, (char*)name);
     fightingarenaPosition_ = pos;

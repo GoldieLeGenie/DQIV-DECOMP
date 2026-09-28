@@ -88,7 +88,7 @@ THUMB void status::Status::setEventParty(unsigned int index)
     g_Party.setGold(event->gold);
     g_Story.setChapter((char)(event->byte_1 & 7));
 
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     switch ((char)(event->byte_1 & 7)) {
         case 1:
             g_Stage.setChurchMapName("hak1f1\0");

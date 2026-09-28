@@ -3,9 +3,9 @@
 
 namespace cmn {
     struct MoveBase {
-        dss::Fx32Vector3 targetPos_;            // 0x00
-        dss::Fx32Vector3 startPos_;             // 0x0C
-        dss::Fx32Vector3 moveVec_;              // 0x18
+        dss::Fix32Vector3 targetPos_;            // 0x00
+        dss::Fix32Vector3 startPos_;             // 0x0C
+        dss::Fix32Vector3 moveVec_;              // 0x18
         dss::Vector3<short> targetDirIdx_;      // 0x24
         dss::Vector3<short> startDirIdx_;       // 0x2A
         dss::Vector3<short> rotIdx_;            // 0x30
@@ -25,17 +25,17 @@ namespace cmn {
 }
 
 extern "C" {
-    void func_020310f4(cmn::MoveBase* move, dss::Fx32Vector3* pos);
+    void func_020310f4(cmn::MoveBase* move, dss::Fix32Vector3* pos);
     void func_02031154(cmn::MoveBase* move, dss::Vector3short* angle);
     int func_02031160(cmn::MoveBase* move);
     int func_020311c8(cmn::MoveBase* move);
     bool func_020311d4(cmn::MoveBase* move);
-    void func_020311f0(cmn::MoveBase* move, dss::Fx32Vector3* start, dss::Fx32Vector3* target);
+    void func_020311f0(cmn::MoveBase* move, dss::Fix32Vector3* start, dss::Fix32Vector3* target);
     void func_0203122c(cmn::MoveBase* move, dss::Vector3short* start, dss::Vector3short* target);
     void func_020312e8(cmn::MoveBase* move, int frame);
     void func_0203133c(cmn::MoveBase* move, int frame, int type);
     void func_020315fc(cmn::MoveBase* move, short speed);
-    void func_020316f4(cmn::MoveBase* move, dss::Fx32Vector3* start, dss::Fx32Vector3* target, int a, int b, int c);
-    void func_02031908(cmn::MoveBase* move, dss::Fx32Vector3* start, dss::Fx32Vector3* target, int count);
-    void func_02031d04(cmn::MoveBase* move, dss::Fx32Vector3* start, dss::Fx32Vector3* target, int frame);
+    void func_020316f4(cmn::MoveBase* move, dss::Fix32Vector3* start, dss::Fix32Vector3* target, int a, int b, int c);
+    void func_02031908(cmn::MoveBase* move, dss::Fix32Vector3* start, dss::Fix32Vector3* target, int count);
+    void func_02031d04(cmn::MoveBase* move, dss::Fix32Vector3* start, dss::Fix32Vector3* target, int frame);
 }

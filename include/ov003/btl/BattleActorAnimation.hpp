@@ -44,7 +44,6 @@ extern "C" int  func_0208995c(void);
 extern "C" void func_ov003_02121c08(BattleMonster*);
 extern "C" void func_ov003_0212a028(status::CharacterStatus* actor);
 extern "C" void func_ov003_021295e4(status::UseActionParam* uap, int idx);
-extern "C" int  func_ov003_021249e4();
 extern "C" void* func_02057128(int idx);
 extern "C" void func_02050e88(int a, int b, int c, int d);
 extern "C" void func_ov003_0212976c(status::UseActionParam* uap, int idx);

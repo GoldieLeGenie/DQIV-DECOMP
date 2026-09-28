@@ -171,14 +171,11 @@ extern const float data_020be08c;
 extern const float data_020be094;
 extern const float data_020be0a4;
 extern const float data_020be0a8;
-extern dss::Fx32 data_020f4e18;
-extern dss::Fx32 data_020f4e28;
-extern dss::Fx32 data_020f4e2c;
+extern dss::Fix32 data_020f4e18;
+extern dss::Fix32 data_020f4e28;
+extern dss::Fix32 data_020f4e2c;
 
 extern "C" {
-    encount::Encount* func_0200a6c8(void);
-    void func_0200acc8(encount::Encount* encount, int id);
-    void func_0200acec(encount::Encount* encount, int id);
     int  func_02058114(void* global, int partId);
     FieldPlayerManager* func_ov001_02127b28(void);
     void func_ov001_0212a620(FieldPlayerManager* mgr, int lock);
@@ -200,7 +197,7 @@ extern "C" {
     void func_ov000_021359ec(TownPlayerManager* mgr, int a, int b);
     void func_02055980(int id);
     int func_ov000_02135848(TownPlayerManager* mgr);
-    void func_02088b3c(dss::Fx32Vector3* v, int value);
+    void func_02088b3c(dss::Fix32Vector3* v, int value);
     int func_ov000_02138eb8(TownCharacterManager* mgr, int index);
     void* func_ov001_0212aaac(void);
     void func_ov001_0212ab8c(void* obj, int message, int count);

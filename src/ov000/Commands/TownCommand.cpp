@@ -308,8 +308,8 @@ THUMB int cmd_check_endor_event_item(int* param)
 
 THUMB int cmd_furniture_move_request(int* param)
 {
-    dss::Fx32Vector3 pos;
-    dss::Fx32Vector3 base;
+    dss::Fix32Vector3 pos;
+    dss::Fix32Vector3 base;
     base = func_ov000_02139b74(func_ov000_02139668(), param[0]);
     pos.vx.value = param[1] + base.vx.value;
     pos.vy.value = param[2] + base.vy.value;

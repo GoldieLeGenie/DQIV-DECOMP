@@ -4,6 +4,7 @@
 #include "ov003/btl/BattleActorManager2.hpp"
 #include "ov003/btl/BattleMessage.hpp"
 #include "ov003/btl/BattleActorAnimation.hpp"
+#include "ov003/btl/BattleExecVictory.hpp"
 
 
 ARM void btl::ResultMessageTask::setup(status::UseActionParam *useActionParam)
@@ -50,7 +51,7 @@ ARM void btl::ResultMessageTask::initialize()
     else if (useActionParam_->actorCharacterStatus_->characterType_ == PLAYER &&
              (id = useActionParam_->targetCharacterStatus_[0]
                        ->haveStatusInfo_.drawCtrlId_,
-              id != func_ov003_021249e4())) {
+              id != btl::BattleExecEvent00::getRealVelorinman())) {
         message_ = 0;
     }
     else {

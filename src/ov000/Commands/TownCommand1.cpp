@@ -8,7 +8,7 @@
 
 THUMB int cmd_set_overview_point(int* param)
 {
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     pos.vx.value = param[0];
     pos.vy.value = param[1];
     pos.vz.value = param[2];
@@ -18,7 +18,7 @@ THUMB int cmd_set_overview_point(int* param)
 
 THUMB int cmd_set_player_position(int* param)
 {
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     pos.vx.value = param[0];
     pos.vy.value = param[1];
     pos.vz.value = param[2];

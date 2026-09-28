@@ -41,3 +41,11 @@ namespace encount {
         int encountCountType_[4];
     };
 }  // namespace encount
+
+extern "C" {
+    encount::Encount* func_0200a6c8(void);
+    btl::FirstAttack func_0200a978(encount::Encount* encount);
+    void func_0200acc8(encount::Encount* encount, int id);
+    void func_0200acec(encount::Encount* encount, int id);
+    int  func_0200aef8(encount::Encount* encount, int monsterIndex);
+}

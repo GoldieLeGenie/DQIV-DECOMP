@@ -1222,7 +1222,7 @@ THUMB int status::StageStatus::getFallFlag()
 THUMB int status::StageStatus::restartChurch()
 {
     unsigned int found = 0xFFFFFFFF;
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
 
     param::MapChurch* tbl = status::excelParam.mapChurch_;
     for (unsigned int i = 0; i < data_020b615c.count_; i++) {

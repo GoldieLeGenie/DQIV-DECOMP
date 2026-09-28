@@ -66,7 +66,7 @@ ARM int cmn::CommonEffectSimple::isEnable()
     return effectData_ != 0;
 }
 
-ARM cmn::CommonEffectFlat::CommonEffectFlat() : paletteTexture_(0)
+ARM cmn::CommonEffectFlat::CommonEffectFlat()
 {
 }
 
@@ -82,9 +82,9 @@ ARM void cmn::CommonEffectFlat::setup(CommonEffectData* data, int flag)
     dssaEffect_.setTexture(texture_);
     dssaEffect_.type_ = DSSAObjectWithCamera::Near;
     if (effectData_->isPamEnable()) {
-        paletteAnim_.setup(effectData_->getPaletteAnimData());
-        paletteTexture_ = texture_;
-        paletteColorCount_ = paletteAnim_.getColorCount();
+        paletteAnim_.anim_.setup(effectData_->getPaletteAnimData());
+        paletteAnim_.texture_ = texture_;
+        paletteAnim_.colorCount_ = paletteAnim_.anim_.getColorCount();
     }
     rate_.value = 0x1000;
 }
@@ -108,14 +108,14 @@ ARM void cmn::CommonEffectFlat::draw()
     }
 }
 
-ARM void cmn::CommonEffectFlat::setPosition(dss::Fx32Vector3& position)
+ARM void cmn::CommonEffectFlat::setPosition(dss::Fix32Vector3& position)
 {
     dssaEffect_.setPosition(position);
 }
 
-ARM void cmn::CommonEffectFlat::setScale(dss::Fx32 scale)
+ARM void cmn::CommonEffectFlat::setScale(dss::Fix32 scale)
 {
-    dss::Fx32Vector3 one(1, 1, 1);
+    dss::Fix32Vector3 one(1, 1, 1);
     dssaEffect_.setScale(one * scale);
     func_0208718c(&rate_, scale);
 }
@@ -174,12 +174,12 @@ ARM void cmn::CommonEffectCubic::draw()
     model_.draw();
 }
 
-ARM void cmn::CommonEffectCubic::setPosition(dss::Fx32Vector3& position)
+ARM void cmn::CommonEffectCubic::setPosition(dss::Fix32Vector3& position)
 {
     func_02058bcc(&model_, position);
 }
 
-ARM void cmn::CommonEffectCubic::setScale(dss::Fx32 scale)
+ARM void cmn::CommonEffectCubic::setScale(dss::Fix32 scale)
 {
     func_02058af4(&model_, scale);
     func_0208718c(&rate_, scale);

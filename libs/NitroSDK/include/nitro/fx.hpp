@@ -12,6 +12,8 @@ struct VecFx32 {
     fx32 z;
 };
 
+extern "C" void func_020630ec(const VecFx32* src, VecFx32* dst);   // VEC_Normalize
+
 struct MtxFx43 {
     fx32 m[4][3];
 };

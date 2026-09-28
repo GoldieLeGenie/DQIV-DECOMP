@@ -12,7 +12,7 @@
 THUMB int cmd_set_character_position(int* param)
 {
     int index = getPlacementCtrlId();
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     pos.vx.value = param[0];
     pos.vy.value = param[1];
     pos.vz.value = param[2];
@@ -227,7 +227,7 @@ THUMB int cmd_set_character_collision(int* param)
 
 THUMB int cmd_is_trigger(int* param)
 {
-    dss::Fx32Vector3 pos = func_ov000_02132a90()->getPosition();
+    dss::Fix32Vector3 pos = func_ov000_02132a90()->getPosition();
     if (param[0] < pos.vx.value && param[3] > pos.vx.value &&
         param[1] < pos.vy.value && param[4] > pos.vy.value &&
         param[2] < pos.vz.value && param[5] > pos.vz.value) {
@@ -238,16 +238,16 @@ THUMB int cmd_is_trigger(int* param)
 
 THUMB int cmd_is_trigger2(int* param)
 {
-    dss::Fx32Vector3 pos = func_ov000_02132a90()->getPosition();
+    dss::Fix32Vector3 pos = func_ov000_02132a90()->getPosition();
     if (param[0] < pos.vx.value && param[3] > pos.vx.value &&
         param[1] < pos.vy.value && param[4] > pos.vy.value &&
         param[2] < pos.vz.value && param[5] > pos.vz.value) {
         short dir = func_ov000_02132a90()->getDirection();
-        dss::Fx32Vector3 front;
+        dss::Fix32Vector3 front;
         func_ov000_02130f48(dir, &front);
-        dss::Fx32Vector3 target = func_ov000_02131b1c((unsigned char)param[6]);
-        dss::Fx32 dot = front * target;
-        if (dot >= dss::Fx32(data_ov000_021487ac)) {
+        dss::Fix32Vector3 target = func_ov000_02131b1c((unsigned char)param[6]);
+        dss::Fix32 dot = front * target;
+        if (dot >= dss::Fix32(data_ov000_021487ac)) {
             return 1;
         }
     }
@@ -309,10 +309,10 @@ THUMB int cmd_character_move_roam(int* param)
 THUMB int cmd_is_trigger_character(int* param)
 {
     int index = getPlacementCtrlId();
-    dss::Fx32Vector3 pos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
+    dss::Fix32Vector3 pos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
     short dir = func_ov000_02138744(func_ov000_02137f2c(), index);
-    dss::Fx32Vector3 min;
-    dss::Fx32Vector3 max;
+    dss::Fix32Vector3 min;
+    dss::Fix32Vector3 max;
     min.set(param[0], param[1], param[2]);
     max.set(param[3], param[4], param[5]);
     TriggerCheck check = param[6] == 0 ? TRIGGER_CHECK_0 : TRIGGER_CHECK_1;
@@ -324,10 +324,10 @@ THUMB int cmd_is_trigger2_character(int* param)
 {
     TriggerCheck check;
     int index = getPlacementCtrlId();
-    dss::Fx32Vector3 pos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
+    dss::Fix32Vector3 pos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
     short dir = func_ov000_02138744(func_ov000_02137f2c(), index);
-    dss::Fx32Vector3 min;
-    dss::Fx32Vector3 max;
+    dss::Fix32Vector3 min;
+    dss::Fix32Vector3 max;
     min.set(param[0], param[1], param[2]);
     max.set(param[3], param[4], param[5]);
     switch (param[6]) {
@@ -372,7 +372,7 @@ THUMB int cmd_party_quit(int* param)
             order[i] = status::g_Party.getPlayerStatus(i)->haveStatusInfo_.haveStatus_.playerIndex_;
         }
     }
-    dss::Fx32Vector3 pos = func_ov000_02132a90()->getPartyDrawPosition(sortIndex);
+    dss::Fix32Vector3 pos = func_ov000_02132a90()->getPartyDrawPosition(sortIndex);
     func_ov000_021384c0(func_ov000_02137f2c(), index, 1);
     func_ov000_02138670(func_ov000_02137f2c(), index, 1);
     func_ov000_02138598(func_ov000_02137f2c(), index, &pos);

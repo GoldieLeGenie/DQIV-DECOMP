@@ -32,12 +32,12 @@ ARM void cmn::WorldLocation::calcWorldPos(fx32* x, fx32* y)
     }
 }
 
-ARM dss::Fx32Vector3 cmn::WorldLocation::calcPaletteRate(int prev, int next, dss::Fx32 ratio)
+ARM dss::Fix32Vector3 cmn::WorldLocation::calcPaletteRate(int prev, int next, dss::Fix32 ratio)
 {
-    dss::Fx32Vector3 c0;
-    dss::Fx32Vector3 c1;
-    dss::Fx32Vector3 ret;
-    dss::Fx32 one;
+    dss::Fix32Vector3 c0;
+    dss::Fix32Vector3 c1;
+    dss::Fix32Vector3 ret;
+    dss::Fix32 one;
     one.value = 0x1000;
 
     param::CLUTCode* t0 = pCLUTCode_;
@@ -56,11 +56,11 @@ ARM dss::Fx32Vector3 cmn::WorldLocation::calcPaletteRate(int prev, int next, dss
     return ret;
 }
 
-ARM dss::Fx32Vector3 cmn::WorldLocation::calcPaletteRate(int time)
+ARM dss::Fix32Vector3 cmn::WorldLocation::calcPaletteRate(int time)
 {
     int next;
     int prev;
-    dss::Fx32 rate;
+    dss::Fix32 rate;
 
     if (time < 0x80) {
         rate.value = time * 0x1000 / 0x80;
@@ -107,9 +107,9 @@ ARM dss::Fx32Vector3 cmn::WorldLocation::calcPaletteRate(int time)
     return calcPaletteRate(prev, next, rate);
 }
 
-ARM dss::Fx32Vector3 cmn::WorldLocation::calcYamiPaletteRate()
+ARM dss::Fix32Vector3 cmn::WorldLocation::calcYamiPaletteRate()
 {
-    return calcPaletteRate(0, 0xE, dss::Fx32(0x1000));
+    return calcPaletteRate(0, 0xE, dss::Fix32(0x1000));
 }
 
 ARM void cmn::WorldLocation::setCurrentTimeZone()

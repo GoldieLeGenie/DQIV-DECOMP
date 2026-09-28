@@ -85,7 +85,7 @@ ARM void btl::ExecMessageTask::execute()
     int flag;
 
     if (btl::BattleActorAnimation::isMonsterChangeSetupEnd()) {
-        endWait = func_ov003_0212aa5c(func_ov003_0212a678());
+        endWait = btl::BattleEffectManager::getSingleton()->isEndWait();
         flag = 1;
         if (useActionParam_->actionIndex_ == 0xe5) {
             if (func_ov003_021223f4(func_ov003_02121d04())) {

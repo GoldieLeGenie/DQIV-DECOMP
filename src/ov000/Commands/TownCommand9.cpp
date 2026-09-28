@@ -16,7 +16,7 @@
 
 THUMB int cmd_copy_party_chara(int* param)
 {
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     int index = getPlacementCtrlId();
     int value;
     short dir;
@@ -42,7 +42,7 @@ THUMB int cmd_chara_alpha(int* param)
 
 THUMB int cmd_ikada_set_position(int* param)
 {
-    dss::Fx32Vector3 pos = cmn::CommonCalculate::setVecByParam(param[0], param[1], param[2]);
+    dss::Fix32Vector3 pos = cmn::CommonCalculate::setVecByParam(param[0], param[1], param[2]);
     func_ov000_021287e4(func_ov000_021285c0(), &pos);
     return 1;
 }

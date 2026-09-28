@@ -27,6 +27,6 @@ namespace btl {
     };
 }
 
-extern "C" void func_ov003_02130b70(btl::ExecActionTask* thisptr);                      // setupTorunekoAction-like / à identifier
+extern "C" void func_ov003_02130b70(btl::ExecActionTask* thisptr);                      // setupTorunekoAction-like ???
 extern "C" void func_ov003_021289d8(btl::BattleActorManager2* mgr, status::UseActionParam* param);  // BattleActorManager2::setMegazaruRing
 extern "C" int  func_ov003_02130a4c (btl::ExecActionTask* thisptr, status::UseActionParam* param); // ExecActionTask::checkCommonExec 

@@ -28,7 +28,7 @@ struct Global {
     short diameter_;                            
     int doubleUpFlag_;                          
     int prevPartTown_;                          
-    dss::Fx32Vector3 fightingarenaPosition_;     
+    dss::Fix32Vector3 fightingarenaPosition_;     
     int fightingarenaFlag_;                     
     char fightingarenaMapName_[32];             
     char prevMapName_[32];                        
@@ -50,7 +50,7 @@ struct Global {
     void acceptBattle();
     void directStartBattle();
     void endBattle(bool wipeout);
-    void setFightingArenaMapName(const char* name, dss::Fx32Vector3& pos);
+    void setFightingArenaMapName(const char* name, dss::Fix32Vector3& pos);
     void startTitle();
     void startLogo();
     bool isNextPart(int part);
@@ -128,6 +128,9 @@ extern Global g_Global; // 0x020c768c
 extern GlobalChangePart g_GlobalChangePart;
 extern GlobalWaitPart g_GlobalWaitPart;
 extern GlobalFade g_GlobalFade;
+extern GlobalFade data_020f21f8;   // second fade part (battle)
+extern unsigned char data_020f220c[0x38];   // screen, RGB555 color at 0x34
+extern unsigned char data_020f2244[0x38];   // screen, RGB555 color at 0x34
 
 
 
@@ -142,6 +145,8 @@ extern char s_mapCasino[];                            // "casino"
 extern int  data_0210bc18[];                            //
 
 extern "C" void func_02058294(void* mgr, void* part);   // 
+extern "C" void func_02084e8c(void* screen, int r, int g, int b);   // sets RGB555 color at 0x34
+extern "C" int  func_0205810c(void* mgr);               // current game mode (13 = battle auto feed)
 extern "C" {
     void func_020582b8(void* mgr, void* task);
     void func_0207ed24(int brightness);

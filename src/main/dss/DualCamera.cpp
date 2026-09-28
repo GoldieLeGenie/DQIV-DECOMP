@@ -55,10 +55,10 @@ ARM void dss::DualCameraBase::applyG3d()
     updateCameraNo();
     Camera* cam = m_cameraNo != 0 ? &unk_068 : &unk_004;
     CameraPerspective perspective = cam->m_perspective;
-    Fx32Vector3 pos = cam->m_pos;
-    Fx32Vector3 target = cam->m_target_pos;
-    Fx32Vector3 up = cam->m_up;
-    Fx32 scaleW = cam->m_scaleW;
+    Fix32Vector3 pos = cam->m_pos;
+    Fix32Vector3 target = cam->m_target_pos;
+    Fix32Vector3 up = cam->m_up;
+    Fix32 scaleW = cam->m_scaleW;
     func_02065604(perspective.m_fovySin, perspective.m_fovyCos, perspective.m_aspect, perspective.m_near, perspective.m_far, scaleW.value, 0, &data_0210cf30);
     data_0210cf28.flag &= ~0x50;
     data_0210cf28.camPos.x = pos.vx.value;
@@ -74,7 +74,7 @@ ARM void dss::DualCameraBase::applyG3d()
     data_0210cf28.flag &= ~0xe8;
 }
 
-ARM dss::Fx32Vector3& dss::DualCameraBase::getPosition(int no)
+ARM dss::Fix32Vector3& dss::DualCameraBase::getPosition(int no)
 {
     if (no == 0) {
         return unk_004.getPosition();
@@ -82,7 +82,7 @@ ARM dss::Fx32Vector3& dss::DualCameraBase::getPosition(int no)
     return unk_068.getPosition();
 }
 
-ARM void dss::DualCameraBase::setTarget(const Fx32Vector3& target, int no)
+ARM void dss::DualCameraBase::setTarget(const Fix32Vector3& target, int no)
 {
     if (no == 0) {
         unk_004.setTarget(target);
@@ -91,7 +91,7 @@ ARM void dss::DualCameraBase::setTarget(const Fx32Vector3& target, int no)
     unk_068.setTarget(target);
 }
 
-ARM dss::Fx32Vector3& dss::DualCameraBase::getTarget(int no)
+ARM dss::Fix32Vector3& dss::DualCameraBase::getTarget(int no)
 {
     if (no == 0) {
         return unk_004.getTarget();
@@ -101,7 +101,7 @@ ARM dss::Fx32Vector3& dss::DualCameraBase::getTarget(int no)
 
 ARM dss::DualCamera::DualCamera()
 {
-    dss::Fx32Vector3 zero(0, 0, 0);
+    dss::Fix32Vector3 zero(0, 0, 0);
     setTarget(zero, 0);
     func_02087168(&m_offset, 0);
     m_cameraNo = 1;
@@ -118,7 +118,7 @@ ARM void dss::DualCamera::calcPosition()
     if (m_pursue == 1) {
         DualCameraBase::calcPosition();
     } else {
-        Fx32Vector3 dir = func_02088988(unk_004.getTarget(), unk_004.getPosition());
+        Fix32Vector3 dir = func_02088988(unk_004.getTarget(), unk_004.getPosition());
         func_02089168(&dir);
         unk_004.direction_ = dir;
     }
@@ -128,8 +128,8 @@ ARM void dss::DualCamera::calcPosition()
     func_020885f8(&rotY);
     func_02088698(&rotX, unk_004.m_angle.vx);
     func_020886d0(&rotY, unk_004.m_angle.vy);
-    Fx32Vector3 up(0, 1, 0);
-    Fx32Vector3 offset;
+    Fix32Vector3 up(0, 1, 0);
+    Fix32Vector3 offset;
     up = func_02088670(&rotX, &up);
     up = func_02088670(&rotY, &up);
     offset = up * m_offset;

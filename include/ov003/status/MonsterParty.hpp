@@ -35,7 +35,7 @@ namespace status{
         int getMonsterGroupForMonsterIndex(int monsterIndex);
         int getMonsterCallType();
         int getMonsterCallIndex();
-        void initializeSortIndex();
+        static void initializeSortIndex();
         static int getSortIndexInGroup(int index);
         static int isSortIndexInGroup(int index);
         int getSortIndex(int monsterGroup, int monsterIndex);

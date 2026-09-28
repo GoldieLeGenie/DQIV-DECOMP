@@ -11,7 +11,7 @@ ARM void CameraControl::terminate()
     this->data_.cleanup();
 }
 
-ARM void CameraControl::initCameraControl(dss::Fx32Vector3 position, dss::Vector3short angle)
+ARM void CameraControl::initCameraControl(dss::Fix32Vector3 position, dss::Vector3short angle)
 {
     this->dt_ = 0;
     this->waitCounter_ = 0;

@@ -40,7 +40,7 @@ char s_dpb8b[8] = "dpb8b";   // 0x020be960
 
 ARM void cmn::ExtraMapLink::setup()
 {
-    dss::Fx32Vector3 offset;
+    dss::Fix32Vector3 offset;
 
     mapLinkDataCount_ = 0;
     rectLinkCount_ = 0;
@@ -153,9 +153,9 @@ ARM void cmn::ExtraMapLink::setup()
         setLinkData(0x79, 0, NOT_LINK_THIS_TOWN, NULL, NULL);
         setLinkData(0x6d, 0, NOT_LINK_THIS_TOWN, NULL, NULL);
 
-        dss::Fx32Vector3 topLeft;
-        dss::Fx32Vector3 bottomRight;
-        dss::Fx32Vector3 pos;
+        dss::Fix32Vector3 topLeft;
+        dss::Fix32Vector3 bottomRight;
+        dss::Fix32Vector3 pos;
 
         topLeft.vx.value = 0x85c000;
         topLeft.vy.value = 0x84c000;
@@ -185,7 +185,7 @@ ARM void cmn::ExtraMapLink::setup()
     }
 }
 
-ARM void cmn::ExtraMapLink::setExtraFieldPos(dss::Fx32Vector3& pos, short& idx)
+ARM void cmn::ExtraMapLink::setExtraFieldPos(dss::Fix32Vector3& pos, short& idx)
 {
     switch (extraLink_) {
         case LINK_TOWN_TO_FIELD:
@@ -242,7 +242,7 @@ ARM int cmn::ExtraMapLink::checkFieldLink(int id)
     return 0;
 }
 
-ARM bool cmn::ExtraMapLink::checkExtraTownPos(dss::Fx32Vector3& pos, short& idx)
+ARM bool cmn::ExtraMapLink::checkExtraTownPos(dss::Fix32Vector3& pos, short& idx)
 {
     bool result = false;
     switch (extraLink_) {
@@ -275,14 +275,14 @@ ARM void cmn::ExtraMapLink::startExitLoop()
     }
     int id = func_ov000_02139fe8(func_ov000_02139668(), surfaceId, group);
 
-    dss::Fx32Vector3 pos;
-    dss::Fx32Vector3 dir;
-    dss::Fx32Vector3 up(0, 1, 0);
+    dss::Fix32Vector3 pos;
+    dss::Fix32Vector3 dir;
+    dss::Fix32Vector3 up(0, 1, 0);
     func_02047d18(func_ov000_02139668(), id, &pos);
     func_ov000_0213a2c4(func_ov000_02139668(), &dir, id);
 
-    dss::Fx32 d = up * dir;
-    dss::Fx32 scale;
+    dss::Fix32 d = up * dir;
+    dss::Fix32 scale;
     scale.value = 0x8f2;
     if (d.value == 0) {
         extraPos_ = pos + dir * scale;
@@ -306,7 +306,7 @@ ARM void cmn::ExtraMapLink::setExtraExitTown(const char* mapName, int id)
     PlayerManager::setLock(1);
 }
 
-ARM void cmn::ExtraMapLink::setExtraLinkTown(const char* mapName, dss::Fx32Vector3& pos, short dir)
+ARM void cmn::ExtraMapLink::setExtraLinkTown(const char* mapName, dss::Fix32Vector3& pos, short dir)
 {
     extraLink_ = LINK_EXTRA_TOWN;
     g_Global.startTown((char*)mapName);
@@ -315,7 +315,7 @@ ARM void cmn::ExtraMapLink::setExtraLinkTown(const char* mapName, dss::Fx32Vecto
     PlayerManager::setLock(1);
 }
 
-ARM void cmn::ExtraMapLink::setLinkData(int nowId, int nextId, LINK_TYPE type, const char* nowMapName, const char* nextMapName, dss::Fx32Vector3& offset)
+ARM void cmn::ExtraMapLink::setLinkData(int nowId, int nextId, LINK_TYPE type, const char* nowMapName, const char* nextMapName, dss::Fix32Vector3& offset)
 {
     if (nowMapName != NULL && func_020882b0(g_Global.getMapName(), nowMapName) != 0) {
         return;
@@ -332,7 +332,7 @@ ARM void cmn::ExtraMapLink::setLinkData(int nowId, int nextId, LINK_TYPE type, c
 
 ARM void cmn::ExtraMapLink::setLinkData(int nowId, int nextId, LINK_TYPE type, const char* nowMapName, const char* nextMapName)
 {
-    dss::Fx32Vector3 offset(0, 0, 0);
+    dss::Fix32Vector3 offset(0, 0, 0);
 
     if (nowMapName != NULL && func_020882b0(nowMapName, g_Global.getMapName()) != 0) {
         return;
@@ -396,7 +396,7 @@ ARM int cmn::ExtraMapLink::checkTownMapLink(int id)
     return 0;
 }
 
-ARM void cmn::ExtraMapLink::setExtraExitField(int id, dss::Fx32Vector3& pos)
+ARM void cmn::ExtraMapLink::setExtraExitField(int id, dss::Fix32Vector3& pos)
 {
     extraLink_ = LINK_TOWN_TO_FIELD;
     offset_ = pos;
@@ -412,7 +412,7 @@ ARM void cmn::ExtraMapLink::setExtraExitField(int id, dss::Fx32Vector3& pos)
 
 ARM void cmn::ExtraMapLink::setTownINN()
 {
-    dss::Fx32Vector3 pos = func_ov000_02132a90()->getPosition();
+    dss::Fix32Vector3 pos = func_ov000_02132a90()->getPosition();
     short dir = func_ov000_02132a90()->getDirection();
     setExtraLinkTown(g_Global.getMapName(), pos, dir);
 }
@@ -421,11 +421,11 @@ ARM void cmn::ExtraMapLink::setMonstarBookLink()
 {
     g_cmnPartyInfo.prevLocation_ = 1;
     if (g_Global.doubleUpFlag_ != 0) {
-        dss::Fx32Vector3 pos = func_ov000_02132a90()->getPosition();
+        dss::Fix32Vector3 pos = func_ov000_02132a90()->getPosition();
         short dir = func_ov000_02132a90()->getDirection();
         setExtraLinkTown(g_Global.getPrevMapName(), pos, dir);
     } else {
-        dss::Fx32Vector3 pos = g_cmnPartyInfo.position_;
+        dss::Fix32Vector3 pos = g_cmnPartyInfo.position_;
         setExtraLinkFieldAbsPos(g_Global.getFieldType(), pos, 4);
     }
 }
@@ -467,7 +467,7 @@ ARM int cmn::ExtraMapLink::getFieldTypeBySymbol(int symbolId)
     return 0;
 }
 
-ARM void cmn::ExtraMapLink::setFieldRectLinkToTown(dss::Fx32Vector3& topLeft, dss::Fx32Vector3& bottomRight, int nowId, int nextId, const char* mapName, dss::Fx32Vector3 offset)
+ARM void cmn::ExtraMapLink::setFieldRectLinkToTown(dss::Fix32Vector3& topLeft, dss::Fix32Vector3& bottomRight, int nowId, int nextId, const char* mapName, dss::Fix32Vector3 offset)
 {
     rectLinkData_[rectLinkCount_].type = RECT_FIELD_TO_TOWN;
     rectLinkData_[rectLinkCount_].pos[0] = topLeft;
@@ -479,7 +479,7 @@ ARM void cmn::ExtraMapLink::setFieldRectLinkToTown(dss::Fx32Vector3& topLeft, ds
     rectLinkCount_++;
 }
 
-ARM void cmn::ExtraMapLink::setFieldRectLinkToField(dss::Fx32Vector3& topLeft, dss::Fx32Vector3& bottomRight, int type, dss::Fx32Vector3 pos)
+ARM void cmn::ExtraMapLink::setFieldRectLinkToField(dss::Fix32Vector3& topLeft, dss::Fix32Vector3& bottomRight, int type, dss::Fix32Vector3 pos)
 {
     rectLinkData_[rectLinkCount_].type = type;
     rectLinkData_[rectLinkCount_].nowId = 1;
@@ -489,7 +489,7 @@ ARM void cmn::ExtraMapLink::setFieldRectLinkToField(dss::Fx32Vector3& topLeft, d
     rectLinkCount_++;
 }
 
-ARM int cmn::ExtraMapLink::checkFieldRectLinkNo(dss::Fx32Vector3& pos)
+ARM int cmn::ExtraMapLink::checkFieldRectLinkNo(dss::Fix32Vector3& pos)
 {
     for (int i = 0; i < rectLinkCount_; i++) {
         if (cmn::CommonCalculate::simpleAreaInCheck(rectLinkData_[i].pos[0], rectLinkData_[i].pos[1], pos) == 1) {
@@ -499,7 +499,7 @@ ARM int cmn::ExtraMapLink::checkFieldRectLinkNo(dss::Fx32Vector3& pos)
     return -1;
 }
 
-ARM int cmn::ExtraMapLink::checkFieldRectLinkByType(dss::Fx32Vector3& pos, int type)
+ARM int cmn::ExtraMapLink::checkFieldRectLinkByType(dss::Fix32Vector3& pos, int type)
 {
     int no = checkFieldRectLinkNo(pos);
     if (no != -1 && type == rectLinkData_[no].type) {
@@ -542,7 +542,7 @@ ARM bool cmn::ExtraMapLink::checkEraseSymbolNo(int id)
     return false;
 }
 
-ARM void cmn::ExtraMapLink::setExtraLinkFieldAbsPos(int fieldType, dss::Fx32Vector3& pos, short dir)
+ARM void cmn::ExtraMapLink::setExtraLinkFieldAbsPos(int fieldType, dss::Fix32Vector3& pos, short dir)
 {
     PlayerManager::setLock(1);
     extraLink_ = LINK_FIELD_ABS_POS;
@@ -598,7 +598,7 @@ ARM void cmn::ExtraMapLink::setRanaLink()
         setExtraExitTown(g_Stage.lastRanaStageName_, g_Stage.lastFldSurface_);
     } else if (func_02058114(data_0210bb94, 14)) {
         g_cmnPartyInfo.prevLocation_ = 1;
-        dss::Fx32Vector3 pos = func_ov001_02127b28()->getPosition();
+        dss::Fix32Vector3 pos = func_ov001_02127b28()->getPosition();
         setExtraLinkFieldAbsPos(g_Global.getFieldType(), pos, 4);
     }
 }

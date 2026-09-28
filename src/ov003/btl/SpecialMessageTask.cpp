@@ -2,6 +2,7 @@
 #include "main/status/BaseAction.hpp"
 #include "ov003/btl/BattleActorManager2.hpp"
 #include "ov003/btl/BattleMessage.hpp"
+#include "ov003/btl/BattleExecVictory.hpp"
 
 
 
@@ -31,11 +32,10 @@ ARM void btl::SpecialMessageTask::initialize()
             id = 0x159;
         }
         else {
-            id = func_ov003_0212a94c(func_ov003_0212a678(),
-                                     useActionParam_->actorCharacterStatus_);
+            id = btl::BattleEffectManager::getSingleton()->getWeaponEffectID((status::PlayerStatus*)useActionParam_->actorCharacterStatus_);
         }
 
-        effectParam = func_ov003_0212a980(func_ov003_0212a678(), id);
+        effectParam = btl::BattleEffectManager::getSingleton()->getEffectParam(id);
 
         if (useActionParam_->actorCharacterStatus_->haveStatusInfo_.isSecondKaishin() ||
             useActionParam_->actorCharacterStatus_->damageSound_ == status::CharacterStatus::TsukonSe) {
@@ -45,20 +45,20 @@ ARM void btl::SpecialMessageTask::initialize()
                 v = 2;
             }
 
-            effectParam = func_ov003_0212a980(func_ov003_0212a678(), 0x158);
+            effectParam = btl::BattleEffectManager::getSingleton()->getEffectParam(0x158);
             effectParam->byte_1 &= ~0x78;
             effectParam->byte_1 += (char)((v << 3) & 0x78);
             effectParam->frame = 0;
 
-            if ((idx = func_ov003_0212a9d4(func_ov003_0212a678(), 0x158)) >= 0) {
+            if ((idx = btl::BattleEffectManager::getSingleton()->setupEffect(0x158)) >= 0) {
                 status::UseActionParam* uap = useActionParam_;
-                BattleEffectManager* mgr;
+                btl::BattleEffectManager* mgr;
 
-                mgr = func_ov003_0212a678();
-                func_ov003_0212ad64(&mgr->unit_[idx], uap, 0);
+                mgr = btl::BattleEffectManager::getSingleton();
+                mgr->unit_[idx].setTarget(*uap, 0);
 
-                mgr = func_ov003_0212a678();
-                func_ov003_0212b844(&mgr->unit_[idx], 0);
+                mgr = btl::BattleEffectManager::getSingleton();
+                mgr->unit_[idx].setWaitTime(0);
             }
 
             useActionParam_->actorCharacterStatus_->haveStatusInfo_.setSecondKaishin(false);
@@ -88,7 +88,7 @@ ARM void btl::SpecialMessageTask::execute()
         if (btl::BattleActorManager2::getSingleton()->eventType_ != BattleActorManager2::Velorinman ||
             (id = useActionParam_->targetCharacterStatus_[0]
                       ->haveStatusInfo_.drawCtrlId_,
-             id == func_ov003_021249e4())) {
+             id == btl::BattleExecEvent00::getRealVelorinman())) {
 
             if (useActionParam_->actorCharacterStatus_->damageSound_ ==
                     status::CharacterStatus::KaishinSe) {

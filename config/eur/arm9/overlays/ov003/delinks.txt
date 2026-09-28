@@ -26,6 +26,13 @@ src/ov003/status/MonsterPartyWithDraw.cpp:
     .data start:0x0213c660 end:0x0213c674
     .bss start:0x02166380 end:0x0216a03c
 
+src/ov003/btl/BattleEffectTransform.cpp:
+    complete
+    .text start:0x0212ebb8 end:0x0212f58c
+    .rodata start:0x02139060 end:0x02139108
+    .data start:0x0213c674 end:0x0213c988
+    .bss start:0x0216a03c end:0x0216a97c
+
 
 src/ov003/btl/BattleSelectTargetParam.cpp:
     complete
@@ -38,7 +45,7 @@ src/ov003/btl/BeforeMessageTask.cpp:
 
 src/ov003/btl/ExecMessageTask.cpp:
     complete
-    .text start:0x02130be0 end:0x02130e78
+    .text start:0x02130be0 end:0x02130e58
     .data start:0x0213ca3c end:0x0213ca50
 
 src/ov003/btl/SpecialMessageTask.cpp:
@@ -92,8 +99,9 @@ src/ov003/btl/BattleActor2.cpp:
     .data start:0x0213a6c0 end:0x0213a8d8
 
 src/ov003/btl/BattleActorManager2.cpp:
+    complete
     .text start:0x02126e54 end:0x02128a74
-    .bss start:0x0215237c end:0x02158a50
+    .bss start:0x02152384 end:0x02158a50
     .data start:0x0213a8d8 end:0x0213b038
 
 src/ov003/btl/BattleActorEffect.cpp:
@@ -123,6 +131,60 @@ src/ov003/btl/BattleActorAnimation.cpp:
     complete
     .text start:0x02129238 end:0x0212a1d8
     .bss start:0x02158a54 end:0x02158a58
+
+src/ov003/btl/BattleCameraHoming.cpp:
+    complete
+    .text start:0x021210e4 end:0x02121234
+
+src/ov003/btl/BattleCamera.cpp:
+    complete
+    .init start:0x02139148 end:0x02139180
+    .ctor start:0x021396b4 end:0x021396b8
+    .text start:0x02122474 end:0x02122964
+    .data start:0x02139cec end:0x02139d00
+    .bss start:0x0214884c end:0x02148af8
+
+src/ov003/btl/BattleRound.cpp:
+    complete
+    .text start:0x021229a0 end:0x021230c8
+    .data start:0x02139d00 end:0x02139e7c
+
+src/ov003/btl/BattleRoot.cpp:
+    complete
+    .init start:0x02139180 end:0x021391a0
+    .ctor start:0x021396b8 end:0x021396bc
+    .text start:0x021230c8 end:0x02123820
+    .bss start:0x02148b04 end:0x02148cac
+
+src/ov003/btl/BattleExecVictory.cpp:
+    .text start:0x02123fa0 end:0x021259fc
+    .rodata start:0x02130e58 end:0x02130e9c
+    .init start:0x021391a0 end:0x02139628
+    .ctor start:0x021396bc end:0x021396c0
+    .data start:0x0213a060 end:0x0213a3d0
+    .bss start:0x02148cac end:0x02149250
+
+src/ov003/btl/BattleEffectManager.cpp:
+    complete
+    .text start:0x0212a5ac end:0x0212aa94
+    .data start:0x0213b038 end:0x0213b2d4
+    .bss start:0x02159070 end:0x02165a74
+
+src/ov003/btl/BattleEffectStorage.cpp:
+    complete
+    .text start:0x0212aa94 end:0x0212ac28
+    .data start:0x0213b2d4 end:0x0213b40c
+
+src/ov003/btl/BattleEffectUnit.cpp:
+    complete
+    .text start:0x0212ac28 end:0x0212b8a4
+    .data start:0x0213b40c end:0x0213b838
+    .bss start:0x02165a74 end:0x02165a7c
+
+src/ov003/btl/BattleEffectGroup.cpp:
+    complete
+    .text start:0x0212b8a4 end:0x0212bd08
+    .data start:0x0213b838 end:0x0213ba40
 
 src/ov003/btl/BattleTurn.cpp:
     complete

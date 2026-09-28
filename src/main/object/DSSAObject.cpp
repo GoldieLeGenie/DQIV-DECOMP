@@ -13,9 +13,9 @@ int DSSAObject::angle_;
 int DSSAObject::priority_;
 long DSSAObject::trans_;
 int DSSAObject::calcType_;
-static dss::Fx32 defaultScale2_;
-static dss::Fx32 defaultScale_(1L);
-dss::Fx32Vector3 DSSAObject::baseScale_;
+static dss::Fix32 defaultScale2_;
+static dss::Fix32 defaultScale_(1L);
+dss::Fix32Vector3 DSSAObject::baseScale_;
 
 ARM int DSSAParts::getPartsIndex()
 {
@@ -195,7 +195,7 @@ ARM void DSSAObject::setup(void* data)
     data_ = data;
     frame_ = 0;
     flag_ = 0;
-    func_0208718c(&alpha_, dss::Fx32(1L));
+    func_0208718c(&alpha_, dss::Fix32(1L));
     dssaData_.setup(data);
     displayPartsCount_ = 0;
 }
@@ -253,7 +253,7 @@ ARM void DSSAObject::draw()
         if (trans_ == 0) {
             continue;
         }
-        trans_ = (dss::Fx32(trans_) * alpha_).value >> 12;
+        trans_ = (dss::Fix32(trans_) * alpha_).value >> 12;
         REG_GFX_FIFO_POLYGON_ATTR = (priority_ << 24) | 0xc0 | (trans_ << 16);
         if (parts.getAlpha()) {
             func_02086b68(dssaData_.texture_);
@@ -319,7 +319,7 @@ ARM int DSSAObject::isEnable()
     return data_ != 0;
 }
 
-ARM void DSSAObject::setAlpha(dss::Fx32 alpha)
+ARM void DSSAObject::setAlpha(dss::Fix32 alpha)
 {
     func_0208718c(&alpha_, alpha);
 }
@@ -330,10 +330,10 @@ ARM void DSSAObject::setCurrentFrame(int frame)
     frame_ = func_02008ea0(frame, 0, dssaData_.frame_ - 1);
 }
 
-ARM dss::Fx32Vector3 DSSAObject::getNullPosition(int index)
+ARM dss::Fix32Vector3 DSSAObject::getNullPosition(int index)
 {
     int nullIndex = dssaData_.getNullIndex(index);
-    dss::Fx32Vector3 position;
+    dss::Fix32Vector3 position;
     position.vx = (long)dssaData_.getOriginX(nullIndex);
     position.vx *= defaultScale_;
     position.vy = (long)dssaData_.getOriginY(nullIndex);
@@ -350,22 +350,22 @@ ARM dss::Vector3<int> DSSAObject::getNullPositionInt(int index)
     return position;
 }
 
-ARM dss::Fx32 DSSAObject::getDefaultScale2()
+ARM dss::Fix32 DSSAObject::getDefaultScale2()
 {
     return defaultScale2_;
 }
 
-ARM void DSSAObject::setDefaultScale(dss::Fx32 scale)
+ARM void DSSAObject::setDefaultScale(dss::Fix32 scale)
 {
     func_0208718c(&defaultScale_, scale);
 }
 
-ARM dss::Fx32 DSSAObject::getDefaultScale()
+ARM dss::Fix32 DSSAObject::getDefaultScale()
 {
     return defaultScale_;
 }
 
-ARM void DSSAObject::setReverse(bool reverse)
+ARM void DSSAObject::setReverse(int reverse)
 {
     if (reverse) {
         flag_ |= 4;
@@ -408,7 +408,7 @@ ARM void DSSAObject::setupRoot()
     if (calcType_) {
         G3_Scale(defaultScale_.value, defaultScale_.value, FX32_ONE);
     } else {
-        dss::Fx32Vector3 scale;
+        dss::Fix32Vector3 scale;
         func_0208718c(&scale.vx, defaultScale_ * scale_.vx);
         func_0208718c(&scale.vy, defaultScale_ * scale_.vx);
         if (isReverse()) {
@@ -433,7 +433,7 @@ ARM void DSSAObject::setupTRS(DSSAParts* parts)
     int index = parts->getPartsIndex();
     posY_ *= -1;
     sizeY_ *= -1;
-    if (baseScale_.vx == dss::Fx32(FX32_ONE)) {
+    if (baseScale_.vx == dss::Fix32(FX32_ONE)) {
         G3_Translate(posX_ - sizeX_ / 2, posY_ - sizeY_ / 2, priority_ * (1 << priorityShift_));
     } else {
         G3_Translate(((posX_ - sizeX_ / 2) * baseScale_.vx.value) >> 12, ((posY_ - sizeY_ / 2) * baseScale_.vy.value) >> 12, priority_ * (1 << priorityShift_));
@@ -442,7 +442,7 @@ ARM void DSSAObject::setupTRS(DSSAParts* parts)
     func_02065c9c(FX_SinIdx(angle_), FX_CosIdx(angle_));
     G3_Scale(scaleX_, scaleY_, FX32_ONE);
     G3_Translate(-(dssaData_.getOriginX(index) * baseScale_.vx.value), dssaData_.getOriginY(index) * baseScale_.vy.value, 0);
-    if (baseScale_.vx == dss::Fx32(FX32_ONE)) {
+    if (baseScale_.vx == dss::Fix32(FX32_ONE)) {
         G3_Scale(sizeX_, sizeY_, FX32_ONE);
     } else {
         G3_Scale((sizeX_ * baseScale_.vx.value) >> 12, (sizeY_ * baseScale_.vy.value) >> 12, FX32_ONE);

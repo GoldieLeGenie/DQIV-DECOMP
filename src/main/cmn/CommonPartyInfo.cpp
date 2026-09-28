@@ -19,7 +19,7 @@ cmn::CommonPartyInfo::CommonPartyInfo()
     this->mapNameAtShip_[0] = 0;
 }
 
-ARM dss::Fx32Vector3 *cmn::CommonPartyInfo::getPositionArrayPointer()
+ARM dss::Fix32Vector3 *cmn::CommonPartyInfo::getPositionArrayPointer()
 {
   return this->positionArray_;
 }
@@ -31,20 +31,20 @@ ARM short* cmn::CommonPartyInfo::getDirectionArrayPointer()
 }
 
 
-ARM void cmn::CommonPartyInfo::setPartyInfo(dss::Fx32Vector3* partyPosition, short partyDirIdx)
+ARM void cmn::CommonPartyInfo::setPartyInfo(dss::Fix32Vector3* partyPosition, short partyDirIdx)
 {
     this->position_ = *partyPosition;
     this->dirIdx_ = partyDirIdx;
 }
 
 
-ARM void cmn::CommonPartyInfo::getPartyInfo(dss::Fx32Vector3* partyPos, short* partyDirIdx)
+ARM void cmn::CommonPartyInfo::getPartyInfo(dss::Fix32Vector3* partyPos, short* partyDirIdx)
 {
     *partyPos = this->position_;
     *partyDirIdx = this->dirIdx_;
 }
 
-ARM void cmn::CommonPartyInfo::setBashaInfo(dss::Fx32Vector3* bashaLPos, dss::Fx32Vector3* bashaRPos,
+ARM void cmn::CommonPartyInfo::setBashaInfo(dss::Fix32Vector3* bashaLPos, dss::Fix32Vector3* bashaRPos,
                                         short bashaLIdx, short bashaRIdx,
                                         int countParty, int countLFix, int countRFix)
 {
@@ -58,7 +58,7 @@ ARM void cmn::CommonPartyInfo::setBashaInfo(dss::Fx32Vector3* bashaLPos, dss::Fx
 }
 
 
-ARM void cmn::CommonPartyInfo::getBashaInfo(dss::Fx32Vector3* bashaLPos, dss::Fx32Vector3* bashaRPos,
+ARM void cmn::CommonPartyInfo::getBashaInfo(dss::Fix32Vector3* bashaLPos, dss::Fix32Vector3* bashaRPos,
                                         short* bashaLIdx, short* bashaRIdx,
                                         int* countParty, int* countLFix, int* countRFix)
 {
@@ -84,7 +84,7 @@ ARM void cmn::CommonPartyInfo::setStartPosition()
   return;
 }
 
-ARM void cmn::CommonPartyInfo::setShipInfo(char* name, dss::Fx32Vector3* pos, short idx)
+ARM void cmn::CommonPartyInfo::setShipInfo(char* name, dss::Fix32Vector3* pos, short idx)
 {
     dss::DssUtils::strcpy_s(this->mapNameAtShip_, 10, name);
     this->townShipPos_ = *pos;
@@ -97,13 +97,13 @@ ARM char * cmn::CommonPartyInfo::getShipMapName()
 }
 
 
-ARM void cmn::CommonPartyInfo::getShipInfo(dss::Fx32Vector3* pos, short* idx)
+ARM void cmn::CommonPartyInfo::getShipInfo(dss::Fix32Vector3* pos, short* idx)
 {
     *pos = this->townShipPos_;
     *idx = this->shipDirection_;
 }
 
-ARM void cmn::CommonPartyInfo::setIkadaInfo(char *name,dss::Fx32Vector3 *pos)
+ARM void cmn::CommonPartyInfo::setIkadaInfo(char *name,dss::Fix32Vector3 *pos)
 {
   dss::DssUtils::strcpy_s(this->mapNameAtIkada_,10,name);
   this->townIkadaPos_ = *pos;
@@ -123,7 +123,7 @@ ARM char * cmn::CommonPartyInfo::getIkadaMapName()
 }
 
 
-ARM dss::Fx32Vector3 cmn::CommonPartyInfo::getIkadaPos()
+ARM dss::Fix32Vector3 cmn::CommonPartyInfo::getIkadaPos()
 {
     return this->townIkadaPos_;
 }
@@ -186,7 +186,7 @@ ARM void cmn::CommonPartyInfo::callCarriage()
 }
 
 
-ARM int cmn::CommonPartyInfo::isBarronArea(dss::Fx32Vector3* pos)
+ARM int cmn::CommonPartyInfo::isBarronArea(dss::Fix32Vector3* pos)
 {
     if (func_02058114(&data_0210bb94, 0xE) != 0) {
         return func_ov001_0212a460(func_ov001_02127b28(), pos);
@@ -204,7 +204,7 @@ ARM int cmn::CommonPartyInfo::isUsedBarron()
 }
 
 
-ARM void cmn::CommonPartyInfo::checkBallon(dss::Fx32Vector3* pos)
+ARM void cmn::CommonPartyInfo::checkBallon(dss::Fix32Vector3* pos)
 {
     if (isBarronArea(pos) == 1) {
         if (this->barron_ == 1) {
@@ -253,16 +253,16 @@ ARM void cmn::CommonPartyInfo::setMenuAction(MENU_ACTION mode)
 
 ARM void cmn::CommonPartyInfo::setBalloonPosByExtraSave()
 {
-    this->tempBalloonPos_ = dss::Fx32Vector3(g_Stage.balloonPosition_.vx,
+    this->tempBalloonPos_ = dss::Fix32Vector3(g_Stage.balloonPosition_.vx,
                                              g_Stage.balloonPosition_.vy,
                                              g_Stage.balloonPosition_.vz);
     this->tempBalloonFieldType_ = g_Stage.balloonFieldType_;
 
-    dss::Fx32Vector3 townPos = cmn::CommonRuraData::getSingleton()->getBalloonTownPos(1);
-    g_Stage.balloonPosition_ = dss::Fx32Vector3(townPos.vx, townPos.vy, townPos.vz);
+    dss::Fix32Vector3 townPos = cmn::CommonRuraData::getSingleton()->getBalloonTownPos(1);
+    g_Stage.balloonPosition_ = dss::Fix32Vector3(townPos.vx, townPos.vy, townPos.vz);
     g_Stage.balloonFieldType_ = 0;
 
-    this->tempShipPos_ = dss::Fx32Vector3(g_Stage.shipPosition_.vx,
+    this->tempShipPos_ = dss::Fix32Vector3(g_Stage.shipPosition_.vx,
                                           g_Stage.shipPosition_.vy,
                                           g_Stage.shipPosition_.vz);
 }
@@ -270,11 +270,11 @@ ARM void cmn::CommonPartyInfo::setBalloonPosByExtraSave()
 
 ARM void cmn::CommonPartyInfo::resetBalloonPosByExtraSave()
 {
-    g_Stage.balloonPosition_ = dss::Fx32Vector3(this->tempBalloonPos_.vx,
+    g_Stage.balloonPosition_ = dss::Fix32Vector3(this->tempBalloonPos_.vx,
                                                         this->tempBalloonPos_.vy,
                                                         this->tempBalloonPos_.vz);
     g_Stage.balloonFieldType_ = this->tempBalloonFieldType_;
-    g_Stage.shipPosition_ = dss::Fx32Vector3(this->tempShipPos_.vx,
+    g_Stage.shipPosition_ = dss::Fix32Vector3(this->tempShipPos_.vx,
                                                      this->tempShipPos_.vy,
                                                      this->tempShipPos_.vz);
 }

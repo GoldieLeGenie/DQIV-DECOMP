@@ -13,16 +13,6 @@ namespace status
     struct HaveItem;
     struct BaseHaveItem;
 
-    struct Initdata {
-        param::MonsterData* monsterData_;   // 0x00
-        int torunekoDebugIndex_;                          // 0x04
-        const param::CharInitData* charaInitData_;// 0x08
-        int unk_0c;                         // 0x0C
-        int parupunteFlag_;                 // 0x10
-        int parupunteAction_;               // 0x14
-        int confuseDebugAction_;            // 0x18
-    };
-
     struct HaveBattleStatus
     {
         enum SelectCommand
@@ -40,6 +30,13 @@ namespace status
             StartRound = 0,
             StartTurn = 1
         };
+        static param::MonsterData* monsterData_;
+        static param::CharInitData* charInitData_;
+        static int tarotDebugIndex_;
+        static int parupunteDebugIndex_;
+        static int confusionDebugIndex_;
+        static int torunekoDebugIndex_;
+        static int eventFlag_;
         static int groupControl_[4];
         static int groupRoopIndex_[4];
         int groupIndex_;
@@ -162,7 +159,6 @@ namespace status
         void print();
     };
 }
-extern status::Initdata initData_;
 
 struct TorunekoActionTable { int v[10]; };
 struct RoopCopy { int v[4]; };

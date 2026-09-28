@@ -11,14 +11,6 @@ namespace status
 {
     struct BaseAction;   // forward decl for getAction()
 
-    struct ParamAction {
-        param::ActionParam* actionParam_;
-        int unk_4;
-        int actionIndex_;
-        UseActionParam* useActionParam_;   // 0x0C
-        int unk_10;
-        param::AbreactTurn* abreactTurn_;
-    };
     struct UseAction {
         enum UseType {
             Myself = 0,
@@ -85,7 +77,10 @@ namespace status
             DamageTypeHIKARI = 42,
             DamageTypeMAX = 43
         };
-            static status::ParamAction ParamAction_;//data_020d0718
+            static int actionIndex_;
+            static UseActionParam* useActionParam_;
+            static param::ActionParam* actionParam_;
+            static param::AbreactTurn* abreactTurn_;
             static void initialize();
             static ActionDefenceKind getActionDefenceKind(int actionIndex);
             static ActionDefenceType getActionDefenceType(int actionIndex);
@@ -128,7 +123,7 @@ namespace status
             static AIType getAIType(int actionIndex);
             static bool isMosyasAction(int actionIndex);
             static ActionType getActionType(int actionIndex);
-            static BaseAction* getAction(); //not decompiled
+            static BaseAction* getAction();
             static void execUse(UseActionParam* useActionParam);
 
         };

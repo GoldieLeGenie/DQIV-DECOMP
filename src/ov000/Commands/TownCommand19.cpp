@@ -17,7 +17,7 @@
 THUMB int cmd_map_black(int* param)
 {
     void* obj = func_020835d8();
-    dss::Fx32Vector3 pos(0, 0, 0);
+    dss::Fix32Vector3 pos(0, 0, 0);
     func_020857c8(obj, pos);
     return 1;
 }

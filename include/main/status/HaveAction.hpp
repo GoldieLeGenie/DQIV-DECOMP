@@ -16,7 +16,7 @@ namespace status {
         static int mode_; //data_020d06ac
         HaveAction();
         ~HaveAction();
-        void setBattleMode();
+        static void setBattleMode();
         static int isBattleMode();
         static void setTownMode();
         static int isTownMode();

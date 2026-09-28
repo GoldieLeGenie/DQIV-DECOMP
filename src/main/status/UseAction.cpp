@@ -1,12 +1,16 @@
+#pragma ipa file
 #include "main/status/UseAction.hpp"
 #include "main/status/BaseAction.hpp"
 #include "main/status/HaveAction.hpp"
 
-status::ParamAction status::UseAction::ParamAction_;
+int status::UseAction::actionIndex_;
+status::UseActionParam* status::UseAction::useActionParam_;
+param::ActionParam* status::UseAction::actionParam_;
+param::AbreactTurn* status::UseAction::abreactTurn_;
 
 THUMB void status::UseAction::initialize() {
-    ParamAction_.actionParam_ = status::excelParam.actionParam_;
-    ParamAction_.abreactTurn_ = status::excelParam.abreactTurn_;
+    actionParam_ = status::excelParam.actionParam_;
+    abreactTurn_ = status::excelParam.abreactTurn_;
 }
 
 THUMB ActionDefenceKind status::UseAction::getActionDefenceKind(int actionIndex)
@@ -114,7 +118,7 @@ THUMB int status::UseAction::getWordDBIndex(int actionIndex) {
 }
 
 THUMB status::UseItem::UseType status::UseAction::getUseType(int itemIndex) {
-    int bitField = ParamAction_.actionParam_[itemIndex].byte_6 & 0xE0U;
+    int bitField = actionParam_[itemIndex].byte_6 & 0xE0U;
     int val = (bitField << 19) >> 24;
 
     switch (val) {
@@ -128,7 +132,7 @@ THUMB status::UseItem::UseType status::UseAction::getUseType(int itemIndex) {
 }
 
 THUMB status::UseItem::UseArea status::UseAction::getUseArea(int itemIndex) {
-    char val = ParamAction_.actionParam_[itemIndex].byte_7;
+    char val = actionParam_[itemIndex].byte_7;
     char result = (val & 7);
 
     switch (result) {
@@ -144,7 +148,7 @@ THUMB status::UseItem::UseArea status::UseAction::getUseArea(int itemIndex) {
 }
 
 THUMB int status::UseAction::getEffectValueToPlayer(int actionIndex) {
-    volatile param::ActionParam* actionParam = ParamAction_.actionParam_;
+    volatile param::ActionParam* actionParam = actionParam_;
 
     unsigned int minVal = actionParam[actionIndex].PlayerMin;
     unsigned int maxVal = actionParam[actionIndex].PlayerMax;
@@ -154,7 +158,7 @@ THUMB int status::UseAction::getEffectValueToPlayer(int actionIndex) {
 }
 
 THUMB int status::UseAction::getEffectValueToMonster(int actionIndex) {
-    volatile param::ActionParam* actionParam = ParamAction_.actionParam_;
+    volatile param::ActionParam* actionParam = actionParam_;
 
     unsigned int minVal = actionParam[actionIndex].MonsterMin;
     unsigned int maxVal = actionParam[actionIndex].MonsterMax;
@@ -164,7 +168,7 @@ THUMB int status::UseAction::getEffectValueToMonster(int actionIndex) {
 }
 
 THUMB int status::UseAction::getEffectValueForAvarage(int actionIndex) {
-    volatile param::ActionParam* actionParam = ParamAction_.actionParam_;
+    volatile param::ActionParam* actionParam = actionParam_;
 
     unsigned int sum =
         actionParam[actionIndex].PlayerMin +
@@ -176,19 +180,19 @@ THUMB int status::UseAction::getEffectValueForAvarage(int actionIndex) {
 }
 
 THUMB int status::UseAction::getEffectValueToPlayerMin(int actionIndex) {
-    return ParamAction_.actionParam_[actionIndex].PlayerMin;
+    return actionParam_[actionIndex].PlayerMin;
 }
 
 THUMB int status::UseAction::getEffectValueToMonsterMin(int actionIndex) {
-    return ParamAction_.actionParam_[actionIndex].MonsterMin;
+    return actionParam_[actionIndex].MonsterMin;
 }
 
-THUMB status::UseAction::DamageType status::UseAction::getDamageType(int actionIndex_) {
-    if (actionIndex_ == 0x4B) return DamageTypeDefence;
-    if (actionIndex_ == 0x9B) return DamageTypeDefence;
-    if (actionIndex_ == 0x9C) return DamageTypeDefence;
+THUMB status::UseAction::DamageType status::UseAction::getDamageType(int actionIndex) {
+    if (actionIndex == 0x4B) return DamageTypeDefence;
+    if (actionIndex == 0x9B) return DamageTypeDefence;
+    if (actionIndex == 0x9C) return DamageTypeDefence;
 
-    switch (ParamAction_.actionParam_[actionIndex_].canceltype) {
+    switch (actionParam_[actionIndex].canceltype) {
     case 0:  return DamageTypeNone;
     case 1:  return DamageTypeDamage;
     case 2:  return DamageTypeRecovery;
@@ -238,7 +242,7 @@ THUMB status::UseAction::DamageType status::UseAction::getDamageType(int actionI
 }
 
 THUMB bool status::UseAction::isFubaha(int actionIndex) {
-    unsigned short flags = ParamAction_.actionParam_[actionIndex].byte_1;
+    unsigned short flags = actionParam_[actionIndex].byte_1;
     if ((((flags & 0x04) << 0x16) >> 0x18)) {
         return true;
     }
@@ -246,7 +250,7 @@ THUMB bool status::UseAction::isFubaha(int actionIndex) {
 }
 
 THUMB bool status::UseAction::isManusa(int actionIndex) {
-    unsigned short flags = ParamAction_.actionParam_[actionIndex].byte_1;
+    unsigned short flags = actionParam_[actionIndex].byte_1;
     if ((((flags & 0x10) << 0x14) >> 0x18)) {
         return true;
     }
@@ -254,131 +258,131 @@ THUMB bool status::UseAction::isManusa(int actionIndex) {
 }
 
 THUMB bool status::UseAction::isJouk(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_1 & 0x40) << 0x12) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_1 & 0x40) << 0x12) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isPowerSave(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_1 & 0x80) << 0x11) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_1 & 0x80) << 0x11) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isBaikiruto(int actionIndex) {
-    return (char)(ParamAction_.actionParam_[actionIndex].byte_2 & 1);
+    return (char)(actionParam_[actionIndex].byte_2 & 1);
 }
 
 THUMB bool status::UseAction::isKaishin(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_2 & 2) << 0x17) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_2 & 2) << 0x17) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isCrossFire(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_2 & 4) << 0x16) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_2 & 4) << 0x16) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isAstoron(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_2 & 8) << 0x15) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_2 & 8) << 0x15) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isMahokanta(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_2 & 0x20) << 0x13) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_2 & 0x20) << 0x13) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isMahosute(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_2 & 0x40) << 0x12) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_2 & 0x40) << 0x12) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isReleaseConfusion(int actionIndex) {
-    return (char)(ParamAction_.actionParam_[actionIndex].byte_3 & 1);
+    return (char)(actionParam_[actionIndex].byte_3 & 1);
 }
 
 THUMB bool status::UseAction::isSplitJouk(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_3 & 8) << 0x15) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_3 & 8) << 0x15) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isErrorA(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_3 & 0x10) << 0x14) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_3 & 0x10) << 0x14) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isErrorB(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_3 & 0x20) << 0x13) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_3 & 0x20) << 0x13) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isDamageC(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_3 & 0x40) << 0x12) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_3 & 0x40) << 0x12) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isDamageD(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_3 & 0x80) << 0x11) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_3 & 0x80) << 0x11) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isForceE(int actionIndex) {
-    return (char)(ParamAction_.actionParam_[actionIndex].byte_4 & 1);
+    return (char)(actionParam_[actionIndex].byte_4 & 1);
 }
 
 THUMB bool status::UseAction::isMultiF(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_4 & 2) << 0x17) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_4 & 2) << 0x17) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isAddHp(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_4 & 8) << 0x15) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_4 & 8) << 0x15) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isMahoton(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_5 & 0x10) << 0x14) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_5 & 0x10) << 0x14) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isTargetDeadOrAlive(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_4 & 0x40) << 0x12) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_4 & 0x40) << 0x12) >> 0x18)) {
         return 1;
     }
     return 0;
 }
 
 THUMB bool status::UseAction::isSpecialSelectTarget(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_3 & 4) << 0x16) >> 0x18)) {
+    if ((((actionParam_[actionIndex].byte_3 & 4) << 0x16) >> 0x18)) {
         return 1;
     }
     return 0;
@@ -411,7 +415,7 @@ THUMB status::UseAction::AIType status::UseAction::getAIType(int actionIndex) {
         return Defence;
     }
 
-    char val = ParamAction_.actionParam_[actionIndex].byte_7;
+    char val = actionParam_[actionIndex].byte_7;
     int temp = (val & 0x78) << 0x15 >> 0x18;
 
     switch (temp) {
@@ -431,14 +435,14 @@ THUMB status::UseAction::AIType status::UseAction::getAIType(int actionIndex) {
 }
 
 THUMB bool status::UseAction::isMosyasAction(int actionIndex) {
-    if ((((ParamAction_.actionParam_[actionIndex].byte_3 & 2) << 0x17) >> 0x18) == 1) {
+    if ((((actionParam_[actionIndex].byte_3 & 2) << 0x17) >> 0x18) == 1) {
         return 1;
     }
     return 0;
 }
 
 THUMB status::UseAction::ActionType status::UseAction::getActionType(int actionIndex) {
-    unsigned char actionType = ParamAction_.actionParam_[actionIndex].type;
+    unsigned char actionType = actionParam_[actionIndex].type;
     switch (actionType) {
     case ActionTypeMagic:
         return ActionTypeMagic;
@@ -455,9 +459,16 @@ THUMB status::BaseAction* status::UseAction::getAction()
     return &action;
 }
 
+// only needed for the .bss layout
+THUMB status::BaseAction* getUnusedAction()
+{
+    static status::BaseAction action;
+    return &action;
+}
+
 THUMB void status::UseAction::execUse(UseActionParam* useActionParam) {
-    ParamAction_.useActionParam_ = useActionParam;
-    ParamAction_.actionIndex_ = useActionParam->actionIndex_;
+    useActionParam_ = useActionParam;
+    actionIndex_ = useActionParam->actionIndex_;
     status::BaseAction* action = getAction();
     if (status::HaveAction::isBattleMode()) {
         action->exec(*useActionParam, 1);
@@ -465,5 +476,5 @@ THUMB void status::UseAction::execUse(UseActionParam* useActionParam) {
     else {
         action->exec(*useActionParam, 0);
     }
-    ParamAction_.useActionParam_->result_ = action->resultFlag_;
+    useActionParam_->result_ = action->resultFlag_;
 }

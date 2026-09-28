@@ -7,7 +7,7 @@
 struct TownPartyDraw;
 struct TownPartyAction;
 extern "C" void func_ov000_0213b55c(TownPartyDraw* draw, int sleep);
-extern "C" dss::Fx32Vector3 func_ov000_0213beec(TownPartyAction* party, int index);
+extern "C" dss::Fix32Vector3 func_ov000_0213beec(TownPartyAction* party, int index);
 
 struct TownPartyDraw {
     char unk_0000[0x12a4];
@@ -23,8 +23,8 @@ struct TownPartyAction {
 };
 
 struct TownPlayerManager : cmn::PlayerManager {
-    virtual void setPosition(dss::Fx32Vector3& pos);
-    virtual dss::Fx32Vector3 getPosition();
+    virtual void setPosition(dss::Fix32Vector3& pos);
+    virtual dss::Fix32Vector3 getPosition();
     virtual short getDirection();
     virtual void resetParty();
 
@@ -57,5 +57,5 @@ struct TownPlayerManager : cmn::PlayerManager {
     int notIntoTenkujou_;                   // 0x178C
 
     void setLockRot(int lock) { rotLock_ = lock; }
-    dss::Fx32Vector3 getPartyDrawPosition(int index) { return func_ov000_0213beec(&party_, index); }
+    dss::Fix32Vector3 getPartyDrawPosition(int index) { return func_ov000_0213beec(&party_, index); }
 };

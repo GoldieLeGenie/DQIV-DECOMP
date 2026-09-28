@@ -162,17 +162,17 @@ ARM int cmn::CommonRuraData::getSymbolID(int townID)
   return this->vehicle[townID].id;
 }
 
-ARM dss::Fx32Vector3 cmn::CommonRuraData::getShipTownPos(int townID)
+ARM dss::Fix32Vector3 cmn::CommonRuraData::getShipTownPos(int townID)
 {
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     pos.vx.value = vehicle[townID].shipX;
     pos.vy.value = vehicle[townID].shipY;
     return pos;
 }
 
-ARM dss::Fx32Vector3 cmn::CommonRuraData::getBalloonTownPos(int townID)
+ARM dss::Fix32Vector3 cmn::CommonRuraData::getBalloonTownPos(int townID)
 {
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     switch (townID)
     {
         case 0x16:

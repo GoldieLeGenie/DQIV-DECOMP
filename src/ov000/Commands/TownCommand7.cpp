@@ -75,7 +75,7 @@ THUMB int cmd_is_map_treasure(int* param)
 
 THUMB int cmd_set_furniture_position(int* param)
 {
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     pos.vx.value = param[0];
     pos.vy.value = param[1];
     pos.vz.value = param[2];

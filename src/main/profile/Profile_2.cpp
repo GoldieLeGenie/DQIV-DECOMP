@@ -66,7 +66,7 @@ THUMB void profile::Profile::collectDATA_PARTY()
     dss::DssUtils::strcpy_s((char*)this->pPARTY->RESTART, 0x10, map);
     this->pPARTY->FIELDTYPE = fieldType;
 
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     short dir;
     g_cmnPartyInfo.getPartyInfo(&pos, &dir);
     this->pPARTY->PARTY_X = pos.vx.value;
@@ -74,22 +74,22 @@ THUMB void profile::Profile::collectDATA_PARTY()
     this->pPARTY->PARTY_Z = pos.vz.value;
     this->pPARTY->PARTY_D = dir;
 
-    dss::Fx32Vector3 ship(::g_Stage.shipPosition_.vx, ::g_Stage.shipPosition_.vy, ::g_Stage.shipPosition_.vz);
+    dss::Fix32Vector3 ship(::g_Stage.shipPosition_.vx, ::g_Stage.shipPosition_.vy, ::g_Stage.shipPosition_.vz);
     this->pPARTY->SHIP_X = ship.vx.value;
     this->pPARTY->SHIP_Y = ship.vy.value;
     this->pPARTY->SHIP_Z = ship.vz.value;
 
-    dss::Fx32Vector3 balloon(::g_Stage.balloonPosition_.vx, ::g_Stage.balloonPosition_.vy, ::g_Stage.balloonPosition_.vz);
+    dss::Fix32Vector3 balloon(::g_Stage.balloonPosition_.vx, ::g_Stage.balloonPosition_.vy, ::g_Stage.balloonPosition_.vz);
     this->pPARTY->BALLOON_X = balloon.vx.value;
     this->pPARTY->BALLOON_Y = balloon.vy.value;
     this->pPARTY->BALLOON_Z = balloon.vz.value;
 
-    dss::Fx32Vector3 ikada = g_cmnPartyInfo.getIkadaPos();
+    dss::Fix32Vector3 ikada = g_cmnPartyInfo.getIkadaPos();
     this->pPARTY->RAFT_X = ikada.vx.value;
     this->pPARTY->RAFT_Y = ikada.vy.value;
     this->pPARTY->RAFT_Z = ikada.vz.value;
 
-    dss::Fx32Vector3 overview(::g_Stage.overviewTempPosition_.vx, ::g_Stage.overviewTempPosition_.vy, ::g_Stage.overviewTempPosition_.vz);
+    dss::Fix32Vector3 overview(::g_Stage.overviewTempPosition_.vx, ::g_Stage.overviewTempPosition_.vy, ::g_Stage.overviewTempPosition_.vz);
     this->pPARTY->OVERVIEW_X = overview.vx.value;
     this->pPARTY->OVERVIEW_Y = overview.vy.value;
     this->pPARTY->OVERVIEW_Z = overview.vz.value;
@@ -324,31 +324,31 @@ THUMB void profile::Profile::deliverDATA_PARTY()
     g_Stage.setup((char *)pPARTY->RESTART);
     g_Stage.setChurchMapName((char *)pPARTY->CHURCH);
 
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     pos.vx.value = pPARTY->PARTY_X;
     pos.vy.value = pPARTY->PARTY_Y;
     pos.vz.value = pPARTY->PARTY_Z;
     deliverRESTART_MAP(&pos, pPARTY->PARTY_D);
 
-    dss::Fx32Vector3 ship;
+    dss::Fix32Vector3 ship;
     ship.vx.value = pPARTY->SHIP_X;
     ship.vy.value = pPARTY->SHIP_Y;
     ship.vz.value = pPARTY->SHIP_Z;
-    g_Stage.shipPosition_ = dss::Fx32Vector3(ship.vx, ship.vy, ship.vz);
+    g_Stage.shipPosition_ = dss::Fix32Vector3(ship.vx, ship.vy, ship.vz);
 
-    dss::Fx32Vector3 balloon;
+    dss::Fix32Vector3 balloon;
     balloon.vx.value = pPARTY->BALLOON_X;
     balloon.vy.value = pPARTY->BALLOON_Y;
     balloon.vz.value = pPARTY->BALLOON_Z;
-    g_Stage.balloonPosition_ = dss::Fx32Vector3(balloon.vx, balloon.vy, balloon.vz);
+    g_Stage.balloonPosition_ = dss::Fix32Vector3(balloon.vx, balloon.vy, balloon.vz);
 
-    dss::Fx32Vector3 ikada;
+    dss::Fix32Vector3 ikada;
     ikada.vx.value = pPARTY->RAFT_X;
     ikada.vy.value = pPARTY->RAFT_Y;
     ikada.vz.value = pPARTY->RAFT_Z;
     g_cmnPartyInfo.townIkadaPos_ = ikada;                         // +0x944
 
-    dss::Fx32Vector3 overview;
+    dss::Fix32Vector3 overview;
     overview.vx.value = pPARTY->OVERVIEW_X;
     overview.vy.value = pPARTY->OVERVIEW_Y;
     overview.vz.value = pPARTY->OVERVIEW_Z;
@@ -527,7 +527,7 @@ THUMB void profile::Profile::deliverDATA_ENVOY()
 }
 
 
-THUMB void profile::Profile::deliverRESTART_MAP(dss::Fx32Vector3* pos, short dir)
+THUMB void profile::Profile::deliverRESTART_MAP(dss::Fix32Vector3* pos, short dir)
 {
     if (this->pSYSTEM->SAVETYPE == profile::SAVETYPE_CHURCH && g_Stage.restartChurch() == 1) {
         g_Stage.load_ = 1;

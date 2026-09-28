@@ -317,6 +317,8 @@ namespace param {
         unsigned char wait;
         char byte_1;
         char byte_2;
+
+        static int size_;                   // data_020b610c
     };
 
     struct EffectColorParam {
@@ -752,6 +754,8 @@ extern param::ShopDataSecond data_0209bda0;
 extern param::VehicleData data_0208d6f4;
 extern param::MapChurch data_0208d480;
 extern param::EffectColorParam data_02095240;
+
+extern "C" void func_02033d14(int camera, char* file);   // param::EffectParam::getCameraFile
 extern param::SurechigaiTenant data_0208cb4c;
 extern param::SurechigaiObjectData data_0208cc08;
 

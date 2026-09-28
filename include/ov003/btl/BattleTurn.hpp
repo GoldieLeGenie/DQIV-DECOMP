@@ -10,7 +10,7 @@ namespace btl {
         CharacterType characterType_;
         int actorIndex_;
         btl::BattleActor2 *battleActor_;
-        dss::BitFlaguint flag_;
+        dss::Flag flag_;
         BattleTurn();
         ~BattleTurn();
         void setBattleActor2(btl::BattleActor2* battleActor);

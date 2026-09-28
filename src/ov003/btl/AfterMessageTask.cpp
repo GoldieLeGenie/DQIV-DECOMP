@@ -3,6 +3,7 @@
 #include "ov003/status/MonsterPartyWithDraw.hpp"
 #include "ov003/btl/BattleMessage.hpp"
 #include "ov003/btl/BattleActorAnimation.hpp"
+#include "ov003/btl/BattleExecVictory.hpp"
 
 ARM void btl::AfterMessageTask::setup(status::UseActionParam *useActionParam)
 {
@@ -43,12 +44,12 @@ ARM void btl::AfterMessageTask::initialize()
         int drawCtrlId = useActionParam_->targetCharacterStatus_[0]->haveStatusInfo_.drawCtrlId_;
         if (useActionParam_->actorCharacterStatus_->characterType_ == 0) {
             for (i = 0; i < 4; i++) {
-                if (i != func_ov003_021249e4()) {
+                if (i != btl::BattleExecEvent00::getRealVelorinman()) {
                     func_ov003_02121970(&func_ov003_02121d04()->monster_[i], 0, 0x1f);
                 }
             }
-            if (drawCtrlId != func_ov003_021249e4()) {
-                int real = func_ov003_021249e4();
+            if (drawCtrlId != btl::BattleExecEvent00::getRealVelorinman()) {
+                int real = btl::BattleExecEvent00::getRealVelorinman();
                 func_ov003_02121970(&func_ov003_02121d04()->monster_[real], 0, 0x1b);
             }
         }
@@ -88,15 +89,15 @@ ARM void btl::AfterMessageTask::initialize()
 
     if (useActionParam_->targetCharacterStatus_[currentTarget_]->haveStatusInfo_.isAddEffectMahotora()) {
         if (useActionParam_->actorCharacterStatus_->characterType_ != 1 && useActionParam_->actionIndex_ == 0x47) {
-            int idx = func_ov003_0212a9d4(func_ov003_0212a678(), 0x1e);
+            int idx = btl::BattleEffectManager::getSingleton()->setupEffect(0x1e);
             if (idx < 0) {
                 return;
             }
             status::UseActionParam* param = useActionParam_;
-            BattleEffectManager* mgr;
+            btl::BattleEffectManager* mgr;
 
-            mgr = func_ov003_0212a678();
-            func_ov003_0212ad64(&mgr->unit_[idx], param, 0);
+            mgr = btl::BattleEffectManager::getSingleton();
+            mgr->unit_[idx].setTarget(*param, 0);
         }
         useActionParam_->targetCharacterStatus_[currentTarget_]->haveStatusInfo_.setAddEffectMahotora(false);
     }
@@ -124,7 +125,7 @@ ARM void btl::AfterMessageTask::execute()
 {
     if (useActionParam_->actorCharacterStatus_ != 0) {
         if (useActionParam_->actorCharacterStatus_->haveStatusInfo_.isMonsterChange()) {
-            if (func_ov003_0212a914(func_ov003_0212a678()) == 0) {
+            if (btl::BattleEffectManager::getSingleton()->isAllEnd() == 0) {
                 return;
             }
         }

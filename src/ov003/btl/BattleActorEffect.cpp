@@ -23,7 +23,7 @@ THUMB void btl::BattleActorEffect::setExecEffect(status::UseActionParam* useActi
         if (status::UseAction::getActionType(useActionParam->actionIndex_) == status::UseAction::ActionTypeMagic) {
             if (actor->haveStatusInfo_.statusChange_.isEnable(status::StatusChange::StatusMahoton)) {
                 int w = wait_;
-                func_ov003_0212a678()->wait_ = w;
+                btl::BattleEffectManager::getSingleton()->wait_ = w;
                 return;
             }
         }
@@ -32,7 +32,7 @@ THUMB void btl::BattleActorEffect::setExecEffect(status::UseActionParam* useActi
     }
 
     int w = wait_;
-    func_ov003_0212a678()->wait_ = w;
+    btl::BattleEffectManager::getSingleton()->wait_ = w;
 }
 
 THUMB int btl::BattleActorEffect::checkCommonExecEffect(status::UseActionParam* useActionParam)
@@ -104,36 +104,36 @@ THUMB int btl::BattleActorEffect::setPlayerEffect(status::UseActionParam* useAct
             if (useActionParam->actorCharacterStatus_->haveStatusInfo_.haveStatus_.charaIndex_ == 138) {
                 effectID = 345;
             } else {
-                effectID = func_ov003_0212a94c(func_ov003_0212a678(), useActionParam->actorCharacterStatus_);
+                effectID = btl::BattleEffectManager::getSingleton()->getWeaponEffectID((status::PlayerStatus*)useActionParam->actorCharacterStatus_);
             }
         }
 
-        param::EffectParam* effectParam = func_ov003_0212a980(func_ov003_0212a678(), effectID);
+        param::EffectParam* effectParam = btl::BattleEffectManager::getSingleton()->getEffectParam(effectID);
 
         if (actionIndex == 484) {
             effectParam->byte_1 = effectParam->byte_1 & ~0x78;
             effectParam->byte_1 = effectParam->byte_1 + 0x18;
         }
 
-        int unitIndex = func_ov003_0212a9d4(func_ov003_0212a678(), effectID);
+        int unitIndex = btl::BattleEffectManager::getSingleton()->setupEffect(effectID);
         if (unitIndex < 0) {
             return 0;
         }
 
         if (camera == 4 && actionIndex != 471) {
-            BattleEffectManager* mgr = func_ov003_0212a678();
-            func_ov003_0212ad64(&mgr->unit_[unitIndex], useActionParam, 1);
+            btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+            mgr->unit_[unitIndex].setTarget(*useActionParam, 1);
         } else {
-            BattleEffectManager* mgr = func_ov003_0212a678();
-            func_ov003_0212ad64(&mgr->unit_[unitIndex], useActionParam, 0);
+            btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+            mgr->unit_[unitIndex].setTarget(*useActionParam, 0);
         }
 
         wait = func_0208995c();
         if (wait < 0) {
             wait = 24;
         }
-        BattleEffectManager* mgr = func_ov003_0212a678();
-        func_ov003_0212b844(&mgr->unit_[unitIndex], wait);
+        btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+        mgr->unit_[unitIndex].setWaitTime(wait);
 
         if (useActionParam->actorCharacterStatus_->haveStatusInfo_.isFirstKaishin()
             || useActionParam->actorCharacterStatus_->damageSound_ == status::CharacterStatus::TsukonSe) {
@@ -143,25 +143,25 @@ THUMB int btl::BattleActorEffect::setPlayerEffect(status::UseActionParam* useAct
             if (scale < 3) {
                 scale = 2;
             }
-            BattleEffectManager* mgr = func_ov003_0212a678();
-            param::EffectParam* kaishinParam = func_ov003_0212a980(mgr, 344);
+            btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+            param::EffectParam* kaishinParam = mgr->getEffectParam(344);
             kaishinParam->byte_1 = kaishinParam->byte_1 & ~0x78;
             kaishinParam->byte_1 = kaishinParam->byte_1 + (char)((scale << 3) & 0x78);
             kaishinParam->frame = frame;
 
-            unitIndex = func_ov003_0212a9d4(func_ov003_0212a678(), 344);
+            unitIndex = btl::BattleEffectManager::getSingleton()->setupEffect(344);
             if (unitIndex >= 0) {
-                BattleEffectManager* mgr = func_ov003_0212a678();
-                func_ov003_0212ad64(&mgr->unit_[unitIndex], useActionParam, 0);
-                func_ov003_0212b844(&func_ov003_0212a678()->unit_[unitIndex], wait);
+                btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+                mgr->unit_[unitIndex].setTarget(*useActionParam, 0);
+                btl::BattleEffectManager::getSingleton()->unit_[unitIndex].setWaitTime(wait);
             }
 
             useActionParam->actorCharacterStatus_->haveStatusInfo_.setFirstKaishin(false);
         }
 
         if (camera != 4) {
-            BattleEffectManager* mgr = func_ov003_0212a678();
-            return wait + func_ov003_0212b7ec(&mgr->unit_[unitIndex]);
+            btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+            return wait + mgr->unit_[unitIndex].getHitFrame();
         }
     }
 
@@ -222,7 +222,7 @@ THUMB int btl::BattleActorEffect::setEnemyEffect(status::UseActionParam* useActi
             return animData->startframe + animData->hitframe;
         }
 
-        param::EffectParam* effectParam = func_ov003_0212a980(func_ov003_0212a678(), effectID);
+        param::EffectParam* effectParam = btl::BattleEffectManager::getSingleton()->getEffectParam(effectID);
         effectParam->frame = animData->hitframe;
 
         char animBits = (animData->byte_1 & 0x3c) >> 2;
@@ -231,19 +231,19 @@ THUMB int btl::BattleActorEffect::setEnemyEffect(status::UseActionParam* useActi
         effectParam->byte_1 += (char)((animBits << 3) & 0x78);
         effectParam->scale = animData->scale;
 
-        int unitIndex = func_ov003_0212a9d4(func_ov003_0212a678(), effectID);
+        int unitIndex = btl::BattleEffectManager::getSingleton()->setupEffect(effectID);
         if (unitIndex < 0) {
             return animData->startframe;
         }
 
         int animfile = animData->animfile;
         status::CharacterStatus* actor = useActionParam->actorCharacterStatus_;
-        BattleEffectManager* mgr = func_ov003_0212a678();
-        func_ov003_0212af18(&mgr->unit_[unitIndex], actor, animfile);
+        btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+        mgr->unit_[unitIndex].setTarget(actor, animfile);
 
         int startframe = animData->startframe;
-        mgr = func_ov003_0212a678();
-        func_ov003_0212b844(&mgr->unit_[unitIndex], startframe);
+        mgr = btl::BattleEffectManager::getSingleton();
+        mgr->unit_[unitIndex].setWaitTime(startframe);
 
         return animData->startframe + animData->hitframe;
     }
@@ -276,22 +276,22 @@ THUMB int btl::BattleActorEffect::setResultEnemyEffect(status::UseActionParam* u
             return setMegazaruEffect(useActionParam);
         }
 
-        func_ov003_0212a980(func_ov003_0212a678(), effectID);
+        btl::BattleEffectManager::getSingleton()->getEffectParam(effectID);
 
-        int unitIndex = func_ov003_0212a9d4(func_ov003_0212a678(), effectID);
+        int unitIndex = btl::BattleEffectManager::getSingleton()->setupEffect(effectID);
         if (unitIndex < 0) {
             return 0;
         }
 
-        BattleEffectManager* mgr = func_ov003_0212a678();
-        func_ov003_0212ad64(&mgr->unit_[unitIndex], useActionParam, 0);
+        btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+        mgr->unit_[unitIndex].setTarget(*useActionParam, 0);
 
         int wait = wait_;
-        mgr = func_ov003_0212a678();
-        func_ov003_0212b844(&mgr->unit_[unitIndex], wait);
+        mgr = btl::BattleEffectManager::getSingleton();
+        mgr->unit_[unitIndex].setWaitTime(wait);
 
-        mgr = func_ov003_0212a678();
-        return func_ov003_0212b7ec(&mgr->unit_[unitIndex]);
+        mgr = btl::BattleEffectManager::getSingleton();
+        return mgr->unit_[unitIndex].getHitFrame();
     }
 
     return 0;
@@ -342,52 +342,52 @@ THUMB int btl::BattleActorEffect::setMegazaruEffect(status::UseActionParam* useA
     
     if (normalNum != 0) {
 
-        func_ov003_0212a980(func_ov003_0212a678(), effectNo);
-        int index = func_ov003_0212a9d4(func_ov003_0212a678(), effectNo);    
+        btl::BattleEffectManager::getSingleton()->getEffectParam(effectNo);
+        int index = btl::BattleEffectManager::getSingleton()->setupEffect(effectNo);    
         if (index < 0) {
             return 0;
         }
         for (int i = 0; i < useActionParam->targetCount_; i++) {
             if (useActionParam->targetCharacterStatus_[i]->haveStatusInfo_.isMegazaruRebirth()) {
-                BattleEffectManager* mgr = func_ov003_0212a678();
-                func_ov003_0212b878(&mgr->unit_[index], i, 0);
+                btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+                mgr->unit_[index].setFaildTarget(i, 0);
             } else {
-                BattleEffectManager* mgr = func_ov003_0212a678();
-                func_ov003_0212b878(&mgr->unit_[index], i, 1);
+                btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+                mgr->unit_[index].setFaildTarget(i, 1);
             }
         }
-        BattleEffectManager* mgr = func_ov003_0212a678();
-        func_ov003_0212ad64(&mgr->unit_[index], useActionParam, 0);
+        btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+        mgr->unit_[index].setTarget(*useActionParam, 0);
 
         int w = wait_;
-        mgr = func_ov003_0212a678();
-        func_ov003_0212b844(&mgr->unit_[index], w);
+        mgr = btl::BattleEffectManager::getSingleton();
+        mgr->unit_[index].setWaitTime(w);
     }
  
     if (rebirthNum != 0) {
-        func_ov003_0212a980(func_ov003_0212a678(), effectNo + 1);
-        int index = func_ov003_0212a9d4(func_ov003_0212a678(), effectNo + 1);
+        btl::BattleEffectManager::getSingleton()->getEffectParam(effectNo + 1);
+        int index = btl::BattleEffectManager::getSingleton()->setupEffect(effectNo + 1);
         if (index < 0) {
             return 0;
         }
         for (int i = 0; i < useActionParam->targetCount_; i++) {
             if (useActionParam->targetCharacterStatus_[i]->haveStatusInfo_.isMegazaruRebirth()) {
-                BattleEffectManager* mgr = func_ov003_0212a678();
-                func_ov003_0212b878(&mgr->unit_[index], i, 1);
+                btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+                mgr->unit_[index].setFaildTarget(i, 1);
             } else {
-                BattleEffectManager* mgr = func_ov003_0212a678();
-                func_ov003_0212b878(&mgr->unit_[index], i, 0);
+                btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+                mgr->unit_[index].setFaildTarget(i, 0);
             }
         }
-        BattleEffectManager* mgr = func_ov003_0212a678();
-        func_ov003_0212ad64(&mgr->unit_[index], useActionParam, 0);
+        btl::BattleEffectManager* mgr = btl::BattleEffectManager::getSingleton();
+        mgr->unit_[index].setTarget(*useActionParam, 0);
 
         int w = wait_;
-        mgr = func_ov003_0212a678();
-        func_ov003_0212b844(&mgr->unit_[index], w);
+        mgr = btl::BattleEffectManager::getSingleton();
+        mgr->unit_[index].setWaitTime(w);
 
-        mgr = func_ov003_0212a678();
-        ret = func_ov003_0212b7ec(&mgr->unit_[index]);
+        mgr = btl::BattleEffectManager::getSingleton();
+        ret = mgr->unit_[index].getHitFrame();
     }
 
     for (int i = 0; i < useActionParam->targetCount_; i++) {

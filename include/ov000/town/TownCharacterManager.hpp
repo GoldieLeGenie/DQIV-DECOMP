@@ -39,8 +39,8 @@ struct TownCharacterBase {
     virtual void vf84(int value);
     char unk_04[0x88];
     int moveType_;
-    dss::Fx32Vector3 movePos_[4];
-    dss::Fx32 moveSpeed_;
+    dss::Fix32Vector3 movePos_[4];
+    dss::Fix32 moveSpeed_;
     int unk_c4;
     int unk_c8;
     char unk_cc[0x161 - 0xcc];
@@ -65,7 +65,7 @@ struct TOWN_CHARACTER {
     int charaIndex;                             // 0x08
     int dir;                                    // 0x0C
     int ctrlNo;                                 // 0x10
-    dss::Fx32Vector3 position;                  // 0x14
+    dss::Fix32Vector3 position;                  // 0x14
     dss::Vector2<int> position2d[2];            // 0x20
     dss::Flag flag;                             // 0x30
 };

@@ -5,25 +5,25 @@
 
 /* DS Position (dss base of DSSAObject), vtable 0x020c43a8 */
 struct Position {
-    virtual void setPosition(const dss::Fx32Vector3& position);    // slot 0
-    virtual void setScale(dss::Fx32 scale);                         // slot 1
-    virtual void setScale(const dss::Fx32Vector3& scale);          // slot 2
-    virtual void setRotation(const dss::Fx32Vector3& rotation);    // slot 3
+    virtual void setPosition(const dss::Fix32Vector3& position);    // slot 0
+    virtual void setScale(dss::Fix32 scale);                         // slot 1
+    virtual void setScale(const dss::Fix32Vector3& scale);          // slot 2
+    virtual void setRotation(const dss::Fix32Vector3& rotation);    // slot 3
     virtual void setRotationIdx(const dss::Vector3<short>& rotation); // slot 4
 
-    dss::Fx32Vector3 position_;         /* 0x04 */
-    dss::Fx32Vector3 scale_;            /* 0x10 */
-    dss::Fx32Vector3 rotation_;         /* 0x1C */
+    dss::Fix32Vector3 position_;         /* 0x04 */
+    dss::Fix32Vector3 scale_;            /* 0x10 */
+    dss::Fix32Vector3 rotation_;         /* 0x1C */
     dss::Vector3<short> unk_28;         /* 0x28 */
-    dss::Fx32 unk_30;                   /* 0x30 */
+    dss::Fix32 unk_30;                   /* 0x30 */
 
     Position();                         // func_020835e8
     ~Position();                        // func_02083644
 };
 
 extern "C" {
-    dss::Fx32Vector3* func_02083648(Position* self);   /* getPosition */
-    dss::Fx32Vector3* func_02083650(Position* self);   /* getScale */
+    dss::Fix32Vector3* func_02083648(Position* self);   /* getPosition */
+    dss::Fix32Vector3* func_02083650(Position* self);   /* getScale */
 }
 
 struct DSSAParts {
@@ -119,7 +119,7 @@ struct DSSAObject : Position {
     void* data_;                        /* 0x34 */
     DSSAData dssaData_;                 /* 0x38 */
     void* palette_;                     /* 0x88 */
-    dss::Fx32 alpha_;                   /* 0x8C */
+    dss::Fix32 alpha_;                   /* 0x8C */
     int flag_;                          /* 0x90 */
     int frame_;                         /* 0x94 */
     int displayPartsCount_;             /* 0x98 */
@@ -134,14 +134,14 @@ struct DSSAObject : Position {
     void pause(bool pause);
     int isEnd();
     int isEnable();
-    void setAlpha(dss::Fx32 alpha);
+    void setAlpha(dss::Fix32 alpha);
     void setCurrentFrame(int frame);
-    dss::Fx32Vector3 getNullPosition(int index);
+    dss::Fix32Vector3 getNullPosition(int index);
     dss::Vector3<int> getNullPositionInt(int index);
-    static dss::Fx32 getDefaultScale2();
-    static void setDefaultScale(dss::Fx32 scale);
-    static dss::Fx32 getDefaultScale();
-    void setReverse(bool reverse);
+    static dss::Fix32 getDefaultScale2();
+    static void setDefaultScale(dss::Fix32 scale);
+    static dss::Fix32 getDefaultScale();
+    void setReverse(int reverse);
     int isReverse();
     static void setPriority(int priority);
 
@@ -155,7 +155,7 @@ struct DSSAObject : Position {
     static int priority_;
     static long trans_;
     static int calcType_;
-    static dss::Fx32Vector3 baseScale_;
+    static dss::Fix32Vector3 baseScale_;
     static int priorityShift_;
 };
 
@@ -187,8 +187,8 @@ struct DSSAObjectWithCamera : DSSAObject {
     CameraType type_;                   /* 0x9C */
 
     static dss::Camera* camera_;
-    static dss::Fx32 distance_;
-    static dss::Fx32 relativeScale_;
+    static dss::Fix32 distance_;
+    static dss::Fix32 relativeScale_;
 
     DSSAObjectWithCamera();
     void execNormal2();
@@ -221,6 +221,7 @@ struct PaletteAnimation {
     PaletteFrame256* frame256_;         /* 0x0C */
 
     PaletteAnimation();
+    ~PaletteAnimation() {}
     void setup(void* data);
     int getWait(int frame);
     unsigned short* getColor(int frame);
@@ -233,7 +234,7 @@ extern "C" {
     void func_020843d4(void);
     void func_020847e8(void);
     void func_0206ae30(VecFx32* scale);                         /* NNS_G3dGlbSetBaseScale */
-    void func_0206ae08(dss::Fx32Vector3* trans);                /* NNS_G3dGlbSetBaseTrans */
+    void func_0206ae08(dss::Fix32Vector3* trans);                /* NNS_G3dGlbSetBaseTrans */
     void func_0206adcc(void);
     void func_0206dcf0(void);
     void func_02086abc(void* texture);
@@ -241,7 +242,4 @@ extern "C" {
     void func_02086b68(void* texture);
     void func_02086bd8(void* texture);
     void func_02086dac(void* palette);
-    void func_0205b3d0(PaletteAnimation* self);                /* start */
-    void func_0205b44c(PaletteAnimation* self);                /* execute */
-    void func_0205b648(PaletteAnimation* self);                /* cleanup */
 }

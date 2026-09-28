@@ -20,7 +20,7 @@ THUMB int cmd_party_display2(int* param)
         func_ov000_0213b054(&func_ov000_02132a90()->partyDraw_);
     } else {
         func_ov000_02132a90();
-        dss::Fx32Vector3 pos = func_ov000_02132a90()->getPosition();
+        dss::Fix32Vector3 pos = func_ov000_02132a90()->getPosition();
         func_ov000_02133f10(func_ov000_02132a90(), &pos);
         func_ov000_0213b010(&func_ov000_02132a90()->partyDraw_);
         func_ov000_0213afcc(&func_ov000_02132a90()->partyDraw_);

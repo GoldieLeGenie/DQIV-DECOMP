@@ -16,6 +16,10 @@
 #include <nitro/reg.h>
 #include <nitro/types.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief Performs synchronous fixed-point division.
  *
@@ -114,6 +118,10 @@ s32 FX_GetSqrtResult(void);
  * @param denom Denominator value (32-bit).
  */
 void FX_DivAsync(u32 numer, u32 denom);
+
+#ifdef __cplusplus
+}
+#endif
 
 /**
  * @brief Sets the numerator and denominator registers for 64-bit by 64-bit division.

@@ -26,6 +26,7 @@ struct LZDataObject : DataObject {
 extern char data_0211a60c[];   
 
 extern "C" {
+    void* func_0207f834(void* heap, int size, int align);  /* heap alloc */
     void  func_0207f840(void* heap, void* p);      /* heap free */
     int   func_0207f548(void* data);               /* is LZ compressed */
     long  func_0207f52c(void* data);               /* uncompressed size */

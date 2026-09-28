@@ -11,7 +11,7 @@ struct FieldPlayerManager;
 extern "C" {
     FieldPlayerManager* func_ov001_02127b28(void);                                  // FieldPlayerManager::getSingleton
     void func_ov001_02125eac(FieldPlayer* self, int type);                          // FieldPlayer::setMoveType
-    void func_ov001_02122b28(FieldCarrirerDraw* self, dss::Fx32Vector3 pos);        // FieldCarrirerDraw::setPosition
+    void func_ov001_02122b28(FieldCarrirerDraw* self, dss::Fix32Vector3 pos);        // FieldCarrirerDraw::setPosition
     void func_ov001_0212b7e0(FieldPartyDraw* self);                                 // FieldPartyDraw::setDrawNone
 }
 
@@ -34,7 +34,7 @@ struct FieldPartyDraw {
 struct FieldCarrirerDraw {
     char unk_0000[0x18];
 
-    void setPosition(const dss::Fx32Vector3& pos) { func_ov001_02122b28(this, pos); }
+    void setPosition(const dss::Fix32Vector3& pos) { func_ov001_02122b28(this, pos); }
 };
 
 struct FieldShipDraw : FieldCarrirerDraw {

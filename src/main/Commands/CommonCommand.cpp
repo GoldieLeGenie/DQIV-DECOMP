@@ -88,7 +88,7 @@ THUMB int cmd_set_party_join_carriage()
 
 THUMB int cmd_set_town_to_field_link(int* param)
 {
-    dss::Fx32Vector3 offset;
+    dss::Fix32Vector3 offset;
     offset.set(param[2], param[3], 0);
     cmn::g_extraMapLink.setLinkData(param[5], param[1], cmn::LINK_TOWN_TO_FIELD, g_Global.getMapName(), 0, offset);
     return 1;
@@ -102,13 +102,13 @@ THUMB int cmn_set_field_to_town_link(int* param)
 
 THUMB int cmd_is_trigger_forward(int* param)
 {
-    dss::Fx32Vector3 pos = cmn::GameManager::getSingleton()->playerManager_->getPosition();
+    dss::Fix32Vector3 pos = cmn::GameManager::getSingleton()->playerManager_->getPosition();
     short dir = cmn::GameManager::getSingleton()->playerManager_->getDirection();
-    dss::Fx32Vector3 min;
-    dss::Fx32Vector3 max;
+    dss::Fix32Vector3 min;
+    dss::Fix32Vector3 max;
     min.set(param[0], param[1], param[2]);
     max.set(param[3], param[4], param[5]);
-    dss::Fx32Vector3 diff = func_02088988(func_02088bdc(min + max, 2), pos);
+    dss::Fix32Vector3 diff = func_02088988(func_02088bdc(min + max, 2), pos);
     TriggerCheck check = param[6] == 0 ? TRIGGER_CHECK_0 : TRIGGER_CHECK_1;
     int type = param[7] == 0 ? 7 : 6;
     return cmn::CommonCalculate::areaCheck(pos, dir, min, max, check, type);
@@ -129,7 +129,7 @@ THUMB int cmd_set_encount_stage_disable(int* param)
 
 THUMB int cmd_set_demolition_fightingarena(int* param)
 {
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     pos.vx.value = param[4];
     pos.vy.value = param[5];
     pos.vz.value = param[6];
@@ -148,16 +148,16 @@ THUMB int cmd_set_chapter(int* param)
     MapNameTable6 church = data_020b4fe8;
     MapNameTable5 map = data_020b4fd4;
     status::g_Story.setChapter(param[0]);
-    dss::Fx32Vector3 pos;
-    dss::Fx32Vector3 unused;
+    dss::Fix32Vector3 pos;
+    dss::Fix32Vector3 unused;
     switch (param[0]) {
     case 1: {
         top = 3;
         g_Global.setMapName(map.name_[0]);
         g_Stage.setChurchMapName((char*)church.name_[0]);
-        func_0208718c(&pos.vx, dss::Fx32(data_020be07c));
-        func_0208718c(&pos.vy, dss::Fx32(data_020be070));
-        func_0208718c(&pos.vz, dss::Fx32(data_020be06c));
+        func_0208718c(&pos.vx, dss::Fix32(data_020be07c));
+        func_0208718c(&pos.vy, dss::Fix32(data_020be070));
+        func_0208718c(&pos.vz, dss::Fix32(data_020be06c));
         status::BaseHaveItem* haveItem = &status::g_Party.getPlayerStatus(0)->haveStatusInfo_.haveItem_;
         if (status::g_Party.haveItemSack_.getCount() != 0) {
             status::HaveItemSack* sack = &status::g_Party.haveItemSack_;
@@ -180,17 +180,17 @@ THUMB int cmd_set_chapter(int* param)
         top = 7;
         g_Global.setMapName(map.name_[2]);
         g_Stage.setChurchMapName((char*)church.name_[2]);
-        func_0208718c(&pos.vx, dss::Fx32(data_020be088));
-        func_0208718c(&pos.vy, dss::Fx32(data_020be074));
-        func_0208718c(&pos.vz, dss::Fx32(data_020be09c));
+        func_0208718c(&pos.vx, dss::Fix32(data_020be088));
+        func_0208718c(&pos.vy, dss::Fix32(data_020be074));
+        func_0208718c(&pos.vz, dss::Fix32(data_020be09c));
         break;
     case 4:
         top = 9;
         g_Global.setMapName(map.name_[3]);
         g_Stage.setChurchMapName((char*)church.name_[3]);
-        func_0208718c(&pos.vx, dss::Fx32(data_020be084));
-        func_0208718c(&pos.vy, dss::Fx32(data_020be064));
-        func_0208718c(&pos.vz, dss::Fx32(data_020be058));
+        func_0208718c(&pos.vx, dss::Fix32(data_020be084));
+        func_0208718c(&pos.vy, dss::Fix32(data_020be064));
+        func_0208718c(&pos.vz, dss::Fix32(data_020be058));
         break;
     case 5:
         top = 1;
@@ -353,7 +353,7 @@ THUMB int cmd_add_nene_count(int* param)
 
 THUMB int cmd_map_link_field_direct(int* param)
 {
-    dss::Fx32Vector3 pos;
+    dss::Fix32Vector3 pos;
     pos.vx.value = param[1];
     pos.vy.value = param[2];
     pos.vz = 0L;
@@ -374,7 +374,7 @@ THUMB int cmd_map_link_field_direct(int* param)
 
 THUMB int cmd_floor_change(int* param)
 {
-    dss::Fx32Vector3 pos = cmn::CommonCalculate::setVecByParam(param[4], param[5], param[6]);
+    dss::Fix32Vector3 pos = cmn::CommonCalculate::setVecByParam(param[4], param[5], param[6]);
     cmn::g_extraMapLink.setExtraLinkTown((const char*)param, pos, cmn::CommonCalculate::getIdxByParam((unsigned char)param[7]));
     ScriptSystem::getSingleton()->executeEnable_ = 0;
     if (func_02058114(data_0210bb94, 0xc) != 0) {
@@ -470,36 +470,36 @@ THUMB int cmd_check_member_num(int* param)
 
 THUMB int cmd_set_sleep_near(int* param)
 {
-    dss::Fx32 x(data_020be068);
+    dss::Fix32 x(data_020be068);
     x.value = param[1];
-    dss::Fx32 y(data_020be054);
+    dss::Fix32 y(data_020be054);
     y.value = param[2];
-    dss::Fx32 z(data_020be04c);
+    dss::Fix32 z(data_020be04c);
     z.value = param[3];
     if (param[0] == 0) {
-        if (x == dss::Fx32(data_020be060)) {
-            func_0208718c(&x, dss::Fx32(data_020be08c));
+        if (x == dss::Fix32(data_020be060)) {
+            func_0208718c(&x, dss::Fix32(data_020be08c));
         }
-        if (y == dss::Fx32(data_020be090)) {
-            func_0208718c(&y, dss::Fx32(data_020be094));
+        if (y == dss::Fix32(data_020be090)) {
+            func_0208718c(&y, dss::Fix32(data_020be094));
         }
-        if (z == dss::Fx32(data_020be05c)) {
-            func_0208718c(&z, dss::Fx32(data_020be0a8));
+        if (z == dss::Fix32(data_020be05c)) {
+            func_0208718c(&z, dss::Fix32(data_020be0a8));
         }
     } else if (param[0] == 1) {
-        if (x == dss::Fx32(data_020be0a0)) {
-            func_0208718c(&x, dss::Fx32(data_020be0a4));
+        if (x == dss::Fix32(data_020be0a0)) {
+            func_0208718c(&x, dss::Fix32(data_020be0a4));
         }
-        if (y == dss::Fx32(data_020be098)) {
-            func_0208718c(&y, dss::Fx32(data_020be078));
+        if (y == dss::Fix32(data_020be098)) {
+            func_0208718c(&y, dss::Fix32(data_020be078));
         }
-        if (z == dss::Fx32(data_020be080)) {
-            func_0208718c(&z, dss::Fx32(data_020be050));
+        if (z == dss::Fix32(data_020be080)) {
+            func_0208718c(&z, dss::Fix32(data_020be050));
         }
     }
-    func_0208718c(&data_020f4e18, dss::Fx32(x));
-    func_0208718c(&data_020f4e2c, dss::Fx32(y));
-    func_0208718c(&data_020f4e28, dss::Fx32(z));
+    func_0208718c(&data_020f4e18, dss::Fix32(x));
+    func_0208718c(&data_020f4e2c, dss::Fix32(y));
+    func_0208718c(&data_020f4e28, dss::Fix32(z));
     return 1;
 }
 
