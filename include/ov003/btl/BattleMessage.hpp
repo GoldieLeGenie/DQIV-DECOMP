@@ -36,6 +36,8 @@ extern "C" void func_02089acc(int flag);   // BattleAutoFeed::setDisableCursor
 extern "C" int  func_02089684(void);   // BattleAutoFeed::isEndMessage
 extern "C" void func_02089abc(void);   // BattleAutoFeed::disableAutoFeed
 extern "C" void func_0200d510(void);   // MenuAPI::closeMenu
+extern "C" int  func_0200d528(void);   // MenuAPI::isFinishMenu
+extern "C" void func_0200d5a0(void);   // MenuAPI::openBattleMenu
 extern "C" void func_0200d61c(void);
 extern "C" void func_0200d748();
 extern "C" void func_0200d6a0(void);

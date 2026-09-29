@@ -1,4 +1,5 @@
 #include "ov003/btl/ExecMessageTask.hpp"
+#include "ov003/btl/BattleActorMacro.hpp"
 #include "main/status/ActionExec.hpp"
 #include "ov003/btl/SpecialMessageTask.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
@@ -47,7 +48,7 @@ ARM void btl::ExecMessageTask::initialize()
         }
     }
  
-    func_ov003_0212a398(useActionParam_);
+    btl::BattleActorMacro::setExecMacro(*useActionParam_);
     message_ = btl::BattleMessage::setExecMessage(useActionParam_);
     func_0208978c();
     useActionParam_->actorCharacterStatus_->setMenuStatusFlag(

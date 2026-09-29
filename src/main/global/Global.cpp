@@ -1,4 +1,5 @@
 #include "main/global/Global.hpp"
+#include "main/global/GlobalDQ4.hpp"
 #include "main/status/ExcelParam.hpp"
 #include "main/status/Status.hpp"
 #include "main/status/StageStatus.hpp"
@@ -13,7 +14,6 @@
 #include "main/status/BattleHistory.hpp"
 #include "main/status/BattleResult.hpp"
 
-extern char data_0210bb94[];
 extern "C" int func_0205810c(void* global);
 extern "C" int func_02058104(void* global);
 extern "C" void func_020580fc(void* global, int part);
@@ -188,7 +188,7 @@ THUMB void Global::startBattle()
 THUMB void Global::acceptBattle()
 {
     cmn::PlayerManager::setLock(1);
-    currentGamePart_ = func_0205810c(data_0210bb94);
+    currentGamePart_ = func_0205810c(&data_0210bb94);
     g_GlobalChangePart.setNextPart(0xD);
     func_02058294(data_0210bc18, &g_GlobalChangePart);
     partChangeFlag_ = 1;
@@ -203,7 +203,7 @@ THUMB void Global::directStartBattle()
     } else {
         SoundManager::crusingPlay();
     }
-    currentGamePart_ = func_0205810c(data_0210bb94);
+    currentGamePart_ = func_0205810c(&data_0210bb94);
     g_GlobalChangePart.setNextPart(0xD);
     func_02058294(data_0210bc18, &g_GlobalChangePart);
     partChangeFlag_ = 1;
@@ -270,7 +270,7 @@ THUMB void Global::startLogo()
 
 THUMB bool Global::isNextPart(int part)
 {
-    if (part == func_02058104(data_0210bb94)) {
+    if (part == func_02058104(&data_0210bb94)) {
         return true;
     }
     return false;
@@ -316,7 +316,7 @@ THUMB void Global::fadeIn(int frames)
 THUMB void GlobalChangePart::update()
 {
     if (g_GlobalFade.isFadeEnd()) {
-        func_020580fc(data_0210bb94, nextPart_);
+        func_020580fc(&data_0210bb94, nextPart_);
         nextPart_ = 0x1A;
     }
 }

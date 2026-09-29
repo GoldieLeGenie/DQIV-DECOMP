@@ -11,6 +11,7 @@ namespace cmn{
         void initialize();
         void terminate();
         void execute();
+        void resetParty();
     };
     
 }

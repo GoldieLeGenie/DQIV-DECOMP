@@ -60,7 +60,7 @@ struct Data020f6340 {
     int unk_34;
 };
 
-extern TownMenu_MESSAGE data_020ed1bc;
+extern TownMenu_MESSAGE data_020ed1bc; //gTownMenu_MESSAGE 
 extern MessageWindow* data_0210b380;
 extern int data_0210b384;
 extern char data_020f1d88[];

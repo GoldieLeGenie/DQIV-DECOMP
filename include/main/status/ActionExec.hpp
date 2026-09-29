@@ -2,6 +2,7 @@
 
 struct TownFurnitureManager;
 #include <globaldefs.h>
+#include "main/global/GlobalDQ4.hpp"
 #include "GameInfo.hpp"
 #include "main/status/CharacterStatus.hpp"
 #include "ov003/status/MonsterParty.hpp"
@@ -42,17 +43,11 @@ namespace status {
 
 }
 
-struct GlobalDQ4 {
-    char __unk0[0x64];   // 0x00-0x63 : ???
-    int part_id_;        // 0x64 : confirmé par func_02058114 (== partId)
-    char __unk1[0x10];   // 0x68-0x77 :  ??
-};
 
 
 
 extern status::CallMonsterInfo CallMonster; //data_020d06c8
 extern status::CharacterStatus* callMonsterStatus_[12];  //data_020d06e8
-extern GlobalDQ4 data_0210bb94;  
 
 extern "C" int   func_02058114(void* global, int partId);       // checkPartId (g_Global2.m_part_id == partId) ?                 
 struct TownPlayerManager;

@@ -1,4 +1,5 @@
 #include "ov003/btl/ResultMessageTask.hpp"
+#include "ov003/btl/BattleActorMacro.hpp"
 #include "main/task/PartTaskManager.hpp"
 #include "ov003/btl/SpecialMessageTask.hpp"
 #include "ov003/btl/BattleActorManager2.hpp"
@@ -43,7 +44,7 @@ ARM void btl::ResultMessageTask::initialize()
         btl::BattleActorAnimation::setMosyasReverse(useActionParam_->targetCharacterStatus_[currentTarget_]);
     }
 
-    func_ov003_0212a3c4(useActionParam_, currentTarget_);
+    btl::BattleActorMacro::setResultMacro(*useActionParam_, currentTarget_);
 
     if (btl::BattleActorManager2::getSingleton()->eventType_ != BattleActorManager2::Velorinman) {
         message_ = btl::BattleMessage::setResultMessage(useActionParam_, currentTarget_);

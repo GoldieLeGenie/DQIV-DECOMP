@@ -1,4 +1,5 @@
 #include "ov003/btl/SpecialMessageTask.hpp"
+#include "ov003/btl/BattleActorMacro.hpp"
 #include "main/status/BaseAction.hpp"
 #include "ov003/btl/BattleActorManager2.hpp"
 #include "ov003/btl/BattleMessage.hpp"
@@ -66,7 +67,7 @@ ARM void btl::SpecialMessageTask::initialize()
     }
 
     if (status::BaseAction::tsukonFlag_ != 0 || status::BaseAction::tsukon2Flag_ != 0) {
-        func_ov003_0212a398(useActionParam_);
+        btl::BattleActorMacro::setExecMacro(*useActionParam_);
     }
 
     message_ = btl::BattleMessage::setSpecialMessage(useActionParam_, currentTarget_);

@@ -20,7 +20,5 @@ namespace btl {
 
 extern task::PartTaskManager partTaskManager; //data_ov003_021492dc
 
-extern "C" void func_ov003_0212a3f8(status::CharacterStatus* actor, int a);
-extern "C" void func_ov003_0212a4b0(status::CharacterStatus* target, int a, int b);
 extern "C" void func_0208988c();
 extern "C" int func_020898a0();

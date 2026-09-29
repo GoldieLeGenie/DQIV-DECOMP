@@ -1,4 +1,5 @@
 #include "main/cmn/ExtraMapLink.hpp"
+#include "main/global/GlobalDQ4.hpp"
 #include "main/global/Global.hpp"
 #include "main/cmn/WorldLocation.hpp"
 #include "main/cmn/PlayerManager.hpp"
@@ -10,7 +11,6 @@
 #include "main/cmn/CommonRuraData.hpp"
 
 extern "C" int func_02058114(void* global, int partId);
-extern char data_0210bb94[];
 
 
 char s_mpout2[8] = "mpout2";  // 0x020be958
@@ -45,7 +45,7 @@ ARM void cmn::ExtraMapLink::setup()
     mapLinkDataCount_ = 0;
     rectLinkCount_ = 0;
 
-    if (func_02058114(data_0210bb94, 12)) {
+    if (func_02058114(&data_0210bb94, 12)) {
         switch (g_Global.getMapName()[0]) {
             case 'c':
                 switch (g_Global.getMapName()[1]) {
@@ -278,7 +278,7 @@ ARM void cmn::ExtraMapLink::startExitLoop()
     dss::Fix32Vector3 pos;
     dss::Fix32Vector3 dir;
     dss::Fix32Vector3 up(0, 1, 0);
-    func_02047d18(func_ov000_02139668(), id, &pos);
+    func_ov000_02139668()->stage_.collGetPolygonPos(id, &pos);
     func_ov000_0213a2c4(func_ov000_02139668(), &dir, id);
 
     dss::Fix32 d = up * dir;
@@ -594,9 +594,9 @@ ARM void cmn::ExtraMapLink::setRuraLink()
 
 ARM void cmn::ExtraMapLink::setRanaLink()
 {
-    if (func_02058114(data_0210bb94, 12)) {
+    if (func_02058114(&data_0210bb94, 12)) {
         setExtraExitTown(g_Stage.lastRanaStageName_, g_Stage.lastFldSurface_);
-    } else if (func_02058114(data_0210bb94, 14)) {
+    } else if (func_02058114(&data_0210bb94, 14)) {
         g_cmnPartyInfo.prevLocation_ = 1;
         dss::Fix32Vector3 pos = func_ov001_02127b28()->getPosition();
         setExtraLinkFieldAbsPos(g_Global.getFieldType(), pos, 4);

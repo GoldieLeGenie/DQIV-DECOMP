@@ -13,3 +13,4 @@ struct NNSG3dGlb {
 extern NNSG3dGlb data_0210cf28;                 // NNS_G3dGlb
 extern MtxFx44 data_0210cf30;                   // NNS_G3dGlb.projMtx
 extern MtxFx43 data_0210cf74;                   // NNS_G3dGlb.cameraMtx
+extern MtxFx33 data_0210cfe4;                   // NNS_G3dGlb.prmBaseRot

@@ -68,13 +68,13 @@ static inline void setFieldRGBRate(const dss::Fix32Vector3& rgb)
 {
     VecFx32     v;
     dss::Fix32Vector3 tmp(rgb.vx, rgb.vy, rgb.vz);
-    BattleStage*     stage = func_ov003_0212dfe8();
+    BattleStage*     stage = BattleStage::getSingleton();
 
     v.x = tmp.vx.value;
     v.y = tmp.vy.value;
     v.z = tmp.vz.value;
 
-    stage->m_fld.SetRGBRate(&v, 0);
+    stage->stage_.m_fld.SetRGBRate(&v, 0);
 }
 
 

@@ -41,7 +41,6 @@ extern "C" {
 
     void func_02023504(void* cursor, int a, int b, int count);
     int  func_02023274(void* list, void* cursor);                /* poll → 0/2/3 */
-    void func_02030f60(cmn::GameManager*);
     void func_020499a4(int);
     void func_ov016_0216b020(void);
     void func_ov016_0216b020(void);     /* closeMaterielWindow */

@@ -195,7 +195,7 @@ ARM void DSSAObject::setup(void* data)
     data_ = data;
     frame_ = 0;
     flag_ = 0;
-    func_0208718c(&alpha_, dss::Fix32(1L));
+    alpha_ = dss::Fix32(1L);
     dssaData_.setup(data);
     displayPartsCount_ = 0;
 }
@@ -321,7 +321,7 @@ ARM int DSSAObject::isEnable()
 
 ARM void DSSAObject::setAlpha(dss::Fix32 alpha)
 {
-    func_0208718c(&alpha_, alpha);
+    alpha_ = alpha;
 }
 
 ARM void DSSAObject::setCurrentFrame(int frame)
@@ -357,7 +357,7 @@ ARM dss::Fix32 DSSAObject::getDefaultScale2()
 
 ARM void DSSAObject::setDefaultScale(dss::Fix32 scale)
 {
-    func_0208718c(&defaultScale_, scale);
+    defaultScale_ = scale;
 }
 
 ARM dss::Fix32 DSSAObject::getDefaultScale()
@@ -391,11 +391,11 @@ ARM void DSSAObject::setupDraw()
         func_02086b3c(dssaData_.texture_);
     }
     if (calcType_) {
-        func_0208718c(&baseScale_.vx, defaultScale2_ * scale_.vx);
-        func_0208718c(&baseScale_.vy, defaultScale2_ * scale_.vy);
+        baseScale_.vx = defaultScale2_ * scale_.vx;
+        baseScale_.vy = defaultScale2_ * scale_.vy;
     } else {
-        func_0208718c(&baseScale_.vx, defaultScale2_);
-        func_0208718c(&baseScale_.vy, defaultScale2_);
+        baseScale_.vx = defaultScale2_;
+        baseScale_.vy = defaultScale2_;
     }
 }
 
@@ -409,8 +409,8 @@ ARM void DSSAObject::setupRoot()
         G3_Scale(defaultScale_.value, defaultScale_.value, FX32_ONE);
     } else {
         dss::Fix32Vector3 scale;
-        func_0208718c(&scale.vx, defaultScale_ * scale_.vx);
-        func_0208718c(&scale.vy, defaultScale_ * scale_.vx);
+        scale.vx = defaultScale_ * scale_.vx;
+        scale.vy = defaultScale_ * scale_.vx;
         if (isReverse()) {
             scale.vx.value = -scale.vx.value;
         }

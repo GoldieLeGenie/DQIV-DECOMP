@@ -54,7 +54,7 @@ THUMB int cmd_map_effect_sepia()
 {
     func_020835d8();
     func_02085d88();
-    func_ov000_02139668()->fldObject_.SetSepia();
+    func_ov000_02139668()->stage_.m_fld.SetSepia();
     return 1;
 }
 
@@ -214,7 +214,7 @@ THUMB int cmd_set_party_reserve_order(int* param)
         order[3] = 0;
     }
     status::g_Party.reorder(order[0], order[1], order[2], order[3]);
-    func_02030f60(cmn::GameManager::getSingleton());
+    cmn::GameManager::getSingleton()->resetParty();
     return 1;
 }
 

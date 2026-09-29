@@ -22,5 +22,6 @@ namespace btl {
         int isMegazaruRingEnable();
         int execMegazaruRing();
         int execMeganteRing();
+        BattleTurn* getCurrentTurn() { return &battleTurn_[currentBattleTurn_]; }
     };
 }

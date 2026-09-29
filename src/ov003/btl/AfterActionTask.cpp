@@ -1,4 +1,5 @@
 #include "ov003/btl/AfterActionTask.hpp"
+#include "ov003/btl/BattleActorMacro.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
 #include "ov003/btl/BattleMessage.hpp"
 #include "ov003/btl/BattleActorAnimation.hpp"
@@ -82,17 +83,17 @@ ARM int btl::AfterActionTask::isMessageStatusChangeRelease()
     int battleCount = g_monster.getBattleCount();
 
     if (releaseStatus != 0 && death == 0 && battleCount != 0) {
-        func_ov003_0212a3f8(useActionParam_->actorCharacterStatus_, result);
+        btl::BattleActorMacro::setMacroActor(useActionParam_->actorCharacterStatus_, result);
         status::UseActionMacro::setStatusChangeMacro(useActionParam_->actorCharacterStatus_);
 
         if (releaseStatus == status::StatusChange::StatusDragoram) {
-            func_ov003_0212a4b0(useActionParam_->actorCharacterStatus_, result, result);
+            btl::BattleActorMacro::setMacroTarget(useActionParam_->actorCharacterStatus_, result, result);
             useActionParam_->actorCharacterStatus_->haveBattleStatus_.changeMonsterReverse();
         }
 
         if (releaseStatus == status::StatusChange::StatusMosyasu) {
             useActionParam_->actorCharacterStatus_->setMosyasRelease();
-            func_ov003_0212a4b0(useActionParam_->actorCharacterStatus_, 0, 0);
+            btl::BattleActorMacro::setMacroTarget(useActionParam_->actorCharacterStatus_, 0, 0);
             btl::BattleActorAnimation::setMosyasReverse(useActionParam_->actorCharacterStatus_);
         }
 

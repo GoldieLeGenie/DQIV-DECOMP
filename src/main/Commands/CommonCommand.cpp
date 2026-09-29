@@ -30,7 +30,7 @@ THUMB int cmd_encount(int* param)
         func_0200acec(func_0200a6c8(), param[1]);
     }
     ScriptSystem::getSingleton()->executeEnable_ = 0;
-    if (func_02058114(data_0210bb94, 0xe) == 1) {
+    if (func_02058114(&data_0210bb94, 0xe) == 1) {
         func_ov001_0212a620(func_ov001_02127b28(), 1);
     } else {
         func_ov000_02135ac0(func_ov000_02132a90(), 1);
@@ -46,7 +46,7 @@ THUMB int cmd_encount_set_flag(int* param)
         btl::BattleScriptManager::getSingleton()->setEncountMap(param[1]);
         func_0200acec(func_0200a6c8(), param[1]);
     }
-    if (func_02058114(data_0210bb94, 0xe) == 1) {
+    if (func_02058114(&data_0210bb94, 0xe) == 1) {
         func_ov001_0212a620(func_ov001_02127b28(), 1);
     } else {
         func_ov000_02135ac0(func_ov000_02132a90(), 1);
@@ -70,7 +70,7 @@ THUMB int cmd_encount_first_strike(int* param)
         btl::BattleScriptManager::getSingleton()->setEncountMap(param[1]);
         func_0200acec(func_0200a6c8(), param[1]);
     }
-    if (func_02058114(data_0210bb94, 0xe) == 1) {
+    if (func_02058114(&data_0210bb94, 0xe) == 1) {
         func_ov001_0212a620(func_ov001_02127b28(), 1);
     } else {
         func_ov000_02135ac0(func_ov000_02132a90(), 1);
@@ -82,7 +82,7 @@ THUMB int cmd_encount_first_strike(int* param)
 THUMB int cmd_set_party_join_carriage()
 {
     status::g_Party.basha_ = 1;
-    func_02030f60(cmn::GameManager::getSingleton());
+    cmn::GameManager::getSingleton()->resetParty();
     return 1;
 }
 
@@ -155,9 +155,9 @@ THUMB int cmd_set_chapter(int* param)
         top = 3;
         g_Global.setMapName(map.name_[0]);
         g_Stage.setChurchMapName((char*)church.name_[0]);
-        func_0208718c(&pos.vx, dss::Fix32(data_020be07c));
-        func_0208718c(&pos.vy, dss::Fix32(data_020be070));
-        func_0208718c(&pos.vz, dss::Fix32(data_020be06c));
+        pos.vx = dss::Fix32(data_020be07c);
+        pos.vy = dss::Fix32(data_020be070);
+        pos.vz = dss::Fix32(data_020be06c);
         status::BaseHaveItem* haveItem = &status::g_Party.getPlayerStatus(0)->haveStatusInfo_.haveItem_;
         if (status::g_Party.haveItemSack_.getCount() != 0) {
             status::HaveItemSack* sack = &status::g_Party.haveItemSack_;
@@ -180,17 +180,17 @@ THUMB int cmd_set_chapter(int* param)
         top = 7;
         g_Global.setMapName(map.name_[2]);
         g_Stage.setChurchMapName((char*)church.name_[2]);
-        func_0208718c(&pos.vx, dss::Fix32(data_020be088));
-        func_0208718c(&pos.vy, dss::Fix32(data_020be074));
-        func_0208718c(&pos.vz, dss::Fix32(data_020be09c));
+        pos.vx = dss::Fix32(data_020be088);
+        pos.vy = dss::Fix32(data_020be074);
+        pos.vz = dss::Fix32(data_020be09c);
         break;
     case 4:
         top = 9;
         g_Global.setMapName(map.name_[3]);
         g_Stage.setChurchMapName((char*)church.name_[3]);
-        func_0208718c(&pos.vx, dss::Fix32(data_020be084));
-        func_0208718c(&pos.vy, dss::Fix32(data_020be064));
-        func_0208718c(&pos.vz, dss::Fix32(data_020be058));
+        pos.vx = dss::Fix32(data_020be084);
+        pos.vy = dss::Fix32(data_020be064);
+        pos.vz = dss::Fix32(data_020be058);
         break;
     case 5:
         top = 1;
@@ -305,9 +305,9 @@ THUMB int cmd_music_pause(int* param)
 
 THUMB int cmd_play_music_now_map(int* param)
 {
-    if (func_02058114(data_0210bb94, 0xc) == 1) {
+    if (func_02058114(&data_0210bb94, 0xc) == 1) {
         SoundManager::townPlay();
-    } else if (func_02058114(data_0210bb94, 0xe) == 1) {
+    } else if (func_02058114(&data_0210bb94, 0xe) == 1) {
         SoundManager::fieldPlay();
     }
     return 1;
@@ -358,7 +358,7 @@ THUMB int cmd_map_link_field_direct(int* param)
     pos.vy.value = param[2];
     pos.vz = 0L;
     cmn::g_extraMapLink.setExtraExitField(param[0], pos);
-    if (func_02058114(data_0210bb94, 0xc) != 0) {
+    if (func_02058114(&data_0210bb94, 0xc) != 0) {
         data_ov000_0214eb98 = 0;
         func_020499a4(1);
         func_ov000_02138ed0(func_ov000_02137f2c());
@@ -377,7 +377,7 @@ THUMB int cmd_floor_change(int* param)
     dss::Fix32Vector3 pos = cmn::CommonCalculate::setVecByParam(param[4], param[5], param[6]);
     cmn::g_extraMapLink.setExtraLinkTown((const char*)param, pos, cmn::CommonCalculate::getIdxByParam((unsigned char)param[7]));
     ScriptSystem::getSingleton()->executeEnable_ = 0;
-    if (func_02058114(data_0210bb94, 0xc) != 0) {
+    if (func_02058114(&data_0210bb94, 0xc) != 0) {
         data_ov000_0214eb98 = 0;
         func_020499a4(1);
         func_ov000_02138ed0(func_ov000_02137f2c());
@@ -395,7 +395,7 @@ THUMB int cmd_floor_exit(int* param)
 {
     cmn::g_extraMapLink.setExtraExitTown((const char*)param, param[4]);
     ScriptSystem::getSingleton()->executeEnable_ = 0;
-    if (func_02058114(data_0210bb94, 0xc) != 0) {
+    if (func_02058114(&data_0210bb94, 0xc) != 0) {
         data_ov000_0214eb98 = 0;
         func_020499a4(1);
         func_ov000_02138ed0(func_ov000_02137f2c());
@@ -412,10 +412,10 @@ THUMB int cmd_floor_exit(int* param)
 THUMB int cmd_set_map_link_on_off(int* param)
 {
     cmn::LINK_TYPE type = param[1] == 0 ? cmn::NOT_LINK_THIS_TOWN : cmn::LINK_DEFAULT;
-    if (func_02058114(data_0210bb94, 0xe) != 0) {
+    if (func_02058114(&data_0210bb94, 0xe) != 0) {
         cmn::g_extraMapLink.setLinkData(param[0], -1, type, 0, 0);
     }
-    if (func_02058114(data_0210bb94, 0xc) != 0) {
+    if (func_02058114(&data_0210bb94, 0xc) != 0) {
         cmn::g_extraMapLink.setLinkData(param[0], -1, type, g_Global.getMapName(), 0);
     }
     return 1;
@@ -478,28 +478,28 @@ THUMB int cmd_set_sleep_near(int* param)
     z.value = param[3];
     if (param[0] == 0) {
         if (x == dss::Fix32(data_020be060)) {
-            func_0208718c(&x, dss::Fix32(data_020be08c));
+            x = dss::Fix32(data_020be08c);
         }
         if (y == dss::Fix32(data_020be090)) {
-            func_0208718c(&y, dss::Fix32(data_020be094));
+            y = dss::Fix32(data_020be094);
         }
         if (z == dss::Fix32(data_020be05c)) {
-            func_0208718c(&z, dss::Fix32(data_020be0a8));
+            z = dss::Fix32(data_020be0a8);
         }
     } else if (param[0] == 1) {
         if (x == dss::Fix32(data_020be0a0)) {
-            func_0208718c(&x, dss::Fix32(data_020be0a4));
+            x = dss::Fix32(data_020be0a4);
         }
         if (y == dss::Fix32(data_020be098)) {
-            func_0208718c(&y, dss::Fix32(data_020be078));
+            y = dss::Fix32(data_020be078);
         }
         if (z == dss::Fix32(data_020be080)) {
-            func_0208718c(&z, dss::Fix32(data_020be050));
+            z = dss::Fix32(data_020be050);
         }
     }
-    func_0208718c(&data_020f4e18, dss::Fix32(x));
-    func_0208718c(&data_020f4e2c, dss::Fix32(y));
-    func_0208718c(&data_020f4e28, dss::Fix32(z));
+    DisplayCharacter::sleepBodyOffset_ = dss::Fix32(x);
+    DisplayCharacter::sleepHeadOffset_ = dss::Fix32(y);
+    DisplayCharacter::sleepHeight_ = dss::Fix32(z);
     return 1;
 }
 
@@ -512,7 +512,7 @@ THUMB int cmd_player_lock(int* param)
 {
     if (param[0] != 0) {
         data_020ecf3c++;
-        if (func_02058114(data_0210bb94, 0xc) != 0) {
+        if (func_02058114(&data_0210bb94, 0xc) != 0) {
             func_ov000_021341ec(func_ov000_02132a90(), 1);
             func_ov000_02132a90()->charaColl_ = 0;
         } else {
@@ -522,7 +522,7 @@ THUMB int cmd_player_lock(int* param)
         cmn::PartyTalk::getSingleton()->resetPartyTalk();
     } else {
         data_020ecf3c--;
-        if (func_02058114(data_0210bb94, 0xc) != 0) {
+        if (func_02058114(&data_0210bb94, 0xc) != 0) {
             func_ov000_021341ec(func_ov000_02132a90(), 0);
             if (!cmn::PlayerManager::isLock()) {
                 func_ov000_02132a90()->charaColl_ = 1;
@@ -636,7 +636,7 @@ THUMB int cmd_is_barrier_disruption(int* param)
 THUMB int cmd_set_party_join(int* param)
 {
     status::g_Party.add(param[0]);
-    if (func_02058114(data_0210bb94, 0xc) != 0) {
+    if (func_02058114(&data_0210bb94, 0xc) != 0) {
         func_ov000_02132a90()->resetParty();
     } else {
         func_ov001_02127b28()->resetParty();
@@ -647,7 +647,7 @@ THUMB int cmd_set_party_join(int* param)
 THUMB int cmd_set_party_quit(int* param)
 {
     status::g_Party.del(param[0]);
-    if (func_02058114(data_0210bb94, 0xc) != 0) {
+    if (func_02058114(&data_0210bb94, 0xc) != 0) {
         func_ov000_02132a90()->resetParty();
     } else {
         func_ov001_02127b28()->resetParty();
@@ -672,7 +672,7 @@ THUMB int cmd_battle_end_flag_set(int* param)
         btl::BattleScriptManager::getSingleton()->setEncountMap(param[1]);
         func_0200acec(func_0200a6c8(), param[1]);
     }
-    if (func_02058114(data_0210bb94, 0xe) == 1) {
+    if (func_02058114(&data_0210bb94, 0xe) == 1) {
         func_ov001_0212a620(func_ov001_02127b28(), 1);
     } else {
         func_ov000_02135ac0(func_ov000_02132a90(), 1);

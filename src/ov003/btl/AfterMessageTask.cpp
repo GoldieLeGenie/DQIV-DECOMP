@@ -1,4 +1,5 @@
 #include "ov003/btl/AfterMessageTask.hpp"
+#include "ov003/btl/BattleActorMacro.hpp"
 #include "ov003/btl/BattleActorManager2.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
 #include "ov003/btl/BattleMessage.hpp"
@@ -31,7 +32,7 @@ ARM void btl::AfterMessageTask::cleanup()
 
 ARM void btl::AfterMessageTask::initialize()
 {
-    func_ov003_0212a580(useActionParam_, currentTarget_);
+    btl::BattleActorMacro::setAddMacro(*useActionParam_, currentTarget_);
     message_ = btl::BattleMessage::setAfterMessage(useActionParam_, currentTarget_);
 
     if (useActionParam_->targetCharacterStatus_[currentTarget_] == 0) {

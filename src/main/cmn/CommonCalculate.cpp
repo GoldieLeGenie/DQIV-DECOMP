@@ -141,13 +141,13 @@ ARM dss::Fix32Vector3 cmn::CommonCalculate::getAxisMoveTargetByParam(unsigned in
     } else if (mode == 0) {
         switch (axis) {
         case 0:
-            func_0208718c(&target.vx, move);
+            target.vx = move;
             break;
         case 1:
-            func_0208718c(&target.vy, move);
+            target.vy = move;
             break;
         case 2:
-            func_0208718c(&target.vz, move);
+            target.vz = move;
             break;
         }
     }

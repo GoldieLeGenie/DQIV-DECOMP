@@ -24,7 +24,7 @@ ARM int cmd_message1(int* param)
 {
     int index = getPlacementCtrlId();
     if (getObjectCount() > index) {
-        if (func_02058114(data_0210bb94, 0xc) != 0) {
+        if (func_02058114(&data_0210bb94, 0xc) != 0) {
             cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
         }
     } else {
@@ -35,7 +35,7 @@ ARM int cmd_message1(int* param)
     if (!g_HengeNoTsue.isMonster()) {
         cmn::PartyTalk::getSingleton()->setPreMessageNo(param[0]);
     }
-    if (func_02058114(data_0210bb94, 0xe) != 0) {
+    if (func_02058114(&data_0210bb94, 0xe) != 0) {
         func_ov001_0212ab8c(func_ov001_0212aaac(), param[0], param[1]);
     } else {
         func_ov000_0213745c(func_ov000_021372e8(), param[0], param[1]);
@@ -47,7 +47,7 @@ ARM int cmd_message2(int* param)
 {
     int index = getPlacementCtrlId();
     if (getObjectCount() > index) {
-        if (func_02058114(data_0210bb94, 0xc) != 0) {
+        if (func_02058114(&data_0210bb94, 0xc) != 0) {
             cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
         }
     } else {
@@ -106,7 +106,7 @@ ARM int cmd_random_message(int* param)
 {
     int index = getPlacementCtrlId();
     if (getObjectCount() > index) {
-        if (func_02058114(data_0210bb94, 0xc) != 0) {
+        if (func_02058114(&data_0210bb94, 0xc) != 0) {
             cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
         }
     } else {

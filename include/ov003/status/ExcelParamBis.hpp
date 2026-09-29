@@ -8,8 +8,8 @@ namespace status {
     
         static void setupBattle(status::ExcelParam *setup);
         static void cleanupBattle(status::ExcelParam *clean);
-        void setupBattleInitialize(status::ExcelParam *clean);
-        void cleanupBattleInitialize(status::ExcelParam *clean);
+        static void setupBattleInitialize(status::ExcelParam *clean);
+        static void cleanupBattleInitialize(status::ExcelParam *clean);
     };
 }
     

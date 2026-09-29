@@ -1,0 +1,93 @@
+#include "ov003/btl/BattleSystem2.hpp"
+#include "ov003/btl/BattleStage.hpp"
+#include "ov003/btl/BattleCamera.hpp"
+#include "ov003/btl/BattleEffectManager.hpp"
+#include "ov003/btl/BattleRoot.hpp"
+#include "ov003/btl/BattleActorExec.hpp"
+#include "ov003/btl/ExecMessageTask.hpp"
+#include "ov003/btl/AfterActionTask.hpp"
+#include "ov003/status/ExcelParamBis.hpp"
+#include "main/cmn/CommonEffectLocation.hpp"
+#include "main/object/DSSAObject.hpp"
+#include "main/status/HaveAction.hpp"
+#include "main/global/Global.hpp"
+
+THUMB btl::BattleSystem2::BattleSystem2()
+{
+    func_02084ef0(&render_);
+}
+
+THUMB btl::BattleSystem2::~BattleSystem2()
+{
+}
+
+THUMB btl::BattleSystem2* btl::BattleSystem2::getSingleton()
+{
+    static BattleSystem2 m_singleton;
+    return &m_singleton;
+}
+
+THUMB void btl::BattleSystem2::initialize()
+{
+    dss::Fix32 scale;
+    scale.value = 800;
+    DSSAObject::setDefaultScale(scale);
+    DSSAObject::setPriority(1);
+    status::ExcelParamBis::setupBattle(&status::excelParam);
+    status::ExcelParamBis::setupBattleInitialize(&status::excelParam);
+    func_02084efc(&render_);
+    BattleStage::getSingleton()->initialize();
+    BattleCamera::getSingleton()->initialize();
+    BattleEffectManager::getSingleton()->initialize();
+    func_ov003_02121298();
+    func_ov003_021212d4();
+    DSSAObjectWithCamera::camera_ = BattleCamera::getSingleton()->getCamera();
+    BattleRoot::getSingleton()->initialize();
+    func_ov003_02121d04();
+    func_ov003_02121d58();
+    status::HaveAction::setBattleMode();
+    func_0203e8f8()->initialize();
+    status::ExcelParamBis::cleanupBattleInitialize(&status::excelParam);
+    dss::Fix32 scale2;
+    scale2.value = 800;
+}
+
+THUMB void btl::BattleSystem2::terminate()
+{
+    func_0203e8f8()->terminate();
+    BattleRoot::getSingleton()->terminate();
+    status::HaveAction::setTownMode();
+    func_ov003_02121d04();
+    func_ov003_02121f0c();
+    BattleEffectManager::getSingleton()->terminate();
+    BattleCamera::getSingleton()->terminate();
+    BattleStage::getSingleton()->terminate();
+    func_ov003_02121298();
+    func_ov003_021213d8();
+    func_02084f50(&render_);
+    status::ExcelParamBis::cleanupBattle(&status::excelParam);
+    g_Global.partChangeFlag_ = 0;
+}
+
+THUMB void btl::BattleSystem2::execute()
+{
+    func_0203e8f8()->execute();
+    BattleRoot::getSingleton()->execute();
+    BattleStage::getSingleton()->execute();
+    BattleEffectManager::getSingleton()->execute();
+}
+
+THUMB void btl::BattleSystem2::draw()
+{
+    BattleCamera::getSingleton()->executeForMap();
+    BattleCamera::getSingleton()->draw();
+    DSSAObjectWithCamera::camera_ = BattleCamera::getSingleton()->getCamera();
+    BattleEffectManager::getSingleton()->extraDraw();
+    func_ov003_02121298();
+    func_ov003_021213f8();
+    func_02084fa4(&render_);
+    BattleRoot::getSingleton()->draw();
+    func_ov003_02121d04();
+    func_ov003_0212203c();
+    BattleEffectManager::getSingleton()->draw();
+}

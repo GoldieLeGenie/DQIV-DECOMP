@@ -1,5 +1,6 @@
 #pragma once
 #include "main/text/TextAPI.hpp"
+#include "main/global/GlobalDQ4.hpp"
 struct TownPartyDraw;
 #include "main/cmn/CommonCalculate.hpp"
 #include "main/script/ScriptBaseCommand.hpp"
@@ -7,6 +8,7 @@ struct TownPartyDraw;
 #include "globaldefs.h"
 #include "GameInfo.hpp"
 #include "main/dss/DssUtils.hpp"
+#include "main/object/DisplayCharacter.hpp"
 #include "main/encount/Encount.hpp"
 #include "main/cmn/GameManager.hpp"
 #include "main/script/ScriptSystem.hpp"
@@ -134,7 +136,6 @@ int cmd_set_player_ride_on(int* param);
 int cmd_set_ship_pos(int* param);
 int cmd_set_title_part(int* param);
 
-extern char data_0210bb94[];
 
 struct MapNameTable5 {
     const char* name_[5];
@@ -171,9 +172,6 @@ extern const float data_020be08c;
 extern const float data_020be094;
 extern const float data_020be0a4;
 extern const float data_020be0a8;
-extern dss::Fix32 data_020f4e18;
-extern dss::Fix32 data_020f4e28;
-extern dss::Fix32 data_020f4e2c;
 
 extern "C" {
     int  func_02058114(void* global, int partId);
@@ -181,7 +179,6 @@ extern "C" {
     void func_ov001_0212a620(FieldPlayerManager* mgr, int lock);
     TownPlayerManager* func_ov000_02132a90(void);
     void func_ov000_02135ac0(TownPlayerManager* mgr, int lock);
-    void func_02030f60(cmn::GameManager* mgr);
     void func_020499a4(int flag);
     void func_ov000_02138ed0(TownCharacterManager* mgr);
     void func_ov000_0213b118(TownPartyDraw* draw, int value);

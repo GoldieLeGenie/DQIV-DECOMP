@@ -117,7 +117,7 @@ ARM void cmn::CommonEffectFlat::setScale(dss::Fix32 scale)
 {
     dss::Fix32Vector3 one(1, 1, 1);
     dssaEffect_.setScale(one * scale);
-    func_0208718c(&rate_, scale);
+    rate_ = scale;
 }
 
 ARM void cmn::CommonEffectFlat::setDisplayType(int type)
@@ -182,7 +182,7 @@ ARM void cmn::CommonEffectCubic::setPosition(dss::Fix32Vector3& position)
 ARM void cmn::CommonEffectCubic::setScale(dss::Fix32 scale)
 {
     func_02058af4(&model_, scale);
-    func_0208718c(&rate_, scale);
+    rate_ = scale;
 }
 
 ARM void cmn::CommonEffectCubic::start()

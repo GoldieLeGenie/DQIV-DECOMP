@@ -29,6 +29,5 @@ namespace btl {
 extern int currentTarget_; //currentTarget_
 extern int targetCount_; //targetCount_ 
 
-extern "C" void func_ov003_0212a398(status::UseActionParam* uap);
 extern "C" int  func_020897a0();
 

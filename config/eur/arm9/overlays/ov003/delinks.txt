@@ -5,12 +5,16 @@
     .data       start:0x021396e0 end:0x0213ca60 kind:data align:32
     .bss        start:0x0213ca60 end:0x0216a980 kind:bss align:32
 
-
-
 src/ov003/status/MonsterStatus.cpp:
     complete
     .text start:0x02123820 end:0x02123cf4
     .data start:0x02139e7c end:0x02139e98
+
+src/ov003/btl/BattleStage.cpp:
+    complete
+    .text start:0x0212dfa8 end:0x0212e274
+    .data start:0x0213c5e0 end:0x0213c5fc
+    .bss start:0x02165a7c end:0x02166380
 
 src/ov003/status/MonsterParty.cpp:
     complete
@@ -32,7 +36,6 @@ src/ov003/btl/BattleEffectTransform.cpp:
     .rodata start:0x02139060 end:0x02139108
     .data start:0x0213c674 end:0x0213c988
     .bss start:0x0216a03c end:0x0216a97c
-
 
 src/ov003/btl/BattleSelectTargetParam.cpp:
     complete
@@ -73,7 +76,6 @@ src/ov003/btl/BeforeActionTask.cpp:
     .text start:0x0213022c end:0x0213036c
     .data start:0x0213c9d8 end:0x0213c9ec
 
-
 src/ov003/btl/EndActionTask.cpp:
     complete
     .text start:0x02130474 end:0x02130668
@@ -92,6 +94,12 @@ src/ov003/btl/battle_actor_exec.cpp:
     .text start:0x02125a7c end:0x02125d78
     .data start:0x0213a3d0 end:0x0213a508
     .bss start:0x021492bc end:0x0215237c
+
+src/ov003/btl/BattleRootTask.cpp:
+    complete
+    .text start:0x02125d78 end:0x02126a30
+    .data start:0x0213a508 end:0x0213a6c0
+    .bss start:0x0215237c end:0x02152384
 
 src/ov003/btl/BattleActor2.cpp:
     complete
@@ -164,6 +172,15 @@ src/ov003/btl/BattleExecVictory.cpp:
     .data start:0x0213a060 end:0x0213a3d0
     .bss start:0x02148cac end:0x02149250
 
+src/ov003/btl/BattleSystem2.cpp:
+    complete
+    .text start:0x0212a1d8 end:0x0212a398
+    .bss start:0x02158a58 end:0x02159070
+
+src/ov003/btl/BattleActorMacro.cpp:
+    complete
+    .text start:0x0212a398 end:0x0212a5ac
+
 src/ov003/btl/BattleEffectManager.cpp:
     complete
     .text start:0x0212a5ac end:0x0212aa94
@@ -191,7 +208,3 @@ src/ov003/btl/BattleTurn.cpp:
     .text start:0x02123cf4 end:0x02123fa0
     .data start:0x02139e98 end:0x0213a060
 
-src/ov003/btl/TimeReverseTask.cpp:
-    complete
-    .text start:0x02126498 end:0x02126524
-    .data start:0x0213a5e4 end:0x0213a5f8

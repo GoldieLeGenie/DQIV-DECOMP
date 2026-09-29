@@ -10,8 +10,9 @@ namespace dss{
         Fix32();                         // func_020870fc
         Fix32(fx32 v);                   // func_02087108  
         Fix32(const Fix32& other);
+        Fix32& operator=(const Fix32& other);
         Fix32& operator=(fx32 v);
-        Fix32 operator-(const Fix32& o);
+        Fix32 operator-(const Fix32& o) const;
         Fix32(const long& v);            // func_02087110
         Fix32(const float& v);           // func_02087120
         Fix32& operator=(long v);        // func_02087154
@@ -28,6 +29,16 @@ namespace dss{
         bool operator==(const Fix32& o) const;  // func_020873a8
         bool operator!=(const Fix32& o) const;  // func_020873c0
         Fix32 operator/(int v) const;           // func_02087320
+        Fix32 operator-(int v) const;
+    };
+
+    struct Fix16 {
+        fx16 value;
+        Fix16() { value = 0; }
+        Fix16(const Fix16& other);
+        Fix16& operator=(const Fix16& other);
+        Fix16 operator*(int v);
+        Fix16 operator/(int v);
     };
 
     template <typename T>
@@ -144,8 +155,7 @@ extern "C" {
     dss::Fix32Vector3 func_02088988(const dss::Fix32Vector3& a, const dss::Fix32Vector3& b);
     dss::Fix32Vector3 func_02088bdc(const dss::Fix32Vector3& v, int div);
     dss::Fix32Vector3 func_02088b68(const dss::Fix32Vector3& v, const dss::Fix32& div);
-    dss::Fix32 func_02088e90(const dss::Fix32Vector3& v);                      // length
+    dss::Fix32 func_02088e90(const dss::Fix32Vector3& v);
     int func_02008eb8(int a, int b);                                           // max
-    void func_0208718c(dss::Fix32* obj, const dss::Fix32& value);                // Fix32 assign
     void func_02087168(void*, int);
 }

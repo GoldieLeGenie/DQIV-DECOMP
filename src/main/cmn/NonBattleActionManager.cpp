@@ -25,14 +25,14 @@ ARM void cmn::NonBattleActionManager::execute()
                 if (!func_0202adc4()->unk_c->vf08()) {
                     return;
                 }
-                if (func_02058114(data_0210bb94, 12) == 1) {
+                if (func_02058114(&data_0210bb94, 12) == 1) {
                     func_ov000_021341ec(func_ov000_02132a90(), 1);
                 } else {
                     func_ov001_02127b28();
                     PlayerManager::setLock(1);
                 }
-                if (func_02058114(data_0210bb94, 12)) {
-                    func_ov000_02139668()->fldObject_.m_flag &= ~4;
+                if (func_02058114(&data_0210bb94, 12)) {
+                    func_ov000_02139668()->stage_.m_fld.m_flag &= ~4;
                     func_020499a4(1);
                     if (g_Stage.getTimeZone() == TIME_ZONE_DAYTIME || g_Stage.getTimeZone() == TIME_ZONE_EVENING) {
                         g_Stage.setTimeZone(TIME_ZONE_NIGHT);
@@ -41,7 +41,7 @@ ARM void cmn::NonBattleActionManager::execute()
                         g_Stage.setTimeZone(TIME_ZONE_DAYTIME);
                         g_Stage.setWorldTime(0x100);
                     }
-                } else if (func_02058114(data_0210bb94, 14)) {
+                } else if (func_02058114(&data_0210bb94, 14)) {
                     func_ov001_0212b948()->fieldData.pause_ = 0;
                     func_0204b694(1);
                     if (g_Stage.getWorldTime() < 0x840) {
@@ -61,16 +61,16 @@ ARM void cmn::NonBattleActionManager::execute()
                 if (!func_0202adc4()->unk_c->vf08()) {
                     return;
                 }
-                if (func_02058114(data_0210bb94, 12) == 1) {
+                if (func_02058114(&data_0210bb94, 12) == 1) {
                     func_ov000_021341ec(func_ov000_02132a90(), 0);
                 } else {
                     func_ov001_02127b28();
                     PlayerManager::setLock(0);
                 }
-                if (func_02058114(data_0210bb94, 12)) {
-                    func_ov000_02139668()->fldObject_.m_flag &= ~4;
+                if (func_02058114(&data_0210bb94, 12)) {
+                    func_ov000_02139668()->stage_.m_fld.m_flag &= ~4;
                     func_020499a4(1);
-                } else if (func_02058114(data_0210bb94, 14)) {
+                } else if (func_02058114(&data_0210bb94, 14)) {
                     func_ov001_0212b948()->fieldData.pause_ = 0;
                     func_0204b694(1);
                 }
@@ -81,16 +81,16 @@ ARM void cmn::NonBattleActionManager::execute()
                 if (!func_0202adc4()->unk_c->vf08()) {
                     return;
                 }
-                if (func_02058114(data_0210bb94, 12) == 1) {
+                if (func_02058114(&data_0210bb94, 12) == 1) {
                     func_ov000_021341ec(func_ov000_02132a90(), 0);
                 } else {
                     func_ov001_02127b28();
                     PlayerManager::setLock(0);
                 }
-                if (func_02058114(data_0210bb94, 12)) {
-                    func_ov000_02139668()->fldObject_.m_flag &= ~4;
+                if (func_02058114(&data_0210bb94, 12)) {
+                    func_ov000_02139668()->stage_.m_fld.m_flag &= ~4;
                     func_020499a4(1);
-                } else if (func_02058114(data_0210bb94, 14)) {
+                } else if (func_02058114(&data_0210bb94, 14)) {
                     func_ov001_0212b948()->fieldData.pause_ = 0;
                     func_0204b694(1);
                 }
@@ -105,7 +105,7 @@ ARM void cmn::NonBattleActionManager::execute()
                     func_0208214c(data_0211c4f0, 0x10, 0);
                     func_02082144(data_0211c4f0, 0);
                     g_Global.setRanarutaFlag(false);
-                    if (func_02058114(data_0210bb94, 12) == 1) {
+                    if (func_02058114(&data_0210bb94, 12) == 1) {
                         func_ov000_021341ec(func_ov000_02132a90(), 0);
                         func_ov000_02132a90()->flagMapLink_ = 1;
                     } else {
@@ -117,10 +117,10 @@ ARM void cmn::NonBattleActionManager::execute()
                 if (!func_0202adc4()->unk_c->vf08()) {
                     return;
                 }
-                if (func_02058114(data_0210bb94, 12)) {
-                    func_ov000_02139668()->fldObject_.m_flag &= ~4;
+                if (func_02058114(&data_0210bb94, 12)) {
+                    func_ov000_02139668()->stage_.m_fld.m_flag &= ~4;
                     func_020499a4(1);
-                } else if (func_02058114(data_0210bb94, 14)) {
+                } else if (func_02058114(&data_0210bb94, 14)) {
                     func_ov001_0212b948()->fieldData.pause_ = 0;
                     func_0204b694(1);
                 }
@@ -132,7 +132,7 @@ ARM void cmn::NonBattleActionManager::execute()
                     func_ov000_02137f2c();
                     func_ov000_02138210();
                     func_02049b94();
-                    func_02047a28(func_ov000_02139668());
+                    func_ov000_02139668()->stage_.execAnime();
                     func_ov000_02132228()->defaultSELock_ = 0;
                     func_0208214c(data_0211c4f0, 0, 0x10);
                     waitTurn_ = 1;
@@ -143,7 +143,7 @@ ARM void cmn::NonBattleActionManager::execute()
                 data_020edc40 = 1;
                 func_ov000_02133eac(func_ov000_02132a90(), 4);
                 g_Global.setRanarutaFlag(false);
-                if (func_02058114(data_0210bb94, 12) == 1) {
+                if (func_02058114(&data_0210bb94, 12) == 1) {
                     func_ov000_021341ec(func_ov000_02132a90(), 0);
                     func_ov000_02133bfc(func_ov000_02132a90());
                 } else {
@@ -153,7 +153,7 @@ ARM void cmn::NonBattleActionManager::execute()
                 return;
         }
     } else {
-        if (func_02058114(data_0210bb94, 12) == 1) {
+        if (func_02058114(&data_0210bb94, 12) == 1) {
             func_ov000_021341ec(func_ov000_02132a90(), 1);
         } else {
             func_ov001_02127b28();
@@ -165,13 +165,13 @@ ARM void cmn::NonBattleActionManager::execute()
             case ACTION_RANARUTA:
                 SoundManager::playSe(0x23d, 0);
                 func_0202aec4(func_0202adc4(), 5);
-                if (func_02058114(data_0210bb94, 12)) {
+                if (func_02058114(&data_0210bb94, 12)) {
                     if (g_Stage.getTimeZone() == TIME_ZONE_DAYTIME || g_Stage.getTimeZone() == TIME_ZONE_EVENING) {
                         func_0202adc4()->unk_cc = 0;
                     } else {
                         func_0202adc4()->unk_cc = 1;
                     }
-                } else if (func_02058114(data_0210bb94, 14)) {
+                } else if (func_02058114(&data_0210bb94, 14)) {
                     if (g_Stage.getWorldTime() < 0x840) {
                         func_0202adc4()->unk_cc = 0;
                     } else {
@@ -202,10 +202,10 @@ ARM void cmn::NonBattleActionManager::execute()
 ARM void cmn::NonBattleActionManager::setAction(ACTION_EFFECT action)
 {
     waitTurn_ = 0;
-    if (func_02058114(data_0210bb94, 12)) {
-        func_ov000_02139668()->fldObject_.m_flag |= 4;
+    if (func_02058114(&data_0210bb94, 12)) {
+        func_ov000_02139668()->stage_.m_fld.m_flag |= 4;
         func_020499a4(0);
-    } else if (func_02058114(data_0210bb94, 14)) {
+    } else if (func_02058114(&data_0210bb94, 14)) {
         func_ov001_0212b948()->fieldData.pause_ = 1;
         func_0204b694(0);
     }

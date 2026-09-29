@@ -58,7 +58,7 @@ ARM void TownCamera::initialize()
     cameraLock_ = 0;
     remote_ = 0;
     saveFlag_ = 0;
-    func_0208718c(&distance_, distance);
+    distance_ = distance;
     camera_.m_pursue = 1;
     povLock_ = 0;
     counter_ = 0;
@@ -118,7 +118,7 @@ ARM void TownCamera::execute()
     }
     if (changeDistance_ == 1) {
         if (counter_ < frame_) {
-            func_0208718c(&distance_, camera_.unk_004.getDistance());
+            distance_ = camera_.unk_004.getDistance();
             distance_ += addDistance_;
             camera_.unk_004.setDistance(distance_);
         } else {
@@ -188,8 +188,8 @@ ARM void TownCamera::execute()
 
 ARM void TownCamera::draw()
 {
-    int a = func_ov000_02139668()->fldObject_.unk_24c;
-    int b = func_ov000_02139668()->fldObject_.unk_250;
+    int a = func_ov000_02139668()->stage_.m_fld.unk_24c;
+    int b = func_ov000_02139668()->stage_.m_fld.unk_250;
     if (a == 0 && b == 0) {
         camera_.applyCamera();
     } else {
@@ -289,7 +289,7 @@ ARM void TownCamera::rotateR()
 
 ARM void TownCamera::setLimitL(dss::Fix32 left)
 {
-    func_0208718c(&limitL, left);
+    limitL = left;
     if (limitL != dss::Fix32(0L)) {
         camera_.setRotXYZ(changeDefaultAngle_);
     }
@@ -297,7 +297,7 @@ ARM void TownCamera::setLimitL(dss::Fix32 left)
 
 ARM void TownCamera::setLimitR(dss::Fix32 right)
 {
-    func_0208718c(&limitR, right);
+    limitR = right;
     if (limitR != dss::Fix32(0L)) {
         camera_.setRotXYZ(changeDefaultAngle_);
     }
@@ -455,9 +455,9 @@ ARM void TownCamera::setChangeDistance(int frame, dss::Fix32 distance)
     }
     counter_ = 0;
     frame_ = frame;
-    func_0208718c(&endDistance_, distance);
+    endDistance_ = distance;
     changeDistance_ = 1;
-    func_0208718c(&addDistance_, (endDistance_ - distance_) / frame);
+    addDistance_ = (endDistance_ - distance_) / frame;
 }
 
 ARM void TownCamera::resetDistance(int frame)
@@ -468,9 +468,9 @@ ARM void TownCamera::resetDistance(int frame)
     }
     counter_ = 0;
     frame_ = frame;
-    func_0208718c(&endDistance_, ::distance);
+    endDistance_ = ::distance;
     changeDistance_ = 1;
-    func_0208718c(&addDistance_, (endDistance_ - distance_) / frame);
+    addDistance_ = (endDistance_ - distance_) / frame;
 }
 
 ARM bool TownCamera::isEndChangeDistance()

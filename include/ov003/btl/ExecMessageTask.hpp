@@ -18,7 +18,6 @@ namespace btl{
 }
 
 extern "C" void func_ov003_021293b0(status::CharacterStatus* actor);
-extern "C" void func_ov003_0212a398(status::UseActionParam* uap);
 extern "C" int  func_ov003_0212bf48(status::UseActionParam* uap);
 extern "C" void func_0208978c();
 extern "C" BattleMonsterDraw2* func_ov003_02121d04();

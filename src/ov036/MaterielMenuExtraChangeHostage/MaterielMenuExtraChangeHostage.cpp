@@ -173,7 +173,7 @@ THUMB void MaterielMenuExtraChangeHostage::memberChange()
     status::g_Party.add(hostageID_);
     status::g_Party.reorder(order[0], order[1], order[2], order[3]);
 
-    func_02030f60(cmn::GameManager::getSingleton());
+    cmn::GameManager::getSingleton()->resetParty();
 
     hostageStatus_ = HOSTAGE_END;
 

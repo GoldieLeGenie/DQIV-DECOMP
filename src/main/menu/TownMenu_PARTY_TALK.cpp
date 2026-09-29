@@ -1,4 +1,5 @@
 #include "main/menu/TownMenu_PARTY_TALK.hpp"
+#include "main/global/GlobalDQ4.hpp"
 #include "main/cmn/PartyTalk.hpp"
 #include "main/cmn/TalkSoundManager.hpp"
 #include "main/cmn/HengeNoTsueManager.hpp"
@@ -8,7 +9,6 @@
 #include "main/dss/Random.hpp"
 #include "ov000/town/TownStageManager.hpp"
 
-extern char data_0210bb94[];
 
 static inline cmn::PartyTalk::PARTY_TALK_MESSAGE* getTalkMessage()
 {
@@ -91,7 +91,7 @@ THUMB void TownMenu_PARTY_TALK::menuSetup()
         }
     }
 
-    if (func_02058114(data_0210bb94, 12) == 1 && func_ov000_0213a998(func_ov000_02139668()) == 1) {
+    if (func_02058114(&data_0210bb94, 12) == 1 && func_ov000_0213a998(func_ov000_02139668()) == 1) {
         int last = status::g_Party.getCount() - 1;
         if (status::g_Party.getPlayerStatus(last)->haveStatusInfo_.haveStatus_.playerIndex_ == 0x18) {
             list[count] = last;

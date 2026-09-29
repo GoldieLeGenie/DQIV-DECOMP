@@ -247,72 +247,72 @@ _ZN3btl15BattleActorExec7executeEv kind:function(thumb,size=0x28) addr:0x02125c4
 _ZN3btl15BattleActorExec5isEndEv kind:function(thumb,size=0x34) addr:0x02125c70
 _ZN3btl15BattleActorExec11isActionEndEv kind:function(thumb,size=0x28) addr:0x02125ca4
 _ZN3btl8selectAIEPN6status14UseActionParamE kind:function(thumb,size=0xac) addr:0x02125ccc
-func_ov003_02125d78 kind:function(thumb,size=0x2) addr:0x02125d78
-func_ov003_02125d7c kind:function(thumb,size=0x2) addr:0x02125d7c
-func_ov003_02125d80 kind:function(thumb,size=0x20) addr:0x02125d80
-func_ov003_02125da0 kind:function(thumb,size=0x2) addr:0x02125da0
-func_ov003_02125da4 kind:function(thumb,size=0x2) addr:0x02125da4
-func_ov003_02125da8 kind:function(thumb,size=0x20) addr:0x02125da8
-func_ov003_02125dc8 kind:function(thumb,size=0x2) addr:0x02125dc8
-func_ov003_02125dcc kind:function(thumb,size=0x2) addr:0x02125dcc
-func_ov003_02125dd0 kind:function(thumb,size=0x6c) addr:0x02125dd0
-func_ov003_02125e3c kind:function(thumb,size=0x2) addr:0x02125e3c
-func_ov003_02125e40 kind:function(thumb,size=0x2) addr:0x02125e40
-func_ov003_02125e44 kind:function(thumb,size=0x28) addr:0x02125e44
-func_ov003_02125e6c kind:function(thumb,size=0x24) addr:0x02125e6c
-func_ov003_02125e90 kind:function(thumb,size=0x2) addr:0x02125e90
-func_ov003_02125e94 kind:function(thumb,size=0x74) addr:0x02125e94
-func_ov003_02125f08 kind:function(thumb,size=0x38) addr:0x02125f08
-func_ov003_02125f40 kind:function(thumb,size=0x14) addr:0x02125f40
-func_ov003_02125f54 kind:function(thumb,size=0x10c) addr:0x02125f54
-func_ov003_02126060 kind:function(thumb,size=0x2) addr:0x02126060
-func_ov003_02126064 kind:function(thumb,size=0x2) addr:0x02126064
-func_ov003_02126068 kind:function(thumb,size=0xdc) addr:0x02126068
-func_ov003_02126144 kind:function(thumb,size=0x64) addr:0x02126144
-func_ov003_021261a8 kind:function(thumb,size=0xc) addr:0x021261a8
-func_ov003_021261b4 kind:function(thumb,size=0x158) addr:0x021261b4
-func_ov003_0212630c kind:function(thumb,size=0x2) addr:0x0212630c
-func_ov003_02126310 kind:function(thumb,size=0x64) addr:0x02126310
-func_ov003_02126374 kind:function(thumb,size=0x10) addr:0x02126374
-func_ov003_02126384 kind:function(thumb,size=0xe) addr:0x02126384
-func_ov003_02126394 kind:function(thumb,size=0x2) addr:0x02126394
-func_ov003_02126398 kind:function(thumb,size=0x2) addr:0x02126398
-func_ov003_0212639c kind:function(thumb,size=0xc) addr:0x0212639c
-func_ov003_021263a8 kind:function(thumb,size=0xc) addr:0x021263a8
-func_ov003_021263b4 kind:function(thumb,size=0x30) addr:0x021263b4
-func_ov003_021263e4 kind:function(thumb,size=0x8) addr:0x021263e4
-func_ov003_021263ec kind:function(thumb,size=0x2) addr:0x021263ec
-func_ov003_021263f0 kind:function(thumb,size=0x24) addr:0x021263f0
-func_ov003_02126414 kind:function(thumb,size=0x4c) addr:0x02126414
-func_ov003_02126460 kind:function(thumb,size=0x2) addr:0x02126460
-func_ov003_02126464 kind:function(thumb,size=0x1c) addr:0x02126464
-func_ov003_02126480 kind:function(thumb,size=0x10) addr:0x02126480
-func_ov003_02126490 kind:function(thumb,size=0x2) addr:0x02126490
-func_ov003_02126494 kind:function(thumb,size=0x2) addr:0x02126494
+_ZN3btl11EncountTask10initializeEv kind:function(thumb,size=0x2) addr:0x02125d78
+_ZN3btl11EncountTask9terminateEv kind:function(thumb,size=0x2) addr:0x02125d7c
+_ZN3btl11EncountTask7executeEv kind:function(thumb,size=0x20) addr:0x02125d80
+_ZN3btl15FirstAttackTask10initializeEv kind:function(thumb,size=0x2) addr:0x02125da0
+_ZN3btl15FirstAttackTask9terminateEv kind:function(thumb,size=0x2) addr:0x02125da4
+_ZN3btl15FirstAttackTask7executeEv kind:function(thumb,size=0x20) addr:0x02125da8
+_ZN3btl10StatusTask10initializeEv kind:function(thumb,size=0x2) addr:0x02125dc8
+_ZN3btl10StatusTask9terminateEv kind:function(thumb,size=0x2) addr:0x02125dcc
+_ZN3btl10StatusTask7executeEv kind:function(thumb,size=0x6c) addr:0x02125dd0
+_ZN3btl16FirstReorderTask10initializeEv kind:function(thumb,size=0x2) addr:0x02125e3c
+_ZN3btl16FirstReorderTask9terminateEv kind:function(thumb,size=0x2) addr:0x02125e40
+_ZN3btl16FirstReorderTask7executeEv kind:function(thumb,size=0x28) addr:0x02125e44
+_ZN3btl11CommandTask10initializeEv kind:function(thumb,size=0x24) addr:0x02125e6c
+_ZN3btl11CommandTask9terminateEv kind:function(thumb,size=0x2) addr:0x02125e90
+_ZN3btl11CommandTask7executeEv kind:function(thumb,size=0x74) addr:0x02125e94
+_ZN3btl9RoundTask10initializeEv kind:function(thumb,size=0x38) addr:0x02125f08
+_ZN3btl9RoundTask9terminateEv kind:function(thumb,size=0x14) addr:0x02125f40
+_ZN3btl9RoundTask7executeEv kind:function(thumb,size=0x10c) addr:0x02125f54
+_ZN3btl12RoundEndTask10initializeEv kind:function(thumb,size=0x2) addr:0x02126060
+_ZN3btl12RoundEndTask9terminateEv kind:function(thumb,size=0x2) addr:0x02126064
+_ZN3btl12RoundEndTask7executeEv kind:function(thumb,size=0xdc) addr:0x02126068
+_ZN3btl13BattleEndTask10initializeEv kind:function(thumb,size=0x64) addr:0x02126144
+_ZN3btl13BattleEndTask9terminateEv kind:function(thumb,size=0xc) addr:0x021261a8
+_ZN3btl13BattleEndTask7executeEv kind:function(thumb,size=0x158) addr:0x021261b4
+_ZN3btl8ExitTask10initializeEv kind:function(thumb,size=0x2) addr:0x0212630c
+_ZN3btl8ExitTask9terminateEv kind:function(thumb,size=0x64) addr:0x02126310
+_ZN3btl8ExitTask7executeEv kind:function(thumb,size=0x10) addr:0x02126374
+_ZN3btl12ExitWaitTask10initializeEv kind:function(thumb,size=0xe) addr:0x02126384
+_ZN3btl12ExitWaitTask9terminateEv kind:function(thumb,size=0x2) addr:0x02126394
+_ZN3btl12ExitWaitTask7executeEv kind:function(thumb,size=0x2) addr:0x02126398
+_ZN3btl16PartyReorderTask10initializeEv kind:function(thumb,size=0xc) addr:0x0212639c
+_ZN3btl16PartyReorderTask9terminateEv kind:function(thumb,size=0xc) addr:0x021263a8
+_ZN3btl16PartyReorderTask7executeEv kind:function(thumb,size=0x30) addr:0x021263b4
+_ZN3btl14DemolitionTask10initializeEv kind:function(thumb,size=0x8) addr:0x021263e4
+_ZN3btl14DemolitionTask9terminateEv kind:function(thumb,size=0x2) addr:0x021263ec
+_ZN3btl14DemolitionTask7executeEv kind:function(thumb,size=0x24) addr:0x021263f0
+_ZN3btl11CrusingTask10initializeEv kind:function(thumb,size=0x4c) addr:0x02126414
+_ZN3btl11CrusingTask9terminateEv kind:function(thumb,size=0x2) addr:0x02126460
+_ZN3btl11CrusingTask7executeEv kind:function(thumb,size=0x1c) addr:0x02126464
+_ZN3btl14CrusingEndTask10initializeEv kind:function(thumb,size=0x10) addr:0x02126480
+_ZN3btl14CrusingEndTask9terminateEv kind:function(thumb,size=0x2) addr:0x02126490
+_ZN3btl14CrusingEndTask7executeEv kind:function(thumb,size=0x2) addr:0x02126494
 _ZN3btl15TimeReverseTask10initializeEv kind:function(thumb,size=0x4c) addr:0x02126498
 _ZN3btl15TimeReverseTask9terminateEv kind:function(thumb,size=0x24) addr:0x021264e4
 _ZN3btl15TimeReverseTask7executeEv kind:function(thumb,size=0x1c) addr:0x02126508
-func_ov003_02126524 kind:function(thumb,size=0x2) addr:0x02126524
-func_ov003_02126528 kind:function(thumb,size=0x2c) addr:0x02126528
-func_ov003_02126554 kind:function(thumb,size=0x10) addr:0x02126554
-func_ov003_02126564 kind:function(thumb,size=0x2) addr:0x02126564
-func_ov003_02126568 kind:function(thumb,size=0x2) addr:0x02126568
-func_ov003_0212656c kind:function(thumb,size=0x38) addr:0x0212656c
-func_ov003_021265a4 kind:function(thumb,size=0x2) addr:0x021265a4
-func_ov003_021265a8 kind:function(thumb,size=0x2) addr:0x021265a8
-func_ov003_021265ac kind:function(thumb,size=0xa4) addr:0x021265ac
-func_ov003_02126650 kind:function(thumb,size=0x2) addr:0x02126650
-func_ov003_02126654 kind:function(thumb,size=0x2) addr:0x02126654
-func_ov003_02126658 kind:function(thumb,size=0x4c) addr:0x02126658
-func_ov003_021266a4 kind:function(thumb,size=0x2) addr:0x021266a4
-func_ov003_021266a8 kind:function(thumb,size=0x2) addr:0x021266a8
-func_ov003_021266ac kind:function(thumb,size=0xf4) addr:0x021266ac
-func_ov003_021267a0 kind:function(thumb,size=0x2) addr:0x021267a0
-func_ov003_021267a4 kind:function(thumb,size=0x2) addr:0x021267a4
-func_ov003_021267a8 kind:function(thumb,size=0x130) addr:0x021267a8
-func_ov003_021268d8 kind:function(thumb,size=0x2) addr:0x021268d8
-func_ov003_021268dc kind:function(thumb,size=0x2) addr:0x021268dc
-func_ov003_021268e0 kind:function(thumb,size=0x150) addr:0x021268e0
+_ZN3btl18TimeReverseEndTask10initializeEv kind:function(thumb,size=0x2) addr:0x02126524
+_ZN3btl18TimeReverseEndTask9terminateEv kind:function(thumb,size=0x2c) addr:0x02126528
+_ZN3btl18TimeReverseEndTask7executeEv kind:function(thumb,size=0x10) addr:0x02126554
+_ZN3btl10EscapeTask10initializeEv kind:function(thumb,size=0x2) addr:0x02126564
+_ZN3btl10EscapeTask9terminateEv kind:function(thumb,size=0x2) addr:0x02126568
+_ZN3btl10EscapeTask7executeEv kind:function(thumb,size=0x38) addr:0x0212656c
+_ZN3btl9EventTask10initializeEv kind:function(thumb,size=0x2) addr:0x021265a4
+_ZN3btl9EventTask9terminateEv kind:function(thumb,size=0x2) addr:0x021265a8
+_ZN3btl9EventTask7executeEv kind:function(thumb,size=0xa4) addr:0x021265ac
+_ZN3btl10EventTask210initializeEv kind:function(thumb,size=0x2) addr:0x02126650
+_ZN3btl10EventTask29terminateEv kind:function(thumb,size=0x2) addr:0x02126654
+_ZN3btl10EventTask27executeEv kind:function(thumb,size=0x4c) addr:0x02126658
+_ZN3btl14StadiumEndTask10initializeEv kind:function(thumb,size=0x2) addr:0x021266a4
+_ZN3btl14StadiumEndTask9terminateEv kind:function(thumb,size=0x2) addr:0x021266a8
+_ZN3btl14StadiumEndTask7executeEv kind:function(thumb,size=0xf4) addr:0x021266ac
+_ZN3btl15StadiumDrawTask10initializeEv kind:function(thumb,size=0x2) addr:0x021267a0
+_ZN3btl15StadiumDrawTask9terminateEv kind:function(thumb,size=0x2) addr:0x021267a4
+_ZN3btl15StadiumDrawTask7executeEv kind:function(thumb,size=0x130) addr:0x021267a8
+_ZN3btl17StadiumResultTask10initializeEv kind:function(thumb,size=0x2) addr:0x021268d8
+_ZN3btl17StadiumResultTask9terminateEv kind:function(thumb,size=0x2) addr:0x021268dc
+_ZN3btl17StadiumResultTask7executeEv kind:function(thumb,size=0x150) addr:0x021268e0
 _ZN3btl12BattleActor2C1Ev kind:function(thumb,size=0x58) addr:0x02126a30
 _ZN3btl12BattleActor2D1Ev kind:function(thumb,size=0x34) addr:0x02126a88
 _ZN3btl12BattleActor25setupEPN6status15CharacterStatusE kind:function(thumb,size=0x68) addr:0x02126abc
@@ -396,18 +396,18 @@ _ZN3btl20BattleActorAnimation21setMonsterChangeSetupEPN6status15CharacterStatusE
 _ZN3btl20BattleActorAnimation23isMonsterChangeSetupEndEv kind:function(thumb,size=0x20) addr:0x0212a064
 _ZN3btl20BattleActorAnimation16setMonsterChangeEPN6status15CharacterStatusE kind:function(thumb,size=0xf0) addr:0x0212a084
 _ZN3btl20BattleActorAnimation20setMonstersDisappearEPN6status14UseActionParamE kind:function(thumb,size=0x64) addr:0x0212a174
-func_ov003_0212a1d8 kind:function(thumb,size=0xc) addr:0x0212a1d8
-func_ov003_0212a1e4 kind:function(thumb,size=0x2) addr:0x0212a1e4
-func_ov003_0212a1e8 kind:function(thumb,size=0x3c) addr:0x0212a1e8
-func_ov003_0212a224 kind:function(thumb,size=0xa0) addr:0x0212a224
-func_ov003_0212a2c4 kind:function(thumb,size=0x5c) addr:0x0212a2c4
-func_ov003_0212a320 kind:function(thumb,size=0x24) addr:0x0212a320
-func_ov003_0212a344 kind:function(thumb,size=0x54) addr:0x0212a344
-func_ov003_0212a398 kind:function(thumb,size=0x2a) addr:0x0212a398
-func_ov003_0212a3c4 kind:function(thumb,size=0x34) addr:0x0212a3c4
-func_ov003_0212a3f8 kind:function(thumb,size=0xb8) addr:0x0212a3f8
-func_ov003_0212a4b0 kind:function(thumb,size=0xd0) addr:0x0212a4b0
-func_ov003_0212a580 kind:function(thumb,size=0x2a) addr:0x0212a580
+_ZN3btl13BattleSystem2C1Ev kind:function(thumb,size=0xc) addr:0x0212a1d8
+_ZN3btl13BattleSystem2D1Ev kind:function(thumb,size=0x2) addr:0x0212a1e4
+_ZN3btl13BattleSystem212getSingletonEv kind:function(thumb,size=0x3c) addr:0x0212a1e8
+_ZN3btl13BattleSystem210initializeEv kind:function(thumb,size=0xa0) addr:0x0212a224
+_ZN3btl13BattleSystem29terminateEv kind:function(thumb,size=0x5c) addr:0x0212a2c4
+_ZN3btl13BattleSystem27executeEv kind:function(thumb,size=0x24) addr:0x0212a320
+_ZN3btl13BattleSystem24drawEv kind:function(thumb,size=0x54) addr:0x0212a344
+_ZN3btl16BattleActorMacro12setExecMacroERN6status14UseActionParamE kind:function(thumb,size=0x2a) addr:0x0212a398
+_ZN3btl16BattleActorMacro14setResultMacroERN6status14UseActionParamEi kind:function(thumb,size=0x34) addr:0x0212a3c4
+_ZN3btl16BattleActorMacro13setMacroActorEPN6status15CharacterStatusEi kind:function(thumb,size=0xb8) addr:0x0212a3f8
+_ZN3btl16BattleActorMacro14setMacroTargetEPN6status15CharacterStatusEii kind:function(thumb,size=0xd0) addr:0x0212a4b0
+_ZN3btl16BattleActorMacro11setAddMacroERN6status14UseActionParamEi kind:function(thumb,size=0x2a) addr:0x0212a580
 _ZN3btl19BattleEffectManagerC1Ev kind:function(thumb,size=0x6c) addr:0x0212a5ac
 _ZN3btl19BattleEffectManagerD1Ev kind:function(thumb,size=0x60) addr:0x0212a618
 _ZN3btl19BattleEffectManager12getSingletonEv kind:function(thumb,size=0x54) addr:0x0212a678
@@ -551,15 +551,15 @@ _ZN3btl22DefenceAutoActionParam11setupTargetEv kind:function(thumb,size=0x50) ad
 _ZN3btl22DefenceAutoActionParam15calcEffectValueEv kind:function(thumb,size=0x4c) addr:0x0212db50
 _ZN3btl22DefenceAutoActionParam24calcEffectValueExceptionEv kind:function(thumb,size=0x120) addr:0x0212db9c
 _ZN3btl22DefenceAutoActionParam22calcCorrectEffectVelueEv kind:function(thumb,size=0x2ec) addr:0x0212dcbc
-func_ov003_0212dfa8 kind:function(thumb,size=0x34) addr:0x0212dfa8
-func_ov003_0212dfdc kind:function(thumb,size=0xc) addr:0x0212dfdc
-func_ov003_0212dfe8 kind:function(thumb,size=0x3c) addr:0x0212dfe8
-func_ov003_0212e024 kind:function(thumb,size=0x130) addr:0x0212e024
-func_ov003_0212e154 kind:function(thumb,size=0x1a) addr:0x0212e154
-func_ov003_0212e170 kind:function(thumb,size=0x40) addr:0x0212e170
-func_ov003_0212e1b0 kind:function(thumb,size=0x9c) addr:0x0212e1b0
-func_ov003_0212e24c kind:function(thumb,size=0x16) addr:0x0212e24c
-func_ov003_0212e264 kind:function(thumb,size=0x10) addr:0x0212e264
+_ZN11BattleStageC1Ev kind:function(thumb,size=0x34) addr:0x0212dfa8
+_ZN11BattleStageD1Ev kind:function(thumb,size=0xc) addr:0x0212dfdc
+_ZN11BattleStage12getSingletonEv kind:function(thumb,size=0x3c) addr:0x0212dfe8
+_ZN11BattleStage10initializeEv kind:function(thumb,size=0x130) addr:0x0212e024
+_ZN11BattleStage9terminateEv kind:function(thumb,size=0x1a) addr:0x0212e154
+_ZN11BattleStage7executeEv kind:function(thumb,size=0x40) addr:0x0212e170
+_ZN11BattleStage8execFadeEv kind:function(thumb,size=0x9c) addr:0x0212e1b0
+_ZN11BattleStage6isFadeEv kind:function(thumb,size=0x16) addr:0x0212e24c
+_ZN11BattleStage10setRGBRateEN3dss5Fix32ES1_S1_ kind:function(thumb,size=0x10) addr:0x0212e264
 _ZN6status12MonsterPartyC2Ev kind:function(thumb,size=0x30) addr:0x0212e274
 _ZN6status12MonsterPartyD2Ev kind:function(thumb,size=0x1c) addr:0x0212e2a4
 _ZN6status12MonsterParty3addEiii kind:function(thumb,size=0x64) addr:0x0212e2c0
@@ -961,9 +961,9 @@ _ZTVN3btl15AutoActionParamE kind:data(byte[28]) addr:0x0213be60
 @2564 kind:data(byte[51]) addr:0x0213c534 local
 @2610 kind:data(byte[60]) addr:0x0213c568 local
 @2706 kind:data(byte[58]) addr:0x0213c5a4 local
-data_ov003_0213c5e0 kind:data(any) addr:0x0213c5e0
-data_ov003_0213c5e4 kind:data(any) addr:0x0213c5e4
-data_ov003_0213c5f0 kind:data(any) addr:0x0213c5f0
+btlMapPath kind:data(word) addr:0x0213c5e0 local
+@897 kind:data(byte[12]) addr:0x0213c5e4 local
+@903 kind:data(byte[9]) addr:0x0213c5f0 local
 g_monsterDrawPos kind:data(byte[12]) addr:0x0213c5fc
 _ZN6status12MonsterParty10sortIndex_E kind:data(any) addr:0x0213c608
 specialItem kind:data(any) addr:0x0213c618
@@ -1033,23 +1033,24 @@ targetCount_ kind:bss(size=0x4) addr:0x021492c0
 @1647 kind:bss(size=0xc) addr:0x021492d0 local
 partTaskManager kind:bss(size=0x74) addr:0x021492dc
 autoAction kind:bss(size=0x902c) addr:0x02149350
-data_ov003_0215237c kind:bss(size=0x4) addr:0x0215237c
+endTaskIndex kind:bss(size=0x4) addr:0x0215237c local
+levelupBgmCount kind:bss(size=0x4) addr:0x02152380 local
 _ZGVsingleton$1695 kind:bss(size=0x4) addr:0x02152384 local
 @1698 kind:bss(size=0xc) addr:0x02152388 local
 singleton$1695 kind:bss(size=0x66bc) addr:0x02152394 local
 _ZN3btl17BattleActorEffect5wait_E kind:bss addr:0x02158a50
 monsterChangeCount kind:bss addr:0x02158a54
-data_ov003_02158a58 kind:bss addr:0x02158a58
-data_ov003_02158a5c kind:bss addr:0x02158a5c
-data_ov003_02158a68 kind:bss addr:0x02158a68
+_ZGVm_singleton$2085 kind:bss(size=0x4) addr:0x02158a58 local
+@2088 kind:bss(size=0xc) addr:0x02158a5c local
+m_singleton$2085 kind:bss(size=0x608) addr:0x02158a68 local
 _ZGVm_singleton$1500 kind:bss(size=0x4) addr:0x02159070 local
 @1503 kind:bss(size=0xc) addr:0x02159074 local
 m_singleton$1500 kind:bss(size=0xc9f4) addr:0x02159080 local
 _ZN3btl16BattleEffectUnit9resource_E kind:bss(size=0x4) addr:0x02165a74
 _ZN3btl16BattleEffectUnit8storage_E kind:bss(size=0x4) addr:0x02165a78
-data_ov003_02165a7c kind:bss addr:0x02165a7c
-data_ov003_02165a80 kind:bss addr:0x02165a80
-data_ov003_02165a8c kind:bss addr:0x02165a8c
+_ZGVm_singleton$920 kind:bss(size=0x4) addr:0x02165a7c local
+@923 kind:bss(size=0xc) addr:0x02165a80 local
+m_singleton$920 kind:bss(size=0x8f4) addr:0x02165a8c local
 @882 kind:bss addr:0x02166380 local
 _ZN6status12MonsterParty10sortCount_E kind:bss addr:0x0216638c
 g_monster kind:bss addr:0x0216639c

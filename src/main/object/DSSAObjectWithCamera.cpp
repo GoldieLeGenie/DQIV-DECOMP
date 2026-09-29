@@ -57,8 +57,8 @@ ARM DSSAObjectWithCamera::DSSAObjectWithCamera()
 
 ARM void DSSAObjectWithCamera::draw()
 {
-    dss::Fix32Vector3 position = *func_02083648(this);
-    dss::Fix32Vector3 scale = *func_02083650(this);
+    dss::Fix32Vector3 position = *getPosition();
+    dss::Fix32Vector3 scale = *getScale();
     if (camera_) {
         if (type_ == Far) {
             execFar();
@@ -93,7 +93,7 @@ ARM void DSSAObjectWithCamera::execNormal2()
 {
     static const dss::Fix32 rate(0xf33);
     dss::Fix32Vector3 cameraPosition = camera_->getPosition();
-    dss::Fix32Vector3 position = *func_02083648(this);
+    dss::Fix32Vector3 position = *getPosition();
     dss::Fix32Vector3 distance = func_02088988(cameraPosition, position_);
     dss::Fix32Vector3 move = distance;
     func_02089168(&move);
@@ -105,7 +105,7 @@ ARM void DSSAObjectWithCamera::execNormal2()
 ARM void DSSAObjectWithCamera::execNormal()
 {
     dss::Fix32Vector3 cameraPosition = camera_->getPosition();
-    dss::Fix32Vector3 position = *func_02083648(this);
+    dss::Fix32Vector3 position = *getPosition();
     dss::Fix32Vector3 distance = func_02088988(cameraPosition, position_);
     dss::Fix32Vector3 unk1;
     dss::Fix32Vector3 unk2;
@@ -130,7 +130,7 @@ ARM void DSSAObjectWithCamera::execFollow()
 ARM void DSSAObjectWithCamera::execNear()
 {
     dss::Fix32Vector3 cameraPosition = camera_->getPosition();
-    dss::Fix32Vector3 position = *func_02083648(this);
+    dss::Fix32Vector3 position = *getPosition();
     dss::Fix32Vector3 distance = func_02088988(cameraPosition, position_);
     dss::Fix32Vector3 unk1;
     dss::Fix32Vector3 unk2;
@@ -141,7 +141,7 @@ ARM void DSSAObjectWithCamera::execNear()
 ARM void DSSAObjectWithCamera::execNear2()
 {
     dss::Fix32Vector3 cameraPosition = camera_->getPosition();
-    dss::Fix32Vector3 position = *func_02083648(this);
+    dss::Fix32Vector3 position = *getPosition();
     dss::Fix32Vector3 distance = func_02088988(cameraPosition, position_);
     dss::Fix32Vector3 unk1;
     dss::Fix32Vector3 unk2;
@@ -152,7 +152,7 @@ ARM void DSSAObjectWithCamera::execNear2()
 ARM void DSSAObjectWithCamera::execFar()
 {
     dss::Fix32Vector3 cameraPosition = camera_->getPosition();
-    dss::Fix32Vector3 position = *func_02083648(this);
+    dss::Fix32Vector3 position = *getPosition();
     dss::Fix32Vector3 distance = func_02088988(cameraPosition, position_);
     dss::Fix32Vector3 unk1;
     dss::Fix32Vector3 unk2;

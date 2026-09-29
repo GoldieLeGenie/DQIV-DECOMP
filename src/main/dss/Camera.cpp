@@ -11,7 +11,7 @@ ARM dss::Camera::Camera()
     m_scaleW.value = 0x100;
     m_fov2 = 0xa;
     m_distance = 0x10L;
-    func_0208718c(&m_distanceSq, m_distance * m_distance);
+    m_distanceSq = m_distance * m_distance;
 }
 
 ARM void dss::Camera::setup()
@@ -21,7 +21,7 @@ ARM void dss::Camera::setup()
     m_angle.vy = data_020c4158[2];
     m_angle.vz = data_020c4158[1];
     m_distance = 0x10L;
-    func_0208718c(&m_distanceSq, m_distance * m_distance);
+    m_distanceSq = m_distance * m_distance;
     func_0208888c(&m_up, 0, 1, 0);
 }
 
@@ -101,8 +101,8 @@ ARM dss::Vector3short& dss::Camera::getAngle()
 
 ARM void dss::Camera::setDistance(const Fix32& distance)
 {
-    func_0208718c(&m_distance, distance);
-    func_0208718c(&m_distanceSq, m_distance * m_distance);
+    m_distance = distance;
+    m_distanceSq = m_distance * m_distance;
 }
 
 ARM dss::Fix32& dss::Camera::getDistance()
@@ -135,7 +135,7 @@ ARM void dss::Camera::setFOV2(int fovy)
 
 ARM void dss::Camera::setScaleW(Fix32 scaleW)
 {
-    func_0208718c(&m_scaleW, scaleW);
+    m_scaleW = scaleW;
 }
 
 ARM void dss::Camera::setNear(int value)

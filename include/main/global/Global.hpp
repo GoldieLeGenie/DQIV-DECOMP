@@ -23,9 +23,10 @@ struct Global {
     int fightStadiumFlag_;                      
     int betOnIndex_;                            
     int betCoin_;                               
-    int betMonsterID_;                          
-    int betMonsterSymbol_;                      
-    short diameter_;                            
+    short betMonsterID_;                        // 0x34
+    short betMonsterSymbol_;                    // 0x36
+    short diameter_;                            // 0x38
+    int unk_3C;                                 // 0x3C
     int doubleUpFlag_;                          
     int prevPartTown_;                          
     dss::Fix32Vector3 fightingarenaPosition_;     
@@ -33,7 +34,8 @@ struct Global {
     char fightingarenaMapName_[32];             
     char prevMapName_[32];                        
     char nextMapName_[32];   
-    char battleMapName[8];
+    char battleMapName[32];
+    unsigned char fightStadiumResult_;          // 0xD8
 
     Global();
     ~Global();

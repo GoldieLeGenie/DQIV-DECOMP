@@ -353,7 +353,7 @@ from:0x0216ba12 kind:thumb_call to:0x0200a6c8 module:main
 from:0x0216ba28 kind:thumb_call to:0x0200ba8c module:main
 from:0x0216ba30 kind:load to:0x020d08e0 module:main
 from:0x0216ba34 kind:load to:0x02180e28 module:overlay(16)
-from:0x0216ba38 kind:load to:0x020c774c module:main
+from:0x0216ba38 kind:load to:0x020c768c add:0xc0 module:main
 from:0x0216ba3c kind:load to:0x020c768c module:main
 from:0x0216ba44 kind:load to:0x021858b0 module:overlay(16)
 from:0x0216ba62 kind:thumb_call_arm to:0x02080d48 module:main

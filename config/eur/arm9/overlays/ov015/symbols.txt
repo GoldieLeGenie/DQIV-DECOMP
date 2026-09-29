@@ -532,7 +532,7 @@ data_ov015_021796ac kind:bss addr:0x021796ac
 data_ov015_021796b4 kind:bss addr:0x021796b4
 data_ov015_0217973c kind:bss addr:0x0217973c
 data_ov015_02179758 kind:bss addr:0x02179758
-data_ov015_02179780 kind:bss addr:0x02179780
+gBattleMenuSub_HISTORY kind:bss addr:0x02179780
 data_ov015_021797b0 kind:bss addr:0x021797b0
 data_ov015_021797bc kind:bss addr:0x021797bc
 data_ov015_02179830 kind:bss addr:0x02179830

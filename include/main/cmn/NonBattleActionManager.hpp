@@ -1,5 +1,6 @@
 #pragma once
 #include "globaldefs.h"
+#include "main/global/GlobalDQ4.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/global/Global.hpp"
 #include "ov000/town/TownCharacterManager.hpp"
@@ -33,7 +34,6 @@ namespace cmn
 extern "C" void func_020499a4(int);
 extern "C" void func_0204b694(int);
 extern "C" int func_02058114(void* global, int partId);
-extern char data_0210bb94[];
 
 struct UnkEffect_0202adc4 {
     virtual void vf00();
@@ -58,7 +58,6 @@ extern "C" {
     void func_02082144(void* obj, int a);
     void func_02030278(void* obj, int a);
     void func_02049b94(void);
-    void func_02047a28(TownStageManager* self);
     void func_ov000_0213b5a0(void* obj);
     void func_ov000_02138210(void);
     void func_ov000_02133eac(TownPlayerManager* self, int a);

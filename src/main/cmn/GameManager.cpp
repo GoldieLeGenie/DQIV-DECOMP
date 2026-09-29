@@ -30,4 +30,7 @@ THUMB void cmn::GameManager::execute()
   return;
 }
 
-
+THUMB void cmn::GameManager::resetParty()
+{
+    playerManager_->resetParty();
+}

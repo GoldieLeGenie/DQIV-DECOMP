@@ -272,7 +272,7 @@ THUMB int cmd_character_action_pursue(int* param)
         c->movePos_[1] = move.pos_[1];
         c->movePos_[2] = move.pos_[2];
         c->movePos_[3] = move.pos_[3];
-        func_0208718c(&c->moveSpeed_, move.speed_);
+        c->moveSpeed_ = move.speed_;
         c->unk_c4 = move.unk_34;
         c->unk_c8 = move.unk_38;
     }
@@ -300,7 +300,7 @@ THUMB int cmd_character_move_roam(int* param)
     c->movePos_[1] = move.pos_[1];
     c->movePos_[2] = move.pos_[2];
     c->movePos_[3] = move.pos_[3];
-    func_0208718c(&c->moveSpeed_, move.speed_);
+    c->moveSpeed_ = move.speed_;
     c->unk_c4 = move.unk_34;
     c->unk_c8 = move.unk_38;
     return 1;

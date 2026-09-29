@@ -533,7 +533,7 @@ THUMB void btl::BattleActorAnimation::setMosyasChange(status::CharacterStatus* a
 
     int ctrlId = actor->haveStatusInfo_.drawCtrlId_;
     int group = actor->characterGroup_;
-    dss::Fix32Vector3 pos = *func_02083648((Position*)&func_ov003_02121d04()->monster_[ctrlId]);
+    dss::Fix32Vector3 pos = *((Position*)&func_ov003_02121d04()->monster_[ctrlId])->getPosition();
 
     func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
 
@@ -551,7 +551,7 @@ THUMB void btl::BattleActorAnimation::setMosyasReverse(status::CharacterStatus* 
     if (actor->haveStatusInfo_.isMosyasRelease()) {
         int ctrlId = actor->haveStatusInfo_.drawCtrlId_;
         int group = actor->characterGroup_;
-        dss::Fix32Vector3 pos = *func_02083648((Position*)&func_ov003_02121d04()->monster_[ctrlId]);
+        dss::Fix32Vector3 pos = *((Position*)&func_ov003_02121d04()->monster_[ctrlId])->getPosition();
 
         func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
 
@@ -643,7 +643,7 @@ THUMB void btl::BattleActorAnimation::gattaiSlime(status::CharacterStatus* actor
 
     int ctrlId = actor->haveStatusInfo_.drawCtrlId_;
     int group = actor->characterGroup_;
-    dss::Fix32Vector3 pos = *func_02083648((Position*)&func_ov003_02121d04()->monster_[ctrlId]);
+    dss::Fix32Vector3 pos = *((Position*)&func_ov003_02121d04()->monster_[ctrlId])->getPosition();
 
     func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
 
@@ -703,7 +703,7 @@ THUMB void btl::BattleActorAnimation::setMonsterChange(status::CharacterStatus* 
     int a = mgr->monster_[ctrlId].screenPosition_;
     int b = func_ov003_02121d04()->monster_[ctrlId].screenWidth_;
     int group = actor->characterGroup_;
-    dss::Fix32Vector3 pos = *func_02083648((Position*)&func_ov003_02121d04()->monster_[ctrlId]);
+    dss::Fix32Vector3 pos = *((Position*)&func_ov003_02121d04()->monster_[ctrlId])->getPosition();
 
     func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
 

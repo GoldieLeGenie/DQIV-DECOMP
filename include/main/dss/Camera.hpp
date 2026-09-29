@@ -121,6 +121,6 @@ namespace dss {
             sub->setScaleW(scaleW);
             (sub + 1)->setScaleW(scaleW);
         }
-        void setOffset(Fix32 offset) { func_0208718c(&m_offset, offset); }
+        void setOffset(Fix32 offset) { m_offset = offset; }
     };
 }
