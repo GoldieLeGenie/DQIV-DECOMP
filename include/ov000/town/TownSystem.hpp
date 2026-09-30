@@ -11,4 +11,5 @@ struct TownSystem {
     int defaultSELock_;                                                             // 0x60C
     int scriptLock_;                                                                // 0x610
     int trigger_;                                                                   // 0x614
+    int unk_618;                                                                    // 0x618
 };

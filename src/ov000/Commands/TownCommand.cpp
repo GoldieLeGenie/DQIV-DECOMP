@@ -6,6 +6,7 @@
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/global/Global.hpp"
 #include "main/profile/Profile.hpp"
+#include "main/status/ShopList.hpp"
 
 THUMB int cmd_debug_print(int* param)
 {
@@ -119,7 +120,7 @@ THUMB int cmd_mini_game(int* param)
         func_ov000_021341ec(func_ov000_02132a90(), 1);
         g_cmnPartyInfo.prevLocation_ = 1;
         g_Global.setMinigame(param[0]);
-        func_ov016_02178378(data_ov016_02186a14, param[1]);
+        data_ov016_02186a14.setSlotType(param[1]);
         g_Global.startCasino();
     } else {
         int index = getPlacementCtrlId();
@@ -191,21 +192,21 @@ THUMB int cmd_check_hero_level(int* param)
 
 THUMB int cmd_reset_sidejob_pay(int* param)
 {
-    darts[6] = 0;
+    status::g_Shop.pay_ = 0;
     return 1;
 }
 
 THUMB int cmd_get_sidejob_pay(int* param)
 {
-    status::g_Party.addGold(darts[6]);
-    darts[6] = 0;
+    status::g_Party.addGold(status::g_Shop.pay_);
+    status::g_Shop.pay_ = 0;
     return 1;
 }
 
 THUMB int cmd_check_sidejob_pay(int* param)
 {
     if (param[0] == 0) {
-        if (darts[6] == 0) {
+        if (status::g_Shop.pay_ == 0) {
             if (param[1] == 0) {
                 return 1;
             }
@@ -216,7 +217,7 @@ THUMB int cmd_check_sidejob_pay(int* param)
         }
         return 0;
     }
-    if (darts[6] >= 100) {
+    if (status::g_Shop.pay_ >= 100) {
         if (param[1] == 0) {
             return 1;
         }

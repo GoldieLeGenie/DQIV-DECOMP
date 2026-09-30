@@ -2,6 +2,7 @@
 #include "ov003/btl/BattleRoot.hpp"
 #include "ov003/btl/BattleActorManager2.hpp"
 #include "ov003/btl/BattleActorExec.hpp"
+#include "ov003/btl/BattleMonsterMask.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
 #include "ov003/status/MonsterStatus.hpp"
 #include "ov015/btl/BattleMenuPlayerControl.hpp"
@@ -122,8 +123,7 @@ THUMB void btl::BattleRoot::setupBattle()
         func_020882d4(BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_, 0, sizeof(BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_));
         BattleMenuPlayerControl::getSingleton()->allClear();
         BattleMenuPlayerControl::getSingleton()->activeChara_ = -1;
-        func_ov003_02121298();
-        func_ov003_02121394();
+        BattleMonsterMask::getSingleton()->setup();
     }
 }
 

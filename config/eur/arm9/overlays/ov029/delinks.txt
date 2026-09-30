@@ -3,3 +3,13 @@
     .data       start:0x021899a0 end:0x021899e0 kind:data align:32
     .bss        start:0x021899e0 end:0x021899e0 kind:bss align:32
 
+
+src/ov029/MaterielMenu_COINSALEROOM/MaterielMenu_COINSALEROOM_ROOT.cpp:
+    complete
+    .text start:0x02189360 end:0x02189750
+    .data start:0x021899a0 end:0x021899bc
+
+src/ov029/MaterielMenu_COINSALEROOM/MaterielMenu_COINSALEROOM_BUY.cpp:
+    complete
+    .text start:0x02189750 end:0x02189980
+    .data start:0x021899bc end:0x021899d8

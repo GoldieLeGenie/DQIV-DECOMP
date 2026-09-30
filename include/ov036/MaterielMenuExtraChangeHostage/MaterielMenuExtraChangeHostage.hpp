@@ -10,7 +10,7 @@
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "ov000/Commands/TownCommand.hpp"
 
-struct MaterielMenuWindowManager;
+#include "main/menu/MaterielMenuWindowManager.hpp"
 
 struct MaterielMenuExtraChangeHostage : menu::MenuBase
 {                      
@@ -37,15 +37,10 @@ struct MaterielMenuExtraChangeHostage : menu::MenuBase
 };
 
 extern "C" {
-    MaterielMenuWindowManager* func_ov016_0216aca4(void);   
 
-    void func_02023504(void* cursor, int a, int b, int count);
-    int  func_02023274(void* list, void* cursor);                /* poll → 0/2/3 */
     void func_020499a4(int);
-    void func_ov016_0216b020(void);
-    void func_ov016_0216b020(void);     /* closeMaterielWindow */
     void func_ov016_0216fdb8(void);       
-    void func_02051968(menu::MenuItem*);        
     void func_ov016_02177350(menu::MenuItem*, int active, int count);
-    void func_02051900(menu::MenuItem*, int, int);   
 }
+
+extern MaterielMenuExtraChangeHostage data_ov016_02186020;  /* gMaterielMenuExtra_ChangeHostage */

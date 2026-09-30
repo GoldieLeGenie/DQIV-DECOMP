@@ -82,20 +82,20 @@ _dadd kind:function(arm,size=0x318) addr:0x020044a8
 func_020047c0 kind:function(arm,size=0x8c) addr:0x020047c0
 _dmul kind:function(arm,size=0x364) addr:0x0200484c
 func_02004bc8 kind:function(arm,size=0x3b4) addr:0x02004bc8
-func_02004f7c kind:function(arm,size=0x21c) addr:0x02004f7c
+_fadd kind:function(arm,size=0x21c) addr:0x02004f7c
 func_02005198 kind:function(arm,size=0x8) addr:0x02005198
-func_020051a0 kind:function(arm,size=0x98) addr:0x020051a0
+_dgr kind:function(arm,size=0x98) addr:0x020051a0
 func_02005238 kind:function(arm,size=0x9c) addr:0x02005238
 _deq kind:function(arm,size=0x8c) addr:0x020052d4
 func_02005360 kind:function(arm,size=0x5c) addr:0x02005360
 func_020053bc kind:function(arm,size=0x5c) addr:0x020053bc
-func_02005418 kind:function(arm,size=0x5c) addr:0x02005418
-func_02005480 kind:function(arm,size=0x3b8) addr:0x02005480
-func_02005838 kind:function(arm,size=0x84) addr:0x02005838
+_fls kind:function(arm,size=0x5c) addr:0x02005418
+_fdiv kind:function(arm,size=0x3b8) addr:0x02005480
+_f2d kind:function(arm,size=0x84) addr:0x02005838
 func_020058bc kind:function(arm,size=0x34) addr:0x020058bc
 func_020058f0 kind:function(arm,size=0x40) addr:0x020058f0
 func_02005930 kind:function(arm,size=0x48) addr:0x02005930
-func_02005978 kind:function(arm,size=0x48) addr:0x02005978
+_ffltu kind:function(arm,size=0x48) addr:0x02005978
 func_020059c0 kind:function(arm,size=0x1e0) addr:0x020059c0
 func_02005bac kind:function(arm,size=0x278) addr:0x02005bac
 func_02005e24 kind:function(arm,size=0x10) addr:0x02005e24
@@ -103,7 +103,7 @@ func_02005e34 kind:function(arm,size=0x1b0) addr:0x02005e34
 func_02005fe4 kind:function(arm,size=0xc) addr:0x02005fe4
 func_02005ff0 kind:function(arm,size=0x3c) addr:0x02005ff0
 _s32_div_f kind:function(arm,size=0x20c) addr:0x0200602c
-func_02006238 kind:function(arm,size=0x1e4) addr:0x02006238
+_u32_div_f kind:function(arm,size=0x1e4) addr:0x02006238
 .L_02006240 kind:label(arm) addr:0x02006240
 func_0200641c kind:function(arm,size=0x4) addr:0x0200641c
 sys_WriteChar kind:function(arm,size=0x14) addr:0x02006420 local
@@ -2565,24 +2565,24 @@ func_0203b708 kind:function(thumb,size=0x48) addr:0x0203b708
 func_0203b750 kind:function(thumb,size=0x48) addr:0x0203b750
 func_0203b798 kind:function(thumb,size=0x20) addr:0x0203b798
 func_0203b7b8 kind:function(thumb,size=0xec) addr:0x0203b7b8
-func_0203b8a4 kind:function(thumb,size=0x34) addr:0x0203b8a4
-func_0203b8d8 kind:function(thumb,size=0xc) addr:0x0203b8d8
-func_0203b8e4 kind:function(thumb,size=0xa4) addr:0x0203b8e4
-func_0203b988 kind:function(thumb,size=0x14) addr:0x0203b988
-func_0203b99c kind:function(thumb,size=0x270) addr:0x0203b99c
-func_0203bc0c kind:function(thumb,size=0x904) addr:0x0203bc0c
-func_0203c510 kind:function(thumb,size=0x5c) addr:0x0203c510
-func_0203c56c kind:function(thumb,size=0xa) addr:0x0203c56c
-func_0203c578 kind:function(thumb,size=0xc0) addr:0x0203c578
-func_0203c638 kind:function(thumb,size=0x24) addr:0x0203c638
-func_0203c65c kind:function(thumb,size=0x2c) addr:0x0203c65c
-func_0203c688 kind:function(thumb,size=0x34) addr:0x0203c688
-func_0203c6bc kind:function(thumb,size=0x48) addr:0x0203c6bc
-func_0203c704 kind:function(thumb,size=0x4c) addr:0x0203c704
-func_0203c750 kind:function(thumb,size=0x4c) addr:0x0203c750
-func_0203c79c kind:function(thumb,size=0x58) addr:0x0203c79c
-func_0203c7f4 kind:function(thumb,size=0x60) addr:0x0203c7f4
-func_0203c854 kind:function(thumb,size=0x90) addr:0x0203c854
+_ZN17MaterielMenu_SAVE9menuSetupEv kind:function(thumb,size=0x34) addr:0x0203b8a4
+_ZN17MaterielMenu_SAVE11menuExecuteEv kind:function(thumb,size=0xc) addr:0x0203b8d8
+_ZN17MaterielMenu_SAVE8menuDrawEv kind:function(thumb,size=0xa4) addr:0x0203b8e4
+_ZN17MaterielMenu_SAVE10menuUpdateEv kind:function(thumb,size=0x14) addr:0x0203b988
+_ZN17MaterielMenu_SAVE13messageUpdateEv kind:function(thumb,size=0x270) addr:0x0203b99c
+_ZN17MaterielMenu_SAVE13commandUpdateEv kind:function(thumb,size=0x904) addr:0x0203bc0c
+_ZN17MaterielMenu_SAVE11getSaveDataEv kind:function(thumb,size=0x5c) addr:0x0203c510
+_ZN17MaterielMenu_SAVE7setModeENS_13SAVEMENU_MODEE kind:function(thumb,size=0xa) addr:0x0203c56c
+_ZN17MaterielMenu_SAVE16dataSelectUpdateEv kind:function(thumb,size=0xc0) addr:0x0203c578
+_ZN17MaterielMenu_SAVE10setMessageEi kind:function(thumb,size=0x24) addr:0x0203c638
+_ZN17MaterielMenu_SAVE14setWaitMessageEib kind:function(thumb,size=0x2c) addr:0x0203c65c
+_ZN17MaterielMenu_SAVE15setYesNoMessageEib kind:function(thumb,size=0x34) addr:0x0203c688
+_ZN17MaterielMenu_SAVE14setTalkMessageEi kind:function(thumb,size=0x48) addr:0x0203c6bc
+_ZN17MaterielMenu_SAVE14setTalkMessageEii kind:function(thumb,size=0x4c) addr:0x0203c704
+_ZN17MaterielMenu_SAVE18setTalkWaitMessageEi kind:function(thumb,size=0x4c) addr:0x0203c750
+_ZN17MaterielMenu_SAVE19setTalkYesNoMessageEib kind:function(thumb,size=0x58) addr:0x0203c79c
+_ZN17MaterielMenu_SAVE20setTalkYesNoMessage2Eiib kind:function(thumb,size=0x60) addr:0x0203c7f4
+_ZN17MaterielMenu_SAVE18firstCancelMessageEv kind:function(thumb,size=0x90) addr:0x0203c854
 func_0203c8e4 kind:function(thumb,size=0x28) addr:0x0203c8e4
 func_0203c90c kind:function(thumb,size=0xa4) addr:0x0203c90c
 func_0203c9b0 kind:function(thumb,size=0x7c) addr:0x0203c9b0
@@ -2614,19 +2614,19 @@ func_0203d81c kind:function(thumb,size=0x78) addr:0x0203d81c
 func_0203d894 kind:function(thumb,size=0x12c) addr:0x0203d894
 func_0203d9c0 kind:function(thumb,size=0x1c) addr:0x0203d9c0
 func_0203d9dc kind:function(thumb,size=0x38) addr:0x0203d9dc
-func_0203da14 kind:function(thumb,size=0x78) addr:0x0203da14
-func_0203da8c kind:function(thumb,size=0x34) addr:0x0203da8c
-func_0203dac0 kind:function(thumb,size=0x190) addr:0x0203dac0
-func_0203dc50 kind:function(thumb,size=0x14) addr:0x0203dc50
-func_0203dc64 kind:function(thumb,size=0x1b4) addr:0x0203dc64
-func_0203de18 kind:function(thumb,size=0x100) addr:0x0203de18
-func_0203df18 kind:function(thumb,size=0x238) addr:0x0203df18
-func_0203e150 kind:function(thumb,size=0x254) addr:0x0203e150
-func_0203e3a4 kind:function(thumb,size=0x14c) addr:0x0203e3a4
-func_0203e4f0 kind:function(thumb,size=0x30) addr:0x0203e4f0
-func_0203e520 kind:function(thumb,size=0x58) addr:0x0203e520
-func_0203e578 kind:function(thumb,size=0x18) addr:0x0203e578
-func_0203e590 kind:function(thumb,size=0x18) addr:0x0203e590
+_ZN26MaterielMenu_FIGHT_STADIUM9menuSetupEv kind:function(thumb,size=0x78) addr:0x0203da14
+_ZN26MaterielMenu_FIGHT_STADIUM11menuExecuteEv kind:function(thumb,size=0x34) addr:0x0203da8c
+_ZN26MaterielMenu_FIGHT_STADIUM8menuDrawEv kind:function(thumb,size=0x190) addr:0x0203dac0
+_ZN26MaterielMenu_FIGHT_STADIUM10menuUpdateEv kind:function(thumb,size=0x14) addr:0x0203dc50
+_ZN26MaterielMenu_FIGHT_STADIUM13messageUpdateEv kind:function(thumb,size=0x1b4) addr:0x0203dc64
+_ZN26MaterielMenu_FIGHT_STADIUM12statusUpdateEv kind:function(thumb,size=0x100) addr:0x0203de18
+_ZN26MaterielMenu_FIGHT_STADIUM17monsterListUpdateEv kind:function(thumb,size=0x238) addr:0x0203df18
+_ZN26MaterielMenu_FIGHT_STADIUM10coinUpdateEv kind:function(thumb,size=0x254) addr:0x0203e150
+_ZN26MaterielMenu_FIGHT_STADIUM12resultUpdateEv kind:function(thumb,size=0x14c) addr:0x0203e3a4
+_ZN26MaterielMenu_FIGHT_STADIUM11battleStartEv kind:function(thumb,size=0x30) addr:0x0203e4f0
+_ZN26MaterielMenu_FIGHT_STADIUM12playBackMenuEi kind:function(thumb,size=0x58) addr:0x0203e520
+_ZN26MaterielMenu_FIGHT_STADIUM11showMessageEi kind:function(thumb,size=0x18) addr:0x0203e578
+_ZN26MaterielMenu_FIGHT_STADIUM12closeMessageEv kind:function(thumb,size=0x18) addr:0x0203e590
 func_0203e5a8 kind:function(arm,size=0x54) addr:0x0203e5a8
 func_0203e5fc kind:function(arm,size=0x14) addr:0x0203e5fc
 func_0203e610 kind:function(arm,size=0x14) addr:0x0203e610
@@ -2945,8 +2945,8 @@ func_0204cd6c kind:function(arm,size=0xc) addr:0x0204cd6c
 func_0204cd78 kind:function(arm,size=0x38) addr:0x0204cd78
 func_0204cdb0 kind:function(arm,size=0x18c) addr:0x0204cdb0
 func_0204cf3c kind:function(arm,size=0xd4) addr:0x0204cf3c
-func_0204d010 kind:function(arm,size=0x28) addr:0x0204d010
-func_0204d038 kind:function(arm,size=0x14) addr:0x0204d038
+_ZN11GameMonsterC1Ev kind:function(arm,size=0x28) addr:0x0204d010
+_ZN11GameMonsterD1Ev kind:function(arm,size=0x14) addr:0x0204d038
 func_0204d04c kind:function(arm,size=0x38) addr:0x0204d04c
 func_0204d084 kind:function(arm,size=0x28) addr:0x0204d084
 func_0204d0ac kind:function(arm,size=0xc) addr:0x0204d0ac
@@ -3444,8 +3444,8 @@ _ZN3dss10DualCamera12calcPositionEv kind:function(arm,size=0x224) addr:0x0205796
 _ZN9UnkCameraC1Ev kind:function(arm,size=0x8c) addr:0x02057b88
 func_02057c14 kind:function(arm,size=0x4) addr:0x02057c14
 func_02057c18 kind:function(arm,size=0xc4) addr:0x02057c18
-func_02057cdc kind:function(arm,size=0x28) addr:0x02057cdc
-func_02057d04 kind:function(arm,size=0x18) addr:0x02057d04
+_ZN13UnkMenuSpriteC1Ev kind:function(arm,size=0x28) addr:0x02057cdc
+_ZN13UnkMenuSpriteD1Ev kind:function(arm,size=0x18) addr:0x02057d04
 func_02057d1c kind:function(arm,size=0x10) addr:0x02057d1c
 func_02057d2c kind:function(arm,size=0x14) addr:0x02057d2c
 func_02057d40 kind:function(arm,size=0x10) addr:0x02057d40
@@ -5118,7 +5118,7 @@ func_020842b8 kind:function(arm,size=0x8) addr:0x020842b8
 func_020842c0 kind:function(arm,size=0x114) addr:0x020842c0
 func_020843d4 kind:function(arm,size=0x78) addr:0x020843d4
 func_0208444c kind:function(arm,size=0x74) addr:0x0208444c
-func_020844c0 kind:function(arm,size=0x74) addr:0x020844c0
+_ZN11UnkSprite2DC1Ev kind:function(arm,size=0x74) addr:0x020844c0
 func_02084534 kind:function(arm,size=0x14) addr:0x02084534
 func_02084548 kind:function(arm,size=0x24) addr:0x02084548
 func_0208456c kind:function(arm,size=0xc) addr:0x0208456c
@@ -5269,7 +5269,7 @@ func_020872d8 kind:function(arm,size=0x24) addr:0x020872d8
 _ZN3dss5Fix32mLERKS0_ kind:function(arm,size=0x24) addr:0x020872fc
 _ZNK3dss5Fix32dvEi kind:function(arm,size=0x28) addr:0x02087320
 _ZNK3dss5Fix32dvERKS0_ kind:function(arm,size=0x28) addr:0x02087348
-func_02087370 kind:function(arm,size=0x1c) addr:0x02087370
+_ZN3dss5Fix32dVEi kind:function(arm,size=0x1c) addr:0x02087370
 func_0208738c kind:function(arm,size=0x1c) addr:0x0208738c
 _ZNK3dss5Fix32eqERKS0_ kind:function(arm,size=0x18) addr:0x020873a8
 _ZNK3dss5Fix32neERKS0_ kind:function(arm,size=0x18) addr:0x020873c0
@@ -5704,10 +5704,14 @@ data_020b6154 kind:data(any) addr:0x020b6154
 data_020b615c kind:data(any) addr:0x020b615c
 data_020b6164 kind:data(any) addr:0x020b6164
 data_020b618e kind:data(any) addr:0x020b618e
-data_020b61b8 kind:data(any) addr:0x020b61b8
+@948 kind:data(byte[3]) addr:0x020b61b8 local
 data_020b61bc kind:data(any) addr:0x020b61bc
 data_020b61c0 kind:data(any) addr:0x020b61c0
-data_020b61c4 kind:data(any) addr:0x020b61c4
+_ZN26MaterielMenu_FIGHT_STADIUM12BET_CURSOR_YE kind:data(byte[4]) addr:0x020b61c4
+_ZN26MaterielMenu_FIGHT_STADIUM12BET_COIN_MAXE kind:data(byte[4]) addr:0x020b61c8
+_ZN26MaterielMenu_FIGHT_STADIUM17DOUBLEUP_COIN_MAXE kind:data(byte[4]) addr:0x020b61cc
+_ZN26MaterielMenu_FIGHT_STADIUM12BET_CURSOR_XE kind:data(byte[4]) addr:0x020b61d0
+@1049 kind:data(byte[8]) addr:0x020b61d4 local
 data_020b61dc kind:data(any) addr:0x020b61dc
 @894 kind:data(byte[12]) addr:0x020b61e8 local
 data_020b61f4 kind:data(any) addr:0x020b61f4
@@ -6657,16 +6661,17 @@ data_020c13f0 kind:data(any) addr:0x020c13f0
 data_020c1420 kind:data(any) addr:0x020c1420
 data_020c1430 kind:data(any) addr:0x020c1430
 data_020c1444 kind:data(any) addr:0x020c1444
-data_020c1448 kind:data(any) addr:0x020c1448
-data_020c144c kind:data(any) addr:0x020c144c
-data_020c1450 kind:data(any) addr:0x020c1450
-data_020c1454 kind:data(any) addr:0x020c1454
-data_020c1458 kind:data(any) addr:0x020c1458
-data_020c145c kind:data(any) addr:0x020c145c
-data_020c1468 kind:data(any) addr:0x020c1468
-data_020c147c kind:data(any) addr:0x020c147c
-data_020c1480 kind:data(any) addr:0x020c1480
-data_020c1488 kind:data(any) addr:0x020c1488
+@1041 kind:data(byte[4]) addr:0x020c1448 local
+@1038 kind:data(byte[4]) addr:0x020c144c local
+@1034 kind:data(byte[4]) addr:0x020c1450 local
+@1031 kind:data(byte[4]) addr:0x020c1454 local
+@1028 kind:data(byte[4]) addr:0x020c1458 local
+@1044 kind:data(byte[4]) addr:0x020c145c local
+_ZTV17MaterielMenu_SAVE kind:data(byte[28]) addr:0x020c1460
+@1638 kind:data(byte[1]) addr:0x020c147c local
+@1639 kind:data(byte[7]) addr:0x020c1480 local
+@1640 kind:data(byte[7]) addr:0x020c1488 local
+data_020c1490 kind:data(any) addr:0x020c1490
 data_020c1498 kind:data(any) addr:0x020c1498
 data_020c14a0 kind:data(any) addr:0x020c14a0
 data_020c14bc kind:data(any) addr:0x020c14bc
@@ -6741,7 +6746,7 @@ data_020c18b6 kind:data(any) addr:0x020c18b6
 data_020c18d4 kind:data(any) addr:0x020c18d4
 data_020c18ec kind:data(any) addr:0x020c18ec
 data_020c1900 kind:data(any) addr:0x020c1900
-data_020c1910 kind:data(any) addr:0x020c1910
+_ZTV26MaterielMenu_FIGHT_STADIUM kind:data(byte[28]) addr:0x020c1908
 data_020c1924 kind:data(any) addr:0x020c1924
 data_020c1940 kind:data(any) addr:0x020c1940
 data_020c195c kind:data(any) addr:0x020c195c
@@ -7415,8 +7420,7 @@ g_Stage kind:bss(size=0x2d4) addr:0x020d08e0
 _ZN6status6g_GameE kind:bss addr:0x020d0bc0
 _ZN6status9ShopData_E kind:bss addr:0x020d0bcc
 data_020d0bd8 kind:bss addr:0x020d0bd8
-darts kind:bss addr:0x020d0be4
-g_NeneItemSack kind:bss addr:0x020d0c00
+_ZN6status6g_ShopE kind:bss addr:0x020d0be4
 @128 kind:bss(size=0xc) addr:0x020d0e98 local
 @127 kind:bss(size=0xc) addr:0x020d0ea4 local
 @129 kind:bss(size=0xc) addr:0x020d0eb0 local

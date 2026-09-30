@@ -14,44 +14,44 @@ THUMB int status::MonsterPartyWithDraw::add(int monsterGroup, int monsterIndex, 
     int drawId;
 
     index  = MonsterParty::add(monsterGroup, monsterIndex, 1);
-    drawId = func_ov003_02121f54(func_ov003_02121d04(), monsterGroup, monsterIndex);
+    drawId = btl::BattleMonsterDraw2::getSingleton()->setup(monsterGroup, monsterIndex);
 
     monster_[index].haveStatusInfo_.drawCtrlId_ = drawId;
     monster_[index].haveStatusInfo_.drawCtrlId_ = drawId;
 
     if (flag == 0) {
         if (monsterIndex == 0x6B) {
-            BattleMonsterDraw2* draw = func_ov003_02121d04();
-            BattleMonster*      m    = &draw->monster_[drawId];
+            btl::BattleMonsterDraw2* draw = btl::BattleMonsterDraw2::getSingleton();
+            btl::BattleMonster*      m    = &draw->monsters_[drawId];
 
-            func_ov003_02121ab0(m, 0x21);
+            (*m).startAnimation(0x21);
 
             dss::Fix32Vector3 v(0, 0, 0);
 
-            func_ov003_02121878(&func_ov003_02121d04()->monster_[drawId], &v);
+            btl::BattleMonsterDraw2::getSingleton()->monsters_[drawId].setPosition(v);
         } else if (monsterIndex == 0x44) {
-            func_ov003_02121ab0(&func_ov003_02121d04()->monster_[drawId], 0x1F);
+            btl::BattleMonsterDraw2::getSingleton()->monsters_[drawId].startAnimation(0x1F);
         } else {
             dss::Vector3int pos;
             int spacePos;
             int spaceWidth;
 
-            spacePos   = func_ov003_02121d04()->spacePos_;
-            spaceWidth = func_ov003_02121d04()->spaceWidth_;
+            spacePos   = btl::BattleMonsterDraw2::getSingleton()->spacePos_;
+            spaceWidth = btl::BattleMonsterDraw2::getSingleton()->spaceWidth_;
 
             pos.vx = g_monsterDrawPos.vx;
             pos.vy = g_monsterDrawPos.vz;
             pos.vz = g_monsterDrawPos.vy;
             pos.vx = spacePos;
 
-            BattleMonsterDraw2* draw = func_ov003_02121d04();
-            BattleMonster*      m    = &draw->monster_[drawId];
+            btl::BattleMonsterDraw2* draw = btl::BattleMonsterDraw2::getSingleton();
+            btl::BattleMonster*      m    = &draw->monsters_[drawId];
             func_0205b2f0(m, pos);
 
-            func_ov003_02121d04()->monster_[drawId].screenPosition_ = spacePos - spaceWidth / 2;
-            func_ov003_02121d04()->monster_[drawId].screenWidth_    = spaceWidth;
+            btl::BattleMonsterDraw2::getSingleton()->monsters_[drawId].screenPosition_ = spacePos - spaceWidth / 2;
+            btl::BattleMonsterDraw2::getSingleton()->monsters_[drawId].screenWidth_    = spaceWidth;
 
-            func_ov003_02121ab0(&func_ov003_02121d04()->monster_[drawId], 0x21);
+            btl::BattleMonsterDraw2::getSingleton()->monsters_[drawId].startAnimation(0x21);
         }
     }
 
@@ -60,8 +60,8 @@ THUMB int status::MonsterPartyWithDraw::add(int monsterGroup, int monsterIndex, 
 
 THUMB void status::MonsterPartyWithDraw::del(int ctrl)
 {
-    BattleMonsterDraw2* draw = func_ov003_02121d04();
-    func_ov003_02121fb8(draw, monster_[ctrl].haveStatusInfo_.drawCtrlId_);
+    btl::BattleMonsterDraw2* draw = btl::BattleMonsterDraw2::getSingleton();
+    draw->cleanup(monster_[ctrl].haveStatusInfo_.drawCtrlId_);
     MonsterParty::del(ctrl);
 }
 

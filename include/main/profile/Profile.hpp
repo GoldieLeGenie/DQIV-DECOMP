@@ -221,8 +221,6 @@ public:
     };  
 };
 
-extern status::HaveItemSack g_NeneItemSack;      // data_020d0c00
-extern int darts[6];             //data_020d0be4 
 extern int data_020f0078;     // manager SELECTTAISHI
 extern "C" void* func_020882d4(void* dst, int c, int n);                   
 extern "C" void func_02030df8(void* prof, unsigned char* dst, void* flag);  // Profile::collectGameFlag 
@@ -249,7 +247,7 @@ extern "C" unsigned char* func_0203a820(void* mgr);   // getTownName ptr
 extern "C" unsigned char* func_0203a938(void* mgr);   // getComment ptr
 extern "C" void func_0203a574(void* mgr, int enable);             // setEnable
 extern "C" void func_0203a58c(void* mgr, unsigned int unique);    // setUnique
-extern "C" void func_0203a5bc(void* mgr, unsigned char type);     // setType
+extern "C" void func_0203a5bc(void* mgr, int type);               // setType
 extern "C" void func_0203a6f4(void* mgr, unsigned char sex);      // setSex
 extern "C" void func_0203a730(void* mgr, unsigned char age);      // setAge
 extern "C" void func_0203a76c(void* mgr, unsigned char skill);    // setSkill            

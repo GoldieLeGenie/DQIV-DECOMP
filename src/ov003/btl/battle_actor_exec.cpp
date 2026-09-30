@@ -1,4 +1,5 @@
 #include "ov003/btl/BattleActorExec.hpp"
+#include "ov003/btl/BattleMonsterMask.hpp"
 #include "ov003/btl/AutoAction.hpp"
 #include "ov003/btl/selectAI.hpp"
 #include "main/status/PlayerStatus.hpp"
@@ -23,8 +24,7 @@ THUMB btl::BattleActorExec::~BattleActorExec()
 
 THUMB void btl::BattleActorExec::setup(status::UseActionParam* param)
 {
-    func_ov003_02121298();
-    func_ov003_02121394();
+    BattleMonsterMask::getSingleton()->setup();
 
     useActionParam_ = param;
     beforeActionTask_.useActionParam_ = param;

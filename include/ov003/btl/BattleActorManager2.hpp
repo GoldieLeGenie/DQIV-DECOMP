@@ -82,4 +82,3 @@ extern "C" void func_ov003_021288c4(btl::BattleActorManager2* mgr, int n);   // 
 extern "C" void func_ov003_021281f4(btl::BattleActorManager2* mgr, int index);
 extern "C" void func_ov003_02127f7c(btl::BattleActorManager2* mgr, int n);
 extern "C" void func_02039460(int index);
-extern "C" void func_ov037_0218a7f0(int index);

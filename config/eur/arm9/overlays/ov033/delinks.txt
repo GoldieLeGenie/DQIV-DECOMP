@@ -3,3 +3,8 @@
     .data       start:0x021895e0 end:0x02189600 kind:data align:32
     .bss        start:0x02189600 end:0x02189600 kind:bss align:32
 
+
+src/ov033/MaterielMenu_MARTIAL_COLOSSEUM/MaterielMenu_MARTIAL_COLOSSEUM.cpp:
+    complete
+    .text start:0x02189360 end:0x021895d0
+    .data start:0x021895e0 end:0x021895fc

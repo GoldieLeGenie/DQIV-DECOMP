@@ -18,7 +18,6 @@ extern "C" {
 struct FieldPlayer {
     char unk_0000[0xb0];
 
-    void setMoveType(int type) { func_ov001_02125eac(this, type); }
 };
 
 struct FieldParty {
@@ -28,13 +27,11 @@ struct FieldParty {
 struct FieldPartyDraw {
     char unk_0000[0x70c];
 
-    void setDrawNone() { func_ov001_0212b7e0(this); }
 };
 
 struct FieldCarrirerDraw {
     char unk_0000[0x18];
 
-    void setPosition(const dss::Fix32Vector3& pos) { func_ov001_02122b28(this, pos); }
 };
 
 struct FieldShipDraw : FieldCarrirerDraw {

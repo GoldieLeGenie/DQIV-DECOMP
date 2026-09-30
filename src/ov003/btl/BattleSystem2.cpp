@@ -4,6 +4,7 @@
 #include "ov003/btl/BattleEffectManager.hpp"
 #include "ov003/btl/BattleRoot.hpp"
 #include "ov003/btl/BattleActorExec.hpp"
+#include "ov003/btl/BattleMonsterMask.hpp"
 #include "ov003/btl/ExecMessageTask.hpp"
 #include "ov003/btl/AfterActionTask.hpp"
 #include "ov003/status/ExcelParamBis.hpp"
@@ -39,12 +40,11 @@ THUMB void btl::BattleSystem2::initialize()
     BattleStage::getSingleton()->initialize();
     BattleCamera::getSingleton()->initialize();
     BattleEffectManager::getSingleton()->initialize();
-    func_ov003_02121298();
-    func_ov003_021212d4();
+    BattleMonsterMask::getSingleton()->initialize();
     DSSAObjectWithCamera::camera_ = BattleCamera::getSingleton()->getCamera();
     BattleRoot::getSingleton()->initialize();
-    func_ov003_02121d04();
-    func_ov003_02121d58();
+    
+    btl::BattleMonsterDraw2::getSingleton()->setup();
     status::HaveAction::setBattleMode();
     func_0203e8f8()->initialize();
     status::ExcelParamBis::cleanupBattleInitialize(&status::excelParam);
@@ -57,13 +57,12 @@ THUMB void btl::BattleSystem2::terminate()
     func_0203e8f8()->terminate();
     BattleRoot::getSingleton()->terminate();
     status::HaveAction::setTownMode();
-    func_ov003_02121d04();
-    func_ov003_02121f0c();
+    
+    btl::BattleMonsterDraw2::getSingleton()->cleanup();
     BattleEffectManager::getSingleton()->terminate();
     BattleCamera::getSingleton()->terminate();
     BattleStage::getSingleton()->terminate();
-    func_ov003_02121298();
-    func_ov003_021213d8();
+    BattleMonsterMask::getSingleton()->terminate();
     func_02084f50(&render_);
     status::ExcelParamBis::cleanupBattle(&status::excelParam);
     g_Global.partChangeFlag_ = 0;
@@ -83,11 +82,10 @@ THUMB void btl::BattleSystem2::draw()
     BattleCamera::getSingleton()->draw();
     DSSAObjectWithCamera::camera_ = BattleCamera::getSingleton()->getCamera();
     BattleEffectManager::getSingleton()->extraDraw();
-    func_ov003_02121298();
-    func_ov003_021213f8();
+    BattleMonsterMask::getSingleton()->draw();
     func_02084fa4(&render_);
     BattleRoot::getSingleton()->draw();
-    func_ov003_02121d04();
-    func_ov003_0212203c();
+    
+    btl::BattleMonsterDraw2::getSingleton()->draw();
     BattleEffectManager::getSingleton()->draw();
 }

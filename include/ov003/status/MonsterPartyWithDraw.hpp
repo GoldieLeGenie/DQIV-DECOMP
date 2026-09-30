@@ -3,6 +3,7 @@
 #include "GameInfo.hpp"
 #include "ov003/status/MonsterParty.hpp"
 #include "main/dss/DssUtils.hpp"
+#include "ov003/btl/BattleMonster.hpp"
 
 
 namespace status{
@@ -15,38 +16,5 @@ namespace status{
 }
 
 extern status::MonsterPartyWithDraw g_monster;
-
-struct BattleMonster;
-
-extern "C" dss::Fix32Vector3 func_0205b1e0(BattleMonster* monster, int index, int type);   // DSSACharacter::getNullPosition
-
-struct BattleMonster {
-    char _pad000[0xD3C];
-    int  monsterIndex_;               // 0xD3C
-    int  screenPosition_;             // 0xD40
-    int  screenWidth_;                // 0xD44
-    char _padd48[0x244];              // 0xD48
-
-    dss::Fix32Vector3 getNullPosition(int index, int type) { return func_0205b1e0(this, index, type); }
-};
-
-struct BattleMonsterDraw2 {
-    BattleMonster monster_[12];       // 0x0000
-    char _padba90[0x1B8];             // 0xBA90
-    int  spacePos_;
-    int  spaceWidth_;
-};
-
-
-extern "C"
-{
-    BattleMonsterDraw2* func_ov003_02121d04(void);                  // getSingleton
-    int  func_ov003_02121f54(BattleMonsterDraw2*, int, int);
-    void func_ov003_02121878(BattleMonster*, dss::Fix32Vector3*);
-    void func_ov003_02121ab0(BattleMonster*, int anim);     // startAnimation
-    void func_ov003_02121970(BattleMonster*, int action, int anim);   // BattleMonster::startAnimation
-    void func_ov003_02121fb8(BattleMonsterDraw2*, int drawId);   //BattleMonsterDraw2::cleanup
-
-}
 
 extern dss::Vector3int g_monsterDrawPos;

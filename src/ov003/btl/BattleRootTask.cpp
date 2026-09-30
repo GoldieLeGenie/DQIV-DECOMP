@@ -400,13 +400,13 @@ THUMB void btl::CrusingTask::initialize()
 {
     if (func_0200a6c8()->battleMode_ == 1) {
         g_Stage.crusingPeopleEncount_ = 1;
-        func_ov016_0216aca4()->endWindow_ = 2;
-        func_ov016_0216acac(func_ov016_0216aca4(), 4);
+        MaterielMenu_WINDOW_MANAGER::getSingleton()->extraInnType_ = 2;
+        MaterielMenu_WINDOW_MANAGER::getSingleton()->openMaterielWindow(4);
     }
     if (func_0200a6c8()->battleMode_ == 2) {
         g_Stage.crusingPeopleEncount_ = 1;
-        func_ov016_0216aca4()->endWindow_ = 2;
-        func_ov016_0216acac(func_ov016_0216aca4(), 0);
+        MaterielMenu_WINDOW_MANAGER::getSingleton()->extraInnType_ = 2;
+        MaterielMenu_WINDOW_MANAGER::getSingleton()->openMaterielWindow(0);
     }
 }
 
@@ -416,7 +416,7 @@ THUMB void btl::CrusingTask::terminate()
 
 THUMB void btl::CrusingTask::execute()
 {
-    if (func_ov016_0216aca4()->type_) {
+    if (MaterielMenu_WINDOW_MANAGER::getSingleton()->endWindow_) {
         g_PartTaskManager.setNextTask(0xc);
     }
 }
@@ -439,7 +439,7 @@ THUMB void btl::TimeReverseTask::initialize()
     int count = g_monster.getCount();
     for (int i = 0; i < count; i++) {
         int ctrlId = g_monster.getMonsterStatus(i)->haveStatusInfo_.drawCtrlId_;
-        func_ov003_02121970(&func_ov003_02121d04()->monster_[ctrlId], 0, 0x1f);
+        btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].startAnimation(0, 0x1f);
     }
     counter_ = 0;
 }
@@ -468,8 +468,8 @@ THUMB void btl::TimeReverseEndTask::terminate()
     BattleRoot::getSingleton()->cleanupMonster();
     BattleRoot::getSingleton()->restore();
     BattleRoot::getSingleton()->setupMonster();
-    func_ov003_02121d04();
-    func_ov003_02121d58();
+    
+    btl::BattleMonsterDraw2::getSingleton()->setup();
     BattleActorManager2::getSingleton()->initialize();
 }
 

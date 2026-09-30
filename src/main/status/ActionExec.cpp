@@ -174,7 +174,7 @@ THUMB int status::isCallMonster() {
 THUMB int status::callDifferentMonster(int index, int monsterIndex)
 {
     CallMonster.callMonsterIndex_ = monsterIndex;
-    if (func_ov003_021223b4(func_ov000_02121d04(), monsterIndex) != 0
+    if (func_ov000_02121d04()->isCallFriend(monsterIndex) != 0
         && g_monster.getCount() < 0xC) {
         if (index != -1) {
             if (g_monster.getMonsterCountInGroup(index) == 8) {

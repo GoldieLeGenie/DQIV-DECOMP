@@ -30,4 +30,3 @@ namespace status{
     };
 }
 
-extern status::HaveItemSack g_NeneItemSack;      // data_020d0c00

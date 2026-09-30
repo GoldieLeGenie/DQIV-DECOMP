@@ -1,4 +1,4 @@
-func_ov003_021210e0 kind:function(arm,size=0x4) addr:0x021210e0
+ov003_entry kind:function(arm,size=0x4) addr:0x021210e0
 _ZN18BattleCameraHomingC1Ev kind:function(thumb,size=0x10) addr:0x021210e4
 _ZN18BattleCameraHomingD1Ev kind:function(thumb,size=0x2) addr:0x021210f4
 _ZN18BattleCameraHoming5setupEN3dss12Fix32Vector3Ei kind:function(thumb,size=0x80) addr:0x021210f8
@@ -8,50 +8,50 @@ _ZN18BattleCameraHoming19restoreHomingTargetERN3dss12Vector3shortE kind:function
 _ZN18BattleCameraHoming11calculationERN3dss12Vector3shortE kind:function(thumb,size=0x2e) addr:0x021211f4
 _ZN18BattleCameraHoming13setRotateTimeEi kind:function(thumb,size=0xa) addr:0x02121224
 _ZN18BattleCameraHoming11setWaitTimeEi kind:function(thumb,size=0x4) addr:0x02121230
-func_ov003_02121234 kind:function(thumb,size=0x4c) addr:0x02121234
-func_ov003_02121280 kind:function(thumb,size=0x18) addr:0x02121280
-func_ov003_02121298 kind:function(thumb,size=0x3c) addr:0x02121298
-func_ov003_021212d4 kind:function(thumb,size=0xc0) addr:0x021212d4
-func_ov003_02121394 kind:function(thumb,size=0x44) addr:0x02121394
-func_ov003_021213d8 kind:function(thumb,size=0x18) addr:0x021213d8
-func_ov003_021213f0 kind:function(thumb,size=0x2) addr:0x021213f0
-func_ov003_021213f4 kind:function(thumb,size=0x4) addr:0x021213f4
-func_ov003_021213f8 kind:function(thumb,size=0x11c) addr:0x021213f8
-func_ov003_02121514 kind:function(thumb,size=0x70) addr:0x02121514
-func_ov003_02121584 kind:function(thumb,size=0xb4) addr:0x02121584
-func_ov003_02121638 kind:function(thumb,size=0x84) addr:0x02121638
-func_ov003_021216bc kind:function(thumb,size=0x64) addr:0x021216bc
-func_ov003_02121720 kind:function(thumb,size=0x64) addr:0x02121720
-func_ov003_02121784 kind:function(thumb,size=0x78) addr:0x02121784
-func_ov003_021217fc kind:function(thumb,size=0x3c) addr:0x021217fc
-func_ov003_02121838 kind:function(thumb,size=0x20) addr:0x02121838
-func_ov003_02121858 kind:function(thumb,size=0x20) addr:0x02121858
-func_ov003_02121878 kind:function(thumb,size=0x24) addr:0x02121878
-func_ov003_0212189c kind:function(thumb,size=0xd4) addr:0x0212189c
-func_ov003_02121970 kind:function(thumb,size=0xfc) addr:0x02121970
-func_ov003_02121a6c kind:function(thumb,size=0x44) addr:0x02121a6c
-func_ov003_02121ab0 kind:function(thumb,size=0x24) addr:0x02121ab0
-func_ov003_02121ad4 kind:function(thumb,size=0x20) addr:0x02121ad4
-func_ov003_02121af4 kind:function(thumb,size=0x64) addr:0x02121af4
-func_ov003_02121b58 kind:function(thumb,size=0x38) addr:0x02121b58
-func_ov003_02121b90 kind:function(thumb,size=0x54) addr:0x02121b90
-func_ov003_02121be4 kind:function(thumb,size=0x24) addr:0x02121be4
-func_ov003_02121c08 kind:function(thumb,size=0x30) addr:0x02121c08
-func_ov003_02121c38 kind:function(thumb,size=0x54) addr:0x02121c38
-func_ov003_02121c8c kind:function(thumb,size=0x3c) addr:0x02121c8c
-func_ov003_02121cc8 kind:function(thumb,size=0x3c) addr:0x02121cc8
-func_ov003_02121d04 kind:function(thumb,size=0x54) addr:0x02121d04
-func_ov003_02121d58 kind:function(thumb,size=0x1b4) addr:0x02121d58
-func_ov003_02121f0c kind:function(thumb,size=0x48) addr:0x02121f0c
-func_ov003_02121f54 kind:function(thumb,size=0x64) addr:0x02121f54
-func_ov003_02121fb8 kind:function(thumb,size=0x2c) addr:0x02121fb8
-func_ov003_02121fe4 kind:function(thumb,size=0x58) addr:0x02121fe4
-func_ov003_0212203c kind:function(thumb,size=0x54) addr:0x0212203c
-func_ov003_02122090 kind:function(thumb,size=0xf8) addr:0x02122090
-func_ov003_02122188 kind:function(thumb,size=0x22c) addr:0x02122188
-func_ov003_021223b4 kind:function(thumb,size=0x40) addr:0x021223b4
-func_ov003_021223f4 kind:function(thumb,size=0x48) addr:0x021223f4
-func_ov003_0212243c kind:function(thumb,size=0x38) addr:0x0212243c
+_ZN17BattleMonsterMaskC1Ev kind:function(thumb,size=0x4c) addr:0x02121234
+_ZN17BattleMonsterMaskD1Ev kind:function(thumb,size=0x18) addr:0x02121280
+_ZN17BattleMonsterMask12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02121298
+_ZN17BattleMonsterMask10initializeEv kind:function(thumb,size=0xc0) addr:0x021212d4
+_ZN17BattleMonsterMask5setupEv kind:function(thumb,size=0x44) addr:0x02121394
+_ZN17BattleMonsterMask9terminateEv kind:function(thumb,size=0x18) addr:0x021213d8
+_ZN17BattleMonsterMask7executeEv kind:function(thumb,size=0x2) addr:0x021213f0
+_ZN17BattleMonsterMask6selectEi kind:function(thumb,size=0x4) addr:0x021213f4
+_ZN17BattleMonsterMask4drawEv kind:function(thumb,size=0x11c) addr:0x021213f8
+_ZN17BattleMonsterMask13calcTargetPosEi kind:function(thumb,size=0x70) addr:0x02121514
+_ZN17BattleMonsterMask12getTargetPosEi kind:function(thumb,size=0xb4) addr:0x02121584
+_ZN17BattleMonsterMask19getMonsterTouchRectEi kind:function(thumb,size=0x84) addr:0x02121638
+_ZN3btl13BattleMonsterC1Ev kind:function(thumb,size=0x64) addr:0x021216bc
+_ZN3btl13BattleMonster5setupEii kind:function(thumb,size=0x64) addr:0x02121720
+_ZN3btl13BattleMonster7cleanupEv kind:function(thumb,size=0x78) addr:0x02121784
+_ZN3btl13BattleMonster8isEnableEv kind:function(thumb,size=0x3c) addr:0x021217fc
+_ZN3btl13BattleMonster8getWidthEv kind:function(thumb,size=0x20) addr:0x02121838
+_ZN3btl13BattleMonster11getWidthIntEv kind:function(thumb,size=0x20) addr:0x02121858
+_ZN3btl13BattleMonster11setPositionERKN3dss12Fix32Vector3E kind:function(thumb,size=0x24) addr:0x02121878
+_ZN3btl13BattleMonster4drawEv kind:function(thumb,size=0xd4) addr:0x0212189c
+_ZN3btl13BattleMonster14startAnimationEii kind:function(thumb,size=0xfc) addr:0x02121970
+_ZN3btl13BattleMonster18setCameraAnimationEi kind:function(thumb,size=0x44) addr:0x02121a6c
+_ZN3btl13BattleMonster14startAnimationEi kind:function(thumb,size=0x24) addr:0x02121ab0
+_ZN3btl13BattleMonster22startAnimationWithLoopEii kind:function(thumb,size=0x20) addr:0x02121ad4
+_ZN3btl13BattleMonster11startGattaiEv kind:function(thumb,size=0x64) addr:0x02121af4
+_ZN3btl13BattleMonster20disappearGattaiSlimeEv kind:function(thumb,size=0x38) addr:0x02121b58
+_ZN3btl13BattleMonster18isAppearKingSlime2Ev kind:function(thumb,size=0x54) addr:0x02121b90
+_ZN3btl13BattleMonster14setPaletteAnimEi kind:function(thumb,size=0x24) addr:0x02121be4
+_ZN3btl13BattleMonster13setTransOfEndEv kind:function(thumb,size=0x30) addr:0x02121c08
+_ZN3btl18BattleMonsterDraw2C1Ev kind:function(thumb,size=0x54) addr:0x02121c38
+_ZN3btl13BattleMonsterD1Ev kind:function(thumb,size=0x3c) addr:0x02121c8c
+_ZN3btl18BattleMonsterDraw2D1Ev kind:function(thumb,size=0x3c) addr:0x02121cc8
+_ZN3btl18BattleMonsterDraw212getSingletonEv kind:function(thumb,size=0x54) addr:0x02121d04
+_ZN3btl18BattleMonsterDraw25setupEv kind:function(thumb,size=0x1b4) addr:0x02121d58
+_ZN3btl18BattleMonsterDraw27cleanupEv kind:function(thumb,size=0x48) addr:0x02121f0c
+_ZN3btl18BattleMonsterDraw25setupEii kind:function(thumb,size=0x64) addr:0x02121f54
+_ZN3btl18BattleMonsterDraw27cleanupEi kind:function(thumb,size=0x2c) addr:0x02121fb8
+_ZN3btl18BattleMonsterDraw28getCountEv kind:function(thumb,size=0x58) addr:0x02121fe4
+_ZN3btl18BattleMonsterDraw24drawEv kind:function(thumb,size=0x54) addr:0x0212203c
+_ZN3btl18BattleMonsterDraw213resetArrayPosEv kind:function(thumb,size=0xf8) addr:0x02122090
+_ZN3btl18BattleMonsterDraw214searchArrayPosEi kind:function(thumb,size=0x22c) addr:0x02122188
+_ZN3btl18BattleMonsterDraw212isCallFriendEi kind:function(thumb,size=0x40) addr:0x021223b4
+_ZN3btl18BattleMonsterDraw218isAppearKingSlime2Ev kind:function(thumb,size=0x48) addr:0x021223f4
+_ZN3btl18BattleMonsterDraw222startAnimationWithLoopEiii kind:function(thumb,size=0x38) addr:0x0212243c
 _ZN12BattleCameraC1Ev kind:function(thumb,size=0x26) addr:0x02122474
 _ZN12BattleCameraD1Ev kind:function(thumb,size=0x12) addr:0x0212249c
 _ZN12BattleCamera12getSingletonEv kind:function(thumb,size=0x3c) addr:0x021224b0
@@ -67,12 +67,12 @@ _ZN12BattleCamera7setWaitEi kind:function(thumb,size=0xc) addr:0x021228fc
 _ZN12BattleCamera9getCameraEv kind:function(thumb,size=0x4) addr:0x02122908
 _ZN12BattleCamera11setFilenameEPKcS1_ kind:function(thumb,size=0x3c) addr:0x0212290c
 _ZN12BattleCamera17isCameraAnimationEv kind:function(thumb,size=0x1c) addr:0x02122948
-func_ov003_02122964 kind:function(thumb,size=0x2) addr:0x02122964
-func_ov003_02122968 kind:function(thumb,size=0x28) addr:0x02122968
-func_ov003_02122990 kind:function(thumb,size=0x2) addr:0x02122990
-func_ov003_02122994 kind:function(thumb,size=0x2) addr:0x02122994
-func_ov003_02122998 kind:function(thumb,size=0x2) addr:0x02122998
-func_ov003_0212299c kind:function(thumb,size=0x2) addr:0x0212299c
+_ZN15UnkBattleSystemC1Ev kind:function(thumb,size=0x2) addr:0x02122964
+_ZN15UnkBattleSystem12getSingletonEv kind:function(thumb,size=0x28) addr:0x02122968
+_ZN15UnkBattleSystem10initializeEv kind:function(thumb,size=0x2) addr:0x02122990
+_ZN15UnkBattleSystem9terminateEv kind:function(thumb,size=0x2) addr:0x02122994
+_ZN15UnkBattleSystem7executeEv kind:function(thumb,size=0x2) addr:0x02122998
+_ZN15UnkBattleSystem4drawEv kind:function(thumb,size=0x2) addr:0x0212299c
 _ZN3btl11BattleRoundC1Ev kind:function(thumb,size=0x44) addr:0x021229a0
 _ZN3btl11BattleRoundD1Ev kind:function(thumb,size=0x38) addr:0x021229e4
 _ZN3btl11BattleRound10initializeEv kind:function(thumb,size=0x8c) addr:0x02122a1c
@@ -235,11 +235,11 @@ _ZN3btl22BattleExecDeathPissaroD1Ev kind:function(thumb,size=0x1e) addr:0x021259
 _ZN3btl20BattleExecEvilPriestD1Ev kind:function(thumb,size=0x1e) addr:0x021259b8
 _ZN3btl31BattleExecDeathPissaroMahokantaD1Ev kind:function(thumb,size=0x16) addr:0x021259d8
 _ZN3btl16BattleExecEscapeD1Ev kind:function(thumb,size=0xc) addr:0x021259f0
-func_ov003_021259fc kind:function(thumb,size=0xc) addr:0x021259fc
-func_ov003_02125a08 kind:function(thumb,size=0xc) addr:0x02125a08
-func_ov003_02125a14 kind:function(thumb,size=0x3c) addr:0x02125a14
-func_ov003_02125a50 kind:function(thumb,size=0x20) addr:0x02125a50
-func_ov003_02125a70 kind:function(thumb,size=0xa) addr:0x02125a70
+_ZN14BattleMenuFaceC1Ev kind:function(thumb,size=0xc) addr:0x021259fc
+_ZN14BattleMenuFaceD1Ev kind:function(thumb,size=0xc) addr:0x02125a08
+_ZN14BattleMenuFace12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02125a14
+_ZN14BattleMenuFace12setDisplayOnEiii kind:function(thumb,size=0x20) addr:0x02125a50
+_ZN14BattleMenuFace13setDisplayOffEi kind:function(thumb,size=0xa) addr:0x02125a70
 _ZN3btl15BattleActorExecC1Ev kind:function(thumb,size=0x74) addr:0x02125a7c
 _ZN3btl15BattleActorExecD1Ev kind:function(thumb,size=0x24) addr:0x02125af0
 _ZN3btl15BattleActorExec5setupEPN6status14UseActionParamE kind:function(thumb,size=0x134) addr:0x02125b14
@@ -660,75 +660,78 @@ data_ov003_021326f8 kind:data(any) addr:0x021326f8
 monsterCallTypeTable kind:data(any) addr:0x02139040
 monsterFormationTable kind:data(any) addr:0x02139050
 indexOffset kind:data(byte[168]) addr:0x02139060 local
-__sinit_ov003_02139108 kind:function(thumb,size=0x14) addr:0x02139108
-__sinit_ov003_0213911c kind:function(thumb,size=0x2c) addr:0x0213911c
+__sinit_BattleMonsterMask.cpp kind:function(thumb,size=0x14) addr:0x02139108 local
+__sinit_battle_monster_draw.cpp kind:function(thumb,size=0x2c) addr:0x0213911c local
 __sinit_BattleCamera.cpp kind:function(thumb,size=0x38) addr:0x02139148 local
 __sinit_BattleRoot.cpp kind:function(thumb,size=0x20) addr:0x02139180 local
 __sinit_battle_actor_exec.cpp kind:function(thumb,size=0x54) addr:0x02139628 local
 __sinit_MonsterPartyWithDraw.cpp kind:function(thumb,size=0x30) addr:0x0213967c local
-.p__sinit_ov003_02139108 kind:data(word) addr:0x021396ac
-.p__sinit_ov003_0213911c kind:data(word) addr:0x021396b0
+.p__sinit_BattleMonsterMask.cpp kind:data(word) addr:0x021396ac local
+.p__sinit_battle_monster_draw.cpp kind:data(word) addr:0x021396b0 local
 .p__sinit_BattleCamera.cpp kind:data(word) addr:0x021396b4 local
 .p__sinit_BattleRoot.cpp kind:data(word) addr:0x021396b8 local
 .p__sinit_battle_actor_exec.cpp kind:data(word) addr:0x021396c0 local
 .p__sinit_MonsterPartyWithDraw.cpp kind:data(word) addr:0x021396c4 local
-data_ov003_021396e0 kind:data(any) addr:0x021396e0
-data_ov003_021396e4 kind:data(any) addr:0x021396e4
-data_ov003_021396f8 kind:data(any) addr:0x021396f8
-data_ov003_0213970c kind:data(any) addr:0x0213970c
-data_ov003_02139710 kind:data(any) addr:0x02139710
-data_ov003_02139714 kind:data(any) addr:0x02139714
-data_ov003_02139718 kind:data(any) addr:0x02139718
-data_ov003_0213971c kind:data(any) addr:0x0213971c
-data_ov003_02139720 kind:data(any) addr:0x02139720
-data_ov003_02139724 kind:data(any) addr:0x02139724
-data_ov003_02139728 kind:data(any) addr:0x02139728
-data_ov003_0213972c kind:data(any) addr:0x0213972c
-data_ov003_02139730 kind:data(any) addr:0x02139730
-data_ov003_02139734 kind:data(any) addr:0x02139734
-data_ov003_02139738 kind:data(any) addr:0x02139738
-data_ov003_02139740 kind:data(any) addr:0x02139740
-data_ov003_02139744 kind:data(any) addr:0x02139744
-data_ov003_02139748 kind:data(any) addr:0x02139748
-data_ov003_02139750 kind:data(any) addr:0x02139750
-data_ov003_02139754 kind:data(any) addr:0x02139754
-data_ov003_02139758 kind:data(any) addr:0x02139758
-data_ov003_02139794 kind:data(any) addr:0x02139794
-data_ov003_02139798 kind:data(any) addr:0x02139798
-data_ov003_0213979c kind:data(any) addr:0x0213979c
-data_ov003_021397a0 kind:data(any) addr:0x021397a0
-data_ov003_021397bc kind:data(any) addr:0x021397bc
-data_ov003_021397dc kind:data(any) addr:0x021397dc
-data_ov003_02139800 kind:data(any) addr:0x02139800
-data_ov003_02139824 kind:data(any) addr:0x02139824
-data_ov003_02139848 kind:data(any) addr:0x02139848
-data_ov003_02139870 kind:data(any) addr:0x02139870
-data_ov003_021398ac kind:data(any) addr:0x021398ac
-data_ov003_021398cc kind:data(any) addr:0x021398cc
-data_ov003_021398f8 kind:data(any) addr:0x021398f8
-data_ov003_02139928 kind:data(any) addr:0x02139928
-data_ov003_02139954 kind:data(any) addr:0x02139954
-data_ov003_02139988 kind:data(any) addr:0x02139988
-data_ov003_021399b0 kind:data(any) addr:0x021399b0
-data_ov003_021399e0 kind:data(any) addr:0x021399e0
-data_ov003_02139a10 kind:data(any) addr:0x02139a10
-data_ov003_02139a3c kind:data(any) addr:0x02139a3c
-data_ov003_02139a64 kind:data(any) addr:0x02139a64
-data_ov003_02139a84 kind:data(any) addr:0x02139a84
-data_ov003_02139aa0 kind:data(any) addr:0x02139aa0
-data_ov003_02139ac0 kind:data(any) addr:0x02139ac0
-data_ov003_02139aec kind:data(any) addr:0x02139aec
-data_ov003_02139b10 kind:data(any) addr:0x02139b10
-data_ov003_02139b38 kind:data(any) addr:0x02139b38
-data_ov003_02139b60 kind:data(any) addr:0x02139b60
-data_ov003_02139b88 kind:data(any) addr:0x02139b88
-data_ov003_02139bb0 kind:data(any) addr:0x02139bb0
-data_ov003_02139bd4 kind:data(any) addr:0x02139bd4
-data_ov003_02139c04 kind:data(any) addr:0x02139c04
-data_ov003_02139c34 kind:data(any) addr:0x02139c34
-data_ov003_02139c60 kind:data(any) addr:0x02139c60
-data_ov003_02139c94 kind:data(any) addr:0x02139c94
-data_ov003_02139ccc kind:data(any) addr:0x02139ccc
+@1523 kind:data(word) addr:0x021396e0 local
+@1763 kind:data(byte[19]) addr:0x021396e4 local
+@1764 kind:data(byte[19]) addr:0x021396f8 local
+@1478 kind:data(byte[3]) addr:0x0213970c local
+@1480 kind:data(byte[3]) addr:0x02139710 local
+@1474 kind:data(byte[3]) addr:0x02139714 local
+@1477 kind:data(byte[3]) addr:0x02139718 local
+@1481 kind:data(byte[3]) addr:0x0213971c local
+@1482 kind:data(byte[3]) addr:0x02139720 local
+@1470 kind:data(byte[3]) addr:0x02139724 local
+@1473 kind:data(byte[3]) addr:0x02139728 local
+@1475 kind:data(byte[3]) addr:0x0213972c local
+@1476 kind:data(byte[3]) addr:0x02139730 local
+@1479 kind:data(byte[3]) addr:0x02139734 local
+@1645 kind:data(word) addr:0x02139738 local
+@1776 kind:data(word) addr:0x0213973c local
+@1654 kind:data(word) addr:0x02139740 local
+@1660 kind:data(word) addr:0x02139744 local
+@1637 kind:data(word) addr:0x02139748 local
+@1790 kind:data(word) addr:0x0213974c local
+@1643 kind:data(word) addr:0x02139750 local
+@1669 kind:data(word) addr:0x02139754 local
+@1837 kind:data(word) addr:0x02139758 local
+animName kind:data(any) addr:0x0213975c local
+@1472 kind:data(byte[4]) addr:0x02139794 local
+@1469 kind:data(byte[4]) addr:0x02139798 local
+@1471 kind:data(byte[4]) addr:0x0213979c local
+@2117 kind:data(byte[27]) addr:0x021397a0 local
+@2126 kind:data(byte[32]) addr:0x021397bc local
+@2130 kind:data(byte[33]) addr:0x021397dc local
+@2136 kind:data(byte[34]) addr:0x02139800 local
+@2140 kind:data(byte[34]) addr:0x02139824 local
+@2144 kind:data(byte[38]) addr:0x02139848 local
+@2148 kind:data(byte[59]) addr:0x02139870 local
+@2159 kind:data(byte[30]) addr:0x021398ac local
+@2181 kind:data(byte[42]) addr:0x021398cc local
+@2184 kind:data(byte[45]) addr:0x021398f8 local
+@2187 kind:data(byte[41]) addr:0x02139928 local
+@2190 kind:data(byte[50]) addr:0x02139954 local
+@2196 kind:data(byte[38]) addr:0x02139988 local
+@2202 kind:data(byte[47]) addr:0x021399b0 local
+@2210 kind:data(byte[45]) addr:0x021399e0 local
+@2212 kind:data(byte[41]) addr:0x02139a10 local
+@2216 kind:data(byte[40]) addr:0x02139a3c local
+@2222 kind:data(byte[32]) addr:0x02139a64 local
+@2229 kind:data(byte[27]) addr:0x02139a84 local
+@2232 kind:data(byte[32]) addr:0x02139aa0 local
+@2238 kind:data(byte[44]) addr:0x02139ac0 local
+@2267 kind:data(byte[36]) addr:0x02139aec local
+@2278 kind:data(byte[38]) addr:0x02139b10 local
+@2289 kind:data(byte[37]) addr:0x02139b38 local
+@2292 kind:data(byte[38]) addr:0x02139b60 local
+@2304 kind:data(byte[39]) addr:0x02139b88 local
+@2317 kind:data(byte[35]) addr:0x02139bb0 local
+@2389 kind:data(byte[45]) addr:0x02139bd4 local
+@2499 kind:data(byte[46]) addr:0x02139c04 local
+@2508 kind:data(byte[44]) addr:0x02139c34 local
+@2519 kind:data(byte[50]) addr:0x02139c60 local
+@2522 kind:data(byte[56]) addr:0x02139c94 local
+@2524 kind:data(byte[32]) addr:0x02139ccc local
 @527 kind:data(byte[6]) addr:0x02139cec local
 @531 kind:data(byte[10]) addr:0x02139cf4 local
 @2039 kind:data(byte[25]) addr:0x02139d00 local
@@ -1000,15 +1003,15 @@ _ZTVN3btl8EndTask2E kind:data(byte[20]) addr:0x0213ca00
 _ZTVN3btl13EndActionTaskE kind:data(byte[20]) addr:0x0213ca14
 _ZTVN3btl14ExecActionTaskE kind:data(byte[20]) addr:0x0213ca28
 _ZTVN3btl15ExecMessageTaskE kind:data(byte[20]) addr:0x0213ca3c
-data_ov003_0213ca60 kind:bss addr:0x0213ca60
-data_ov003_0213ca68 kind:bss addr:0x0213ca68
-data_ov003_0213ca74 kind:bss addr:0x0213ca74
-data_ov003_0213caa4 kind:bss addr:0x0213caa4
-data_ov003_0213cbe4 kind:bss addr:0x0213cbe4
-data_ov003_0213cbe8 kind:bss addr:0x0213cbe8
-data_ov003_0213cbec kind:bss addr:0x0213cbec
-data_ov003_0213cbf8 kind:bss addr:0x0213cbf8
-data_ov003_02140000 kind:bss addr:0x02140000 ambiguous
+unkScale kind:bss(size=0x4) addr:0x0213ca60 local
+_ZGVbattleMonsterMask$1549 kind:bss(size=0x4) addr:0x0213ca64 local
+@1552 kind:bss(size=0xc) addr:0x0213ca68 local
+_ZN17BattleMonsterMask15monsterRectTempE kind:bss(size=0x30) addr:0x0213ca74
+battleMonsterMask$1549 kind:bss(size=0x140) addr:0x0213caa4 local
+_ZGVm_singleton$1633 kind:bss(size=0x4) addr:0x0213cbe4 local
+defaultWidth kind:bss(size=0x4) addr:0x0213cbe8 local
+@1636 kind:bss(size=0xc) addr:0x0213cbec local
+m_singleton$1633 kind:bss(size=0xbc54) addr:0x0213cbf8 local
 _ZGVm_singleton$368 kind:bss(size=0x4) addr:0x0214884c local
 _ZN12BattleCamera13cameraSettingE kind:bss(size=0x4) addr:0x02148850
 @354 kind:bss(size=0xc) addr:0x02148854 local
@@ -1017,16 +1020,17 @@ _ZN12BattleCamera13cameraSettingE kind:bss(size=0x4) addr:0x02148850
 livecamera kind:bss(size=0xb8) addr:0x02148878
 livecamera2 kind:bss(size=0xb8) addr:0x02148930
 m_singleton$368 kind:bss(size=0x110) addr:0x021489e8 local
-data_ov003_02148af8 kind:bss addr:0x02148af8
-data_ov003_02148b00 kind:bss addr:0x02148b00
+_ZGVm_singleton$17 kind:bss(size=0x4) addr:0x02148af8 local
+unk$13 kind:bss(size=0x4) addr:0x02148afc local
+m_singleton$17 kind:bss(size=0x4) addr:0x02148b00 local
 _ZGVm_singleton$2116 kind:bss(size=0x4) addr:0x02148b04 local
 @2079 kind:bss(size=0xc) addr:0x02148b08 local
 @2119 kind:bss(size=0xc) addr:0x02148b14 local
 m_singleton$2116 kind:bss(size=0x7c) addr:0x02148b20 local
 battleRound_ kind:bss(size=0x110) addr:0x02148b9c
-data_ov003_02149250 kind:bss addr:0x02149250
-data_ov003_02149254 kind:bss addr:0x02149254
-data_ov003_02149260 kind:bss addr:0x02149260
+_ZGVbattleMenuFace$39 kind:bss(size=0x4) addr:0x02149250 local
+@42 kind:bss(size=0xc) addr:0x02149254 local
+battleMenuFace$39 kind:bss(size=0x5c) addr:0x02149260 local
 currentTarget_ kind:bss(size=0x4) addr:0x021492bc
 targetCount_ kind:bss(size=0x4) addr:0x021492c0
 @1646 kind:bss(size=0xc) addr:0x021492c4 local

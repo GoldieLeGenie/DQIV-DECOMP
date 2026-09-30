@@ -210,7 +210,7 @@ THUMB int status::BaseActionStatus::actionTypeRebirth(status::CharacterStatus *t
     int ret = 0;
     if (target->characterType_ == MONSTER)
     {
-        if (func_ov003_021223b4(func_ov000_02121d04(), target->characterIndex_) == 0)
+        if (func_ov000_02121d04()->isCallFriend(target->characterIndex_) == 0)
         {
             return 0;
         }
@@ -296,12 +296,12 @@ THUMB int status::BaseActionStatus::actionTypeRebirth(status::CharacterStatus *t
         pos.vz = g_BattleMonsterDrawParam.vz_;
         pos.vx = spacePos;
 
-        BattleMonsterDraw2* draw = func_ov000_02121d04();
-        BattleMonster* m = &draw->monster_[idx];
+        btl::BattleMonsterDraw2* draw = func_ov000_02121d04();
+        btl::BattleMonster* m = &draw->monsters_[idx];
         func_0205b2f0(m, pos);
 
-        func_ov000_02121d04()->monster_[idx].screenPosition_ = spacePos - spaceWidth / 2;
-        func_ov000_02121d04()->monster_[idx].screenWidth_    = spaceWidth;
+        func_ov000_02121d04()->monsters_[idx].screenPosition_ = spacePos - spaceWidth / 2;
+        func_ov000_02121d04()->monsters_[idx].screenWidth_    = spaceWidth;
     }
 
     return ret;
@@ -768,7 +768,7 @@ THUMB int status::BaseActionStatus::actionTypeNone(status::CharacterStatus *acto
         int ok = 1;
         int wasZero = 0;
         if (target->characterType_ == MONSTER) {
-            if (func_ov003_021223b4(func_ov000_02121d04(), target->characterIndex_) != 0) {
+            if (func_ov000_02121d04()->isCallFriend(target->characterIndex_) != 0) {
                 ok = 1;
             } else {
                 ok = 0;
@@ -810,10 +810,10 @@ THUMB int status::BaseActionStatus::actionTypeNone(status::CharacterStatus *acto
                 pos.vz = g_BattleMonsterDrawParam.unk_14;   // ldr [r0, #0x14]
                 pos.vx = spacePos;               
                 int idx = target->haveStatusInfo_.drawCtrlId_;
-                BattleMonsterDraw2* draw = func_ov000_02121d04();          
-                func_0205b2f0(&draw->monster_[idx], pos);
-                func_ov000_02121d04()->monster_[idx].screenPosition_ = spacePos - spaceWidth / 2;
-                func_ov000_02121d04()->monster_[idx].screenWidth_ = spaceWidth;
+                btl::BattleMonsterDraw2* draw = func_ov000_02121d04();          
+                func_0205b2f0(&draw->monsters_[idx], pos);
+                func_ov000_02121d04()->monsters_[idx].screenPosition_ = spacePos - spaceWidth / 2;
+                func_ov000_02121d04()->monsters_[idx].screenWidth_ = spaceWidth;
             }
         }
     }

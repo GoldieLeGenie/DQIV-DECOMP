@@ -1,1 +1,0 @@
-#include "ov003/btl/BattleMonster.hpp"

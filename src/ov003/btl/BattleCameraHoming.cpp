@@ -16,7 +16,7 @@ THUMB BattleCameraHoming::~BattleCameraHoming()
 THUMB void BattleCameraHoming::setup(dss::Fix32Vector3 target, int drawCtrlId)
 {
     dss::Fix32Vector3 position;
-    position = dss::Fix32Vector3(*((Position*)&func_ov003_02121d04()->monster_[drawCtrlId])->getPosition());
+    position = dss::Fix32Vector3(*btl::BattleMonsterDraw2::getSingleton()->monsters_[drawCtrlId].monsterDraw_.getPosition());
 
     VecFx32 dir;
     dir.x = position.vx.value - target.vx.value;

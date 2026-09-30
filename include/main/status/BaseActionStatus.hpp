@@ -64,8 +64,10 @@ namespace status {
     };
 }
 
-struct BattleMonster;
-struct BattleMonsterDraw2;
+namespace btl {
+    struct BattleMonster;
+    struct BattleMonsterDraw2;
+}
 struct BattleMonsterDrawParam {
     int unk_00;        // +0
     int unk_04;        // +4

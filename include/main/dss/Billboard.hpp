@@ -4,7 +4,7 @@
 #include "main/dss/Position.hpp"
 #include "main/dss/Render.hpp"
 
-/* dss drawable registered in a Render, vtable 0x020c43c4 */
+/* vtable 0x020c43c4 */
 struct RenderObject {
     virtual void draw() {}                      // slot 0, 0x0204a044
     virtual void setPolygonID(int id);          // slot 1

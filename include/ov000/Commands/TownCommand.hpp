@@ -12,6 +12,7 @@ struct TownPartyDraw;
 #include "ov000/town/TownDoorAction.hpp"
 #include "main/Commands/CommonCommand.hpp"
 #include "main/cmn/CommonEffectLocation.hpp"
+#include "ov016/MaterielMenu_SLOT/MaterielMenu_SLOT.hpp"
 
 struct TownFurnitureManager;
 struct TownStageManager;
@@ -193,7 +194,6 @@ extern char data_02116ce0[];
 extern int data_ov000_0214eb9c;
 extern char data_ov000_02148fa4[];
 extern char data_ov000_02148fa8[];
-extern char data_ov016_02186a14[];
 extern Data021487a8 data_ov000_021487a8;
 extern long data_ov000_021487ac;
 extern dss::Fix32 data_ov000_021487b0;
@@ -201,7 +201,6 @@ extern dss::Fix32 data_ov000_021487b0;
 extern "C" {
     int func_ov000_02141424(int* param);
     void func_0207e88c(void* console, int x, int y, const char* format, ...);
-    void func_ov016_02178378(void* obj, int value);
     void func_ov000_02138308(TownCharacterManager* mgr, int index);
     window::CommandWindow* func_ov000_021372e8(void);
     TownStageManager* func_ov000_02139668(void);

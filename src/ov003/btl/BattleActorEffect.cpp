@@ -203,7 +203,7 @@ THUMB int btl::BattleActorEffect::setEnemyEffect(status::UseActionParam* useActi
     int actionIndex = useActionParam->actionIndex_;
     int ctrlId = useActionParam->actorCharacterStatus_->haveStatusInfo_.drawCtrlId_;
     int animIndex = useActionParam->actorCharacterStatus_->haveBattleStatus_.getActionAnimation();
-    int monsterNo = func_ov003_02121d04()->monster_[ctrlId].monsterIndex_;
+    int monsterNo = btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].monsterIndex_;
 
     if (!checkEnemyExecEffect(useActionParam)) {
         return 0;

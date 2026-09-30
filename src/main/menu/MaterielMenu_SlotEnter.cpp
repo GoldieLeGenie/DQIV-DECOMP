@@ -27,8 +27,7 @@ THUMB void MaterielMenu_SlotEnter::enableUpdate()
     if (data_020ed1bc.isOpen() != 0) {
         if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
             data_020ed1bc.close();
-            func_ov016_0216aca4();
-            func_ov016_0216b020();
+            MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
             func_ov000_021341ec(func_ov000_02132a90(), 1);
             g_cmnPartyInfo.prevLocation_ = 1;
             g_Global.setMinigame(1);
@@ -36,8 +35,7 @@ THUMB void MaterielMenu_SlotEnter::enableUpdate()
             g_Global.startCasino();
         } else if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_CANCEL) {
             data_020ed1bc.close();
-            func_ov016_0216aca4();
-            func_ov016_0216b020();
+            MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
         }
     } else {
         data_020ed1bc.openMessageForMENU();

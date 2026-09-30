@@ -1,5 +1,5 @@
-func_ov032_02189360 kind:function(thumb,size=0x68) addr:0x02189360
-func_ov032_021893c8 kind:function(thumb,size=0x10) addr:0x021893c8
-func_ov032_021893d8 kind:function(thumb,size=0x10) addr:0x021893d8
-func_ov032_021893e8 kind:function(thumb,size=0xfc) addr:0x021893e8
-data_ov032_02189508 kind:data(any) addr:0x02189508
+_ZN30MaterielMenu_EXTRA_PRESENT_EXP9menuSetupEv kind:function(thumb,size=0x68) addr:0x02189360
+_ZN30MaterielMenu_EXTRA_PRESENT_EXP11menuExecuteEv kind:function(thumb,size=0x10) addr:0x021893c8
+_ZN30MaterielMenu_EXTRA_PRESENT_EXP8menuDrawEv kind:function(thumb,size=0x10) addr:0x021893d8
+_ZN30MaterielMenu_EXTRA_PRESENT_EXP10menuUpdateEv kind:function(thumb,size=0xfc) addr:0x021893e8
+_ZTV30MaterielMenu_EXTRA_PRESENT_EXP kind:data(byte[28]) addr:0x02189500

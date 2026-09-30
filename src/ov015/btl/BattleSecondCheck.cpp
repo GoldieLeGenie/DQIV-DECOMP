@@ -609,7 +609,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckZaoriku(BattleSelectTargetParam 
         selected = -1;
 
         for (int i = 0; i < validCount; i++) {
-            if (func_ov003_021223b4(func_ov000_02121d04(), targetCharacterStatus[i]->characterIndex_) != 0) {
+            if (func_ov000_02121d04()->isCallFriend(targetCharacterStatus[i]->characterIndex_) != 0) {
                 selected = i;
                 break;
             }
@@ -1454,7 +1454,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckNakamayobi(BattleSelectTargetPar
         break;
     }
 
-    if (func_ov003_021223b4(func_ov000_02121d04(), monsterIndex) != 0 &&
+    if (func_ov000_02121d04()->isCallFriend(monsterIndex) != 0 &&
         g_monster.getMonsterCountInGroup(actor->characterGroup_) < 8)
         return personalCheckFreeOne(battleSelectTargetParam);
 

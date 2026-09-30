@@ -2,7 +2,7 @@
 #include <globaldefs.h>
 #include "main/dss/DssUtils.hpp"
 
-/* DS Position (dss base of DSSAObject), vtable 0x020c43a8 */
+/*vtable 0x020c43a8 */
 struct Position {
     virtual void setPosition(const dss::Fix32Vector3& position);    // slot 0
     virtual void setScale(dss::Fix32 scale);                         // slot 1

@@ -4,3 +4,82 @@
     .data       start:0x0218d040 end:0x0218d1c0 kind:data align:32
     .bss        start:0x0218d1c0 end:0x0218d220 kind:bss align:32
 
+
+src/ov028/MaterielMenu_SHOP/MaterielMenu_SHOP_MESSAGE_MANAGER.cpp:
+    complete
+    .text start:0x0218ad58 end:0x0218b608
+    .bss start:0x0218d1c0 end:0x0218d1c4
+
+src/ov028/MaterielMenu_SHOP/MaterielMenu_SHOP_MANAGER.cpp:
+    complete
+    .text start:0x0218b608 end:0x0218ba6c
+    .data start:0x0218d0e8 end:0x0218d0f4
+    .bss start:0x0218d1c4 end:0x0218d220
+
+src/ov028/MaterielMenu_SHOP/MaterielMenu_SHOP_ROOT.cpp:
+    complete
+    .text start:0x02189360 end:0x02189594
+    .data start:0x0218d040 end:0x0218d05c
+
+src/ov028/MaterielMenu_SHOP/MaterielMenu_SHOP_EQUIPCHECK.cpp:
+    complete
+    .text start:0x02189930 end:0x02189fa8
+    .rodata start:0x0218d00c end:0x0218d024
+    .data start:0x0218d078 end:0x0218d094
+
+src/ov028/MaterielMenu_SHOP/MaterielMenu_SHOP_WHOSE.cpp:
+    complete
+    .text start:0x02189fa8 end:0x0218a758
+    .rodata start:0x0218d024 end:0x0218d030
+    .data start:0x0218d094 end:0x0218d0b0
+
+src/ov028/MaterielMenu_SHOP/MaterielMenu_SHOP_BUYMENU.cpp:
+    complete
+    .text start:0x02189594 end:0x02189930
+    .data start:0x0218d05c end:0x0218d078
+
+src/ov028/MaterielMenu_SHOP/MaterielMenu_SHOP_WHO_SELL.cpp:
+    complete
+    .text start:0x0218a9b4 end:0x0218ad58
+    .data start:0x0218d0cc end:0x0218d0e8
+
+src/ov028/MaterielMenu_SHOP/MaterielMenu_SHOP_VALUE.cpp:
+    complete
+    .text start:0x0218c778 end:0x0218ce34
+    .rodata start:0x0218d030 end:0x0218d03c
+    .data start:0x0218d180 end:0x0218d19c
+
+src/ov028/MaterielMenu_CHANGEGIFT/MaterielMenu_CHANGEGIFT_EQUIPCHECK.cpp:
+    complete
+    .text start:0x0218bcec end:0x0218c184
+    .data start:0x0218d110 end:0x0218d12c
+
+src/ov028/MaterielMenu_CHANGEGIFT/MaterielMenu_CHANGEGIFT_ROOT.cpp:
+    complete
+    .text start:0x0218c184 end:0x0218c344
+    .data start:0x0218d12c end:0x0218d148
+
+src/ov028/MaterielMenu_CHANGEGIFT/MaterielMenu_CHANGEGIFT_SELECTCHARA.cpp:
+    complete
+    .text start:0x0218c344 end:0x0218c4d0
+    .data start:0x0218d148 end:0x0218d164
+
+src/ov028/MaterielMenu_CHANGEGIFT/MaterielMenu_CHANGEGIFT_SELECTGIFT.cpp:
+    complete
+    .text start:0x0218c4d0 end:0x0218c778
+    .data start:0x0218d164 end:0x0218d180
+
+src/ov028/MaterielMenu_SHOP/MaterielMenu_SHOP_SELL_ITEM.cpp:
+    complete
+    .text start:0x0218a758 end:0x0218a9b4
+    .data start:0x0218d0b0 end:0x0218d0cc
+
+src/ov028/MaterielMenu_SHOP/MaterielMenu_SHOP_SELL_SACK.cpp:
+    complete
+    .text start:0x0218ba6c end:0x0218bcec
+    .data start:0x0218d0f4 end:0x0218d110
+
+src/ov028/MaterielMenu_SHOP/MaterielMenu_SHOP_SELL_QUANTITY.cpp:
+    complete
+    .text start:0x0218ce34 end:0x0218d00c
+    .data start:0x0218d19c end:0x0218d1b8

@@ -30,3 +30,9 @@ struct ExecTaskManager {
     void clear();                       // func_02035bb8
     void resister(int id, ExecTask* task);   // func_02035bcc
 };
+
+extern ExecTaskManager data_020ef8f0;   // g_BattleExecLevelup
+
+extern "C" {
+    void func_02036010(ExecTaskManager* self);   // BattleExecLevelup::terminate
+}

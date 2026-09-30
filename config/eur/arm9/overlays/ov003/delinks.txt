@@ -140,6 +140,10 @@ src/ov003/btl/BattleActorAnimation.cpp:
     .text start:0x02129238 end:0x0212a1d8
     .bss start:0x02158a54 end:0x02158a58
 
+src/ov003/ov003_entry.cpp:
+    complete
+    .text start:0x021210e0 end:0x021210e4
+
 src/ov003/btl/BattleCameraHoming.cpp:
     complete
     .text start:0x021210e4 end:0x02121234
@@ -157,6 +161,11 @@ src/ov003/btl/BattleRound.cpp:
     .text start:0x021229a0 end:0x021230c8
     .data start:0x02139d00 end:0x02139e7c
 
+src/ov003/btl/UnkBattleSystem.cpp:
+    complete
+    .text start:0x02122964 end:0x021229a0
+    .bss start:0x02148af8 end:0x02148b04
+
 src/ov003/btl/BattleRoot.cpp:
     complete
     .init start:0x02139180 end:0x021391a0
@@ -171,6 +180,27 @@ src/ov003/btl/BattleExecVictory.cpp:
     .ctor start:0x021396bc end:0x021396c0
     .data start:0x0213a060 end:0x0213a3d0
     .bss start:0x02148cac end:0x02149250
+
+src/ov003/btl/battle_monster_draw.cpp:
+    complete
+    .text start:0x021216bc end:0x02122474
+    .init start:0x0213911c end:0x02139148
+    .ctor start:0x021396b0 end:0x021396b4
+    .data start:0x0213970c end:0x02139cec
+    .bss start:0x0213cbe4 end:0x0214884c
+
+src/ov003/btl/BattleMonsterMask.cpp:
+    complete
+    .text start:0x02121234 end:0x021216bc
+    .init start:0x02139108 end:0x0213911c
+    .ctor start:0x021396ac end:0x021396b0
+    .data start:0x021396e0 end:0x0213970c
+    .bss start:0x0213ca60 end:0x0213cbe4
+
+src/ov003/btl/BattleMenuFace.cpp:
+    complete
+    .text start:0x021259fc end:0x02125a7c
+    .bss start:0x02149250 end:0x021492bc
 
 src/ov003/btl/BattleSystem2.cpp:
     complete

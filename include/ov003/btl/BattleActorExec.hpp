@@ -38,5 +38,3 @@ namespace btl {
 
 }
 
-extern "C" void func_ov003_02121298();
-extern "C" void func_ov003_02121394();

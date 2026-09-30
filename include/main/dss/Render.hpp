@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 
-// mobile: BattleSystem2::render_ (type Render)
+// BattleSystem2::render_ (type Render)
 struct Render {
     int unk_000;                // 0x000
     int unk_004[32];            // 0x004

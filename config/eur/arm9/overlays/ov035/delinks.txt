@@ -3,3 +3,8 @@
     .data       start:0x02189bc0 end:0x02189be0 kind:data align:32
     .bss        start:0x02189be0 end:0x02189be0 kind:bss align:32
 
+
+src/ov035/MaterielMenu_EXTRA_NENE/MaterielMenu_EXTRA_NENE.cpp:
+    complete
+    .text start:0x02189360 end:0x02189bb8
+    .data start:0x02189bc0 end:0x02189bdc

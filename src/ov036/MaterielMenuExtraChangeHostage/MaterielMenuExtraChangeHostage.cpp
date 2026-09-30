@@ -110,8 +110,7 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
                     func_ov000_021383bc(func_ov000_02137f2c(), ctrlID_, 0x4000);
                 }
 
-                func_ov016_0216aca4();
-                func_ov016_0216b020();
+                MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
             }
         } else {
             data_020ed1bc.openMessageForTALK();
@@ -187,8 +186,7 @@ THUMB void MaterielMenuExtraChangeHostage::memberChange()
 
     g_Global.bookingFlag_ = Global::BOOKING_HOSTAGE;
     
-    func_ov016_0216aca4();
-    func_ov016_0216b020();
+    MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
 }
 
 THUMB int MaterielMenuExtraChangeHostage::isHostage()

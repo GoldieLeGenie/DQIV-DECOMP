@@ -45,7 +45,6 @@ enum MACRO_STAT {
     MST_ALLMEMBER       = 0x20000
 };
 
-inline MACRO_STAT& operator|=(MACRO_STAT& a, MACRO_STAT b) { a = (MACRO_STAT)(a | b); return a; }
 
 /* DS MsgVar (0x1C) */
 struct MsgVar {

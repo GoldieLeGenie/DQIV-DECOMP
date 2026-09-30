@@ -706,3 +706,15 @@ libs/NitroSDK/src/fx/fx_atan.c:
     complete
     .text start:0x020634c4 end:0x0206366c
     .rodata start:0x020ba38c end:0x020ba490
+
+src/main/menu/MaterielMenu_FIGHT_STADIUM.cpp:
+    complete
+    .text start:0x0203da14 end:0x0203e5a8
+    .rodata start:0x020b61c4 end:0x020b61dc
+    .data start:0x020c1908 end:0x020c1924
+
+src/main/menu/MaterielMenu_SAVE.cpp:
+    complete
+    .text start:0x0203b8a4 end:0x0203c8e4
+    .rodata start:0x020b61b8 end:0x020b61bc
+    .data start:0x020c1448 end:0x020c1490

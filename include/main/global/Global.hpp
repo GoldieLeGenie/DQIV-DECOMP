@@ -26,9 +26,9 @@ struct Global {
     short betMonsterID_;                        // 0x34
     short betMonsterSymbol_;                    // 0x36
     short diameter_;                            // 0x38
-    int unk_3C;                                 // 0x3C
-    int doubleUpFlag_;                          
-    int prevPartTown_;                          
+    int doubleUpFlag_;                          // 0x3C
+    int prevPartTown_;                          // 0x40
+    int unk_44;                                 // 0x44
     dss::Fix32Vector3 fightingarenaPosition_;     
     int fightingarenaFlag_;                     
     char fightingarenaMapName_[32];             

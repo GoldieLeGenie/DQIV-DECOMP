@@ -68,14 +68,14 @@ ARM void btl::ExecMessageTask::terminate()
 
     status::parupunteMetalSlime2(action);
     status::parupunteMetalSlime3(action);
-    func_ov003_02121d04();
-    func_ov003_02121d58();
+    
+    btl::BattleMonsterDraw2::getSingleton()->setup();
 
     count = g_monster.getCount();
     for (int i = 0; i < count; i++) {
         if (!g_monster.getMonsterStatus(i)->haveStatusInfo_.isDeath()) {
             int id = g_monster.getMonsterStatus(i)->haveStatusInfo_.drawCtrlId_;
-            func_ov003_02121ab0(&func_ov003_02121d04()->monster_[id], 0x20);
+            btl::BattleMonsterDraw2::getSingleton()->monsters_[id].startAnimation(0x20);
         }
     }
 }
@@ -89,7 +89,7 @@ ARM void btl::ExecMessageTask::execute()
         endWait = btl::BattleEffectManager::getSingleton()->isEndWait();
         flag = 1;
         if (useActionParam_->actionIndex_ == 0xe5) {
-            if (func_ov003_021223f4(func_ov003_02121d04())) {
+            if (btl::BattleMonsterDraw2::getSingleton()->isAppearKingSlime2()) {
                 btl::BattleActorAnimation::gattaiSlime(useActionParam_->actorCharacterStatus_,
                                     useActionParam_->actionIndex_);
                 flag = 1;

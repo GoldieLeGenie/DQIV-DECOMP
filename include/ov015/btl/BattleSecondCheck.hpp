@@ -68,6 +68,5 @@ namespace btl {
     };
 }
 
-struct BattleMonsterDraw2;
-extern "C" BattleMonsterDraw2* func_ov000_02121d04();
-extern "C" int func_ov003_021223b4(BattleMonsterDraw2* mgr, int monsterIndex);
+namespace btl { struct BattleMonsterDraw2; }
+extern "C" btl::BattleMonsterDraw2* func_ov000_02121d04();

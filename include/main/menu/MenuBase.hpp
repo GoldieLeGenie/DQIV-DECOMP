@@ -54,9 +54,33 @@ struct MenuItem {
 };
 
 struct MenuNavigator {
+    int unk_00;
     short w_;             /* 0x4 */
     short h_;             /* 0x6 */
     short count_;         /* 0x8 */
+    short unk_0a;
 };
 
 }  // namespace menu
+
+extern "C" {
+    void func_02023324(menu::MenuNavigator* navigator);
+    int  func_0202333c(menu::MenuNavigator* navigator);
+    int  func_020231c8(menu::MenuItem* menuItem, menu::MenuNavigator* navigator, int* active);
+    void func_02023344(menu::MenuNavigator* navigator, int page);
+    int  func_02023348(menu::MenuNavigator* navigator);
+    int  func_020233cc(menu::MenuNavigator* navigator, int active);
+    int  func_02023364(menu::MenuNavigator* navigator, int active);
+    int  func_0202339c(menu::MenuNavigator* navigator, int active);
+    void func_0201e6c4(menu::MenuItem* menuItem, int count, int active);
+    void func_02023504(void* cursor, int a, int b, int count);
+    int  func_02023274(void* list, void* cursor);                /* poll -> 0/2/3/4/5 */
+    void func_02051900(menu::MenuItem*, int, int);
+    void func_02051968(menu::MenuItem*);
+    void func_02051a7c(menu::MenuItem*);
+    int  func_02023230(menu::MenuItem*);
+    int  func_02023204(menu::MenuItem* menuItem, menu::MenuNavigator* navigator, int* active);
+    int  func_020233e4(menu::MenuNavigator* navigator);
+    int  func_020233f0(menu::MenuNavigator* navigator);
+    void func_0201e684(menu::MenuItem* menuItem, int active, int max, int x, int y);
+}

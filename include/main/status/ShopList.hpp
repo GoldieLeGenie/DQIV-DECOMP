@@ -20,8 +20,9 @@ namespace status{
             Exist   = 1,
             NoPray  = 2,
         };
-        char pad_[0x1c];                           // +0x00
-        HaveItemSack sack_;                        // +0x1c
+        int sideJobItemFlag_[6];                   // +0x00 
+        int pay_;                                  // +0x18
+        HaveItemSack haveItemNene_;                // +0x1c
         ShopList();
         ~ShopList();
         static void initialize();
@@ -34,6 +35,7 @@ namespace status{
 
     };
     extern ShopData ShopData_;                 // data_020d0bcc
+    extern ShopList g_Shop;                    // data_020d0be4
 }
 
 

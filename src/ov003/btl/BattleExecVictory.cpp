@@ -693,15 +693,15 @@ THUMB void btl::BattleExecEvent00::setup()
         for (int i = 0; i < 4; i++) {
             dss::Fix32Vector3 pos(0, 0, 0);
             pos.vx.value = VELORINMAN_POS[i];
-            func_ov003_02121878(&func_ov003_02121d04()->monster_[i], &pos);
-            func_ov003_02121ab0(&func_ov003_02121d04()->monster_[i], 0x25);
+            btl::BattleMonsterDraw2::getSingleton()->monsters_[i].setPosition(pos);
+            btl::BattleMonsterDraw2::getSingleton()->monsters_[i].startAnimation(0x25);
         }
     }
     else {
         VELORINMAN_POS[nowRealVelorinmanIdx] = VELORINMAN_POS2[nowRealVelorinmanIdx];
         for (int i = 0; i < 4; i++) {
             if (!(g_monster.getMonsterStatus(i)->eventFlag_.flag_ & 1)) {
-                func_ov003_02121ab0(&func_ov003_02121d04()->monster_[i], 0x24);
+                btl::BattleMonsterDraw2::getSingleton()->monsters_[i].startAnimation(0x24);
             }
         }
     }
@@ -725,8 +725,8 @@ THUMB void btl::BattleExecEvent00::cleanup()
         verolinmanPos[i].set(0, 0, 0);
         verolinmanPos[i].vx.value = VELORINMAN_POS[preRealVelorinmanIdx];
         int ctrlId = g_monster.getMonsterInGroup(i, 0)->ctrlId_;
-        func_ov003_02121878(&func_ov003_02121d04()->monster_[ctrlId], &verolinmanPos[i]);
-        func_ov003_02121ab0(&func_ov003_02121d04()->monster_[i], 0x25);
+        btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].setPosition(verolinmanPos[i]);
+        btl::BattleMonsterDraw2::getSingleton()->monsters_[i].startAnimation(0x25);
     }
 }
 
@@ -757,7 +757,7 @@ THUMB void btl::BattleExecEvent00b::cleanup()
         verolinmanPos[i].set(0, 0, 0);
         verolinmanPos[i].vx.value = VELORINMAN_POS2[i];
         int ctrlId = g_monster.getMonsterInGroup(i, 0)->ctrlId_;
-        func_ov003_02121878(&func_ov003_02121d04()->monster_[ctrlId], &verolinmanPos[i]);
+        btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].setPosition(verolinmanPos[i]);
     }
 }
 
@@ -780,7 +780,7 @@ THUMB void btl::BattleExecEvent00b::move()
         verolinmanPos[i].vx.value = start + (VELORINMAN_POS2[i] - start) * counter_ / 120;
         verolinmanPos[i].vz.value += i * 0x400;
         ctrlId = g_monster.getMonsterInGroup(i, 0)->ctrlId_;
-        func_ov003_02121878(&func_ov003_02121d04()->monster_[ctrlId], &verolinmanPos[i]);
+        btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].setPosition(verolinmanPos[i]);
     }
 }
 
@@ -830,9 +830,9 @@ THUMB void btl::BattleExecEvent02::execChange()
                 SoundManager::battleStop();
             }
             int ctrlId = g_monster.getCtrlId(0);
-            func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
+            btl::BattleMonsterDraw2::getSingleton()->cleanup(ctrlId);
             int dummy = btl::BattleTransform::getDummyFromMonster(index);
-            g_monster.setCtrlId(0, func_ov003_02121f54(func_ov003_02121d04(), 0, dummy));
+            g_monster.setCtrlId(0, btl::BattleMonsterDraw2::getSingleton()->setup(0, dummy));
             status_ = 1;
         }
         break;
@@ -841,7 +841,7 @@ THUMB void btl::BattleExecEvent02::execChange()
     case 2: {
         func_0204d0dc(btl::BattleTransform::getDummyFromTrans());
         int ctrlId = g_monster.getCtrlId(0);
-        func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
+        btl::BattleMonsterDraw2::getSingleton()->cleanup(ctrlId);
         status_ = 3;
         btl::BattleTransform::getSingleton()->draw();
         break;
@@ -856,7 +856,7 @@ THUMB void btl::BattleExecEvent02::execChange()
         break;
     case 4: {
         int dummy = btl::BattleTransform::getDummyFromTrans();
-        g_monster.setCtrlId(0, func_ov003_02121f54(func_ov003_02121d04(), 0, dummy + 1));
+        g_monster.setCtrlId(0, btl::BattleMonsterDraw2::getSingleton()->setup(0, dummy + 1));
         status_ = 5;
         break;
     }
@@ -926,8 +926,8 @@ THUMB void btl::BattleExecEvent03::endTransform()
             g_monster.getMonsterStatus(0)->characterIndex_ = next;
             g_monster.getMonsterStatus(0)->setStartStatus();
             int ctrlId = g_monster.getCtrlId(0);
-            func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
-            g_monster.setCtrlId(0, func_ov003_02121f54(func_ov003_02121d04(), 0, next));
+            btl::BattleMonsterDraw2::getSingleton()->cleanup(ctrlId);
+            g_monster.setCtrlId(0, btl::BattleMonsterDraw2::getSingleton()->setup(0, next));
             if (next == 0xd2) {
                 g_BattleExecDeathPissaroMahokanta.flag_ = 1;
             }
@@ -996,9 +996,9 @@ THUMB void btl::BattleExecEvent12::execChange()
                 SoundManager::battleStop();
             }
             int ctrlId = g_monster.getCtrlId(0);
-            func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
+            btl::BattleMonsterDraw2::getSingleton()->cleanup(ctrlId);
             int dummy = btl::BattleTransform::getDummyFromMonster(index);
-            g_monster.setCtrlId(0, func_ov003_02121f54(func_ov003_02121d04(), 0, dummy));
+            g_monster.setCtrlId(0, btl::BattleMonsterDraw2::getSingleton()->setup(0, dummy));
             status_ = 1;
         }
         break;
@@ -1007,7 +1007,7 @@ THUMB void btl::BattleExecEvent12::execChange()
     case 2: {
         func_0204d0dc(btl::BattleTransform::getDummyFromTrans());
         int ctrlId = g_monster.getCtrlId(0);
-        func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
+        btl::BattleMonsterDraw2::getSingleton()->cleanup(ctrlId);
         status_ = 3;
         btl::BattleTransform::getSingleton()->draw();
         break;
@@ -1022,7 +1022,7 @@ THUMB void btl::BattleExecEvent12::execChange()
         break;
     case 4: {
         int dummy = btl::BattleTransform::getDummyFromTrans();
-        g_monster.setCtrlId(0, func_ov003_02121f54(func_ov003_02121d04(), 0, dummy + 1));
+        g_monster.setCtrlId(0, btl::BattleMonsterDraw2::getSingleton()->setup(0, dummy + 1));
         status_ = 5;
         break;
     }
@@ -1085,8 +1085,8 @@ THUMB void btl::BattleExecEvent13::endTransform()
             g_monster.getMonsterStatus(0)->characterIndex_ = next;
             g_monster.getMonsterStatus(0)->setStartStatus();
             int ctrlId = g_monster.getCtrlId(0);
-            func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
-            g_monster.setCtrlId(0, func_ov003_02121f54(func_ov003_02121d04(), 0, next));
+            btl::BattleMonsterDraw2::getSingleton()->cleanup(ctrlId);
+            g_monster.setCtrlId(0, btl::BattleMonsterDraw2::getSingleton()->setup(0, next));
         }
     }
 }
@@ -1116,8 +1116,8 @@ THUMB void btl::BattleExecEvent14::setup()
     BattleMessage::setMessage(0xc3938, 0, 0, 0);
     func_02089678();
     int ctrlId = g_monster.getCtrlId(0);
-    if (status::excelParam.monsterAnim_->getAnimData(func_ov003_02121d04()->monster_[0].monsterIndex_, 0x23, 5) >= 0) {
-        func_ov003_02121970(&func_ov003_02121d04()->monster_[0], 0x23, 5);
+    if (status::excelParam.monsterAnim_->getAnimData(btl::BattleMonsterDraw2::getSingleton()->monsters_[0].monsterIndex_, 0x23, 5) >= 0) {
+        btl::BattleMonsterDraw2::getSingleton()->monsters_[0].startAnimation(0x23, 5);
     }
 }
 
@@ -1136,7 +1136,7 @@ THUMB void btl::BattleExecEvent15::setup()
     BattleMessage::setMessage(0xc3a8f, 0, 0, 0);
     func_02089678();
     int ctrlId = g_monster.getCtrlId(0);
-    int animIndex = status::excelParam.monsterAnim_->getAnimData(func_ov003_02121d04()->monster_[0].monsterIndex_, 0x23, 5);
+    int animIndex = status::excelParam.monsterAnim_->getAnimData(btl::BattleMonsterDraw2::getSingleton()->monsters_[0].monsterIndex_, 0x23, 5);
     if (animIndex >= 0) {
         param::MonsterAnim* anim = &status::excelParam.monsterAnim_[animIndex];
         int effect = btl::BattleEffectManager::getSingleton()->setupEffect(0x67);

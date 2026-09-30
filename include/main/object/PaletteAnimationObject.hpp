@@ -2,7 +2,6 @@
 #include <globaldefs.h>
 #include "main/object/DSSAObject.hpp"
 
-// DS-only palette animation player (name unknown)
 struct PaletteAnimationObject {
     PaletteAnimation anim_;             /* 0x00 */
     void* texture_;                     /* 0x10 */
@@ -17,5 +16,7 @@ struct PaletteAnimationObject {
 extern "C" {
     void func_0205b3d0(PaletteAnimationObject* self);   /* start */
     void func_0205b44c(PaletteAnimationObject* self);   /* execute */
+    void func_0205b584(PaletteAnimationObject* self, int a, int b);
+    int  func_0205b628(PaletteAnimationObject* self);   /* isEnd */
     void func_0205b648(PaletteAnimationObject* self);   /* cleanup */
 }

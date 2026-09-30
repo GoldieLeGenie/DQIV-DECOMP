@@ -5,7 +5,6 @@
 #include "main/data/DataObject.hpp"
 #include "nitro/g3.hpp"
 
-/* dss polygon object, vtable 0x020c4440 */
 struct PolygonObject : RenderObject3D {
     virtual void draw();                        // func_0208383c
 
@@ -16,14 +15,11 @@ struct PolygonObject : RenderObject3D {
     unsigned char unk_82;                       // 0x82
 };
 
-/* BillboardCharacter ground shadow, vtable 0x020c1cc4 */
 struct CharacterShadow : PolygonObject {
     virtual void draw();                        // func_02049f74
-
     ~CharacterShadow();
 };
 
-/* mobile: display_character.h, vtable 0x020c1d00 */
 struct BillboardCharacter : Billboard {
     virtual void draw();
     virtual void setPosition(const dss::Fix32Vector3& position);

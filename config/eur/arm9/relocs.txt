@@ -10539,7 +10539,7 @@ from:0x02038854 kind:load to:0x020ee1cc add:0xA8C module:main
 from:0x02038858 kind:load to:0x020ef9ac module:main
 from:0x0203886c kind:load to:0x020d0bc0 module:main
 from:0x02038874 kind:load to:0x020d06b4 module:main
-from:0x02038888 kind:load to:0x020d0c00 module:main
+from:0x02038888 kind:load to:0x020d0be4 add:0x1c module:main
 from:0x02038894 kind:load to:0x020d0be4 module:main
 from:0x020388a8 kind:load to:0x020ecd3c module:main
 from:0x020388ac kind:load to:0x020c7b1c add:0x280 module:main
@@ -10685,7 +10685,7 @@ from:0x02039110 kind:load to:0x020d08e0 add:0x200 module:main
 from:0x02039118 kind:load to:0x020ef9ac module:main
 from:0x0203912c kind:load to:0x020d0bc0 module:main
 from:0x02039134 kind:load to:0x020d06b4 module:main
-from:0x02039150 kind:load to:0x020d0c00 module:main
+from:0x02039150 kind:load to:0x020d0be4 add:0x1c module:main
 from:0x02039154 kind:load to:0x020d0be4 module:main
 from:0x02039168 kind:load to:0x020ecd3c module:main
 from:0x02039178 kind:load to:0x020efc6c module:main
@@ -11210,11 +11210,9 @@ from:0x0203bc12 kind:thumb_call to:0x02035180 module:main
 from:0x0203bc16 kind:thumb_call to:0x020352d0 module:main
 from:0x0203bc60 kind:thumb_call to:0x0202c040 module:main
 from:0x0203bc6c kind:thumb_call to:0x0203c56c module:main
-from:0x0203bc76 kind:thumb_call to:0x0203c4fe module:main
 from:0x0203bc96 kind:thumb_call to:0x0203c65c module:main
 from:0x0203bca4 kind:thumb_call to:0x0203c65c module:main
 from:0x0203bcb0 kind:thumb_call to:0x0203c750 module:main
-from:0x0203bcbe kind:thumb_call to:0x0203c4fe module:main
 from:0x0203bd06 kind:thumb_call to:0x0200b9fc module:main
 from:0x0203bd18 kind:thumb_call to:0x0200b9fc module:main
 from:0x0203bd2a kind:thumb_call to:0x0200b9fc module:main
@@ -21903,8 +21901,8 @@ from:0x0209e5f0 kind:load to:0x020f0000 module:main
 from:0x0209e708 kind:load to:0x02090000 module:main
 from:0x0209e758 kind:load to:0x020c8354 add:0x7cac module:main
 from:0x0209e7f8 kind:load to:0x02120000 module:main
-from:0x0209e820 kind:load to:0x02140000 module:overlays(1,3)
-from:0x0209e848 kind:load to:0x02140000 module:overlays(1,3)
+from:0x0209e820 kind:load to:0x02140000 module:overlay(1)
+from:0x0209e848 kind:load to:0x02140000 module:overlay(1)
 from:0x0209ee10 kind:load to:0x020c0000 module:main
 from:0x020aa7ec kind:load to:0x020a0601 module:main
 from:0x020aaabc kind:load to:0x020b1001 module:main

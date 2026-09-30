@@ -23,14 +23,6 @@ namespace dss {
         void setValue(T value);
         T getValue();
         void clear();
-        void setParent(unsigned char index) { parentIndex_ = index; }
-        unsigned char getParent() { return parentIndex_; }
-        void setChild(unsigned char index) { childIndex_ = index; }
-        unsigned char getChild() { return childIndex_; }
-        void setNext(unsigned char index) { nextIndex_ = index; }
-        unsigned char getNext() { return nextIndex_; }
-        void setPrev(unsigned char index) { prevIndex_ = index; }
-        unsigned char getPrev() { return prevIndex_; }
     };
 
     template <typename T, int N>
@@ -173,8 +165,8 @@ namespace dss {
     void Tree<T, N>::addChild(T value)
     {
         int index = Nodes.getNodeIndex(value);
-        Nodes[currentNodeIndex].setChild(index);
-        Nodes[index].setParent(currentNodeIndex);
+        Nodes[currentNodeIndex].childIndex_ = index;
+        Nodes[index].parentIndex_ = currentNodeIndex;
         moveCurrentChild();
     }
 
@@ -182,9 +174,9 @@ namespace dss {
     void Tree<T, N>::addNext(T value)
     {
         int index = Nodes.getNodeIndex(value);
-        Nodes[currentNodeIndex].setNext(index);
-        Nodes[index].setParent(Nodes[currentNodeIndex].getParent());
-        Nodes[index].setPrev(currentNodeIndex);
+        Nodes[currentNodeIndex].nextIndex_ = index;
+        Nodes[index].parentIndex_ = Nodes[currentNodeIndex].parentIndex_;
+        Nodes[index].prevIndex_ = currentNodeIndex;
         moveCurrentNext();
     }
 
@@ -198,27 +190,27 @@ namespace dss {
     template <typename T, int N>
     void Tree<T, N>::moveCurrentChild()
     {
-        currentNodeIndex = Nodes[currentNodeIndex].getChild();
+        currentNodeIndex = Nodes[currentNodeIndex].childIndex_;
         level++;
     }
 
     template <typename T, int N>
     void Tree<T, N>::moveCurrentNext()
     {
-        currentNodeIndex = Nodes[currentNodeIndex].getNext();
+        currentNodeIndex = Nodes[currentNodeIndex].nextIndex_;
     }
 
     template <typename T, int N>
     void Tree<T, N>::moveCurrentPrev()
     {
-        currentNodeIndex = Nodes[currentNodeIndex].getPrev();
+        currentNodeIndex = Nodes[currentNodeIndex].prevIndex_;
     }
 
     template <typename T, int N>
     void Tree<T, N>::moveCurrentParent(int count)
     {
         for (int i = 0; i < count; i++) {
-            currentNodeIndex = Nodes[currentNodeIndex].getParent();
+            currentNodeIndex = Nodes[currentNodeIndex].parentIndex_;
             level--;
         }
     }
@@ -226,25 +218,25 @@ namespace dss {
     template <typename T, int N>
     bool Tree<T, N>::isCurrentChild()
     {
-        return Nodes[currentNodeIndex].getChild() != Node<T>::NODE_NONE;
+        return Nodes[currentNodeIndex].childIndex_ != Node<T>::NODE_NONE;
     }
 
     template <typename T, int N>
     bool Tree<T, N>::isCurrentNext()
     {
-        return Nodes[currentNodeIndex].getNext() != Node<T>::NODE_NONE;
+        return Nodes[currentNodeIndex].nextIndex_ != Node<T>::NODE_NONE;
     }
 
     template <typename T, int N>
     bool Tree<T, N>::isCurrentPrev()
     {
-        return Nodes[currentNodeIndex].getPrev() != Node<T>::NODE_NONE;
+        return Nodes[currentNodeIndex].prevIndex_ != Node<T>::NODE_NONE;
     }
 
     template <typename T, int N>
     bool Tree<T, N>::isCurrentParent()
     {
-        return Nodes[currentNodeIndex].getParent() != Node<T>::NODE_NONE;
+        return Nodes[currentNodeIndex].parentIndex_ != Node<T>::NODE_NONE;
     }
 
     template <typename T, int N>

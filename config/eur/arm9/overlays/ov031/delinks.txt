@@ -3,3 +3,8 @@
     .data       start:0x02189740 end:0x021897c0 kind:data align:32
     .bss        start:0x021897c0 end:0x021897c0 kind:bss align:32
 
+
+src/ov031/MaterielMenu_MEDAL_KING/MaterielMenu_MEDAL_KING.cpp:
+    complete
+    .text start:0x02189360 end:0x02189728
+    .data start:0x02189740 end:0x021897b4

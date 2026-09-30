@@ -3,3 +3,13 @@
     .data       start:0x0218a1a0 end:0x0218a240 kind:data align:32
     .bss        start:0x0218a240 end:0x0218a240 kind:bss align:32
 
+
+src/ov026/MaterielMenu_SURECHIGAI/MaterielMenu_SURECHIGAI_MAKE_TAISHI.cpp:
+    complete
+    .text start:0x021897dc end:0x02189a80
+    .data start:0x0218a1d8 end:0x0218a1f4
+
+src/ov026/MaterielMenu_SURECHIGAI/MaterielMenu_SURECHIGAI_ROOT.cpp:
+    complete
+    .text start:0x02189e9c end:0x0218a180
+    .data start:0x0218a210 end:0x0218a22c

@@ -25,3 +25,74 @@ src/ov015/btl/BattleSecondCheck.cpp:
     complete
     .text start:0x02172964 end:0x021763d4
     .data start:0x021782a4 end:0x02179660
+
+src/ov015/btl/BattleMenu_NGMESSAGE.cpp:
+    complete
+    .text start:0x0216a980 end:0x0216aa2c
+    .data start:0x02176760 end:0x0217677c
+
+src/ov015/btl/BattleMenu_ITEMUSE2PARTY.cpp:
+    complete
+    .text start:0x0216d4c8 end:0x0216d600
+    .data start:0x02177604 end:0x02177620
+
+src/ov015/btl/BattleMenu_MAGIC2PARTY.cpp:
+    complete
+    .text start:0x0216d980 end:0x0216da98
+    .data start:0x0217763c end:0x02177658
+
+src/ov015/btl/BattleMenu_ROOT.cpp:
+    complete
+    .text start:0x0216df88 end:0x0216e270
+    .data start:0x02177674 end:0x02177690
+
+src/ov015/btl/BattleMenu_ARRAYMENU.cpp:
+    complete
+    .text start:0x0216eef0 end:0x0216f0a4
+    .data start:0x02177810 end:0x0217782c
+
+src/ov015/btl/BattleMenuSub_HISTORY.cpp:
+    complete
+    .text start:0x0216f8c0 end:0x0216f9b8
+    .data start:0x02177864 end:0x02177880
+
+src/ov015/btl/BattleMenu_ATTACK.cpp:
+    complete
+    .text start:0x0216e6e0 end:0x0216ea50
+    .data start:0x021777d8 end:0x021777f4
+
+src/ov015/btl/BattleMenu_MAGIC2ENEMY.cpp:
+    complete
+    .text start:0x0216d600 end:0x0216d980
+    .data start:0x02177620 end:0x0217763c
+
+src/ov015/btl/BattleMenu_ITEMUSE2ENEMY.cpp:
+    complete
+    .text start:0x0216cbd4 end:0x0216cf10
+    .data start:0x02177578 end:0x02177594
+
+src/ov015/btl/BattleMenu_ARRAY_CHANGE.cpp:
+    complete
+    .text start:0x0216f0a4 end:0x0216f510
+    .data start:0x0217782c end:0x02177848
+
+src/ov015/btl/BattleMenu_ARRAY_ALL.cpp:
+    complete
+    .text start:0x0216f510 end:0x0216f8c0
+    .data start:0x02177848 end:0x02177864
+
+src/ov015/btl/BattleMenu_TACTICSMENU.cpp:
+    complete
+    .text start:0x0216f9b8 end:0x0216fd7c
+    .rodata start:0x021764cc end:0x021764e4
+    .data start:0x02177880 end:0x0217789c
+
+src/ov015/btl/BattleMenu_MAGIC.cpp:
+    complete
+    .text start:0x0216da98 end:0x0216df88
+    .data start:0x02177658 end:0x02177674
+
+src/ov015/btl/BattleMenu_ACTIONMENU.cpp:
+    complete
+    .text start:0x0216e2f0 end:0x0216e6e0
+    .data start:0x021777bc end:0x021777d8

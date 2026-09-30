@@ -19,8 +19,4 @@ struct MaterielMenu_SlotEnter : menu::MenuBase
     void enableUpdate();
 };
 
-extern "C" {
-    MaterielMenuWindowManager* func_ov016_0216aca4(void); /* MaterielMenu_WINDOW_MANAGER::getSingleton */
-    void func_ov016_0216b020(void);                   /* MaterielMenu_WINDOW_MANAGER::closeMaterielWindow */
-    void func_ov016_0216acac(MaterielMenuWindowManager* self, int type);   /* MaterielMenu_WINDOW_MANAGER::openMaterielWindow */
-}
+extern MaterielMenu_SlotEnter data_ov016_021859b8;          /* gMaterielMenu_SlotEnter */

@@ -24,6 +24,5 @@ namespace btl {
 }
 
 extern "C" int   func_ov003_0212fa2c(btl::AfterActionTask*);
-extern "C" BattleMonsterDraw2* func_ov003_02121d04(void);                    // &BattleMonsterDraw2::m_singleton (base)
 extern "C" void func_ov003_0212fa14(btl::AfterActionTask* thisptr);
 extern "C" int   func_ov003_0212fba0(btl::AfterActionTask* thisptr);

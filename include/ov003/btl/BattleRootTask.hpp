@@ -148,18 +148,10 @@ namespace btl {
 
 }
 
-extern "C" void func_ov003_02121970(BattleMonster*, int, int);
 
-struct BattleMenuSub_HISTORY : menu::MenuBase {
-    unsigned char unk_1C[8];            // 0x1C
-    int update_;                        // 0x24
-};
-extern BattleMenuSub_HISTORY gBattleMenuSub_HISTORY;   // ov015
-
-extern ExecTaskManager data_020ef8f0;   // g_BattleExecLevelup
+#include "ov015/btl/BattleMenu.hpp"
 
 extern "C" {
     void func_0200d5d4(void);
     void func_0200d5e8(void);
-    void func_02036010(ExecTaskManager* self);   // BattleExecLevelup::terminate
 }

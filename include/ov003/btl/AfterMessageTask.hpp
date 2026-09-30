@@ -21,7 +21,6 @@ namespace btl {
 }
 
 extern "C" void  func_0208988c(void);                                 // 
-extern "C" BattleMonsterDraw2* func_ov003_02121d04(void);             // 
 extern "C" void  func_ov003_02129c58(status::CharacterStatus*, int, int, int); // 
 extern "C" void func_ov003_02129ca0(status::CharacterStatus*, int);  // 
 

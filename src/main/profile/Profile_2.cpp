@@ -1,4 +1,5 @@
 #include "main/profile/Profile.hpp"
+#include "main/status/ShopList.hpp"
 #include "main/cmn/ExtraMapLink.hpp"
 #include "main/global/Global.hpp"
 #include "main/status/PartyStatus.hpp"
@@ -13,7 +14,6 @@
 #include "main/cmn/PartyTalk.hpp"
 
 
-// status::HaveItemSack g_NeneItemSack;
 char s_field[8] = "field"; // data_020c1398
 char data_020c13a0[8] = "field";
 
@@ -135,11 +135,11 @@ THUMB void profile::Profile::collectDATA_PARTY()
     this->pPARTY->SYMBOLID = ::g_Stage.symbolID_;
 
     for (int k = 0; k < 0xA2; k++) {
-        this->pPARTY->NENEITEM[k] = g_NeneItemSack.getItem(k);
-        this->pPARTY->NENECOUNT[k] = g_NeneItemSack.getItemCount(k);
+        this->pPARTY->NENEITEM[k] = status::g_Shop.haveItemNene_.getItem(k);
+        this->pPARTY->NENECOUNT[k] = status::g_Shop.haveItemNene_.getItemCount(k);
     }
     for (int i = 0; i < 6; i++) {
-        this->pPARTY->DARTS_ITEM[i] = darts[i];
+        this->pPARTY->DARTS_ITEM[i] = status::g_Shop.sideJobItemFlag_[i];
     }
     for (int i = 0; i < 0xA; i++) {
         this->pPARTY->SPEAKTO_MESSAGE[i] = cmn::PartyTalk::getSingleton()->preMessage_[i];
@@ -401,11 +401,11 @@ THUMB void profile::Profile::deliverDATA_PARTY()
     g_Stage.symbolID_ = pPARTY->SYMBOLID;                         // +0xBC
 
     for (int i = 0; i < 162; i++)
-        g_NeneItemSack.adds(pPARTY->NENEITEM[i], pPARTY->NENECOUNT[i]);
+        status::g_Shop.haveItemNene_.adds(pPARTY->NENEITEM[i], pPARTY->NENECOUNT[i]);
 
-    int *dart = darts;
+    int *dart = status::g_Shop.sideJobItemFlag_;
     for (int i = 0; i < 6; i++)
-    darts[i] = pPARTY->DARTS_ITEM[i];
+    status::g_Shop.sideJobItemFlag_[i] = pPARTY->DARTS_ITEM[i];
 
 
     for (int i = 0; i < 10; i++)

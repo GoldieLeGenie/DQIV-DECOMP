@@ -175,8 +175,8 @@ THUMB void btl::BattleEffectUnit::cleanup()
 
 THUMB void btl::BattleEffectUnit::setEffectPosition(int index, int drawCtrlId, int nullType)
 {
-    BattleMonsterDraw2* monsterDraw = func_ov003_02121d04();
-    BattleMonster* monster = &monsterDraw->monster_[drawCtrlId];
+    btl::BattleMonsterDraw2* monsterDraw = btl::BattleMonsterDraw2::getSingleton();
+    btl::BattleMonster* monster = &monsterDraw->monsters_[drawCtrlId];
     int type = (char)((effect_->byte_1 & 0x78) >> 3);
     if (type == 0) {
         targetPos_[index] = dss::Fix32Vector3(0, 0, 0);

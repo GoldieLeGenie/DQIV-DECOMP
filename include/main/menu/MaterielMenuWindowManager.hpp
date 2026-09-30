@@ -1,6 +1,6 @@
 #pragma once
 
-struct MaterielMenuWindowManager {   
+struct MaterielMenu_WINDOW_MANAGER {   
     enum MATERIEL_MENU_WINDOW {
         MENU_INN=0,
         MENU_CHURCH=1,
@@ -36,16 +36,30 @@ struct MaterielMenuWindowManager {
         MENU_SURECHIGAI_MAP_NAME=31,
         MENU_CHURCH_MIRACLE=32
     };
+    enum SURECHIGAI_EDIT {
+        EDIT_NORMAL=0,
+        EDIT_TOWN_NAME=1,
+        EDIT_MESSAGE=2
+    };
+    enum {
+        TYPE_NORMAL=0,
+        TYPE_IMUL=1,
+        TYPE_BATTLE=2
+    };
     MATERIEL_MENU_WINDOW menuType_;    /* 0x00 */
-    int type_;                         /* 0x04 */
-    int chapter_;                      /* 0x08 */
-    int titleFlag_;                    /* 0x0C */
-    int extraInnType_;                 /* 0x10 */
-    int editType_;                     /* 0x14 */
-    int endWindow_;                    /* 0x18 */
-    int extraImuruEnd_;                /* 0x1C */
-    int surechigaiStart_;              /* 0x20 */
-    int changeTaishi_;                 /* 0x24 */
+    int endWindow_;                    /* 0x04 */
+    int type_;                         /* 0x08 */
+    int chapter_;                      /* 0x0C */
+    int titleFlag_;                    /* 0x10 */
+    int extraImuruEnd_;                /* 0x14 */
+    int extraInnType_;                 /* 0x18 */
+    int surechigaiStart_;              /* 0x1C */
+    int changeTaishi_;                 /* 0x20 */
+    int editType_;                     /* 0x24 */
     int chapterEnd_;                   /* 0x28 */
     int editMessageForScript_;         /* 0x2C */
+
+    static MaterielMenu_WINDOW_MANAGER* getSingleton();
+    void openMaterielWindow(int menuType);
+    void closeMaterielWindow();
 };

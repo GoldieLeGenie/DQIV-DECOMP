@@ -3,6 +3,7 @@
 #include "main/dss/DssUtils.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
 #include "main/status/BattleHistory.hpp"
+#include "ov037/PlayerTitle.hpp"
 #include "main/encount/Encount.hpp"
 #include "main/encount/EncountParam.hpp"
 #include "main/formation/FormationIdManager.hpp"
@@ -560,7 +561,7 @@ THUMB void btl::BattleActorManager2::execMonsterDeathForItem()
                 status::g_BattleHistory.regenesisChapterEscapeCount();
                 status::g_BattleHistory.regenesisChapterWipeoutCount();
                 func_02039460(14);
-                func_ov037_0218a7f0(h);
+                cmn::PlayerTitle::setPlayerTitle(h);
             }
         }
     }

@@ -38,7 +38,7 @@ THUMB int btl::BattleActorAnimation::setExecAnimation(status::UseActionParam* us
             }
         }
 
-        func_ov003_02121970(&func_ov003_02121d04()->monster_[ctrlId], actionIndex, animIndex);
+        btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].startAnimation(actionIndex, animIndex);
         return func_0208995c();
     }
 
@@ -49,7 +49,7 @@ THUMB int btl::BattleActorAnimation::setExecAnimation(status::UseActionParam* us
             useActionParam->actorCharacterStatus_->clearEscapeAnimation();
             int ctrlId = useActionParam->actorCharacterStatus_->haveStatusInfo_.drawCtrlId_;
             int animIndex = useActionParam->actorCharacterStatus_->haveBattleStatus_.getActionAnimation();
-            func_ov003_02121970(&func_ov003_02121d04()->monster_[ctrlId], action, animIndex);
+            btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].startAnimation(action, animIndex);
             SoundManager::playSe(408, 0);
         }
     }
@@ -57,22 +57,22 @@ THUMB int btl::BattleActorAnimation::setExecAnimation(status::UseActionParam* us
     if (action == 324) {
         int ctrlId = useActionParam->actorCharacterStatus_->haveStatusInfo_.drawCtrlId_;
         useActionParam->actorCharacterStatus_->haveBattleStatus_.getActionAnimation();
-        func_ov003_02121970(&func_ov003_02121d04()->monster_[ctrlId], action, 9);
+        btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].startAnimation(action, 9);
     }
 
     if (actor->isDisappearAnimation()) {
         actor->clearDisappearAnimation();
         int ctrlId = actor->haveStatusInfo_.drawCtrlId_;
-        func_ov003_02121970(&func_ov003_02121d04()->monster_[ctrlId], 0, 31);
+        btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].startAnimation(0, 31);
     }
 
         if (actor->haveStatusInfo_.isKillMyself()) {
         int ctrlId = useActionParam->actorCharacterStatus_->haveStatusInfo_.drawCtrlId_;
         int animIndex = useActionParam->actorCharacterStatus_->haveBattleStatus_.getActionAnimation();
-        BattleMonsterDraw2* mgr = func_ov003_02121d04();
-        func_ov003_02121970(&mgr->monster_[ctrlId], action, animIndex);
-        mgr = func_ov003_02121d04();
-        func_ov003_02121c08(&mgr->monster_[ctrlId]);
+        BattleMonsterDraw2* mgr = btl::BattleMonsterDraw2::getSingleton();
+        mgr->monsters_[ctrlId].startAnimation(action, animIndex);
+        mgr = btl::BattleMonsterDraw2::getSingleton();
+        mgr->monsters_[ctrlId].setTransOfEnd();
     }
 
     return 0;
@@ -420,16 +420,16 @@ THUMB void btl::BattleActorAnimation::setResultAnimationMonster(status::Characte
                 return;
             }
             if (target->haveStatusInfo_.isDeath() && !target->isMultiDamageAnimation2nd()) {
-                BattleMonsterDraw2* mgr = func_ov003_02121d04();
-                func_ov003_02121970(&mgr->monster_[ctrlId], 0, 34);
+                BattleMonsterDraw2* mgr = btl::BattleMonsterDraw2::getSingleton();
+                mgr->monsters_[ctrlId].startAnimation(0, 34);
                 if (!target->isDeathDisable()) {
                     return;
                 }
-                mgr = func_ov003_02121d04();
-                func_ov003_02121970(&mgr->monster_[ctrlId], 0, 35);
+                mgr = btl::BattleMonsterDraw2::getSingleton();
+                mgr->monsters_[ctrlId].startAnimation(0, 35);
                 return;
             }
-            func_ov003_02121970(&func_ov003_02121d04()->monster_[ctrlId], 0, 35);
+            btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].startAnimation(0, 35);
             return;
         }
         else if (currentTarget == 1 && target->isMultiDamageAnimation()) {
@@ -438,14 +438,14 @@ THUMB void btl::BattleActorAnimation::setResultAnimationMonster(status::Characte
                 target->clearMultiDamageAnimation2();
                 if (target->haveStatusInfo_.effectValueMulti_[1] != 0) {
                     if (target->haveStatusInfo_.isDeath()) {
-                        BattleMonsterDraw2* mgr = func_ov003_02121d04();
-                        func_ov003_02121970(&mgr->monster_[ctrlId], 0, 34);
+                        BattleMonsterDraw2* mgr = btl::BattleMonsterDraw2::getSingleton();
+                        mgr->monsters_[ctrlId].startAnimation(0, 34);
                         if (target->isDeathDisable()) {
-                            mgr = func_ov003_02121d04();
-                            func_ov003_02121970(&mgr->monster_[ctrlId], 0, 35);
+                            mgr = btl::BattleMonsterDraw2::getSingleton();
+                            mgr->monsters_[ctrlId].startAnimation(0, 35);
                         }
                     } else {
-                        func_ov003_02121970(&func_ov003_02121d04()->monster_[ctrlId], 0, 35);
+                        btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].startAnimation(0, 35);
                     }
                 }
             }
@@ -455,14 +455,14 @@ THUMB void btl::BattleActorAnimation::setResultAnimationMonster(status::Characte
         else if (target->isDamageAnimation()) {
             target->clearDamageAnimation();
             if (target->haveStatusInfo_.isDeath()) {
-                BattleMonsterDraw2* mgr = func_ov003_02121d04();
-                func_ov003_02121970(&mgr->monster_[ctrlId], 0, 34);
+                BattleMonsterDraw2* mgr = btl::BattleMonsterDraw2::getSingleton();
+                mgr->monsters_[ctrlId].startAnimation(0, 34);
                 if (target->isDeathDisable()) {
-                    mgr = func_ov003_02121d04();
-                    func_ov003_02121970(&mgr->monster_[ctrlId], 0, 35);
+                    mgr = btl::BattleMonsterDraw2::getSingleton();
+                    mgr->monsters_[ctrlId].startAnimation(0, 35);
                 }
             } else {
-                func_ov003_02121970(&func_ov003_02121d04()->monster_[ctrlId], 0, 35);
+                btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].startAnimation(0, 35);
             }
         }
 
@@ -472,22 +472,22 @@ THUMB void btl::BattleActorAnimation::setResultAnimationMonster(status::Characte
                 target->haveStatusInfo_.setImmidiateDeath(false);
                 SoundManager::playSe(402, 0);
             }
-            BattleMonsterDraw2* mgr = func_ov003_02121d04();
-            func_ov003_02121970(&mgr->monster_[ctrlId], 0, 34);
+            BattleMonsterDraw2* mgr = btl::BattleMonsterDraw2::getSingleton();
+            mgr->monsters_[ctrlId].startAnimation(0, 34);
             if (target->isDeathDisable()) {
-                mgr = func_ov003_02121d04();
-                func_ov003_02121970(&mgr->monster_[ctrlId], 0, 35);
+                mgr = btl::BattleMonsterDraw2::getSingleton();
+                mgr->monsters_[ctrlId].startAnimation(0, 35);
             }
         }
 
         if (target->isDisappearAnimation()) {
             target->clearDisappearAnimation();
-            func_ov003_02121970(&func_ov003_02121d04()->monster_[ctrlId], 0, 31);
+            btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].startAnimation(0, 31);
         }
 
         if (target->isRebirthAnimation()) {
             target->clearRebirthAnimation();
-            func_ov003_02121970(&func_ov003_02121d04()->monster_[ctrlId], 0, 32);
+            btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].startAnimation(0, 32);
         }
 
         if (target->isEscapeAnimation()) {
@@ -510,7 +510,7 @@ THUMB void btl::BattleActorAnimation::setAfterAnimation(status::CharacterStatus*
     actor->haveStatusInfo_.setSelfImmolation(false);
     if (actor->characterType_ == MONSTER) {
         int ctrlId = actor->haveStatusInfo_.drawCtrlId_;
-        func_ov003_02121970(&func_ov003_02121d04()->monster_[ctrlId], 0, 31);
+        btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].startAnimation(0, 31);
     }
 }
 
@@ -533,14 +533,14 @@ THUMB void btl::BattleActorAnimation::setMosyasChange(status::CharacterStatus* a
 
     int ctrlId = actor->haveStatusInfo_.drawCtrlId_;
     int group = actor->characterGroup_;
-    dss::Fix32Vector3 pos = *((Position*)&func_ov003_02121d04()->monster_[ctrlId])->getPosition();
+    dss::Fix32Vector3 pos = *btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].monsterDraw_.getPosition();
 
-    func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
+    btl::BattleMonsterDraw2::getSingleton()->cleanup(ctrlId);
 
-    BattleMonsterDraw2* mgr = func_ov003_02121d04();
-    ctrlId = func_ov003_02121f54(mgr, group, status::getMosyasIndex());
+    BattleMonsterDraw2* mgr = btl::BattleMonsterDraw2::getSingleton();
+    ctrlId = mgr->setup(group, status::getMosyasIndex());
 
-    func_ov003_02121878(&func_ov003_02121d04()->monster_[ctrlId], &pos);
+    btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].setPosition(pos);
 
     actor->haveStatusInfo_.drawCtrlId_ = ctrlId;
     actor->haveStatusInfo_.drawCtrlId_ = ctrlId;
@@ -551,13 +551,13 @@ THUMB void btl::BattleActorAnimation::setMosyasReverse(status::CharacterStatus* 
     if (actor->haveStatusInfo_.isMosyasRelease()) {
         int ctrlId = actor->haveStatusInfo_.drawCtrlId_;
         int group = actor->characterGroup_;
-        dss::Fix32Vector3 pos = *((Position*)&func_ov003_02121d04()->monster_[ctrlId])->getPosition();
+        dss::Fix32Vector3 pos = *btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].monsterDraw_.getPosition();
 
-        func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
+        btl::BattleMonsterDraw2::getSingleton()->cleanup(ctrlId);
 
-        ctrlId = func_ov003_02121f54(func_ov003_02121d04(), group, 122);
+        ctrlId = btl::BattleMonsterDraw2::getSingleton()->setup(group, 122);
 
-        func_ov003_02121878(&func_ov003_02121d04()->monster_[ctrlId], &pos);
+        btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].setPosition(pos);
 
         actor->haveStatusInfo_.drawCtrlId_ = ctrlId;
         actor->haveStatusInfo_.drawCtrlId_ = ctrlId;
@@ -574,7 +574,7 @@ THUMB void btl::BattleActorAnimation::setCallFriend(status::CharacterStatus* cha
         return;
     }
     chara->haveStatusInfo_.setCallFriend(false);
-    func_ov003_0212243c(func_ov003_02121d04(), chara->haveStatusInfo_.drawCtrlId_, 32, 1);
+    btl::BattleMonsterDraw2::getSingleton()->startAnimationWithLoop(chara->haveStatusInfo_.drawCtrlId_, 32, 1);
 }
 
 
@@ -585,7 +585,7 @@ THUMB void btl::BattleActorAnimation::setCallFriend()
         status::MonsterStatus* monster = g_monster.getMonsterStatus(i);
         if (monster->haveStatusInfo_.isCallFriend()) {
             monster->haveStatusInfo_.setCallFriend(false);
-            func_ov003_0212243c(func_ov003_02121d04(), monster->haveStatusInfo_.drawCtrlId_, 32, 1);
+            btl::BattleMonsterDraw2::getSingleton()->startAnimationWithLoop(monster->haveStatusInfo_.drawCtrlId_, 32, 1);
         }
     }
 }
@@ -608,15 +608,15 @@ THUMB void btl::BattleActorAnimation::gattaiSlimeStart(status::CharacterStatus* 
             int ctrlId = g_monster.getMonsterStatus(i)->haveStatusInfo_.drawCtrlId_;
             if (actor == g_monster.getMonsterStatus(i)) {
                 actor->haveStatusInfo_.setMonsterChange(true);
-                BattleMonsterDraw2* mgr = func_ov003_02121d04();
-                func_ov003_02121af4(&mgr->monster_[ctrlId]);
+                BattleMonsterDraw2* mgr = btl::BattleMonsterDraw2::getSingleton();
+                mgr->monsters_[ctrlId].startGattai();
                 dss::Fix32Vector3 pos(0, 0, 0);
-                mgr = func_ov003_02121d04();
-                func_ov003_02121878(&mgr->monster_[ctrlId], &pos);
+                mgr = btl::BattleMonsterDraw2::getSingleton();
+                mgr->monsters_[ctrlId].setPosition(pos);
                 SoundManager::playSe(705, 0);
                 func_0204d0c4(107);
             } else {
-                func_ov003_02121b58(&func_ov003_02121d04()->monster_[ctrlId]);
+                btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].disappearGattaiSlime();
                 actor->haveStatusInfo_.setMonsterChange(true);
             }
         }
@@ -643,9 +643,9 @@ THUMB void btl::BattleActorAnimation::gattaiSlime(status::CharacterStatus* actor
 
     int ctrlId = actor->haveStatusInfo_.drawCtrlId_;
     int group = actor->characterGroup_;
-    dss::Fix32Vector3 pos = *((Position*)&func_ov003_02121d04()->monster_[ctrlId])->getPosition();
+    dss::Fix32Vector3 pos = *btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].monsterDraw_.getPosition();
 
-    func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
+    btl::BattleMonsterDraw2::getSingleton()->cleanup(ctrlId);
 
     for (int i = 0; i < g_monster.getCount(); i++) {
         if (g_monster.getMonsterStatus(i)->isBattleEnable()) {
@@ -657,9 +657,9 @@ THUMB void btl::BattleActorAnimation::gattaiSlime(status::CharacterStatus* actor
     }
 
     actor->characterIndex_ = 107;
-    ctrlId = func_ov003_02121f54(func_ov003_02121d04(), group, actor->haveBattleStatus_.index_);
+    ctrlId = btl::BattleMonsterDraw2::getSingleton()->setup(group, actor->haveBattleStatus_.index_);
 
-    func_ov003_02121878(&func_ov003_02121d04()->monster_[ctrlId], &pos);
+    btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].setPosition(pos);
 
     actor->haveStatusInfo_.drawCtrlId_ = ctrlId;
     actor->haveStatusInfo_.drawCtrlId_ = ctrlId;
@@ -699,18 +699,18 @@ THUMB void btl::BattleActorAnimation::setMonsterChange(status::CharacterStatus* 
     actor->haveStatusInfo_.setMonsterChange(false);
 
     int ctrlId = actor->haveStatusInfo_.drawCtrlId_;
-    BattleMonsterDraw2* mgr = func_ov003_02121d04();
-    int a = mgr->monster_[ctrlId].screenPosition_;
-    int b = func_ov003_02121d04()->monster_[ctrlId].screenWidth_;
+    BattleMonsterDraw2* mgr = btl::BattleMonsterDraw2::getSingleton();
+    int a = mgr->monsters_[ctrlId].screenPosition_;
+    int b = btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].screenWidth_;
     int group = actor->characterGroup_;
-    dss::Fix32Vector3 pos = *((Position*)&func_ov003_02121d04()->monster_[ctrlId])->getPosition();
+    dss::Fix32Vector3 pos = *btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].monsterDraw_.getPosition();
 
-    func_ov003_02121fb8(func_ov003_02121d04(), ctrlId);
+    btl::BattleMonsterDraw2::getSingleton()->cleanup(ctrlId);
 
-    int newCtrlId = func_ov003_02121f54(func_ov003_02121d04(), group, actor->haveBattleStatus_.index_);
+    int newCtrlId = btl::BattleMonsterDraw2::getSingleton()->setup(group, actor->haveBattleStatus_.index_);
 
-    mgr = func_ov003_02121d04();
-    func_ov003_02121878(&mgr->monster_[newCtrlId], &pos);
+    mgr = btl::BattleMonsterDraw2::getSingleton();
+    mgr->monsters_[newCtrlId].setPosition(pos);
 
     actor->haveStatusInfo_.drawCtrlId_ = newCtrlId;
     actor->haveStatusInfo_.drawCtrlId_ = newCtrlId;
@@ -721,8 +721,8 @@ THUMB void btl::BattleActorAnimation::setMonsterChange(status::CharacterStatus* 
     }
     actor->haveStatusInfo_.setDisableTextureCache(false);
 
-    func_ov003_02121d04()->monster_[newCtrlId].screenPosition_ = a;
-    func_ov003_02121d04()->monster_[newCtrlId].screenWidth_ = b;
+    btl::BattleMonsterDraw2::getSingleton()->monsters_[newCtrlId].screenPosition_ = a;
+    btl::BattleMonsterDraw2::getSingleton()->monsters_[newCtrlId].screenWidth_ = b;
 }
 
 THUMB void btl::BattleActorAnimation::setMonstersDisappear(status::UseActionParam* useActionParam)
@@ -734,7 +734,7 @@ THUMB void btl::BattleActorAnimation::setMonstersDisappear(status::UseActionPara
             if (target != 0 && target->isDisappearAnimation()) {
                 target->clearDisappearAnimation();
                 int ctrlId = target->haveStatusInfo_.drawCtrlId_;
-                func_ov003_02121970(&func_ov003_02121d04()->monster_[ctrlId], 0, 31);
+                btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].startAnimation(0, 31);
             }
         }
     }

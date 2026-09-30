@@ -5,6 +5,7 @@
 #include "main/status/StoryStatus.hpp"
 #include "main/status/BattleResult.hpp"
 #include "main/profile/Profile.hpp"
+#include "main/status/ShopList.hpp"
 #include "main/dss/DssUtils.hpp"
 
 TextHook gTextHook;
@@ -120,7 +121,7 @@ THUMB int TextHook::extractDefaultTextNumber(char* text, int size, int id, int p
             extractNumber(text, size, status::g_Party.gold_);
             return 1;
         case 0x3f:
-            extractNumber(text, size, darts[6]);
+            extractNumber(text, size, status::g_Shop.pay_);
             return 1;
         case 0x4a:
             extractNumber(text, size, status::g_BattleResult.battleTurnCount_);
@@ -254,50 +255,50 @@ THUMB int TextHook::getMacroStat(int id, int param)
     switch (id) {
         case 9:
             if (status::g_Story.sex_ == SEX_MALE) {
-                result |= MST_MALE;
+                result = (MACRO_STAT)(result | MST_MALE);
             }
             if (status::g_Story.sex_ == SEX_FEMALE) {
-                result |= MST_FEMALE;
+                result = (MACRO_STAT)(result | MST_FEMALE);
             }
             break;
         case 0xb:
             if (leadPcSex_ == SEX_MALE) {
-                result |= MST_MALE;
+                result = (MACRO_STAT)(result | MST_MALE);
             }
             if (leadPcSex_ == SEX_FEMALE) {
-                result |= MST_FEMALE;
+                result = (MACRO_STAT)(result | MST_FEMALE);
             }
             break;
         case 0xc:
             if (leaderSex_ == SEX_MALE) {
-                result |= MST_MALE;
+                result = (MACRO_STAT)(result | MST_MALE);
             }
             if (leaderSex_ == SEX_FEMALE) {
-                result |= MST_FEMALE;
+                result = (MACRO_STAT)(result | MST_FEMALE);
             }
             break;
         case 0x56: {
             status::g_Party.setBattleMode();
             int count = status::g_Party.getCarriageOutAliveCount();
             if (count == 1) {
-                result |= MST_SINGLE;
-                result |= MST_SINGLE_FR;
+                result = (MACRO_STAT)(result | MST_SINGLE);
+                result = (MACRO_STAT)(result | MST_SINGLE_FR);
             }
             if (count == 0) {
-                result |= MST_SINGLE_FR;
+                result = (MACRO_STAT)(result | MST_SINGLE_FR);
             }
             break;
         }
         case 0x1c: {
             unsigned char sex = func_0203a714(&data_020f0078);
             if (sex == SEX_MALE) {
-                result |= MST_MALE;
+                result = (MACRO_STAT)(result | MST_MALE);
             }
             if (sex == SEX_FEMALE) {
-                result |= MST_FEMALE;
+                result = (MACRO_STAT)(result | MST_FEMALE);
             }
             if (sex == SEX_NONE) {
-                result |= MST_NEUTER;
+                result = (MACRO_STAT)(result | MST_NEUTER);
             }
             break;
         }
@@ -311,26 +312,26 @@ THUMB int TextHook::getMacroStat(int id, int param)
             status::PlayerStatus* player = &originalPlayer_[hostage];
             unsigned char sex = player->haveStatusInfo_.haveStatus_.sex_;
             if (sex == SEX_MALE) {
-                result |= MST_MALE;
+                result = (MACRO_STAT)(result | MST_MALE);
             }
             if (sex == SEX_FEMALE) {
-                result |= MST_FEMALE;
+                result = (MACRO_STAT)(result | MST_FEMALE);
             }
             if (sex == SEX_NONE) {
-                result |= MST_NEUTER;
+                result = (MACRO_STAT)(result | MST_NEUTER);
             }
             if (sex == SEX_MALE) {
-                result |= MST_TALKER;
+                result = (MACRO_STAT)(result | MST_TALKER);
             }
             break;
         }
         case 0x61:
             if (corpse_ == 1) {
-                result |= MST_SINGLE;
-                result |= MST_SINGLE_FR;
+                result = (MACRO_STAT)(result | MST_SINGLE);
+                result = (MACRO_STAT)(result | MST_SINGLE_FR);
             }
             if (corpse_ == 0) {
-                result |= MST_SINGLE_FR;
+                result = (MACRO_STAT)(result | MST_SINGLE_FR);
             }
             break;
     }
@@ -340,20 +341,20 @@ THUMB int TextHook::getMacroStat(int id, int param)
         number = status::g_Party.gold_;
     }
     if (id == 0x3f) {
-        number = darts[6];
+        number = status::g_Shop.pay_;
     }
     if (id == 0x4a) {
         number = status::g_BattleResult.battleTurnCount_;
     }
     if (number >= 0) {
-        result |= MST_PLUS;
+        result = (MACRO_STAT)(result | MST_PLUS);
     }
     if (number == 1) {
-        result |= MST_SINGLE;
-        result |= MST_SINGLE_FR;
+        result = (MACRO_STAT)(result | MST_SINGLE);
+        result = (MACRO_STAT)(result | MST_SINGLE_FR);
     }
     if (number == 0) {
-        result |= MST_SINGLE_FR;
+        result = (MACRO_STAT)(result | MST_SINGLE_FR);
     }
 
     if (id == 0x60) {
@@ -414,26 +415,26 @@ THUMB int TextHook::getMacroStat(int id, int param)
                 break;
         }
         if (leader) {
-            result |= MST_LEADER;
+            result = (MACRO_STAT)(result | MST_LEADER);
         }
     }
     if (sister_ == 2) {
-        result |= MST_SISTER;
+        result = (MACRO_STAT)(result | MST_SISTER);
     }
     if (male_ == 0 && monster_ == 0) {
-        result |= MST_ALLMEMBER;
+        result = (MACRO_STAT)(result | MST_ALLMEMBER);
     }
     if (id == 0x12) {
-        result |= MST_SOLO;
+        result = (MACRO_STAT)(result | MST_SOLO);
     }
     if (id == 0xc) {
-        result |= MST_SOLO;
+        result = (MACRO_STAT)(result | MST_SOLO);
     }
     if (id == 0xb) {
-        result |= MST_SOLO;
+        result = (MACRO_STAT)(result | MST_SOLO);
     }
     if (id == 0x16 && equipable_pc_count_ == 1) {
-        result |= MST_SOLO;
+        result = (MACRO_STAT)(result | MST_SOLO);
     }
     status::g_Party.setAccessMode(accessMode);
     return result;

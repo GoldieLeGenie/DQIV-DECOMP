@@ -189,10 +189,6 @@ THUMB void status::Status::setEventParty(unsigned int index)
     }
 }
 
-static inline char checkBit(char flag, int bit)
-{
-    return (flag & (1 << bit)) >> bit;
-}
 
 THUMB void status::Status::setEventFlag(unsigned int index)
 {
@@ -217,91 +213,91 @@ THUMB void status::Status::setEventFlag(unsigned int index)
         g_AreaFlag.set(data[index].flag2);
     }
 
-    if (checkBit(data[index].byte_1, 0)) {
+    if ((char)((data[index].byte_1 & (1 << 0)) >> 0)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(0);
     }
-    if (checkBit(data[index].byte_1, 1)) {
+    if ((char)((data[index].byte_1 & (1 << 1)) >> 1)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(1);
     }
-    if (checkBit(data[index].byte_1, 2)) {
+    if ((char)((data[index].byte_1 & (1 << 2)) >> 2)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(2);
     }
-    if (checkBit(data[index].byte_1, 3)) {
+    if ((char)((data[index].byte_1 & (1 << 3)) >> 3)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(3);
     }
-    if (checkBit(data[index].byte_1, 4)) {
+    if ((char)((data[index].byte_1 & (1 << 4)) >> 4)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(4);
     }
-    if (checkBit(data[index].byte_1, 5)) {
+    if ((char)((data[index].byte_1 & (1 << 5)) >> 5)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(5);
     }
-    if (checkBit(data[index].byte_1, 6)) {
+    if ((char)((data[index].byte_1 & (1 << 6)) >> 6)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(6);
     }
-    if (checkBit(data[index].byte_1, 7)) {
+    if ((char)((data[index].byte_1 & (1 << 7)) >> 7)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(7);
     }
-    if (checkBit(data[index].byte_2, 0)) {
+    if ((char)((data[index].byte_2 & (1 << 0)) >> 0)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(8);
     }
-    if (checkBit(data[index].byte_2, 1)) {
+    if ((char)((data[index].byte_2 & (1 << 1)) >> 1)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(9);
     }
-    if (checkBit(data[index].byte_2, 2)) {
+    if ((char)((data[index].byte_2 & (1 << 2)) >> 2)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(10);
     }
-    if (checkBit(data[index].byte_2, 3)) {
+    if ((char)((data[index].byte_2 & (1 << 3)) >> 3)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(11);
     }
-    if (checkBit(data[index].byte_2, 4)) {
+    if ((char)((data[index].byte_2 & (1 << 4)) >> 4)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(12);
     }
-    if (checkBit(data[index].byte_2, 5)) {
+    if ((char)((data[index].byte_2 & (1 << 5)) >> 5)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(13);
     }
-    if (checkBit(data[index].byte_2, 6)) {
+    if ((char)((data[index].byte_2 & (1 << 6)) >> 6)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(14);
     }
-    if (checkBit(data[index].byte_2, 7)) {
+    if ((char)((data[index].byte_2 & (1 << 7)) >> 7)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(15);
     }
-    if (checkBit(data[index].byte_3, 0)) {
+    if ((char)((data[index].byte_3 & (1 << 0)) >> 0)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(16);
     }
-    if (checkBit(data[index].byte_3, 1)) {
+    if ((char)((data[index].byte_3 & (1 << 1)) >> 1)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(17);
     }
-    if (checkBit(data[index].byte_3, 2)) {
+    if ((char)((data[index].byte_3 & (1 << 2)) >> 2)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(18);
     }
-    if (checkBit(data[index].byte_3, 3)) {
+    if ((char)((data[index].byte_3 & (1 << 3)) >> 3)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(19);
     }
-    if (checkBit(data[index].byte_3, 4)) {
+    if ((char)((data[index].byte_3 & (1 << 4)) >> 4)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(20);
     }
-    if (checkBit(data[index].byte_3, 5)) {
+    if ((char)((data[index].byte_3 & (1 << 5)) >> 5)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(21);
     }
-    if (checkBit(data[index].byte_3, 6)) {
+    if ((char)((data[index].byte_3 & (1 << 6)) >> 6)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(22);
     }
-    if (checkBit(data[index].byte_3, 7)) {
+    if ((char)((data[index].byte_3 & (1 << 7)) >> 7)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(23);
     }
-    if (checkBit(data[index].byte_4, 0)) {
+    if ((char)((data[index].byte_4 & (1 << 0)) >> 0)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(24);
     }
-    if (checkBit(data[index].byte_4, 1)) {
+    if ((char)((data[index].byte_4 & (1 << 1)) >> 1)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(25);
     }
-    if (checkBit(data[index].byte_4, 2)) {
+    if ((char)((data[index].byte_4 & (1 << 2)) >> 2)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(26);
     }
-    if (checkBit(data[index].byte_4, 3)) {
+    if ((char)((data[index].byte_4 & (1 << 3)) >> 3)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(27);
     }
-    if (checkBit(data[index].byte_4, 4)) {
+    if ((char)((data[index].byte_4 & (1 << 4)) >> 4)) {
         cmn::CommonRuraData::getSingleton()->setEnableRura(28);
     }
 

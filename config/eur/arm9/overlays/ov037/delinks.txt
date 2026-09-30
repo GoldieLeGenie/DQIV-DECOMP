@@ -3,3 +3,29 @@
     .data       start:0x0218ad20 end:0x0218ad40 kind:data align:32
     .bss        start:0x0218ad40 end:0x0218ad40 kind:bss align:32
 
+
+src/ov037/PlayerTitleChapter1.cpp:
+    complete
+    .text start:0x02189360 end:0x0218947c
+
+src/ov037/PlayerTitleChapter2.cpp:
+    complete
+    .text start:0x0218947c end:0x02189678
+
+src/ov037/PlayerTitleChapter3.cpp:
+    complete
+    .text start:0x02189678 end:0x02189a48
+
+src/ov037/PlayerTitleChapter4.cpp:
+    complete
+    .text start:0x02189a48 end:0x02189c80
+    .data start:0x0218ad20 end:0x0218ad30
+
+src/ov037/PlayerTitleChapter5.cpp:
+    complete
+    .text start:0x02189c80 end:0x0218a7f0
+    .data start:0x0218ad30 end:0x0218ad34
+
+src/ov037/PlayerTitle.cpp:
+    complete
+    .text start:0x0218a7f0 end:0x0218ad14

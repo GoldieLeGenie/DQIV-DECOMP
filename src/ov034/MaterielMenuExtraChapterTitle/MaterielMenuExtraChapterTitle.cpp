@@ -3,7 +3,6 @@
 #include "main/status/StoryStatus.hpp"
 #include "main/global/Global.hpp"
 
-extern "C" void func_ov016_0216b020(void);
 
 THUMB void MaterielMenuExtraChapterTitle::menuSetup()
 {
@@ -69,13 +68,12 @@ THUMB void MaterielMenuExtraChapterTitle::menuDraw()
         switch (m_fade) {
         case 0:
             g_Global.fadeInBlack(0x1E);
-            func_ov016_0216aca4()->chapterEnd_ = 1;
+            MaterielMenu_WINDOW_MANAGER::getSingleton()->chapterEnd_ = 1;
             m_fade = 3;
             break;
         case 3:
             if (g_GlobalFade.isFadeEnd() != 0) {
-                func_ov016_0216aca4();
-                func_ov016_0216b020();
+                MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
             }
             break;
         }

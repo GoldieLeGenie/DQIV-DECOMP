@@ -11,10 +11,10 @@ THUMB int cmd_field_erase_symbol(int* param)
 THUMB int cmd_field_player_set_ship(int* param)
 {
     dss::Fix32Vector3 pos = func_ov001_02127b28()->getPosition();
-    func_ov001_02127b28()->player_.setMoveType(3);
+    func_ov001_02125eac(&func_ov001_02127b28()->player_, 3);
     FieldPlayerManager* mgr = func_ov001_02127b28();
-    mgr->shipDraw_.setPosition(pos);
-    func_ov001_02127b28()->partyDraw_.setDrawNone();
+    func_ov001_02122b28(&mgr->shipDraw_, pos);
+    func_ov001_0212b7e0(&func_ov001_02127b28()->partyDraw_);
     func_ov001_02127b28()->shipDraw_.ride_ = 1;
     g_cmnPartyInfo.rideOnType_ = cmn::RIDE_ON_SHIP_IKADA;
     return 1;

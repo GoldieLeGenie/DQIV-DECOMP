@@ -46,12 +46,12 @@ ARM void btl::AfterMessageTask::initialize()
         if (useActionParam_->actorCharacterStatus_->characterType_ == 0) {
             for (i = 0; i < 4; i++) {
                 if (i != btl::BattleExecEvent00::getRealVelorinman()) {
-                    func_ov003_02121970(&func_ov003_02121d04()->monster_[i], 0, 0x1f);
+                    btl::BattleMonsterDraw2::getSingleton()->monsters_[i].startAnimation(0, 0x1f);
                 }
             }
             if (drawCtrlId != btl::BattleExecEvent00::getRealVelorinman()) {
                 int real = btl::BattleExecEvent00::getRealVelorinman();
-                func_ov003_02121970(&func_ov003_02121d04()->monster_[real], 0, 0x1b);
+                btl::BattleMonsterDraw2::getSingleton()->monsters_[real].startAnimation(0, 0x1b);
             }
         }
     }
@@ -66,9 +66,9 @@ ARM void btl::AfterMessageTask::initialize()
             int drawCtrlId = actor->haveStatusInfo_.drawCtrlId_;
             if (actor->haveStatusInfo_.addDamage_ > 0) {
                 if (actor->haveStatusInfo_.isDeath()) {
-                    func_ov003_02121970(&func_ov003_02121d04()->monster_[drawCtrlId], 0, 0x22);
+                    btl::BattleMonsterDraw2::getSingleton()->monsters_[drawCtrlId].startAnimation(0, 0x22);
                 } else {
-                    func_ov003_02121970(&func_ov003_02121d04()->monster_[drawCtrlId], 0, 0x23);
+                    btl::BattleMonsterDraw2::getSingleton()->monsters_[drawCtrlId].startAnimation(0, 0x23);
                 }
                 SoundManager::playSe(0x192, 0);
             }

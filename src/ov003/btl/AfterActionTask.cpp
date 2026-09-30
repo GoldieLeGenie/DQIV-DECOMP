@@ -68,7 +68,7 @@ ARM void btl::AfterActionTask::execute()
 
     int drawCtrlId = useActionParam_->actorCharacterStatus_->haveStatusInfo_.drawCtrlId_;
     if (useActionParam_->actorCharacterStatus_->haveStatusInfo_.addDamage_ > 0) {
-        func_ov003_02121970(&func_ov003_02121d04()->monster_[drawCtrlId], 0, 0x23);
+        btl::BattleMonsterDraw2::getSingleton()->monsters_[drawCtrlId].startAnimation(0, 0x23);
     }
 }
 

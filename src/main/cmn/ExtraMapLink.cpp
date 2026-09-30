@@ -420,7 +420,7 @@ ARM void cmn::ExtraMapLink::setTownINN()
 ARM void cmn::ExtraMapLink::setMonstarBookLink()
 {
     g_cmnPartyInfo.prevLocation_ = 1;
-    if (g_Global.doubleUpFlag_ != 0) {
+    if (g_Global.prevPartTown_ != 0) {
         dss::Fix32Vector3 pos = func_ov000_02132a90()->getPosition();
         short dir = func_ov000_02132a90()->getDirection();
         setExtraLinkTown(g_Global.getPrevMapName(), pos, dir);

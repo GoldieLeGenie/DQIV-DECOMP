@@ -56,9 +56,8 @@ extern "C" int   func_ov000_02135358(void* self);              // TownPlayerMana
 extern "C" int   func_ov000_021232d0(void* self);              // TownFurnitureManager::checkNothing
 extern "C" TownFurnitureManager* func_ov000_02122ad8();                        // TownFurnitureManager::getInstance → &m_singleton
 extern "C" int   func_ov000_02123144(void* self, int mapObj);  // TownFurnitureManager::checkCoffer
-struct BattleMonsterDraw2;
-extern "C" BattleMonsterDraw2* func_ov000_02121d04();          // BattleMonsterDraw::getInstance
-extern "C" int   func_ov003_021223b4(BattleMonsterDraw2*, int); // BattleMonsterDraw2::isCallFriend(mgr, monsterIndex)
+namespace btl { struct BattleMonsterDraw2; }
+extern "C" btl::BattleMonsterDraw2* func_ov000_02121d04();          // BattleMonsterDraw::getInstance
 extern "C" int   func_ov003_0212e37c(void*);                   // MonsterParty::getCount
 extern "C" int   func_ov003_0212e428(void*, int);              // MonsterParty::getMonsterCountInGroup(group)
 extern "C" int   func_ov003_0212e464(void*, int);              // MonsterParty::getMonsterCountInGroupExist(group)

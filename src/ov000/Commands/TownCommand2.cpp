@@ -372,7 +372,7 @@ THUMB int cmd_party_quit(int* param)
             order[i] = status::g_Party.getPlayerStatus(i)->haveStatusInfo_.haveStatus_.playerIndex_;
         }
     }
-    dss::Fix32Vector3 pos = func_ov000_02132a90()->getPartyDrawPosition(sortIndex);
+    dss::Fix32Vector3 pos = func_ov000_0213beec(&func_ov000_02132a90()->party_, sortIndex);
     func_ov000_021384c0(func_ov000_02137f2c(), index, 1);
     func_ov000_02138670(func_ov000_02137f2c(), index, 1);
     func_ov000_02138598(func_ov000_02137f2c(), index, &pos);

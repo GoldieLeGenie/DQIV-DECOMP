@@ -29,6 +29,7 @@ namespace dss{
         bool operator==(const Fix32& o) const;  // func_020873a8
         bool operator!=(const Fix32& o) const;  // func_020873c0
         Fix32 operator/(int v) const;           // func_02087320
+        Fix32& operator/=(int v);
         Fix32 operator-(int v) const;
     };
 

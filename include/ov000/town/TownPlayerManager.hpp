@@ -57,5 +57,4 @@ struct TownPlayerManager : cmn::PlayerManager {
     int notIntoTenkujou_;                   // 0x178C
 
     void setLockRot(int lock) { rotLock_ = lock; }
-    dss::Fix32Vector3 getPartyDrawPosition(int index) { return func_ov000_0213beec(&party_, index); }
 };

@@ -3,3 +3,18 @@
     .data       start:0x02189d40 end:0x02189da0 kind:data align:32
     .bss        start:0x02189da0 end:0x02189da0 kind:bss align:32
 
+
+src/ov030/MaterielMenu_BANK/MaterielMenu_BANK_PUTIN.cpp:
+    complete
+    .text start:0x02189360 end:0x021896ec
+    .data start:0x02189d40 end:0x02189d5c
+
+src/ov030/MaterielMenu_BANK/MaterielMenu_BANK_ROOT.cpp:
+    complete
+    .text start:0x021896ec end:0x021899a8
+    .data start:0x02189d5c end:0x02189d78
+
+src/ov030/MaterielMenu_BANK/MaterielMenu_BANK_DRAW.cpp:
+    complete
+    .text start:0x021899a8 end:0x02189d34
+    .data start:0x02189d78 end:0x02189d94
