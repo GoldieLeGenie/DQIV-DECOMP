@@ -20,6 +20,3 @@ struct FukuroItemInfo
 };
 }
 
-extern "C" {
-    int func_02008ec4(int a, int b);
-}

@@ -1,4 +1,5 @@
 #include "main/cmn/CommonEffectLocation.hpp"
+#include "ov000/town/TownStageManager.hpp"
 #include "main/param/Param.hpp"
 #include "main/status/ExcelParam.hpp"
 
@@ -67,7 +68,7 @@ ARM int cmn::CommonEffectLocation::setPaletteRate(int index)
 static inline void setFieldRGBRate(const dss::Fix32Vector3& rgb)
 {
     VecFx32     v;
-    dss::Fix32Vector3 tmp(rgb.vx, rgb.vy, rgb.vz);
+    dss::Fix32Vector3 tmp(rgb);
     BattleStage*     stage = BattleStage::getSingleton();
 
     v.x = tmp.vx.value;
@@ -98,7 +99,7 @@ ARM int cmn::CommonEffectLocation::calcPaletteRate()
     rgb = this->prev_ * (one - rate) + this->next_ * rate;
 
     if (func_02058114(&data_0210bb94, 0xC) != 0)
-        func_ov000_02139f1c(func_ov000_02139668(), &rgb, 0);
+        TownStageManager::getSingleton()->SetRGBRate(rgb, 0);
 
     if (func_02058114(&data_0210bb94, 0xD) != 0)
         setFieldRGBRate(rgb);

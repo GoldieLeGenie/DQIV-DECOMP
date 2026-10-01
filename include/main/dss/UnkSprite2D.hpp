@@ -11,7 +11,8 @@ struct UnkSprite2D : RenderObject {
     int unk_24;                                 // 0x24
     int unk_28;                                 // 0x28
     int unk_2c;                                 // 0x2C
-    int unk_30;                                 // 0x30
+    short unk_30;                               // 0x30
+    short unk_32;                               // 0x32
     int unk_34;                                 // 0x34
 
     UnkSprite2D();
@@ -42,4 +43,10 @@ extern "C" {
     void func_02057f18(UnkMenuSprite* self, int polygonID);
     void func_02057f30(UnkMenuSprite* self, int a);
     void func_02057f38(UnkMenuSprite* self, int a);
+    void func_02057dac(UnkMenuSprite* self);
+    void func_02057edc(UnkMenuSprite* self);
+    void func_02057ee8(UnkMenuSprite* self);
+    void func_02057ea8(UnkMenuSprite* self, int u0, int v0, int u1, int v1);
+    void func_02057f40(UnkMenuSprite* self, unsigned char r, unsigned char g, unsigned char b);
+    void func_020847e8(void);
 }

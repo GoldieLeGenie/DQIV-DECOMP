@@ -2,6 +2,7 @@
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/global/Global.hpp"
+#include "ov000/town/TownPlayerManager.hpp"
 
 int MaterielMenu_SlotEnter::machineSelect_;
 
@@ -28,7 +29,7 @@ THUMB void MaterielMenu_SlotEnter::enableUpdate()
         if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
             data_020ed1bc.close();
             MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
-            func_ov000_021341ec(func_ov000_02132a90(), 1);
+            TownPlayerManager::getSingleton()->setLock(1);
             g_cmnPartyInfo.prevLocation_ = 1;
             g_Global.setMinigame(1);
             g_Global.setGameStatus(machineSelect_);

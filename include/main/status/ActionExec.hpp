@@ -51,13 +51,7 @@ extern status::CharacterStatus* callMonsterStatus_[12];  //data_020d06e8
 
 extern "C" int   func_02058114(void* global, int partId);       // checkPartId (g_Global2.m_part_id == partId) ?                 
 struct TownPlayerManager;
-extern "C" TownPlayerManager* func_ov000_02132a90();                        // TownPlayerManager::getInstance → &m_singleton
-extern "C" int   func_ov000_02135358(void* self);              // TownPlayerManager::getInpasMapObj
-extern "C" int   func_ov000_021232d0(void* self);              // TownFurnitureManager::checkNothing
-extern "C" TownFurnitureManager* func_ov000_02122ad8();                        // TownFurnitureManager::getInstance → &m_singleton
-extern "C" int   func_ov000_02123144(void* self, int mapObj);  // TownFurnitureManager::checkCoffer
 namespace btl { struct BattleMonsterDraw2; }
-extern "C" btl::BattleMonsterDraw2* func_ov000_02121d04();          // BattleMonsterDraw::getInstance
 extern "C" int   func_ov003_0212e37c(void*);                   // MonsterParty::getCount
 extern "C" int   func_ov003_0212e428(void*, int);              // MonsterParty::getMonsterCountInGroup(group)
 extern "C" int   func_ov003_0212e464(void*, int);              // MonsterParty::getMonsterCountInGroupExist(group)

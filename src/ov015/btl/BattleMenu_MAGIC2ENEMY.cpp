@@ -11,7 +11,7 @@ THUMB void BattleMenu_MAGIC2ENEMY::menuSetup()
     func_02051900(&cancelItem_, 2, 0);
     unk_f8 = 1;
     menuItem_.active_ = 0;
-    enemyNumMax_ = func_ov015_0216c9a8(func_ov015_0216c7b0(), touchRect_);
+    enemyNumMax_ = BattleMenuJudge::getSingleton()->getMonsterTouchRect(touchRect_);
     for (int i = 0; i < enemyNumMax_; i++) {
         if (touchRect_[i].group == btl::BattleMenuPlayerControl::getSingleton()->getTargetGroup()) {
             menuItem_.active_ = i;
@@ -28,7 +28,7 @@ THUMB void BattleMenu_MAGIC2ENEMY::menuSetup()
 THUMB void BattleMenu_MAGIC2ENEMY::menuExecute()
 {
     BattleMonsterMask::getSingleton()->execute();
-    enemyNumMax_ = func_ov015_0216c9a8(func_ov015_0216c7b0(), touchRect_);
+    enemyNumMax_ = BattleMenuJudge::getSingleton()->getMonsterTouchRect(touchRect_);
     func_ov015_0216c6dc(&menuItem_, menuItem_.active_, touchRect_, enemyNumMax_);
     func_ov015_0216c5c4(&cancelItem_);
     if (unk_f8 == 1) {
@@ -67,8 +67,8 @@ THUMB void BattleMenu_MAGIC2ENEMY::menuUpdate()
             unk_f8 = 0;
             menuItem_.result_ = 0;
             menuItem_.lastresult_ = 0;
-            func_ov015_0216c8a0(func_ov015_0216c7b0(), activeMagic_, touchRect_[menuItem_.active_].group);
-            func_ov015_0216ca70(func_ov015_0216c7b0());
+            BattleMenuJudge::getSingleton()->setMagicEnemy(activeMagic_, touchRect_[menuItem_.active_].group);
+            BattleMenuJudge::getSingleton()->setNextPlayer();
             close();
             break;
         }
@@ -110,10 +110,10 @@ THUMB void BattleMenu_MAGIC2ENEMY::menuUpdate()
         menuItem_.result_ = 0;
         menuItem_.lastresult_ = 0;
         if (activeMagicIndex_ == 0x13) {
-            func_ov015_0216c7b0()->minadeinFlag_ = 1;
+            BattleMenuJudge::getSingleton()->minadeinFlag_ = 1;
         }
-        func_ov015_0216c8a0(func_ov015_0216c7b0(), activeMagic_, touchRect_[menuItem_.active_].group);
-        func_ov015_0216ca70(func_ov015_0216c7b0());
+        BattleMenuJudge::getSingleton()->setMagicEnemy(activeMagic_, touchRect_[menuItem_.active_].group);
+        BattleMenuJudge::getSingleton()->setNextPlayer();
         unk_f8 = 0;
         break;
     case 5:

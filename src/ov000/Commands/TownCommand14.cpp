@@ -17,7 +17,7 @@
 THUMB int cmd_check_hit_surface(int* param)
 {
     for (int i = 0; i < 14; i++) {
-        int id = func_ov000_0213a31c(func_ov000_02139668(), i);
+        int id = TownStageManager::getSingleton()->getHitSurfaceIdByType(i);
         if (id == param[0]) {
             return 1;
         }

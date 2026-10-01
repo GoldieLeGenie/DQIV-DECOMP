@@ -1,4 +1,5 @@
 #include "main/cmn/TalkSoundManager.hpp"
+#include "ov000/town/TownCharacterManager.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/ExcelParam.hpp"
@@ -51,10 +52,10 @@ ARM void cmn::TalkSoundManager::setMessageSound(int count, int index)
     if (index == -1) {
         return;
     }
-    if (func_ov000_0212ebc8(func_ov000_02137f2c()->character_[index]) != 1) {
+    if (TownCharacterManager::getSingleton()->character_[index]->checkVoice() != 1) {
         return;
     }
-    func_02056358(func_ov000_0212ebdc(func_ov000_02137f2c()->character_[index]));
+    func_02056358(TownCharacterManager::getSingleton()->character_[index]->getVoice());
 }
 
 ARM cmn::TalkSoundManager::MESSAGESOUND cmn::TalkSoundManager::getOrderMessageSound()
@@ -106,7 +107,7 @@ ARM void cmn::TalkSoundManager::setOrderMessage(MESSAGESOUND sound)
 ARM cmn::TalkSoundManager::MESSAGESOUND cmn::TalkSoundManager::getCharacterVoice(int charaNo)
 {
     int saved = charaNo_;
-    charaNo_ = func_ov000_02138eb8(func_ov000_02137f2c(), charaNo);
+    charaNo_ = TownCharacterManager::getSingleton()->getCharaIndex(charaNo);
     MESSAGESOUND sound = getDefaultMessageSound();
     charaNo_ = saved;
     return sound;

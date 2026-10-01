@@ -3,8 +3,6 @@
 #include "GameInfo.hpp"
 #include "main/status/HaveStatusInfo.hpp"
 
-struct BattleMenuJudge;
-
 namespace btl {
     struct BattleMenuPlayerControl 
     {                                       
@@ -61,8 +59,6 @@ int func_ov015_02170578(btl::BattleMenuPlayerControl*, int index);
 int func_ov015_021706e4(btl::BattleMenuPlayerControl*, int index);
 int func_ov015_02170608(btl::BattleMenuPlayerControl*, int index);
 void func_ov015_02170488(btl::BattleMenuPlayerControl*, int index);  
-BattleMenuJudge* func_ov015_0216c7b0(void);            /* BattleMenuJudge singleton */
-int func_ov015_0216cb2c(BattleMenuJudge* mgr, int index);
 int func_ov015_021706ac(btl::BattleMenuPlayerControl* menu, int index, int diff);
 int func_ov015_0216b980(status::HaveStatusInfo* info);
 

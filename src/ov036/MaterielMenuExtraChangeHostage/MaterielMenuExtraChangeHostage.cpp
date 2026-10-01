@@ -107,7 +107,7 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
                     cmn::PlayerManager::setLock(0);
                     cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 1;
                     func_020499a4(1);
-                    func_ov000_021383bc(func_ov000_02137f2c(), ctrlID_, 0x4000);
+                    TownCharacterManager::getSingleton()->setRotate(ctrlID_, 0x4000);
                 }
 
                 MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();

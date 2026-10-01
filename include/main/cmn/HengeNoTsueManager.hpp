@@ -13,7 +13,7 @@ namespace cmn
         int locked_;
         int endLess_;
         int nextAction_;
-        void getChangeCharaNo();
+        int getChangeCharaNo();
         void execute();
         int isEnd();
         int getChangeTable(int no);

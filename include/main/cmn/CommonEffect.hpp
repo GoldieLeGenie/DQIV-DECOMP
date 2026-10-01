@@ -45,6 +45,7 @@ namespace cmn {
         virtual int isEnd();
         virtual int getType();
         virtual void setDisplayType(int type);
+        void setAlpha(dss::Fix32 alpha) { dssaEffect_.setAlpha(alpha); }
     };
 
     struct CommonEffectCubic : CommonEffectSimple {

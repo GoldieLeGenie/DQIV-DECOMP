@@ -1,11 +1,8 @@
 #pragma once
 #include "globaldefs.h"
 #include "main/menu/MenuBase.hpp"
+#include "ov015/btl/BattleMenuPlayerControl.hpp"
 
-/*
- * ov015 battle menus. Class names, the virtuals and the fields marked "mobile"
- * come from libdq4core.so; DS-only members are named unk_XX.
- */
 
 struct BattleMonsterNamePlate;
 
@@ -16,9 +13,9 @@ struct BattleMenu_NGMESSAGE : menu::MenuBase
         MENU_ACTIONMENU = 1
     };
 
-    int messageID_;                     /* 0x1C mobile */
-    int returnPos_;                     /* 0x20 mobile */
-    RETURN_MENU returnMenu_;            /* 0x24 mobile */
+    int messageID_;                     /* 0x1C */
+    int returnPos_;                     /* 0x20 */
+    RETURN_MENU returnMenu_;            /* 0x24 */
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -28,11 +25,11 @@ struct BattleMenu_NGMESSAGE : menu::MenuBase
 
 struct BattleMenuSub_HISTORY : menu::MenuBase
 {
-    int select_;                        /* 0x1C mobile */
-    int history_;                       /* 0x20 mobile (bool) */
-    int update_;                        /* 0x24 mobile (bool) */
-    int isRedraw_;                      /* 0x28 mobile (bool) */
-    int commandChara_;                  /* 0x2C mobile */
+    int select_;                        /* 0x1C */
+    int history_;                       /* 0x20 */
+    int update_;                        /* 0x24 */
+    int isRedraw_;                      /* 0x28 */
+    int commandChara_;                  /* 0x2C */
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -65,7 +62,7 @@ struct BattleMenu_ACTIONMENU : menu::MenuBase
     menu::MenuItem menuItem_;           /* 0x1C */
     menu::MenuItem pageItem_;           /* 0x80 */
     menu::MenuItem cancelItem_;         /* 0xE4 */
-    int activeCharacter_;               /* 0x148 mobile */
+    int activeCharacter_;               /* 0x148 */
     int unk_14c;                        /* 0x14C */
     menu::MenuNavigator navigator_;     /* 0x150 */
 
@@ -84,10 +81,10 @@ struct BattleMenu_MAGIC2PARTY : menu::MenuBase
 {
     menu::MenuItem menuItem_;           /* 0x1C */
     menu::MenuItem cancelItem_;         /* 0x80 */
-    int partyMax_;                      /* 0xE4 mobile */
+    int partyMax_;                      /* 0xE4 */
     int unk_e8;                         /* 0xE8 */
-    int magic_;                         /* 0xEC mobile */
-    int activeMagicPos_;                /* 0xF0 mobile */
+    int magic_;                         /* 0xEC  */
+    int activeMagicPos_;                /* 0xF0  */
     menu::MenuNavigator navigator_;     /* 0xF4 */
 
     virtual void menuSetup();
@@ -123,7 +120,6 @@ struct BattleMenu_ARRAYMENU : menu::MenuBase
     virtual void menuUpdate();
 };
 
-/* mobile */
 struct TOUCHRECT
 {
     short x;
@@ -137,15 +133,16 @@ struct BattleMenu_ATTACK : menu::MenuBase
 {
     menu::MenuItem menuItem_;           /* 0x1C */
     menu::MenuItem cancelItem_;         /* 0x80 */
-    int activeCharacter_;               /* 0xE4 mobile */
-    int monsterMask_;                   /* 0xE8 mobile (bool) */
-    int enemyMaxNum_;                   /* 0xEC mobile */
-    TOUCHRECT touchRect_[12];           /* 0xF0 mobile */
+    int activeCharacter_;               /* 0xE4 */
+    int monsterMask_;                   /* 0xE8  */
+    int enemyMaxNum_;                   /* 0xEC  */
+    TOUCHRECT touchRect_[12];           /* 0xF0  */
 
     virtual void menuSetup();
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
+    void unkfunc_0216ea10();
 };
 
 struct BattleMenu_MAGIC2ENEMY : menu::MenuBase
@@ -183,6 +180,11 @@ struct BattleMenu_ITEMUSE2ENEMY : menu::MenuBase
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
+    void unkfunc_0216cd44();
+    void unkfunc_0216cd80(int index);
+    void unkfunc_0216cdc0(int index);
+    void unkfunc_0216ce00();
+    int unkfunc_0216cee0();
 };
 
 struct BattleMenu_ARRAY_CHANGE : menu::MenuBase
@@ -201,6 +203,9 @@ struct BattleMenu_ARRAY_CHANGE : menu::MenuBase
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
+    int unkfunc_0216f37c();
+    int unkfunc_0216f3c4();
+    int unkfunc_0216f4cc();
 };
 
 struct BattleMenu_ARRAY_ALL : menu::MenuBase
@@ -237,6 +242,28 @@ struct BattleMenu_TACTICSMENU : menu::MenuBase
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
+    int unkfunc_0216fb88();
+    void unkfunc_0216fbdc();
+    int unkfunc_0216fc4c();
+    void unkfunc_0216fc98();
+    void unkfunc_0216fcec();
+};
+
+struct BattleMenu_ITEM : menu::MenuBase
+{
+    int unk_1c;                         /* 0x1C */
+    int unk_20;                         /* 0x20 */
+    menu::MenuItem menuItem_;           /* 0x24 */
+    menu::MenuItem cancelItem_;         /* 0x88 */
+    menu::MenuItem unk_ec;              /* 0xEC */
+    menu::MenuNavigator navigator_;     /* 0x150 */
+
+    virtual void menuSetup();
+    virtual void menuExecute();
+    virtual void menuDraw();
+    virtual void menuUpdate();
+    void selectUseItem();
+    bool isSelectEquipEnable();
 };
 
 struct BattleMenuJudge
@@ -246,6 +273,27 @@ struct BattleMenuJudge
     int playerMaxNum_;                  /* 0x08 */
     int minadeinFlag_;                  /* 0x0C */
     TOUCHRECT touchRect_[12];           /* 0x10 */
+
+    static BattleMenuJudge* getSingleton();
+    void turnSetup();
+    void baseSetup();
+    void setAttack(int group);
+    void setMagicEnemy(int magic, int group);
+    void setMagicParty(int magic, int target);
+    void setItemEnemy(int item, int group);
+    void setItemEnemyAll(int item);
+    void setItemParty(int item, int target);
+    void setItemPartyAll(int item);
+    bool judgeNextChara();
+    bool judgeBackChara();
+    void backActionMenu(int page);
+    bool judgeBattleArrayChange();
+    int getPlayerIndex() { return btl::BattleMenuPlayerControl::getSingleton()->activeChara_; }
+    void setNextPlayer();
+    void setPrevPlayer();
+    int getMonsterTouchRect(TOUCHRECT* rect);
+    int getLiveMonsterID();
+    bool isCommandingPlayer(int index);
 };
 
 struct BattleMenu_MAGIC : menu::MenuBase
@@ -266,9 +314,11 @@ struct BattleMenu_MAGIC : menu::MenuBase
     virtual void menuUpdate();
     void setActiveMagicPos(int pos);
     void setMagicTargetFree(int magic);
+    void unkfunc_0216ded8();
 };
 
-/* objects (defined in the ov015 static-init unit) */
+void ChangeParty(BattleMenu_ARRAY_ALL* self);
+
 extern BattleMenu_NGMESSAGE gBattleMenu_NGMESSAGE;          /* 0x02179758 */
 extern BattleMenuSub_HISTORY gBattleMenuSub_HISTORY;        /* 0x02179780 */
 extern BattleMenu_ARRAYMENU gBattleMenu_ARRAYMENU;          /* 0x02179830 */
@@ -283,8 +333,9 @@ extern BattleMenu_ITEMUSE2ENEMY gBattleMenu_ITEMUSE2ENEMY;  /* 0x0217a634 */
 extern BattleMenu_ARRAY_CHANGE gBattleMenu_ARRAY_CHANGE;    /* 0x0217a464 */
 extern BattleMenu_TACTICSMENU gBattleMenu_TACTICSMENU;      /* 0x0217a80c */
 extern BattleMenu_MAGIC gBattleMenu_MAGIC;                  /* 0x0217aa0c */
-extern menu::MenuBase data_ov015_02179c10;                  /* item menu (not identified) */
-extern menu::MenuBase data_ov015_02179d68;                  /* item menu (not identified) */
+extern BattleMenuJudge gBattleMenuJudge;                    /* 0x021796b4 */
+extern menu::MenuBase data_ov015_02179c10;                  /* item menu (not identified yet ?) */
+extern BattleMenu_ITEM gBattleMenu_ITEM;                    /* 0x02179d68 */
 
 extern "C" {
     /* battle_monster_nameplate.cpp */
@@ -292,21 +343,6 @@ extern "C" {
     void func_ov015_0216aa34(BattleMonsterNamePlate* self);
     void func_ov015_0216aa54(BattleMonsterNamePlate* self);
     void func_ov015_0216ad40(BattleMonsterNamePlate* self, int group);
-
-    /* battlemenu_judge.cpp */
-    BattleMenuJudge* func_ov015_0216c7b0(void);
-    void func_ov015_0216c76c(BattleMenuJudge* self);
-    void func_ov015_0216c874(BattleMenuJudge* self, int group);
-    void func_ov015_0216c8a0(BattleMenuJudge* self, int magic, int group);
-    int func_ov015_0216c9a8(BattleMenuJudge* self, TOUCHRECT* rect);
-    void func_ov015_0216c84c(BattleMenuJudge* self, int page);
-    void func_ov015_0216c8e4(BattleMenuJudge* self, int magic, int target);
-    void func_ov015_0216c92c(BattleMenuJudge* self, int item, int group);
-    void func_ov015_0216c968(BattleMenuJudge* self, int item, int target);
-    int func_ov015_0216ca28(BattleMenuJudge* self);
-    int func_ov015_0216ca58(BattleMenuJudge* self);
-    void func_ov015_0216ca70(BattleMenuJudge* self);
-    void func_ov015_0216cad8(BattleMenuJudge* self);
 
     /* menutemplate_battle.cpp */
     void func_ov015_0216c468(int chara);
@@ -324,38 +360,11 @@ extern "C" {
     void func_ov015_0216c6dc(menu::MenuItem* menuItem, int active, TOUCHRECT* rect, int count);
     void func_ov015_0216c734(menu::MenuItem* menuItem);
 
-    /* BattleMenu_ATTACK: DS-only target decision (judge setAttack + setNextPlayer) */
-    void func_ov015_0216ea10(BattleMenu_ATTACK* self);
-
-    /* BattleMenu_ITEMUSE2ENEMY: DS-only helpers */
-    void func_ov015_0216cd44(BattleMenu_ITEMUSE2ENEMY* self);
-    void func_ov015_0216cd80(BattleMenu_ITEMUSE2ENEMY* self, int index);
-    void func_ov015_0216cdc0(BattleMenu_ITEMUSE2ENEMY* self, int index);
-    void func_ov015_0216ce00(BattleMenu_ITEMUSE2ENEMY* self);
-    int func_ov015_0216cee0(BattleMenu_ITEMUSE2ENEMY* self);
-
-    /* BattleMenu_MAGIC: DS-only helper (builds haveAction_ / haveActionIndex_) */
-    void func_ov015_0216ded8(BattleMenu_MAGIC* self);
-
-    /* BattleMenu_ARRAY_CHANGE: DS-only helpers */
-    int func_ov015_0216f37c(BattleMenu_ARRAY_CHANGE* self);
-    int func_ov015_0216f3c4(BattleMenu_ARRAY_CHANGE* self);
-    int func_ov015_0216f4cc(BattleMenu_ARRAY_CHANGE* self);
-
-    /* BattleMenu_ARRAY_ALL: DS-only helper */
-    void func_ov015_0216f868(BattleMenu_ARRAY_ALL* self);
-
-    /* BattleMenu_TACTICSMENU: DS-only helpers */
-    int func_ov015_0216fb88(BattleMenu_TACTICSMENU* self);
-    void func_ov015_0216fbdc(BattleMenu_TACTICSMENU* self);
-    int func_ov015_0216fc4c(BattleMenu_TACTICSMENU* self);
-    void func_ov015_0216fc98(BattleMenu_TACTICSMENU* self);
-    void func_ov015_0216fcec(BattleMenu_TACTICSMENU* self);
-
     /* draw helpers */
     void func_ov015_0216b9c8(int flag);
     void func_ov015_0216b9e8(int flag);
     void func_ov015_0216ba54(int group);
+    void func_ov015_0216ba60(int* items, int count, int page);
     void func_ov015_0216baf4(int group);
     void func_ov015_0216bbc0(int group);
     void func_ov015_0216bbdc(void);

@@ -84,7 +84,6 @@ namespace status {
 
 extern "C" int func_ov003_0212e6f8(void* battleObj);  
 extern "C" int  func_02058114(void* global, int partId);
-extern "C" int  func_ov000_02123198(void* self, int pos);    // ???
 
 //im lazy but need to be moved from here
 struct TownMenuPlayerControl {

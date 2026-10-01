@@ -12,20 +12,20 @@ namespace cmn {
         virtual void resetParty();
         int flagMapLink_;  
         int charaColl_;
+
+        static PLAYER_COMMAND checkCommand_;
+        static PLAYER_COMMAND command_;
+        static int locked_;
+
+        PlayerManager();
+        ~PlayerManager();
         static void initLock(void);
         static void setLock(int flag);
         static bool isLock();
         int getLockCount();
         static void setPlayerCommand(PLAYER_COMMAND command);
-        PLAYER_COMMAND getPlayerCommand();
+        static PLAYER_COMMAND getPlayerCommand();
         void checkCommandEnd();
     };
 }
 
-struct PlayerManagerData{
-    int checkCommand_;
-    PLAYER_COMMAND command_;
-    int locked_;
-};
-
-extern PlayerManagerData playerManagerData_; //data_020eed20

@@ -31,8 +31,8 @@ THUMB int cmd_map_camera_default_angle(int* param)
 THUMB int cmd_chara_mortion_lock(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_02137f2c()->setAction(index, param[0]);
-    func_ov000_02138460(func_ov000_02137f2c(), index, 0);
+    TownCharacterManager::getSingleton()->setAction(index, param[0]);
+    TownCharacterManager::getSingleton()->setAnimation(index, 0);
     return 1;
 }
 
@@ -71,6 +71,6 @@ THUMB int cmd_set_camera_limit(int* param)
 
 THUMB int cmd_set_van_and_basha(int* param)
 {
-    func_ov000_02135ab0(func_ov000_02132a90());
+    TownPlayerManager::getSingleton()->setVanAndBasha();
     return 1;
 }

@@ -1,4 +1,5 @@
 #include "main/cmn/CommonEffectLocation.hpp"
+#include "ov000/town/TownWindowSystem.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/cmn/PartyTalk.hpp"
 #include "main/dss/Random.hpp"
@@ -29,10 +30,10 @@ THUMB int cmd_check_shoplist(int* param)
     name[1] = g_Global.getMapName()[1];
 
     if (func_020882b0(name, mc) == 0 && !g_AreaFlag.check(0x57)) {
-        func_0202a81c(func_ov000_021372e8(), 0);
+        func_0202a81c(TownWindowSystem::getSingleton(), 0);
     }
     if (func_020882b0(name, cc) == 0 && status::g_Story.chapter_ != 2) {
-        func_0202a81c(func_ov000_021372e8(), 0);
+        func_0202a81c(TownWindowSystem::getSingleton(), 0);
     }
     return 1;
 }

@@ -134,7 +134,7 @@ ARM void DSSAObjectWithCamera::execNear()
     dss::Fix32Vector3 distance = func_02088988(cameraPosition, position_);
     dss::Fix32Vector3 unk1;
     dss::Fix32Vector3 unk2;
-    setPosition(position_ + func_02088bdc(func_02088a9c(&distance, 15), 16));
+    setPosition(position_ + func_02088bdc(distance * 15, 16));
     setScale(func_02088bdc(scale_, 16));
 }
 
@@ -145,7 +145,7 @@ ARM void DSSAObjectWithCamera::execNear2()
     dss::Fix32Vector3 distance = func_02088988(cameraPosition, position_);
     dss::Fix32Vector3 unk1;
     dss::Fix32Vector3 unk2;
-    setPosition(position_ + func_02088bdc(func_02088a9c(&distance, 3), 4));
+    setPosition(position_ + func_02088bdc(distance * 3, 4));
     setScale(func_02088bdc(scale_, 4));
 }
 
@@ -156,6 +156,6 @@ ARM void DSSAObjectWithCamera::execFar()
     dss::Fix32Vector3 distance = func_02088988(cameraPosition, position_);
     dss::Fix32Vector3 unk1;
     dss::Fix32Vector3 unk2;
-    setPosition(position_ + func_02088bdc(func_02088a9c(&distance, 1), 4));
-    setScale(func_02088bdc(func_02088a9c(&scale_, 3), 4));
+    setPosition(position_ + func_02088bdc(distance * 1, 4));
+    setScale(func_02088bdc(scale_ * 3, 4));
 }

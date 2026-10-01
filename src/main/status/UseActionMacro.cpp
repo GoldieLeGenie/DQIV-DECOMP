@@ -9,6 +9,7 @@
 #include "main/dss/Random.hpp"
 #include "ov003/status/MonsterParty.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
+#include "ov000/town/TownFurniture.hpp"
 
 THUMB void status::UseActionMacro::setBeforeMacro(CharacterStatus* actor, int actionIndex)
 {
@@ -164,7 +165,7 @@ THUMB void status::UseActionMacro::setResultMacro(CharacterStatus* actor, Charac
         TextAPI::setMACRO0(0x51, 0xf0000000, damage);
     }
     if (actionIndex == 0xd4 && func_02058114(&data_0210bb94, 0xc) == 1) {
-        TextAPI::setMACRO0(0x3d, 0xf0000000, func_ov000_021232d0(func_ov000_02122ad8()));
+        TextAPI::setMACRO0(0x3d, 0xf0000000, TownFurnitureManager::getSingleton()->searchFloorItem());
     }
     if (actionIndex == 0xd1) {
         char x = func_ov016_021755a0()->takanomeX_;

@@ -506,7 +506,7 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
             func_02084e8c(data_020f2244, 0, 0, 0);
             func_02058294(data_0210bc18, &data_020f21f8);
             messageCounter_++;
-            func_ov000_02132228()->unk_618 = 0;
+            TownSystem::getSingleton()->fadeCount_ = 0;
             g_Global.bookingFlag_ = Global::BOOKING_GAMESET;
             SoundManager::stopBgm(120);
             cmn::GameManager::getSingleton();

@@ -44,7 +44,7 @@ THUMB int cmd_chara_voice(int* param)
         voice = 0x32;
         break;
     }
-    func_ov000_0212eb9c(func_ov000_02137f2c()->character_[index], voice);
+    TownCharacterManager::getSingleton()->character_[index]->setVoice(voice);
     return 1;
 }
 

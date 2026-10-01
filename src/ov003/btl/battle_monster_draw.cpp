@@ -25,7 +25,7 @@ THUMB void btl::BattleMonster::setup(int monsterGroup, int monsterIndex)
     screenPosition_ = 0;
     screenWidth_ = 0;
     animationFlag_ = 0;
-    func_0205b384(&monsterDraw_, 4);
+    func_0205b384(&monsterDraw_, DSSAObjectWithCamera::Near2);
 }
 
 THUMB void btl::BattleMonster::cleanup()

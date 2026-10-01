@@ -26,13 +26,13 @@ ARM void cmn::NonBattleActionManager::execute()
                     return;
                 }
                 if (func_02058114(&data_0210bb94, 12) == 1) {
-                    func_ov000_021341ec(func_ov000_02132a90(), 1);
+                    TownPlayerManager::getSingleton()->setLock(1);
                 } else {
                     func_ov001_02127b28();
                     PlayerManager::setLock(1);
                 }
                 if (func_02058114(&data_0210bb94, 12)) {
-                    func_ov000_02139668()->stage_.m_fld.m_flag &= ~4;
+                    TownStageManager::getSingleton()->stage_.m_fld.m_flag &= ~4;
                     func_020499a4(1);
                     if (g_Stage.getTimeZone() == TIME_ZONE_DAYTIME || g_Stage.getTimeZone() == TIME_ZONE_EVENING) {
                         g_Stage.setTimeZone(TIME_ZONE_NIGHT);
@@ -62,13 +62,13 @@ ARM void cmn::NonBattleActionManager::execute()
                     return;
                 }
                 if (func_02058114(&data_0210bb94, 12) == 1) {
-                    func_ov000_021341ec(func_ov000_02132a90(), 0);
+                    TownPlayerManager::getSingleton()->setLock(0);
                 } else {
                     func_ov001_02127b28();
                     PlayerManager::setLock(0);
                 }
                 if (func_02058114(&data_0210bb94, 12)) {
-                    func_ov000_02139668()->stage_.m_fld.m_flag &= ~4;
+                    TownStageManager::getSingleton()->stage_.m_fld.m_flag &= ~4;
                     func_020499a4(1);
                 } else if (func_02058114(&data_0210bb94, 14)) {
                     func_ov001_0212b948()->fieldData.pause_ = 0;
@@ -82,13 +82,13 @@ ARM void cmn::NonBattleActionManager::execute()
                     return;
                 }
                 if (func_02058114(&data_0210bb94, 12) == 1) {
-                    func_ov000_021341ec(func_ov000_02132a90(), 0);
+                    TownPlayerManager::getSingleton()->setLock(0);
                 } else {
                     func_ov001_02127b28();
                     PlayerManager::setLock(0);
                 }
                 if (func_02058114(&data_0210bb94, 12)) {
-                    func_ov000_02139668()->stage_.m_fld.m_flag &= ~4;
+                    TownStageManager::getSingleton()->stage_.m_fld.m_flag &= ~4;
                     func_020499a4(1);
                 } else if (func_02058114(&data_0210bb94, 14)) {
                     func_ov001_0212b948()->fieldData.pause_ = 0;
@@ -106,8 +106,8 @@ ARM void cmn::NonBattleActionManager::execute()
                     func_02082144(data_0211c4f0, 0);
                     g_Global.setRanarutaFlag(false);
                     if (func_02058114(&data_0210bb94, 12) == 1) {
-                        func_ov000_021341ec(func_ov000_02132a90(), 0);
-                        func_ov000_02132a90()->flagMapLink_ = 1;
+                        TownPlayerManager::getSingleton()->setLock(0);
+                        TownPlayerManager::getSingleton()->flagMapLink_ = 1;
                     } else {
                         func_ov001_02127b28();
                         PlayerManager::setLock(0);
@@ -118,22 +118,21 @@ ARM void cmn::NonBattleActionManager::execute()
                     return;
                 }
                 if (func_02058114(&data_0210bb94, 12)) {
-                    func_ov000_02139668()->stage_.m_fld.m_flag &= ~4;
+                    TownStageManager::getSingleton()->stage_.m_fld.m_flag &= ~4;
                     func_020499a4(1);
                 } else if (func_02058114(&data_0210bb94, 14)) {
                     func_ov001_0212b948()->fieldData.pause_ = 0;
                     func_0204b694(1);
                 }
                 if (func_0202adc4()->unk_150 != 0) {
-                    func_ov000_02132a90()->flagMapLink_ = 1;
+                    TownPlayerManager::getSingleton()->flagMapLink_ = 1;
                     func_0202aea4(func_0202adc4());
                     func_02030278(func_0202adc4()->unk_130, 0);
-                    func_ov000_0213b5a0(&func_ov000_02132a90()->partyDraw_);
-                    func_ov000_02137f2c();
-                    func_ov000_02138210();
+                    TownPlayerManager::getSingleton()->partyDraw_.requestCharacterReload();
+                    TownCharacterManager::getSingleton()->requestCharacterReload();
                     func_02049b94();
-                    func_ov000_02139668()->stage_.execAnime();
-                    func_ov000_02132228()->defaultSELock_ = 0;
+                    TownStageManager::getSingleton()->stage_.execAnime();
+                    TownSystem::getSingleton()->defaultSELock_ = 0;
                     func_0208214c(data_0211c4f0, 0, 0x10);
                     waitTurn_ = 1;
                     return;
@@ -141,11 +140,11 @@ ARM void cmn::NonBattleActionManager::execute()
                 g_Global.fadeOutBlack(0x14);
                 func_0202adc4();
                 data_020edc40 = 1;
-                func_ov000_02133eac(func_ov000_02132a90(), 4);
+                TownPlayerManager::getSingleton()->resetMapLink(RESET_EXIT_LOCK_TABI);
                 g_Global.setRanarutaFlag(false);
                 if (func_02058114(&data_0210bb94, 12) == 1) {
-                    func_ov000_021341ec(func_ov000_02132a90(), 0);
-                    func_ov000_02133bfc(func_ov000_02132a90());
+                    TownPlayerManager::getSingleton()->setLock(0);
+                    TownPlayerManager::getSingleton()->execMapLink();
                 } else {
                     func_ov001_02127b28();
                     PlayerManager::setLock(0);
@@ -154,7 +153,7 @@ ARM void cmn::NonBattleActionManager::execute()
         }
     } else {
         if (func_02058114(&data_0210bb94, 12) == 1) {
-            func_ov000_021341ec(func_ov000_02132a90(), 1);
+            TownPlayerManager::getSingleton()->setLock(1);
         } else {
             func_ov001_02127b28();
             PlayerManager::setLock(1);
@@ -189,7 +188,7 @@ ARM void cmn::NonBattleActionManager::execute()
             case ACTION_TRAVELDOOR:
                 SoundManager::playSe(0x464, 0);
                 func_0202aec4(func_0202adc4(), 3);
-                func_ov000_02132228()->defaultSELock_ = 1;
+                TownSystem::getSingleton()->defaultSELock_ = 1;
                 break;
         }
         startFlag_ = 1;
@@ -203,7 +202,7 @@ ARM void cmn::NonBattleActionManager::setAction(ACTION_EFFECT action)
 {
     waitTurn_ = 0;
     if (func_02058114(&data_0210bb94, 12)) {
-        func_ov000_02139668()->stage_.m_fld.m_flag |= 4;
+        TownStageManager::getSingleton()->stage_.m_fld.m_flag |= 4;
         func_020499a4(0);
     } else if (func_02058114(&data_0210bb94, 14)) {
         func_ov001_0212b948()->fieldData.pause_ = 1;

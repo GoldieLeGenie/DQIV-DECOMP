@@ -2,6 +2,8 @@
 #include "main/status/ActionExec.hpp"
 #include "main/status/BaseAction.hpp"
 #include "ov003/status/MonsterParty.hpp"
+#include "ov000/town/TownPlayerManager.hpp"
+#include "ov000/town/TownFurniture.hpp"
 
 
 status::BaseActionMessageData status::messageData_;
@@ -633,9 +635,9 @@ THUMB int status::BaseActionMessage::getMessageItemInBox(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].cofferItem != 0
      && func_02058114(&data_0210bb94, 0xC) == 1) {
-        int uid = func_ov000_02135358(func_ov000_02132a90());
-        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 7
-         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 2) {
+        int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
+        if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 7
+         && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 2) {
             result = messageData_.splitMsg_[splitIndex].cofferItem;
             splitFlag_ = 0;
         }
@@ -649,9 +651,9 @@ THUMB int status::BaseActionMessage::getMessageMonsterInBox(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].cofferMonster != 0
      && func_02058114(&data_0210bb94, 0xC) == 1) {
-        int uid = func_ov000_02135358(func_ov000_02132a90());
-        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 7
-         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 4) {
+        int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
+        if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 7
+         && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 4) {
             result = messageData_.splitMsg_[splitIndex].cofferMonster;
             splitFlag_ = 0;
         }
@@ -666,9 +668,9 @@ THUMB int status::BaseActionMessage::getMessageGoldInBox(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].cofferGold != 0
      && func_02058114(&data_0210bb94, 0xC) == 1) {
-        int uid = func_ov000_02135358(func_ov000_02132a90());
-        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 7
-         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 3) {
+        int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
+        if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 7
+         && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 3) {
             result = messageData_.splitMsg_[splitIndex].cofferGold;
             splitFlag_ = 0;
         }
@@ -682,9 +684,9 @@ THUMB int status::BaseActionMessage::getMessageZeroInBox(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].cofferNothing != 0
      && func_02058114(&data_0210bb94, 0xC) == 1) {
-        int uid = func_ov000_02135358(func_ov000_02132a90());
-        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 7
-         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 1) {
+        int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
+        if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 7
+         && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 1) {
             result = messageData_.splitMsg_[splitIndex].cofferNothing;
             splitFlag_ = 0;
         }
@@ -698,9 +700,9 @@ THUMB int status::BaseActionMessage::getMessageItemInPot(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].tuboItem != 0
      && func_02058114(&data_0210bb94, 0xC) == 1) {
-        int uid = func_ov000_02135358(func_ov000_02132a90());
-        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 0x27
-         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 2) {
+        int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
+        if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x27
+         && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 2) {
             result = messageData_.splitMsg_[splitIndex].tuboItem;
             splitFlag_ = 0;
         }
@@ -714,9 +716,9 @@ THUMB int status::BaseActionMessage::getMessageMonsterInPot(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].tuboMonster != 0
      && func_02058114(&data_0210bb94, 0xC) == 1) {
-        int uid = func_ov000_02135358(func_ov000_02132a90());
-        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 0x27
-         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 4) {
+        int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
+        if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x27
+         && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 4) {
             result = messageData_.splitMsg_[splitIndex].tuboMonster;
             splitFlag_ = 0;
         }
@@ -731,9 +733,9 @@ THUMB int status::BaseActionMessage::getMessageGoldInPot(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].tuboGold != 0
      && func_02058114(&data_0210bb94, 0xC) == 1) {
-        int uid = func_ov000_02135358(func_ov000_02132a90());
-        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 0x27
-         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 3) {
+        int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
+        if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x27
+         && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 3) {
             result = messageData_.splitMsg_[splitIndex].tuboGold;
             splitFlag_ = 0;
         }
@@ -749,9 +751,9 @@ THUMB int status::BaseActionMessage::getMessageZeroInPot(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].tuboNothing != 0
      && func_02058114(&data_0210bb94, 0xC) == 1) {
-        int uid = func_ov000_02135358(func_ov000_02132a90());
-        if (func_ov000_02123198(func_ov000_02122ad8(), uid) == 0x27
-         && func_ov000_02123144(func_ov000_02122ad8(), uid) == 1) {
+        int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
+        if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x27
+         && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 1) {
             result = messageData_.splitMsg_[splitIndex].tuboNothing;
             splitFlag_ = 0;
         }
@@ -766,8 +768,8 @@ THUMB int status::BaseActionMessage::getMessageNoTarget(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].noTarget != 0) {
         if (func_02058114(&data_0210bb94, 0xC) == 1) {
-            int uid = func_ov000_02135358(func_ov000_02132a90());
-            int type = func_ov000_02123198(func_ov000_02122ad8(), uid);
+            int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
+            int type = TownFurnitureManager::getSingleton()->getCofferType(uid);
             if (uid == 0 || (type != 0x27 && type != 7)) {
                 result = messageData_.splitMsg_[splitIndex].noTarget;
                 splitFlag_ = 0;
@@ -852,7 +854,7 @@ THUMB int status::BaseActionMessage::getMessageZero(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].nothing != 0
      && func_02058114(&data_0210bb94, 0xC) == 1) {
-        if (func_ov000_021232d0(func_ov000_02122ad8()) == 0) {
+        if (TownFurnitureManager::getSingleton()->searchFloorItem() == 0) {
             result = messageData_.splitMsg_[splitIndex].nothing;
             splitFlag_ = 0;
         }

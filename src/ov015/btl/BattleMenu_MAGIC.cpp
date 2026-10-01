@@ -19,7 +19,7 @@ THUMB void BattleMenu_MAGIC::menuSetup()
     count_ = 0;
     func_020882d4(haveAction_, -1, sizeof(haveAction_));
     func_020882d4(haveActionIndex_, -1, sizeof(haveActionIndex_));
-    func_ov015_0216ded8(this);
+    unkfunc_0216ded8();
     func_02023324(&navigator_);
     func_02023504(&navigator_, 2, 3, count_);
     int pos = btl::BattleMenuPlayerControl::getSingleton()->getMagicPosition();
@@ -70,7 +70,7 @@ THUMB void BattleMenu_MAGIC::menuUpdate()
         }
     } else {
         if (func_02023230(&cancelItem_)) {
-            func_ov015_0216c84c(func_ov015_0216c7b0(), 1);
+            BattleMenuJudge::getSingleton()->backActionMenu(1);
             close();
             return;
         }
@@ -102,8 +102,8 @@ THUMB void BattleMenu_MAGIC::menuUpdate()
                 case status::UseItem::Enemy:
                     if (status::UseAction::getUseArea(action) == status::UseItem::Group || status::UseAction::getUseArea(action) == status::UseItem::One) {
                         if (g_monster.getGroupCount() > 1) {
-                            func_ov015_0216c8a0(func_ov015_0216c7b0(), magic, -1);
-                            int target = func_ov015_0216ca28(func_ov015_0216c7b0());
+                            BattleMenuJudge::getSingleton()->setMagicEnemy(magic, -1);
+                            int target = BattleMenuJudge::getSingleton()->getLiveMonsterID();
                             btl::BattleMenuPlayerControl::getSingleton()->targetChara_ = target;
                             close();
                             func_ov015_0216aa34(func_ov015_0216aa2c());
@@ -114,7 +114,7 @@ THUMB void BattleMenu_MAGIC::menuUpdate()
                             gBattleMenu_MAGIC2ENEMY.activeMagicIndex_ = action;
                         } else {
                             if (action == 0x13) {
-                                func_ov015_0216c7b0()->minadeinFlag_ = 1;
+                                BattleMenuJudge::getSingleton()->minadeinFlag_ = 1;
                             }
                             close();
                             int group = 0;
@@ -124,8 +124,8 @@ THUMB void BattleMenu_MAGIC::menuUpdate()
                                     break;
                                 }
                             }
-                            func_ov015_0216c8a0(func_ov015_0216c7b0(), magic, group);
-                            func_ov015_0216ca70(func_ov015_0216c7b0());
+                            BattleMenuJudge::getSingleton()->setMagicEnemy(magic, group);
+                            BattleMenuJudge::getSingleton()->setNextPlayer();
                         }
                     } else {
                         setMagicTargetFree(magic);
@@ -133,7 +133,7 @@ THUMB void BattleMenu_MAGIC::menuUpdate()
                     break;
                 case status::UseItem::Friend:
                     if (status::UseAction::getUseArea(action) == status::UseItem::One) {
-                        func_ov015_0216c8e4(func_ov015_0216c7b0(), magic, -1);
+                        BattleMenuJudge::getSingleton()->setMagicParty(magic, -1);
                         btl::BattleMenuPlayerControl::getSingleton()->targetChara_ = 0;
                         close();
                         if (status::g_Party.getCarriageOutCount() > 1) {
@@ -141,8 +141,8 @@ THUMB void BattleMenu_MAGIC::menuUpdate()
                             gBattleMenu_MAGIC2PARTY.open();
                             gBattleMenu_MAGIC2PARTY.activeMagicPos_ = func_020233cc(&navigator_, menuItem_.active_);
                         } else {
-                            func_ov015_0216c8e4(func_ov015_0216c7b0(), magic, 0);
-                            func_ov015_0216ca70(func_ov015_0216c7b0());
+                            BattleMenuJudge::getSingleton()->setMagicParty(magic, 0);
+                            BattleMenuJudge::getSingleton()->setNextPlayer();
                         }
                     } else {
                         setMagicTargetFree(magic);
@@ -158,29 +158,29 @@ THUMB void BattleMenu_MAGIC::menuUpdate()
     }
 }
 
-extern "C" THUMB void func_ov015_0216ded8(BattleMenu_MAGIC* self)
+THUMB void BattleMenu_MAGIC::unkfunc_0216ded8()
 {
     int count;
     status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(btl::BattleMenuPlayerControl::getSingleton()->activeChara_)->haveStatusInfo_;
     count = info->haveAction_.getCount();
     int num = 0;
-    self->count_ = num;
-    func_020882d4(self->haveAction_, -1, sizeof(self->haveAction_));
-    func_020882d4(self->haveActionIndex_, -1, sizeof(self->haveActionIndex_));
+    count_ = num;
+    func_020882d4(haveAction_, -1, sizeof(haveAction_));
+    func_020882d4(haveActionIndex_, -1, sizeof(haveActionIndex_));
     for (int i = 0; i < count; i++) {
         int action = info->haveAction_.getAction(i);
         if (status::UseAction::isBattleUse(action)) {
-            self->haveAction_[num] = action;
-            self->haveActionIndex_[num] = i;
+            haveAction_[num] = action;
+            haveActionIndex_[num] = i;
             num++;
         }
     }
-    self->count_ = num;
+    count_ = num;
 }
 
 THUMB void BattleMenu_MAGIC::setMagicTargetFree(int magic)
 {
     close();
-    func_ov015_0216c8e4(func_ov015_0216c7b0(), magic, -1);
-    func_ov015_0216ca70(func_ov015_0216c7b0());
+    BattleMenuJudge::getSingleton()->setMagicParty(magic, -1);
+    BattleMenuJudge::getSingleton()->setNextPlayer();
 }

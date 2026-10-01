@@ -157,8 +157,8 @@ namespace status{
         void removeFurnFlag(int index);
         void initFurnFlag();
         void setDoorOpenFlag(int index);
-        void getDoorOpenFlag(int index);
-        int removeDoorOpenFlag(int index);
+        void removeDoorOpenFlag(int index);
+        bool getDoorOpenFlag(int index);
         void initDoorOpenFlag();
         void setFurnBreakFlag(int index);
         int getFurnBreakFlag(int index);
@@ -183,14 +183,12 @@ extern status::StageStatus g_Stage; //data_020d08e0
 struct FieldPlayerManager;
 
 extern "C" {
-    void func_ov000_021341ec(void*, int);
     FieldPlayerManager* func_ov001_02127b28();
     void func_02088360(void* dest, int size, void* src); 
     int func_020882b0(const char*, const char*);
     void func_02037d28();
     void* func_02037da4();
     int func_02058114(void*, int);
-    int func_ov000_02135b04();
     void func_02088740(dss::Fix32Vector3* vec);
 }
 
@@ -198,7 +196,7 @@ struct MapChurchInfo {
     unsigned int count_;    // 0x020b615c
     unsigned int unk4_;     // 0x020b6160
 };
-extern MapChurchInfo data_020b615c; // MapChurchInfo
+extern const MapChurchInfo data_020b615c; // MapChurchInfo
 
 
 struct ExternalData {

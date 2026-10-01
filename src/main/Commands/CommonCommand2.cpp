@@ -14,6 +14,6 @@
 
 THUMB int cmd_set_party_mark(int* param)
 {
-    func_ov000_021359ec(func_ov000_02132a90(), param[0], param[1]);
+    TownPlayerManager::getSingleton()->rizeupSetParty(param[0], param[1]);
     return 1;
 }

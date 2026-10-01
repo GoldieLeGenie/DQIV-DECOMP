@@ -17,6 +17,6 @@
 THUMB int cmd_set_chara_map_uid(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_02137f2c()->setMapUid(index, param[0]);
+    TownCharacterManager::getSingleton()->setMapUid(index, param[0]);
     return 1;
 }

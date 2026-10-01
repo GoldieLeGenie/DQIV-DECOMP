@@ -33,7 +33,7 @@ THUMB void BattleMenu_ITEMUSE2PARTY::menuUpdate()
         if (info->isEquipEnable(info->haveItem_.getItem(btl::BattleMenuPlayerControl::getSingleton()->activeItem_))) {
             data_ov015_02179c10.open();
         } else {
-            data_ov015_02179d68.open();
+            gBattleMenu_ITEM.open();
         }
         status::g_Party.getPlayerStatus(chara)->haveBattleStatus_.setSelectCommand(status::HaveBattleStatus::UseItem, -1);
         close();
@@ -44,8 +44,8 @@ THUMB void BattleMenu_ITEMUSE2PARTY::menuUpdate()
         redraw_ = 1;
         if (result == 2) {
             close();
-            func_ov015_0216c968(func_ov015_0216c7b0(), unk_e8, menuItem_.active_);
-            func_ov015_0216ca70(func_ov015_0216c7b0());
+            BattleMenuJudge::getSingleton()->setItemParty(unk_e8, menuItem_.active_);
+            BattleMenuJudge::getSingleton()->setNextPlayer();
         }
         int target = menuItem_.active_;
         btl::BattleMenuPlayerControl::getSingleton()->targetChara_ = target;

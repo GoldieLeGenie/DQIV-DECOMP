@@ -133,7 +133,7 @@ THUMB void BattleMenu_ARRAY_ALL::menuUpdate()
                 menuItem_.active_ = active - 1;
             }
             if (active == count - unk_2c && unk_2c != 0) {
-                func_ov015_0216f868(this);
+                ChangeParty(this);
                 close();
                 gBattleMenu_ARRAYMENU.open();
                 gBattleMenu_ARRAYMENU.unk_1c = 0;
@@ -146,7 +146,7 @@ THUMB void BattleMenu_ARRAY_ALL::menuUpdate()
                 max = 4;
             }
             if (unk_2c == max) {
-                func_ov015_0216f868(this);
+                ChangeParty(this);
                 close();
                 gBattleMenu_ARRAYMENU.open();
                 gBattleMenu_ARRAYMENU.unk_1c = 0;
@@ -155,7 +155,7 @@ THUMB void BattleMenu_ARRAY_ALL::menuUpdate()
     }
 }
 
-extern "C" THUMB void func_ov015_0216f868(BattleMenu_ARRAY_ALL* self)
+THUMB void ChangeParty(BattleMenu_ARRAY_ALL* self)
 {
     for (int i = 0; i < 4; i++) {
         if (self->unk_1c[i] >= 0) {

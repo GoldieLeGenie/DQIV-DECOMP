@@ -49,10 +49,24 @@ extern "C" {
     void func_02049164(BillboardCharacter* self);                               /* resetTexture */
     void func_020491a0(BillboardCharacter* self, const char* name);             /* setup */
     void func_0204925c(BillboardCharacter* self);                               /* cleanup */
+    void func_02049190(BillboardCharacter* self);
+    void func_0204948c(BillboardCharacter* self, unsigned short dir);           /* setRotate */
+    void func_020497a4(BillboardCharacter* self, int flag);                     /* setDisplayEnable */
+    void func_020497bc(BillboardCharacter* self, int flag);
+    void func_0204977c(BillboardCharacter* self, int enable);                   /* setEnable */
+    void func_02049814(BillboardCharacter* self, int flag);                     /* setAnimFlag */
+    void func_02049880(BillboardCharacter* self, int flag);                     /* setShadowFlag */
+    void func_020498d0(BillboardCharacter* self, int flag);                     /* setWriggleFlag */
+    void func_020499f0(BillboardCharacter* self, dss::Fix32Vector3* rate);      /* DS-only: palette rate (0xFC) */
+    void func_02049a00(BillboardCharacter* self, int flag);                     /* DS-only: palette rate enable (flag 0x400) */
+    void func_02049a18(BillboardCharacter* self);
     void func_02049374(BillboardCharacter* self);                               /* execute animation */
+    int  func_020499d4(void);                                                   /* BillboardCharacter::isAllAnimation (static) */
     void func_0204941c(BillboardCharacter* self, int index);                    /* startAnimation */
     void func_020494e0(BillboardCharacter* self, dss::Fix32Vector3* direction); /* setCameraDirection */
-    void func_0204978c(BillboardCharacter* self, unsigned char alpha);          /* setShadowAlpha */
+    void func_02049764(BillboardCharacter* self, dss::Fix32Vector3* pos);       /* setShadowPos */
+    void func_0204978c(BillboardCharacter* self, int alpha);                    /* setShadowAlpha */
+    void func_020497fc(BillboardCharacter* self, int flag);                     /* setShadowStay */
     int  func_020497d4(BillboardCharacter* self);
     int  func_020497e8(BillboardCharacter* self);                               /* isDisplayEnable */
     void func_02049868(BillboardCharacter* self, int flag);                     /* setNearFlag */
@@ -101,4 +115,5 @@ struct DisplayCharacter : BillboardCharacter {
     void exec();
     void setColor(int color);
     void setBoxTestOff(bool off);
+    void setSleep(int sleep);
 };

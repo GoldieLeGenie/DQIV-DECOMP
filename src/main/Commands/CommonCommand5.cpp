@@ -21,7 +21,7 @@ THUMB int cmd_set_player_in_carriage(int* param)
     }
     status::g_Party.add(param[0]);
     status::g_Party.reorder(order[0], order[1], order[2], order[3]);
-    func_ov000_02132a90()->resetParty();
+    TownPlayerManager::getSingleton()->resetParty();
     return 1;
 }
 

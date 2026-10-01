@@ -1,6 +1,7 @@
 #pragma ipa file
 
 #include "ov000/town/TownCamera.hpp"
+#include "ov000/town/TownActionCalculate.hpp"
 #include "main/object/DSSAObject.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
 #include "ov000/town/TownCharacterManager.hpp"
@@ -94,7 +95,7 @@ ARM void TownCamera::execute()
             camera_.unk_004.setTarget(g_cmnPartyInfo.position_);
             break;
         case 5:
-            camera_.unk_004.setTarget(*func_ov000_021383ac(func_ov000_02137f2c(), targetChara_));
+            camera_.unk_004.setTarget(TownCharacterManager::getSingleton()->getPosition(targetChara_));
             break;
         default:
             dss::Fix32Vector3 pos = camera_.unk_004.getTarget();
@@ -188,22 +189,22 @@ ARM void TownCamera::execute()
 
 ARM void TownCamera::draw()
 {
-    int a = func_ov000_02139668()->stage_.m_fld.unk_24c;
-    int b = func_ov000_02139668()->stage_.m_fld.unk_250;
+    int a = TownStageManager::getSingleton()->stage_.m_fld.unk_24c;
+    int b = TownStageManager::getSingleton()->stage_.m_fld.unk_250;
     if (a == 0 && b == 0) {
         camera_.applyCamera();
     } else {
         dss::Camera* cam = (func_02081254() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_068;
         int no = func_02081254() & 1;
-        cam->m_pos.vx.value = func_ov000_02139668()->GetCameraCentFX32(no).x;
-        cam->m_pos.vy.value = func_ov000_02139668()->GetCameraCentFX32(no).y;
-        cam->m_pos.vz.value = func_ov000_02139668()->GetCameraCentFX32(no).z;
-        cam->m_up.vx.value = func_ov000_02139668()->GetCameraUpFX32(no).x;
-        cam->m_up.vy.value = func_ov000_02139668()->GetCameraUpFX32(no).y;
-        cam->m_up.vz.value = func_ov000_02139668()->GetCameraUpFX32(no).z;
-        cam->m_target_pos.vx.value = func_ov000_02139668()->GetCameraPosFX32(no).x;
-        cam->m_target_pos.vy.value = func_ov000_02139668()->GetCameraPosFX32(no).y;
-        cam->m_target_pos.vz.value = func_ov000_02139668()->GetCameraPosFX32(no).z;
+        cam->m_pos.vx.value = TownStageManager::getSingleton()->GetCameraCentFX32(no).x;
+        cam->m_pos.vy.value = TownStageManager::getSingleton()->GetCameraCentFX32(no).y;
+        cam->m_pos.vz.value = TownStageManager::getSingleton()->GetCameraCentFX32(no).z;
+        cam->m_up.vx.value = TownStageManager::getSingleton()->GetCameraUpFX32(no).x;
+        cam->m_up.vy.value = TownStageManager::getSingleton()->GetCameraUpFX32(no).y;
+        cam->m_up.vz.value = TownStageManager::getSingleton()->GetCameraUpFX32(no).z;
+        cam->m_target_pos.vx.value = TownStageManager::getSingleton()->GetCameraPosFX32(no).x;
+        cam->m_target_pos.vy.value = TownStageManager::getSingleton()->GetCameraPosFX32(no).y;
+        cam->m_target_pos.vz.value = TownStageManager::getSingleton()->GetCameraPosFX32(no).z;
         camera_.applyG3d();
         func_02049984(!isEven() ? &camera_.unk_004 : &camera_.unk_068);
     }
@@ -386,7 +387,7 @@ ARM void TownCamera::setRotTo(dss::Vector3short& angle, int frame, bool absFlag)
 ARM void TownCamera::resetCameraMove(int frame)
 {
     dss::Fix32Vector3 pos = camera_.unk_004.getTarget();
-    dss::Fix32Vector3 target = func_ov000_02132a90()->getPosition();
+    dss::Fix32Vector3 target = TownPlayerManager::getSingleton()->getPosition();
     if (pos != target) {
         func_020311f0(&cameraMove_, &pos, &target);
         func_020312e8(&cameraMove_, frame);
@@ -426,7 +427,7 @@ ARM void TownCamera::setShake(int type, int count)
     switch (type) {
     case 0: {
         dss::Fix32Vector3 vec;
-        func_ov000_02130f48((short)(camera_.unk_004.getAngle().vy + 0x4000), &vec);
+        TownActionCalculate::getDirByIdx((short)(camera_.unk_004.getAngle().vy + 0x4000), vec);
         targetPos += vec * len;
         func_02031908(&effecter_, &startPos, &targetPos, count);
         break;
@@ -517,7 +518,7 @@ ARM void TownCamera::setTargetPlayer(int flag)
 
 ARM void TownCamera::setMoveTargetPlayer(int frame)
 {
-    dss::Fix32Vector3 target = func_ov000_02132a90()->getPosition();
+    dss::Fix32Vector3 target = TownPlayerManager::getSingleton()->getPosition();
     setMoveTo(target, frame, true);
 }
 

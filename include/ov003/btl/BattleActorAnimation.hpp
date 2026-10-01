@@ -1,5 +1,6 @@
 #pragma once
 #include <globaldefs.h>
+#include "main/dss/Camera.hpp"
 #include "GameInfo.hpp"
 #include "main/sound/SoundManager.hpp"
 #include "main/status/UseActionParam.hpp"
@@ -42,7 +43,6 @@ extern "C" int  func_ov003_021293e4(status::UseActionParam* uap);
 extern "C" int  func_0208995c(void);
 extern "C" void func_ov003_0212a028(status::CharacterStatus* actor);
 extern "C" void func_ov003_021295e4(status::UseActionParam* uap, int idx);
-extern "C" dss::Vector2<int>* func_02057128(int idx);
 extern "C" void func_02050e88(int a, int b, int c, int d);
 extern "C" void func_ov003_0212976c(status::UseActionParam* uap, int idx);
 extern "C" void func_ov003_021299d0(status::CharacterStatus* actor, status::CharacterStatus* target, int idx);

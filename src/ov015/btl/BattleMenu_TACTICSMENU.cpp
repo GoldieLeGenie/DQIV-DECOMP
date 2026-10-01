@@ -53,8 +53,8 @@ THUMB void BattleMenu_TACTICSMENU::menuDraw()
 
 THUMB void BattleMenu_TACTICSMENU::menuUpdate()
 {
-    if (!func_ov015_0216fc4c(this) && !func_ov015_0216fb88(this)) {
-        func_ov015_0216fbdc(this);
+    if (!unkfunc_0216fc4c() && !unkfunc_0216fb88()) {
+        unkfunc_0216fbdc();
     }
     unk_24 = func_020233cc(&unk_1e8, menuItem_.active_);
     unk_28 = func_020233cc(&unk_1f4, unk_120.active_);
@@ -72,85 +72,85 @@ THUMB void BattleMenu_TACTICSMENU::menuUpdate()
     }
 }
 
-extern "C" THUMB int func_ov015_0216fb88(BattleMenu_TACTICSMENU* self)
+THUMB int BattleMenu_TACTICSMENU::unkfunc_0216fb88()
 {
-    int result = func_02023274(&self->menuItem_, &self->unk_1e8);
+    int result = func_02023274(&menuItem_, &unk_1e8);
     if (result != 0) {
-        self->menuItem_.result_ = 0;
-        self->menuItem_.lastresult_ = 0;
-        self->redraw_ = 1;
+        menuItem_.result_ = 0;
+        menuItem_.lastresult_ = 0;
+        redraw_ = 1;
         if (result == 1) {
-            self->unk_1c = 0;
+            unk_1c = 0;
         } else if (result == 2) {
-            self->unk_1c = 1;
+            unk_1c = 1;
         }
-        self->unk_24 = func_020233cc(&self->unk_1e8, self->menuItem_.active_);
-        func_ov015_0216fc98(self);
+        unk_24 = func_020233cc(&unk_1e8, menuItem_.active_);
+        unkfunc_0216fc98();
         return 1;
     }
     return 0;
 }
 
-extern "C" THUMB void func_ov015_0216fbdc(BattleMenu_TACTICSMENU* self)
+THUMB void BattleMenu_TACTICSMENU::unkfunc_0216fbdc()
 {
-    int result = func_02023274(&self->unk_120, &self->unk_1f4);
+    int result = func_02023274(&unk_120, &unk_1f4);
     if (result != 0) {
         if (result == 1) {
-            self->unk_1c = 1;
-            self->redraw_ = 1;
+            unk_1c = 1;
+            redraw_ = 1;
             return;
         }
         if (result == 2) {
-            if (self->unk_1c == 0) {
-                self->unk_1c = 1;
-            } else if (self->unk_1c == 1) {
-                func_ov015_0216fcec(self);
-                self->unk_1c = 0;
+            if (unk_1c == 0) {
+                unk_1c = 1;
+            } else if (unk_1c == 1) {
+                unkfunc_0216fcec();
+                unk_1c = 0;
             }
-            if (self->unk_24 == 0) {
-                self->close();
+            if (unk_24 == 0) {
+                close();
                 gBattleMenu_ROOT.open();
                 gBattleMenu_ROOT.menuItem_.active_ = 2;
             }
-            self->unk_120.result_ = 0;
-            self->unk_120.lastresult_ = 0;
-            self->redraw_ = 1;
+            unk_120.result_ = 0;
+            unk_120.lastresult_ = 0;
+            redraw_ = 1;
         }
     }
 }
 
-extern "C" THUMB int func_ov015_0216fc4c(BattleMenu_TACTICSMENU* self)
+THUMB int BattleMenu_TACTICSMENU::unkfunc_0216fc4c()
 {
-    if (func_02023230(&self->cancelItem_)) {
-        self->cancelItem_.result_ = 0;
-        self->cancelItem_.lastresult_ = 0;
-        if (self->unk_1c == 0) {
-            self->close();
+    if (func_02023230(&cancelItem_)) {
+        cancelItem_.result_ = 0;
+        cancelItem_.lastresult_ = 0;
+        if (unk_1c == 0) {
+            close();
             gBattleMenu_ROOT.open();
             gBattleMenu_ROOT.menuItem_.active_ = 2;
-        } else if (self->unk_1c == 1) {
-            self->unk_1c = 0;
+        } else if (unk_1c == 1) {
+            unk_1c = 0;
         }
-        self->redraw_ = 1;
+        redraw_ = 1;
         return 1;
     }
     return 0;
 }
 
-extern "C" THUMB void func_ov015_0216fc98(BattleMenu_TACTICSMENU* self)
+THUMB void BattleMenu_TACTICSMENU::unkfunc_0216fc98()
 {
-    int chara = self->unk_2c[self->unk_24];
+    int chara = unk_2c[unk_24];
     btl::BattleMenuPlayerControl::getSingleton()->activeChara_ = chara;
-    if (self->unk_24 < 0) {
-        self->unk_28 = status::g_Party.getPlayerStatus(self->unk_2c[self->unk_24])->haveStatusInfo_.battleCommand_;
-    } else if (self->unk_2c[1] != -1) {
-        self->unk_28 = status::g_Party.getPlayerStatus(self->unk_2c[1])->haveStatusInfo_.battleCommand_;
+    if (unk_24 < 0) {
+        unk_28 = status::g_Party.getPlayerStatus(unk_2c[unk_24])->haveStatusInfo_.battleCommand_;
+    } else if (unk_2c[1] != -1) {
+        unk_28 = status::g_Party.getPlayerStatus(unk_2c[1])->haveStatusInfo_.battleCommand_;
     } else {
-        self->unk_28 = 0;
+        unk_28 = 0;
     }
 }
 
-extern "C" THUMB void func_ov015_0216fcec(BattleMenu_TACTICSMENU* self)
+THUMB void BattleMenu_TACTICSMENU::unkfunc_0216fcec()
 {
     CommandType command[6] = {
         COMMAND_GANGANIKOUZE,
@@ -160,14 +160,14 @@ extern "C" THUMB void func_ov015_0216fcec(BattleMenu_TACTICSMENU* self)
         COMMAND_INOCHIDAIZINI,
         COMMAND_MEIREISASERO
     };
-    if (self->unk_24 != 0) {
-        status::g_Party.getPlayerStatus(self->unk_2c[self->unk_24])->haveStatusInfo_.battleCommand_ = command[self->unk_28];
+    if (unk_24 != 0) {
+        status::g_Party.getPlayerStatus(unk_2c[unk_24])->haveStatusInfo_.battleCommand_ = command[unk_28];
         return;
     }
     for (int i = 0; i < status::g_Party.getCount(); i++) {
         status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(i)->haveStatusInfo_;
         if (info->haveStatus_.isPlayer_ != 0 && info->haveStatus_.playerIndex_ != 1 && info->haveStatus_.playerIndex_ != 2) {
-            info->battleCommand_ = command[self->unk_28];
+            info->battleCommand_ = command[unk_28];
         }
     }
 }

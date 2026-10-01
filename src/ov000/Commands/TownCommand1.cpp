@@ -1,10 +1,12 @@
 #include "ov000/Commands/TownCommand.hpp"
+#include "ov000/town/TownWindowSystem.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
 #include "main/status/StageStatus.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/cmn/HengeNoTsueManager.hpp"
 #include "main/cmn/TalkSoundManager.hpp"
 #include "main/cmn/PartyTalk.hpp"
+#include "ov000/town/TownIkadaAction2.hpp"
 
 THUMB int cmd_set_overview_point(int* param)
 {
@@ -22,16 +24,16 @@ THUMB int cmd_set_player_position(int* param)
     pos.vx.value = param[0];
     pos.vy.value = param[1];
     pos.vz.value = param[2];
-    func_ov000_02132a90()->setPosition(pos);
-    if (func_ov000_02132a90()->actionType_ == 9) {
-        func_ov000_021287e4(func_ov000_021285c0(), &pos);
+    TownPlayerManager::getSingleton()->setPosition(pos);
+    if (TownPlayerManager::getSingleton()->player_.actionType_ == 9) {
+        TownIkadaAction2::getSingleton()->setIkadaPosition(pos);
     }
     return 1;
 }
 
 THUMB int cmd_set_player_direction(int* param)
 {
-    func_ov000_02133f3c(func_ov000_02132a90(), param[0] << 14);
+    TownPlayerManager::getSingleton()->setDirection(param[0] << 14);
     return 1;
 }
 
@@ -39,17 +41,17 @@ THUMB int cmd_is_speaked(int* param)
 {
     int index = getPlacementCtrlId();
     int id = getPlacementIndex(index);
-    int voice = func_ov000_02138eb8(func_ov000_02137f2c(), index);
-    if (func_ov000_0213842c(func_ov000_02137f2c(), index) != 0) {
-        if (func_ov000_0212e930(func_ov000_02137f2c()->character_[index]) == 0 && g_HengeNoTsue.isMonster() == 1) {
+    int voice = TownCharacterManager::getSingleton()->getCharaIndex(index);
+    if (TownCharacterManager::getSingleton()->isTalked(index) != 0) {
+        if (TownCharacterManager::getSingleton()->character_[index]->checkMonsterSpeak() == 0 && g_HengeNoTsue.isMonster() == 1) {
             int message = g_HengeNoTsue.getMessage(voice);
             if (message != -1) {
                 func_02056358(cmn::g_talkSound.getCharacterVoice(index));
-                func_ov000_0213747c(func_ov000_021372e8());
-                func_ov000_02137470(func_ov000_021372e8(), message);
+                TownWindowSystem::getSingleton()->openCommonMessage();
+                TownWindowSystem::getSingleton()->addCommonMessage(message);
                 cmn::PartyTalk::getSingleton()->resetPartyTalk();
-                if (func_ov000_021382a0(func_ov000_02137f2c(), index) == 0) {
-                    func_ov000_02138308(func_ov000_02137f2c(), index);
+                if (TownCharacterManager::getSingleton()->getCharatType(index) == 0) {
+                    TownCharacterManager::getSingleton()->setPlayerDirection(index);
                 }
                 return 0;
             }
@@ -66,10 +68,10 @@ THUMB int cmd_is_speaked(int* param)
 THUMB int cmd_speak_to_player(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_02138308(func_ov000_02137f2c(), index);
-    cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
+    TownCharacterManager::getSingleton()->setPlayerDirection(index);
+    cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(index));
     cmn::g_talkSound.setMessageSound(param[1], index);
-    func_ov000_0213745c(func_ov000_021372e8(), param[0], param[1]);
+    TownWindowSystem::getSingleton()->openMessage(param[0], param[1]);
     if (!g_HengeNoTsue.isMonster()) {
         cmn::PartyTalk::getSingleton()->setPreMessageNo(param[0]);
     }
@@ -79,11 +81,11 @@ THUMB int cmd_speak_to_player(int* param)
 THUMB int cmd_speak_to_player2(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_02138308(func_ov000_02137f2c(), index);
+    TownCharacterManager::getSingleton()->setPlayerDirection(index);
     if (!g_HengeNoTsue.isMonster()) {
         cmn::PartyTalk::getSingleton()->setPreMessageNo(param[0]);
     }
-    cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
+    cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(index));
     int message[8];
     message[0] = param[0];
     message[1] = param[1];
@@ -102,29 +104,29 @@ THUMB int cmd_speak_to_player2(int* param)
     }
     cmn::g_talkSound.setMessageSound(count, index);
     if (param[0] != 0) {
-        func_ov000_0213747c(func_ov000_021372e8());
-        func_ov000_02137470(func_ov000_021372e8(), param[0]);
+        TownWindowSystem::getSingleton()->openCommonMessage();
+        TownWindowSystem::getSingleton()->addCommonMessage(param[0]);
     }
     if (param[1] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[1]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[1]);
     }
     if (param[2] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[2]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[2]);
     }
     if (param[3] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[3]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[3]);
     }
     if (param[4] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[4]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[4]);
     }
     if (param[5] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[5]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[5]);
     }
     if (param[6] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[6]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[6]);
     }
     if (param[7] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[7]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[7]);
     }
     return 1;
 }

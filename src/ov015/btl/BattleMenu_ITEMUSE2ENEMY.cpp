@@ -14,7 +14,7 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::menuSetup()
     func_02051900(&menuItem_, 1, 0);
     func_02051900(&cancelItem_, 2, 0);
     menuItem_.active_ = 0;
-    unk_150 = func_ov015_0216c9a8(func_ov015_0216c7b0(), unk_160);
+    unk_150 = BattleMenuJudge::getSingleton()->getMonsterTouchRect(unk_160);
     for (int i = 0; i < unk_150; i++) {
         if (unk_160[i].group == btl::BattleMenuPlayerControl::getSingleton()->getTargetGroup()) {
             menuItem_.active_ = i;
@@ -30,7 +30,7 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::menuSetup()
 THUMB void BattleMenu_ITEMUSE2ENEMY::menuExecute()
 {
     BattleMonsterMask::getSingleton()->execute();
-    unk_150 = func_ov015_0216c9a8(func_ov015_0216c7b0(), unk_160);
+    unk_150 = BattleMenuJudge::getSingleton()->getMonsterTouchRect(unk_160);
     func_ov015_0216c6dc(&menuItem_, menuItem_.active_, unk_160, unk_150);
     func_ov015_0216c5c4(&cancelItem_);
     if (unk_15c == 1) {
@@ -49,102 +49,102 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::menuUpdate()
 {
     unk_154 = unk_160[menuItem_.active_].group;
     unk_158 = menuItem_.active_;
-    if (func_ov015_0216cee0(this)) {
-        func_ov015_0216ce00(this);
+    if (unkfunc_0216cee0()) {
+        unkfunc_0216ce00();
     }
 }
 
-extern "C" THUMB void func_ov015_0216cd44(BattleMenu_ITEMUSE2ENEMY* self)
+THUMB void BattleMenu_ITEMUSE2ENEMY::unkfunc_0216cd44()
 {
-    self->unk_15c = 0;
-    self->menuItem_.result_ = 0;
-    self->menuItem_.lastresult_ = 0;
-    func_ov015_0216c92c(func_ov015_0216c7b0(), self->unk_14c, self->unk_160[self->menuItem_.active_].group);
-    func_ov015_0216ca70(func_ov015_0216c7b0());
-    self->close();
+    unk_15c = 0;
+    menuItem_.result_ = 0;
+    menuItem_.lastresult_ = 0;
+    BattleMenuJudge::getSingleton()->setItemEnemy(unk_14c, unk_160[menuItem_.active_].group);
+    BattleMenuJudge::getSingleton()->setNextPlayer();
+    close();
 }
 
-extern "C" THUMB void func_ov015_0216cd80(BattleMenu_ITEMUSE2ENEMY* self, int index)
+THUMB void BattleMenu_ITEMUSE2ENEMY::unkfunc_0216cd80(int index)
 {
-    int old = self->unk_158;
+    int old = unk_158;
     for (;;) {
         if (index == old) {
             return;
         }
-        if (index == self->unk_150) {
+        if (index == unk_150) {
             index = 0;
             continue;
         }
-        if (self->unk_154 != self->unk_160[index].group) {
-            self->menuItem_.active_ = index;
+        if (unk_154 != unk_160[index].group) {
+            menuItem_.active_ = index;
             return;
         }
         index++;
     }
 }
 
-extern "C" THUMB void func_ov015_0216cdc0(BattleMenu_ITEMUSE2ENEMY* self, int index)
+THUMB void BattleMenu_ITEMUSE2ENEMY::unkfunc_0216cdc0(int index)
 {
-    int old = self->unk_158;
+    int old = unk_158;
     for (;;) {
         if (index == old) {
             return;
         }
         if (index == -1) {
-            index = self->unk_150 - 1;
+            index = unk_150 - 1;
             continue;
         }
-        if (self->unk_154 != self->unk_160[index].group) {
-            self->menuItem_.active_ = index;
+        if (unk_154 != unk_160[index].group) {
+            menuItem_.active_ = index;
             return;
         }
         index--;
     }
 }
 
-extern "C" THUMB void func_ov015_0216ce00(BattleMenu_ITEMUSE2ENEMY* self)
+THUMB void BattleMenu_ITEMUSE2ENEMY::unkfunc_0216ce00()
 {
-    func_02051a7c(&self->menuItem_);
-    switch (self->menuItem_.result_) {
+    func_02051a7c(&menuItem_);
+    switch (menuItem_.result_) {
     case 1:
-        self->redraw_ = 1;
-        if (self->unk_154 == self->unk_160[self->menuItem_.active_].group) {
-            if (self->menuItem_.reason_ == 2) {
-                func_ov015_0216cd44(self);
-            } else if (self->unk_158 < self->menuItem_.active_) {
-                func_ov015_0216cd80(self, self->menuItem_.active_);
+        redraw_ = 1;
+        if (unk_154 == unk_160[menuItem_.active_].group) {
+            if (menuItem_.reason_ == 2) {
+                unkfunc_0216cd44();
+            } else if (unk_158 < menuItem_.active_) {
+                unkfunc_0216cd80(menuItem_.active_);
             } else {
-                func_ov015_0216cdc0(self, self->menuItem_.active_);
+                unkfunc_0216cdc0(menuItem_.active_);
             }
         }
         break;
     case 2:
-        self->redraw_ = 1;
-        func_ov015_0216cd44(self);
+        redraw_ = 1;
+        unkfunc_0216cd44();
         break;
     case 5:
     case 6:
     case 7:
-        self->redraw_ = 1;
-        func_ov015_0216cdc0(self, self->unk_150 - 1);
+        redraw_ = 1;
+        unkfunc_0216cdc0(unk_150 - 1);
         break;
     case 8:
-        self->redraw_ = 1;
-        func_ov015_0216cd80(self, 0);
+        redraw_ = 1;
+        unkfunc_0216cd80(0);
         break;
     }
-    func_ov015_0216ad40(func_ov015_0216aa2c(), self->unk_160[self->menuItem_.active_].group);
-    int target = self->unk_160[self->menuItem_.active_].group;
+    func_ov015_0216ad40(func_ov015_0216aa2c(), unk_160[menuItem_.active_].group);
+    int target = unk_160[menuItem_.active_].group;
     btl::BattleMenuPlayerControl::getSingleton()->targetChara_ = target;
-    btl::BattleMenuPlayerControl::getSingleton()->setTargetGroup(self->unk_160[self->menuItem_.active_].group);
+    btl::BattleMenuPlayerControl::getSingleton()->setTargetGroup(unk_160[menuItem_.active_].group);
 }
 
-extern "C" THUMB int func_ov015_0216cee0(BattleMenu_ITEMUSE2ENEMY* self)
+THUMB int BattleMenu_ITEMUSE2ENEMY::unkfunc_0216cee0()
 {
-    if (func_02023230(&self->cancelItem_)) {
-        self->unk_15c = 0;
-        self->close();
-        data_ov015_02179d68.open();
+    if (func_02023230(&cancelItem_)) {
+        unk_15c = 0;
+        close();
+        gBattleMenu_ITEM.open();
         return 0;
     }
     return 1;

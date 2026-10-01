@@ -40,8 +40,8 @@ THUMB void BattleMenu_MAGIC2PARTY::menuUpdate()
         redraw_ = 1;
         if (result == 2) {
             close();
-            func_ov015_0216c8e4(func_ov015_0216c7b0(), magic_, menuItem_.active_);
-            func_ov015_0216ca70(func_ov015_0216c7b0());
+            BattleMenuJudge::getSingleton()->setMagicParty(magic_, menuItem_.active_);
+            BattleMenuJudge::getSingleton()->setNextPlayer();
         }
         int target = menuItem_.active_;
         btl::BattleMenuPlayerControl::getSingleton()->targetChara_ = target;

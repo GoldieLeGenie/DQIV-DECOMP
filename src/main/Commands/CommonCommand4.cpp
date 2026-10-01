@@ -27,7 +27,7 @@ THUMB int cmd_is_load_init(int* param)
         }
         return 0;
     }
-    if (func_ov000_02132a90()->battleLose_ == 1) {
+    if (TownPlayerManager::getSingleton()->battleLose_ == 1) {
         if (param[0] == 1) {
             return 1;
         }
@@ -41,7 +41,7 @@ THUMB int cmd_is_load_init(int* param)
 
 THUMB int cmd_check_search_action(int* param)
 {
-    if (func_ov000_02135848(func_ov000_02132a90()) == 1) {
+    if (TownPlayerManager::getSingleton()->isSearch() == 1) {
         return 1;
     }
     return 0;
@@ -49,7 +49,7 @@ THUMB int cmd_check_search_action(int* param)
 
 THUMB int cmd_set_no_search_message(int* param)
 {
-    func_ov000_02132a90()->searchAction_ = 8;
+    TownPlayerManager::getSingleton()->searchAction_ = 8;
     return 1;
 }
 

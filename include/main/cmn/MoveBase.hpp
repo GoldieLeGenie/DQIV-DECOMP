@@ -25,6 +25,7 @@ namespace cmn {
 }
 
 extern "C" {
+    void func_020310d0(cmn::MoveBase* move);                                                     /* setup */
     void func_020310f4(cmn::MoveBase* move, dss::Fix32Vector3* pos);
     void func_02031154(cmn::MoveBase* move, dss::Vector3short* angle);
     int func_02031160(cmn::MoveBase* move);
@@ -32,10 +33,13 @@ extern "C" {
     bool func_020311d4(cmn::MoveBase* move);
     void func_020311f0(cmn::MoveBase* move, dss::Fix32Vector3* start, dss::Fix32Vector3* target);
     void func_0203122c(cmn::MoveBase* move, dss::Vector3short* start, dss::Vector3short* target);
+    void func_02031278(cmn::MoveBase* move, dss::Fix32 speed);                                   /* setMoveSpeed */
+    void func_02031580(cmn::MoveBase* move, dss::Vector3short* start, dss::Vector3short* add, int frame); /* setSimpleRot */
     void func_020312e8(cmn::MoveBase* move, int frame);
     void func_0203133c(cmn::MoveBase* move, int frame, int type);
     void func_020315fc(cmn::MoveBase* move, short speed);
     void func_020316f4(cmn::MoveBase* move, dss::Fix32Vector3* start, dss::Fix32Vector3* target, int a, int b, int c);
     void func_02031908(cmn::MoveBase* move, dss::Fix32Vector3* start, dss::Fix32Vector3* target, int count);
+    void func_02031bd8(cmn::MoveBase* move, dss::Fix32Vector3* start, dss::Fix32Vector3* end, int frame); /* setJumpMove */
     void func_02031d04(cmn::MoveBase* move, dss::Fix32Vector3* start, dss::Fix32Vector3* target, int frame);
 }

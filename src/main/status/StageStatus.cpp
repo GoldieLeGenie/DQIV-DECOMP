@@ -5,6 +5,7 @@
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/cmn/CommonRuraData.hpp"
 #include "main/status/ExcelParam.hpp"
+#include "ov000/town/TownPlayerManager.hpp"
 
 extern char map_caf1[8];
 extern char map_btl_pl_d[12];
@@ -644,8 +645,7 @@ THUMB int status::StageStatus::isAbortSaveTown()
 
     if (func_02058114(&data_0210bb94, 12) == 1)
     {
-        func_ov000_02132a90();
-        if (func_ov000_02135b04() == 0)
+        if (TownPlayerManager::getSingleton()->isSaveAndBattleOK() == 0)
         {
             return 0;
         }
@@ -684,8 +684,7 @@ THUMB int status::StageStatus::isAbortSaveDungeon()
 
     if (func_02058114(&data_0210bb94, 12) == 1)
     {
-        func_ov000_02132a90();
-        if (func_ov000_02135b04() == 0)
+        if (TownPlayerManager::getSingleton()->isSaveAndBattleOK() == 0)
         {
             return 0;
         }
@@ -1034,12 +1033,12 @@ THUMB void status::StageStatus::setDoorOpenFlag(int index)
     return;
 }
 
-THUMB void status::StageStatus::getDoorOpenFlag(int index)
+THUMB void status::StageStatus::removeDoorOpenFlag(int index)
 {
     this->openFlag_[index / 8].flag_ &= ~(1 << (index % 8));
 }
 
-THUMB int status::StageStatus::removeDoorOpenFlag(int index)
+THUMB bool status::StageStatus::getDoorOpenFlag(int index)
 {
     unsigned char val = this->openFlag_[index / 8].flag_;
     return (val & (1 << (index % 8))) != 0;
@@ -1104,8 +1103,8 @@ THUMB void status::StageStatus::setRuraFlag(int rura)
             cmn::PlayerManager::setLock(1);
             return;
         }
-        func_ov000_021341ec(func_ov000_02132a90(), 1);
-        func_ov000_02132228()->scriptLock_ = 1;
+        TownPlayerManager::getSingleton()->setLock(1);
+        TownSystem::getSingleton()->scriptLock_ = 1;
     }
     return;
 }

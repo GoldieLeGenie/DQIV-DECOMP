@@ -36,9 +36,6 @@ struct TownStageManager;
 extern "C"
 {
     int  func_02058114(void*, int);
-    int  func_02088ca8(dss::Fix32Vector3*, dss::Fix32Vector3*);
-    TownStageManager* func_ov000_02139668(void);                   // TownStageManager::getSingleton
-    void func_ov000_02139f1c(TownStageManager*, dss::Fix32Vector3*, int); // SetRGBRate
     void func_02046f74(fld::FLDObject*, VecFx32*, int);    // fld::FLDObject::SetRGBRate
     int func_0203ea64(cmn::CommonEffectLocation*,int index);
     int func_0203eb24(cmn::CommonEffectLocation*);

@@ -13,16 +13,17 @@
 #include "ov000/Commands/TownCommand.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
 #include "ov000/town/TownStageManager.hpp"
+#include "ov000/town/TownFurniture.hpp"
 
 THUMB int cmd_set_player_sleep(int* param)
 {
-    func_ov000_02132a90()->partyDraw_.setSleep(param[0]);
+    TownPlayerManager::getSingleton()->setPlayerSleep(param[0]);
     return 1;
 }
 
 THUMB int cmd_is_open_door(int* param)
 {
-    int open = func_ov000_02122dc8(func_ov000_02122ad8(), param[1]);
+    int open = TownFurnitureManager::getSingleton()->isOpenDoor(param[1]);
     if (param[0] == 1) {
         return open;
     }
@@ -35,7 +36,7 @@ THUMB int cmd_is_open_door(int* param)
 THUMB int cmd_chara_lock_move(int* param)
 {
     int index = getPlacementCtrlId(param[1]);
-    func_ov000_02137f2c()->setLockMove(index, param[0]);
+    TownCharacterManager::getSingleton()->setLockMove(index, param[0]);
     return 1;
 }
 

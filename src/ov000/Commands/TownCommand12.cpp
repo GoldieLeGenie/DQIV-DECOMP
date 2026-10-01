@@ -20,6 +20,6 @@ THUMB int cmd_set_my_taishi(int* param)
     int index = getPlacementCtrlId();
     int type = func_0203a5ec(&data_020f0078);
     int value = func_02037f84(func_02037da4(), type);
-    func_ov000_02137f2c()->character_[index]->vf3c(value);
+    TownCharacterManager::getSingleton()->character_[index]->changePose(value);
     return 1;
 }

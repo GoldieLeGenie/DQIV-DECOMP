@@ -58,10 +58,6 @@ extern "C" {
     void func_02082144(void* obj, int a);
     void func_02030278(void* obj, int a);
     void func_02049b94(void);
-    void func_ov000_0213b5a0(void* obj);
-    void func_ov000_02138210(void);
-    void func_ov000_02133eac(TownPlayerManager* self, int a);
-    void func_ov000_02133bfc(TownPlayerManager* self);
     void func_ov001_02129bfc(FieldPlayerManager* self);
 }
 extern char data_020c1328[8];

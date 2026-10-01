@@ -13,6 +13,7 @@
 #include "ov000/Commands/TownCommand.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
 #include "ov000/town/TownStageManager.hpp"
+#include "ov000/town/TownFurniture.hpp"
 
 THUMB int cmd_disable_demolition()
 {
@@ -30,7 +31,7 @@ THUMB int cmd_set_camera_target(int* param)
 THUMB int cmd_character_swing_round(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_02137f2c()->setSwingRound(index, param[0]);
+    TownCharacterManager::getSingleton()->setSwingRound(index, param[0]);
     return 1;
 }
 
@@ -41,7 +42,7 @@ THUMB int cmd_character_anim(int* param)
     if (anim == 0) {
         anim = -1;
     }
-    func_ov000_02138e20(func_ov000_02137f2c(), index, anim);
+    TownCharacterManager::getSingleton()->setCharaAnim(index, anim);
     return 1;
 }
 
@@ -49,14 +50,14 @@ THUMB int cmd_party_copy_character(int* param)
 {
     int index = getPlacementCtrlId(param[1]);
     status::PlayerStatus* player = status::g_Party.getPlayerStatus(param[0]);
-    func_ov000_02138248(func_ov000_02137f2c(), index, player->haveStatusInfo_.haveStatus_.charaIndex_);
+    TownCharacterManager::getSingleton()->setPosing(index, player->haveStatusInfo_.haveStatus_.charaIndex_);
     return 1;
 }
 
 THUMB int cmd_is_map_treasure(int* param)
 {
     int open;
-    switch (func_ov000_02123144(func_ov000_02122ad8(), param[0])) {
+    switch (TownFurnitureManager::getSingleton()->checkCoffer(param[0])) {
     case 0:
     case 1:
         open = 0;
@@ -79,6 +80,6 @@ THUMB int cmd_set_furniture_position(int* param)
     pos.vx.value = param[0];
     pos.vy.value = param[1];
     pos.vz.value = param[2];
-    func_ov000_02139c18(func_ov000_02139668(), param[3], &pos);
+    TownStageManager::getSingleton()->setMapUidPosFX32(param[3], pos);
     return 1;
 }

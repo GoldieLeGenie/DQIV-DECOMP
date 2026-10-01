@@ -136,7 +136,7 @@ ARM dss::Fix32 FldStage::getCameraLimitL()
 
 ARM void FldStage::eraseObject(int uid, int flag)
 {
-    func_020463e4(&m_fld, uid, flag);
+    func_020463e4(&m_fld, uid);
     func_02046194(&m_fld, uid, flag);
 }
 
@@ -572,7 +572,7 @@ ARM void FldStage::addMovePosByObjNo(int obj, dss::Fix32Vector3& move)
     func_02046558(&m_fld, obj, &v);
 }
 
-ARM int FldStage::getCrossPolygonOtherSurface(dss::Fix32Vector3& start, dss::Fix32Vector3& end, short* surface, int count, int* polyOut, dss::Fix32* dist, bool all)
+ARM int FldStage::getCrossPolygonOtherSurface(dss::Fix32Vector3& start, dss::Fix32Vector3& end, short* surface, int count, int* polyOut, dss::Fix32* dist, int all)
 {
     int found = 0;
     fx32 d;

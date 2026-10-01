@@ -1,4 +1,5 @@
 #include "ov000/Commands/TownCommand.hpp"
+#include "ov000/town/TownActionCalculate.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
 #include "ov000/town/TownStageManager.hpp"
 #include "main/status/PartyStatus.hpp"
@@ -8,6 +9,8 @@
 #include "main/cmn/PartyTalk.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/cmn/NonBattleActionManager.hpp"
+#include "ov000/town/TownDoorAction.hpp"
+#include "ov000/town/TownExtraMapObjManager.hpp"
 
 void searchItem(int index, int* found, int* items);
 
@@ -24,22 +27,22 @@ THUMB int cmd_enable_event_item(int* param)
 
 THUMB int cmn_set_event_door(int* param)
 {
-    int type;
+    TownDoorAction::DOOR_OPEN_TYPE type;
     switch (param[1]) {
     case 1:
-        type = 4;
+        type = TownDoorAction::DOOR_NOT_OPEN_EVENT;
         break;
     case 2:
-        type = 2;
+        type = TownDoorAction::DOOR_OPEN_EVENT;
         break;
     case 3:
-        type = 5;
+        type = TownDoorAction::DOOR_LOCK;
         break;
     default:
-        type = 1;
+        type = TownDoorAction::DOOR_OPEN_KEY;
         break;
     }
-    func_ov000_0212711c(func_ov000_021267dc(), param[0], type);
+    TownDoorAction::getSingleton()->setEventDoor(param[0], type);
     return 1;
 }
 
@@ -54,37 +57,38 @@ THUMB int cmd_map_effect_sepia()
 {
     func_020835d8();
     func_02085d88();
-    func_ov000_02139668()->stage_.m_fld.SetSepia();
+    TownStageManager::getSingleton()->stage_.m_fld.SetSepia();
     return 1;
 }
 
 THUMB int cmd_character_not_change_direction(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_02137f2c()->setLockRot(index, param[0]);
+    TownCharacterManager::getSingleton()->setLockRot(index, param[0]);
     return 1;
 }
 
 THUMB int cmd_player_action_not_change_direction(int* param)
 {
-    func_ov000_02132a90()->setLockRot(param[0]);
+    TownPlayerManager::getSingleton()->setLockRot(param[0]);
     return 1;
 }
 
 THUMB int cmd_is_character_direction(int* param)
 {
     int index = getPlacementCtrlId();
-    return cmn::CommonCalculate::directionCheckByScriptParam(param[0], func_ov000_02137f2c()->getDirection(index));
+    short dir = TownCharacterManager::getSingleton()->getDirection(index);
+    return cmn::CommonCalculate::directionCheckByScriptParam(param[0], dir);
 }
 
 THUMB int cmd_is_player_direction(int* param)
 {
-    return cmn::CommonCalculate::directionCheckByScriptParam(param[0], func_ov000_02132a90()->getDirection());
+    return cmn::CommonCalculate::directionCheckByScriptParam(param[0], TownPlayerManager::getSingleton()->getDirection());
 }
 
 THUMB int cmd_map_animation(int* param)
 {
-    func_ov000_02139668()->eventAnim(param[0], 0);
+    TownStageManager::getSingleton()->eventAnim(param[0], 0);
     return 1;
 }
 
@@ -220,7 +224,7 @@ THUMB int cmd_set_party_reserve_order(int* param)
 
 THUMB int cmd_map_texture(int* param)
 {
-    func_ov000_02139668()->setMapTexture(param[0]);
+    TownStageManager::getSingleton()->setMapTexture(param[0]);
     return 1;
 }
 
@@ -228,10 +232,10 @@ THUMB int cmd_set_map_texture(int* param)
 {
     switch (param[0]) {
     case 0:
-        func_ov000_02139fa4(func_ov000_02139668(), 0);
+        TownStageManager::getSingleton()->setEffect((TownMapEffect::EFFECT_TYPE)0);
         break;
     case 1:
-        func_ov000_02139fa4(func_ov000_02139668(), 1);
+        TownStageManager::getSingleton()->setEffect((TownMapEffect::EFFECT_TYPE)1);
         break;
     }
     return 1;
@@ -257,10 +261,10 @@ THUMB int cmd_effect_blur(int* param)
 THUMB int cmd_party_display(int* param)
 {
     if (param[0] == 1) {
-        func_ov000_0213b010(&func_ov000_02132a90()->partyDraw_);
-        func_ov000_0213afcc(&func_ov000_02132a90()->partyDraw_);
+        TownPlayerManager::getSingleton()->partyDraw_.resetDrawPartyCount();
+        TownPlayerManager::getSingleton()->partyDraw_.resetAlpha();
     } else {
-        func_ov000_0213b0b0(&func_ov000_02132a90()->partyDraw_);
+        TownPlayerManager::getSingleton()->partyDraw_.setDrawPartyNone();
     }
     return 1;
 }
@@ -268,10 +272,10 @@ THUMB int cmd_party_display(int* param)
 THUMB int cmd_is_character_front(int* param)
 {
     int index = getPlacementCtrlId();
-    dss::Fix32Vector3 playerPos = func_ov000_02132a90()->getPosition();
-    dss::Fix32Vector3 charaPos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
+    dss::Fix32Vector3 playerPos = TownPlayerManager::getSingleton()->getPosition();
+    dss::Fix32Vector3 charaPos = TownCharacterManager::getSingleton()->getPosition(index);
     dss::Fix32Vector3 front;
-    func_ov000_02130f48((short)func_ov000_02138744(func_ov000_02137f2c(), index), &front);
+    TownActionCalculate::getDirByIdx((short)TownCharacterManager::getSingleton()->getDirection(index), front);
     if (front * func_02088988(playerPos, charaPos) >= dss::Fix32(data_ov000_021487a8.unk_0)) {
         if (param[0] == 1) {
             return 1;
@@ -288,13 +292,13 @@ THUMB int cmd_is_talked_at_shop(int* param)
 {
     int index = getPlacementCtrlId();
     if (param[0] == 1) {
-        if (func_ov000_0212e9d8(func_ov000_02137f2c()->character_[index]) == 1 &&
-            func_ov000_0213842c(func_ov000_02137f2c(), index) == 1) {
+        if (TownCharacterManager::getSingleton()->character_[index]->getCounterTalk() == 1 &&
+            TownCharacterManager::getSingleton()->isTalked(index) == 1) {
             return 1;
         }
     } else {
-        if (func_ov000_0212e9d8(func_ov000_02137f2c()->character_[index]) == 0 &&
-            func_ov000_0213842c(func_ov000_02137f2c(), index) == 1) {
+        if (TownCharacterManager::getSingleton()->character_[index]->getCounterTalk() == 0 &&
+            TownCharacterManager::getSingleton()->isTalked(index) == 1) {
             return 1;
         }
     }
@@ -303,8 +307,8 @@ THUMB int cmd_is_talked_at_shop(int* param)
 
 THUMB int cmd_search_map_object(int* param)
 {
-    if (param[0] == func_ov000_02132a90()->searchMapUid_) {
-        func_ov000_02132a90()->searchAction_ = 5;
+    if (param[0] == TownPlayerManager::getSingleton()->searchMapUid_) {
+        TownPlayerManager::getSingleton()->searchAction_ = 5;
         cmn::PartyTalk::getSingleton()->resetPartyTalk();
         return 1;
     }
@@ -317,43 +321,43 @@ THUMB int cmd_set_floor_map_object(int* param)
     pos.vx.value = param[1];
     pos.vy.value = param[2];
     pos.vz.value = param[3];
-    func_ov000_021429c8(func_ov000_02142964(), param[0], pos);
+    func_ov000_021429c8(TownExtraMapObjManager::getSingleton(), param[0], pos);
     return 1;
 }
 
 THUMB int cmd_character_move_passive(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_0212de50(func_ov000_02137f2c()->character_[index]);
+    TownCharacterManager::getSingleton()->character_[index]->setMovePassive();
     return 1;
 }
 
 THUMB int cmd_character_move_random(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_0212e408(func_ov000_02137f2c()->character_[index]);
+    TownCharacterManager::getSingleton()->character_[index]->setMoveRandom();
     return 1;
 }
 
 THUMB int cmd_character_move_reverse(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_0212e1a0(func_ov000_02137f2c()->character_[index]);
+    TownCharacterManager::getSingleton()->character_[index]->setMoveReverse();
     return 1;
 }
 
 THUMB int cmd_is_trigger_distance(int* param)
 {
     int index = getPlacementCtrlId();
-    dss::Fix32Vector3 playerPos = func_ov000_02132a90()->getPosition();
-    dss::Fix32Vector3 charaPos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
+    dss::Fix32Vector3 playerPos = TownPlayerManager::getSingleton()->getPosition();
+    dss::Fix32Vector3 charaPos = TownCharacterManager::getSingleton()->getPosition(index);
     dss::Fix32 distance;
     distance.value = param[0];
     distance *= distance;
-    if (func_ov000_02132228()->trigger_ == 1) {
+    if (TownSystem::getSingleton()->trigger_ == 1) {
         dss::Fix32 length = func_0208908c(playerPos, charaPos);
         if (length <= distance) {
-            func_ov000_02132228()->trigger_ = 0;
+            TownSystem::getSingleton()->trigger_ = 0;
             return 1;
         }
     }
@@ -373,13 +377,13 @@ THUMB int cmd_character_set_coll_stage(int* param)
     if (param[2] == 1) {
         flag |= 4;
     }
-    func_ov000_02137f2c()->character_[index]->unk_161 = flag;
+    TownCharacterManager::getSingleton()->character_[index]->stageColl_ = flag;
     return 1;
 }
 
 THUMB int cmd_party_redisplay(int* param)
 {
-    func_ov000_0213b010(&func_ov000_02132a90()->partyDraw_);
-    func_ov000_0213afcc(&func_ov000_02132a90()->partyDraw_);
+    TownPlayerManager::getSingleton()->partyDraw_.resetDrawPartyCount();
+    TownPlayerManager::getSingleton()->partyDraw_.resetAlpha();
     return 1;
 }

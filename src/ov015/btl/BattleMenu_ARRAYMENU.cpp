@@ -62,7 +62,7 @@ THUMB void BattleMenu_ARRAYMENU::menuUpdate()
         menuItem_.lastresult_ = 0;
         redraw_ = 1;
         if (menuItem_.active_ == 0) {
-            if (status::g_Party.getCarriageEnableOnGame() && func_ov015_0216ca58(func_ov015_0216c7b0())) {
+            if (status::g_Party.getCarriageEnableOnGame() && BattleMenuJudge::getSingleton()->judgeBattleArrayChange()) {
                 close();
                 btl::BattleMenuPlayerControl::getSingleton()->activeChara_ = 0;
                 gBattleMenu_ARRAY_CHANGE.open();

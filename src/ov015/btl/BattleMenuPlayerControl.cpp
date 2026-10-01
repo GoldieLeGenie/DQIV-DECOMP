@@ -1,4 +1,5 @@
 #include "ov015/btl/BattleMenuPlayerControl.hpp"
+#include "ov015/btl/BattleMenu.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/HaveBattleStatus.hpp"
@@ -176,7 +177,7 @@ THUMB int btl::BattleMenuPlayerControl::resetPlayerHistory(int playerNum)
         return 1;
     }
 
-    if ((info->battleCommand_ != COMMAND_MEIREISASERO || func_ov015_0216cb2c(func_ov015_0216c7b0(), playerNum) == 0)
+    if ((info->battleCommand_ != COMMAND_MEIREISASERO || BattleMenuJudge::getSingleton()->isCommandingPlayer(playerNum) == 0)
      && status::g_Story.chapter_ >= 5) {
         second[playerNum] = -1;
         firstHistory_[playerNum] = tacticsSex_ + AUTO_COMMAND_NAME_TABLE[info->battleCommand_];

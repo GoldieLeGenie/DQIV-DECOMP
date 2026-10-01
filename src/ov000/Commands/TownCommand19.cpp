@@ -24,7 +24,7 @@ THUMB int cmd_map_black(int* param)
 
 THUMB int cmd_is_not_go_into_tenku(int* param)
 {
-    return func_ov000_02132a90()->notIntoTenkujou_;
+    return TownPlayerManager::getSingleton()->notIntoTenkujou_;
 }
 
 THUMB int cmd_set_end_roll_clear(int* param)

@@ -38,7 +38,7 @@ ARM void dss::Camera::calcPosition()
     direction_ = func_02088670(&rotX, &direction_);
     direction_ = func_02088670(&rotY, &direction_);
     m_pos = m_target_pos + direction_;
-    direction_ = func_02088a9c(&direction_, -1);
+    direction_ = direction_ * -1;
     func_02089168(&direction_);
 }
 

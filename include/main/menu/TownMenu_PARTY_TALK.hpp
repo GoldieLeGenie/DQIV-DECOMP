@@ -22,5 +22,4 @@ extern menu::MenuBase data_ov016_02187c60;
 
 extern "C" {
     int  func_02058114(void* global, int partId);
-    int  func_ov000_0213a998(TownStageManager* self);
 }

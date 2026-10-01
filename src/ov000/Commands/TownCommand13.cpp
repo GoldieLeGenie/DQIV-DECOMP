@@ -13,6 +13,7 @@
 #include "ov000/Commands/TownCommand.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
 #include "ov000/town/TownStageManager.hpp"
+#include "ov000/town/TownIkadaAction2.hpp"
 
 THUMB int cmd_change_surechigai_part(int* param)
 {
@@ -48,6 +49,6 @@ THUMB int cmd_check_taishi_max(int* param)
 THUMB int cmd_set_ikada_info(int* param)
 {
     dss::Fix32Vector3 pos = cmn::CommonCalculate::setVecByParam(param[4], param[5], param[6]);
-    func_ov000_02128768(func_ov000_021285c0(), (const char*)param, &pos);
+    TownIkadaAction2::getSingleton()->setIkadaDataByScript((const char*)param, pos);
     return 1;
 }

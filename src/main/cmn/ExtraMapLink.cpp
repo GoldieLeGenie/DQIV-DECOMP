@@ -1,4 +1,5 @@
 #include "main/cmn/ExtraMapLink.hpp"
+#include "ov000/town/TownActionCalculate.hpp"
 #include "main/global/GlobalDQ4.hpp"
 #include "main/global/Global.hpp"
 #include "main/cmn/WorldLocation.hpp"
@@ -266,27 +267,27 @@ ARM void cmn::ExtraMapLink::startExitLoop()
         return;
     }
 
-    int surfaceId = func_ov000_0213a31c(func_ov000_02139668(), 1);
-    int group = func_ov000_02139668()->unk_910;
+    int surfaceId = TownStageManager::getSingleton()->getHitSurfaceIdByType(1);
+    int group = TownStageManager::getSingleton()->coll_.m_surfacePolyNo[1];
     if (surfaceId % 2 == 0) {
         surfaceId++;
     } else {
         surfaceId--;
     }
-    int id = func_ov000_02139fe8(func_ov000_02139668(), surfaceId, group);
+    int id = TownStageManager::getSingleton()->getOtherPolyNoBySurfaceId(surfaceId, group);
 
     dss::Fix32Vector3 pos;
     dss::Fix32Vector3 dir;
     dss::Fix32Vector3 up(0, 1, 0);
-    func_ov000_02139668()->stage_.collGetPolygonPos(id, &pos);
-    func_ov000_0213a2c4(func_ov000_02139668(), &dir, id);
+    TownStageManager::getSingleton()->stage_.collGetPolygonPos(id, &pos);
+    TownStageManager::getSingleton()->getPolyDirection(dir, id);
 
     dss::Fix32 d = up * dir;
     dss::Fix32 scale;
     scale.value = 0x8f2;
     if (d.value == 0) {
         extraPos_ = pos + dir * scale;
-        func_ov000_02130f54(&extraIdx_, &dir);
+        TownActionCalculate::getIdxByVec(extraIdx_, dir);
     } else {
         extraPos_ = pos;
         extraPos_.vy.value += 0x28;
@@ -362,7 +363,7 @@ ARM int cmn::ExtraMapLink::checkTownMapLink(int id)
                 case LINK_TOWN_TO_TOWN:
                     func_0200c004(mapLinkData_[i].nextId);
                     g_Global.startTown(mapLinkData_[i].nextMapName);
-                    func_ov000_021341ec(func_ov000_02132a90(), 1);
+                    TownPlayerManager::getSingleton()->setLock(1);
                     return 1;
                 case LINK_TOWN_TO_FIELD:
                     extraLink_ = LINK_TOWN_TO_FIELD;
@@ -371,7 +372,7 @@ ARM int cmn::ExtraMapLink::checkTownMapLink(int id)
                     func_0200c02c(mapLinkData_[i].nextId);
                     g_Global.nextFieldType_ = getFieldTypeBySurface(mapLinkData_[i].nextId);
                     g_Global.startField();
-                    func_ov000_021341ec(func_ov000_02132a90(), 1);
+                    TownPlayerManager::getSingleton()->setLock(1);
                     g_Stage.idoLink_.data_.link_.inFlag_ = 0;
                     g_Stage.idoLink_.data_.link_.outFlag_ = 0;
                     return 2;
@@ -386,7 +387,7 @@ ARM int cmn::ExtraMapLink::checkTownMapLink(int id)
                     extraLink_ = LINK_TOWN_OFFSET;
                     func_0200c004(mapLinkData_[i].nextId);
                     g_Global.startTown(mapLinkData_[i].nextMapName);
-                    func_ov000_021341ec(func_ov000_02132a90(), 1);
+                    TownPlayerManager::getSingleton()->setLock(1);
                     return 1;
                 case LINK_DEFAULT:
                     return 0;
@@ -412,8 +413,8 @@ ARM void cmn::ExtraMapLink::setExtraExitField(int id, dss::Fix32Vector3& pos)
 
 ARM void cmn::ExtraMapLink::setTownINN()
 {
-    dss::Fix32Vector3 pos = func_ov000_02132a90()->getPosition();
-    short dir = func_ov000_02132a90()->getDirection();
+    dss::Fix32Vector3 pos = TownPlayerManager::getSingleton()->getPosition();
+    short dir = TownPlayerManager::getSingleton()->getDirection();
     setExtraLinkTown(g_Global.getMapName(), pos, dir);
 }
 
@@ -421,8 +422,8 @@ ARM void cmn::ExtraMapLink::setMonstarBookLink()
 {
     g_cmnPartyInfo.prevLocation_ = 1;
     if (g_Global.prevPartTown_ != 0) {
-        dss::Fix32Vector3 pos = func_ov000_02132a90()->getPosition();
-        short dir = func_ov000_02132a90()->getDirection();
+        dss::Fix32Vector3 pos = TownPlayerManager::getSingleton()->getPosition();
+        short dir = TownPlayerManager::getSingleton()->getDirection();
         setExtraLinkTown(g_Global.getPrevMapName(), pos, dir);
     } else {
         dss::Fix32Vector3 pos = g_cmnPartyInfo.position_;
@@ -449,9 +450,9 @@ ARM void cmn::ExtraMapLink::eraseSurface(int surfaceId, LINK_TYPE type, const ch
         return;
     }
     if (type == NOT_LINK_THIS_TOWN) {
-        func_0204ccf4(func_ov000_02139668()->coll_, surfaceId, 1);
+        func_0204ccf4(&TownStageManager::getSingleton()->coll_, surfaceId, 1);
     } else {
-        func_0204ccf4(func_ov000_02139668()->coll_, surfaceId, 0);
+        func_0204ccf4(&TownStageManager::getSingleton()->coll_, surfaceId, 0);
     }
 }
 

@@ -13,7 +13,7 @@ THUMB void BattleMenu_ROOT::menuSetup()
     status::g_Party.setBattleMode();
     btl::BattleMenuPlayerControl::getSingleton()->clear();
     btl::BattleMenuPlayerControl::getSingleton()->activeChara_ = -1;
-    func_ov015_0216c76c(func_ov015_0216c7b0());
+    BattleMenuJudge::getSingleton()->turnSetup();
     func_02051900(&menuItem_, 1, 5);
     func_02051900(&cancelItem_, 2, 0);
     if (!gBattleMenuSub_HISTORY.isOpen()) {
@@ -92,7 +92,7 @@ THUMB void BattleMenu_ROOT::menuUpdate()
             switch (active) {
             case 0:
                 close();
-                func_ov015_0216ca70(func_ov015_0216c7b0());
+                BattleMenuJudge::getSingleton()->setNextPlayer();
                 break;
             case 1:
                 status::g_Party.setMemberShiftMode();

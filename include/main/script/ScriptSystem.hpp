@@ -1,4 +1,5 @@
 #pragma once
+#include "main/dss/DssUtils.hpp"
 #include "globaldefs.h"
 #include "main/data/DataObject.hpp"
 #include "main/data/FileLoader.hpp"
@@ -27,7 +28,3 @@ struct ScriptSystem {
 
 int CommandFunction(CommandParameter* param);
 
-
-extern "C" {
-    int func_02088308(char* buf, int size, const char* fmt, ...);
-}

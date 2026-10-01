@@ -31,7 +31,7 @@ ARM int cmd_is_timezone(int* param)
 ARM int cmd_set_timezone(int* param)
 {
     g_Stage.setTimeZone((TIME_ZONE)(param[0] + 1));
-    func_ov000_02139e30(func_ov000_02139668(), g_Global.getMapName());
+    TownStageManager::getSingleton()->loadStage(g_Global.getMapName());
     return 1;
 }
 
@@ -73,7 +73,7 @@ ARM int cmd_set_party_total_recovery(int* param)
     }
     if (param[0] == 1) {
         if (func_02058114(&data_0210bb94, 0xc) != 0) {
-            func_ov000_02132a90()->resetParty();
+            TownPlayerManager::getSingleton()->resetParty();
         } else {
             func_ov001_02127b28()->resetParty();
         }

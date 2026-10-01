@@ -30,6 +30,5 @@ struct BattleStage {
 };
 
 extern "C" {
-    char* func_0208828c(char* dst, const char* src);   // strcpy
     void func_0200d5cc(unsigned short color);
 }

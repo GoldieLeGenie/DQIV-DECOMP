@@ -18,10 +18,11 @@ unsigned char hengeNoTsueChangeTableCharNo[] = {
     0x00, 0x00, 0x00, 0x00
 }; //data_020c13a8
 
-ARM void cmn::HengeNoTsueManager::getChangeCharaNo()
+ARM int cmn::HengeNoTsueManager::getChangeCharaNo()
 {
     this->index_ = dssrand::rand(0x17);
     this->charNo_ = getChangeTable(this->index_);
+    return this->charNo_;
 }
 
 ARM void cmn::HengeNoTsueManager::execute()

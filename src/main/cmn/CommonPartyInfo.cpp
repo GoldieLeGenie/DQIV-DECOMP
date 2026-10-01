@@ -182,7 +182,7 @@ ARM void cmn::CommonPartyInfo::callCarriage()
         func_ov001_02127b28()->resetParty();
         return;
     }
-    func_ov000_02132a90()->resetParty();
+    TownPlayerManager::getSingleton()->resetParty();
 }
 
 
@@ -235,46 +235,38 @@ ARM void cmn::CommonPartyInfo::setMenuAction(MENU_ACTION mode)
             func_ov001_02127b28();
             cmn::PlayerManager::setLock(1);
         } else {
-            func_ov000_021341ec(func_ov000_02132a90(), 1);
+            TownPlayerManager::getSingleton()->setLock(1);
         }
     } else {
         if (func_02058114(&data_0210bb94, 0xE) != MENU_ACTION_NONE) {
             func_ov001_02127b28();
             cmn::PlayerManager::setLock(0);
         } else {
-            func_ov000_021341ec(func_ov000_02132a90(), 0);
+            TownPlayerManager::getSingleton()->setLock(0);
         }
     }
     if (mode == MENU_RURA_FAILED) {
-        func_ov000_02132228()->scriptLock_ = 1;
+        TownSystem::getSingleton()->scriptLock_ = 1;
     }
     this->menuAction_ = mode;
 }
 
 ARM void cmn::CommonPartyInfo::setBalloonPosByExtraSave()
 {
-    this->tempBalloonPos_ = dss::Fix32Vector3(g_Stage.balloonPosition_.vx,
-                                             g_Stage.balloonPosition_.vy,
-                                             g_Stage.balloonPosition_.vz);
+    this->tempBalloonPos_ = dss::Fix32Vector3(g_Stage.balloonPosition_);
     this->tempBalloonFieldType_ = g_Stage.balloonFieldType_;
 
     dss::Fix32Vector3 townPos = cmn::CommonRuraData::getSingleton()->getBalloonTownPos(1);
-    g_Stage.balloonPosition_ = dss::Fix32Vector3(townPos.vx, townPos.vy, townPos.vz);
+    g_Stage.balloonPosition_ = dss::Fix32Vector3(townPos);
     g_Stage.balloonFieldType_ = 0;
 
-    this->tempShipPos_ = dss::Fix32Vector3(g_Stage.shipPosition_.vx,
-                                          g_Stage.shipPosition_.vy,
-                                          g_Stage.shipPosition_.vz);
+    this->tempShipPos_ = dss::Fix32Vector3(g_Stage.shipPosition_);
 }
 
 
 ARM void cmn::CommonPartyInfo::resetBalloonPosByExtraSave()
 {
-    g_Stage.balloonPosition_ = dss::Fix32Vector3(this->tempBalloonPos_.vx,
-                                                        this->tempBalloonPos_.vy,
-                                                        this->tempBalloonPos_.vz);
+    g_Stage.balloonPosition_ = dss::Fix32Vector3(this->tempBalloonPos_);
     g_Stage.balloonFieldType_ = this->tempBalloonFieldType_;
-    g_Stage.shipPosition_ = dss::Fix32Vector3(this->tempShipPos_.vx,
-                                                     this->tempShipPos_.vy,
-                                                     this->tempShipPos_.vz);
+    g_Stage.shipPosition_ = dss::Fix32Vector3(this->tempShipPos_);
 }

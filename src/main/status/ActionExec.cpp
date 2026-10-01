@@ -1,3 +1,4 @@
+#include "ov003/btl/BattleMonster.hpp"
 #include "main/status/ActionExec.hpp"
 #include "main/status/BaseAction.hpp"
 #include "main/status/BaseActionMessage.hpp"
@@ -5,6 +6,8 @@
 #include "main/dss/Random.hpp"
 #include "ov003/status/MonsterParty.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
+#include "ov000/town/TownPlayerManager.hpp"
+#include "ov000/town/TownFurniture.hpp"
 
 status::CallMonsterInfo CallMonster;//data_020d06c8
 status::CharacterStatus* callMonsterStatus_[12];  //data_020d06e8
@@ -103,8 +106,8 @@ THUMB bool status::execImpas()
     int mapObj;
     int r;
     if (func_02058114(&data_0210bb94, 12) == 1) {
-        mapObj = func_ov000_02135358(func_ov000_02132a90());
-        r = func_ov000_02123144(func_ov000_02122ad8(), mapObj);
+        mapObj = TownPlayerManager::getSingleton()->getInpasMapObj();
+        r = TownFurnitureManager::getSingleton()->checkCoffer(mapObj);
         if (mapObj == 0 || r == 0) {
             return 0;
         }
@@ -174,7 +177,7 @@ THUMB int status::isCallMonster() {
 THUMB int status::callDifferentMonster(int index, int monsterIndex)
 {
     CallMonster.callMonsterIndex_ = monsterIndex;
-    if (func_ov000_02121d04()->isCallFriend(monsterIndex) != 0
+    if (btl::BattleMonsterDraw2::getSingleton()->isCallFriend(monsterIndex) != 0
         && g_monster.getCount() < 0xC) {
         if (index != -1) {
             if (g_monster.getMonsterCountInGroup(index) == 8) {

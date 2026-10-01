@@ -13,6 +13,8 @@
 #include "ov000/Commands/TownCommand.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
 #include "ov000/town/TownStageManager.hpp"
+#include "ov000/town/TownFurnitureControl.hpp"
+#include "ov000/town/riseup/TownRiseup.hpp"
 
 THUMB int cmn_camera_lock_pov(int* param)
 {
@@ -22,7 +24,7 @@ THUMB int cmn_camera_lock_pov(int* param)
 
 THUMB int cmd_furniture_fadeout(int* param)
 {
-    func_ov000_021222e4(func_ov000_021221b4(), param[0], param[1], param[2], param[3]);
+    TownFurnitureControlManager::getSingleton()->setFurnitureFade(param[0], param[1], param[2], param[3]);
     return 1;
 }
 
@@ -34,21 +36,18 @@ THUMB int cmd_effect_dream(int* param)
 THUMB int cmd_set_script_object_direction(int* param)
 {
     int index = getPlacementCtrlId(param[0]);
-    func_ov000_021383bc(func_ov000_02137f2c(), index, param[1] << 14);
+    TownCharacterManager::getSingleton()->setRotate(index, param[1] << 14);
     return 1;
 }
 
 THUMB int cmd_charcter_3d_rotate(int* param)
 {
-    dss::Vector3short rot;
-    rot.vx = 0;
-    rot.vy = 0;
-    rot.vz = 0;
+    dss::Vector3<short> rot;
     rot.vx = param[0];
     rot.vy = param[1];
     rot.vz = param[2];
     int index = getPlacementCtrlId();
-    func_ov000_021383dc(func_ov000_02137f2c(), index, &rot);
+    TownCharacterManager::getSingleton()->setRotate(index, rot);
     return 1;
 }
 
@@ -58,20 +57,20 @@ THUMB int cmd_effect_transfer(int* param)
     pos.vx.value = param[1];
     pos.vy.value = param[2];
     pos.vz.value = param[3];
-    func_ov000_02124028(func_ov000_02123e28(), param[0], pos, param[4], 0);
+    TownRiseupManager::getSingleton()->setupSprite(param[0], pos, param[4], 0);
     return 1;
 }
 
 THUMB int cmd_character_pose_change(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_02138248(func_ov000_02137f2c(), index, param[0]);
+    TownCharacterManager::getSingleton()->setPosing(index, param[0]);
     return 1;
 }
 
 THUMB int cmd_player_action_dance(int* param)
 {
-    func_ov000_02135158(func_ov000_02132a90(), param[0]);
+    TownPlayerManager::getSingleton()->setManyaDance(param[0]);
     return 1;
 }
 
@@ -90,12 +89,12 @@ THUMB int cmd_player_set_coll(int* param)
     if (param[1] == 1) {
         flag |= 1;
     }
-    func_ov000_02132a90()->scriptColl_ = flag;
+    TownPlayerManager::getSingleton()->scriptColl_ = flag;
     return 1;
 }
 
 THUMB int cmd_map_clipping(int* param)
 {
-    func_ov000_02139668()->setClipping(param[0]);
+    TownStageManager::getSingleton()->setClipping(param[0]);
     return 1;
 }

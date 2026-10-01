@@ -1,4 +1,5 @@
 #include "main/cmn/CommonEffectLocation.hpp"
+#include "ov000/town/TownCharacter.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/cmn/PartyTalk.hpp"
 #include "main/dss/Random.hpp"
@@ -17,14 +18,14 @@
 THUMB int cmd_set_monster_talk(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_02137f2c()->setMonsterTalk(index, param[0]);
+    TownCharacterManager::getSingleton()->setMonsterTalk(index, param[0]);
     return 1;
 }
 
 THUMB int cmd_set_monster_talk_all(int* param)
 {
     getPlacementCtrlId();
-    func_ov000_02139158(func_ov000_02137f2c(), param[0]);
-    data_ov000_0214eb9c = param[0];
+    TownCharacterManager::getSingleton()->setMonsterSpeakAll(param[0]);
+    TownCharacterBase::monsterTalk_ = param[0];
     return 1;
 }

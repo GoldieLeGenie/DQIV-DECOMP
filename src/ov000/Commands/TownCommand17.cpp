@@ -18,6 +18,6 @@ THUMB int cmd_set_chara_motion2(int* param)
 {
     int index = getPlacementCtrlId();
     int flag = param[1] == 0 ? 1 : 0;
-    func_ov000_02137f2c()->setMotion(index, param[0], flag);
+    TownCharacterManager::getSingleton()->setMotion(index, param[0], flag);
     return 1;
 }

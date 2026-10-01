@@ -110,7 +110,7 @@ THUMB void BattleMonsterMask::calcTargetPos(int actorindex)
     dss::Fix32Vector3 pos;
     int index = g_monster.getMonsterStatus(actorindex)->haveStatusInfo_.drawCtrlId_;
     dss::Fix32Vector3* position = btl::BattleMonsterDraw2::getSingleton()->monsters_[index].monsterDraw_.getPosition();
-    pos = dss::Fix32Vector3(position->vx, position->vy, position->vz);
+    pos = dss::Fix32Vector3(*position);
     func_0205710c(actorindex, &pos);
 }
 

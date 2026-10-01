@@ -45,15 +45,14 @@ THUMB void BattleMenu_ACTIONMENU::menuUpdate()
     }
     if (func_02023230(&cancelItem_)) {
         close();
-        func_ov015_0216cad8(func_ov015_0216c7b0());
+        BattleMenuJudge::getSingleton()->setPrevPlayer();
         return;
     }
     func_02051a7c(&menuItem_);
     if (menuItem_.result_ == 2) {
         selectAttack();
         if (unk_14c == -1) {
-            func_ov015_0216c7b0();
-            gBattleMenuSub_HISTORY.select_ = btl::BattleMenuPlayerControl::getSingleton()->activeChara_;
+            gBattleMenuSub_HISTORY.select_ = BattleMenuJudge::getSingleton()->getPlayerIndex();
         }
         return;
     }
@@ -63,15 +62,13 @@ THUMB void BattleMenu_ACTIONMENU::menuUpdate()
     }
     if (result == 1) {
         if (unk_14c == -1) {
-            func_ov015_0216c7b0();
-            gBattleMenuSub_HISTORY.select_ = btl::BattleMenuPlayerControl::getSingleton()->activeChara_;
+            gBattleMenuSub_HISTORY.select_ = BattleMenuJudge::getSingleton()->getPlayerIndex();
         }
         unk_14c = pageItem_.active_;
     }
     if (result == 2) {
         if (unk_14c == -1) {
-            func_ov015_0216c7b0();
-            gBattleMenuSub_HISTORY.select_ = btl::BattleMenuPlayerControl::getSingleton()->activeChara_;
+            gBattleMenuSub_HISTORY.select_ = BattleMenuJudge::getSingleton()->getPlayerIndex();
         }
         pageItem_.result_ = 0;
         pageItem_.lastresult_ = 0;
@@ -121,8 +118,8 @@ THUMB void BattleMenu_ACTIONMENU::selectAttack()
         return;
     }
     close();
-    func_ov015_0216c874(func_ov015_0216c7b0(), g_monster.getMonsterGroup(0));
-    func_ov015_0216ca70(func_ov015_0216c7b0());
+    BattleMenuJudge::getSingleton()->setAttack(g_monster.getMonsterGroup(0));
+    BattleMenuJudge::getSingleton()->setNextPlayer();
 }
 
 THUMB void BattleMenu_ACTIONMENU::selectMagic()
@@ -149,7 +146,7 @@ THUMB void BattleMenu_ACTIONMENU::selectItem()
         close();
         btl::BattleMenuPlayerControl::getSingleton()->activeItem_ = -1;
         status::g_Party.getPlayerStatus(chara)->haveBattleStatus_.setSelectCommand(status::HaveBattleStatus::UseItem, -1);
-        data_ov015_02179d68.open();
+        gBattleMenu_ITEM.open();
         return;
     }
     close();
@@ -163,5 +160,5 @@ THUMB void BattleMenu_ACTIONMENU::selectDefence()
 {
     close();
     status::g_Party.getPlayerStatus(btl::BattleMenuPlayerControl::getSingleton()->activeChara_)->haveBattleStatus_.setSelectCommand(status::HaveBattleStatus::Defence, 0);
-    func_ov015_0216ca70(func_ov015_0216c7b0());
+    BattleMenuJudge::getSingleton()->setNextPlayer();
 }

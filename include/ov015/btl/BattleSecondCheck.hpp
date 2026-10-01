@@ -69,4 +69,3 @@ namespace btl {
 }
 
 namespace btl { struct BattleMonsterDraw2; }
-extern "C" btl::BattleMonsterDraw2* func_ov000_02121d04();

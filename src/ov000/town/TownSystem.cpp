@@ -1,0 +1,260 @@
+#pragma ipa file
+#include "ov000/town/TownSystem.hpp"
+#include "ov000/town/TownCamera.hpp"
+#include "ov000/town/TownStageManager.hpp"
+#include "ov000/town/TownPlayerManager.hpp"
+#include "ov000/town/TownCharacterManager.hpp"
+#include "ov000/Commands/TownCommand.hpp"
+#include "main/cmn/GameManager.hpp"
+#include "main/cmn/ExtraMapLink.hpp"
+#include "main/cmn/TalkSoundManager.hpp"
+#include "main/cmn/PartyTalk.hpp"
+#include "main/cmn/CommonEffectLocation.hpp"
+#include "main/cmn/CommonPartyInfo.hpp"
+#include "main/cmn/NonBattleActionManager.hpp"
+#include "main/btl/BattleScriptManager.hpp"
+#include "main/script/ScriptSystem.hpp"
+#include "main/status/StoryStatus.hpp"
+#include "main/status/StageStatus.hpp"
+#include "main/status/GameFlag.hpp"
+#include "main/status/Status.hpp"
+#include "main/sound/SoundManager.hpp"
+#include "main/global/Global.hpp"
+#include "main/encount/Encount.hpp"
+#include "main/object/DSSAObject.hpp"
+#include "main/object/DisplayCharacter.hpp"
+#include "ov036/MaterielMenuExtraChangeHostage/MaterielMenuExtraChangeHostage.hpp"
+#include "ov000/town/TownWindowSystem.hpp"
+#include "ov000/town/TownFurniture.hpp"
+#include "ov000/town/riseup/TownRiseup.hpp"
+#include "ov000/town/TownExtraMapObjManager.hpp"
+
+ARM void TownSystem::unkfunc_02132210()
+{
+}
+
+ARM TownSystem::TownSystem()
+{
+    func_02084ef0(&render_);
+}
+
+ARM TownSystem* TownSystem::getSingleton()
+{
+    static TownSystem m_singleton;
+    return &m_singleton;
+}
+
+ARM void TownSystem::initialize()
+{
+    data_020f22dc = 0;
+    func_ov000_02142858(&status::excelParam);
+    func_ov000_021428b4(&status::excelParam);
+    func_02049ba4();
+    func_02084efc(&render_);
+    TownCamera::getSingleton()->initialize();
+    TownStageManager::getSingleton()->initialize();
+    TownFurnitureManager::getSingleton()->initialize();
+    TownPlayerManager::getSingleton()->initialize();
+    TownCharacterManager::getSingleton()->initialize();
+    cmn::g_extraMapLink.setup();
+    func_ov000_021429bc(TownExtraMapObjManager::getSingleton());
+    cmn::GameManager::getSingleton()->initialize();
+    TownPlayerManager* player = TownPlayerManager::getSingleton();
+    cmn::GameManager::getSingleton()->playerManager_ = player;
+    cmn::g_talkSound.setup();
+    TownPlayerManager::getSingleton()->setup();
+    func_0200a750(func_0200a6c8(), 0, 0);
+    btl::BattleScriptManager::getSingleton()->checkScriptBattleResult();
+    TownRiseupManager::getSingleton()->initialize();
+    ScriptSystem::getSingleton()->initialize(status::g_Story.chapter_);
+    func_0202ace4(func_0202adc4());
+    playExitSE_ = 0;
+    defaultSELock_ = 0;
+    scriptLock_ = 0;
+    fadeCount_ = 0;
+    SoundManager::townPlay();
+    int exitNo;
+    if (g_Stage.ruraFlag_ != 0) {
+        exitNo = -1;
+    } else {
+        exitNo = func_0200c020();
+    }
+    if (exitNo != -1) {
+        cmn::PartyTalk::getSingleton()->resetPartyTalk();
+        cmn::PartyTalk::getSingleton()->setExitNo(exitNo);
+    }
+    func_0203e8f8()->initialize();
+    func_ov000_021428b8(&status::excelParam);
+    dss::Fix32 scale;
+    scale.value = 0x87;
+    DSSAObject::setDefaultScale(scale);
+    DSSAObject::setPriority(8);
+    g_Stage.loadType_ = profile::SAVETYPE_INVALID;
+    if (func_020882b0(g_Global.getMapName(), "ev01") == 0) {
+        func_ov000_02143084(func_ov000_02143030());
+    }
+    trigger_ = 1;
+}
+
+ARM void TownSystem::terminate()
+{
+    func_ov000_02143600(func_ov000_02143030());
+    func_ov000_02143b14(func_ov000_021439fc());
+    func_0203e8f8()->terminate();
+    func_0203e848(func_0203e5a8());
+    ScriptSystem::getSingleton()->terminate();
+    if (func_020882b0(g_Global.getMapName(), "field") == 0) {
+        TownCamera::getSingleton()->resetAngle();
+        g_Stage.initDoorOpenFlag();
+        g_Stage.setFallFlag(0);
+    }
+    if (!g_Global.isNextPart(13) && !g_Global.isNextPart(15) && !g_Global.isNextPart(16)) {
+        g_GlobalFlag.clear();
+        if (g_Global.isAreaChange()) {
+            g_LocalFlag.clear();
+            g_Stage.initDoorOpenFlag();
+            g_cmnPartyInfo.resetShipIkadaMapName();
+        }
+        g_Stage.playerLockCount_ = 0;
+        playTownExitSE();
+        g_Stage.initFurnBreakFlag();
+        status::StageStatus::setToramana(0);
+    } else {
+        g_Stage.idoLink_.data_.link_.encount_ = 1;
+        TownPlayerManager::getSingleton()->resetLockByEventEncount();
+        g_Stage.playerLockCount_ = TownPlayerManager::getSingleton()->getLockCount();
+        SoundManager::setTownPlayEnable();
+        g_cmnPartyInfo.beforeBattlePos_ = g_cmnPartyInfo.prev_position_;
+    }
+    TownPlayerManager::getSingleton()->cleanup();
+    data_020f22dc = 0;
+    DisplayCharacter::sleepBodyOffset_ = dss::Fix32(0.27f);
+    DisplayCharacter::sleepHeadOffset_ = dss::Fix32(0.173f);
+    DisplayCharacter::sleepHeight_ = dss::Fix32(0.194f);
+    cmn::GameManager::getSingleton()->terminate();
+    TownFurnitureManager::getSingleton()->terminate();
+    TownRiseupManager::getSingleton()->terminate();
+    TownCharacterManager::getSingleton()->terminate();
+    TownPlayerManager::getSingleton()->terminate();
+    TownStageManager::getSingleton()->terminate();
+    TownCamera::getSingleton()->terminate();
+    func_02084f50(&render_);
+    func_02049eb4();
+    func_0202adb4(func_0202adc4());
+    status::Status::setFlagShopExec();
+    func_ov000_02142898(&status::excelParam);
+    g_Global.partChangeFlag_ = 0;
+}
+
+ARM void TownSystem::execute()
+{
+    func_ov000_02143978(func_ov000_02143030());
+    func_ov000_02143e58(func_ov000_021439fc());
+    if (g_Global.getRanarutaFlag()) {
+        func_0202ad28(func_0202adc4());
+        cmn::NonBattleActionManager::getSingleton()->execute();
+    }
+    TownFurnitureManager::getSingleton()->execute();
+    TownRiseupManager::getSingleton()->execute();
+    if (TownWindowSystem::getSingleton()->isOpen()) {
+        return;
+    }
+    TownCharacterManager::getSingleton()->execute();
+    TownPlayerManager::getSingleton()->execute();
+    TownStageManager::getSingleton()->execute();
+    TownCamera::getSingleton()->execute();
+    cmn::GameManager::getSingleton()->execute();
+    func_ov016_0216ba40()->item_ = 0;
+    if (func_0200a99c(func_0200a6c8()) == 0 && scriptLock_ == 0) {
+        ScriptSystem::getSingleton()->execute();
+    }
+    TownPlayerManager::getSingleton()->setMessage();
+    if (g_Global.bookingFlag_ != Global::BOOKING_NONE) {
+        bookingMenu();
+        return;
+    }
+    if (TownPlayerManager::getSingleton()->isLock() == 0) {
+        func_0200a884(func_0200a6c8());
+    }
+    g_cmnPartyInfo.prevFrameBattle_ = 0;
+    trigger_ = 1;
+}
+
+ARM void TownSystem::draw()
+{
+    func_0203e868(func_0203e5a8());
+    func_0202ad98(func_0202adc4());
+    if (func_0202af54(func_0202adc4())) {
+        return;
+    }
+    TownCamera::getSingleton()->draw();
+    func_ov000_021436b0(func_ov000_02143030());
+    func_ov000_02143e30(func_ov000_021439fc());
+    bool cameraNo = TownCamera::getSingleton()->camera_.m_cameraNo == 0;
+    if (cameraNo == true) {
+        TownStageManager::getSingleton()->stage_.unk_660 = 1;
+    } else {
+        TownStageManager::getSingleton()->stage_.unk_660 = 0;
+    }
+    TownPlayerManager::getSingleton()->draw();
+    func_02084fa4(&render_);
+    TownStageManager::getSingleton()->draw();
+    TownRiseupManager::getSingleton()->draw();
+    TownCharacterManager::getSingleton()->draw();
+    TownFurnitureManager::getSingleton()->draw();
+}
+
+ARM void TownSystem::bookingMenu()
+{
+    switch (g_Global.bookingFlag_) {
+    case Global::BOOKING_CHURCH:
+        TownWindowSystem::getSingleton()->changeShopMenuPhase(0x20);
+        return;
+    case Global::BOOKING_INN:
+        if (fadeCount_ == 0) {
+            cmn::GameManager::getSingleton()->playerManager_->setLock(1);
+            cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 0;
+            func_020499a4(0);
+            fadeCount_++;
+            return;
+        }
+        if (fadeCount_ <= 30) {
+            fadeCount_++;
+            return;
+        }
+        TownWindowSystem::getSingleton()->changeShopMenuPhase(0);
+        return;
+    case Global::BOOKING_HOSTAGE:
+        if (fadeCount_ == 0) {
+            cmn::GameManager::getSingleton()->playerManager_->setLock(1);
+            cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 0;
+            func_020499a4(0);
+            TownCharacterManager::getSingleton()->setPlayerDirection(data_ov016_02186020.ctrlID_);
+            SoundManager::playSe(0x136, 0);
+            g_Global.fadeOutBlack(1);
+            fadeCount_++;
+        }
+        if (fadeCount_ == 60) {
+            g_Global.fadeInBlack(30);
+            fadeCount_++;
+        }
+        if (fadeCount_ <= 90) {
+            fadeCount_++;
+            return;
+        }
+        TownWindowSystem::getSingleton()->changeShopMenuPhase(0x17);
+        return;
+    case Global::BOOKING_GAMESET:
+        if (fadeCount_ == 0) {
+            cmn::GameManager::getSingleton()->playerManager_->setLock(1);
+            cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 0;
+            func_020499a4(0);
+            fadeCount_++;
+        }
+        if (data_020f21f8.count_ != data_020f21f8.frames_) {
+            return;
+        }
+        TownWindowSystem::getSingleton()->changeShopMenuPhase(1);
+        return;
+    }
+}

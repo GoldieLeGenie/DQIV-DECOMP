@@ -1,5 +1,6 @@
 #pragma once
 #include <globaldefs.h>
+#include "main/dss/Camera.hpp"
 #include "main/dss/UnkSprite2D.hpp"
 
 struct BattleMonsterMask {
@@ -25,4 +26,3 @@ struct BattleMonsterMask {
     static int monsterRectTemp[12];
 };
 
-extern "C" void func_0205710c(int index, dss::Fix32Vector3* position);

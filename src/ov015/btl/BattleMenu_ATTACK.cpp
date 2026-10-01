@@ -9,7 +9,7 @@ THUMB void BattleMenu_ATTACK::menuSetup()
     func_02051900(&cancelItem_, 2, 0);
     monsterMask_ = 1;
     menuItem_.active_ = 0;
-    enemyMaxNum_ = func_ov015_0216c9a8(func_ov015_0216c7b0(), touchRect_);
+    enemyMaxNum_ = BattleMenuJudge::getSingleton()->getMonsterTouchRect(touchRect_);
     for (int i = 0; i < enemyMaxNum_; i++) {
         if (touchRect_[i].group == btl::BattleMenuPlayerControl::getSingleton()->getTargetGroup()) {
             menuItem_.active_ = i;
@@ -24,7 +24,7 @@ THUMB void BattleMenu_ATTACK::menuSetup()
 THUMB void BattleMenu_ATTACK::menuExecute()
 {
     BattleMonsterMask::getSingleton()->execute();
-    enemyMaxNum_ = func_ov015_0216c9a8(func_ov015_0216c7b0(), touchRect_);
+    enemyMaxNum_ = BattleMenuJudge::getSingleton()->getMonsterTouchRect(touchRect_);
     func_ov015_0216c6dc(&menuItem_, menuItem_.active_, touchRect_, enemyMaxNum_);
     func_ov015_0216c5c4(&cancelItem_);
     if (monsterMask_ == 1) {
@@ -63,7 +63,7 @@ THUMB void BattleMenu_ATTACK::menuUpdate()
         if (menuItem_.reason_ == 2) {
             menuItem_.result_ = 0;
             menuItem_.lastresult_ = 0;
-            func_ov015_0216ea10(this);
+            unkfunc_0216ea10();
             return;
         }
         if (old < i) {
@@ -111,7 +111,7 @@ THUMB void BattleMenu_ATTACK::menuUpdate()
     case 2:
         menuItem_.result_ = 0;
         menuItem_.lastresult_ = 0;
-        func_ov015_0216ea10(this);
+        unkfunc_0216ea10();
         return;
     case 7:
         redraw_ = 1;
@@ -166,12 +166,12 @@ THUMB void BattleMenu_ATTACK::menuUpdate()
     }
 }
 
-extern "C" THUMB void func_ov015_0216ea10(BattleMenu_ATTACK* self)
+THUMB void BattleMenu_ATTACK::unkfunc_0216ea10()
 {
-    func_ov015_0216c874(func_ov015_0216c7b0(), self->touchRect_[self->menuItem_.active_].group);
-    func_ov015_0216ca70(func_ov015_0216c7b0());
-    self->monsterMask_ = 0;
+    BattleMenuJudge::getSingleton()->setAttack(touchRect_[menuItem_.active_].group);
+    BattleMenuJudge::getSingleton()->setNextPlayer();
+    monsterMask_ = 0;
     BattleMonsterMask::getSingleton()->select(-1);
-    self->redraw_ = 1;
-    self->close();
+    redraw_ = 1;
+    close();
 }

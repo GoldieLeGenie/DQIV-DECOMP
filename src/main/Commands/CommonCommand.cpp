@@ -1,4 +1,5 @@
 #include "main/Commands/CommonCommand.hpp"
+#include "ov000/town/TownCharacter.hpp"
 #include "main/btl/BattleScriptManager.hpp"
 #include "main/status/BattleResult.hpp"
 #include "main/status/PartyStatus.hpp"
@@ -33,7 +34,7 @@ THUMB int cmd_encount(int* param)
     if (func_02058114(&data_0210bb94, 0xe) == 1) {
         func_ov001_0212a620(func_ov001_02127b28(), 1);
     } else {
-        func_ov000_02135ac0(func_ov000_02132a90(), 1);
+        TownPlayerManager::getSingleton()->setLockByEventEncount(1);
     }
     return 1;
 }
@@ -49,7 +50,7 @@ THUMB int cmd_encount_set_flag(int* param)
     if (func_02058114(&data_0210bb94, 0xe) == 1) {
         func_ov001_0212a620(func_ov001_02127b28(), 1);
     } else {
-        func_ov000_02135ac0(func_ov000_02132a90(), 1);
+        TownPlayerManager::getSingleton()->setLockByEventEncount(1);
     }
     ScriptSystem::getSingleton()->executeEnable_ = 0;
     return 1;
@@ -73,7 +74,7 @@ THUMB int cmd_encount_first_strike(int* param)
     if (func_02058114(&data_0210bb94, 0xe) == 1) {
         func_ov001_0212a620(func_ov001_02127b28(), 1);
     } else {
-        func_ov000_02135ac0(func_ov000_02132a90(), 1);
+        TownPlayerManager::getSingleton()->setLockByEventEncount(1);
     }
     ScriptSystem::getSingleton()->executeEnable_ = 0;
     return 1;
@@ -359,12 +360,12 @@ THUMB int cmd_map_link_field_direct(int* param)
     pos.vz = 0L;
     cmn::g_extraMapLink.setExtraExitField(param[0], pos);
     if (func_02058114(&data_0210bb94, 0xc) != 0) {
-        data_ov000_0214eb98 = 0;
+        TownCharacterBase::allEventLock_ = 0;
         func_020499a4(1);
-        func_ov000_02138ed0(func_ov000_02137f2c());
-        func_ov000_0213b118(&func_ov000_02132a90()->partyDraw_, 2);
+        TownCharacterManager::getSingleton()->restoreCharacterAnim();
+        TownPlayerManager::getSingleton()->partyDraw_.setAnimation(2);
         if (param[3] == 1) {
-            func_ov000_02132228()->playExitSE_ = 1;
+            TownSystem::getSingleton()->playExitSE_ = 1;
         }
     } else if (param[3] == 1) {
         func_ov001_02127458()->exitSound_ = 1;
@@ -378,12 +379,12 @@ THUMB int cmd_floor_change(int* param)
     cmn::g_extraMapLink.setExtraLinkTown((const char*)param, pos, cmn::CommonCalculate::getIdxByParam((unsigned char)param[7]));
     ScriptSystem::getSingleton()->executeEnable_ = 0;
     if (func_02058114(&data_0210bb94, 0xc) != 0) {
-        data_ov000_0214eb98 = 0;
+        TownCharacterBase::allEventLock_ = 0;
         func_020499a4(1);
-        func_ov000_02138ed0(func_ov000_02137f2c());
-        func_ov000_0213b118(&func_ov000_02132a90()->partyDraw_, 2);
+        TownCharacterManager::getSingleton()->restoreCharacterAnim();
+        TownPlayerManager::getSingleton()->partyDraw_.setAnimation(2);
         if (param[8] == 1) {
-            func_ov000_02132228()->playExitSE_ = 1;
+            TownSystem::getSingleton()->playExitSE_ = 1;
         }
     } else if (param[8] == 1) {
         func_ov001_02127458()->exitSound_ = 1;
@@ -396,12 +397,12 @@ THUMB int cmd_floor_exit(int* param)
     cmn::g_extraMapLink.setExtraExitTown((const char*)param, param[4]);
     ScriptSystem::getSingleton()->executeEnable_ = 0;
     if (func_02058114(&data_0210bb94, 0xc) != 0) {
-        data_ov000_0214eb98 = 0;
+        TownCharacterBase::allEventLock_ = 0;
         func_020499a4(1);
-        func_ov000_02138ed0(func_ov000_02137f2c());
-        func_ov000_0213b118(&func_ov000_02132a90()->partyDraw_, 2);
+        TownCharacterManager::getSingleton()->restoreCharacterAnim();
+        TownPlayerManager::getSingleton()->partyDraw_.setAnimation(2);
         if (param[5] == 1) {
-            func_ov000_02132228()->playExitSE_ = 1;
+            TownSystem::getSingleton()->playExitSE_ = 1;
         }
     } else if (param[5] == 1) {
         func_ov001_02127458()->exitSound_ = 1;
@@ -513,8 +514,8 @@ THUMB int cmd_player_lock(int* param)
     if (param[0] != 0) {
         data_020ecf3c++;
         if (func_02058114(&data_0210bb94, 0xc) != 0) {
-            func_ov000_021341ec(func_ov000_02132a90(), 1);
-            func_ov000_02132a90()->charaColl_ = 0;
+            TownPlayerManager::getSingleton()->setLock(1);
+            TownPlayerManager::getSingleton()->charaColl_ = 0;
         } else {
             func_ov001_02127b28();
             cmn::PlayerManager::setLock(1);
@@ -523,10 +524,10 @@ THUMB int cmd_player_lock(int* param)
     } else {
         data_020ecf3c--;
         if (func_02058114(&data_0210bb94, 0xc) != 0) {
-            func_ov000_021341ec(func_ov000_02132a90(), 0);
+            TownPlayerManager::getSingleton()->setLock(0);
             if (!cmn::PlayerManager::isLock()) {
-                func_ov000_02132a90()->charaColl_ = 1;
-                func_ov000_02132a90()->flagMapLink_ = 1;
+                TownPlayerManager::getSingleton()->charaColl_ = 1;
+                TownPlayerManager::getSingleton()->flagMapLink_ = 1;
             }
         } else {
             func_ov001_02127b28();
@@ -637,7 +638,7 @@ THUMB int cmd_set_party_join(int* param)
 {
     status::g_Party.add(param[0]);
     if (func_02058114(&data_0210bb94, 0xc) != 0) {
-        func_ov000_02132a90()->resetParty();
+        TownPlayerManager::getSingleton()->resetParty();
     } else {
         func_ov001_02127b28()->resetParty();
     }
@@ -648,7 +649,7 @@ THUMB int cmd_set_party_quit(int* param)
 {
     status::g_Party.del(param[0]);
     if (func_02058114(&data_0210bb94, 0xc) != 0) {
-        func_ov000_02132a90()->resetParty();
+        TownPlayerManager::getSingleton()->resetParty();
     } else {
         func_ov001_02127b28()->resetParty();
     }
@@ -657,7 +658,7 @@ THUMB int cmd_set_party_quit(int* param)
 
 THUMB int cmd_party_del2(int* param)
 {
-    if (func_ov000_0213556c(func_ov000_02132a90(), param[0]) == 1) {
+    if (TownPlayerManager::getSingleton()->setupDelPartyNotMoveFirst(param[0]) == 1) {
         int index = param[0];
         cmd_set_party_quit(&index);
     }
@@ -675,7 +676,7 @@ THUMB int cmd_battle_end_flag_set(int* param)
     if (func_02058114(&data_0210bb94, 0xe) == 1) {
         func_ov001_0212a620(func_ov001_02127b28(), 1);
     } else {
-        func_ov000_02135ac0(func_ov000_02132a90(), 1);
+        TownPlayerManager::getSingleton()->setLockByEventEncount(1);
     }
     btl::BattleScriptManager::getSingleton()->setScriptBattleResult(param[3], param[2], 0);
     btl::BattleScriptManager::getSingleton()->setScriptBattleResult(param[5], param[4], 1);

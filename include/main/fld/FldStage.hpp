@@ -9,6 +9,7 @@
 struct COLL_POLY;
 struct COLL_HEADER;
 struct FldStage;
+struct FldCollision;
 
 extern "C" {
     int  func_020484ec(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecFx32* box, dss::Fix32* rate);
@@ -22,6 +23,7 @@ extern "C" {
     void  func_0208336c(UnkModelMember* self);
     int*  func_0207f88c(void* heap);
     void  func_02067940(const void* src, void* dst);              // MI_Copy36B
+    void  func_0204bc50(FldCollision* coll);                       // FldCollision::searchClear
     int   func_02031e84(int value);                                // abs
 
     void  func_02042428(fld::FLDObject* self, void* model, void* texture, void* coll, int heap);
@@ -33,7 +35,7 @@ extern "C" {
     void  func_02046034(fld::FLDObject* self, int obj, VecFx32* pos);
     void  func_02046194(fld::FLDObject* self, int uid, int flag);
     void  func_0204627c(fld::FLDObject* self, int uid, VecFx32* rot);
-    void  func_020463e4(fld::FLDObject* self, int uid, int flag);
+    void  func_020463e4(fld::FLDObject* self, int uid);                     // FLDObject::CollEraseMapUid
     void  func_02046558(fld::FLDObject* self, int obj, VecFx32* move);
     void  func_020465b4(fld::FLDObject* self, int anim);
     void  func_020468b8(fld::FLDObject* self, int obj, int frame);
@@ -48,6 +50,8 @@ extern "C" {
     int   func_02040928(COLL_HEADER* coll, int poly);
     int   func_0204098c(COLL_HEADER* coll, int poly);                      // coll_GetSurface
     void  func_020409f0(COLL_HEADER* coll, int obj);
+    int   func_02046f4c(fld::FLDObject* fld, int obj);                         // FLDObject::GetMapObjCommonId
+    int   func_0204cf3c(FldCollision* coll, int surface, int obj);            // FldCollision::getFrontPoly
     void  func_02040a8c(COLL_HEADER* coll, int obj);
     int   func_02040b28(COLL_HEADER* coll, int surface, int index);
     int   func_02040bd4(COLL_HEADER* coll, int uid, int start);
@@ -82,6 +86,36 @@ struct FldCollision {
     DataObject* m_coll;                         // 0x00
     fld::FLDObject* m_fld;                      // 0x04
     int* m_collisionFlag;                       // 0x08
+    int m_id;                                   // 0x0C
+    int m_exitType;                             // 0x10
+    int m_polyIndex;                            // 0x14
+    int m_polyIndexBak;                         // 0x18
+    int m_floorPolygonNo;                       // 0x1C
+    int m_surfaceType[14];                      // 0x20
+    int m_surfacePolyNo[14];                    // 0x58
+    int m_eraseSurfaceId[15];                   // 0x90
+    int m_eraseSurfaceCount;                    // 0xCC
+    int m_searchObjectId;                       // 0xD0
+    int m_searchPolyNo;                         // 0xD4
+    dss::Fix32 m_searchLen2;                    // 0xD8
+    dss::Fix32 m_surfaceLen;                    // 0xDC
+    COLL_POLY* m_nextList[30];                  // 0xE0
+    int m_collPolyNo[30];                       // 0x158
+    int m_collCount;                            // 0x1D0
+    int m_crossCount;                           // 0x1D4
+    dss::Fix32Vector3 m_playerDir;              // 0x1D8
+    fx32 m_newX;                                // 0x1E4
+    fx32 m_newY;                                // 0x1E8
+    fx32 m_newZ;                                // 0x1EC
+    fx32 m_preR;                                // 0x1F0
+    fx32 m_radB;                                // 0x1F4
+    fx32 m_radS;                                // 0x1F8
+    VecFx32 m_dirVec32;                         // 0x1FC
+
+    FldCollision();
+    ~FldCollision();
+    void computeCollFloor(dss::Fix32Vector3& pos, dss::Fix32 r, dss::Fix32Vector3& next);
+    void searchFloorSurface(dss::Fix32Vector3& pos, dss::Fix32 r, dss::Fix32 len, dss::Fix32Vector3& out);
 };
 
 struct FldStage {
@@ -95,7 +129,8 @@ struct FldStage {
     UnkModelMember m_anim;                      // 0x04C
     int unk_054;                                // 0x054
     fld::FLDObject m_fld;                       // 0x058
-    char _pad638[0x664 - 0x638];                // 0x638
+    char _pad638[0x660 - 0x638];                // 0x638
+    int unk_660;                                // 0x660
     int unk_664;                                // 0x664
     dss::Fix32Vector3 scale_;                   // 0x668
     int collisionFlag_;                         // 0x674
@@ -149,7 +184,7 @@ struct FldStage {
     int addBoxCollistion(dss::Fix32Vector3& pos, dss::Fix32Vector3& size, int* id, int flag);
     int getPolyNoBySurfaceId(int surface, int index);
     void addMovePosByObjNo(int obj, dss::Fix32Vector3& move);
-    int getCrossPolygonOtherSurface(dss::Fix32Vector3& start, dss::Fix32Vector3& end, short* surface, int count, int* poly, dss::Fix32* dist, bool all);
+    int getCrossPolygonOtherSurface(dss::Fix32Vector3& start, dss::Fix32Vector3& end, short* surface, int count, int* poly, dss::Fix32* dist, int all);
 
     int collCrossCheck(VecFx32& start, VecFx32& end, int poly, fx32* dist) {
         if (poly == 0) {

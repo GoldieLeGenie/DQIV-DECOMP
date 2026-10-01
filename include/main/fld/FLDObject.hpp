@@ -59,7 +59,8 @@ struct FLDObject
     VecFx32      unk_5b0;                   // 0x5B0
     VecFx32      unk_5bc;                   // 0x5BC
     int          unk_5c8;                   // 0x5C8
-    char         _pad5cc[0x5d4 - 0x5cc];    // 0x5CC
+    int          m_simple_bby;              // 0x5CC
+    int          m_box_test;                // 0x5D0
     VecFx32      m_rgb_rate;                // 0x5D4
 
     FLDObject();                            // func_020421bc

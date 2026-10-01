@@ -91,7 +91,7 @@ THUMB void TownMenu_PARTY_TALK::menuSetup()
         }
     }
 
-    if (func_02058114(&data_0210bb94, 12) == 1 && func_ov000_0213a998(func_ov000_02139668()) == 1) {
+    if (func_02058114(&data_0210bb94, 12) == 1 && TownStageManager::getSingleton()->isRozariStage() == 1) {
         int last = status::g_Party.getCount() - 1;
         if (status::g_Party.getPlayerStatus(last)->haveStatusInfo_.haveStatus_.playerIndex_ == 0x18) {
             list[count] = last;

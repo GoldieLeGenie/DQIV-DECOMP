@@ -16,7 +16,6 @@ namespace dss {
 
     struct Camera {
         Vector3<short> m_angle;                 // 0x04
-        char unk_0a[0x2];
         Fix32Vector3 m_target_pos;               // 0x0C
         Fix32Vector3 m_pos;                      // 0x18
         Fix32Vector3 direction_;                 // 0x24
@@ -63,9 +62,10 @@ extern short data_020c4158[4];
 
 extern "C" {
     int func_02081254(void);
-    dss::Fix32Vector3 func_02088a9c(const dss::Fix32Vector3* v, int s);
     void func_02089168(dss::Fix32Vector3* v);
     void func_02049984(dss::Camera* camera);
+    void func_0205710c(int index, dss::Fix32Vector3* position);
+    dss::Vector2<int>* func_02057128(int idx);
 }
 
 extern int data_020c4160[][2];

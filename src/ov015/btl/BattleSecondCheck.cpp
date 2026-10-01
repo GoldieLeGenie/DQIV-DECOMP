@@ -1,3 +1,4 @@
+#include "ov003/btl/BattleMonster.hpp"
 #include "ov015/btl/BattleSecondCheck.hpp"
 #include "main/status/UseAction.hpp"
 #include "ov003/status/MonsterParty.hpp"
@@ -609,7 +610,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckZaoriku(BattleSelectTargetParam 
         selected = -1;
 
         for (int i = 0; i < validCount; i++) {
-            if (func_ov000_02121d04()->isCallFriend(targetCharacterStatus[i]->characterIndex_) != 0) {
+            if (btl::BattleMonsterDraw2::getSingleton()->isCallFriend(targetCharacterStatus[i]->characterIndex_) != 0) {
                 selected = i;
                 break;
             }
@@ -1454,7 +1455,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckNakamayobi(BattleSelectTargetPar
         break;
     }
 
-    if (func_ov000_02121d04()->isCallFriend(monsterIndex) != 0 &&
+    if (btl::BattleMonsterDraw2::getSingleton()->isCallFriend(monsterIndex) != 0 &&
         g_monster.getMonsterCountInGroup(actor->characterGroup_) < 8)
         return personalCheckFreeOne(battleSelectTargetParam);
 

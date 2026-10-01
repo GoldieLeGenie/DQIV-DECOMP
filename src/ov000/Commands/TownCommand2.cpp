@@ -1,4 +1,6 @@
 #include "ov000/Commands/TownCommand.hpp"
+#include "ov000/town/TownWindowSystem.hpp"
+#include "ov000/town/TownActionCalculate.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
 #include "ov000/town/TownStageManager.hpp"
 #include "main/status/PartyStatus.hpp"
@@ -16,52 +18,52 @@ THUMB int cmd_set_character_position(int* param)
     pos.vx.value = param[0];
     pos.vy.value = param[1];
     pos.vz.value = param[2];
-    func_ov000_02138598(func_ov000_02137f2c(), index, &pos);
+    TownCharacterManager::getSingleton()->setPosition(index, pos);
     return 1;
 }
 
 THUMB int cmd_set_character_direction(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_021383bc(func_ov000_02137f2c(), index, param[0] << 14);
+    TownCharacterManager::getSingleton()->setRotate(index, param[0] << 14);
     return 1;
 }
 
 THUMB int cmd_character_action_sleep(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_021385b8(func_ov000_02137f2c(), index, param[0]);
+    TownCharacterManager::getSingleton()->setSleepCharacter(index, param[0]);
     return 1;
 }
 
 THUMB int cmd_character_action_display(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_021384c0(func_ov000_02137f2c(), index, param[0]);
+    TownCharacterManager::getSingleton()->setDisplay(index, param[0]);
     return 1;
 }
 
 THUMB int cmd_character_action_near(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_021384a0(func_ov000_02137f2c(), index, param[0]);
+    TownCharacterManager::getSingleton()->setNearCharacter(index, param[0]);
     return 1;
 }
 
 THUMB int cmd_map_animation_a(int* param)
 {
-    func_ov000_02139e90(func_ov000_02139668(), param[0], param[1], 1);
+    TownStageManager::getSingleton()->setObjectDraw(param[0], param[1], 1);
     return 1;
 }
 
 THUMB int cmd_set_map_collision(int* param)
 {
     if (param[1] == 1) {
-        func_ov000_02139668()->setCollision(param[0], 0);
-        func_ov000_02139668()->setCollisionObject(param[0]);
+        TownStageManager::getSingleton()->setCollision(param[0], 0);
+        TownStageManager::getSingleton()->setCollisionObject(param[0]);
     } else {
-        func_ov000_02139668()->setCollision(param[0], 1);
-        func_ov000_0213a960(func_ov000_02139668(), param[0]);
+        TownStageManager::getSingleton()->setCollision(param[0], 1);
+        TownStageManager::getSingleton()->collEraseMapUid(param[0]);
     }
     return 1;
 }
@@ -99,10 +101,10 @@ THUMB int cmd_chara_set_normal_sure(int* param)
     int id = getPlacementIndex(index);
     int result = func_02037ef4(func_02037da4(), id, param[0]);
     if (result != 0xff) {
-        func_ov000_02137f2c()->setSureId(index, param[0]);
-        func_ov000_02137f2c()->character_[index]->vf3c(result);
+        TownCharacterManager::getSingleton()->setSureId(index, param[0]);
+        TownCharacterManager::getSingleton()->character_[index]->changePose(result);
     } else {
-        func_ov000_021384c0(func_ov000_02137f2c(), index, 0);
+        TownCharacterManager::getSingleton()->setDisplay(index, 0);
     }
     return 0;
 }
@@ -117,11 +119,11 @@ THUMB int cmd_chara_talk_to_player_sure(int* param)
         data_020f0078 = 1;
     } else {
         int id = getPlacementIndex(index);
-        int value = func_ov000_0212eb90(func_ov000_02137f2c()->character_[index]);
+        int value = TownCharacterManager::getSingleton()->character_[index]->getSurechigaiMapNo();
         func_0203a34c(&data_020f0078, func_02037f40(func_02037da4(), id, value));
     }
     if (param[0] == 1) {
-        func_ov000_02138308(func_ov000_02137f2c(), index);
+        TownCharacterManager::getSingleton()->setPlayerDirection(index);
     }
 
     unsigned char* name = func_0203a65c(&data_020f0078);
@@ -139,20 +141,20 @@ THUMB int cmd_chara_talk_to_player_sure(int* param)
     TextAPI::setUserString(2, (char*)text1);
     TextAPI::setUserString(3, (char*)text2);
     TextAPI::setUserString(4, (char*)townName);
-    func_ov000_0213747c(func_ov000_021372e8());
+    TownWindowSystem::getSingleton()->openCommonMessage();
 
     if (param[1] == 1) {
         TextAPI::setMACRO0(0x1c, 0xd0000000, 0);
         TextAPI::setMACRO1(0x21, 0xd0000000, 1);
         TextAPI::setMACRO2(0x21, 0xd0000000, 2);
         TextAPI::setMACRO3(0x21, 0xd0000000, 3);
-        func_ov000_02137470(func_ov000_021372e8(), 0x92a8c);
+        TownWindowSystem::getSingleton()->addCommonMessage(0x92a8c);
     } else {
         TextAPI::setMACRO0(0x1d, 0xd0000000, 0);
         TextAPI::setMACRO1(0x20, 0xd0000000, 1);
         TextAPI::setMACRO2(0x20, 0xd0000000, 2);
         TextAPI::setMACRO3(0x20, 0xd0000000, 3);
-        func_ov000_02137470(func_ov000_021372e8(), 0x92ac0);
+        TownWindowSystem::getSingleton()->addCommonMessage(0x92ac0);
     }
 
     if (param[1] != 1) {
@@ -163,7 +165,7 @@ THUMB int cmd_chara_talk_to_player_sure(int* param)
         TextAPI::setMACRO0(0x23, 0xa0000000, menu::MenuDataCommon::getSuretigaiSex(sex) & 0xfffffff);
         TextAPI::setMACRO0(0x24, 0xe0000000, menu::MenuDataCommon::getSurechigaiSkill(skill) & 0xfffffff);
         TextAPI::setMACRO0(0x1e, 0xd0000000, 4);
-        func_ov000_02137470(func_ov000_021372e8(), 0x92ac1);
+        TownWindowSystem::getSingleton()->addCommonMessage(0x92ac1);
     }
     return 1;
 }
@@ -176,58 +178,58 @@ THUMB int cmd_set_surechigai_level(int* param)
 THUMB int cmd_character_action_stepping(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_02138480(func_ov000_02137f2c(), index, 0);
-    func_ov000_02138460(func_ov000_02137f2c(), index, 1);
+    TownCharacterManager::getSingleton()->setWriggleCharacter(index, 0);
+    TownCharacterManager::getSingleton()->setAnimation(index, 1);
     return 1;
 }
 
 THUMB int cmd_character_action_still(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_02138480(func_ov000_02137f2c(), index, 0);
-    func_ov000_02138460(func_ov000_02137f2c(), index, 0);
+    TownCharacterManager::getSingleton()->setWriggleCharacter(index, 0);
+    TownCharacterManager::getSingleton()->setAnimation(index, 0);
     return 1;
 }
 
 THUMB int cmd_character_action_wriggle(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_02138460(func_ov000_02137f2c(), index, 1);
-    func_ov000_02138480(func_ov000_02137f2c(), index, 1);
+    TownCharacterManager::getSingleton()->setAnimation(index, 1);
+    TownCharacterManager::getSingleton()->setWriggleCharacter(index, 1);
     return 1;
 }
 
 THUMB int cmd_player_action_stepping(int* param)
 {
-    func_ov000_0213b17c(&func_ov000_02132a90()->partyDraw_, 0);
-    func_ov000_0213b118(&func_ov000_02132a90()->partyDraw_, 1);
+    TownPlayerManager::getSingleton()->partyDraw_.setWriggleCharacter(0);
+    TownPlayerManager::getSingleton()->partyDraw_.setAnimation(1);
     return 1;
 }
 
 THUMB int cmd_player_action_still(int* param)
 {
-    func_ov000_0213b17c(&func_ov000_02132a90()->partyDraw_, 0);
-    func_ov000_0213b118(&func_ov000_02132a90()->partyDraw_, 0);
+    TownPlayerManager::getSingleton()->partyDraw_.setWriggleCharacter(0);
+    TownPlayerManager::getSingleton()->partyDraw_.setAnimation(0);
     return 1;
 }
 
 THUMB int cmd_player_action_wriggle(int* param)
 {
-    func_ov000_0213b10c(&func_ov000_02132a90()->partyDraw_, 1);
-    func_ov000_0213b17c(&func_ov000_02132a90()->partyDraw_, 1);
+    TownPlayerManager::getSingleton()->partyDraw_.setAnimationOne(1);
+    TownPlayerManager::getSingleton()->partyDraw_.setWriggleCharacter(1);
     return 1;
 }
 
 THUMB int cmd_set_character_collision(int* param)
 {
     int index = getPlacementCtrlId();
-    func_ov000_02138670(func_ov000_02137f2c(), index, param[0]);
+    TownCharacterManager::getSingleton()->setCollFlag(index, param[0]);
     return 1;
 }
 
 THUMB int cmd_is_trigger(int* param)
 {
-    dss::Fix32Vector3 pos = func_ov000_02132a90()->getPosition();
+    dss::Fix32Vector3 pos = TownPlayerManager::getSingleton()->getPosition();
     if (param[0] < pos.vx.value && param[3] > pos.vx.value &&
         param[1] < pos.vy.value && param[4] > pos.vy.value &&
         param[2] < pos.vz.value && param[5] > pos.vz.value) {
@@ -238,14 +240,14 @@ THUMB int cmd_is_trigger(int* param)
 
 THUMB int cmd_is_trigger2(int* param)
 {
-    dss::Fix32Vector3 pos = func_ov000_02132a90()->getPosition();
+    dss::Fix32Vector3 pos = TownPlayerManager::getSingleton()->getPosition();
     if (param[0] < pos.vx.value && param[3] > pos.vx.value &&
         param[1] < pos.vy.value && param[4] > pos.vy.value &&
         param[2] < pos.vz.value && param[5] > pos.vz.value) {
-        short dir = func_ov000_02132a90()->getDirection();
+        short dir = TownPlayerManager::getSingleton()->getDirection();
         dss::Fix32Vector3 front;
-        func_ov000_02130f48(dir, &front);
-        dss::Fix32Vector3 target = func_ov000_02131b1c((unsigned char)param[6]);
+        TownActionCalculate::getDirByIdx(dir, front);
+        dss::Fix32Vector3 target = TownActionCalculate::getParamVec((unsigned char)param[6]);
         dss::Fix32 dot = front * target;
         if (dot >= dss::Fix32(data_ov000_021487ac)) {
             return 1;
@@ -258,23 +260,23 @@ THUMB int cmd_character_action_pursue(int* param)
 {
     TownCharaMoveParam move;
     int index = getPlacementCtrlId();
-    if (func_ov000_02137f2c()->character_[index]->moveType_ != 3) {
-        func_ov000_02138670(func_ov000_02137f2c(), index, 0);
+    if (TownCharacterManager::getSingleton()->character_[index]->moveType_ != MOVE_TYPE_PURSUE) {
+        TownCharacterManager::getSingleton()->setCollFlag(index, 0);
         index = getPlacementCtrlId();
         move.speed_.value = param[0];
         move.speed_ *= data_ov000_021487b0;
         move.unk_38 = 0;
         move.unk_34 = 0;
-        TownCharacterBase** chara = func_ov000_02137f2c()->character_;
-        chara[index]->moveType_ = 3;
+        TownCharacterBase** chara = TownCharacterManager::getSingleton()->character_;
+        chara[index]->moveType_ = MOVE_TYPE_PURSUE;
         TownCharacterBase* c = chara[index];
-        c->movePos_[0] = move.pos_[0];
-        c->movePos_[1] = move.pos_[1];
-        c->movePos_[2] = move.pos_[2];
-        c->movePos_[3] = move.pos_[3];
-        c->moveSpeed_ = move.speed_;
-        c->unk_c4 = move.unk_34;
-        c->unk_c8 = move.unk_38;
+        c->moveData_.vector[0] = move.pos_[0];
+        c->moveData_.vector[1] = move.pos_[1];
+        c->moveData_.vector[2] = move.pos_[2];
+        c->moveData_.vector[3] = move.pos_[3];
+        c->moveData_.speed = move.speed_;
+        c->moveData_.frame = move.unk_34;
+        c->moveData_.counter = move.unk_38;
     }
     return 1;
 }
@@ -293,24 +295,24 @@ THUMB int cmd_character_move_roam(int* param)
     move.pos_[1].vz.value = param[5];
     move.speed_.value = param[6];
     move.speed_ *= data_ov000_021487b0;
-    TownCharacterBase** chara = func_ov000_02137f2c()->character_;
-    chara[index]->moveType_ = 1;
+    TownCharacterBase** chara = TownCharacterManager::getSingleton()->character_;
+    chara[index]->moveType_ = MOVE_TYPE_AREA;
     TownCharacterBase* c = chara[index];
-    c->movePos_[0] = move.pos_[0];
-    c->movePos_[1] = move.pos_[1];
-    c->movePos_[2] = move.pos_[2];
-    c->movePos_[3] = move.pos_[3];
-    c->moveSpeed_ = move.speed_;
-    c->unk_c4 = move.unk_34;
-    c->unk_c8 = move.unk_38;
+    c->moveData_.vector[0] = move.pos_[0];
+    c->moveData_.vector[1] = move.pos_[1];
+    c->moveData_.vector[2] = move.pos_[2];
+    c->moveData_.vector[3] = move.pos_[3];
+    c->moveData_.speed = move.speed_;
+    c->moveData_.frame = move.unk_34;
+    c->moveData_.counter = move.unk_38;
     return 1;
 }
 
 THUMB int cmd_is_trigger_character(int* param)
 {
     int index = getPlacementCtrlId();
-    dss::Fix32Vector3 pos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
-    short dir = func_ov000_02138744(func_ov000_02137f2c(), index);
+    dss::Fix32Vector3 pos = TownCharacterManager::getSingleton()->getPosition(index);
+    short dir = TownCharacterManager::getSingleton()->getDirection(index);
     dss::Fix32Vector3 min;
     dss::Fix32Vector3 max;
     min.set(param[0], param[1], param[2]);
@@ -324,8 +326,8 @@ THUMB int cmd_is_trigger2_character(int* param)
 {
     TriggerCheck check;
     int index = getPlacementCtrlId();
-    dss::Fix32Vector3 pos = *func_ov000_021383ac(func_ov000_02137f2c(), index);
-    short dir = func_ov000_02138744(func_ov000_02137f2c(), index);
+    dss::Fix32Vector3 pos = TownCharacterManager::getSingleton()->getPosition(index);
+    short dir = TownCharacterManager::getSingleton()->getDirection(index);
     dss::Fix32Vector3 min;
     dss::Fix32Vector3 max;
     min.set(param[0], param[1], param[2]);
@@ -352,9 +354,9 @@ THUMB int cmd_party_join(int* param)
 {
     int index = getPlacementCtrlId(param[0]);
     status::g_Party.add(param[1]);
-    func_ov000_02132a90()->resetParty();
-    func_ov000_021384c0(func_ov000_02137f2c(), index, 0);
-    func_ov000_02138670(func_ov000_02137f2c(), index, 0);
+    TownPlayerManager::getSingleton()->resetParty();
+    TownCharacterManager::getSingleton()->setDisplay(index, 0);
+    TownCharacterManager::getSingleton()->setCollFlag(index, 0);
     return 1;
 }
 
@@ -372,12 +374,12 @@ THUMB int cmd_party_quit(int* param)
             order[i] = status::g_Party.getPlayerStatus(i)->haveStatusInfo_.haveStatus_.playerIndex_;
         }
     }
-    dss::Fix32Vector3 pos = func_ov000_0213beec(&func_ov000_02132a90()->party_, sortIndex);
-    func_ov000_021384c0(func_ov000_02137f2c(), index, 1);
-    func_ov000_02138670(func_ov000_02137f2c(), index, 1);
-    func_ov000_02138598(func_ov000_02137f2c(), index, &pos);
+    dss::Fix32Vector3 pos = TownPlayerManager::getSingleton()->party_.getMemberPosition(sortIndex);
+    TownCharacterManager::getSingleton()->setDisplay(index, 1);
+    TownCharacterManager::getSingleton()->setCollFlag(index, 1);
+    TownCharacterManager::getSingleton()->setPosition(index, pos);
     status::g_Party.del(param[1]);
     status::g_Party.reorder(order[0], order[1], order[2], order[3]);
-    func_ov000_02132a90()->resetParty();
+    TownPlayerManager::getSingleton()->resetParty();
     return 1;
 }

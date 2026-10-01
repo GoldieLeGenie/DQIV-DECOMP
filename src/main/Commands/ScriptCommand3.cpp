@@ -41,7 +41,7 @@ ARM int StartFunction(void* startParam)
     chara.position.vx.value = param.x_;
     chara.position.vy.value = param.y_;
     chara.position.vz.value = param.z_;
-    int ctrl = func_ov000_02138084(func_ov000_02137f2c(), &chara);
+    int ctrl = TownCharacterManager::getSingleton()->setup(chara);
     return ctrl;
 }
 

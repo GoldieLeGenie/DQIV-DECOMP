@@ -19,8 +19,10 @@ namespace dss{
         bool operator>=(const Fix32& o) const;
         bool operator>(const Fix32& o) const;
         bool operator<=(const Fix32& o) const;
-        Fix32& operator*=(const Fix32& o);       // func_020872fc
-        Fix32& operator+=(const Fix32& o);       // func_020871f4
+        void operator*=(const Fix32& o);         // func_020872fc
+        void operator+=(const Fix32& o);         // func_020871f4
+        void operator+=(int v);                  // func_020871e4
+        void operator-=(const Fix32& o);         // func_02087254
         Fix32 operator*(int v) const;           // func_02087268
         Fix32 operator*(const Fix32& o) const;   // func_020872a0
         Fix32 operator+(const Fix32& o) const;   // func_020871bc
@@ -29,7 +31,7 @@ namespace dss{
         bool operator==(const Fix32& o) const;  // func_020873a8
         bool operator!=(const Fix32& o) const;  // func_020873c0
         Fix32 operator/(int v) const;           // func_02087320
-        Fix32& operator/=(int v);
+        void operator/=(int v);
         Fix32 operator-(int v) const;
     };
 
@@ -54,6 +56,7 @@ namespace dss{
     struct BitFlag
     {
         T flag_;
+
     };
 
     template <>
@@ -96,6 +99,8 @@ namespace dss{
     struct Vector3<short> : Vector3short {
         Vector3() { vx = 0; vy = 0; vz = 0; }
         Vector3(const short& x, const short& y, const short& z) { vx = x; vy = y; vz = z; }
+        void set(const short& x, const short& y, const short& z) { vx = x; vy = y; vz = z; }
+        void operator=(const Vector3<short>& o) { vx = o.vx; vy = o.vy; vz = o.vz; }
     };
     template <typename T>
     struct Vector2 {
@@ -122,13 +127,22 @@ namespace dss{
         Fix32Vector3(float x, float y, float z);
 
         Fix32Vector3(const Fix32& x, const Fix32& y, const Fix32& z)
-            : vx(x), vy(y), vz(z) {}
+        {
+            vx = x;
+            vy = y;
+            vz = z;
+        }
+        void set(const Fix32& x, const Fix32& y, const Fix32& z);  // func_02088824
         void set(fx32 x, fx32 y, fx32 z);                   // func_02088854
-        Fix32Vector3& operator=(const Fix32Vector3& o);       // func_020888bc
+        void operator=(const Fix32Vector3& o);               // func_020888bc
         void operator+=(const Fix32Vector3& o);              // func_0208895c
+        void operator-=(const Fix32Vector3& o);              // func_020889fc
         Fix32Vector3 operator*(const Fix32& s) const;         // func_02088a28
+        Fix32Vector3 operator*(int s) const;
         Fix32 operator*(const Fix32Vector3& o) const;         // func_02088d40 (dot product)
+        Fix32Vector3 operator%(const Fix32Vector3& o) const;  // func_02088dbc (cross product)
         Fix32Vector3 operator+(const Fix32Vector3& o) const;  // func_020888e8
+        Fix32Vector3 operator-(const Fix32Vector3& o) const;
         bool operator!=(const Fix32Vector3& o) const;        // func_02088cf4
     };
     int arrayToIndex(int* array, int value, int max);
@@ -146,17 +160,26 @@ namespace dss{
 
 extern "C" {
     unsigned int func_02008ea0(unsigned int value, unsigned int min, unsigned int max);   // clamp
+    char* func_0208828c(char* dst, const char* src);                                   // strcpy
+    unsigned int func_02088280(const char* str);                                       // strlen
+    int func_020882bc(const char* a, const char* b, unsigned int n);                   // strncmp
+    int func_02088308(char* buf, int size, const char* fmt, ...);                      // sprintf_s
     int func_02080d94(dss::Fix32 value);
     void func_020885f8(MtxFx43* m);
     void func_02088698(MtxFx43* m, short angle);
     void func_020886d0(MtxFx43* m, short angle);
     void func_0208888c(dss::Fix32Vector3* v, int x, int y, int z);
-    void func_02088b10(dss::Fix32Vector3* v, void* scale);
+    void func_02088b10(dss::Fix32Vector3* v, const void* scale);                      // Fix32Vector3::operator*=(const Fix32&)
     dss::Fix32Vector3 func_02088670(MtxFx43* m, dss::Fix32Vector3* v);
     dss::Fix32Vector3 func_02088988(const dss::Fix32Vector3& a, const dss::Fix32Vector3& b);
     dss::Fix32Vector3 func_02088bdc(const dss::Fix32Vector3& v, int div);
     dss::Fix32Vector3 func_02088b68(const dss::Fix32Vector3& v, const dss::Fix32& div);
     dss::Fix32 func_02088e90(const dss::Fix32Vector3& v);
+    dss::Fix32 func_02088f20(const dss::Fix32Vector3& v);                     // Fix32Vector3::lengthsq
+    dss::Fix32 func_02088f98(const dss::Fix32Vector3& a, const dss::Fix32Vector3& b);   // Fix32Vector3::length(const Fix32Vector3&)
+    dss::Fix32 func_02087438(const dss::Fix32& v);                            // Fix32::sqrt
+    int func_02088ca8(dss::Fix32Vector3* a, dss::Fix32Vector3* b);           // Fix32Vector3::operator==
     int func_02008eb8(int a, int b);                                           // max
+    int func_02008ec4(int a, int b);                                           // min
     void func_02087168(void*, int);
 }

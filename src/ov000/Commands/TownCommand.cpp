@@ -1,4 +1,5 @@
 #include "ov000/Commands/TownCommand.hpp"
+#include "ov000/town/TownStageManager.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/StageStatus.hpp"
@@ -7,6 +8,9 @@
 #include "main/global/Global.hpp"
 #include "main/profile/Profile.hpp"
 #include "main/status/ShopList.hpp"
+#include "ov000/town/TownWindowSystem.hpp"
+#include "ov000/town/TownPlayerManager.hpp"
+#include "ov000/town/TownFurnitureControl.hpp"
 
 THUMB int cmd_debug_print(int* param)
 {
@@ -117,15 +121,15 @@ THUMB int cmd_is_procure_item(int* param)
 THUMB int cmd_mini_game(int* param)
 {
     if (param[0] != 2) {
-        func_ov000_021341ec(func_ov000_02132a90(), 1);
+        TownPlayerManager::getSingleton()->setLock(1);
         g_cmnPartyInfo.prevLocation_ = 1;
         g_Global.setMinigame(param[0]);
         data_ov016_02186a14.setSlotType(param[1]);
         g_Global.startCasino();
     } else {
         int index = getPlacementCtrlId();
-        func_ov000_02138308(func_ov000_02137f2c(), index);
-        func_0202a860(func_ov000_021372e8(), 0xf);
+        TownCharacterManager::getSingleton()->setPlayerDirection(index);
+        TownWindowSystem::getSingleton()->changeShopMenuPhase(0xf);
         g_cmnPartyInfo.partyTalk = index;
     }
     return 1;
@@ -311,7 +315,7 @@ THUMB int cmd_furniture_move_request(int* param)
 {
     dss::Fix32Vector3 pos;
     dss::Fix32Vector3 base;
-    base = func_ov000_02139b74(func_ov000_02139668(), param[0]);
+    base = TownStageManager::getSingleton()->getMapUidPos(param[0]);
     pos.vx.value = param[1] + base.vx.value;
     pos.vy.value = param[2] + base.vy.value;
     pos.vz.value = param[3] + base.vz.value;
@@ -319,6 +323,6 @@ THUMB int cmd_furniture_move_request(int* param)
         param[4] = 0x1000;
     }
     int frame = func_02088e90(func_02088988(base, pos)).value / ((param[4] * data_ov000_021487a8.unk_8) / 4096);
-    func_ov000_02122280(func_ov000_021221b4(), param[0], frame, &pos);
+    TownFurnitureControlManager::getSingleton()->setFurnitureMove(param[0], frame, pos);
     return 1;
 }

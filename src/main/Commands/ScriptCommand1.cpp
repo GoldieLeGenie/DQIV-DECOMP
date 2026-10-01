@@ -1,4 +1,5 @@
 #include "main/Commands/CommonCommand.hpp"
+#include "ov000/town/TownWindowSystem.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/StageStatus.hpp"
@@ -25,7 +26,7 @@ ARM int cmd_message1(int* param)
     int index = getPlacementCtrlId();
     if (getObjectCount() > index) {
         if (func_02058114(&data_0210bb94, 0xc) != 0) {
-            cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
+            cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(index));
         }
     } else {
         cmn::g_talkSound.setVoice(0);
@@ -38,7 +39,7 @@ ARM int cmd_message1(int* param)
     if (func_02058114(&data_0210bb94, 0xe) != 0) {
         func_ov001_0212ab8c(func_ov001_0212aaac(), param[0], param[1]);
     } else {
-        func_ov000_0213745c(func_ov000_021372e8(), param[0], param[1]);
+        TownWindowSystem::getSingleton()->openMessage(param[0], param[1]);
     }
     return 1;
 }
@@ -48,7 +49,7 @@ ARM int cmd_message2(int* param)
     int index = getPlacementCtrlId();
     if (getObjectCount() > index) {
         if (func_02058114(&data_0210bb94, 0xc) != 0) {
-            cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
+            cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(index));
         }
     } else {
         cmn::g_talkSound.setVoice(0);
@@ -71,33 +72,33 @@ ARM int cmd_message2(int* param)
         count++;
     }
     cmn::g_talkSound.setMessageSound(count, index);
-    func_ov000_0213747c(func_ov000_021372e8());
+    TownWindowSystem::getSingleton()->openCommonMessage();
     if (param[0] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[0]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[0]);
         if (!g_HengeNoTsue.isMonster()) {
             cmn::PartyTalk::getSingleton()->setPreMessageNo(param[0]);
         }
     }
     if (param[1] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[1]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[1]);
     }
     if (param[2] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[2]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[2]);
     }
     if (param[3] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[3]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[3]);
     }
     if (param[4] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[4]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[4]);
     }
     if (param[5] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[5]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[5]);
     }
     if (param[6] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[6]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[6]);
     }
     if (param[7] != 0) {
-        func_ov000_02137470(func_ov000_021372e8(), param[7]);
+        TownWindowSystem::getSingleton()->addCommonMessage(param[7]);
     }
     return 1;
 }
@@ -107,7 +108,7 @@ ARM int cmd_random_message(int* param)
     int index = getPlacementCtrlId();
     if (getObjectCount() > index) {
         if (func_02058114(&data_0210bb94, 0xc) != 0) {
-            cmn::g_talkSound.setVoice(func_ov000_02138eb8(func_ov000_02137f2c(), index));
+            cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(index));
         }
     } else {
         cmn::g_talkSound.setVoice(0);
@@ -123,9 +124,9 @@ ARM int cmd_random_message(int* param)
     message[6] = param[7];
     int select = dssrand::rand(param[0]);
     cmn::g_talkSound.setMessageSound(param[0], index);
-    func_ov000_0213747c(func_ov000_021372e8());
+    TownWindowSystem::getSingleton()->openCommonMessage();
     int mes = message[select];
-    func_ov000_02137470(func_ov000_021372e8(), mes);
+    TownWindowSystem::getSingleton()->addCommonMessage(mes);
     if (!g_HengeNoTsue.isMonster()) {
         cmn::PartyTalk::getSingleton()->setPreMessageNo(mes);
     }

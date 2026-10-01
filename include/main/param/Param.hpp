@@ -408,6 +408,25 @@ namespace param {
 
     
 
+    struct CommonList {                                 // data/param/param_item_%s.dat
+        unsigned int message;                           // 0x00
+        unsigned short uid;                             // 0x04
+        unsigned short item;                            // 0x06
+        unsigned short gold;                            // 0x08
+        unsigned short monster;                         // 0x0A
+        unsigned short encount;                         // 0x0C
+        unsigned short uidReplace;                      // 0x0E
+        unsigned short openIndex;                       // 0x10
+        unsigned short flagIndex;                       // 0x12
+        unsigned char type;                             // 0x14
+        unsigned char furnIndex;                        // 0x15
+        unsigned char ListSize;                         // 0x16
+        char byte_1;                                    // 0x17
+
+        static const unsigned int ID_;                  // data_0208ca60
+        static int data_;                               // data_020c7964 (ExcelBinaryData)
+    };
+
     struct CommonParam {
         unsigned int checkMsg;
         unsigned int normalMsg;
@@ -467,6 +486,8 @@ namespace param {
         fx32 targetZ;
         char floor[8];
         char file[16];
+
+        static const unsigned int size_;                // data_020b5d98
     };
 
     struct VehicleData {
@@ -487,6 +508,8 @@ namespace param {
         unsigned char dmmy0;
         unsigned char dmmy1;
         unsigned char dmmy2;
+
+        static const unsigned int size_;                // data_020b6154
     };
 
     struct MapChurch {
@@ -752,6 +775,7 @@ extern param::FloorParam data_020a4cc0;
 extern param::ShopDataFirst data_02096968;
 extern param::ShopDataSecond data_0209bda0;
 extern param::VehicleData data_0208d6f4;
+extern const unsigned int data_0208ca54;                 // VehicleData::size_
 extern param::MapChurch data_0208d480;
 extern param::EffectColorParam data_02095240;
 
