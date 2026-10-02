@@ -5,8 +5,30 @@
     .data       start:0x021606c0 end:0x02160e60 kind:data align:32
     .bss        start:0x02160e60 end:0x02164a60 kind:bss align:32
 
-src/ov001/Commands/FieldCommand1.cpp:
-    .text start:0x0212d954 end:0x0212da00
+src/ov001/fld/FieldPlayerDoku.cpp:
+    complete
+    .text start:0x021210e0 end:0x02121280
+    .data start:0x021606c0 end:0x021606d4
+    .bss start:0x02160e60 end:0x02160e78
 
-src/ov001/Commands/FieldCommand2.cpp:
-    .text start:0x0212db3c end:0x0212db54
+src/ov001/fld/FieldActionCalculate.cpp:
+    complete
+    .text start:0x02121280 end:0x02122b00
+    .data start:0x021606d4 end:0x02160758
+    .bss start:0x02160e78 end:0x02160e84
+
+src/ov001/Commands/FieldCommand.cpp:
+    complete
+    .text start:0x0212d954 end:0x0212db84
+    .init start:0x02160620 end:0x021606a8
+    .ctor start:0x021606b8 end:0x021606bc
+    .data start:0x02160de4 end:0x02160e4c
+    .bss start:0x02164a20 end:0x02164a60
+
+src/ov001/window/FieldWindowSystem.cpp:
+    complete
+    .text start:0x0212aa98 end:0x0212abdc
+    .init start:0x02160494 end:0x021604c0
+    .ctor start:0x021606b0 end:0x021606b4
+    .bss start:0x02162084 end:0x02162614
+

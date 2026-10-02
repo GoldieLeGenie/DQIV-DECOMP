@@ -39,7 +39,7 @@ THUMB int btl::BattleActorAnimation::setExecAnimation(status::UseActionParam* us
         }
 
         btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].startAnimation(actionIndex, animIndex);
-        return func_0208995c();
+        return BattleAutoFeed::getMessageSpeed();
     }
 
     int action = useActionParam->actionIndex_;

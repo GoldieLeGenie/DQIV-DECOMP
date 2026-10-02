@@ -11,9 +11,9 @@ struct COLL_HEADER;
 struct FldStage;
 struct FldCollision;
 
-extern "C" {
-    int  func_020484ec(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecFx32* box, dss::Fix32* rate);
+int unkfunc_020484ec(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecFx32* box, dss::Fix32* rate);
 
+extern "C" {
     void  func_0208532c(FldStage* stage, Render* render);
     void  func_02085348(FldStage* stage);
     void  func_020857a8(int index, dss::Fix32Vector3 scale);
@@ -24,7 +24,6 @@ extern "C" {
     int*  func_0207f88c(void* heap);
     void  func_02067940(const void* src, void* dst);              // MI_Copy36B
     void  func_0204bc50(FldCollision* coll);                       // FldCollision::searchClear
-    int   func_02031e84(int value);                                // abs
 
     void  func_02042428(fld::FLDObject* self, void* model, void* texture, void* coll, int heap);
     void  func_02045004(fld::FLDObject* self);
@@ -59,9 +58,6 @@ extern "C" {
     int   func_02041afc(int id, int face, COLL_HEADER* coll, COLL_POLY* poly, void* work, int flag);
     int   func_02053abc(COLL_HEADER* coll, int obj, int wall);
 
-    void  func_02088b3c(dss::Fix32Vector3* v, int value);          // Fix32Vector3 *= int
-    void  func_02088c7c(dss::Fix32Vector3* v, int value);          // Fix32Vector3 /= int
-    void  func_020872d8(dss::Fix32* v, int value);                 // Fix32 *= int
 }
 
 struct COLL_POLY {

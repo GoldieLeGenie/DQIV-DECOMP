@@ -1,4 +1,5 @@
 #pragma once
+#include "main/btl/BattleAutoFeed.hpp"
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 #include "main/status/UseActionParam.hpp"
@@ -20,8 +21,6 @@ namespace btl {
     };   
 }
 
-extern "C" void  func_0208988c(void);                                 // 
 extern "C" void  func_ov003_02129c58(status::CharacterStatus*, int, int, int); // 
 extern "C" void func_ov003_02129ca0(status::CharacterStatus*, int);  // 
 
-extern "C" int func_020898a0(void);                        // 

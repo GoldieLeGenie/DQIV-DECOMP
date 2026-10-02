@@ -43,7 +43,7 @@ struct MaterielMenu_CHANGEGIFT_SELECTCHARA : menu::MenuBase
 {
     menu::MenuItem menuItem_;           /* 0x1C */
     menu::MenuItem menuItem2_;          /* 0x80 */
-    menu::MenuNavigator navigator_;     /* 0xE4 */
+    CursorMoveGridLoop navigator_;     /* 0xE4 */
     int activeChara_;                   /* 0xF0 */
     int maxCharaCount_;                 /* 0xF4 */
 
@@ -58,7 +58,7 @@ struct MaterielMenu_CHANGEGIFT_SELECTGIFT : menu::MenuBase
 {
     menu::MenuItem menuItem_;           /* 0x1C */
     menu::MenuItem menuItem2_;          /* 0x80 */
-    menu::MenuNavigator navigator_;     /* 0xE4 */
+    CursorMoveGridLoop navigator_;     /* 0xE4 */
     int activeItem_;                    /* 0xF0 */
     int itemCount_;                     /* 0xF4 */
     int fukuroItemCount_[6];            /* 0xF8 */

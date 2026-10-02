@@ -78,8 +78,3 @@ struct BattleMonsterDrawParam {
 };
 extern BattleMonsterDrawParam g_BattleMonsterDrawParam;
 
-extern "C" void func_0205b2f0(void* obj, dss::Vector3int pos);   // DSSACharacter::setPositionInt
-extern "C" void func_0200ad08(encount::Encount*);         // self = func_0200a6c8()
-extern "C" void func_0200ad18(encount::Encount*, int);    // "disableEncount" (a3/cf)
-extern "C" void func_0200ad28(encount::Encount*, int);    // 
-extern "C" void func_0200ad38(encount::Encount*, int);    // "easyEncount" (d7)

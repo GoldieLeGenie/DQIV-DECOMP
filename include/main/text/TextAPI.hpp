@@ -46,7 +46,6 @@ enum MACRO_STAT {
 };
 
 
-/* DS MsgVar (0x1C) */
 struct MsgVar {
     int m_def;          /* 0x00 */
     int m_type;         /* 0x04 */

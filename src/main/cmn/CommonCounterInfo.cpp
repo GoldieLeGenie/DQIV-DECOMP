@@ -1,4 +1,5 @@
 #include "main/cmn/CommonCounterInfo.hpp"
+#include "main/dss/Pad.hpp"
 
 cmn::CommonCounterInfo cmn::g_CommonCounterInfo;
 
@@ -38,16 +39,16 @@ THUMB void cmn::CommonCounterInfo::setWaitZero(int frame) {
 
 THUMB int cmn::CommonCounterInfo::checkBottun()
 {
-    if ((func_0207f280(&data_02116d40) & 1)
-     || (func_0207f280(&data_02116d40) & 2)
-     || (func_0207f280(&data_02116d40) & 0x400)
-     || (func_0207f280(&data_02116d40) & 0x800)
-     || (func_0207f280(&data_02116d40) & 0x200)
-     || (func_0207f280(&data_02116d40) & 0x100)
-     || (func_0207f280(&data_02116d40) & 0x40)
-     || (func_0207f280(&data_02116d40) & 0x80)
-     || (func_0207f280(&data_02116d40) & 0x20)
-     || (func_0207f280(&data_02116d40) & 0x10)) {
+    if ((data_02116d40.unkfunc_0207f280() & 1)
+     || (data_02116d40.unkfunc_0207f280() & 2)
+     || (data_02116d40.unkfunc_0207f280() & 0x400)
+     || (data_02116d40.unkfunc_0207f280() & 0x800)
+     || (data_02116d40.unkfunc_0207f280() & 0x200)
+     || (data_02116d40.unkfunc_0207f280() & 0x100)
+     || (data_02116d40.unkfunc_0207f280() & 0x40)
+     || (data_02116d40.unkfunc_0207f280() & 0x80)
+     || (data_02116d40.unkfunc_0207f280() & 0x20)
+     || (data_02116d40.unkfunc_0207f280() & 0x10)) {
         return 1;
     }
     return 0;

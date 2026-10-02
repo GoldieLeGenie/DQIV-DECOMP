@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "ov027/MaterielMenu_CHURCH/MaterielMenu_CHURCH.hpp"
+#include "main/object/DisplayCharacter.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/text/TextAPI.hpp"
 #include "main/global/Global.hpp"
@@ -22,10 +23,10 @@ static int miracleMessage[3][7] = {
 THUMB void MaterielMenu_CHURCH_MIRACLE::menuSetup()
 {
     status::g_Party.setBattleMode();
-    func_02051900(&menuItem_, 3, 5);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = 0;
-    func_02023324(&navigator_);
-    func_02023504(&navigator_, 5, 2, status::g_Party.getCount());
+    navigator_.setupBase();
+    navigator_.setup(5, 2, status::g_Party.getCount());
     miracle_ = -1;
     miracleStatus_ = MIRACLE_NONE;
     unk_100 = 1;
@@ -76,7 +77,7 @@ THUMB void MaterielMenu_CHURCH_MIRACLE::menuDraw()
     if (data_020ed1bc.isMessageWAITPROG() && miracleStatus_ != MIRACLE_ISEND && miracleStatus_ != MIRACLE_SOUND && miracleStatus_ != MIRACLE_SOUNDEND) {
         status::g_Party.setBattleMode();
         func_ov016_0216fcbc(status::g_Party.getCount());
-        func_02051968(&menuItem_);
+        menuItem_.drawActive();
         return;
     }
     func_ov016_0216fc94(0, 0);
@@ -188,8 +189,8 @@ THUMB bool MaterielMenu_CHURCH_MIRACLE::listUpdate()
             return false;
         }
         int active = menuItem_.active_;
-        int result = func_02023274(&menuItem_, &navigator_);
-        func_02023504(&navigator_, 5, 2, status::g_Party.getCount());
+        int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
+        navigator_.setup(5, 2, status::g_Party.getCount());
         if (result != 0) {
             if (result == 2) {
                 redraw_ = 1;
@@ -257,13 +258,13 @@ THUMB void MaterielMenu_CHURCH_MIRACLE::selectRevivalEnd()
         close();
         cmn::GameManager::getSingleton()->playerManager_->setLock(1);
         cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 0;
-        func_020499a4(0);
+        BillboardCharacter::setAllCharaAnim(0);
         MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
         return;
     }
     cmn::GameManager::getSingleton()->playerManager_->setLock(0);
     cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 1;
-    func_020499a4(1);
+    BillboardCharacter::setAllCharaAnim(1);
     int playerID = status::g_Party.getPlayerIndex(activeChara_);
     data_020ed1bc.openMessageForMENU();
     TextAPI::setMACRO0(0x12, 0x50000000, playerID);

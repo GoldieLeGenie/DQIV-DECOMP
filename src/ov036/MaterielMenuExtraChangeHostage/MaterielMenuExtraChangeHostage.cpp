@@ -1,4 +1,5 @@
 #include "ov036/MaterielMenuExtraChangeHostage/MaterielMenuExtraChangeHostage.hpp"
+#include "main/object/DisplayCharacter.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/cmn/GameManager.hpp"
@@ -17,7 +18,7 @@ THUMB void MaterielMenuExtraChangeHostage::menuSetup()
         }
     }
 
-    func_02051900(&menuItem_, 3, 5);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
 
     menuItem_.active_ = 0;
     hostageStatus_ = HOSTAGE_ISCHANGE;
@@ -43,7 +44,7 @@ THUMB void MaterielMenuExtraChangeHostage::menuDraw()
 {
     if (hostageStatus_ == HOSTAGE_SELECT) {
         func_ov016_0216fdb8();
-        func_02051968(&menuItem_);
+        menuItem_.drawActive();
     }
 }
 
@@ -106,7 +107,7 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
                     cmn::GameManager::getSingleton();
                     cmn::PlayerManager::setLock(0);
                     cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 1;
-                    func_020499a4(1);
+                    BillboardCharacter::setAllCharaAnim(1);
                     TownCharacterManager::getSingleton()->setRotate(ctrlID_, 0x4000);
                 }
 
@@ -121,9 +122,9 @@ THUMB void MaterielMenuExtraChangeHostage::menuUpdate()
 }
 THUMB void MaterielMenuExtraChangeHostage::memberUpdate()
 {
-    func_02023504(&navigator_, 5, 2, status::g_Party.getCount());
+    navigator_.setup(5, 2, status::g_Party.getCount());
 
-    int r = func_02023274(&menuItem_, &navigator_);
+    int r = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
 
     if (r != 0) {
         redraw_ = 1;
@@ -182,7 +183,7 @@ THUMB void MaterielMenuExtraChangeHostage::memberChange()
     cmn::PlayerManager::setLock(1);
 
     cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 0;
-    func_020499a4(0);
+    BillboardCharacter::setAllCharaAnim(0);
 
     g_Global.bookingFlag_ = Global::BOOKING_HOSTAGE;
     

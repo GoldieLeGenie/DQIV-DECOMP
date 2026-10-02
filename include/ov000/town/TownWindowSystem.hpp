@@ -24,4 +24,5 @@ struct TownWindowSystem {
 
     void changeShopMenuPhase(int type) { cmdWindow_.changeShopMenuPhase(type); }
     bool isMessage() { return cmdWindow_.isMessage(); }
+    bool isShopMenu() { return cmdWindow_.isShopMenu(); }
 };

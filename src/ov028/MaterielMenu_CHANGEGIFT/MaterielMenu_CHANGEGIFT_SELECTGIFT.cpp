@@ -7,9 +7,9 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::menuSetup()
 {
     status::g_Party.setPlayerMode();
     func_02080e64(-4, 0);
-    func_02051900(&menuItem_, 1, 5);
-    func_02051900(&menuItem2_, 2, 0);
-    func_02023324(&navigator_);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
+    menuItem2_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
+    navigator_.setupBase();
     activeItem_ = 0;
     itemCount_ = MaterielMenu_SHOP_MANAGER::getSingleton()->getSellItemCount();
     message_ = 0;
@@ -39,7 +39,7 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::menuDraw()
         return;
     }
     func_ov016_0216fb24(fukuroItemCount_, 1);
-    func_02051968(&menuItem_);
+    menuItem_.drawActive();
 }
 
 THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::menuUpdate()
@@ -58,12 +58,12 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::menuUpdate()
         }
         return;
     }
-    if (func_02023230(&menuItem2_)) {
+    if (MenuUpdate_Assist::isCancel(menuItem2_)) {
         cancelChange();
         return;
     }
-    func_02023504(&navigator_, 1, 6, itemCount_);
-    int result = func_02023274(&menuItem_, &navigator_);
+    navigator_.setup(1, 6, itemCount_);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         activeItem_ = menuItem_.active_;
         int activeItem = activeItem_;
@@ -87,7 +87,7 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::checkAmount()
         return;
     }
     data_020ed1bc.addMessage(0xc8b02, 0xc8b03);
-    func_02051900(&menuItem_, 3, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     selectChara_ = 1;
 }
 

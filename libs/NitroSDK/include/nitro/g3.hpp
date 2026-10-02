@@ -44,6 +44,12 @@ inline void G3_Scale(fx32 x, fx32 y, fx32 z) {
 inline void G3_Color(unsigned short rgb) {
     REG_GFX_FIFO_VERTEX_COLOR = rgb;
 }
+inline void G3_MaterialColorDiffAmb(unsigned int diffuse, unsigned int ambient, int isSetVtxColor) {
+    REG_GFX_FIFO_MATERIAL_DIFFUSE_AMBIENT = diffuse | (ambient << 16) | (isSetVtxColor ? 0x8000 : 0);
+}
+inline void G3_MaterialColorSpecEmi(unsigned int specular, unsigned int emission, int isShininess) {
+    REG_GFX_FIFO_MATERIAL_SPECULAR_EMISSION = specular | (emission << 16) | (isShininess ? 0x8000 : 0);
+}
 inline void G3_Begin(int primitive) {
     REG_GFX_FIFO_POLYGONS_BEGIN = primitive;
 }

@@ -38,7 +38,7 @@ ARM void TownCharacterBase::setup(TOWN_CHARACTER& chara)
     data_.dir = chara.dir;
     data_.position = chara.position;
     data_.flag.flag_ = 0;
-    func_020310d0(&simpleMove_);
+    simpleMove_.setup();
     moveType_ = MOVE_TYPE_NONE;
     stageColl_ = 0;
     animCounter_ = 0;
@@ -131,16 +131,16 @@ ARM void TownCharacterBase::execMove()
     }
     dss::Fix32Vector3 oldPos = data_.position;
     dss::Fix32Vector3 newPos = oldPos;
-    func_020310f4(&simpleMove_, &newPos);
+    simpleMove_.execMove(newPos);
     if (TownPlayerManager::getSingleton()->charaColl_ == 1 && collFlag_ == 1) {
         if ((areaCheck_ == 1 && (bool)(data_.flag.flag_ & 1) == true) || areaCheck_ == 0) {
-            dss::Fix32Vector3 dirVec = func_02088988(newPos, oldPos);
+            dss::Fix32Vector3 dirVec = newPos - oldPos;
             dss::Fix32Vector3 playerPos = TownPlayerManager::getSingleton()->getPosition();
             playerPos.vy = newPos.vy;
-            dss::Fix32Vector3 vec = func_02088988(playerPos, newPos);
-            if (func_02088f20(vec).value < ((TownPlayerAction::collR * TownPlayerAction::collR) * 4).value + 0x12c) {
-                func_02089168(&dirVec);
-                func_02089168(&vec);
+            dss::Fix32Vector3 vec = playerPos - newPos;
+            if (vec.lengthsq().value < ((TownPlayerAction::collR * TownPlayerAction::collR) * 4).value + 0x12c) {
+                dirVec.normalize();
+                vec.normalize();
                 dss::Fix32 dot = vec * dirVec;
                 if (dot.value > 0x165) {
                     return;
@@ -162,7 +162,7 @@ ARM void TownCharacterBase::execMove()
             return;
         }
     }
-    if (func_02031160(&simpleMove_) != 1) {
+    if (simpleMove_.moveUpdate() != 1) {
         return;
     }
     if (moveType_ == MOVE_TYPE_TO_PARTY) {
@@ -333,9 +333,9 @@ ARM void TownCharacterBase::execute()
     if ((bool)(data_.flag.flag_ & 0x10) == true) {
         dss::Vector3<short> angle;
         angle.vy = getDir();
-        func_02031154(&simpleMove_, &angle);
+        simpleMove_.execRot(angle);
         setDir(angle.vy);
-        if (func_020311c8(&simpleMove_) == 1) {
+        if (simpleMove_.rotUpdate() == 1) {
             data_.flag.flag_ &= ~0x10;
         }
     }
@@ -447,23 +447,23 @@ ARM void TownCharacterBase::execPursueMove()
     static dss::Fix32 length2(0xb33);
     dss::Fix32Vector3 oldPos = data_.position;
     int drawCharaCount = TownPlayerManager::getSingleton()->partyDraw_.countReal_;
-    dss::Fix32Vector3 vec = func_02088988(TownPlayerManager::getSingleton()->party_.getMemberPosition(drawCharaCount), oldPos);
-    if (func_02088f20(vec) < fixLen * fixLen) {
+    dss::Fix32Vector3 vec = (TownPlayerManager::getSingleton()->party_.getMemberPosition(drawCharaCount) - oldPos);
+    if (vec.lengthsq() < fixLen * fixLen) {
         return;
     }
-    dss::Fix32Vector3 vec2 = func_02088988(TownPlayerManager::getSingleton()->getPosition(), oldPos);
+    dss::Fix32Vector3 vec2 = (TownPlayerManager::getSingleton()->getPosition() - oldPos);
     if (collFlag_ == 1) {
-        if (func_02088f20(vec2) < length2 * length2) {
+        if (vec2.lengthsq() < length2 * length2) {
             return;
         }
     }
     short idx = getDir();
     if (moveData_.counter % 60 < 30 && (func_02081254() & 1)) {
-        func_02089168(&vec);
+        vec.normalize();
         dss::Fix32Vector3 newPos = oldPos + vec * moveData_.speed;
         TownStageManager::getSingleton()->characoterColl(oldPos, newPos, TownPlayerAction::collR, &newPos, 3);
         setPosition(newPos);
-        vec = func_02088988(newPos, oldPos);
+        vec = newPos - oldPos;
         TownActionCalculate::getIdxByVec(idx, vec);
         setDir(idx);
     }
@@ -527,7 +527,7 @@ ARM void TownCharacterBase::execAreaMove()
             pos2.vy = pos1.vy;
             checkMoveColl(pos1, pos2, retLen, tempLen);
         }
-        func_02088b10(&moveData_.vector[2], &moveData_.speed);
+        moveData_.vector[2] *= moveData_.speed;
     }
     if (moveData_.counter < 35) {
         dss::Fix32Vector3 oldPos = data_.position;
@@ -542,8 +542,8 @@ ARM void TownCharacterBase::execAreaMove()
             return;
         }
         if ((areaCheck_ == 1 && (bool)(data_.flag.flag_ & 1) == true) || areaCheck_ == 0) {
-            dss::Fix32Vector3 vec1 = func_02088988(TownPlayerManager::getSingleton()->getPosition(), newPos);
-            if (func_02088f20(vec1).value < ((TownPlayerAction::townCharaR * TownPlayerAction::townCharaR) * 4).value + 0x190) {
+            dss::Fix32Vector3 vec1 = (TownPlayerManager::getSingleton()->getPosition() - newPos);
+            if (vec1.lengthsq().value < ((TownPlayerAction::townCharaR * TownPlayerAction::townCharaR) * 4).value + 0x190) {
                 dss::Fix32Vector3 vec2 = moveData_.vector[2];
                 dss::Fix32 dot = vec1 * vec2;
                 if (dot > dss::Fix32(0L)) {
@@ -594,8 +594,8 @@ ARM void TownCharacterBase::setMoveToParty()
         moveType_ = MOVE_TYPE_NONE;
         return;
     }
-    dss::Fix32 length0 = func_02088e90(func_02088988(script_.node[1], script_.node[0]));
-    dss::Fix32 length1 = func_02088e90(func_02088988(script_.node[2], script_.node[1]));
+    dss::Fix32 length0 = ((script_.node[1] - script_.node[0])).length();
+    dss::Fix32 length1 = ((script_.node[2] - script_.node[1])).length();
     int tempFrame = script_.frame;
     script_.num[1] = tempFrame * (length1 / (length0 + length1)).value / 4096;
     script_.frame = tempFrame * (length0 / (length0 + length1)).value / 4096;
@@ -615,11 +615,11 @@ ARM void TownCharacterBase::setSimpleMove()
     if (moveType_ != MOVE_TYPE_TO_PARTY) {
         moveType_ = MOVE_TYPE_SIMPLE_MOVE;
     }
-    func_020311f0(&simpleMove_, &script_.node[0], &script_.node[1]);
-    func_020312e8(&simpleMove_, script_.frame);
+    simpleMove_.setActionMove(script_.node[0], script_.node[1]);
+    simpleMove_.setMoveFrame(script_.frame);
     setPersonalEventLock(0);
     short idx = getDir();
-    dss::Fix32Vector3 dirVec = func_02088988(script_.node[1], script_.node[0]);
+    dss::Fix32Vector3 dirVec = script_.node[1] - script_.node[0];
     TownActionCalculate::getIdxByVec(idx, dirVec);
     moveIdx_ = idx;
 }
@@ -633,8 +633,8 @@ ARM void TownCharacterBase::setSimpleRot(short idx, int frame, int mode)
     end.set(0, 0, 0);
     start.vy = getDir();
     end.vy = idx;
-    func_0203122c(&simpleMove_, &start, &end);
-    func_0203133c(&simpleMove_, frame, mode);
+    simpleMove_.setActionRot(start, end);
+    simpleMove_.setRotFrame(frame, mode);
     setPersonalEventLock(0);
 }
 
@@ -642,7 +642,7 @@ ARM void TownCharacterBase::setJumpMove(dss::Fix32Vector3 endPos, int frame)
 {
     moveType_ = MOVE_TYPE_JUMP;
     dss::Fix32Vector3 pos = data_.position;
-    func_02031bd8(&simpleMove_, &pos, &endPos, frame);
+    simpleMove_.setJumpMove(pos, endPos, frame);
     script_.isEnd = 0;
     setPersonalEventLock(0);
 }
@@ -650,8 +650,8 @@ ARM void TownCharacterBase::setJumpMove(dss::Fix32Vector3 endPos, int frame)
 ARM void TownCharacterBase::jumpMove()
 {
     dss::Fix32Vector3 pos = data_.position;
-    func_020310f4(&simpleMove_, &pos);
-    if (func_02031160(&simpleMove_) == 1) {
+    simpleMove_.execMove(pos);
+    if (simpleMove_.moveUpdate() == 1) {
         moveType_ = MOVE_TYPE_NONE;
         script_.isEnd = 1;
     }
@@ -702,12 +702,12 @@ ARM void TownCharacterBase::execMovePassive()
     }
     dss::Fix32Vector3 nowPos = data_.position;
     dss::Fix32Vector3 playerPos = g_cmnPartyInfo.position_;
-    dss::Fix32Vector3 vec = func_02088988(nowPos, playerPos);
+    dss::Fix32Vector3 vec = nowPos - playerPos;
     vec.vy = 0L;
-    if (func_02031e84(vec.vy.value) > TownPlayerAction::townCharaR.value) {
+    if (unkfunc_02031e84(vec.vy.value) > TownPlayerAction::townCharaR.value) {
         return;
     }
-    if (!(func_02088f20(vec) <= (TownPlayerAction::townCharaR * TownPlayerAction::townCharaR) * 4)) {
+    if (!(vec.lengthsq() <= (TownPlayerAction::townCharaR * TownPlayerAction::townCharaR) * 4)) {
         return;
     }
     moveData_.counter++;
@@ -748,19 +748,19 @@ ARM void TownCharacterBase::execMoveReverse()
 {
     dss::Fix32Vector3 playerPos = g_cmnPartyInfo.position_;
     dss::Fix32Vector3 prevPlayerPos = g_cmnPartyInfo.prev_position_;
-    if (func_02088ca8(&playerPos, &prevPlayerPos)) {
+    if ((playerPos == prevPlayerPos)) {
         return;
     }
-    dss::Fix32Vector3 vec = func_02088988(playerPos, prevPlayerPos);
-    func_02089168(&vec);
+    dss::Fix32Vector3 vec = playerPos - prevPlayerPos;
+    vec.normalize();
     switch (TownActionCalculate::getParamDir4ByIdx(getDir())) {
     case 0:
     case 2:
-        func_020872d8(&vec.vz, -1);
+        vec.vz *= -1;
         break;
     case 1:
     case 3:
-        func_020872d8(&vec.vx, -1);
+        vec.vx *= -1;
         break;
     }
     dss::Fix32Vector3 nowPos = data_.position;
@@ -809,8 +809,8 @@ ARM void TownCharacterBase::execMoveRandom()
         }
         moveData_.vector[3].vx.value = dir;
         TownActionCalculate::getDirByIdx(dir, moveData_.vector[2]);
-        func_02089168(&moveData_.vector[2]);
-        func_02088b10(&moveData_.vector[2], &moveData_.speed);
+        moveData_.vector[2].normalize();
+        moveData_.vector[2] *= moveData_.speed;
     }
     dss::Fix32Vector3 nowPos = data_.position;
     dss::Fix32Vector3 nextPos = nowPos + moveData_.vector[2];
@@ -829,11 +829,11 @@ ARM void TownCharacterBase::execMoveRandom()
 
 ARM bool TownCharacterBase::checkPlayerColl(dss::Fix32Vector3& newPos)
 {
-    dss::Fix32Vector3 vec1 = func_02088988(TownPlayerManager::getSingleton()->getPosition(), newPos);
-    if (func_02088f20(vec1) < (TownPlayerAction::townCharaR * TownPlayerAction::townCharaR) * 4) {
+    dss::Fix32Vector3 vec1 = (TownPlayerManager::getSingleton()->getPosition() - newPos);
+    if (vec1.lengthsq() < (TownPlayerAction::townCharaR * TownPlayerAction::townCharaR) * 4) {
         dss::Fix32Vector3 vec2 = moveData_.vector[2];
-        func_02089168(&vec2);
-        func_02089168(&vec1);
+        vec2.normalize();
+        vec1.normalize();
         dss::Fix32 dot = vec1 * vec2;
         if (dot > dss::Fix32(0L)) {
             return true;
@@ -872,7 +872,7 @@ ARM bool TownCharacterBase::isEndFade()
 ARM void TownCharacterBase::setChangePaletteRate(dss::Fix32Vector3& rgb, int rgbFrame)
 {
     rgbChangeType_ = RGB_CHANGE1;
-    addRGB = func_02088bdc(func_02088988(rgb, setRGB), rgbFrame);
+    addRGB = (rgb - setRGB) / rgbFrame;
     rgbFrame_ = rgbFrame;
     setPersonalEventLock(0);
 }
@@ -1034,7 +1034,7 @@ ARM void TownCharacterBase::setRotFrame(int frame, short idx, int flag, int type
         r = idx;
     }
     dss::Vector3<short> rot(0, r, 0);
-    func_02031580(&simpleMove_, &start, &rot, frame);
+    simpleMove_.setSimpleRot(start, rot, frame);
     if (typeA == 1) {
         data_.flag.flag_ |= 0x800;
     }

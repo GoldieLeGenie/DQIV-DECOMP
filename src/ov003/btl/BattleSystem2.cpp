@@ -15,7 +15,6 @@
 
 THUMB btl::BattleSystem2::BattleSystem2()
 {
-    func_02084ef0(&render_);
 }
 
 THUMB btl::BattleSystem2::~BattleSystem2()
@@ -36,7 +35,7 @@ THUMB void btl::BattleSystem2::initialize()
     DSSAObject::setPriority(1);
     status::ExcelParamBis::setupBattle(&status::excelParam);
     status::ExcelParamBis::setupBattleInitialize(&status::excelParam);
-    func_02084efc(&render_);
+    render_.unkfunc_02084efc();
     BattleStage::getSingleton()->initialize();
     BattleCamera::getSingleton()->initialize();
     BattleEffectManager::getSingleton()->initialize();
@@ -46,7 +45,7 @@ THUMB void btl::BattleSystem2::initialize()
     
     btl::BattleMonsterDraw2::getSingleton()->setup();
     status::HaveAction::setBattleMode();
-    func_0203e8f8()->initialize();
+    cmn::CommonEffectLocation::getSingleton()->initialize();
     status::ExcelParamBis::cleanupBattleInitialize(&status::excelParam);
     dss::Fix32 scale2;
     scale2.value = 800;
@@ -54,7 +53,7 @@ THUMB void btl::BattleSystem2::initialize()
 
 THUMB void btl::BattleSystem2::terminate()
 {
-    func_0203e8f8()->terminate();
+    cmn::CommonEffectLocation::getSingleton()->terminate();
     BattleRoot::getSingleton()->terminate();
     status::HaveAction::setTownMode();
     
@@ -63,14 +62,14 @@ THUMB void btl::BattleSystem2::terminate()
     BattleCamera::getSingleton()->terminate();
     BattleStage::getSingleton()->terminate();
     BattleMonsterMask::getSingleton()->terminate();
-    func_02084f50(&render_);
+    render_.unkfunc_02084f50();
     status::ExcelParamBis::cleanupBattle(&status::excelParam);
     g_Global.partChangeFlag_ = 0;
 }
 
 THUMB void btl::BattleSystem2::execute()
 {
-    func_0203e8f8()->execute();
+    cmn::CommonEffectLocation::getSingleton()->execute();
     BattleRoot::getSingleton()->execute();
     BattleStage::getSingleton()->execute();
     BattleEffectManager::getSingleton()->execute();
@@ -83,7 +82,7 @@ THUMB void btl::BattleSystem2::draw()
     DSSAObjectWithCamera::camera_ = BattleCamera::getSingleton()->getCamera();
     BattleEffectManager::getSingleton()->extraDraw();
     BattleMonsterMask::getSingleton()->draw();
-    func_02084fa4(&render_);
+    render_.unkfunc_02084fa4();
     BattleRoot::getSingleton()->draw();
     
     btl::BattleMonsterDraw2::getSingleton()->draw();

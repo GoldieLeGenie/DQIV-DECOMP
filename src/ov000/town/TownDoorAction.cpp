@@ -37,7 +37,7 @@ ARM int TownDoorAction::setup()
     short dirIdx = TownPlayerManager::getSingleton()->getDirection();
     dss::Fix32Vector3 dir;
     TownActionCalculate::getDirByIdx(dirIdx, dir);
-    dss::Fix32Vector3 end = func_02088988(pos, dir * len);
+    dss::Fix32Vector3 end = pos - dir * len;
     int exitIndex = func_0200c020();
     func_02040b28(TownStageManager::getSingleton()->stage_.m_fld.m_coll, exitIndex, 0);
     int poly;
@@ -225,7 +225,7 @@ ARM bool TownDoorAction::checkSurface()
             poly = TownStageManager::getSingleton()->coll_.m_surfacePolyNo[7];
         }
         start = pos + dir;
-        end = func_02088988(pos, dir * length);
+        end = pos - dir * length;
         int obj = TownStageManager::getSingleton()->stage_.collCrossCheckOtherNo(start, end, poly, &dist);
         if (obj != -1) {
             obj = func_02040928(TownStageManager::getSingleton()->stage_.m_fld.m_coll, obj);
@@ -352,7 +352,7 @@ ARM void TownDoorAction::setDoorS(int objNo)
     short rot = TownStageManager::getSingleton()->stage_.getObjectRotIdxY(objNo);
     TownStageManager::getSingleton()->getObjectPos(objNo, 0, &pos);
     TownActionCalculate::getDirByIdx(rot, dir);
-    vec = func_02088988(pos, position_);
+    vec = pos - position_;
     dot = vec * dir;
     sDoor_ObjNo_ = objNo;
     if (dot > dss::Fix32(0L)) {
@@ -373,7 +373,7 @@ ARM void TownDoorAction::setDoorW(int objNo)
     int pair = TownActionCalculate::searchPairWdoor(objNo, &door1, &door2);
     wDoor1_ObjNo_ = objNo;
     wDoor2_ObjNo_ = pair;
-    vec = func_02088988(door2, door1);
+    vec = door2 - door1;
     cross = vec % dir;
     if (cross.vy > dss::Fix32(0L)) {
         TownStageManager::getSingleton()->commonAnim(wDoor1_ObjNo_, 4);

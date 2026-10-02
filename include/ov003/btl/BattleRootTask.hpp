@@ -1,4 +1,5 @@
 #pragma once
+#include "main/menu/MenuAPI.hpp"
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 #include "main/task/PartTask.hpp"
@@ -152,6 +153,4 @@ namespace btl {
 #include "ov015/btl/BattleMenu.hpp"
 
 extern "C" {
-    void func_0200d5d4(void);
-    void func_0200d5e8(void);
 }

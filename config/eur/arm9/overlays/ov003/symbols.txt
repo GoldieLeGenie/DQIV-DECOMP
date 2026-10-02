@@ -654,9 +654,9 @@ _ZN3btl14ExecActionTask19setupTorunekoActionEv kind:function(arm,size=0x70) addr
 _ZN3btl15ExecMessageTask10initializeEv kind:function(arm,size=0x13c) addr:0x02130be0
 _ZN3btl15ExecMessageTask9terminateEv kind:function(arm,size=0xac) addr:0x02130d1c
 _ZN3btl15ExecMessageTask7executeEv kind:function(arm,size=0x90) addr:0x02130dc8
-data_ov003_02130e9c kind:data(any) addr:0x02130e9c
-data_ov003_02131740 kind:data(any) addr:0x02131740
-data_ov003_021326f8 kind:data(any) addr:0x021326f8
+_ZN5param15BattleMap_arrayE kind:data(byte[2212]) addr:0x02130e9c local
+_ZN5param17EffectParam_arrayE kind:data(byte[4024]) addr:0x02131740
+_ZN5param17MonsterAnim_arrayE kind:data(byte[26952]) addr:0x021326f8 local
 monsterCallTypeTable kind:data(any) addr:0x02139040
 monsterFormationTable kind:data(any) addr:0x02139050
 indexOffset kind:data(byte[168]) addr:0x02139060 local
@@ -1066,6 +1066,7 @@ actionAnimation kind:bss addr:0x0216a97c
 @2418 kind:data(byte[16]) addr:0x02130e68 local
 VELORINMAN_POS2 kind:data(byte[16]) addr:0x02130e78 local
 @2381 kind:data(byte[16]) addr:0x02130e88 local
+data_ov003_02130e98 kind:data(word) addr:0x02130e98
 __sinit_BattleExecVictory.cpp kind:function(thumb,size=0x488) addr:0x021391a0 local
 .p__sinit_BattleExecVictory.cpp kind:data(word) addr:0x021396bc local
 preRealVelorinmanIdx kind:data(byte[4]) addr:0x0213a060 local

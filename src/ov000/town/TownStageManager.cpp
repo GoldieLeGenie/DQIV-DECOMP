@@ -66,12 +66,12 @@ ARM void TownStageManager::initialize()
     }
     softEraseNum_ = 0;
     setClipping(1);
-    func_0203e8f8()->initialize();
+    cmn::CommonEffectLocation::getSingleton()->initialize();
 }
 
 ARM void TownStageManager::terminate()
 {
-    func_0203e8f8()->terminate();
+    cmn::CommonEffectLocation::getSingleton()->terminate();
     stage_.cleanup();
     stage_.terminate();
     g_Stage.cleanup();
@@ -82,18 +82,18 @@ ARM void TownStageManager::terminate()
 ARM void TownStageManager::execute()
 {
     mapEffect_.execute();
-    func_0203e8f8()->execute();
+    cmn::CommonEffectLocation::getSingleton()->execute();
     execSoftErase();
     if (stopScript_ == 1) {
         stopScript_ = 0;
         TownSystem::getSingleton()->scriptLock_ = 0;
     }
-    if (func_0200a6c8()->disableFlag_) {
+    if (encount::Encount::getSingleton()->disableFlag_) {
         if (TownWindowSystem::getSingleton()->isOpen() == 1) {
             return;
         }
-        func_0200a6c8()->disableFlag_ = 0;
-        switch (func_0200a6c8()->disableAction_) {
+        encount::Encount::getSingleton()->disableFlag_ = 0;
+        switch (encount::Encount::getSingleton()->disableAction_) {
         case 0xa3:
             TextAPI::setMACRO0(10, 0x40000000, 0x71);
             func_02056358(0x30);
@@ -115,11 +115,11 @@ ARM void TownStageManager::execute()
             break;
         }
     }
-    if (func_0200a6c8()->easyFlag_ == 0) {
+    if (encount::Encount::getSingleton()->easyFlag_ == 0) {
         return;
     }
-    func_0200a6c8()->easyFlag_ = 0;
-    if (func_0200a6c8()->disableAction_ != 0xa6) {
+    encount::Encount::getSingleton()->easyFlag_ = 0;
+    if (encount::Encount::getSingleton()->disableAction_ != 0xa6) {
         return;
     }
     TextAPI::setMACRO0(10, 0x40000000, 0x74);
@@ -228,7 +228,7 @@ ARM dss::Fix32Vector3 TownStageManager::getRiseupPos(int uid, int type)
         }
         break;
     case 0x2c:
-        func_ov000_02142b70(TownExtraMapObjManager::getSingleton(), uid, &ret);
+        TownExtraMapObjManager::getSingleton()->getPosition(uid, ret);
         break;
     default:
         ret = TownStageManager::getSingleton()->getMapUidPos(uid);
@@ -266,7 +266,7 @@ ARM int TownStageManager::getObjectIDfromMapUid(int mapUid)
 ARM void TownStageManager::rotObjectUid(int uid, short rot)
 {
     dss::Fix32Vector3 vec;
-    func_02088b3c(&vec, 0);
+    vec *= 0;
     vec.vy.value = rot;
     stage_.setRotObjectUid(uid, vec);
 }
@@ -482,15 +482,15 @@ ARM bool TownStageManager::isPolyFacePosition(int polyNo, dss::Fix32Vector3& pla
         dss::Fix32Vector3 v0 = FldStage::getFx32Vector3(poly.bbox[0]);
         dss::Fix32Vector3 v1 = FldStage::getFx32Vector3(poly.bbox[1]);
         v0.vy = v1.vy = 0L;
-        dss::Fix32Vector3 vec = func_02088988(v0, v1);
-        if (func_02088f20(vec).value > 0x1000) {
+        dss::Fix32Vector3 vec = v0 - v1;
+        if (vec.lengthsq().value > 0x1000) {
             return true;
         }
         pos.vy = 0L;
-        if (func_02088988(pos, v0) * func_02088988(v0, v1) > dss::Fix32(0L)) {
+        if ((pos - v0) * (v0 - v1) > dss::Fix32(0L)) {
             return false;
         }
-        if (func_02088988(pos, v1) * func_02088988(v1, v0) > dss::Fix32(0L)) {
+        if ((pos - v1) * (v1 - v0) > dss::Fix32(0L)) {
             return false;
         }
     }
@@ -505,19 +505,19 @@ ARM bool TownStageManager::isPolyFacePosition(int polyNo, dss::Fix32Vector3& pla
         dss::Fix32Vector3 v0 = FldStage::getFx32Vector3(poly.bbox[0]);
         dss::Fix32Vector3 v1 = FldStage::getFx32Vector3(poly.bbox[1]);
         v0.vy = v1.vy = 0L;
-        dss::Fix32Vector3 vec = func_02088988(v0, v1);
+        dss::Fix32Vector3 vec = v0 - v1;
         pos.vy = 0L;
-        if (func_02088988(pos, v0) * func_02088988(v0, v1) > dss::Fix32(0L)) {
+        if ((pos - v0) * (v0 - v1) > dss::Fix32(0L)) {
             return false;
         }
-        if (func_02088988(pos, v1) * func_02088988(v1, v0) > dss::Fix32(0L)) {
+        if ((pos - v1) * (v1 - v0) > dss::Fix32(0L)) {
             return false;
         }
         dss::Fix32Vector3 normal = FldStage::getFx32Vector3(poly.normal);
-        if (func_02088988(pos, v0) * normal > len) {
+        if ((pos - v0) * normal > len) {
             return false;
         }
-        return !(func_02088988(pos, v0) * normal < dss::Fix32(0L));
+        return !((pos - v0) * normal < dss::Fix32(0L));
     }
     return false;
 }
@@ -529,7 +529,7 @@ ARM int TownStageManager::getObjectPos(int objectId, int index, dss::Fix32Vector
 
 ARM void TownStageManager::addMovePosByObjNo(int objNo, dss::Fix32Vector3& nowPos, dss::Fix32Vector3& nextPos)
 {
-    dss::Fix32Vector3 move = func_02088988(nextPos, nowPos);
+    dss::Fix32Vector3 move = nextPos - nowPos;
     stage_.addMovePosByObjNo(objNo, move);
 }
 

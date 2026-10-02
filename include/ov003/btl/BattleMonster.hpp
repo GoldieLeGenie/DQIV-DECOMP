@@ -37,7 +37,7 @@ namespace btl {
         void setPaletteAnim(int animNo);
         void setTransOfEnd();
 
-        dss::Fix32Vector3 getNullPosition(int index, int type) { return func_0205b1e0(&monsterDraw_, index, type); }
+        dss::Fix32Vector3 getNullPosition(int index, int type) { return monsterDraw_.getNullPosition(index, type); }
     };
 
     struct BattleMonsterDraw2 {
@@ -70,4 +70,4 @@ namespace btl {
     };
 }
 
-extern "C" int func_02035348(int monsterIndex);
+int getMonsterWidthInt(int monsterIndex);

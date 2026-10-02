@@ -1,4 +1,5 @@
 #include "ov037/PlayerTitle.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/StageStatus.hpp"
@@ -14,7 +15,7 @@ THUMB int cmn::PlayerTitleChapter4::getPartyTitle()
     int inMap = false;
     const char* checkName = "mjf1n1";
     char* mapName = g_Stage.getMapName();
-    if (func_020882b0(mapName, checkName) == 0 || func_020882b0(mapName, "mjf1b1") == 0) {
+    if (dss::DssUtils::unkfunc_020882b0(mapName, checkName) == 0 || dss::DssUtils::unkfunc_020882b0(mapName, "mjf1b1") == 0) {
         inMap = true;
     }
     status::HaveEquipment& haveEquipment = status::g_Party.getPlayerStatus(index)->haveStatusInfo_.haveEquipment_;

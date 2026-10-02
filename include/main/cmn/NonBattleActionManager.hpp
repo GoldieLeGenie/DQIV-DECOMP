@@ -31,9 +31,6 @@ namespace cmn
     extern NonBattleActionManager g_NonBattleActionManager;    // data_020ef9c8
 }
 
-extern "C" void func_020499a4(int);
-extern "C" void func_0204b694(int);
-extern "C" int func_02058114(void* global, int partId);
 
 struct UnkEffect_0202adc4 {
     virtual void vf00();

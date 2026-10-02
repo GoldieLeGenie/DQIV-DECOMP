@@ -3,6 +3,10 @@
 #include "GameInfo.hpp"
 #include "main/status/ExcelParam.hpp"
 
+namespace param {
+    extern const unsigned char EffectParam_array[4024];
+}
+
 namespace status {
     struct ExcelParamBis {
     

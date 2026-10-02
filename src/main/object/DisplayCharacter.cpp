@@ -110,7 +110,7 @@ ARM void DisplayCharacter::setAlpha(int alpha)
 {
     RenderObject::setAlpha(alpha);
     head_.setAlpha(alpha);
-    func_0204978c(this, alpha * 12 / 31);
+    func_0204978c(this, (unsigned char)(alpha * 12 / 31));
 }
 
 ARM int DisplayCharacter::box_testx1()
@@ -120,7 +120,7 @@ ARM int DisplayCharacter::box_testx1()
     }
     dss::Fix32Vector3 position = *getPosition();
     position.vx.value -= 0x800;
-    func_020484ec((VecFx32*)&position, (VecFx32*)&boxTestRotate_, (VecFx32*)&boxTestScale_, (VecFx32*)&boxTestParam_, &boxTestRate_);
+    unkfunc_020484ec((VecFx32*)&position, (VecFx32*)&boxTestRotate_, (VecFx32*)&boxTestScale_, (VecFx32*)&boxTestParam_, &boxTestRate_);
     int result;
     while (func_02065544(&result)) {
     }
@@ -230,8 +230,8 @@ ARM void DisplayCharacter::execScale()
 {
     dss::Fix32Vector3& cameraPosition = func_02049994()->getPosition();
     dss::Fix32Vector3 position = *getPosition();
-    dss::Fix32Vector3 distance = func_02088988(cameraPosition, position);
-    dss::Fix32 length = func_02088e90(distance);
+    dss::Fix32Vector3 distance = cameraPosition - position;
+    dss::Fix32 length = distance.length();
     dss::Fix32 offset;
     if (!(flag_ & 0x80)) {
         offset = nearBodyOffset_;
@@ -257,9 +257,9 @@ ARM void DisplayCharacter::exec()
 {
     dss::Fix32Vector3& cameraPosition = func_02049994()->getPosition();
     dss::Fix32Vector3 position = *getPosition();
-    dss::Fix32Vector3 distance = func_02088988(cameraPosition, position);
-    dss::Fix32 length = func_02088e90(distance);
-    func_02089168(&distance);
+    dss::Fix32Vector3 distance = cameraPosition - position;
+    dss::Fix32 length = distance.length();
+    distance.normalize();
     dss::Fix32 offset;
     if (!(flag_ & 0x80)) {
         offset = nearBodyOffset_;

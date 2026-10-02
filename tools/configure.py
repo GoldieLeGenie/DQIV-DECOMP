@@ -79,7 +79,12 @@ LD_FLAGS = " ".join([
     "-map closure,unused",  # Generate map file
     "-msgstyle gcc",        # Use GCC-like messages (some IDEs will make file names clickable)
     "-dead",                # Strip unused code
-    "-force_active _ZN30MaterielMenuExtraChangeHostage9menuSetupEv,_ZTV30MaterielMenuExtraChangeHostage",  # Keep ov036 (orphan overlay)
+    "-force_active _ZN30MaterielMenuExtraChangeHostage9menuSetupEv,_ZTV30MaterielMenuExtraChangeHostage"  # Keep ov036 (orphan overlay)
+    # called only through relocs ambiguous between overlays (overlays(2,9) / overlays(1,9)
+    ",_ZN12CasinoSystem16unkfunc_021227ccEv,_ZN12CasinoSystem12getSingletonEv,_ZN12CasinoSystem10initializeEv"
+    ",_ZN12PokerManager15getSelectCardNoEii"
+    # unreferenced ov003 .rodata word between BattleExecVictory and ExcelParamBis (dsd gap object)
+    ",data_ov003_02130e98",
 ])
 DSD_OBJDIFF_ARGS = " ".join([
     "--scratch",                        # Metadata for creating decomp.me scratches

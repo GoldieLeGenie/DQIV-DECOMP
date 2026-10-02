@@ -1,4 +1,5 @@
 #include "ov028/MaterielMenu_SHOP/MaterielMenu_SHOP.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/StoryStatus.hpp"
@@ -41,7 +42,7 @@ THUMB void MaterielMenu_SHOP_MANAGER::initializeShopItem()
     sellItemCount_ = status::g_Shop.getShopCount(shopType_);
     for (int i = 0; i < sellItemCount_; i++) {
         if (status::g_Story.chapter_ == 3) {
-            if (func_020882b0(mapName, "mf") == 0 && shopType_ == 2 && i > 2) {
+            if (dss::DssUtils::unkfunc_020882b0(mapName, "mf") == 0 && shopType_ == 2 && i > 2) {
                 if (status::g_Shop.sideJobItemFlag_[i] == 1) {
                     item_[i - minusCount] = status::g_Shop.getShopItem(shopType_, i);
                     itemPrice_[i - minusCount] = status::g_Shop.getShopPrice(shopType_, i);
@@ -58,7 +59,7 @@ THUMB void MaterielMenu_SHOP_MANAGER::initializeShopItem()
             item_[i] = status::g_Shop.getShopItem(shopType_, i);
             itemPrice_[i] = status::g_Shop.getShopPrice(shopType_, i);
             itemQuantity_[i] = 1;
-            if (func_020882b0(g_Stage.getMapName(), "ss5b1b") == 0) {
+            if (dss::DssUtils::unkfunc_020882b0(g_Stage.getMapName(), "ss5b1b") == 0) {
                 itemPrice_[i] *= 10;
             }
         }

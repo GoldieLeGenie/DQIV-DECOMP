@@ -2,15 +2,15 @@
 
 ARM dss::DualCameraBase::DualCameraBase()
 {
-    func_0208888c(&unk_004.m_pos, 0, 0, 1);
-    func_0208888c(&unk_004.m_up, 0, 1, 0);
+    unk_004.m_pos.setFix32(0, 0, 1);
+    unk_004.m_up.setFix32(0, 1, 0);
     unk_004.m_angle.vx = data_020c39c4[5];
     unk_004.m_angle.vy = data_020c39c4[2];
     unk_004.m_angle.vz = data_020c39c4[3];
     unk_004.m_distance = 8L;
     unk_004.m_fov2 = 5;
-    func_0208888c(&unk_068.m_pos, 0, 0, 1);
-    func_0208888c(&unk_068.m_up, 0, 1, 0);
+    unk_068.m_pos.setFix32(0, 0, 1);
+    unk_068.m_up.setFix32(0, 1, 0);
     unk_068.m_angle.vx = data_020c39c4[4];
     unk_068.m_angle.vy = data_020c39c4[1];
     unk_068.m_angle.vz = data_020c39c4[0];
@@ -103,7 +103,7 @@ ARM dss::DualCamera::DualCamera()
 {
     dss::Fix32Vector3 zero(0, 0, 0);
     setTarget(zero, 0);
-    func_02087168(&m_offset, 0);
+    m_offset = 0.0f;
     m_cameraNo = 1;
     m_dirOffset = 0;
     m_pursue = 1;
@@ -118,8 +118,8 @@ ARM void dss::DualCamera::calcPosition()
     if (m_pursue == 1) {
         DualCameraBase::calcPosition();
     } else {
-        Fix32Vector3 dir = func_02088988(unk_004.getTarget(), unk_004.getPosition());
-        func_02089168(&dir);
+        Fix32Vector3 dir = unk_004.getTarget() - unk_004.getPosition();
+        dir.normalize();
         unk_004.direction_ = dir;
     }
     MtxFx43 rotX;
@@ -137,7 +137,7 @@ ARM void dss::DualCamera::calcPosition()
     unk_068.setTarget(unk_004.getTarget() + offset);
     unk_068.setDistance(unk_004.getDistance());
     unk_068.setAngle(unk_004.getAngle());
-    offset = func_02088988(unk_068.m_target_pos, unk_068.m_pos);
+    offset = unk_068.m_target_pos - unk_068.m_pos;
     func_02088698(&rotX, m_dirOffset);
     func_020886d0(&rotY, -unk_068.m_angle.vy);
     offset = func_02088670(&rotY, &offset);

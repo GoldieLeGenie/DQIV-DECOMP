@@ -5,14 +5,22 @@
 #include "main/data/DataObject.hpp"
 #include "nitro/g3.hpp"
 
+struct PolygonVertex {
+    dss::Vector3<dss::Fix16> v[4];
+};
+
+/* vtable 0x020c4440 */
 struct PolygonObject : RenderObject3D {
     virtual void draw();                        // func_0208383c
 
-    dss::Vector3<short> vertex_[4];             // 0x48
-    dss::Vector2<dss::Fix32> texCoord_[4];      // 0x60
-    unsigned char unk_80;                       // 0x80
-    unsigned char unk_81;                       // 0x81
-    unsigned char unk_82;                       // 0x82
+    PolygonVertex vertex_;                      // 0x48
+    BillboardTexCoord texCoord_;                // 0x60
+    dss::BitFlag<unsigned char> unk_80;         // 0x80
+    dss::BitFlag<unsigned char> unk_81;         // 0x81
+    dss::BitFlag<unsigned char> unk_82;         // 0x82
+
+    void unkfunc_02083734(const PolygonVertex* vertex);         // setVertex
+    void unkfunc_020837d0(const BillboardTexCoord* texCoord);   // setTexCoord
 };
 
 struct CharacterShadow : PolygonObject {
@@ -41,6 +49,8 @@ struct BillboardCharacter : Billboard {
     CharacterShadow shadow_;                    // 0x11C
 
     BillboardCharacter();
+    static void setAllCharaAnim(int flag);
+    static int allAnimLock;
     ~BillboardCharacter() {}
 };
 

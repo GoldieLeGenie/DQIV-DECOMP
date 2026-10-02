@@ -1,4 +1,6 @@
 #include "main/Commands/CommonCommand.hpp"
+#include "main/global/GlobalDQ4.hpp"
+#include "main/object/DisplayCharacter.hpp"
 #include "ov000/town/TownCharacter.hpp"
 #include "main/btl/BattleScriptManager.hpp"
 #include "main/status/BattleResult.hpp"
@@ -25,14 +27,14 @@
 THUMB int cmd_encount(int* param)
 {
     if (param[0] == 0) {
-        func_0200acc8(func_0200a6c8(), param[1]);
+        encount::Encount::getSingleton()->forceBrew(param[1]);
     } else if (param[0] == 1) {
         btl::BattleScriptManager::getSingleton()->setEncountMap(param[1]);
-        func_0200acec(func_0200a6c8(), param[1]);
+        encount::Encount::getSingleton()->forceEventBrew(param[1]);
     }
     ScriptSystem::getSingleton()->executeEnable_ = 0;
-    if (func_02058114(&data_0210bb94, 0xe) == 1) {
-        func_ov001_0212a620(func_ov001_02127b28(), 1);
+    if (data_0210bb94.unkfunc_02058114(0xe) == 1) {
+        func_ov001_0212a620(FieldPlayerManager::getSingleton(), 1);
     } else {
         TownPlayerManager::getSingleton()->setLockByEventEncount(1);
     }
@@ -42,13 +44,13 @@ THUMB int cmd_encount(int* param)
 THUMB int cmd_encount_set_flag(int* param)
 {
     if (param[0] == 0) {
-        func_0200acc8(func_0200a6c8(), param[1]);
+        encount::Encount::getSingleton()->forceBrew(param[1]);
     } else if (param[0] == 1) {
         btl::BattleScriptManager::getSingleton()->setEncountMap(param[1]);
-        func_0200acec(func_0200a6c8(), param[1]);
+        encount::Encount::getSingleton()->forceEventBrew(param[1]);
     }
-    if (func_02058114(&data_0210bb94, 0xe) == 1) {
-        func_ov001_0212a620(func_ov001_02127b28(), 1);
+    if (data_0210bb94.unkfunc_02058114(0xe) == 1) {
+        func_ov001_0212a620(FieldPlayerManager::getSingleton(), 1);
     } else {
         TownPlayerManager::getSingleton()->setLockByEventEncount(1);
     }
@@ -66,13 +68,13 @@ THUMB int cmd_encount_first_strike(int* param)
         status::g_BattleResult.monsterFirstAttack_ = 1;
     }
     if (param[0] == 0) {
-        func_0200acc8(func_0200a6c8(), param[1]);
+        encount::Encount::getSingleton()->forceBrew(param[1]);
     } else if (param[0] == 1) {
         btl::BattleScriptManager::getSingleton()->setEncountMap(param[1]);
-        func_0200acec(func_0200a6c8(), param[1]);
+        encount::Encount::getSingleton()->forceEventBrew(param[1]);
     }
-    if (func_02058114(&data_0210bb94, 0xe) == 1) {
-        func_ov001_0212a620(func_ov001_02127b28(), 1);
+    if (data_0210bb94.unkfunc_02058114(0xe) == 1) {
+        func_ov001_0212a620(FieldPlayerManager::getSingleton(), 1);
     } else {
         TownPlayerManager::getSingleton()->setLockByEventEncount(1);
     }
@@ -109,7 +111,7 @@ THUMB int cmd_is_trigger_forward(int* param)
     dss::Fix32Vector3 max;
     min.set(param[0], param[1], param[2]);
     max.set(param[3], param[4], param[5]);
-    dss::Fix32Vector3 diff = func_02088988(func_02088bdc(min + max, 2), pos);
+    dss::Fix32Vector3 diff = (min + max) / 2 - pos;
     TriggerCheck check = param[6] == 0 ? TRIGGER_CHECK_0 : TRIGGER_CHECK_1;
     int type = param[7] == 0 ? 7 : 6;
     return cmn::CommonCalculate::areaCheck(pos, dir, min, max, check, type);
@@ -118,7 +120,7 @@ THUMB int cmd_is_trigger_forward(int* param)
 THUMB int cmd_set_encount_disable(int* param)
 {
     int flag = param[0] == 0 ? 1 : 0;
-    func_0200a6c8()->enable_ = flag;
+    encount::Encount::getSingleton()->enable_ = flag;
     return 1;
 }
 
@@ -215,7 +217,7 @@ THUMB int cmd_set_chapter(int* param)
         status::g_BattleHistory.setChapterEscapeCount(0);
     }
     if ((unsigned int)param[0] <= 6) {
-        func_0200a6c8()->enable_ = 1;
+        encount::Encount::getSingleton()->enable_ = 1;
         status::g_BattleResult.setDisablePlayerDemolition(false);
     }
     return 1;
@@ -306,9 +308,9 @@ THUMB int cmd_music_pause(int* param)
 
 THUMB int cmd_play_music_now_map(int* param)
 {
-    if (func_02058114(&data_0210bb94, 0xc) == 1) {
+    if (data_0210bb94.unkfunc_02058114(0xc) == 1) {
         SoundManager::townPlay();
-    } else if (func_02058114(&data_0210bb94, 0xe) == 1) {
+    } else if (data_0210bb94.unkfunc_02058114(0xe) == 1) {
         SoundManager::fieldPlay();
     }
     return 1;
@@ -359,9 +361,9 @@ THUMB int cmd_map_link_field_direct(int* param)
     pos.vy.value = param[2];
     pos.vz = 0L;
     cmn::g_extraMapLink.setExtraExitField(param[0], pos);
-    if (func_02058114(&data_0210bb94, 0xc) != 0) {
+    if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
         TownCharacterBase::allEventLock_ = 0;
-        func_020499a4(1);
+        BillboardCharacter::setAllCharaAnim(1);
         TownCharacterManager::getSingleton()->restoreCharacterAnim();
         TownPlayerManager::getSingleton()->partyDraw_.setAnimation(2);
         if (param[3] == 1) {
@@ -378,9 +380,9 @@ THUMB int cmd_floor_change(int* param)
     dss::Fix32Vector3 pos = cmn::CommonCalculate::setVecByParam(param[4], param[5], param[6]);
     cmn::g_extraMapLink.setExtraLinkTown((const char*)param, pos, cmn::CommonCalculate::getIdxByParam((unsigned char)param[7]));
     ScriptSystem::getSingleton()->executeEnable_ = 0;
-    if (func_02058114(&data_0210bb94, 0xc) != 0) {
+    if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
         TownCharacterBase::allEventLock_ = 0;
-        func_020499a4(1);
+        BillboardCharacter::setAllCharaAnim(1);
         TownCharacterManager::getSingleton()->restoreCharacterAnim();
         TownPlayerManager::getSingleton()->partyDraw_.setAnimation(2);
         if (param[8] == 1) {
@@ -396,9 +398,9 @@ THUMB int cmd_floor_exit(int* param)
 {
     cmn::g_extraMapLink.setExtraExitTown((const char*)param, param[4]);
     ScriptSystem::getSingleton()->executeEnable_ = 0;
-    if (func_02058114(&data_0210bb94, 0xc) != 0) {
+    if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
         TownCharacterBase::allEventLock_ = 0;
-        func_020499a4(1);
+        BillboardCharacter::setAllCharaAnim(1);
         TownCharacterManager::getSingleton()->restoreCharacterAnim();
         TownPlayerManager::getSingleton()->partyDraw_.setAnimation(2);
         if (param[5] == 1) {
@@ -413,10 +415,10 @@ THUMB int cmd_floor_exit(int* param)
 THUMB int cmd_set_map_link_on_off(int* param)
 {
     cmn::LINK_TYPE type = param[1] == 0 ? cmn::NOT_LINK_THIS_TOWN : cmn::LINK_DEFAULT;
-    if (func_02058114(&data_0210bb94, 0xe) != 0) {
+    if (data_0210bb94.unkfunc_02058114(0xe) != 0) {
         cmn::g_extraMapLink.setLinkData(param[0], -1, type, 0, 0);
     }
-    if (func_02058114(&data_0210bb94, 0xc) != 0) {
+    if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
         cmn::g_extraMapLink.setLinkData(param[0], -1, type, g_Global.getMapName(), 0);
     }
     return 1;
@@ -513,24 +515,24 @@ THUMB int cmd_player_lock(int* param)
 {
     if (param[0] != 0) {
         data_020ecf3c++;
-        if (func_02058114(&data_0210bb94, 0xc) != 0) {
+        if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
             TownPlayerManager::getSingleton()->setLock(1);
             TownPlayerManager::getSingleton()->charaColl_ = 0;
         } else {
-            func_ov001_02127b28();
+            FieldPlayerManager::getSingleton();
             cmn::PlayerManager::setLock(1);
         }
         cmn::PartyTalk::getSingleton()->resetPartyTalk();
     } else {
         data_020ecf3c--;
-        if (func_02058114(&data_0210bb94, 0xc) != 0) {
+        if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
             TownPlayerManager::getSingleton()->setLock(0);
             if (!cmn::PlayerManager::isLock()) {
                 TownPlayerManager::getSingleton()->charaColl_ = 1;
                 TownPlayerManager::getSingleton()->flagMapLink_ = 1;
             }
         } else {
-            func_ov001_02127b28();
+            FieldPlayerManager::getSingleton();
             cmn::PlayerManager::setLock(0);
         }
     }
@@ -637,10 +639,10 @@ THUMB int cmd_is_barrier_disruption(int* param)
 THUMB int cmd_set_party_join(int* param)
 {
     status::g_Party.add(param[0]);
-    if (func_02058114(&data_0210bb94, 0xc) != 0) {
+    if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
         TownPlayerManager::getSingleton()->resetParty();
     } else {
-        func_ov001_02127b28()->resetParty();
+        FieldPlayerManager::getSingleton()->resetParty();
     }
     return 1;
 }
@@ -648,10 +650,10 @@ THUMB int cmd_set_party_join(int* param)
 THUMB int cmd_set_party_quit(int* param)
 {
     status::g_Party.del(param[0]);
-    if (func_02058114(&data_0210bb94, 0xc) != 0) {
+    if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
         TownPlayerManager::getSingleton()->resetParty();
     } else {
-        func_ov001_02127b28()->resetParty();
+        FieldPlayerManager::getSingleton()->resetParty();
     }
     return 1;
 }
@@ -668,13 +670,13 @@ THUMB int cmd_party_del2(int* param)
 THUMB int cmd_battle_end_flag_set(int* param)
 {
     if (param[0] == 0) {
-        func_0200acc8(func_0200a6c8(), param[1]);
+        encount::Encount::getSingleton()->forceBrew(param[1]);
     } else if (param[0] == 1) {
         btl::BattleScriptManager::getSingleton()->setEncountMap(param[1]);
-        func_0200acec(func_0200a6c8(), param[1]);
+        encount::Encount::getSingleton()->forceEventBrew(param[1]);
     }
-    if (func_02058114(&data_0210bb94, 0xe) == 1) {
-        func_ov001_0212a620(func_ov001_02127b28(), 1);
+    if (data_0210bb94.unkfunc_02058114(0xe) == 1) {
+        func_ov001_0212a620(FieldPlayerManager::getSingleton(), 1);
     } else {
         TownPlayerManager::getSingleton()->setLockByEventEncount(1);
     }

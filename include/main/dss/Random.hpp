@@ -10,6 +10,9 @@ public:
         unsigned int increment;  // Offset +8 (0x0211a7cc)
     };
 
+    static void unkfunc_02080cec();     // seed from OS_GetLowEntropyData (MATH_InitRand32-like)
     static int rand(int n);
     static Random dssrand; 
 };
+
+extern "C" void OS_GetLowEntropyData(unsigned int buffer[8]);

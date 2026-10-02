@@ -235,6 +235,32 @@ src/ov000/town/TownImageMap.cpp:
     .data start:0x021483ac end:0x02148470
     .bss start:0x0215101c end:0x02151100
 
+src/ov000/town/UnkImageMap.cpp:
+    complete
+    .text start:0x02141f6c end:0x0214214c
+    .data start:0x02148fac end:0x02148fd4
+
+src/ov000/town/riseup/TownRiseupScriptMove.cpp:
+    complete
+    .text start:0x0214214c end:0x021422cc
+    .data start:0x02148fd4 end:0x02149010
+
+src/ov000/town/riseup/TownRiseupMedal.cpp:
+    complete
+    .text start:0x02142c3c end:0x02142ec8
+    .data start:0x0214907c end:0x021490b8
+
+src/ov000/town/TownExtraMapObjManager.cpp:
+    complete
+    .text start:0x02142964 end:0x02142c3c
+    .bss start:0x02160238 end:0x02160380
+
+src/ov000/town/TownEndrollManager.cpp:
+    complete
+    .text start:0x02143984 end:0x02143e74
+    .data start:0x021491a8 end:0x02149220
+    .bss start:0x021608a0 end:0x02160c40
+
 src/ov000/town/character/TownCharacterManager.cpp:
     complete
     .text start:0x02137f14 end:0x02139264

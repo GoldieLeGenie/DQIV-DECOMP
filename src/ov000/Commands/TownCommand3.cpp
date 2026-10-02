@@ -276,7 +276,7 @@ THUMB int cmd_is_character_front(int* param)
     dss::Fix32Vector3 charaPos = TownCharacterManager::getSingleton()->getPosition(index);
     dss::Fix32Vector3 front;
     TownActionCalculate::getDirByIdx((short)TownCharacterManager::getSingleton()->getDirection(index), front);
-    if (front * func_02088988(playerPos, charaPos) >= dss::Fix32(data_ov000_021487a8.unk_0)) {
+    if (front * (playerPos - charaPos) >= dss::Fix32(data_ov000_021487a8.unk_0)) {
         if (param[0] == 1) {
             return 1;
         }
@@ -321,7 +321,7 @@ THUMB int cmd_set_floor_map_object(int* param)
     pos.vx.value = param[1];
     pos.vy.value = param[2];
     pos.vz.value = param[3];
-    func_ov000_021429c8(TownExtraMapObjManager::getSingleton(), param[0], pos);
+    TownExtraMapObjManager::getSingleton()->setData(param[0], pos);
     return 1;
 }
 
@@ -355,7 +355,7 @@ THUMB int cmd_is_trigger_distance(int* param)
     distance.value = param[0];
     distance *= distance;
     if (TownSystem::getSingleton()->trigger_ == 1) {
-        dss::Fix32 length = func_0208908c(playerPos, charaPos);
+        dss::Fix32 length = playerPos.lengthsq(charaPos);
         if (length <= distance) {
             TownSystem::getSingleton()->trigger_ = 0;
             return 1;

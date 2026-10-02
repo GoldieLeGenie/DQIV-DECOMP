@@ -10,20 +10,20 @@
 THUMB void BattleMenu_ACTIONMENU::menuSetup()
 {
     status::g_Party.setBattleMode();
-    func_02051900(&menuItem_, 0, 0);
-    func_02051900(&pageItem_, 1, 5);
-    func_02051900(&cancelItem_, 2, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH, menu::MenuItem::CURSORTYPE_NONE);
+    pageItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
+    cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     BattleMonsterMask::getSingleton()->select(-1);
     activeCharacter_ = btl::BattleMenuPlayerControl::getSingleton()->activeChara_;
     gBattleMenuSub_HISTORY.commandChara_ = activeCharacter_;
     status::g_Party.getPlayerStatus(activeCharacter_)->haveBattleStatus_.setSelectCommand(status::HaveBattleStatus::NoSelect, 0);
     unk_14c = -1;
-    func_02023324(&navigator_);
+    navigator_.setupBase();
 }
 
 THUMB void BattleMenu_ACTIONMENU::menuExecute()
 {
-    func_02023504(&navigator_, 2, 2, 4);
+    navigator_.setup(2, 2, 4);
     func_ov015_0216c734(&menuItem_);
     func_ov015_0216c5d8(&pageItem_, 4, pageItem_.active_);
     func_ov015_0216c5c4(&cancelItem_);
@@ -32,7 +32,7 @@ THUMB void BattleMenu_ACTIONMENU::menuExecute()
 THUMB void BattleMenu_ACTIONMENU::menuDraw()
 {
     func_ov015_0216b9e8(0xf0);
-    func_02051968(&pageItem_);
+    pageItem_.drawActive();
 }
 
 THUMB void BattleMenu_ACTIONMENU::menuUpdate()
@@ -43,7 +43,7 @@ THUMB void BattleMenu_ACTIONMENU::menuUpdate()
         }
         return;
     }
-    if (func_02023230(&cancelItem_)) {
+    if (MenuUpdate_Assist::isCancel(cancelItem_)) {
         close();
         BattleMenuJudge::getSingleton()->setPrevPlayer();
         return;
@@ -56,7 +56,7 @@ THUMB void BattleMenu_ACTIONMENU::menuUpdate()
         }
         return;
     }
-    int result = func_02023274(&pageItem_, &navigator_);
+    int result = MenuUpdate_Assist::menuSelect(pageItem_, navigator_);
     if (result == 0) {
         return;
     }

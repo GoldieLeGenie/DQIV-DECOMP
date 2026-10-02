@@ -95,7 +95,7 @@ ARM void TownPartyAction::normalMove()
     fixFlag_ = 0;
     if (moveFirstFlag_ == 0) {
         if (script_ == 0) {
-            if (!(func_02088f98(*m_pos_array, g_cmnPartyInfo.position_) > dss::Fix32(1L) / 32)) {
+            if (!((*m_pos_array).length(g_cmnPartyInfo.position_) > dss::Fix32(1L) / 32)) {
                 return;
             }
             if (setFormation_ == 1) {
@@ -112,26 +112,26 @@ ARM void TownPartyAction::normalMove()
             m_dir_array[0] = g_cmnPartyInfo.dirIdx_;
             return;
         }
-        dss::Fix32Vector3 vec = func_02088988(g_cmnPartyInfo.position_, *m_pos_array);
+        dss::Fix32Vector3 vec = g_cmnPartyInfo.position_ - *m_pos_array;
         if (!(g_cmnPartyInfo.position_ != g_cmnPartyInfo.prev_position_)) {
             return;
         }
-        if (func_02088e90(vec) >= TownPlayerAction::walkSpeed) {
+        if (vec.length() >= TownPlayerAction::walkSpeed) {
             for (int i = 0; i < 127; i++) {
                 m_pos_array[127 - i] = m_pos_array[126 - i];
                 m_dir_array[127 - i] = m_dir_array[126 - i];
             }
-            vec = func_02088988(g_cmnPartyInfo.position_, g_cmnPartyInfo.prev_position_);
-            func_02089168(&vec);
+            vec = g_cmnPartyInfo.position_ - g_cmnPartyInfo.prev_position_;
+            vec.normalize();
             m_pos_array[0] = g_cmnPartyInfo.position_;
             m_dir_array[0] = g_cmnPartyInfo.dirIdx_;
-            m_pos_array[1] = func_02088988(g_cmnPartyInfo.position_, vec * TownPlayerAction::walkSpeed);
+            m_pos_array[1] = g_cmnPartyInfo.position_ - vec * TownPlayerAction::walkSpeed;
             return;
         }
-        dss::Fix32 len = func_02088e90(vec);
+        dss::Fix32 len = vec.length();
         for (int i = 1; i < 8; i++) {
-            dss::Fix32Vector3 tv1 = func_02088988(m_pos_array[i * 8 - 1], m_pos_array[i * 8]);
-            func_02089168(&tv1);
+            dss::Fix32Vector3 tv1 = m_pos_array[i * 8 - 1] - m_pos_array[i * 8];
+            tv1.normalize();
             temp[i] = m_pos_array[i * 8];
             m_pos_array[i * 8] += tv1 * len;
         }
@@ -240,7 +240,7 @@ ARM bool TownPartyAction::isEqalNextPos(int index)
     if (index > 8) {
         return false;
     }
-    if (func_02088ca8(&m_pos_array[index * 8], &m_pos_array[index * 8 - 1])) {
+    if ((m_pos_array[index * 8] == m_pos_array[index * 8 - 1])) {
         ret = 1;
     }
     return ret;
@@ -262,8 +262,8 @@ ARM void TownPartyAction::setFormation(dss::Fix32Vector3& dirVec, short dirIdx, 
         dss::Fix32Vector3 end;
         for (int i = 1; i < count; i++) {
             end = getMemberPosition(i);
-            func_020311f0(&partyMove_[i], &start[i], &end);
-            func_02031278(&partyMove_[i], speed);
+            partyMove_[i].setActionMove(start[i], end);
+            partyMove_[i].setMoveSpeed(speed);
         }
         moveType_ = 2;
     } else {
@@ -287,14 +287,14 @@ ARM void TownPartyAction::formationMove()
         nowPos = getMemberPosition(i);
         nextPos = nowPos;
         angle.vy = getMemberDirIdx(i);
-        func_020310f4(&partyMove_[i], &nextPos);
-        func_02031154(&partyMove_[i], &angle);
-        dss::Fix32Vector3 dir = func_02088988(nextPos, nowPos);
+        partyMove_[i].execMove(nextPos);
+        partyMove_[i].execRot(angle);
+        dss::Fix32Vector3 dir = nextPos - nowPos;
         short idx = getMemberDirIdx(i);
         TownActionCalculate::getIdxByVec(idx, dir);
         setMemberPosition(i, nextPos);
         setMemberDirIdx(i, idx);
-        if (func_02031160(&partyMove_[i]) == 0) {
+        if (partyMove_[i].moveUpdate() == 0) {
             ret = 0;
         } else {
             setMemberDirIdx(i, m_dir_array[i * 8 - 1]);

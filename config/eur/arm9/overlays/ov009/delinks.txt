@@ -5,3 +5,83 @@
     .data       start:0x02125140 end:0x02125660 kind:data align:32
     .bss        start:0x02125660 end:0x021276e0 kind:bss align:32
 
+src/ov009/casino/CasinoPokerDraw.cpp:
+    complete
+    .text start:0x021210e0 end:0x02121f60
+    .init start:0x02124e30 end:0x021250b4
+    .ctor start:0x02125124 end:0x02125128
+    .data start:0x02125140 end:0x02125254
+    .bss start:0x02125660 end:0x02126334
+
+src/ov009/casino/CasinoCamera.cpp:
+    complete
+    .text start:0x02121f60 end:0x021220c4
+    .rodata start:0x02124e2c end:0x02124e30
+    .init start:0x021250b4 end:0x02125124
+    .ctor start:0x02125128 end:0x0212512c
+    .data start:0x02125254 end:0x02125270
+    .bss start:0x02126334 end:0x02126448
+
+src/ov009/casino/CasinoStage.cpp:
+    complete
+    .text start:0x021220c4 end:0x02122210
+    .data start:0x02125270 end:0x02125280
+    .bss start:0x02126448 end:0x02126d2c
+
+src/ov009/casino/CasinoSlot.cpp:
+    complete
+    .text start:0x02122210 end:0x02122634
+    .data start:0x02125280 end:0x021252b8
+    .bss start:0x02126d2c end:0x02126d84
+
+src/ov009/casino/CasinoPoker.cpp:
+    complete
+    .text start:0x02122634 end:0x021227cc
+    .data start:0x021252b8 end:0x02125308
+    .bss start:0x02126d84 end:0x02126dec
+
+src/ov009/casino/CasinoSystem.cpp:
+    complete
+    .text start:0x021227cc end:0x02122920
+    .bss start:0x02126dec end:0x02127408
+
+src/ov009/casino/PokerDoubleupSelectCard.cpp:
+    complete
+    .text start:0x02122920 end:0x02122b38
+    .bss start:0x02127408 end:0x021274ac
+
+src/ov009/casino/PokerJudgement.cpp:
+    complete
+    .text start:0x02122b38 end:0x02123140
+    .bss start:0x021274ac end:0x021274c0
+
+src/ov009/casino/PokerManager.cpp:
+    complete
+    .text start:0x02123140 end:0x02123698
+    .data start:0x02125308 end:0x02125330
+    .bss start:0x021274c0 end:0x02127594
+
+src/ov009/casino/PokerDoubleupHighAndLow.cpp:
+    complete
+    .text start:0x02123698 end:0x021237b8
+    .bss start:0x02127594 end:0x021275f8
+
+src/ov009/casino/Casino_Slot.cpp:
+    complete
+    .text start:0x021237b8 end:0x02123d18
+    .data start:0x02125330 end:0x02125414
+    .bss start:0x021275f8 end:0x021276dc
+
+src/ov009/casino/Casino_SlotReel.cpp:
+    complete
+    .text start:0x02124494 end:0x02124924
+
+src/ov009/casino/Casino_SlotMachine.cpp:
+    complete
+    .text start:0x02123d18 end:0x02124494
+    .data start:0x02125414 end:0x02125650
+
+src/ov009/casino/PokerCard.cpp:
+    complete
+    .text start:0x02124924 end:0x02124e2c
+    .data start:0x02125650 end:0x02125658

@@ -5,8 +5,8 @@
 
 THUMB void BattleMenu_ITEMUSE2PARTY::menuSetup()
 {
-    func_02051900(&menuItem_, 1, 5);
-    func_02051900(&cancelItem_, 2, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
+    cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     unk_e4 = 0;
     unk_e8 = 0;
     unk_ec = status::g_Party.getCarriageOutCount();
@@ -14,7 +14,7 @@ THUMB void BattleMenu_ITEMUSE2PARTY::menuSetup()
 
 THUMB void BattleMenu_ITEMUSE2PARTY::menuExecute()
 {
-    func_02023504(&navigator_, 2, 2, unk_ec);
+    navigator_.setup(2, 2, unk_ec);
     func_ov015_0216c63c(&menuItem_, unk_ec);
     func_ov015_0216c5c4(&cancelItem_);
 }
@@ -22,12 +22,12 @@ THUMB void BattleMenu_ITEMUSE2PARTY::menuExecute()
 THUMB void BattleMenu_ITEMUSE2PARTY::menuDraw()
 {
     func_ov015_0216bae8();
-    func_02051968(&menuItem_);
+    menuItem_.drawActive();
 }
 
 THUMB void BattleMenu_ITEMUSE2PARTY::menuUpdate()
 {
-    if (func_02023230(&cancelItem_)) {
+    if (MenuUpdate_Assist::isCancel(cancelItem_)) {
         int chara = btl::BattleMenuPlayerControl::getSingleton()->activeChara_;
         status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(chara)->haveStatusInfo_;
         if (info->isEquipEnable(info->haveItem_.getItem(btl::BattleMenuPlayerControl::getSingleton()->activeItem_))) {
@@ -39,7 +39,7 @@ THUMB void BattleMenu_ITEMUSE2PARTY::menuUpdate()
         close();
         return;
     }
-    int result = func_02023274(&menuItem_, &navigator_);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         redraw_ = 1;
         if (result == 2) {

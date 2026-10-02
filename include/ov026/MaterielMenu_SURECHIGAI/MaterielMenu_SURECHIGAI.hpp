@@ -13,7 +13,7 @@ struct MaterielMenu_SURECHIGAI_MAKE_TAISHI : menu::MenuBase
     int firstFlag_;                     /* 0x20 */
     int changeTaishi_;                  /* 0x24 */
     menu::MenuItem menuItem_;           /* 0x28 */
-    menu::MenuNavigator navigator_;     /* 0x8C */
+    CursorMoveGridLoop navigator_;     /* 0x8C */
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -26,7 +26,7 @@ struct MaterielMenu_SURECHIGAI_ROOT : menu::MenuBase
     int mode_;                          /* 0x1C */
     int firstFlag_;                     /* 0x20 */
     menu::MenuItem menuItem_;           /* 0x24 */
-    menu::MenuNavigator navigator_;     /* 0x88 */
+    CursorMoveGridLoop navigator_;     /* 0x88 */
 
     virtual void menuSetup();
     virtual void menuExecute();

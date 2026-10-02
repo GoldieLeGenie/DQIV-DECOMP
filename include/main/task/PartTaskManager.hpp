@@ -38,4 +38,3 @@ extern task::PartTaskManager g_PartTaskManager; // 0x020ef7e4
 extern task::Sample00Task g_Sample00Task;
 extern task::Sample01Task g_Sample01Task;
 extern task::Sample02Task g_Sample02Task;
-extern "C" void func_02089ab8();

@@ -40,7 +40,7 @@ ARM void btl::AfterMessageTask::initialize()
     }
 
     if (btl::BattleActorManager2::getSingleton()->eventType_ == 1) {
-        func_0208988c();
+        BattleAutoFeed::setAfterMessage();
         int i;
         int drawCtrlId = useActionParam_->targetCharacterStatus_[0]->haveStatusInfo_.drawCtrlId_;
         if (useActionParam_->actorCharacterStatus_->characterType_ == 0) {
@@ -74,7 +74,7 @@ ARM void btl::AfterMessageTask::initialize()
             }
         } else if (actor->haveStatusInfo_.addDamage_ > 0) {
             SoundManager::playSe(0x193, 0);
-            func_0200d748();
+            MenuAPI::shakeMessage();
         }
         useActionParam_->targetCharacterStatus_[currentTarget_]->haveStatusInfo_.setAddEffectDamage(false);
     }
@@ -133,7 +133,7 @@ ARM void btl::AfterMessageTask::execute()
     }
 
     if (message_ != 0) {
-        if (func_020898a0() == 0) {
+        if (BattleAutoFeed::isEndAfterMessage() == 0) {
             return;
         }
         cleanup();

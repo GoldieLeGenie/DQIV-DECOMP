@@ -11,9 +11,9 @@ int MaterielMenu_LOAD::activeDiaryNo_ = -1;
 
 THUMB void MaterielMenu_LOAD::menuSetup()
 {
-    func_02051900(&rootItem_, 3, 5);
-    func_02051900(&dataItem_, 3, 5);
-    func_02051900(&sexualityItem_, 3, 5);
+    rootItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
+    dataItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
+    sexualityItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     status_ = LOAD_MODESELECT;
     country_ = 0;
     sexuality_ = 0;
@@ -50,7 +50,7 @@ inline void MaterielMenu_LOAD::sexualityDraw()
     func_ov016_02177fe0(&message, 0x30, 0x38, 0xa0, 0x50);
     func_ov016_02177c9c(sexualityMessage, 2, 0x70, 0x5a);
     func_ov016_02177c00(0x30, 0x38, 0xa0, 0x48, 0x50);
-    func_02051968(&sexualityItem_);
+    sexualityItem_.drawActive();
 }
 
 THUMB void MaterielMenu_LOAD::menuDraw()
@@ -60,12 +60,12 @@ THUMB void MaterielMenu_LOAD::menuDraw()
     if (status_ == LOAD_MODESELECT) {
         if (resume_ == 1) {
             func_ov016_02177ce0(rootResumeMessage, ROOT_RESUME_COUNT, 0x18, 0x10);
-            func_ov016_02177bac(8, 8, 0xa0, 0x48, -1);
-            func_02051968(&rootItem_);
+            unkfunc_02177bac(8, 8, 0xa0, 0x48, -1);
+            rootItem_.drawActive();
         } else {
             func_ov016_02177ce0(rootMessage, ROOT_COUNT, 0x18, 0x10);
-            func_ov016_02177bac(8, 8, 0xa0, 0x38, -1);
-            func_02051968(&rootItem_);
+            unkfunc_02177bac(8, 8, 0xa0, 0x38, -1);
+            rootItem_.drawActive();
         }
     }
     if (status_ == LOAD_DATASELECT) {
@@ -86,7 +86,7 @@ THUMB void MaterielMenu_LOAD::menuDraw()
             }
         }
         func_ov016_02177c00(8, 0x38, 0xf0, 0x78, 0x50);
-        func_02051968(&dataItem_);
+        dataItem_.drawActive();
     }
     if (status_ == LOAD_SEXUALITY) {
         sexualityDraw();

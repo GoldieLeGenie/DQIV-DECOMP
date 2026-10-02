@@ -21,11 +21,11 @@
 
 THUMB void btl::BattleExecEncount::setup()
 {
-    func_0200a6c8();
+    encount::Encount::getSingleton();
     BattleMessage::openEncountMessage();
     for (int i = 0; i < 4; i++) {
-        int monsterIndex = func_0200a6c8()->monsterIndex_[i];
-        int monsterCount = func_0200a6c8()->monsterCount_[i];
+        int monsterIndex = encount::Encount::getSingleton()->monsterIndex_[i];
+        int monsterCount = encount::Encount::getSingleton()->monsterCount_[i];
         if (monsterCount != 0) {
             TextAPI::setMACRO0(13, 0x60000000, monsterIndex);
             int special = 0;
@@ -77,19 +77,19 @@ THUMB void btl::BattleExecEncount::setup()
             }
         }
     }
-    func_020899a4();
-    func_02089678();
-    func_02089720();
+    BattleAutoFeed::setCursor();
+    BattleAutoFeed::setMessage();
+    BattleAutoFeed::setEncountMessage();
 }
 
 THUMB bool btl::BattleExecEncount::isEnd()
 {
     if (func_0205810c(&data_0210bb94) == 13) {
-        if (func_02089738()) {
+        if (BattleAutoFeed::isEndEncountMessage()) {
             return true;
         }
     }
-    else if (func_0200d78c()) {
+    else if (MenuAPI::isFinishMessageWindow()) {
         return true;
     }
     return false;
@@ -101,19 +101,19 @@ THUMB void btl::BattleExecStatus::setup()
 {
     setupLast();
     isNext();
-    func_020899a4();
-    func_02089678();
-    func_02089720();
+    BattleAutoFeed::setCursor();
+    BattleAutoFeed::setMessage();
+    BattleAutoFeed::setEncountMessage();
 }
 
 THUMB bool btl::BattleExecStatus::isEnd()
 {
     if (func_0205810c(&data_0210bb94) == 13) {
-        if (func_02089738() && !isNext()) {
+        if (BattleAutoFeed::isEndEncountMessage() && !isNext()) {
             return true;
         }
     }
-    else if (func_0200d78c() && !isNext()) {
+    else if (MenuAPI::isFinishMessageWindow() && !isNext()) {
         return true;
     }
     return false;
@@ -132,7 +132,7 @@ THUMB int btl::BattleExecStatus::isNext()
     for (int i = index_; i < monsterCount_; i++) {
         monster = g_monster.getMonsterStatus(i);
         int monsterIndex = g_monster.getMonsterStatus(i)->characterIndex_;
-        if (g_monster.getMonsterCountDeadOrAlive(monsterIndex) == 1 && !func_0200aef8(func_0200a6c8(), monsterIndex)) {
+        if (g_monster.getMonsterCountDeadOrAlive(monsterIndex) == 1 && !encount::Encount::getSingleton()->getMonsterCountName(monsterIndex)) {
             TextAPI::setMACRO0(13, 0x60000000, monsterIndex);
         }
         else {
@@ -326,19 +326,19 @@ THUMB void btl::BattleExecFirstAttack::setup()
         TextAPI::setMACRO0(13, 0x60000000, g_monster.getMonsterCallIndex());
     }
     BattleMessage::addEncountMessage(message);
-    func_020899a4();
-    func_02089678();
-    func_02089720();
+    BattleAutoFeed::setCursor();
+    BattleAutoFeed::setMessage();
+    BattleAutoFeed::setEncountMessage();
 }
 
 THUMB bool btl::BattleExecFirstAttack::isEnd()
 {
     if (func_0205810c(&data_0210bb94) == 13) {
-        if (func_02089738()) {
+        if (BattleAutoFeed::isEndEncountMessage()) {
             return true;
         }
     }
-    else if (func_0200d78c()) {
+    else if (MenuAPI::isFinishMessageWindow()) {
         return true;
     }
     return false;
@@ -362,16 +362,16 @@ THUMB void btl::BattleExecVictory00::setup()
         message = 0xc3c31;
     }
     BattleMessage::setMessage(message, 0, 0, 0);
-    func_020896f0();
+    BattleAutoFeed::setMessageSend();
 }
 
 THUMB void btl::BattleExecVictory01::setup()
 {
     TextAPI::setMACRO0(0x2f, 0xf0000000, status::g_Party.getBattleExp());
     BattleMessage::setMessage(0xc3c3f, 0, 0, 0);
-    func_020896f0();
+    BattleAutoFeed::setMessageSend();
     if (status::g_Party.getLevelupPlayer() == -1 && status::g_Party.getBattleGold() == 0) {
-        func_02089acc(1);
+        BattleAutoFeed::setDisableCursor(1);
         data_020ed1bc.setMessageLastCursor(false);
     }
 }
@@ -381,8 +381,8 @@ THUMB void btl::BattleExecVictory02::setup()
     int type = 0;
     int message;
     for (int i = 0; i < 4; i++) {
-        int monsterIndex = func_0200a6c8()->monsterIndex_[i];
-        int monsterCount = func_0200a6c8()->monsterCount_[i];
+        int monsterIndex = encount::Encount::getSingleton()->monsterIndex_[i];
+        int monsterCount = encount::Encount::getSingleton()->monsterCount_[i];
         if (monsterCount != 0) {
             if (i == 0 && monsterCount == 1) {
                 type = 0;
@@ -414,10 +414,10 @@ THUMB void btl::BattleExecVictory02::setup()
         message = 0xc3c3d;
         break;
     }
-    func_020899a4();
+    BattleAutoFeed::setCursor();
     BattleMessage::setMessage(message, 0, 0, 0);
-    func_020896f0();
-    func_02089acc(1);
+    BattleAutoFeed::setMessageSend();
+    BattleAutoFeed::setDisableCursor(1);
 }
 
 THUMB void btl::BattleExecVictory03::setup()
@@ -426,8 +426,8 @@ THUMB void btl::BattleExecVictory03::setup()
     int firstIndex = 0;
     int message;
     for (int i = 0; i < 4; i++) {
-        int monsterIndex = func_0200a6c8()->monsterIndex_[i];
-        int monsterCount = func_0200a6c8()->monsterCount_[i];
+        int monsterIndex = encount::Encount::getSingleton()->monsterIndex_[i];
+        int monsterCount = encount::Encount::getSingleton()->monsterCount_[i];
         if (monsterCount != 0) {
             if (i == 0) {
                 if (monsterCount == 1) {
@@ -469,10 +469,10 @@ THUMB void btl::BattleExecVictory03::setup()
         message = 0xc3c37;
         break;
     }
-    func_020899a4();
+    BattleAutoFeed::setCursor();
     BattleMessage::setMessage(message, 0, 0, 0);
-    func_020896f0();
-    func_02089acc(1);
+    BattleAutoFeed::setMessageSend();
+    BattleAutoFeed::setDisableCursor(1);
 }
 
 THUMB void btl::BattleExecVictory20::setup()
@@ -481,9 +481,9 @@ THUMB void btl::BattleExecVictory20::setup()
     if (gold != 0) {
         TextAPI::setMACRO0(0x32, 0xf0000000, gold);
         BattleMessage::setMessage(0xc3c51, 0, 0, 0);
-        func_020896f0();
+        BattleAutoFeed::setMessageSend();
         if (g_monster.getDropItem() == 0) {
-            func_02089acc(1);
+            BattleAutoFeed::setDisableCursor(1);
         }
     }
 }
@@ -492,21 +492,21 @@ THUMB void btl::BattleExecVictory30::setup()
 {
     TextAPI::setMACRO0(0x12, 0x60000000, monsterIndex_);
     BattleMessage::setMessage(0xc3c54, 0, 0, 0);
-    func_020896f0();
+    BattleAutoFeed::setMessageSend();
 }
 
 THUMB void btl::BattleExecVictory31::setup()
 {
     TextAPI::setMACRO0(12, 0x50000000, status::g_Party.getPlayerStatus(status::g_Party.getLeaderIndex())->haveStatusInfo_.haveStatus_.playerIndex_);
     BattleMessage::setMessage(0xc3c56, 0, 0, 0);
-    func_020896f0();
+    BattleAutoFeed::setMessageSend();
 }
 
 THUMB void btl::BattleExecVictory31a::setup()
 {
     TextAPI::setMACRO0(10, 0x40000000, itemIndex_);
     BattleMessage::setMessage(0xc3c58, 0, 0, 0);
-    func_020896f0();
+    BattleAutoFeed::setMessageSend();
 }
 
 THUMB void btl::BattleExecVictory32::setup()
@@ -521,20 +521,20 @@ THUMB void btl::BattleExecVictory32::setup()
         TextAPI::setMACRO0(10, 0x40000000, itemIndex_);
         BattleMessage::setMessage(0xc3c5d, 0, 0, 0);
     }
-    func_020896f0();
-    func_02089acc(1);
+    BattleAutoFeed::setMessageSend();
+    BattleAutoFeed::setDisableCursor(1);
 }
 
 THUMB void btl::BattleExecVictory33::setup()
 {
     TextAPI::setMACRO0(1, 0x50000000, playerIndex_);
     BattleMessage::setMessage(0xc3c1f, 0, 0, 0);
-    func_02089678();
+    BattleAutoFeed::setMessage();
 }
 
 THUMB bool btl::BattleExecVictory33::isEnd()
 {
-    if (func_02089684()) {
+    if (BattleAutoFeed::isEndMessage() != 0) {
         return true;
     }
     return false;
@@ -544,12 +544,12 @@ THUMB void btl::BattleExecVictory34::setup()
 {
     TextAPI::setMACRO0(1, 0x50000000, playerIndex_);
     BattleMessage::setMessage(0xc3c1f, 0, 0, 0);
-    func_02089678();
+    BattleAutoFeed::setMessage();
 }
 
 THUMB bool btl::BattleExecVictory34::isEnd()
 {
-    if (func_02089684()) {
+    if (BattleAutoFeed::isEndMessage() != 0) {
         return true;
     }
     return false;
@@ -559,12 +559,12 @@ THUMB void btl::BattleExecVictory35::setup()
 {
     TextAPI::setMACRO0(1, 0x50000000, playerIndex_);
     BattleMessage::setMessage(0xc3c1f, 0, 0, 0);
-    func_02089678();
+    BattleAutoFeed::setMessage();
 }
 
 THUMB bool btl::BattleExecVictory35::isEnd()
 {
-    if (func_02089684()) {
+    if (BattleAutoFeed::isEndMessage() != 0) {
         return true;
     }
     return false;
@@ -574,12 +574,12 @@ THUMB void btl::BattleExecVictory36::setup()
 {
     TextAPI::setMACRO0(1, 0x50000000, playerIndex_);
     BattleMessage::setMessage(0xc3c1f, 0, 0, 0);
-    func_02089678();
+    BattleAutoFeed::setMessage();
 }
 
 THUMB bool btl::BattleExecVictory36::isEnd()
 {
-    if (func_02089684()) {
+    if (BattleAutoFeed::isEndMessage() != 0) {
         return true;
     }
     return false;
@@ -594,8 +594,8 @@ THUMB void btl::BattleExecVictory37::setup()
     else {
         BattleMessage::setMessage(0xc3c24, 0, 0, 0);
     }
-    func_020896f0();
-    func_02089acc(1);
+    BattleAutoFeed::setMessageSend();
+    BattleAutoFeed::setDisableCursor(1);
 }
 
 THUMB void btl::BattleExecVictory37::cleanup() {}
@@ -609,7 +609,7 @@ THUMB void btl::BattleExecVictory38::setup()
     func_02084e8c(data_020f220c, 0, 0, 0);
     func_02084e8c(data_020f2244, 0, 0, 0);
     func_02058294(data_0210bc18, &data_020f21f8);
-    func_0200d510();
+    MenuAPI::closeMenu();
     counter_ = 0;
 }
 
@@ -625,8 +625,8 @@ THUMB bool btl::BattleExecVictory38::isEnd()
 THUMB void btl::BattleExecVictory39::setup()
 {
     BattleMessage::setMessageInTown(0xc3c27, 0, 0, 0);
-    func_02089abc();
-    func_020896f0();
+    BattleAutoFeed::disableAutoFeed();
+    BattleAutoFeed::setMessageSend();
 }
 
 THUMB void btl::BattleExecVictory40::setup()
@@ -1114,9 +1114,9 @@ THUMB void btl::BattleExecEvent14::setup()
     TextAPI::setMACRO0(1, 0x60000000, 0xae);
     TextAPI::setMACRO0(0x11, 0x70000000, 0x23);
     BattleMessage::setMessage(0xc3938, 0, 0, 0);
-    func_02089678();
+    BattleAutoFeed::setMessage();
     int ctrlId = g_monster.getCtrlId(0);
-    if (status::excelParam.monsterAnim_->getAnimData(btl::BattleMonsterDraw2::getSingleton()->monsters_[0].monsterIndex_, 0x23, 5) >= 0) {
+    if (param::MonsterAnim::getAnimData(status::excelParam.monsterAnim_, btl::BattleMonsterDraw2::getSingleton()->monsters_[0].monsterIndex_, 0x23, 5) >= 0) {
         btl::BattleMonsterDraw2::getSingleton()->monsters_[0].startAnimation(0x23, 5);
     }
 }
@@ -1124,7 +1124,7 @@ THUMB void btl::BattleExecEvent14::setup()
 THUMB bool btl::BattleExecEvent14::isEnd()
 {
     bool animation = BattleCamera::getSingleton()->isCameraAnimation();
-    if (func_02089684() && !animation) {
+    if (BattleAutoFeed::isEndMessage() && !animation) {
         return true;
     }
     return false;
@@ -1134,9 +1134,9 @@ THUMB void btl::BattleExecEvent15::setup()
 {
     TextAPI::setMACRO0(1, 0x60000000, 0xae);
     BattleMessage::setMessage(0xc3a8f, 0, 0, 0);
-    func_02089678();
+    BattleAutoFeed::setMessage();
     int ctrlId = g_monster.getCtrlId(0);
-    int animIndex = status::excelParam.monsterAnim_->getAnimData(btl::BattleMonsterDraw2::getSingleton()->monsters_[0].monsterIndex_, 0x23, 5);
+    int animIndex = param::MonsterAnim::getAnimData(status::excelParam.monsterAnim_, btl::BattleMonsterDraw2::getSingleton()->monsters_[0].monsterIndex_, 0x23, 5);
     if (animIndex >= 0) {
         param::MonsterAnim* anim = &status::excelParam.monsterAnim_[animIndex];
         int effect = btl::BattleEffectManager::getSingleton()->setupEffect(0x67);
@@ -1151,7 +1151,7 @@ THUMB void btl::BattleExecEvent15::setup()
 
 THUMB bool btl::BattleExecEvent15::isEnd()
 {
-    if (func_02089684() && btl::BattleEffectManager::getSingleton()->isEnd()) {
+    if (BattleAutoFeed::isEndMessage() && btl::BattleEffectManager::getSingleton()->isEnd()) {
         if (counter >= 60) {
             return true;
         }
@@ -1366,13 +1366,13 @@ THUMB void btl::BattleExecEscape::setup()
         BattleMessage::setMessage(0xc3a5a, 0xc3a5d, 0, 0);
     }
     SoundManager::playSe(0x198, 0);
-    func_020899a4();
-    func_02089678();
+    BattleAutoFeed::setCursor();
+    BattleAutoFeed::setMessage();
 }
 
 THUMB bool btl::BattleExecEscape::isEnd()
 {
-    if (func_02089684()) {
+    if (BattleAutoFeed::isEndMessage() != 0) {
         return true;
     }
     return false;

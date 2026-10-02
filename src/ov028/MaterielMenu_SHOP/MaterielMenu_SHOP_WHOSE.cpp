@@ -8,8 +8,8 @@
 THUMB void MaterielMenu_SHOP_WHOSE::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02051900(&menuItem_, 1, 0);
-    func_02051900(&menuItem2_, 2, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_NONE);
+    menuItem2_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     mode_ = 3;
     noSort_ = 0;
     yesno_ = 0;
@@ -20,7 +20,7 @@ THUMB void MaterielMenu_SHOP_WHOSE::menuSetup()
     if (status::g_Party.fukuro_ != 0) {
         maxCharaCount_++;
     }
-    func_02023324(&navigator_);
+    navigator_.setupBase();
 }
 
 THUMB void MaterielMenu_SHOP_WHOSE::menuExecute()
@@ -37,8 +37,8 @@ THUMB void MaterielMenu_SHOP_WHOSE::menuDraw()
     }
     if (yesno_ == 0) {
         func_ov016_0216fb6c(0);
-        func_02051968(&menuItem_);
-        func_02051968(&menuItem2_);
+        menuItem_.drawActive();
+        menuItem2_.drawActive();
     }
 }
 
@@ -63,7 +63,7 @@ THUMB void MaterielMenu_SHOP_WHOSE::menuUpdate()
         }
         return;
     }
-    if (func_02023230(&menuItem2_)) {
+    if (MenuUpdate_Assist::isCancel(menuItem2_)) {
         close();
         data_020ed1bc.openMessageForTALK();
         data_020ed1bc.addMessageNOWAIT(MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->cancel());
@@ -72,8 +72,8 @@ THUMB void MaterielMenu_SHOP_WHOSE::menuUpdate()
         data_ov016_02185c10.mode_ = 1;
         return;
     }
-    func_02023504(&navigator_, 5, 2, maxCharaCount_);
-    int result = func_02023274(&menuItem_, &navigator_);
+    navigator_.setup(5, 2, maxCharaCount_);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         activeChara_ = menuItem_.active_;
         int activeChara = activeChara_;
@@ -109,7 +109,7 @@ THUMB void MaterielMenu_SHOP_WHOSE::selectYes()
         checkMoney();
         break;
     case 3:
-        func_02051900(&menuItem_, 3, 5);
+        menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
         yesno_ = 0;
         mode_ = -1;
         break;
@@ -129,7 +129,7 @@ THUMB void MaterielMenu_SHOP_WHOSE::selectNo()
     switch (mode_) {
     case 0:
         showMessage(MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->haveOther());
-        func_02051900(&menuItem_, 3, 0);
+        menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
         data_020ed1bc.setYesNo();
         yesno_ = 1;
         mode_ = 1;
@@ -211,7 +211,7 @@ THUMB void MaterielMenu_SHOP_WHOSE::haveMaxCheck()
         TextAPI::setMACRO0(0x12, 0x50000000, target);
         showMessage(MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->haveItemMax());
         data_020ed1bc.setYesNo();
-        func_02051900(&menuItem_, 3, 0);
+        menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
         yesno_ = 1;
         mode_ = 0;
         return;
@@ -275,7 +275,7 @@ THUMB void MaterielMenu_SHOP_WHOSE::giveBuyItem()
     } else {
         showMessage(MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->getItem(false, false));
     }
-    func_02051900(&menuItem_, 3, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     mode_ = 2;
 }
 

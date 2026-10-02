@@ -127,7 +127,7 @@ THUMB void status::BasePartyStatus::setSaveData(profile::PROFILE_PARTY* data) {
 	data->CHAPTER = g_Story.chapter_;
 }
 
-THUMB void status::BasePartyStatus::setLoadData(profile::PROFILE_PARTY *data, profile::PROFILE_HISTORY* history) {
+THUMB void status::BasePartyStatus::setLoadData(profile::PROFILE_PARTY *data) {
     this->basha_ = data->BASHA;
     g_Story.setChapter(data->CHAPTER);
     return;
@@ -164,9 +164,9 @@ THUMB void status::PartyStatus::setSaveData(profile::PROFILE_PARTY *data)
     data->BALLOON = balloon_;
 }
 
-THUMB void status::PartyStatus::setLoadData(profile::PROFILE_PARTY* data, profile::PROFILE_HISTORY* history)
+THUMB void status::PartyStatus::setLoadData(profile::PROFILE_PARTY* data)
 {
-    BasePartyStatus::setLoadData(data, history);
+    BasePartyStatus::setLoadData(data);
 
     for (int i = 0; i < 0x19; i++) {
         int* p = &originalPlayerFlag_[i + 1].flag_;
@@ -953,7 +953,7 @@ THUMB void status::PartyStatus::recoveryDemolition() {
 
 THUMB void status::PartyStatus::recoveryDisableDemolition() {
     if (g_Story.chapter_ == 2) {
-        switch (func_0200a6c8()->tileId_  - 159) {
+        switch (encount::Encount::getSingleton()->tileId_  - 159) {
             case 0: case 1: case 2: case 3: case 4:
                 setBattleMode();
                 getCount();

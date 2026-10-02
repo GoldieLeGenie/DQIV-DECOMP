@@ -1,4 +1,5 @@
 #include "ov015/btl/BattleMenu.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "ov015/btl/BattleMenuPlayerControl.hpp"
 #include "ov003/btl/BattleMonsterMask.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
@@ -12,14 +13,14 @@
 THUMB void BattleMenu_ITEM::menuSetup()
 {
     status::g_Party.setBattleMode();
-    func_02051900(&menuItem_, 1, 5);
-    func_02051900(&cancelItem_, 2, 0);
-    func_02051900(&unk_ec, 0, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
+    cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
+    unk_ec.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH, menu::MenuItem::CURSORTYPE_NONE);
     int i;
     unk_1c = btl::BattleMenuPlayerControl::getSingleton()->activeChara_;
     status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(btl::BattleMenuPlayerControl::getSingleton()->activeChara_)->haveStatusInfo_;
-    func_02023324(&navigator_);
-    func_02023504(&navigator_, 2, 3, info->haveItem_.getCount());
+    navigator_.setupBase();
+    navigator_.setup(2, 3, info->haveItem_.getCount());
     int pos = 0;
     for (i = 0; i < info->haveItem_.getCount(); i++) {
         if (info->haveItem_.isEquipment(i) == 0) {
@@ -35,7 +36,7 @@ THUMB void BattleMenu_ITEM::menuSetup()
     int page = pos / 6;
     pos = pos % 6;
     menuItem_.active_ = pos;
-    func_02023344(&navigator_, page);
+    navigator_.setPageNo(page);
     BattleMonsterMask::getSingleton()->select(-1);
 }
 
@@ -43,17 +44,17 @@ THUMB void BattleMenu_ITEM::menuExecute()
 {
     status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(btl::BattleMenuPlayerControl::getSingleton()->activeChara_)->haveStatusInfo_;
     int count = info->haveItem_.getCount();
-    func_02023504(&navigator_, 2, 3, info->haveItem_.getCount());
+    navigator_.setup(2, 3, info->haveItem_.getCount());
     int num = (count - 1) % 6 + 1;
     int page;
-    int last = func_02023348(&navigator_) - 1;
-    page = func_0202333c(&navigator_);
+    int last = navigator_.getPageMaxCount() - 1;
+    page = navigator_.getPageNo();
     if (page != last) {
         num = 6;
     }
     func_0201e6c4(&menuItem_, num, menuItem_.active_);
     func_ov015_0216c5c4(&cancelItem_);
-    int max = func_02023348(&navigator_) - 1;
+    int max = navigator_.getPageMaxCount() - 1;
     func_0201e684(&unk_ec, unk_ec.active_, max, 0xd8, 0x78);
 }
 
@@ -63,12 +64,12 @@ THUMB void BattleMenu_ITEM::menuDraw()
         status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(btl::BattleMenuPlayerControl::getSingleton()->activeChara_)->haveStatusInfo_;
         int count = info->haveItem_.getCount();
         int items[12];
-        func_020882d4(items, 0, sizeof(items));
+        dss::DssUtils::unkfunc_020882d4(items, 0, sizeof(items));
         for (int i = 0; i < count; i++) {
             items[i] = info->haveItem_.getItem(i);
         }
-        func_ov015_0216ba60(items, count, func_0202333c(&navigator_));
-        func_02051968(&menuItem_);
+        func_ov015_0216ba60(items, count, navigator_.getPageNo());
+        menuItem_.drawActive();
     }
 }
 
@@ -80,12 +81,12 @@ THUMB void BattleMenu_ITEM::menuUpdate()
         }
         return;
     }
-    if (func_02023230(&cancelItem_)) {
+    if (MenuUpdate_Assist::isCancel(cancelItem_)) {
         close();
         BattleMenuJudge::getSingleton()->backActionMenu(2);
         return;
     }
-    int result = func_02023274(&menuItem_, &navigator_);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         redraw_ = 1;
         if (result == 2) {
@@ -95,17 +96,17 @@ THUMB void BattleMenu_ITEM::menuUpdate()
             } else {
                 selectUseItem();
             }
-            int item = func_020233cc(&navigator_, menuItem_.active_);
+            int item = navigator_.getIndex(menuItem_.active_);
             btl::BattleMenuPlayerControl::getSingleton()->activeItem_ = item;
             return;
         }
-        int item = func_020233cc(&navigator_, menuItem_.active_);
+        int item = navigator_.getIndex(menuItem_.active_);
         btl::BattleMenuPlayerControl::getSingleton()->activeItem_ = item;
     }
     int active = menuItem_.active_;
-    if (func_02023204(&unk_ec, &navigator_, &active) == 2) {
+    if (MenuUpdate_Assist::isPageFlipOne(unk_ec, navigator_, active) == 2) {
         menuItem_.active_ = active;
-        int item = func_020233cc(&navigator_, menuItem_.active_);
+        int item = navigator_.getIndex(menuItem_.active_);
         btl::BattleMenuPlayerControl::getSingleton()->activeItem_ = item;
         redraw_ = 1;
     }
@@ -113,7 +114,7 @@ THUMB void BattleMenu_ITEM::menuUpdate()
 
 THUMB void BattleMenu_ITEM::selectUseItem()
 {
-    int index = func_020233cc(&navigator_, menuItem_.active_);
+    int index = navigator_.getIndex(menuItem_.active_);
     int action = status::UseItem::getBattleUseAction(status::g_Party.getPlayerStatus(unk_1c)->haveStatusInfo_.haveItem_.getItem(index));
     status::UseItem::UseArea area = status::UseAction::getUseArea(action);
     switch (status::UseAction::getUseType(action)) {

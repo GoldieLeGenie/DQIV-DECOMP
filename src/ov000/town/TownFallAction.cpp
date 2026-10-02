@@ -174,7 +174,7 @@ ARM void TownFallAction::setFixXZ()
     if (TownStageManager::getSingleton()->checkCrossNumEraseSurface(position_, pos, 0x1000, 1, poly)) {
         vecXZ_.set(0, 0, 0);
     } else {
-        vecXZ_ = func_02088bdc(dir * TownPlayerAction::walkSpeed, 2);
+        vecXZ_ = dir * TownPlayerAction::walkSpeed / 2;
     }
     pos = position_ + side * sideLen;
     pos.vy += TownPlayerAction::collR;
@@ -186,7 +186,7 @@ ARM void TownFallAction::setFixXZ()
     }
     TownStageManager::getSingleton()->coll_.m_surfaceType[0] = -1;
     TownStageManager::getSingleton()->coll_.m_surfaceType[0] = -1;
-    pos = func_02088988(position_, side * sideLen);
+    pos = position_ - side * sideLen;
     pos.vy += TownPlayerAction::collR;
     TownStageManager::getSingleton()->searchFloorSurface(pos, TownPlayerAction::collR, searchLen, out);
     if (TownStageManager::getSingleton()->getHitSurfaceIdByType(0) == 0) {

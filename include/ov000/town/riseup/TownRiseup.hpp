@@ -144,7 +144,7 @@ struct TownRiseupSprite : TownRiseupBase {
     virtual int getType() { return 1; }
 };
 
-/* TU around 0x0214214c (not decompiled) */
+/* vtable 0x02148fdc */
 struct TownRiseupScriptMove : TownRiseupBase {
     BillboardItem* item_;                       // 0x28
     dss::Fix32Vector3 start_;                   // 0x2C
@@ -160,15 +160,22 @@ struct TownRiseupScriptMove : TownRiseupBase {
     virtual void draw();
     virtual bool isFinish();
     virtual void setScriptData(dss::Fix32Vector3 start, dss::Fix32Vector3 end, int frame);
-    virtual void cleanup();
-    virtual int getType() { return 2; }
     virtual int getResorceType() { return 0; }
+    virtual int getType() { return 2; }
 };
 
-/* TU around 0x02142c3c (not decompiled) */
+/* vtable 0x02149084 */
 struct TownRiseupMedal : TownRiseupBase {
+    enum {
+        RISEUP_NONE = 0,
+        RISEUP_START_WAIT = 1,
+        RISEUP_RISING = 2,
+        RISEUP_END_WAIT = 3,
+        RISEUP_FADE_OUT = 4
+    };
+
     cmn::CommonEffectFlat sprite_;              // 0x028
-    char alpha_;                                // 0x2F8
+    unsigned char alpha_;                       // 0x2F8
     int height_;                                // 0x2FC
     const RiseupParam* param;                   // 0x300
 
@@ -182,8 +189,8 @@ struct TownRiseupMedal : TownRiseupBase {
     virtual void draw();
     virtual void cleanup();
     virtual bool isFinish();
-    virtual int getType() { return 3; }
     virtual int getResorceType() { return 1; }
+    virtual int getType() { return 3; }
 };
 
 struct TownRiseupStorage {

@@ -1,4 +1,5 @@
 #include "main/param/MonsterMap.hpp"
+#include "main/dss/DssUtils.hpp"
 
 
 THUMB int param::MonsterMap::getFloorIndex(param::MonsterMap* data, int section, char* name)
@@ -41,7 +42,7 @@ THUMB int param::MonsterMap::getFloorIndex(param::MonsterMap* data, int section,
     }
     for (; index < 0xC9; index++)
     {
-        if (func_020882b0(data[index].floorID, name) == 0)
+        if (dss::DssUtils::unkfunc_020882b0(data[index].floorID, name) == 0)
         {
             return index;
         }
@@ -79,7 +80,7 @@ THUMB int param::MonsterMap::getFloorIndex(param::MonsterMap* data, int section,
     }
     for (; index < 0xC9; index++)
     {
-        if (func_020882b0(data[index].floorID, name) == 0)
+        if (dss::DssUtils::unkfunc_020882b0(data[index].floorID, name) == 0)
         {
             return index;
         }

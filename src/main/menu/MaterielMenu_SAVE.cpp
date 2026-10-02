@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "main/menu/MaterielMenu_SAVE.hpp"
+#include "main/object/DisplayCharacter.hpp"
 #include "main/menu/MaterielMenuWindowManager.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/text/TextAPI.hpp"
@@ -18,7 +19,7 @@
 
 THUMB void MaterielMenu_SAVE::menuSetup()
 {
-    func_02051900(&menuItem_, 3, 5);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.enableSE_ = 1;
     m_focusDiary = 0;
     isSave_ = 0;
@@ -54,7 +55,7 @@ THUMB void MaterielMenu_SAVE::menuDraw()
     if (saveType_ == TYPE_CHURCH) {
         func_ov016_0216ff18();
     }
-    func_02051968(&menuItem_);
+    menuItem_.drawActive();
 }
 
 THUMB void MaterielMenu_SAVE::menuUpdate()
@@ -512,7 +513,7 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
             cmn::GameManager::getSingleton();
             cmn::PlayerManager::setLock(1);
             cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 0;
-            func_020499a4(0);
+            BillboardCharacter::setAllCharaAnim(0);
             MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
         } else if (messageCounter_ == 1) {
             if (!g_GlobalFade.isEnd()) {

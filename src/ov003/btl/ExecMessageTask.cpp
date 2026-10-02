@@ -50,7 +50,7 @@ ARM void btl::ExecMessageTask::initialize()
  
     btl::BattleActorMacro::setExecMacro(*useActionParam_);
     message_ = btl::BattleMessage::setExecMessage(useActionParam_);
-    func_0208978c();
+    BattleAutoFeed::setExecuteMessage();
     useActionParam_->actorCharacterStatus_->setMenuStatusFlag(
         (status::HaveStatusInfo::DiffStatus)1);
 }
@@ -96,7 +96,7 @@ ARM void btl::ExecMessageTask::execute()
             }
         }
         if (flag) {
-            if (func_020897a0() || message_ == 0) {
+            if (BattleAutoFeed::isEndExecuteMessage() || message_ == 0) {
                 if (endWait) {
                     partTaskManager.setNextTask(4);
                 }

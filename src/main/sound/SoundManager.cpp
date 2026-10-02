@@ -205,8 +205,8 @@ THUMB void SoundManager::battlePlay() {
     if (status::g_Party.isChapter4BGM()) {
         bgm = 0xb;
     }
-    if (func_0200a6c8()->encountParam_.getSound() != 0) {
-        bgm = func_0200a6c8()->encountParam_.getSound();
+    if (encount::Encount::getSingleton()->encountParam_.getSound() != 0) {
+        bgm = encount::Encount::getSingleton()->encountParam_.getSound();
     }
     if (finalFormBGM_ != 0) {
         bgm = 0x21;
@@ -228,8 +228,8 @@ THUMB void SoundManager::resetLastBossPlay() {
     if (status::g_Party.isChapter4BGM()) {
         bgm = 0xb;
     }
-    if (func_0200a6c8()->encountParam_.getSound() != 0) {
-        bgm = func_0200a6c8()->encountParam_.getSound();
+    if (encount::Encount::getSingleton()->encountParam_.getSound() != 0) {
+        bgm = encount::Encount::getSingleton()->encountParam_.getSound();
     }
     bgmIndex_ = bgm;
 }
@@ -250,8 +250,8 @@ THUMB void SoundManager::stopBgm(int fade) {
     stop(fade);
 }
 
-THUMB void SoundManager::playSe(int seId, int param) {
-    func_020559b0(seId, param);
+THUMB int SoundManager::playSe(int seId, int param) {
+    return func_020559b0(seId);
 }
 
 THUMB void SoundManager::stopSeWithIndex(int seId, int index) {

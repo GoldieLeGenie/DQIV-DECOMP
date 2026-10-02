@@ -219,11 +219,11 @@ ARM void TownModelDraw::setMoveBigRock()
     target.vx = -0x6000;
     target.vy = nowPos.vy;
     target.vz = 0x4000;
-    func_020311f0(&simpleMove_, &nowPos, &target);
-    func_02031278(&simpleMove_, bigRockSpeed);
+    simpleMove_.setActionMove(nowPos, target);
+    simpleMove_.setMoveSpeed(bigRockSpeed);
     dss::Vector3<short> add;
     add.set(rotSpeed, 0, 0);
-    func_02031580(&simpleMove_, &modelIdx3d_, &add, rotFrame);
+    simpleMove_.setSimpleRot(modelIdx3d_, add, rotFrame);
     script_.num[0] = Z_MOVE;
     script_.num[1] = ROOT0;
     count = 0;
@@ -235,9 +235,9 @@ ARM void TownModelDraw::execMoveBigRock()
     dss::Fix32Vector3 playerPos;
     dss::Fix32Vector3 pos = getPosition();
     dss::Fix32Vector3 target = TownPlayerManager::getSingleton()->getPosition();
-    dss::Fix32 min = func_02088f20(func_02088988(target, pos));
+    dss::Fix32 min = ((target - pos)).lengthsq();
     int drawCount = TownPlayerManager::getSingleton()->partyDraw_.countReal_;
-    func_020310f4(&simpleMove_, &pos);
+    simpleMove_.execMove(pos);
     for (int i = 0; i < drawCount; i++) {
         playerPos = TownPlayerManager::getSingleton()->party_.getMemberPosition(i);
         if (script_.num[0] == Z_MOVE) {
@@ -286,11 +286,11 @@ ARM void TownModelDraw::execMoveBigRock()
         }
         break;
     }
-    func_02031154(&simpleMove_, &modelIdx3d_);
-    if (func_02031160(&simpleMove_) == 1) {
+    simpleMove_.execRot(modelIdx3d_);
+    if (simpleMove_.moveUpdate() == 1) {
         setRoot(script_.num[1], target, pos);
     }
-    func_020311c8(&simpleMove_);
+    simpleMove_.rotUpdate();
     setPosition(pos);
     setRotation(modelIdx3d_);
 }
@@ -410,7 +410,7 @@ ARM void TownModelDraw::setRoot(int root, dss::Fix32Vector3& target, dss::Fix32V
         if (count == 45) {
             TownCamera::getSingleton()->setMoveTargetPlayer(80);
         }
-        if (count > 45 && func_020311d4(&TownCamera::getSingleton()->cameraMove_)) {
+        if (count > 45 && TownCamera::getSingleton()->cameraMove_.isEnd()) {
             TownCamera::getSingleton()->setCameraLock(false);
             cmn::PlayerManager::setLock(0);
             TownPlayerManager::getSingleton()->partyDraw_.setExcute(1);
@@ -419,9 +419,9 @@ ARM void TownModelDraw::setRoot(int root, dss::Fix32Vector3& target, dss::Fix32V
         count++;
         break;
     }
-    func_020311f0(&simpleMove_, &pos, &next);
-    func_02031278(&simpleMove_, speed);
-    func_02031580(&simpleMove_, &modelIdx3d_, &add, rotFrame);
+    simpleMove_.setActionMove(pos, next);
+    simpleMove_.setMoveSpeed(speed);
+    simpleMove_.setSimpleRot(modelIdx3d_, add, rotFrame);
 }
 
 ARM int TownModelDraw::getDir()

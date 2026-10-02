@@ -41,7 +41,7 @@ ARM bool cmn::CommonCalculate::areaCheck(dss::Fix32Vector3& pos, short dir, dss:
             return true;
         }
     }
-    dss::Fix32Vector3 diff = func_02088988(func_02088bdc(min + max, 2), pos);
+    dss::Fix32Vector3 diff = (min + max) / 2 - pos;
     dss::Fix32Vector3 vec;
     switch (check) {
     case 1:
@@ -94,7 +94,7 @@ ARM int cmn::CommonCalculate::getFrameByVector(dss::Fix32Vector3& from, dss::Fix
     if (speed == dss::Fix32(0L)) {
         return 0;
     }
-    return func_02008eb8(func_02088e90(func_02088b68(func_02088988(to, from), speed)).value / 0x1000, 1);
+    return func_02008eb8((((to - from) / speed)).length().value / 0x1000, 1);
 }
 
 ARM dss::Fix32Vector3 cmn::CommonCalculate::setVecByParam(int x, int y, int z)

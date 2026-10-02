@@ -30,7 +30,6 @@ extern "C" {
     void  func_02046208(fld::FLDObject* fld, int uid, VecFx32* pos);            /* FLDObject::SetMapUidPosFX32 */
     int   func_02047474(fld::FLDObject* fld, int obj);                          /* FLDObject::GetMapObjAlpha */
     char* func_0200bfc4(char* mapName, int index);                              /* StageLink::getName */
-    void  func_ov000_02142b70(void* self, int uid, dss::Fix32Vector3* pos);     /* TownExtraMapObjManager */
 }
 extern int data_0211d434;
 extern "C" {
@@ -82,6 +81,7 @@ struct TownStageManager {
 
     void setCollision(int id, int flag) { stage_.setMapUidOnOff(id, flag); }
     void setCollisionObject(int id) { func_02046470(&stage_.m_fld, id); }
+    void setCameraNo(int channel, int screen) { func_020422ec(&stage_.m_fld, channel, screen); }
     void eraseObject(int uid, int flag) { stage_.eraseObject(uid, flag); }
     void setAlpha(int obj, int alpha) { stage_.setAlpha(obj, alpha); }
     int getMapObjUid(int obj) { return func_02046e10(&stage_.m_fld, obj); }

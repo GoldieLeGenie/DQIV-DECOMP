@@ -8,8 +8,8 @@ THUMB void MaterielMenu_SHOP_WHO_SELL::menuSetup()
 {
     status::g_Party.setPlayerMode();
     func_02080e78();
-    func_02051900(&menuItem_, 3, 5);
-    func_02051900(&menuItem2_, 2, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
+    menuItem2_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     activeChara_ = func_ov016_0216ff2c()->activeChara_;
     messageCurse_ = 0;
     return_ = 0;
@@ -17,7 +17,7 @@ THUMB void MaterielMenu_SHOP_WHO_SELL::menuSetup()
     if (status::g_Party.fukuro_ != 0) {
         maxCharaCount_++;
     }
-    func_02023324(&navigator_);
+    navigator_.setupBase();
     if (MaterielMenu_SHOP_MANAGER::getSingleton()->getExtraShop() == 2) {
         extraShop_ = 1;
         extraMode_ = 0;
@@ -41,7 +41,7 @@ THUMB void MaterielMenu_SHOP_WHO_SELL::menuDraw()
             return;
         }
         func_ov016_0216fb98();
-        func_02051968(&menuItem_);
+        menuItem_.drawActive();
     }
 }
 
@@ -59,7 +59,7 @@ THUMB void MaterielMenu_SHOP_WHO_SELL::menuUpdate()
         }
         return;
     }
-    if (func_02023230(&menuItem2_)) {
+    if (MenuUpdate_Assist::isCancel(menuItem2_)) {
         if (extraShop_) {
             showMessage(0x6d9c, 0x6d9d);
             extraMode_ = 3;
@@ -73,8 +73,8 @@ THUMB void MaterielMenu_SHOP_WHO_SELL::menuUpdate()
         data_ov016_02185c10.mode_ = 1;
         return;
     }
-    func_02023504(&navigator_, 5, 2, maxCharaCount_);
-    int result = func_02023274(&menuItem_, &navigator_);
+    navigator_.setup(5, 2, maxCharaCount_);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         int activeChara = menuItem_.active_;
         activeChara_ = activeChara;

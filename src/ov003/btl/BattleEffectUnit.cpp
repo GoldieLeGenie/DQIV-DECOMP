@@ -182,10 +182,10 @@ THUMB void btl::BattleEffectUnit::setEffectPosition(int index, int drawCtrlId, i
         targetPos_[index] = dss::Fix32Vector3(0, 0, 0);
     }
     else if (type <= 3) {
-        targetPos_[index] = func_02088988(dss::Fix32Vector3(*((Position*)monster)->getPosition()), monster->getNullPosition(1, type));
+        targetPos_[index] = (dss::Fix32Vector3(*((Position*)monster)->getPosition()) - monster->getNullPosition(1, type));
     }
     else {
-        targetPos_[index] = func_02088988(dss::Fix32Vector3(*((Position*)monster)->getPosition()), monster->getNullPosition(nullType, type));
+        targetPos_[index] = (dss::Fix32Vector3(*((Position*)monster)->getPosition()) - monster->getNullPosition(nullType, type));
     }
 
     int range = (char)(effect_->byte_2 & 0xf);
@@ -307,7 +307,7 @@ THUMB void btl::BattleEffectUnit::waitStart()
         start_ = 1;
         param::EffectParam* effect = effect_;
         if (effect->color != 0xff) {
-            func_0203e8f8()->start(effect->color, (max_ - 1) * effect->interval);
+            cmn::CommonEffectLocation::getSingleton()->start(effect->color, (max_ - 1) * effect->interval);
         }
         OS_Wait();
         for (int i = 0; i < max_; i++) {

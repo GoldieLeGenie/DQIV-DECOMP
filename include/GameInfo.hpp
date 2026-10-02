@@ -106,6 +106,11 @@ enum CommandType {
     COMMAND_NONE = 7
 };
 
+enum EncountPart {
+    EncountDungeon = 0,
+    EncountField = 1
+};
+
 enum LandType {
     Floor = 0,
     Sea = 1,

@@ -1,4 +1,5 @@
 #include "main/status/StageStatus.hpp"
+#include "main/global/GlobalDQ4.hpp"
 #include "main/cmn/ExtraMapLink.hpp"
 #include "main/status/ActionExec.hpp"
 #include "main/dss/DssUtils.hpp"
@@ -83,11 +84,11 @@ THUMB void status::StageStatus::initialize()
     this->worldTime_ = 0;
     this->chapterLoad_ = 0;
 
-    func_02087168(&this->shipPosition_.vx.value, 0x451E8000);
-    func_02087168(&this->shipPosition_.vy.value, 0x440C0000);
+    this->shipPosition_.vx = 2536.0f;
+    this->shipPosition_.vy = 560.0f;
     this->shipPosition_.vz = 0L;
-    func_02087168(&this->balloonPosition_.vx.value, 0x45230000);
-    func_02087168(&this->balloonPosition_.vy.value, 0x44400000);
+    this->balloonPosition_.vx = 2608.0f;
+    this->balloonPosition_.vy = 768.0f;
     this->balloonPosition_.vz = 0L;
 
     this->idoLink_.data_.link_.inFlag_ = 0;
@@ -128,8 +129,8 @@ THUMB void status::StageStatus::setup(char *mapname)
     param::FloorParam *entry = &floorParam[index];
 
     if (g_Global.isAreaChange() == 1 &&
-        func_020882b0(g_Global.getMapName(), map_casino) != 0 &&
-        func_020882b0(g_Global.getPrevMapName(), map_casino) != 0)
+        dss::DssUtils::unkfunc_020882b0(g_Global.getMapName(), map_casino) != 0 &&
+        dss::DssUtils::unkfunc_020882b0(g_Global.getPrevMapName(), map_casino) != 0)
     {
         func_02037da4();
         func_02037d28();
@@ -643,7 +644,7 @@ THUMB int status::StageStatus::isAbortSaveTown()
 {
     char local[2];
 
-    if (func_02058114(&data_0210bb94, 12) == 1)
+    if (data_0210bb94.unkfunc_02058114(12) == 1)
     {
         if (TownPlayerManager::getSingleton()->isSaveAndBattleOK() == 0)
         {
@@ -658,15 +659,15 @@ THUMB int status::StageStatus::isAbortSaveTown()
     char *name = getMapName();
     local[0] = name[0];
 
-    if (func_020882b0(getMapName(), map_field) == 0)
+    if (dss::DssUtils::unkfunc_020882b0(getMapName(), map_field) == 0)
     {
         return 1;
     }
 
-    if (func_020882b0(local, map_m) == 0 ||
-        func_020882b0(local, map_h) == 0 ||
-        func_020882b0(local, map_c) == 0 ||
-        func_020882b0(local, map_f) == 0)
+    if (dss::DssUtils::unkfunc_020882b0(local, map_m) == 0 ||
+        dss::DssUtils::unkfunc_020882b0(local, map_h) == 0 ||
+        dss::DssUtils::unkfunc_020882b0(local, map_c) == 0 ||
+        dss::DssUtils::unkfunc_020882b0(local, map_f) == 0)
     {
 
         if (this->isAbortSave() == 0)
@@ -682,7 +683,7 @@ THUMB int status::StageStatus::isAbortSaveDungeon()
 {
     char local[2];
 
-    if (func_02058114(&data_0210bb94, 12) == 1)
+    if (data_0210bb94.unkfunc_02058114(12) == 1)
     {
         if (TownPlayerManager::getSingleton()->isSaveAndBattleOK() == 0)
         {
@@ -697,15 +698,15 @@ THUMB int status::StageStatus::isAbortSaveDungeon()
     char *name = getMapName();
     local[0] = name[0];
 
-    if (func_020882b0(this->getMapName(), map_darkfield) == 0)
+    if (dss::DssUtils::unkfunc_020882b0(this->getMapName(), map_darkfield) == 0)
     {
         return 1;
     }
 
-    if (func_020882b0(local, map_d) == 0 ||
-        func_020882b0(local, map_t) == 0 ||
-        func_020882b0(local, map_s) == 0 ||
-        func_020882b0(local, map_e) == 0)
+    if (dss::DssUtils::unkfunc_020882b0(local, map_d) == 0 ||
+        dss::DssUtils::unkfunc_020882b0(local, map_t) == 0 ||
+        dss::DssUtils::unkfunc_020882b0(local, map_s) == 0 ||
+        dss::DssUtils::unkfunc_020882b0(local, map_e) == 0)
     {
 
         if (this->isAbortSave() == 0)
@@ -1097,9 +1098,9 @@ THUMB void status::StageStatus::setRuraFlag(int rura)
     this->ruraFlag_ = rura;
     if (rura == 1)
     {
-        if (func_02058114(&data_0210bb94, 0xE) != 0)
+        if (data_0210bb94.unkfunc_02058114(0xE) != 0)
         {
-            func_ov001_02127b28();
+            FieldPlayerManager::getSingleton();
             cmn::PlayerManager::setLock(1);
             return;
         }

@@ -1,4 +1,6 @@
 #include "main/Commands/CommonCommand.hpp"
+#include "main/global/GlobalDQ4.hpp"
+#include "ov001/window/FieldWindowSystem.hpp"
 #include "ov000/town/TownWindowSystem.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
@@ -25,7 +27,7 @@ ARM int cmd_message1(int* param)
 {
     int index = getPlacementCtrlId();
     if (getObjectCount() > index) {
-        if (func_02058114(&data_0210bb94, 0xc) != 0) {
+        if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
             cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(index));
         }
     } else {
@@ -36,8 +38,8 @@ ARM int cmd_message1(int* param)
     if (!g_HengeNoTsue.isMonster()) {
         cmn::PartyTalk::getSingleton()->setPreMessageNo(param[0]);
     }
-    if (func_02058114(&data_0210bb94, 0xe) != 0) {
-        func_ov001_0212ab8c(func_ov001_0212aaac(), param[0], param[1]);
+    if (data_0210bb94.unkfunc_02058114(0xe) != 0) {
+        FieldWindowSystem::getSingleton()->openMessage(param[0], param[1]);
     } else {
         TownWindowSystem::getSingleton()->openMessage(param[0], param[1]);
     }
@@ -48,7 +50,7 @@ ARM int cmd_message2(int* param)
 {
     int index = getPlacementCtrlId();
     if (getObjectCount() > index) {
-        if (func_02058114(&data_0210bb94, 0xc) != 0) {
+        if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
             cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(index));
         }
     } else {
@@ -107,7 +109,7 @@ ARM int cmd_random_message(int* param)
 {
     int index = getPlacementCtrlId();
     if (getObjectCount() > index) {
-        if (func_02058114(&data_0210bb94, 0xc) != 0) {
+        if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
             cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(index));
         }
     } else {

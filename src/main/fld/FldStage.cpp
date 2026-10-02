@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "main/fld/FldStage.hpp"
+#include "main/cmn/MoveBase.hpp"
 #include "main/data/FileLoader.hpp"
 #include "main/text/TextAPI.hpp"
 #include "main/script/ScriptSystem.hpp"
@@ -220,7 +221,7 @@ ARM void FldStage::setFldColl(FldCollision* coll)
 ARM bool FldStage::collGetPolygonPos(int poly, dss::Fix32Vector3* pos)
 {
     COLL_POLY p;
-    func_02088b3c(pos, 0);
+    *pos *= 0;
     if (!func_0203f464(m_fld.m_coll, poly, &p)) {
         return false;
     }
@@ -230,14 +231,14 @@ ARM bool FldStage::collGetPolygonPos(int poly, dss::Fix32Vector3* pos)
             pos->vy.value += p.vertex[i].y;
             pos->vz.value += p.vertex[i].z;
         }
-        func_02088c7c(pos, 4);
+        *pos /= 4;
     } else {
         for (int i = 0; i < 3; i++) {
             pos->vx.value += p.vertex[i].x;
             pos->vy.value += p.vertex[i].y;
             pos->vz.value += p.vertex[i].z;
         }
-        func_02088c7c(pos, 3);
+        *pos /= 3;
     }
     return true;
 }
@@ -262,7 +263,7 @@ ARM int FldStage::collCrossCheckPoly(dss::Fix32Vector3& start, dss::Fix32Vector3
             poly++;
             continue;
         }
-        d = func_02031e84(d);
+        d = unkfunc_02031e84(d);
         if (d < min) {
             ret = poly;
             min = d;
@@ -440,7 +441,7 @@ ARM bool FldStage::IsCommonAnimationEnd(int uid)
     return true;
 }
 
-extern "C" ARM int func_020484ec(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecFx32* box, dss::Fix32* rate)
+ARM int unkfunc_020484ec(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecFx32* box, dss::Fix32* rate)
 {
     int result;
     G3_PushMtx();
@@ -489,8 +490,8 @@ ARM int FldStage::addBoxCollistion(dss::Fix32Vector3& pos, dss::Fix32Vector3& si
         p[i].vx = size.vx * -1;
         p[i].vz = size.vz;
     }
-    func_020872d8(&p[3].vz, -1);
-    func_020872d8(&p[2].vz, -1);
+    p[3].vz *= -1;
+    p[2].vz *= -1;
     normal.set(-FX32_ONE, 0, 0);
     poly.normal = getVecFx32(normal);
     for (int i = 0; i < 4; i++) {
@@ -507,8 +508,8 @@ ARM int FldStage::addBoxCollistion(dss::Fix32Vector3& pos, dss::Fix32Vector3& si
         p[i].vx = size.vx;
         p[i].vz = size.vz * -1;
     }
-    func_020872d8(&p[0].vx, -1);
-    func_020872d8(&p[1].vx, -1);
+    p[0].vx *= -1;
+    p[1].vx *= -1;
     normal.set(0, 0, -FX32_ONE);
     poly.normal = getVecFx32(normal);
     for (int i = 0; i < 4; i++) {
@@ -525,8 +526,8 @@ ARM int FldStage::addBoxCollistion(dss::Fix32Vector3& pos, dss::Fix32Vector3& si
         p[i].vx = size.vx;
         p[i].vz = size.vz;
     }
-    func_020872d8(&p[0].vz, -1);
-    func_020872d8(&p[1].vz, -1);
+    p[0].vz *= -1;
+    p[1].vz *= -1;
     normal.set(FX32_ONE, 0, 0);
     poly.normal = getVecFx32(normal);
     for (int i = 0; i < 4; i++) {
@@ -543,8 +544,8 @@ ARM int FldStage::addBoxCollistion(dss::Fix32Vector3& pos, dss::Fix32Vector3& si
         p[i].vx = size.vx;
         p[i].vz = size.vz;
     }
-    func_020872d8(&p[3].vx, -1);
-    func_020872d8(&p[2].vx, -1);
+    p[3].vx *= -1;
+    p[2].vx *= -1;
     normal.set(0, 0, FX32_ONE);
     poly.normal = getVecFx32(normal);
     for (int i = 0; i < 4; i++) {
@@ -599,7 +600,7 @@ ARM int FldStage::getCrossPolygonOtherSurface(dss::Fix32Vector3& start, dss::Fix
             poly++;
             continue;
         }
-        d = func_02031e84(d);
+        d = unkfunc_02031e84(d);
         if (d < min) {
             ret = poly;
             min = d;

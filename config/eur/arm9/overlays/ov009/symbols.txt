@@ -1,271 +1,248 @@
-func_ov009_021210e0 kind:function(arm,size=0x98) addr:0x021210e0
-func_ov009_02121178 kind:function(arm,size=0x40) addr:0x02121178
-func_ov009_021211b8 kind:function(arm,size=0x54) addr:0x021211b8
-func_ov009_0212120c kind:function(arm,size=0x2f8) addr:0x0212120c
-func_ov009_02121504 kind:function(arm,size=0xc8) addr:0x02121504
-func_ov009_021215cc kind:function(arm,size=0x38) addr:0x021215cc
-func_ov009_02121604 kind:function(arm,size=0x28) addr:0x02121604
-func_ov009_0212162c kind:function(arm,size=0x14) addr:0x0212162c
-func_ov009_02121640 kind:function(arm,size=0x14) addr:0x02121640
-func_ov009_02121654 kind:function(arm,size=0x1b0) addr:0x02121654
-func_ov009_02121804 kind:function(arm,size=0x188) addr:0x02121804
-func_ov009_0212198c kind:function(arm,size=0x2cc) addr:0x0212198c
-func_ov009_02121c58 kind:function(arm,size=0x1c) addr:0x02121c58
-func_ov009_02121c74 kind:function(arm,size=0xc) addr:0x02121c74
-func_ov009_02121c80 kind:function(arm,size=0x10) addr:0x02121c80
-func_ov009_02121c90 kind:function(arm,size=0x10) addr:0x02121c90
-func_ov009_02121ca0 kind:function(arm,size=0x1c) addr:0x02121ca0
-func_ov009_02121cbc kind:function(arm,size=0x18) addr:0x02121cbc
-func_ov009_02121cd4 kind:function(arm,size=0x100) addr:0x02121cd4
-func_ov009_02121dd4 kind:function(arm,size=0x18) addr:0x02121dd4
-func_ov009_02121dec kind:function(arm,size=0x174) addr:0x02121dec
-func_ov009_02121f60 kind:function(arm,size=0x14) addr:0x02121f60
-func_ov009_02121f74 kind:function(arm,size=0x4) addr:0x02121f74
-func_ov009_02121f78 kind:function(arm,size=0x54) addr:0x02121f78
-func_ov009_02121fcc kind:function(arm,size=0xe8) addr:0x02121fcc
-func_ov009_021220b4 kind:function(arm,size=0x4) addr:0x021220b4
-func_ov009_021220b8 kind:function(arm,size=0xc) addr:0x021220b8
-func_ov009_021220c4 kind:function(arm,size=0x28) addr:0x021220c4
-func_ov009_021220ec kind:function(arm,size=0x14) addr:0x021220ec
-func_ov009_02122100 kind:function(arm,size=0x54) addr:0x02122100
-func_ov009_02122154 kind:function(arm,size=0x64) addr:0x02122154
-func_ov009_021221b8 kind:function(arm,size=0x20) addr:0x021221b8
-func_ov009_021221d8 kind:function(arm,size=0x38) addr:0x021221d8
-func_ov009_02122210 kind:function(arm,size=0x10) addr:0x02122210
+_ZN15CasinoPokerDrawC1Ev kind:function(arm,size=0x98) addr:0x021210e0
+_ZN15CasinoPokerDrawD1Ev kind:function(arm,size=0x40) addr:0x02121178
+_ZN15CasinoPokerDraw12getSingletonEv kind:function(arm,size=0x54) addr:0x021211b8
+_ZN15CasinoPokerDraw10initializeEv kind:function(arm,size=0x2f8) addr:0x0212120c
+_ZN15CasinoPokerDraw15setPoolPositionEv kind:function(arm,size=0xc8) addr:0x02121504
+_ZN15CasinoPokerDraw9terminateEv kind:function(arm,size=0x38) addr:0x021215cc
+_ZN15CasinoPokerDraw4drawEv kind:function(arm,size=0x28) addr:0x02121604
+_ZN15CasinoPokerDraw12setCardJokerEi kind:function(arm,size=0x14) addr:0x0212162c
+_ZN15CasinoPokerDraw14setCardReverseEi kind:function(arm,size=0x14) addr:0x02121640
+_ZN15CasinoPokerDraw14setCardTextureEiii kind:function(arm,size=0x1b0) addr:0x02121654
+_ZN15CasinoPokerDraw16unkfunc_02121804Ev kind:function(arm,size=0x188) addr:0x02121804
+_ZN15CasinoPokerDraw16unkfunc_0212198cEv kind:function(arm,size=0x2cc) addr:0x0212198c
+_ZN15CasinoPokerDraw15setCardPositionEiN3dss12Fix32Vector3E kind:function(arm,size=0x1c) addr:0x02121c58
+_ZN15CasinoPokerDraw11getDistanceEv kind:function(arm,size=0xc) addr:0x02121c74
+_ZN15CasinoPokerDraw8getSpaceEv kind:function(arm,size=0x10) addr:0x02121c80
+_ZN15CasinoPokerDraw8getDepthEv kind:function(arm,size=0x10) addr:0x02121c90
+_ZN15CasinoPokerDraw12setCardAngleEii kind:function(arm,size=0x1c) addr:0x02121ca0
+_ZN15CasinoPokerDraw9setEffectEi kind:function(arm,size=0x18) addr:0x02121cbc
+_ZN16PokerCardPolygonC1Ev kind:function(arm,size=0x100) addr:0x02121cd4
+_ZN16PokerCardPolygonD1Ev kind:function(arm,size=0x18) addr:0x02121dd4
+_ZN16PokerCardPolygon4drawEv kind:function(arm,size=0x174) addr:0x02121dec
+_ZN12CasinoCameraC1Ev kind:function(arm,size=0x14) addr:0x02121f60
+_ZN12CasinoCameraD1Ev kind:function(arm,size=0x4) addr:0x02121f74
+_ZN12CasinoCamera12getSingletonEv kind:function(arm,size=0x54) addr:0x02121f78
+_ZN12CasinoCamera10initializeEv kind:function(arm,size=0xe8) addr:0x02121fcc
+_ZN12CasinoCamera9terminateEv kind:function(arm,size=0x4) addr:0x021220b4
+_ZN12CasinoCamera4drawEv kind:function(arm,size=0xc) addr:0x021220b8
+_ZN11CasinoStageC1Ev kind:function(arm,size=0x28) addr:0x021220c4
+_ZN11CasinoStageD1Ev kind:function(arm,size=0x14) addr:0x021220ec
+_ZN11CasinoStage12getSingletonEv kind:function(arm,size=0x54) addr:0x02122100
+_ZN11CasinoStage10initializeEv kind:function(arm,size=0x64) addr:0x02122154
+_ZN11CasinoStage9terminateEv kind:function(arm,size=0x20) addr:0x021221b8
+_ZN11CasinoStage13setObjectDrawEiii kind:function(arm,size=0x38) addr:0x021221d8
+_ZN10CasinoSlotC1Ev kind:function(arm,size=0x10) addr:0x02122210
 _ZN10CasinoSlot12getSingletonEv kind:function(arm,size=0x54) addr:0x02122220
-func_ov009_02122274 kind:function(arm,size=0x4) addr:0x02122274
-func_ov009_02122278 kind:function(arm,size=0xd8) addr:0x02122278
-func_ov009_02122350 kind:function(arm,size=0x4) addr:0x02122350
-func_ov009_02122354 kind:function(arm,size=0x8c) addr:0x02122354
-func_ov009_021223e0 kind:function(arm,size=0x4) addr:0x021223e0
+_ZN10CasinoSlotD1Ev kind:function(arm,size=0x4) addr:0x02122274
+_ZN10CasinoSlot10initializeEv kind:function(arm,size=0xd8) addr:0x02122278
+_ZN10CasinoSlot9terminateEv kind:function(arm,size=0x4) addr:0x02122350
+_ZN10CasinoSlot7executeEv kind:function(arm,size=0x8c) addr:0x02122354
+_ZN10CasinoSlot4drawEv kind:function(arm,size=0x4) addr:0x021223e0
 _ZN10CasinoSlot11setSlotTypeEi kind:function(arm,size=0x120) addr:0x021223e4
-func_ov009_02122504 kind:function(arm,size=0x40) addr:0x02122504
-func_ov009_02122544 kind:function(arm,size=0x3c) addr:0x02122544
-func_ov009_02122580 kind:function(arm,size=0x78) addr:0x02122580
-func_ov009_021225f8 kind:function(arm,size=0x10) addr:0x021225f8
-func_ov009_02122608 kind:function(arm,size=0x1c) addr:0x02122608
-func_ov009_02122624 kind:function(arm,size=0x10) addr:0x02122624
-func_ov009_02122634 kind:function(arm,size=0x24) addr:0x02122634
-func_ov009_02122658 kind:function(arm,size=0x18) addr:0x02122658
-func_ov009_02122670 kind:function(arm,size=0x54) addr:0x02122670
-func_ov009_021226c4 kind:function(arm,size=0xbc) addr:0x021226c4
-func_ov009_02122780 kind:function(arm,size=0x18) addr:0x02122780
-func_ov009_02122798 kind:function(arm,size=0x4) addr:0x02122798
-func_ov009_0212279c kind:function(arm,size=0x20) addr:0x0212279c
-func_ov009_021227bc kind:function(arm,size=0x10) addr:0x021227bc
-func_ov009_021227cc kind:function(arm,size=0x4) addr:0x021227cc
-func_ov009_021227d0 kind:function(arm,size=0x18) addr:0x021227d0
-func_ov009_021227e8 kind:function(arm,size=0x4) addr:0x021227e8
-func_ov009_021227ec kind:function(arm,size=0x54) addr:0x021227ec
-func_ov009_02122840 kind:function(arm,size=0x68) addr:0x02122840
-func_ov009_021228a8 kind:function(arm,size=0x34) addr:0x021228a8
-func_ov009_021228dc kind:function(arm,size=0x18) addr:0x021228dc
-func_ov009_021228f4 kind:function(arm,size=0x2c) addr:0x021228f4
-func_ov009_02122920 kind:function(arm,size=0xc) addr:0x02122920
-func_ov009_0212292c kind:function(arm,size=0xe8) addr:0x0212292c
-func_ov009_02122a14 kind:function(arm,size=0x64) addr:0x02122a14
-func_ov009_02122a78 kind:function(arm,size=0x90) addr:0x02122a78
-func_ov009_02122b08 kind:function(arm,size=0x30) addr:0x02122b08
-func_ov009_02122b38 kind:function(arm,size=0xc) addr:0x02122b38
-func_ov009_02122b44 kind:function(arm,size=0x17c) addr:0x02122b44
-func_ov009_02122cc0 kind:function(arm,size=0x70) addr:0x02122cc0
-func_ov009_02122d30 kind:function(arm,size=0xbc) addr:0x02122d30
-func_ov009_02122dec kind:function(arm,size=0x198) addr:0x02122dec
-func_ov009_02122f84 kind:function(arm,size=0xdc) addr:0x02122f84
-func_ov009_02123060 kind:function(arm,size=0x28) addr:0x02123060
-func_ov009_02123088 kind:function(arm,size=0xb8) addr:0x02123088
-func_ov009_02123140 kind:function(arm,size=0xc) addr:0x02123140
-func_ov009_0212314c kind:function(arm,size=0x5c) addr:0x0212314c
-func_ov009_021231a8 kind:function(arm,size=0x34) addr:0x021231a8
-func_ov009_021231dc kind:function(arm,size=0x48) addr:0x021231dc
-func_ov009_02123224 kind:function(arm,size=0x1f8) addr:0x02123224
-func_ov009_0212341c kind:function(arm,size=0x10) addr:0x0212341c
-func_ov009_0212342c kind:function(arm,size=0x20) addr:0x0212342c
-func_ov009_0212344c kind:function(arm,size=0x34) addr:0x0212344c
-func_ov009_02123480 kind:function(arm,size=0x20) addr:0x02123480
-func_ov009_021234a0 kind:function(arm,size=0x18) addr:0x021234a0
-func_ov009_021234b8 kind:function(arm,size=0x20) addr:0x021234b8
-func_ov009_021234d8 kind:function(arm,size=0x1c) addr:0x021234d8
-func_ov009_021234f4 kind:function(arm,size=0x54) addr:0x021234f4
-func_ov009_02123548 kind:function(arm,size=0x54) addr:0x02123548
-func_ov009_0212359c kind:function(arm,size=0x18) addr:0x0212359c
-func_ov009_021235b4 kind:function(arm,size=0x10) addr:0x021235b4
-func_ov009_021235c4 kind:function(arm,size=0x1c) addr:0x021235c4
-func_ov009_021235e0 kind:function(arm,size=0x18) addr:0x021235e0
-func_ov009_021235f8 kind:function(arm,size=0x58) addr:0x021235f8
-func_ov009_02123650 kind:function(arm,size=0x30) addr:0x02123650
-func_ov009_02123680 kind:function(arm,size=0x18) addr:0x02123680
-func_ov009_02123698 kind:function(arm,size=0xc) addr:0x02123698
-func_ov009_021236a4 kind:function(arm,size=0x74) addr:0x021236a4
-func_ov009_02123718 kind:function(arm,size=0x68) addr:0x02123718
-func_ov009_02123780 kind:function(arm,size=0x38) addr:0x02123780
+_ZN10CasinoSlot7rotReelEit kind:function(arm,size=0x40) addr:0x02122504
+_ZN10CasinoSlot13stopEventAnimEv kind:function(arm,size=0x3c) addr:0x02122544
+_ZN10CasinoSlot11setLineLampEib kind:function(arm,size=0x78) addr:0x02122580
+_ZN10CasinoSlot12setLineBingoEi kind:function(arm,size=0x10) addr:0x021225f8
+_ZN10CasinoSlot12setBingoAnimEi kind:function(arm,size=0x1c) addr:0x02122608
+_ZN10CasinoSlot12getStageNameEv kind:function(arm,size=0x10) addr:0x02122624
+_ZN11CasinoPokerC1Ev kind:function(arm,size=0x24) addr:0x02122634
+_ZN11CasinoPokerD1Ev kind:function(arm,size=0x18) addr:0x02122658
+_ZN11CasinoPoker12getSingletonEv kind:function(arm,size=0x54) addr:0x02122670
+_ZN11CasinoPoker10initializeEv kind:function(arm,size=0xbc) addr:0x021226c4
+_ZN11CasinoPoker9terminateEv kind:function(arm,size=0x18) addr:0x02122780
+_ZN11CasinoPoker7executeEv kind:function(arm,size=0x4) addr:0x02122798
+_ZN11CasinoPoker4drawEv kind:function(arm,size=0x20) addr:0x0212279c
+_ZN11CasinoPoker12getStageNameEv kind:function(arm,size=0x10) addr:0x021227bc
+_ZN12CasinoSystem16unkfunc_021227ccEv kind:function(arm,size=0x4) addr:0x021227cc
+_ZN12CasinoSystemC1Ev kind:function(arm,size=0x18) addr:0x021227d0
+_ZN12CasinoSystemD1Ev kind:function(arm,size=0x4) addr:0x021227e8
+_ZN12CasinoSystem12getSingletonEv kind:function(arm,size=0x54) addr:0x021227ec
+_ZN12CasinoSystem10initializeEv kind:function(arm,size=0x68) addr:0x02122840
+_ZN12CasinoSystem9terminateEv kind:function(arm,size=0x34) addr:0x021228a8
+_ZN12CasinoSystem7executeEv kind:function(arm,size=0x18) addr:0x021228dc
+_ZN12CasinoSystem4drawEv kind:function(arm,size=0x2c) addr:0x021228f4
+_ZN23PokerDoubleupSelectCard12getSingletonEv kind:function(arm,size=0xc) addr:0x02122920
+_ZN23PokerDoubleupSelectCard13startDoubleUpEi kind:function(arm,size=0xe8) addr:0x0212292c
+_ZN23PokerDoubleupSelectCard9getResultEi kind:function(arm,size=0x64) addr:0x02122a14
+_ZN23PokerDoubleupSelectCard9getCardNoEii kind:function(arm,size=0x90) addr:0x02122a78
+_ZN23PokerDoubleupSelectCard14clearDebugCardEv kind:function(arm,size=0x30) addr:0x02122b08
+_ZN14PokerJudgement12getSingletonEv kind:function(arm,size=0xc) addr:0x02122b38
+_ZN14PokerJudgement16JudgeCombinationEv kind:function(arm,size=0x17c) addr:0x02122b44
+_ZN14PokerJudgement8sortCardEv kind:function(arm,size=0x70) addr:0x02122cc0
+_ZN14PokerJudgement10judgeFlashEv kind:function(arm,size=0xbc) addr:0x02122d30
+_ZN14PokerJudgement13judgeStraightEv kind:function(arm,size=0x198) addr:0x02122dec
+_ZN14PokerJudgement10judgePairsEPiS0_ kind:function(arm,size=0xdc) addr:0x02122f84
+_ZN14PokerJudgement18setWinningPositionEv kind:function(arm,size=0x28) addr:0x02123060
+_ZN14PokerJudgement18setWinningPositionEPi kind:function(arm,size=0xb8) addr:0x02123088
+_ZN12PokerManager12getSingletonEv kind:function(arm,size=0xc) addr:0x02123140
+_ZN12PokerManager8allClearEv kind:function(arm,size=0x5c) addr:0x0212314c
+_ZN12PokerManager9clearCardEv kind:function(arm,size=0x34) addr:0x021231a8
+_ZN12PokerManager14clearDebugCardEi kind:function(arm,size=0x48) addr:0x021231dc
+_ZN12PokerManager8dealCardEi kind:function(arm,size=0x1f8) addr:0x02123224
+_ZN12PokerManager10setBetCoinEii kind:function(arm,size=0x10) addr:0x0212341c
+_ZN12PokerManager20judgementCombinationEv kind:function(arm,size=0x20) addr:0x0212342c
+_ZN12PokerManager11getMultipleEv kind:function(arm,size=0x34) addr:0x0212344c
+_ZN12PokerManager20resetCombinationCardEv kind:function(arm,size=0x20) addr:0x02123480
+_ZN12PokerManager15startSelectCardEi kind:function(arm,size=0x18) addr:0x021234a0
+_ZN12PokerManager13setSelectCardEii kind:function(arm,size=0x20) addr:0x021234b8
+_ZN12PokerManager13getSelectCardEi kind:function(arm,size=0x1c) addr:0x021234d8
+_ZN12PokerManager15getSelectCardNoEii kind:function(arm,size=0x54) addr:0x021234f4
+_ZN12PokerManager17getSelectCardTypeEii kind:function(arm,size=0x54) addr:0x02123548
+_ZN12PokerManager19getSelectCardResultEi kind:function(arm,size=0x18) addr:0x0212359c
+_ZN12PokerManager15startHighAndLowEv kind:function(arm,size=0x10) addr:0x021235b4
+_ZN12PokerManager9setAnswerEii kind:function(arm,size=0x1c) addr:0x021235c4
+_ZN12PokerManager19getHighAndLowResultEi kind:function(arm,size=0x18) addr:0x021235e0
+_ZN12PokerManager11setGameCardEP10POKER_CARDii kind:function(arm,size=0x58) addr:0x021235f8
+_ZN12PokerManager12changeCardNoEi kind:function(arm,size=0x30) addr:0x02123650
+_ZN12PokerManager14changeCardTypeEi kind:function(arm,size=0x18) addr:0x02123680
+_ZN23PokerDoubleupHighAndLow12getSingletonEv kind:function(arm,size=0xc) addr:0x02123698
+_ZN23PokerDoubleupHighAndLow15startHighAndLowEv kind:function(arm,size=0x74) addr:0x021236a4
+_ZN23PokerDoubleupHighAndLow9getResultEi kind:function(arm,size=0x68) addr:0x02123718
+_ZN23PokerDoubleupHighAndLow9getCardNoEi kind:function(arm,size=0x38) addr:0x02123780
 _ZN11Casino_Slot12getSingletonEv kind:function(arm,size=0x54) addr:0x021237b8
-func_ov009_0212380c kind:function(arm,size=0x34) addr:0x0212380c
-func_ov009_02123840 kind:function(arm,size=0x18) addr:0x02123840
+_ZN11Casino_SlotC1Ev kind:function(arm,size=0x34) addr:0x0212380c
+_ZN11Casino_SlotD1Ev kind:function(arm,size=0x18) addr:0x02123840
 _ZN11Casino_Slot11setSlotTypeEi kind:function(arm,size=0x20) addr:0x02123858
 _ZN11Casino_Slot9resetSlotEv kind:function(arm,size=0x20) addr:0x02123878
 _ZN11Casino_Slot7addCoinERi kind:function(arm,size=0x5c) addr:0x02123898
 _ZN11Casino_Slot7subCoinERi kind:function(arm,size=0x50) addr:0x021238f4
-func_ov009_02123944 kind:function(arm,size=0x30) addr:0x02123944
+_ZN11Casino_Slot16unkfunc_02123944Ev kind:function(arm,size=0x30) addr:0x02123944
 _ZN11Casino_Slot16getResultAllCoinEv kind:function(arm,size=0x58) addr:0x02123974
 _ZN11Casino_Slot11runningSlotEv kind:function(arm,size=0x2c) addr:0x021239cc
 _ZN11Casino_Slot8cashCoinERi kind:function(arm,size=0x50) addr:0x021239f8
 _ZN11Casino_Slot11cashAllCoinERi kind:function(arm,size=0x2c) addr:0x02123a48
 _ZN11Casino_Slot9startSlotEv kind:function(arm,size=0x130) addr:0x02123a74
 _ZN11Casino_Slot10showEffectEv kind:function(arm,size=0x174) addr:0x02123ba4
-func_ov009_02123d18 kind:function(arm,size=0x28) addr:0x02123d18
-func_ov009_02123d40 kind:function(arm,size=0x28) addr:0x02123d40
-func_ov009_02123d68 kind:function(arm,size=0xa8) addr:0x02123d68
-func_ov009_02123e10 kind:function(arm,size=0x2c) addr:0x02123e10
-func_ov009_02123e3c kind:function(arm,size=0x8) addr:0x02123e3c
-func_ov009_02123e44 kind:function(arm,size=0xa4) addr:0x02123e44
-func_ov009_02123ee8 kind:function(arm,size=0x9c) addr:0x02123ee8
-func_ov009_02123f84 kind:function(arm,size=0x98) addr:0x02123f84
-func_ov009_0212401c kind:function(arm,size=0x90) addr:0x0212401c
-func_ov009_021240ac kind:function(arm,size=0xac) addr:0x021240ac
-func_ov009_02124158 kind:function(arm,size=0x1e4) addr:0x02124158
-func_ov009_0212433c kind:function(arm,size=0x158) addr:0x0212433c
-func_ov009_02124494 kind:function(arm,size=0x3c) addr:0x02124494
-func_ov009_021244d0 kind:function(arm,size=0x4) addr:0x021244d0
-func_ov009_021244d4 kind:function(arm,size=0x78) addr:0x021244d4
-func_ov009_0212454c kind:function(arm,size=0x30) addr:0x0212454c
-func_ov009_0212457c kind:function(arm,size=0x3c) addr:0x0212457c
-func_ov009_021245b8 kind:function(arm,size=0x30) addr:0x021245b8
-func_ov009_021245e8 kind:function(arm,size=0x100) addr:0x021245e8
-func_ov009_021246e8 kind:function(arm,size=0x30) addr:0x021246e8
-func_ov009_02124718 kind:function(arm,size=0x28) addr:0x02124718
-func_ov009_02124740 kind:function(arm,size=0x24) addr:0x02124740
-func_ov009_02124764 kind:function(arm,size=0x48) addr:0x02124764
-func_ov009_021247ac kind:function(arm,size=0x38) addr:0x021247ac
-func_ov009_021247e4 kind:function(arm,size=0x20) addr:0x021247e4
-func_ov009_02124804 kind:function(arm,size=0x78) addr:0x02124804
-func_ov009_0212487c kind:function(arm,size=0x74) addr:0x0212487c
-func_ov009_021248f0 kind:function(arm,size=0x34) addr:0x021248f0
-func_ov009_02124924 kind:function(arm,size=0x78) addr:0x02124924
-func_ov009_0212499c kind:function(arm,size=0x30) addr:0x0212499c
-func_ov009_021249cc kind:function(arm,size=0x10) addr:0x021249cc
-func_ov009_021249dc kind:function(arm,size=0x94) addr:0x021249dc
-func_ov009_02124a70 kind:function(arm,size=0x38) addr:0x02124a70
-func_ov009_02124aa8 kind:function(arm,size=0x68) addr:0x02124aa8
-func_ov009_02124b10 kind:function(arm,size=0x14) addr:0x02124b10
-func_ov009_02124b24 kind:function(arm,size=0xc) addr:0x02124b24
-func_ov009_02124b30 kind:function(arm,size=0x10) addr:0x02124b30
-func_ov009_02124b40 kind:function(arm,size=0x8c) addr:0x02124b40
-func_ov009_02124bcc kind:function(arm,size=0x10) addr:0x02124bcc
-func_ov009_02124bdc kind:function(arm,size=0x8) addr:0x02124bdc
-func_ov009_02124be4 kind:function(arm,size=0x8) addr:0x02124be4
-func_ov009_02124bec kind:function(arm,size=0x8) addr:0x02124bec
-func_ov009_02124bf4 kind:function(arm,size=0x20) addr:0x02124bf4
-func_ov009_02124c14 kind:function(arm,size=0x180) addr:0x02124c14
-func_ov009_02124d94 kind:function(arm,size=0x80) addr:0x02124d94
-func_ov009_02124e14 kind:function(arm,size=0x18) addr:0x02124e14
-data_ov009_02124e2c kind:data(any) addr:0x02124e2c
-__sinit_ov009_02124e30 kind:function(arm,size=0x284) addr:0x02124e30
-__sinit_ov009_021250b4 kind:function(arm,size=0x70) addr:0x021250b4
-.p__sinit_ov009_02124e30 kind:data(word) addr:0x02125124
-.p__sinit_ov009_021250b4 kind:data(word) addr:0x02125128
-data_ov009_02125140 kind:data(any) addr:0x02125140
-data_ov009_02125144 kind:data(any) addr:0x02125144
-data_ov009_02125148 kind:data(any) addr:0x02125148
-data_ov009_0212514c kind:data(any) addr:0x0212514c
-data_ov009_02125150 kind:data(any) addr:0x02125150
-data_ov009_0212515c kind:data(any) addr:0x0212515c
-data_ov009_0212517c kind:data(any) addr:0x0212517c
-data_ov009_02125190 kind:data(any) addr:0x02125190
-data_ov009_021251b0 kind:data(any) addr:0x021251b0
-data_ov009_021251d0 kind:data(any) addr:0x021251d0
-data_ov009_021251f0 kind:data(any) addr:0x021251f0
-data_ov009_02125210 kind:data(any) addr:0x02125210
-data_ov009_02125234 kind:data(any) addr:0x02125234
-data_ov009_02125254 kind:data(any) addr:0x02125254
-data_ov009_02125260 kind:data(any) addr:0x02125260
-data_ov009_02125264 kind:data(any) addr:0x02125264
-data_ov009_02125270 kind:data(any) addr:0x02125270
-data_ov009_02125274 kind:data(any) addr:0x02125274
-data_ov009_02125280 kind:data(any) addr:0x02125280
-data_ov009_02125290 kind:data(any) addr:0x02125290
-data_ov009_02125294 kind:data(any) addr:0x02125294
-data_ov009_021252a4 kind:data(any) addr:0x021252a4
-data_ov009_021252b8 kind:data(any) addr:0x021252b8
-data_ov009_021252bc kind:data(any) addr:0x021252bc
-data_ov009_021252cc kind:data(any) addr:0x021252cc
-data_ov009_021252e0 kind:data(any) addr:0x021252e0
-data_ov009_02125308 kind:data(any) addr:0x02125308
-data_ov009_02125330 kind:data(any) addr:0x02125330
-data_ov009_0212533c kind:data(any) addr:0x0212533c
-data_ov009_02125360 kind:data(any) addr:0x02125360
-data_ov009_02125414 kind:data(any) addr:0x02125414
-data_ov009_02125434 kind:data(any) addr:0x02125434
-data_ov009_02125438 kind:data(any) addr:0x02125438
-data_ov009_0212543c kind:data(any) addr:0x0212543c
-data_ov009_02125470 kind:data(any) addr:0x02125470
-data_ov009_02125510 kind:data(any) addr:0x02125510
-data_ov009_021255b0 kind:data(any) addr:0x021255b0
-data_ov009_02125650 kind:data(any) addr:0x02125650
-data_ov009_02125654 kind:data(any) addr:0x02125654
-data_ov009_02125660 kind:bss addr:0x02125660
-data_ov009_02125664 kind:bss addr:0x02125664
-data_ov009_02125666 kind:bss addr:0x02125666
-data_ov009_02125668 kind:bss addr:0x02125668
-data_ov009_0212566a kind:bss addr:0x0212566a
-data_ov009_0212566c kind:bss addr:0x0212566c
-data_ov009_0212566e kind:bss addr:0x0212566e
-data_ov009_02125670 kind:bss addr:0x02125670
-data_ov009_02125672 kind:bss addr:0x02125672
-data_ov009_02125674 kind:bss addr:0x02125674
-data_ov009_02125676 kind:bss addr:0x02125676
-data_ov009_02125678 kind:bss addr:0x02125678
-data_ov009_0212567a kind:bss addr:0x0212567a
-data_ov009_0212567c kind:bss addr:0x0212567c
-data_ov009_02125680 kind:bss addr:0x02125680
-data_ov009_02125684 kind:bss addr:0x02125684
-data_ov009_02125688 kind:bss addr:0x02125688
-data_ov009_0212568c kind:bss addr:0x0212568c
-data_ov009_02125690 kind:bss addr:0x02125690
-data_ov009_02125694 kind:bss addr:0x02125694
-data_ov009_02125698 kind:bss addr:0x02125698
-data_ov009_0212569c kind:bss addr:0x0212569c
-data_ov009_021256a8 kind:bss addr:0x021256a8
-data_ov009_021256aa kind:bss addr:0x021256aa
-data_ov009_021256ac kind:bss addr:0x021256ac
-data_ov009_021256ae kind:bss addr:0x021256ae
-data_ov009_021256b0 kind:bss addr:0x021256b0
-data_ov009_021256b2 kind:bss addr:0x021256b2
-data_ov009_021256b4 kind:bss addr:0x021256b4
-data_ov009_021256b6 kind:bss addr:0x021256b6
-data_ov009_021256b8 kind:bss addr:0x021256b8
-data_ov009_021256ba kind:bss addr:0x021256ba
-data_ov009_021256bc kind:bss addr:0x021256bc
-data_ov009_021256be kind:bss addr:0x021256be
-data_ov009_021256c0 kind:bss addr:0x021256c0
-data_ov009_021256c4 kind:bss addr:0x021256c4
-data_ov009_021256c8 kind:bss addr:0x021256c8
-data_ov009_021256cc kind:bss addr:0x021256cc
-data_ov009_021256d0 kind:bss addr:0x021256d0
-data_ov009_021256d4 kind:bss addr:0x021256d4
-data_ov009_021256d8 kind:bss addr:0x021256d8
-data_ov009_021256dc kind:bss addr:0x021256dc
-data_ov009_021256e0 kind:bss addr:0x021256e0
-data_ov009_02126334 kind:bss addr:0x02126334
-data_ov009_02126338 kind:bss addr:0x02126338
-data_ov009_02126348 kind:bss addr:0x02126348
-data_ov009_02126354 kind:bss addr:0x02126354
-data_ov009_02126448 kind:bss addr:0x02126448
-data_ov009_0212644c kind:bss addr:0x0212644c
-data_ov009_02126458 kind:bss addr:0x02126458
-data_ov009_02126d2c kind:bss addr:0x02126d2c
-data_ov009_02126d30 kind:bss addr:0x02126d30
-data_ov009_02126d3c kind:bss addr:0x02126d3c
-data_ov009_02126d84 kind:bss addr:0x02126d84
-data_ov009_02126d88 kind:bss addr:0x02126d88
-data_ov009_02126d94 kind:bss addr:0x02126d94
-data_ov009_02126dec kind:bss addr:0x02126dec
-data_ov009_02126df0 kind:bss addr:0x02126df0
-data_ov009_02126dfc kind:bss addr:0x02126dfc
-data_ov009_02127408 kind:bss addr:0x02127408
-data_ov009_021274ac kind:bss addr:0x021274ac
-data_ov009_021274c0 kind:bss addr:0x021274c0
-data_ov009_02127594 kind:bss addr:0x02127594
-data_ov009_021275f8 kind:bss addr:0x021275f8
-data_ov009_021275fc kind:bss addr:0x021275fc
-data_ov009_02127608 kind:bss addr:0x02127608
+_ZN18Casino_SlotMachineC1Ev kind:function(arm,size=0x28) addr:0x02123d18
+_ZN18Casino_SlotMachineD1Ev kind:function(arm,size=0x28) addr:0x02123d40
+_ZN18Casino_SlotMachine9setupSlotEi kind:function(arm,size=0xa8) addr:0x02123d68
+_ZN18Casino_SlotMachine9resetSlotEv kind:function(arm,size=0x2c) addr:0x02123e10
+_ZN18Casino_SlotMachine12setLotResultENS_15SLOT_BINGO_LISTE kind:function(arm,size=0x8) addr:0x02123e3c
+_ZN18Casino_SlotMachine10scrollSlotEv kind:function(arm,size=0xa4) addr:0x02123e44
+_ZN18Casino_SlotMachine15setStopPositionEv kind:function(arm,size=0x9c) addr:0x02123ee8
+_ZN18Casino_SlotMachine18setCoordinateImageEi kind:function(arm,size=0x98) addr:0x02123f84
+_ZN18Casino_SlotMachine14setCherryImageEv kind:function(arm,size=0x90) addr:0x0212401c
+_ZN18Casino_SlotMachine13isCherryBingoEiii kind:function(arm,size=0xac) addr:0x021240ac
+_ZN18Casino_SlotMachine15setNothingBingoEv kind:function(arm,size=0x1e4) addr:0x02124158
+_ZN18Casino_SlotMachine13getResultCoinEi kind:function(arm,size=0x158) addr:0x0212433c
+_ZN15Casino_SlotReelC1Ev kind:function(arm,size=0x3c) addr:0x02124494
+_ZN15Casino_SlotReelD1Ev kind:function(arm,size=0x4) addr:0x021244d0
+_ZN15Casino_SlotReel7setReelEi kind:function(arm,size=0x78) addr:0x021244d4
+_ZN15Casino_SlotReel15setStopImageNumEi kind:function(arm,size=0x30) addr:0x0212454c
+_ZN15Casino_SlotReel15setStopPositionEi kind:function(arm,size=0x3c) addr:0x0212457c
+_ZN15Casino_SlotReel9resetReelEv kind:function(arm,size=0x30) addr:0x021245b8
+_ZN15Casino_SlotReel10scrollReelEv kind:function(arm,size=0x100) addr:0x021245e8
+_ZN15Casino_SlotReel11rollSpeedUpEv kind:function(arm,size=0x30) addr:0x021246e8
+_ZN15Casino_SlotReel13rollSpeedDownEv kind:function(arm,size=0x28) addr:0x02124718
+_ZN15Casino_SlotReel11reelRollingEv kind:function(arm,size=0x24) addr:0x02124740
+_ZN15Casino_SlotReel17checkPassingPointEi kind:function(arm,size=0x48) addr:0x02124764
+_ZN15Casino_SlotReel11getImageNumEv kind:function(arm,size=0x38) addr:0x021247ac
+_ZN15Casino_SlotReel12getReelImageEPci kind:function(arm,size=0x20) addr:0x021247e4
+_ZN15Casino_SlotReel16setImagePositionEPcii kind:function(arm,size=0x78) addr:0x02124804
+_ZN15Casino_SlotReel17setImageNotCherryEPci kind:function(arm,size=0x74) addr:0x0212487c
+_ZN15Casino_SlotReel13searchDeBoostEi kind:function(arm,size=0x34) addr:0x021248f0
+_ZN9PokerCardC1Ev kind:function(arm,size=0x78) addr:0x02124924
+_ZN9PokerCardD1Ev kind:function(arm,size=0x30) addr:0x0212499c
+_ZN9PokerCard16unkfunc_021249ccEv kind:function(arm,size=0x10) addr:0x021249cc
+_ZN9PokerCard16unkfunc_021249dcEN3dss5Fix32E kind:function(arm,size=0x94) addr:0x021249dc
+_ZN9PokerCard16unkfunc_02124a70EPK13PolygonVertex kind:function(arm,size=0x38) addr:0x02124a70
+_ZN9PokerCard11setPositionERN3dss12Fix32Vector3E kind:function(arm,size=0x68) addr:0x02124aa8
+_ZN9PokerCard8setAngleEi kind:function(arm,size=0x14) addr:0x02124b10
+_ZN9PokerCard16unkfunc_02124b24EPK17BillboardTexCoord kind:function(arm,size=0xc) addr:0x02124b24
+_ZN9PokerCard16unkfunc_02124b30EPK17BillboardTexCoord kind:function(arm,size=0x10) addr:0x02124b30
+_ZN9PokerCard16unkfunc_02124b40EPK17BillboardTexCoord kind:function(arm,size=0x8c) addr:0x02124b40
+_ZN9PokerCard16unkfunc_02124bccEPK17BillboardTexCoord kind:function(arm,size=0x10) addr:0x02124bcc
+_ZN9PokerCard16unkfunc_02124bdcEPv kind:function(arm,size=0x8) addr:0x02124bdc
+_ZN9PokerCard16unkfunc_02124be4EPv kind:function(arm,size=0x8) addr:0x02124be4
+_ZN9PokerCard16unkfunc_02124becEPv kind:function(arm,size=0x8) addr:0x02124bec
+_ZN9PokerCard16unkfunc_02124bf4EPv kind:function(arm,size=0x20) addr:0x02124bf4
+_ZN9PokerCard4drawEv kind:function(arm,size=0x180) addr:0x02124c14
+_ZN9PokerCard9setEffectEv kind:function(arm,size=0x80) addr:0x02124d94
+_ZN9PokerCard16unkfunc_02124e14Eb kind:function(arm,size=0x18) addr:0x02124e14
+CASINO_CAMERA_DISTANCE kind:data(byte[4]) addr:0x02124e2c local
+__sinit_CasinoPokerDraw.cpp kind:function(arm,size=0x284) addr:0x02124e30 local
+__sinit_CasinoCamera.cpp kind:function(arm,size=0x70) addr:0x021250b4 local
+.p__sinit_CasinoPokerDraw.cpp kind:data(word) addr:0x02125124 local
+.p__sinit_CasinoCamera.cpp kind:data(word) addr:0x02125128 local
+@876 kind:data(byte[4]) addr:0x02125140 local
+@863 kind:data(byte[4]) addr:0x02125144 local
+@861 kind:data(byte[4]) addr:0x02125148 local
+@862 kind:data(byte[4]) addr:0x0212514c local
+@875 kind:data(byte[4]) addr:0x02125150 local
+@1039 kind:data(byte[31]) addr:0x02125190 local
+@1040 kind:data(byte[31]) addr:0x021251b0 local
+@1041 kind:data(byte[30]) addr:0x021251d0 local
+@1042 kind:data(byte[29]) addr:0x021251f0 local
+@1043 kind:data(byte[36]) addr:0x02125210 local
+@1044 kind:data(byte[31]) addr:0x02125234 local
+_ZGVm_singleton$643 kind:bss addr:0x02125660 local
+s_vertexLeftTop kind:bss addr:0x02125664 local
+s_vertexRightBottom kind:bss addr:0x0212566a local
+s_vertexRightTop kind:bss addr:0x02125670 local
+s_vertexLeftBottom kind:bss addr:0x02125676 local
+s_texCoordLeftTop kind:bss addr:0x0212567c local
+s_texCoordRightTop kind:bss addr:0x02125684 local
+s_texCoordRightBottom kind:bss addr:0x0212568c local
+s_texCoordLeftBottom kind:bss addr:0x02125694 local
+@646 kind:bss addr:0x0212569c local
+s_vertex kind:bss addr:0x021256a8 local
+s_texCoord kind:bss addr:0x021256c0 local
+m_singleton$643 kind:bss addr:0x021256e0 local
+@393 kind:data(byte[4]) addr:0x02125260 local
+position kind:data(byte[12]) addr:0x02125264 local
+stagePath kind:data(byte[4]) addr:0x02125270 local
+@687 kind:data(byte[9]) addr:0x02125274 local
+cameraAngleX kind:data(byte[2]) addr:0x02125280 local
+cameraDistance kind:data(byte[4]) addr:0x02125290 local
+@823 kind:data(byte[5]) addr:0x02125294 local
+_ZN11CasinoPoker10stagePokerE kind:data(byte[4]) addr:0x021252b8
+@342 kind:data(byte[5]) addr:0x021252bc local
+@401 kind:data(byte[37]) addr:0x021252e0 local
+diameter$289 kind:data(byte[40]) addr:0x02125308 local
+unk_02125330 kind:data(byte[12]) addr:0x02125330 local
+_ZN11Casino_Slot10bingoList_E kind:data(byte[36]) addr:0x0212533c
+_ZN11Casino_Slot10avesTable_E kind:data(byte[180]) addr:0x02125360
+_ZN18Casino_SlotMachine16bingoBonusTable_E kind:data(byte[32]) addr:0x02125414
+_ZN18Casino_SlotMachine15slotBingoTable_E kind:data(byte[60]) addr:0x02125434
+_ZN18Casino_SlotMachine10Reel_Tbl_LE kind:data(byte[160]) addr:0x02125470
+_ZN18Casino_SlotMachine10Reel_Tbl_CE kind:data(byte[160]) addr:0x02125510
+_ZN18Casino_SlotMachine10Reel_Tbl_RE kind:data(byte[160]) addr:0x021255b0
+@700 kind:data(byte[4]) addr:0x02125650 local
+@701 kind:data(byte[4]) addr:0x02125654 local
+offset kind:bss(size=0x4) addr:0x02126334 local
+distance kind:bss(size=0x4) addr:0x02126338 local
+@392 kind:bss(size=0xc) addr:0x02126348 local
+m_singleton$389 kind:bss(size=0xf4) addr:0x02126354 local
+_ZGVcasinoStage$701 kind:bss(size=0x4) addr:0x02126448 local
+@704 kind:bss(size=0xc) addr:0x0212644c local
+casinoStage$701 kind:bss(size=0x8d4) addr:0x02126458 local
+_ZGVcasinoSlot$725 kind:bss(size=0x4) addr:0x02126d2c local
+@728 kind:bss(size=0xc) addr:0x02126d30 local
+casinoSlot$725 kind:bss(size=0x48) addr:0x02126d3c local
+_ZGVcasinoPoker$358 kind:bss(size=0x4) addr:0x02126d84 local
+@361 kind:bss(size=0xc) addr:0x02126d88 local
+casinoPoker$358 kind:bss(size=0x58) addr:0x02126d94 local
+_ZGVcasinoSystem$840 kind:bss(size=0x4) addr:0x02126dec local
+@843 kind:bss(size=0xc) addr:0x02126df0 local
+casinoSystem$840 kind:bss(size=0x60c) addr:0x02126dfc local
+pokerDoubleupSelectCard$22 kind:bss(size=0xa4) addr:0x02127408 local
+pokerJugement$36 kind:bss(size=0x14) addr:0x021274ac local
+pokerManager$104 kind:bss(size=0xd4) addr:0x021274c0 local
+pokerDoubleupHighAndLow$25 kind:bss(size=0x64) addr:0x02127594 local
+_ZGVcasinoSlot$1424 kind:bss(size=0x4) addr:0x021275f8 local
+@1427 kind:bss(size=0xc) addr:0x021275fc local
+casinoSlot$1424 kind:bss(size=0xd4) addr:0x02127608 local
+_ZTV10CasinoSlot kind:data(byte[28]) addr:0x0212529c
+cameraAngleZ kind:data(byte[2]) addr:0x02125282 local
+cameraAngleY kind:data(byte[2]) addr:0x02125284 local
+_ZN10CasinoSlot9stageSlotE kind:data(byte[4]) addr:0x02125288
+lampBlinkFrame kind:data(byte[4]) addr:0x0212528c local
+_ZGVm_singleton$389 kind:bss(size=0x4) addr:0x0212633c local
+default_angle kind:bss(size=0x6) addr:0x02126340 local
+_ZTV11CasinoPoker kind:data(byte[28]) addr:0x021252c4
+cameraAngleY kind:data(byte[2]) addr:0x02125254 local
+cameraAngleX kind:data(byte[2]) addr:0x02125256 local
+cameraFov kind:data(byte[2]) addr:0x02125258 local
+cameraAngleZ kind:data(byte[2]) addr:0x0212525a local
+cameraDirOffset kind:data(byte[2]) addr:0x0212525c local
+_ZTV16PokerCardPolygon kind:data(byte[60]) addr:0x02125154

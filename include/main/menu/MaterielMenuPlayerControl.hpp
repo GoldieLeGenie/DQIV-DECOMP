@@ -15,6 +15,10 @@ struct MaterielMenuPlayerControl {
     int activeChiausSkill_;         /* 0x2C */
     int activeChiausSkillPage_;     /* 0x30 */
     int nameCount_;                 /* 0x34 */
+
+    void setActiveChara(int chara) { activeChara_ = chara; }
+    void setExtraExp(int exp) { extraExp_ = exp; }
+    void setWins(int wins) { wins_ = wins; }
 };
 
 extern "C" {

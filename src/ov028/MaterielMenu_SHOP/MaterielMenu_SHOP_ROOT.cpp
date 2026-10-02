@@ -5,9 +5,9 @@
 THUMB void MaterielMenu_SHOP_ROOT::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02051900(&menuItem_, 3, 5);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = MaterielMenu_SHOP_MANAGER::getSingleton()->getShopAction();
-    func_02023324(&navigator_);
+    navigator_.setupBase();
     func_ov016_0216ff34(func_ov016_0216ff2c());
     MaterielMenu_SHOP_MANAGER::getSingleton()->resetItemQuantity();
     mode_ = 0;
@@ -22,7 +22,7 @@ THUMB void MaterielMenu_SHOP_ROOT::menuDraw()
 {
     if (data_020ed1bc.isMessageWAITPROG()) {
         func_ov016_0216fb14();
-        func_02051968(&menuItem_);
+        menuItem_.drawActive();
     } else if (data_020ed1bc.isOpen() && mode_ != 1) {
         func_ov016_0216fc58();
     }
@@ -36,8 +36,8 @@ THUMB void MaterielMenu_SHOP_ROOT::menuUpdate()
                 redraw_ = 1;
                 mode_ = 2;
             }
-            func_02023504(&navigator_, 1, 3, 3);
-            int result = func_02023274(&menuItem_, &navigator_);
+            navigator_.setup(1, 3, 3);
+            int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
             if (result != 0) {
                 if (result == 2) {
                     data_020ed1bc.clearMessageWAITPROG();

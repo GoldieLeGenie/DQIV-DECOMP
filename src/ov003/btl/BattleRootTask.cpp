@@ -1,3 +1,5 @@
+#include "main/btl/BattleExecLevelup.hpp"
+#include "main/dss/Pad.hpp"
 #include "ov003/btl/BattleRootTask.hpp"
 #include "ov003/btl/BattleRoot.hpp"
 #include "ov003/btl/BattleRound.hpp"
@@ -107,7 +109,7 @@ THUMB void btl::CommandTask::initialize()
         g_PartTaskManager.setNextTask(4);
         return;
     }
-    func_0200d5a0();
+    MenuAPI::openBattleMenu();
 }
 
 THUMB void btl::CommandTask::terminate()
@@ -128,7 +130,7 @@ THUMB void btl::CommandTask::execute()
         g_PartTaskManager.setNextTask(4);
         return;
     }
-    if (func_0200d528()) {
+    if (MenuAPI::isFinishMenu()) {
         if (BattleActorManager2::getSingleton()->escape_) {
             g_PartTaskManager.setNextTask(0xf);
         } else {
@@ -141,7 +143,7 @@ THUMB void btl::RoundTask::initialize()
 {
     battleRound_.initialize();
     if (!g_Global.fightStadiumFlag_) {
-        func_0200d5d4();
+        MenuAPI::openBattleStadiumAbort();
     }
     if (status::g_Party.getAliveCountOutsideCarriagePlayerOnly() == 0) {
         g_PartTaskManager.setNextTaskWithSleep(9);
@@ -151,12 +153,12 @@ THUMB void btl::RoundTask::initialize()
 THUMB void btl::RoundTask::terminate()
 {
     battleRound_.terminate();
-    func_0200d5e8();
+    MenuAPI::closeBattleStadiumAbort();
 }
 
 THUMB void btl::RoundTask::execute()
 {
-    if (g_Global.fightStadiumFlag_ && (func_0207f280(data_02116d40) & 2)) {
+    if (g_Global.fightStadiumFlag_ && (data_02116d40.unkfunc_0207f280() & 2)) {
         waitFlag_ = 1;
     }
     if (battleRound_.isEnd()) {
@@ -293,8 +295,8 @@ THUMB void btl::BattleEndTask::execute()
             endTaskIndex = 3;
         }
     }
-    if (endTaskIndex == 3 && !data_020ef8f0.execute()) {
-        func_02036010(&data_020ef8f0);
+    if (endTaskIndex == 3 && !g_BattleExecLevelup.execute()) {
+        g_BattleExecLevelup.terminate();
         if (status::g_Party.getLevelupPlayer() != -1) {
             endTaskIndex = 3;
         } else {
@@ -374,7 +376,7 @@ THUMB void btl::PartyReorderTask::execute()
         g_BattleExecReorder.terminate();
         g_PartTaskManager.wakeup();
         if (g_PartTaskManager.getCurrentTask() == 3) {
-            func_0200d5a0();
+            MenuAPI::openBattleMenu();
         }
     }
 }
@@ -398,12 +400,12 @@ THUMB void btl::DemolitionTask::execute()
 
 THUMB void btl::CrusingTask::initialize()
 {
-    if (func_0200a6c8()->battleMode_ == 1) {
+    if (encount::Encount::getSingleton()->battleMode_ == 1) {
         g_Stage.crusingPeopleEncount_ = 1;
         MaterielMenu_WINDOW_MANAGER::getSingleton()->extraInnType_ = 2;
         MaterielMenu_WINDOW_MANAGER::getSingleton()->openMaterielWindow(4);
     }
-    if (func_0200a6c8()->battleMode_ == 2) {
+    if (encount::Encount::getSingleton()->battleMode_ == 2) {
         g_Stage.crusingPeopleEncount_ = 1;
         MaterielMenu_WINDOW_MANAGER::getSingleton()->extraInnType_ = 2;
         MaterielMenu_WINDOW_MANAGER::getSingleton()->openMaterielWindow(0);

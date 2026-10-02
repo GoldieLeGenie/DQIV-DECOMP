@@ -584,7 +584,7 @@ _ZN10TownCamera10resetAngleEv kind:function(arm,size=0x54) addr:0x02136824
 _ZN10TownCamera7restoreEv kind:function(arm,size=0x78) addr:0x02136878
 _ZN10TownCamera5storeEv kind:function(arm,size=0x5c) addr:0x021368f0
 _ZN10TownCamera9setMoveToERN3dss12Fix32Vector3Eib kind:function(arm,size=0xf0) addr:0x0213694c
-_ZN10TownCamera8setRotToERN3dss12Vector3shortEib kind:function(arm,size=0x15c) addr:0x02136a3c
+_ZN10TownCamera8setRotToERN3dss7Vector3IsEEib kind:function(arm,size=0x15c) addr:0x02136a3c
 _ZN10TownCamera15resetCameraMoveEi kind:function(arm,size=0x1a8) addr:0x02136b98
 _ZN10TownCamera8setShakeEii kind:function(arm,size=0x190) addr:0x02136d40
 _ZN10TownCamera17setChangeDistanceEiN3dss5Fix32E kind:function(arm,size=0x94) addr:0x02136ed0
@@ -597,7 +597,7 @@ _ZN10TownCamera19setMoveTargetPlayerEi kind:function(arm,size=0x44) addr:0x02137
 _ZN10TownCamera18setMoveTragetCharaEi kind:function(arm,size=0x18) addr:0x021371c8
 _ZN10TownCamera13setCameraLockEb kind:function(arm,size=0xc) addr:0x021371e0
 _ZN10TownCamera10setLockPovEi kind:function(arm,size=0xa4) addr:0x021371ec
-_ZN10TownCamera15setDefaultAngleERN3dss12Vector3shortE kind:function(arm,size=0x3c) addr:0x02137290
+_ZN10TownCamera15setDefaultAngleERN3dss7Vector3IsEE kind:function(arm,size=0x3c) addr:0x02137290
 _ZN16TownWindowSystemC1Ev kind:function(arm,size=0x1c) addr:0x021372cc
 _ZN16TownWindowSystem12getSingletonEv kind:function(arm,size=0x54) addr:0x021372e8
 _ZN16TownWindowSystemD1Ev kind:function(arm,size=0x14) addr:0x0213733c
@@ -1362,14 +1362,14 @@ _ZN20UnkImageMap_02141f6c7isCloseEv kind:function(arm,size=0x14) addr:0x02142130
 _ZN20UnkImageMap_02141f6c8isEnableEv kind:function(arm,size=0x8) addr:0x02142144
 _ZN20TownRiseupScriptMoveC1Ev kind:function(thumb,size=0x24) addr:0x0214214c
 _ZN20TownRiseupScriptMoveD1Ev kind:function(thumb,size=0xc) addr:0x02142170
-func_ov000_0214217c kind:function(thumb,size=0x8) addr:0x0214217c
-func_ov000_02142184 kind:function(thumb,size=0x4) addr:0x02142184
-func_ov000_02142188 kind:function(thumb,size=0x5c) addr:0x02142188
-func_ov000_021421e4 kind:function(thumb,size=0xa6) addr:0x021421e4
-func_ov000_0214228c kind:function(thumb,size=0xe) addr:0x0214228c
-func_ov000_0214229c kind:function(thumb,size=0x20) addr:0x0214229c
-func_ov000_021422bc kind:function(arm,size=0x8) addr:0x021422bc
-func_ov000_021422c4 kind:function(arm,size=0x8) addr:0x021422c4
+_ZN20TownRiseupScriptMove5setupEi kind:function(thumb,size=0x8) addr:0x0214217c
+_ZN20TownRiseupScriptMove11setResourceEPv kind:function(thumb,size=0x4) addr:0x02142184
+_ZN20TownRiseupScriptMove7executeEv kind:function(thumb,size=0x5c) addr:0x02142188
+_ZN20TownRiseupScriptMove4drawEv kind:function(thumb,size=0xa6) addr:0x021421e4
+_ZN20TownRiseupScriptMove8isFinishEv kind:function(thumb,size=0xe) addr:0x0214228c
+_ZN20TownRiseupScriptMove13setScriptDataEN3dss12Fix32Vector3ES1_i kind:function(thumb,size=0x20) addr:0x0214229c
+_ZN20TownRiseupScriptMove14getResorceTypeEv kind:function(arm,size=0x8) addr:0x021422bc
+_ZN20TownRiseupScriptMove7getTypeEv kind:function(arm,size=0x8) addr:0x021422c4
 _ZN13TownMapEffect5setupENS_11EFFECT_TYPEE kind:function(arm,size=0x1a8) addr:0x021422cc
 _ZN13TownMapEffect7executeEv kind:function(arm,size=0x38) addr:0x02142474
 _ZN13TownMapEffect4drawEv kind:function(arm,size=0x2a0) addr:0x021424ac
@@ -1388,22 +1388,22 @@ _ZN25TownFurnitureControlMove27executeEv kind:function(thumb,size=0x66) addr:0x0
 _ZN25TownFurnitureControlMove27cleanupEv kind:function(thumb,size=0x8) addr:0x02142954
 _ZN25TownFurnitureControlMove27getTypeEv kind:function(arm,size=0x8) addr:0x0214295c
 _ZN22TownExtraMapObjManager12getSingletonEv kind:function(arm,size=0x58) addr:0x02142964
-func_ov000_021429bc kind:function(arm,size=0xc) addr:0x021429bc
-func_ov000_021429c8 kind:function(arm,size=0x78) addr:0x021429c8
+_ZN22TownExtraMapObjManager5setupEv kind:function(arm,size=0xc) addr:0x021429bc
+_ZN22TownExtraMapObjManager7setDataEiN3dss12Fix32Vector3E kind:function(arm,size=0x78) addr:0x021429c8
 _ZN22TownExtraMapObjManager16checkFloorMapUidERN3dss12Fix32Vector3E kind:function(arm,size=0x130) addr:0x02142a40
-func_ov000_02142b70 kind:function(arm,size=0xcc) addr:0x02142b70
+_ZN22TownExtraMapObjManager11getPositionEiRN3dss12Fix32Vector3E kind:function(arm,size=0xcc) addr:0x02142b70
 _ZN15TownRiseupMedalC1Ev kind:function(thumb,size=0x1c) addr:0x02142c3c
 _ZN15TownRiseupMedalD1Ev kind:function(thumb,size=0x14) addr:0x02142c58
-func_ov000_02142c6c kind:function(thumb,size=0x38) addr:0x02142c6c
-func_ov000_02142ca4 kind:function(thumb,size=0x14) addr:0x02142ca4
-func_ov000_02142cb8 kind:function(thumb,size=0xe) addr:0x02142cb8
-func_ov000_02142cc8 kind:function(thumb,size=0x42) addr:0x02142cc8
-func_ov000_02142d0c kind:function(thumb,size=0xd2) addr:0x02142d0c
-func_ov000_02142de0 kind:function(thumb,size=0xa8) addr:0x02142de0
-func_ov000_02142e88 kind:function(thumb,size=0x16) addr:0x02142e88
-func_ov000_02142ea0 kind:function(thumb,size=0x18) addr:0x02142ea0
-func_ov000_02142eb8 kind:function(arm,size=0x8) addr:0x02142eb8
-func_ov000_02142ec0 kind:function(arm,size=0x8) addr:0x02142ec0
+_ZN15TownRiseupMedal5setupEi kind:function(thumb,size=0x38) addr:0x02142c6c
+_ZN15TownRiseupMedal7setTypeEi kind:function(thumb,size=0x14) addr:0x02142ca4
+_ZN15TownRiseupMedal11setResourceEPv kind:function(thumb,size=0xe) addr:0x02142cb8
+_ZN15TownRiseupMedal11setPositionEN3dss12Fix32Vector3E kind:function(thumb,size=0x42) addr:0x02142cc8
+_ZN15TownRiseupMedal7executeEv kind:function(thumb,size=0xd2) addr:0x02142d0c
+_ZN15TownRiseupMedal4drawEv kind:function(thumb,size=0xa8) addr:0x02142de0
+_ZN15TownRiseupMedal7cleanupEv kind:function(thumb,size=0x16) addr:0x02142e88
+_ZN15TownRiseupMedal8isFinishEv kind:function(thumb,size=0x18) addr:0x02142ea0
+_ZN15TownRiseupMedal14getResorceTypeEv kind:function(arm,size=0x8) addr:0x02142eb8
+_ZN15TownRiseupMedal7getTypeEv kind:function(arm,size=0x8) addr:0x02142ec0
 func_ov000_02142ec8 kind:function(arm,size=0x20) addr:0x02142ec8
 func_ov000_02142ee8 kind:function(arm,size=0x14) addr:0x02142ee8
 func_ov000_02142efc kind:function(arm,size=0xbc) addr:0x02142efc
@@ -1413,18 +1413,18 @@ func_ov000_02143084 kind:function(arm,size=0x57c) addr:0x02143084
 func_ov000_02143600 kind:function(arm,size=0xb0) addr:0x02143600
 func_ov000_021436b0 kind:function(arm,size=0x2c8) addr:0x021436b0
 func_ov000_02143978 kind:function(arm,size=0xc) addr:0x02143978
-func_ov000_02143984 kind:function(thumb,size=0x4c) addr:0x02143984
-func_ov000_021439d0 kind:function(thumb,size=0x2c) addr:0x021439d0
-func_ov000_021439fc kind:function(thumb,size=0x3c) addr:0x021439fc
-func_ov000_02143a38 kind:function(thumb,size=0xdc) addr:0x02143a38
-func_ov000_02143b14 kind:function(thumb,size=0x50) addr:0x02143b14
-func_ov000_02143b64 kind:function(thumb,size=0xb0) addr:0x02143b64
-func_ov000_02143c14 kind:function(thumb,size=0x178) addr:0x02143c14
-func_ov000_02143d8c kind:function(thumb,size=0x90) addr:0x02143d8c
-func_ov000_02143e1c kind:function(thumb,size=0x12) addr:0x02143e1c
-func_ov000_02143e30 kind:function(thumb,size=0x26) addr:0x02143e30
-func_ov000_02143e58 kind:function(thumb,size=0x12) addr:0x02143e58
-func_ov000_02143e6c kind:function(thumb,size=0x8) addr:0x02143e6c
+_ZN18TownEndrollManagerC1Ev kind:function(thumb,size=0x4c) addr:0x02143984
+_ZN18TownEndrollManagerD1Ev kind:function(thumb,size=0x2c) addr:0x021439d0
+_ZN18TownEndrollManager12getSingletonEv kind:function(thumb,size=0x3c) addr:0x021439fc
+_ZN18TownEndrollManager5setupEv kind:function(thumb,size=0xdc) addr:0x02143a38
+_ZN18TownEndrollManager7cleanupEv kind:function(thumb,size=0x50) addr:0x02143b14
+_ZN18TownEndrollManager10animTheEndEv kind:function(thumb,size=0xb0) addr:0x02143b64
+_ZN18TownEndrollManager13drawStaffRollEv kind:function(thumb,size=0x178) addr:0x02143c14
+_ZN18TownEndrollManager11startTheEndEv kind:function(thumb,size=0x90) addr:0x02143d8c
+_ZN18TownEndrollManager11isEndTheEndEv kind:function(thumb,size=0x12) addr:0x02143e1c
+_ZN18TownEndrollManager4drawEv kind:function(thumb,size=0x26) addr:0x02143e30
+_ZN18TownEndrollManager7executeEv kind:function(thumb,size=0x12) addr:0x02143e58
+_ZN18TownEndrollManager14isStaffRollEndEv kind:function(thumb,size=0x8) addr:0x02143e6c
 @3327 kind:data(byte[4]) addr:0x02143e74 local
 TOWN_CAMERA_DISTANCE kind:data(any) addr:0x02143e78 local
 _ZN13TownPartyDraw9colorDokuE kind:data(short) addr:0x02143e7c
@@ -1871,14 +1871,13 @@ data_ov000_02148f90 kind:data(any) addr:0x02148f90
 @845 kind:data(any) addr:0x02148fa0 local
 @2022 kind:data(any) addr:0x02148fa4 local
 @2023 kind:data(any) addr:0x02148fa8 local
-data_ov000_02148fac kind:data(any) addr:0x02148fac
-data_ov000_02148fb4 kind:data(any) addr:0x02148fb4
-data_ov000_02148fdc kind:data(any) addr:0x02148fdc
+_ZTV20UnkImageMap_02141f6c kind:data(byte[40]) addr:0x02148fac
+_ZTV20TownRiseupScriptMove kind:data(byte[60]) addr:0x02148fd4
 @363 kind:data(byte[22]) addr:0x02149010 local
 @364 kind:data(byte[22]) addr:0x02149028 local
 @365 kind:data(byte[21]) addr:0x02149040 local
 _ZTV25TownFurnitureControlMove2 kind:data(byte[36]) addr:0x02149058
-data_ov000_02149084 kind:data(any) addr:0x02149084
+_ZTV15TownRiseupMedal kind:data(byte[60]) addr:0x0214907c
 data_ov000_021490b8 kind:data(any) addr:0x021490b8
 data_ov000_021490bc kind:data(any) addr:0x021490bc
 data_ov000_021490c0 kind:data(any) addr:0x021490c0
@@ -1893,10 +1892,10 @@ data_ov000_02149130 kind:data(any) addr:0x02149130
 data_ov000_02149150 kind:data(any) addr:0x02149150
 data_ov000_02149170 kind:data(any) addr:0x02149170
 data_ov000_02149190 kind:data(any) addr:0x02149190
-data_ov000_021491a8 kind:data(any) addr:0x021491a8
-data_ov000_021491c8 kind:data(any) addr:0x021491c8
-data_ov000_021491e8 kind:data(any) addr:0x021491e8
-data_ov000_02149200 kind:data(any) addr:0x02149200
+@620 kind:data(byte[32]) addr:0x021491a8 local
+@621 kind:data(byte[32]) addr:0x021491c8 local
+@662 kind:data(byte[22]) addr:0x021491e8 local
+@728 kind:data(byte[21]) addr:0x02149200 local
 _ZGVtownActionBallonHorn$1221 kind:bss addr:0x02149220 local
 townActionBallonHorn$1221 kind:bss addr:0x02149224 local
 _ZGVtownActionHenge$1166 kind:bss addr:0x02149234 local
@@ -2204,15 +2203,14 @@ data_ov000_021601bc kind:bss addr:0x021601bc
 data_ov000_021601c0 kind:bss addr:0x021601c0
 data_ov000_021601c2 kind:bss addr:0x021601c2 ambiguous
 data_ov000_021601d4 kind:bss addr:0x021601d4
-data_ov000_02160238 kind:bss addr:0x02160238
-data_ov000_0216023c kind:bss addr:0x0216023c
-data_ov000_02160240 kind:bss addr:0x02160240
+_ZGVm_singleton$895 kind:bss addr:0x02160238 local
+m_singleton$895 kind:bss addr:0x0216023c local
 data_ov000_02160380 kind:bss addr:0x02160380
 data_ov000_02160384 kind:bss addr:0x02160384
 data_ov000_02160390 kind:bss addr:0x02160390
-data_ov000_021608a0 kind:bss addr:0x021608a0
-data_ov000_021608a4 kind:bss addr:0x021608a4
-data_ov000_021608b0 kind:bss addr:0x021608b0
+_ZGVm_singleton$591 kind:bss addr:0x021608a0 local
+@594 kind:bss addr:0x021608a4 local
+m_singleton$591 kind:bss addr:0x021608b0 local
 @2099 kind:data(byte[2]) addr:0x02148286 local
 @2098 kind:data(byte[2]) addr:0x02148288 local
 _ZGVdot$1924 kind:bss addr:0x0214ebc4 local

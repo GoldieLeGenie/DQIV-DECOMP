@@ -155,4 +155,3 @@ extern "C" {
     void func_0207ed3c(int brightness);
 }
 extern "C" void func_020559ec(int value);
-extern "C" void func_0200a734(void);

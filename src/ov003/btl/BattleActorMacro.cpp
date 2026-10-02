@@ -39,7 +39,7 @@ THUMB void btl::BattleActorMacro::setMacroActor(status::CharacterStatus* actor, 
     if (actor->characterType_ == MONSTER) {
         status::MonsterStatus* monster = (status::MonsterStatus*)actor;
         int monsterIndex = monster->characterIndex_;
-        if (g_monster.getMonsterCountDeadOrAlive(monsterIndex) == 1 && func_0200aef8(func_0200a6c8(), monsterIndex) == 0) {
+        if (g_monster.getMonsterCountDeadOrAlive(monsterIndex) == 1 && encount::Encount::getSingleton()->getMonsterCountName(monsterIndex) == 0) {
             TextAPI::setMACRO0(1, 0x60000000, monsterIndex);
         } else {
             TextAPI::setMACRO0(1, 0x60000000, monsterIndex, monster->sortIndex_);
@@ -65,7 +65,7 @@ THUMB void btl::BattleActorMacro::setMacroTarget(status::CharacterStatus* target
     if (target->characterType_ == MONSTER) {
         status::MonsterStatus* monster = (status::MonsterStatus*)target;
         int monsterIndex = monster->characterIndex_;
-        if (g_monster.getMonsterCountDeadOrAlive(monsterIndex) == 1 && func_0200aef8(func_0200a6c8(), monsterIndex) == 0) {
+        if (g_monster.getMonsterCountDeadOrAlive(monsterIndex) == 1 && encount::Encount::getSingleton()->getMonsterCountName(monsterIndex) == 0) {
             TextAPI::setMACRO0(0x12, 0x60000000, monsterIndex);
         } else {
             TextAPI::setMACRO0(0x12, 0x60000000, monsterIndex, monster->sortIndex_);

@@ -1,10 +1,25 @@
 #include "main/cmn/CommonEffectLocation.hpp"
+#include "main/global/GlobalDQ4.hpp"
 #include "ov000/town/TownStageManager.hpp"
 #include "main/param/Param.hpp"
 #include "main/status/ExcelParam.hpp"
 
 
 #pragma profile on
+
+ARM cmn::CommonEffectLocation::CommonEffectLocation()
+{
+}
+
+ARM cmn::CommonEffectLocation::~CommonEffectLocation()
+{
+}
+
+ARM cmn::CommonEffectLocation* cmn::CommonEffectLocation::getSingleton()
+{
+    static CommonEffectLocation m_singleton;
+    return &m_singleton;
+}
 
 ARM void cmn::CommonEffectLocation::initialize()
 
@@ -88,7 +103,7 @@ ARM int cmn::CommonEffectLocation::calcPaletteRate()
     if (this->counter_ >= this->frame_)
         return 0;
 
-    if (func_02088ca8(&this->prev_, &this->next_) != 0) {
+    if ((this->prev_ == this->next_) != 0) {
         this->counter_ = this->counter_ + 1;
         return 1;
     }
@@ -98,10 +113,10 @@ ARM int cmn::CommonEffectLocation::calcPaletteRate()
 
     rgb = this->prev_ * (one - rate) + this->next_ * rate;
 
-    if (func_02058114(&data_0210bb94, 0xC) != 0)
+    if (data_0210bb94.unkfunc_02058114(0xC) != 0)
         TownStageManager::getSingleton()->SetRGBRate(rgb, 0);
 
-    if (func_02058114(&data_0210bb94, 0xD) != 0)
+    if (data_0210bb94.unkfunc_02058114(0xD) != 0)
         setFieldRGBRate(rgb);
 
     this->counter_ = this->counter_ + 1;

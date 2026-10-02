@@ -1,5 +1,107 @@
 #include "main/menu/TownMenu_MESSAGE.hpp"
+#include "main/dss/Pad.hpp"
+#include "main/menu/CommonMenu_YESNO.hpp"
+#include "main/cmn/CommonCounterInfo.hpp"
 #include "main/status/GameStatus.hpp"
+
+static MENUITEM_DATA yesNoItemData[] = {
+    {1, 2, 0, 0, 0x100, 0xc0},
+    {-1, -1, 0, 0, 0, 0},
+};
+
+THUMB void TownMenu_MESSAGE::menuSetup()
+{
+    yesNoItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH, menu::MenuItem::CURSORTYPE_NONE);
+    keyEnable_ = 0;
+    yesNo_ = 0;
+    ynExec_ = 0;
+    ynPosX_ = 0xc0;
+    ynPosY_ = 0x40;
+    yesNoSuperCancel_ = 1;
+    suspendInput_ = 0;
+    noClose_ = 0;
+    func_0203cc0c(data_020f1d88);
+}
+
+THUMB void TownMenu_MESSAGE::menuExecute()
+{
+    if (ynExec_ == 0) {
+        func_02051a60(&yesNoItem_, yesNoItemData, 1, 1, 1);
+    }
+    if (noClose_ != 0) {
+        Data020f6340* const busy = &data_020f6340;
+        busy->unk_34 = 0xb;
+        func_0204f53c(busy, 0);
+        func_0204f270(busy, 0xe0, 0x164);
+        func_0204f264(busy, 1);
+    }
+}
+
+THUMB void TownMenu_MESSAGE::menuDraw()
+{
+    func_0204f264(data_0210b380, 1);
+}
+
+THUMB void TownMenu_MESSAGE::menuUpdate()
+{
+    if (frame_ >= 2 && suspendInput_ == 0) {
+        if (ynExec_ == 0) {
+            yesNoItem_.result_ = 0;
+            yesNoItem_.lastresult_ = 0;
+            func_02051a7c(&yesNoItem_);
+            int key = 0;
+            if ((data_02116d40.unkfunc_0207f280() & 0x1) || (data_02116d40.unkfunc_0207f280() & 0x2) ||
+                (data_02116d40.unkfunc_0207f280() & 0x400) || (data_02116d40.unkfunc_0207f280() & 0x800) ||
+                (data_02116d40.unkfunc_0207f280() & 0x40) || (data_02116d40.unkfunc_0207f280() & 0x10) ||
+                (data_02116d40.unkfunc_0207f280() & 0x80) || (data_02116d40.unkfunc_0207f280() & 0x20) ||
+                (data_02116d40.unkfunc_0207f280() & 0x200) || (data_02116d40.unkfunc_0207f280() & 0x100)) {
+                key = 1;
+            }
+            if (keyEnable_ != 0) {
+                if (yesNo_ != 0) {
+                    if (func_0204dfd8(data_0210b380) && key == 1) {
+                        func_0204e040(data_0210b380);
+                        keyEnable_ = 0;
+                    }
+                    if (func_0204e004(data_0210b380)) {
+                        data_020ed094.open();
+                        data_020ed094.setYesNo(yesNoCursor_);
+                        data_020ed094.setPosition(ynPosX_, ynPosY_);
+                        data_020ed094.setSuperCancel(yesNoSuperCancel_);
+                        ynExec_ = 1;
+                        keyEnable_ = 0;
+                    }
+                } else {
+                    if (func_0204dfd8(data_0210b380) && key == 1) {
+                        func_0204e040(data_0210b380);
+                        keyEnable_ = 0;
+                    }
+                    if (func_0204e004(data_0210b380) && key == 1) {
+                        func_0204e040(data_0210b380);
+                        keyEnable_ = 0;
+                    }
+                }
+            } else {
+                if (func_0204dfd8(data_0210b380) && key == 0) {
+                    keyEnable_ = 1;
+                }
+                if (func_0204e004(data_0210b380) && key == 0) {
+                    keyEnable_ = 1;
+                }
+            }
+            if (func_0204e018(data_0210b380)) {
+                stat_ = MENUBASE_STAT_OK;
+            }
+        } else {
+            if (data_020ed094.stat_ == MENUBASE_STAT_OK) {
+                stat_ = MENUBASE_STAT_OK;
+            }
+            if (data_020ed094.stat_ == MENUBASE_STAT_CANCEL) {
+                stat_ = MENUBASE_STAT_CANCEL;
+            }
+        }
+    }
+}
 
 THUMB void TownMenu_MESSAGE::openMessageForTEST()
 {
@@ -49,7 +151,7 @@ THUMB void TownMenu_MESSAGE::openMessage(eMessageWindow type)
     }
     func_02056040(type, language);
     open();
-    unk_38 = 0;
+    suspendInput_ = 0;
 }
 
 THUMB void TownMenu_MESSAGE::addMessageNOWAIT(int messageID)

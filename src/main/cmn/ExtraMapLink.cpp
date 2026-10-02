@@ -1,4 +1,5 @@
 #include "main/cmn/ExtraMapLink.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "ov000/town/TownActionCalculate.hpp"
 #include "main/global/GlobalDQ4.hpp"
 #include "main/global/Global.hpp"
@@ -11,7 +12,6 @@
 #include "main/status/ExcelParam.hpp"
 #include "main/cmn/CommonRuraData.hpp"
 
-extern "C" int func_02058114(void* global, int partId);
 
 
 char s_mpout2[8] = "mpout2";  // 0x020be958
@@ -46,7 +46,7 @@ ARM void cmn::ExtraMapLink::setup()
     mapLinkDataCount_ = 0;
     rectLinkCount_ = 0;
 
-    if (func_02058114(&data_0210bb94, 12)) {
+    if (data_0210bb94.unkfunc_02058114(12)) {
         switch (g_Global.getMapName()[0]) {
             case 'c':
                 switch (g_Global.getMapName()[1]) {
@@ -218,7 +218,7 @@ ARM int cmn::ExtraMapLink::checkFieldLink(int id)
                 }
                 func_0200c004(0x7001);
                 g_Global.startTown(s_mpout2);
-                func_ov001_02127b28();
+                FieldPlayerManager::getSingleton();
                 PlayerManager::setLock(1);
                 g_Stage.symbolID_ = id;
                 return 3;
@@ -233,7 +233,7 @@ ARM int cmn::ExtraMapLink::checkFieldLink(int id)
                 case LINK_FIELD_TO_TOWN:
                     func_0200c004(mapLinkData_[i].nextId);
                     g_Global.startTown(mapLinkData_[i].nextMapName);
-                    func_ov001_02127b28();
+                    FieldPlayerManager::getSingleton();
                     PlayerManager::setLock(1);
                     g_Stage.symbolID_ = id;
                     return 3;
@@ -318,7 +318,7 @@ ARM void cmn::ExtraMapLink::setExtraLinkTown(const char* mapName, dss::Fix32Vect
 
 ARM void cmn::ExtraMapLink::setLinkData(int nowId, int nextId, LINK_TYPE type, const char* nowMapName, const char* nextMapName, dss::Fix32Vector3& offset)
 {
-    if (nowMapName != NULL && func_020882b0(g_Global.getMapName(), nowMapName) != 0) {
+    if (nowMapName != NULL && dss::DssUtils::unkfunc_020882b0(g_Global.getMapName(), nowMapName) != 0) {
         return;
     }
     for (int i = 0; i < mapLinkDataCount_; i++) {
@@ -335,7 +335,7 @@ ARM void cmn::ExtraMapLink::setLinkData(int nowId, int nextId, LINK_TYPE type, c
 {
     dss::Fix32Vector3 offset(0, 0, 0);
 
-    if (nowMapName != NULL && func_020882b0(nowMapName, g_Global.getMapName()) != 0) {
+    if (nowMapName != NULL && dss::DssUtils::unkfunc_020882b0(nowMapName, g_Global.getMapName()) != 0) {
         return;
     }
     for (int i = 0; i < mapLinkDataCount_; i++) {
@@ -358,7 +358,7 @@ ARM int cmn::ExtraMapLink::checkTownMapLink(int id)
     }
 
     for (int i = 0; i < mapLinkDataCount_; i++) {
-        if (mapLinkData_[i].nowId == id && func_020882b0(mapLinkData_[i].nowMapName, g_Global.getMapName()) == 0) {
+        if (mapLinkData_[i].nowId == id && dss::DssUtils::unkfunc_020882b0(mapLinkData_[i].nowMapName, g_Global.getMapName()) == 0) {
             switch (mapLinkData_[i].type) {
                 case LINK_TOWN_TO_TOWN:
                     func_0200c004(mapLinkData_[i].nextId);
@@ -507,7 +507,7 @@ ARM int cmn::ExtraMapLink::checkFieldRectLinkByType(dss::Fix32Vector3& pos, int 
         if (rectLinkData_[no].type == RECT_FIELD_TO_TOWN) {
             func_0200c004(rectLinkData_[no].nextId);
             g_Global.startTown(rectLinkData_[no].nextMapName);
-            func_ov001_02127b28();
+            FieldPlayerManager::getSingleton();
             PlayerManager::setLock(1);
             offset_ = rectLinkData_[no].pos[3];
             return rectLinkData_[no].nowId;
@@ -595,11 +595,11 @@ ARM void cmn::ExtraMapLink::setRuraLink()
 
 ARM void cmn::ExtraMapLink::setRanaLink()
 {
-    if (func_02058114(&data_0210bb94, 12)) {
+    if (data_0210bb94.unkfunc_02058114(12)) {
         setExtraExitTown(g_Stage.lastRanaStageName_, g_Stage.lastFldSurface_);
-    } else if (func_02058114(&data_0210bb94, 14)) {
+    } else if (data_0210bb94.unkfunc_02058114(14)) {
         g_cmnPartyInfo.prevLocation_ = 1;
-        dss::Fix32Vector3 pos = func_ov001_02127b28()->getPosition();
+        dss::Fix32Vector3 pos = FieldPlayerManager::getSingleton()->getPosition();
         setExtraLinkFieldAbsPos(g_Global.getFieldType(), pos, 4);
     }
 }

@@ -48,7 +48,7 @@ ARM int TownKaidanAction2::setup()
         setKaidanArea(id);
         TownStageManager::getSingleton()->getObjectPos(objectNo, polyNo, &pos);
         setKaidanByObject(downKaidan_, objectNo, pos);
-        dss::Fix32Vector3 target = func_02088988(pos, downKaidan_.normal * startSearchLen);
+        dss::Fix32Vector3 target = pos - downKaidan_.normal * startSearchLen;
         if (TownStageManager::getSingleton()->checkCrossNum(pos, target, 1) >= 1) {
             kaidanBackWall_ = 1;
         }
@@ -85,9 +85,9 @@ ARM int TownKaidanAction2::update()
     int ret = gMoveToTarget.update();
     if (ret != -1) {
         moveType_ = (KAIDAN_MOVE_TYPE)ret;
-        vec = func_02088988(position_, upKaidan_.center);
+        vec = position_ - upKaidan_.center;
         vec.vy = 0L;
-        func_02089168(&vec);
+        vec.normalize();
         checkKaidanSide(mVec, target, length);
         dot = vec * upKaidan_.normal;
         switch (moveType_) {
@@ -97,7 +97,7 @@ ARM int TownKaidanAction2::update()
             break;
         case KAIDAN_MOVE_SIDE:
             moveType_ = KAIDAN_MOVE_FRONT;
-            targetPos = target + func_02088bdc(mVec * kaidanF * -3, 2);
+            targetPos = target + (mVec * kaidanF * -3 / 2);
             break;
         case KAIDAN_MOVE_FRONT:
             moveType_ = KAIDAN_MOVE_UP;
@@ -142,7 +142,7 @@ ARM int TownKaidanAction2::startCheck()
             TownActionCalculate::getDirByIdx(dirIdx_, vec);
             int padInput = TownPlayerManager::getSingleton()->player_.padInput_;
             int tmp = 0;
-            if (func_02088988(upKaidan_.center, position_) * vec > dss::Fix32(0L)) {
+            if ((upKaidan_.center - position_) * vec > dss::Fix32(0L)) {
                 if (padInput) {
                     tmp = 1;
                 }
@@ -190,7 +190,7 @@ ARM void TownKaidanAction2::checkObject()
         TownStageManager::getSingleton()->getObjectPos(objectNo, polyNo, &pos);
         setKaidanByObject(upKaidan_, objectNo, pos);
         upKaidan_.normal.vy = 0L;
-        func_02089168(&upKaidan_.normal);
+        upKaidan_.normal.normalize();
         upKaidan_.pos1.vy = position_.vy;
         upKaidan_.pos2.vy = position_.vy;
     }
@@ -219,7 +219,7 @@ ARM void TownKaidanAction2::checkSurface()
         }
     }
     if (surfaceId != -1) {
-        func_02089168(&dir);
+        dir.normalize();
         dot = dir * upN;
         if (dot > dotN2 && dot < dotN1) {
             exitBeforeUpKaidan_ = 1;
@@ -253,9 +253,9 @@ ARM void TownKaidanAction2::checkKaidanMoveStart()
     dss::Fix32 speedToTarget;
     dss::Fix32 dot;
     speedToTarget = TownPlayerAction::walkSpeed;
-    vec = func_02088988(position_, upKaidan_.center);
+    vec = position_ - upKaidan_.center;
     vec.vy = 0L;
-    func_02089168(&vec);
+    vec.normalize();
     dot = vec * upKaidan_.normal;
     if (dot.value <= -0xb50) {
         moveType_ = KAIDAN_MOVE_BACK;
@@ -282,46 +282,46 @@ ARM void TownKaidanAction2::checkKaidanSide(dss::Fix32Vector3& mVec, dss::Fix32V
     dss::Fix32Vector3 vec2;
     dss::Fix32Vector3 checkPos;
     static const dss::Fix32 fixL(0x1333);
-    vec1 = func_02088988(position_, upKaidan_.pos1);
+    vec1 = position_ - upKaidan_.pos1;
     vec1.vy = 0L;
-    vec2 = func_02088988(position_, upKaidan_.pos2);
+    vec2 = position_ - upKaidan_.pos2;
     vec2.vy = 0L;
-    vec0 = func_02088988(upKaidan_.pos1, upKaidan_.pos2);
-    func_02088b10(&vec0, &fixL);
+    vec0 = upKaidan_.pos1 - upKaidan_.pos2;
+    vec0 *= fixL;
     checkPos = upKaidan_.center + vec0;
     int num1 = TownStageManager::getSingleton()->checkCrossNum(upKaidan_.center, checkPos, 0);
-    checkPos = func_02088988(upKaidan_.center, vec0);
+    checkPos = upKaidan_.center - vec0;
     int num2 = TownStageManager::getSingleton()->checkCrossNum(upKaidan_.center, checkPos, 0);
     if (moveType_ == KAIDAN_MOVE_BACK) {
-        if (num1 > 1 || (func_02088f20(vec1) > func_02088f20(vec2) && num2 < 2)) {
-            mVec = func_02088988(upKaidan_.pos2, upKaidan_.pos1);
+        if (num1 > 1 || (vec1.lengthsq() > vec2.lengthsq() && num2 < 2)) {
+            mVec = upKaidan_.pos2 - upKaidan_.pos1;
             mVec.vy = 0L;
-            func_02089168(&mVec);
-            length = mVec * func_02088988(position_, upKaidan_.pos2);
+            mVec.normalize();
+            length = mVec * (position_ - upKaidan_.pos2);
             target = upKaidan_.pos2;
         } else {
-            mVec = func_02088988(upKaidan_.pos1, upKaidan_.pos2);
+            mVec = upKaidan_.pos1 - upKaidan_.pos2;
             mVec.vy = 0L;
-            func_02089168(&mVec);
-            length = mVec * func_02088988(position_, upKaidan_.pos1);
+            mVec.normalize();
+            length = mVec * (position_ - upKaidan_.pos1);
             target = upKaidan_.pos1;
         }
     } else {
-        if (func_02088f20(vec1) > func_02088f20(vec2)) {
-            mVec = func_02088988(upKaidan_.pos2, upKaidan_.pos1);
+        if (vec1.lengthsq() > vec2.lengthsq()) {
+            mVec = upKaidan_.pos2 - upKaidan_.pos1;
             mVec.vy = 0L;
-            func_02089168(&mVec);
-            length = mVec * func_02088988(position_, upKaidan_.pos2);
+            mVec.normalize();
+            length = mVec * (position_ - upKaidan_.pos2);
             target = upKaidan_.pos2;
         } else {
-            mVec = func_02088988(upKaidan_.pos1, upKaidan_.pos2);
+            mVec = upKaidan_.pos1 - upKaidan_.pos2;
             mVec.vy = 0L;
-            func_02089168(&mVec);
-            length = mVec * func_02088988(position_, upKaidan_.pos1);
+            mVec.normalize();
+            length = mVec * (position_ - upKaidan_.pos1);
             target = upKaidan_.pos1;
         }
     }
-    length.value = func_02031e84(length.value) + kaidanF.value;
+    length.value = unkfunc_02031e84(length.value) + kaidanF.value;
 }
 
 ARM void TownKaidanAction2::setPlayerFixPosition(dss::Fix32Vector3& oldPos, dss::Fix32Vector3& newPos)
@@ -332,14 +332,14 @@ ARM void TownKaidanAction2::setPlayerFixPosition(dss::Fix32Vector3& oldPos, dss:
     downKaidanFixY_ = newPos.vy - kaidanMaxH_;
     if (side1Wall_ == 1) {
         if (TownActionCalculate::checkLineOver(newPos, side1WallLine_, side1WallNormal_) == 1) {
-            dss::Fix32Vector3 vec = func_02088988(newPos, oldPos);
+            dss::Fix32Vector3 vec = newPos - oldPos;
             dss::Fix32 val = side1WallNormal_ * vec;
             newPos -= side1WallNormal_ * val;
         }
     }
     if (side2Wall_ == 1) {
         if (TownActionCalculate::checkLineOver(newPos, side2WallLine_, side2WallNormal_) == 1) {
-            dss::Fix32Vector3 vec = func_02088988(newPos, oldPos);
+            dss::Fix32Vector3 vec = newPos - oldPos;
             dss::Fix32 val = side2WallNormal_ * vec;
             newPos -= side2WallNormal_ * val;
         }
@@ -355,9 +355,9 @@ ARM void TownKaidanAction2::setPlayerFixPosition(dss::Fix32Vector3& oldPos, dss:
 ARM bool TownKaidanAction2::setSideFix(dss::Fix32Vector3& pos1, dss::Fix32Vector3& pos2, dss::Fix32Vector3& center, dss::Fix32Vector3& sideLine, dss::Fix32Vector3& sideNormal)
 {
     bool sideWall = false;
-    dss::Fix32Vector3 normal = func_02088988(pos1, pos2);
+    dss::Fix32Vector3 normal = pos1 - pos2;
     normal.vy = 0L;
-    func_02089168(&normal);
+    normal.normalize();
     dss::Fix32Vector3 target = center + normal * startSearchLen;
     if (TownStageManager::getSingleton()->checkCrossNum(center, target, 1) >= 1) {
         sideWall = true;

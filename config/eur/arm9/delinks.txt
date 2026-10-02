@@ -20,6 +20,15 @@ src/main/Commands/ScriptCommand1.cpp:
 src/main/Commands/ScriptCommand2.cpp:
     .text start:0x0201fd80 end:0x02020030
 
+src/main/menu/MenuUpdateAssist.cpp:
+    complete
+    .text start:0x020231c8 end:0x02023324
+
+src/main/menu/CursorMoveGridLoop.cpp:
+    complete
+    .text start:0x02023324 end:0x02023518
+    .data start:0x020be034 end:0x020be04c
+
 src/main/Commands/ScriptCommand3.cpp:
     complete
     .text start:0x02023518 end:0x02023784
@@ -52,14 +61,35 @@ src/main/dss/arrayToMinIndex.cpp:
     complete
     .text start:0x0201d948 end:0x0201d974
 
+src/main/dss/DssFix.cpp:
+    complete
+    .text start:0x020870fc end:0x02087528
+
+src/main/dss/DssVector.cpp:
+    complete
+    .text start:0x02088740 end:0x02089214
+    .data start:0x020c497c end:0x020c4988
+
 src/main/dss/DssUtils.cpp:
     .text start:0x02088360 end:0x02088484
+
+src/main/menu/CommonMenu_YESNO.cpp:
+    complete
+    .text start:0x020267d4 end:0x0202692c
+    .data start:0x020be6b8 end:0x020be6f4
 
 src/main/sound/SoundManager.cpp:
     complete
     .text start:0x0202692c end:0x02026d38
     .data start:0x020be6f4 end:0x020be6f8
     .bss start:0x020ed268 end:0x020ed280
+
+src/main/encount/Encount.cpp:
+    complete
+    .text start:0x0200a680 end:0x0200af20
+    .rodata start:0x0208c9cc end:0x0208c9ec
+    .data start:0x020bc194 end:0x020bc19c
+    .bss start:0x020c74a8 end:0x020c7658
 
 src/main/encount/EncountParam.cpp:
     complete
@@ -71,7 +101,9 @@ src/main/CountDown/CountDown.cpp:
     .data start:0x020bc19c end:0x020bc258
 
 src/main/dss/Random.cpp:
-    .text start:0x02080d48 end:0x02080d80
+    complete
+    .text start:0x02080cec end:0x02080d80
+    .bss start:0x0211a7c4 end:0x0211a7d0
 
 src/main/cmn/CommonCalculate.cpp:
     complete
@@ -83,6 +115,11 @@ src/main/script/ScriptSystem.cpp:
     .text start:0x0201f12c end:0x0201f35c
     .data start:0x020bdf64 end:0x020bdf78
     .bss start:0x020d2bac end:0x020ec59c
+
+src/main/object/DSSACharacter.cpp:
+    complete
+    .text start:0x0205a8b8 end:0x0205b3d0
+    .data start:0x020c3ba0 end:0x020c3be0
 
 src/main/script/sys/ScriptTree.cpp:
     complete
@@ -154,6 +191,12 @@ src/main/dss/Camera.cpp:
     complete
     .text start:0x02082c10 end:0x0208313c
     .data start:0x020c42a0 end:0x020c42b0
+
+src/main/menu/MenuAPI.cpp:
+    complete
+    .text start:0x0200d3c8 end:0x0200d7d4
+    .data start:0x020bc654 end:0x020bc80c
+    .bss start:0x020c7a7c end:0x020c7a84
 
 src/main/status/Status.cpp:
     complete
@@ -377,6 +420,7 @@ src/main/status/BaseItem.cpp:
     .bss start:0x020d0890 end:0x020d0894
 
 src/main/profile/Profile.cpp:
+    complete
     .text start:0x02030da8 end:0x02030f24
 
 src/main/menu/MenuManager.cpp:
@@ -415,9 +459,15 @@ src/main/menu/MaterielMenu_SlotEnter.cpp:
     .data start:0x020c137c end:0x020c1398
     .bss start:0x020efc54 end:0x020efc58
 
-src/main/profile/Profile_2.cpp:
-    .text start:0x020383cc end:0x02039460
-    .data start:0x020c1398 end:0x020c13a8
+src/main/profile/ProfileCollect.cpp:
+    complete
+    .text start:0x020383cc end:0x02038ce4
+    .data start:0x020c1398 end:0x020c13a0
+
+src/main/profile/ProfileDeliver.cpp:
+    complete
+    .text start:0x02038ce4 end:0x02039460
+    .data start:0x020c13a0 end:0x020c13a8
 
 src/main/param/Param.cpp:
     .rodata start:0x0208eb00 end:0x020919dc
@@ -458,6 +508,7 @@ src/main/param/FloorParam.cpp:
     .text start:0x0200c0a4 end:0x0200c5d8
 
 src/main/param/MonsterAnim.cpp:
+    complete
     .text start:0x0200c044 end:0x0200c0a4
     .data start:0x020bc2f4 end:0x020bc560
 
@@ -481,10 +532,17 @@ src/main/cmn/CommonWalkDamage.cpp:
     .text start:0x02032cec end:0x020332cc
     .bss start:0x020ef6f4 end:0x020ef794
 
+src/main/cmn/CommonChapterTitle.cpp:
+    complete
+    .text start:0x0203e5a8 end:0x0203e888
+    .data start:0x020c1924 end:0x020c19c8
+    .bss start:0x020f2028 end:0x020f2088
+
 src/main/cmn/CommonEffectLocation.cpp:
     complete
-    .text start:0x0203e964 end:0x0203ed64
-    .data start:0x020c1a40 end:0x020c1b7c
+    .text start:0x0203e888 end:0x0203ed64
+    .data start:0x020c19c8 end:0x020c1b7c
+    .bss start:0x020f2088 end:0x020f20c4
 
 src/main/cmn/CommonPartyInfo.cpp:
     complete
@@ -504,7 +562,7 @@ src/main/cmn/HengeNoTsueManager.cpp:
     complete
     .text start:0x020395c8 end:0x0203972c
     .rodata start:0x020b6144 end:0x020b614c
-    .data start:0x020c13a8 end:0x020c13c8
+    .data start:0x020c13a8 end:0x020c13c0
     .bss start:0x020efc6c end:0x020efc88
 
 src/main/cmn/PartyTalk.cpp:
@@ -545,13 +603,92 @@ src/main/cmn/PlayerManager.cpp:
     .text start:0x02030fcc end:0x020310d0
     .bss start:0x020eed20 end:0x020eed2c
 
+src/main/cmn/PlayerAction.cpp:
+    complete
+    .text start:0x02030f6c end:0x02030fa8
+    .data start:0x020bec98 end:0x020becb0
+
+src/main/window/InputControl.cpp:
+    complete
+    .text start:0x020292c0 end:0x0202946c
+    .data start:0x020be9c8 end:0x020be9e4
+    .bss start:0x020edbb0 end:0x020edbb8
+
+src/main/window/MapControl.cpp:
+    complete
+    .text start:0x0202946c end:0x02029738
+    .data start:0x020be9e4 end:0x020be9f8
+
+src/main/window/MenuControl.cpp:
+    complete
+    .text start:0x02029738 end:0x02029a28
+    .data start:0x020be9f8 end:0x020bea0c
+    .bss start:0x020edbb8 end:0x020edbbc
+
+src/main/window/MessageControl.cpp:
+    complete
+    .text start:0x02029a28 end:0x02029b50
+    .data start:0x020bea0c end:0x020bea20
+
+src/main/window/NormalControl.cpp:
+    complete
+    .text start:0x02029b50 end:0x0202a008
+    .data start:0x020bea20 end:0x020bea34
+
+src/main/window/ShoplistControl.cpp:
+    complete
+    .text start:0x0202a008 end:0x0202a300
+    .data start:0x020bea34 end:0x020bea48
+
+src/main/window/ShopMenuControl.cpp:
+    complete
+    .text start:0x0202a300 end:0x0202a4b4
+    .data start:0x020bea48 end:0x020bea5c
+
+src/main/window/TalkControl.cpp:
+    complete
+    .text start:0x02089ff4 end:0x0208a104
+    .data start:0x020c49f0 end:0x020c4a04
+
+src/main/window/CommandWindow.cpp:
+    complete
+    .text start:0x0202a4b4 end:0x0202ac4c
+    .data start:0x020bea5c end:0x020bea94
+
+src/main/window/ImageMap.cpp:
+    complete
+    .text start:0x0203972c end:0x02039750
+    .data start:0x020c13c0 end:0x020c13e8
+
 src/main/cmn/GameManager.cpp:
     complete
     .text start:0x02030f24 end:0x02030f6c
     .bss start:0x020eed18 end:0x020eed20
 
 src/main/CameraControl/CameraControl.cpp:
-    .text start:0x0201d9b4 end:0x0201da1c
+    complete
+    .text start:0x0201d974 end:0x0201e0b0
+    .data start:0x020bdc8c end:0x020bdca8
+    .bss start:0x020d103c end:0x020d1044
+
+src/main/task/ExecTask.cpp:
+    complete
+    .text start:0x02035a80 end:0x02035bd4
+    .data start:0x020c1164 end:0x020c1188
+
+src/main/btl/BattleExecLevelup.cpp:
+    complete
+    .text start:0x02035bd4 end:0x02036058
+    .init start:0x0208b3ac end:0x0208b460
+    .ctor start:0x020bb410 end:0x020bb414
+    .data start:0x020c1188 end:0x020c123c
+    .bss start:0x020ef8e4 end:0x020ef9ac
+
+src/main/btl/BattleAutoFeed.cpp:
+    complete
+    .text start:0x02089678 end:0x02089ae4
+    .data start:0x020c49bc end:0x020c49c0
+    .bss start:0x02121078 end:0x02121094
 
 src/main/task/PartTaskManager.cpp:
     complete
@@ -575,7 +712,8 @@ src/main/menu/TownMenu_PARTY_TALK.cpp:
 
 src/main/menu/TownMenu_MESSAGE.cpp:
     complete
-    .text start:0x0202599c end:0x02025bf4
+    .text start:0x02025754 end:0x02025bf4
+    .data start:0x020be258 end:0x020be288
 
 src/main/fld/FldStage.cpp:
     complete

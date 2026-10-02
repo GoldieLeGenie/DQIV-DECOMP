@@ -8,9 +8,9 @@
 THUMB void MaterielMenu_BANK_ROOT::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02051900(&menuItem_, 3, 5);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = 0;
-    func_02023324(&navigator_);
+    navigator_.setupBase();
     oldActive_ = 0;
     first_ = 1;
     end_ = 0;
@@ -33,7 +33,7 @@ THUMB void MaterielMenu_BANK_ROOT::menuDraw()
 {
     if (data_020ed1bc.isMessageWAITPROG()) {
         func_ov016_0216fcf0();
-        func_02051968(&menuItem_);
+        menuItem_.drawActive();
     }
 }
 
@@ -46,8 +46,8 @@ THUMB void MaterielMenu_BANK_ROOT::menuUpdate()
                 first_ = 0;
                 return;
             }
-            func_02023504(&navigator_, 1, 3, 3);
-            int result = func_02023274(&menuItem_, &navigator_);
+            navigator_.setup(1, 3, 3);
+            int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
             if (result == 0) {
                 return;
             }

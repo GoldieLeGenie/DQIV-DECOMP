@@ -56,7 +56,7 @@ struct TownCamera {
     void restore();
     void store();
     void setMoveTo(dss::Fix32Vector3& target, int frame, bool absFlag);
-    void setRotTo(dss::Vector3short& angle, int frame, bool absFlag);
+    void setRotTo(dss::Vector3<short>& angle, int frame, bool absFlag);
     void resetCameraMove(int frame);
     void setShake(int type, int count);
     void setChangeDistance(int frame, dss::Fix32 distance);
@@ -69,6 +69,6 @@ struct TownCamera {
     void setMoveTragetChara(int index);
     void setCameraLock(bool flag);
     void setLockPov(int flag);
-    void setDefaultAngle(dss::Vector3short& angle);
+    void setDefaultAngle(dss::Vector3<short>& angle);
 
 };

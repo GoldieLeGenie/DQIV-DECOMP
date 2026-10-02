@@ -1,4 +1,6 @@
 #include "main/cmn/CommonPartyInfo.hpp"
+#include "main/global/GlobalDQ4.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "main/cmn/CommonRuraData.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/StageStatus.hpp"
@@ -178,8 +180,8 @@ ARM void cmn::CommonPartyInfo::callCarriage()
     g_Stage.setBashaEnable(1);
     g_Stage.setBashaEnter(1);
     this->barron_ = 1;
-    if (func_02058114(&data_0210bb94, 0xE) != 0) {
-        func_ov001_02127b28()->resetParty();
+    if (data_0210bb94.unkfunc_02058114(0xE) != 0) {
+        FieldPlayerManager::getSingleton()->resetParty();
         return;
     }
     TownPlayerManager::getSingleton()->resetParty();
@@ -188,10 +190,10 @@ ARM void cmn::CommonPartyInfo::callCarriage()
 
 ARM int cmn::CommonPartyInfo::isBarronArea(dss::Fix32Vector3* pos)
 {
-    if (func_02058114(&data_0210bb94, 0xE) != 0) {
-        return func_ov001_0212a460(func_ov001_02127b28(), pos);
+    if (data_0210bb94.unkfunc_02058114(0xE) != 0) {
+        return func_ov001_0212a460(FieldPlayerManager::getSingleton(), pos);
     }
-    if (func_020882b0(s_srout_map, g_Global.getMapName()) == 0) {
+    if (dss::DssUtils::unkfunc_020882b0(s_srout_map, g_Global.getMapName()) == 0) {
         return 1;
     }
     this->barron_ = 0;
@@ -213,7 +215,7 @@ ARM void cmn::CommonPartyInfo::checkBallon(dss::Fix32Vector3* pos)
             status::g_Party.basha_ = 1;
             return;
         }
-        if (func_02058114(&data_0210bb94, 0xE) != 0) {
+        if (data_0210bb94.unkfunc_02058114(0xE) != 0) {
             status::g_Party.basha_ = 0;
             return;
         }
@@ -231,15 +233,15 @@ ARM void cmn::CommonPartyInfo::checkBallon(dss::Fix32Vector3* pos)
 ARM void cmn::CommonPartyInfo::setMenuAction(MENU_ACTION mode)
 {
     if (mode != MENU_ACTION_NONE) {
-        if (func_02058114(&data_0210bb94, 0xE) != MENU_ACTION_NONE) {
-            func_ov001_02127b28();
+        if (data_0210bb94.unkfunc_02058114(0xE) != MENU_ACTION_NONE) {
+            FieldPlayerManager::getSingleton();
             cmn::PlayerManager::setLock(1);
         } else {
             TownPlayerManager::getSingleton()->setLock(1);
         }
     } else {
-        if (func_02058114(&data_0210bb94, 0xE) != MENU_ACTION_NONE) {
-            func_ov001_02127b28();
+        if (data_0210bb94.unkfunc_02058114(0xE) != MENU_ACTION_NONE) {
+            FieldPlayerManager::getSingleton();
             cmn::PlayerManager::setLock(0);
         } else {
             TownPlayerManager::getSingleton()->setLock(0);

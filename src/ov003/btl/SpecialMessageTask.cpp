@@ -107,7 +107,7 @@ ARM void btl::SpecialMessageTask::execute()
         }
     }
 
-    if (func_020897a0() || message_ == 0) {
+    if (BattleAutoFeed::isEndExecuteMessage() || message_ == 0) {
         partTaskManager.setNextTask(5);
     }
 }

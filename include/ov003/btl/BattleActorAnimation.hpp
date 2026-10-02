@@ -1,4 +1,5 @@
 #pragma once
+#include "main/btl/BattleAutoFeed.hpp"
 #include <globaldefs.h>
 #include "main/dss/Camera.hpp"
 #include "GameInfo.hpp"
@@ -40,7 +41,6 @@ extern short data_020c04f4[310][5]; //MonsterTaiData
 extern int monsterChangeCount;
 extern "C" int  func_ov003_021293c0(status::UseActionParam* uap);
 extern "C" int  func_ov003_021293e4(status::UseActionParam* uap);
-extern "C" int  func_0208995c(void);
 extern "C" void func_ov003_0212a028(status::CharacterStatus* actor);
 extern "C" void func_ov003_021295e4(status::UseActionParam* uap, int idx);
 extern "C" void func_02050e88(int a, int b, int c, int d);

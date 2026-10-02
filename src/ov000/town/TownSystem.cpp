@@ -1,5 +1,8 @@
 #pragma ipa file
+#include "main/cmn/CommonChapterTitle.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "ov000/town/TownSystem.hpp"
+#include "ov000/town/TownEndrollManager.hpp"
 #include "ov000/town/TownCamera.hpp"
 #include "ov000/town/TownStageManager.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
@@ -35,7 +38,6 @@ ARM void TownSystem::unkfunc_02132210()
 
 ARM TownSystem::TownSystem()
 {
-    func_02084ef0(&render_);
 }
 
 ARM TownSystem* TownSystem::getSingleton()
@@ -46,24 +48,24 @@ ARM TownSystem* TownSystem::getSingleton()
 
 ARM void TownSystem::initialize()
 {
-    data_020f22dc = 0;
+    BillboardCharacter::allAnimLock = 0;
     func_ov000_02142858(&status::excelParam);
     func_ov000_021428b4(&status::excelParam);
     func_02049ba4();
-    func_02084efc(&render_);
+    render_.unkfunc_02084efc();
     TownCamera::getSingleton()->initialize();
     TownStageManager::getSingleton()->initialize();
     TownFurnitureManager::getSingleton()->initialize();
     TownPlayerManager::getSingleton()->initialize();
     TownCharacterManager::getSingleton()->initialize();
     cmn::g_extraMapLink.setup();
-    func_ov000_021429bc(TownExtraMapObjManager::getSingleton());
+    TownExtraMapObjManager::getSingleton()->setup();
     cmn::GameManager::getSingleton()->initialize();
     TownPlayerManager* player = TownPlayerManager::getSingleton();
     cmn::GameManager::getSingleton()->playerManager_ = player;
     cmn::g_talkSound.setup();
     TownPlayerManager::getSingleton()->setup();
-    func_0200a750(func_0200a6c8(), 0, 0);
+    encount::Encount::getSingleton()->setup(EncountDungeon, Floor);
     btl::BattleScriptManager::getSingleton()->checkScriptBattleResult();
     TownRiseupManager::getSingleton()->initialize();
     ScriptSystem::getSingleton()->initialize(status::g_Story.chapter_);
@@ -83,14 +85,14 @@ ARM void TownSystem::initialize()
         cmn::PartyTalk::getSingleton()->resetPartyTalk();
         cmn::PartyTalk::getSingleton()->setExitNo(exitNo);
     }
-    func_0203e8f8()->initialize();
+    cmn::CommonEffectLocation::getSingleton()->initialize();
     func_ov000_021428b8(&status::excelParam);
     dss::Fix32 scale;
     scale.value = 0x87;
     DSSAObject::setDefaultScale(scale);
     DSSAObject::setPriority(8);
     g_Stage.loadType_ = profile::SAVETYPE_INVALID;
-    if (func_020882b0(g_Global.getMapName(), "ev01") == 0) {
+    if (dss::DssUtils::unkfunc_020882b0(g_Global.getMapName(), "ev01") == 0) {
         func_ov000_02143084(func_ov000_02143030());
     }
     trigger_ = 1;
@@ -99,11 +101,11 @@ ARM void TownSystem::initialize()
 ARM void TownSystem::terminate()
 {
     func_ov000_02143600(func_ov000_02143030());
-    func_ov000_02143b14(func_ov000_021439fc());
-    func_0203e8f8()->terminate();
-    func_0203e848(func_0203e5a8());
+    TownEndrollManager::getSingleton()->cleanup();
+    cmn::CommonEffectLocation::getSingleton()->terminate();
+    cmn::CommonChapterTitle::getSingleton()->cleanup();
     ScriptSystem::getSingleton()->terminate();
-    if (func_020882b0(g_Global.getMapName(), "field") == 0) {
+    if (dss::DssUtils::unkfunc_020882b0(g_Global.getMapName(), "field") == 0) {
         TownCamera::getSingleton()->resetAngle();
         g_Stage.initDoorOpenFlag();
         g_Stage.setFallFlag(0);
@@ -127,7 +129,7 @@ ARM void TownSystem::terminate()
         g_cmnPartyInfo.beforeBattlePos_ = g_cmnPartyInfo.prev_position_;
     }
     TownPlayerManager::getSingleton()->cleanup();
-    data_020f22dc = 0;
+    BillboardCharacter::allAnimLock = 0;
     DisplayCharacter::sleepBodyOffset_ = dss::Fix32(0.27f);
     DisplayCharacter::sleepHeadOffset_ = dss::Fix32(0.173f);
     DisplayCharacter::sleepHeight_ = dss::Fix32(0.194f);
@@ -138,7 +140,7 @@ ARM void TownSystem::terminate()
     TownPlayerManager::getSingleton()->terminate();
     TownStageManager::getSingleton()->terminate();
     TownCamera::getSingleton()->terminate();
-    func_02084f50(&render_);
+    render_.unkfunc_02084f50();
     func_02049eb4();
     func_0202adb4(func_0202adc4());
     status::Status::setFlagShopExec();
@@ -149,7 +151,7 @@ ARM void TownSystem::terminate()
 ARM void TownSystem::execute()
 {
     func_ov000_02143978(func_ov000_02143030());
-    func_ov000_02143e58(func_ov000_021439fc());
+    TownEndrollManager::getSingleton()->execute();
     if (g_Global.getRanarutaFlag()) {
         func_0202ad28(func_0202adc4());
         cmn::NonBattleActionManager::getSingleton()->execute();
@@ -165,7 +167,7 @@ ARM void TownSystem::execute()
     TownCamera::getSingleton()->execute();
     cmn::GameManager::getSingleton()->execute();
     func_ov016_0216ba40()->item_ = 0;
-    if (func_0200a99c(func_0200a6c8()) == 0 && scriptLock_ == 0) {
+    if (encount::Encount::getSingleton()->isEncounted() == 0 && scriptLock_ == 0) {
         ScriptSystem::getSingleton()->execute();
     }
     TownPlayerManager::getSingleton()->setMessage();
@@ -174,7 +176,7 @@ ARM void TownSystem::execute()
         return;
     }
     if (TownPlayerManager::getSingleton()->isLock() == 0) {
-        func_0200a884(func_0200a6c8());
+        encount::Encount::getSingleton()->execDungeon();
     }
     g_cmnPartyInfo.prevFrameBattle_ = 0;
     trigger_ = 1;
@@ -182,14 +184,14 @@ ARM void TownSystem::execute()
 
 ARM void TownSystem::draw()
 {
-    func_0203e868(func_0203e5a8());
+    cmn::CommonChapterTitle::getSingleton()->draw();
     func_0202ad98(func_0202adc4());
     if (func_0202af54(func_0202adc4())) {
         return;
     }
     TownCamera::getSingleton()->draw();
     func_ov000_021436b0(func_ov000_02143030());
-    func_ov000_02143e30(func_ov000_021439fc());
+    TownEndrollManager::getSingleton()->draw();
     bool cameraNo = TownCamera::getSingleton()->camera_.m_cameraNo == 0;
     if (cameraNo == true) {
         TownStageManager::getSingleton()->stage_.unk_660 = 1;
@@ -197,7 +199,7 @@ ARM void TownSystem::draw()
         TownStageManager::getSingleton()->stage_.unk_660 = 0;
     }
     TownPlayerManager::getSingleton()->draw();
-    func_02084fa4(&render_);
+    render_.unkfunc_02084fa4();
     TownStageManager::getSingleton()->draw();
     TownRiseupManager::getSingleton()->draw();
     TownCharacterManager::getSingleton()->draw();
@@ -214,7 +216,7 @@ ARM void TownSystem::bookingMenu()
         if (fadeCount_ == 0) {
             cmn::GameManager::getSingleton()->playerManager_->setLock(1);
             cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 0;
-            func_020499a4(0);
+            BillboardCharacter::setAllCharaAnim(0);
             fadeCount_++;
             return;
         }
@@ -228,7 +230,7 @@ ARM void TownSystem::bookingMenu()
         if (fadeCount_ == 0) {
             cmn::GameManager::getSingleton()->playerManager_->setLock(1);
             cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 0;
-            func_020499a4(0);
+            BillboardCharacter::setAllCharaAnim(0);
             TownCharacterManager::getSingleton()->setPlayerDirection(data_ov016_02186020.ctrlID_);
             SoundManager::playSe(0x136, 0);
             g_Global.fadeOutBlack(1);
@@ -248,7 +250,7 @@ ARM void TownSystem::bookingMenu()
         if (fadeCount_ == 0) {
             cmn::GameManager::getSingleton()->playerManager_->setLock(1);
             cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 0;
-            func_020499a4(0);
+            BillboardCharacter::setAllCharaAnim(0);
             fadeCount_++;
         }
         if (data_020f21f8.count_ != data_020f21f8.frames_) {

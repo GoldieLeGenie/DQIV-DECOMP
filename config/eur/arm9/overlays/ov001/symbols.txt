@@ -1,27 +1,27 @@
-func_ov001_021210e0 kind:function(arm,size=0x2c) addr:0x021210e0
-func_ov001_0212110c kind:function(arm,size=0x2c) addr:0x0212110c
-func_ov001_02121138 kind:function(arm,size=0x8) addr:0x02121138
-func_ov001_02121140 kind:function(arm,size=0x14) addr:0x02121140
-func_ov001_02121154 kind:function(arm,size=0xf0) addr:0x02121154
-func_ov001_02121244 kind:function(arm,size=0x34) addr:0x02121244
-func_ov001_02121278 kind:function(arm,size=0x8) addr:0x02121278
-func_ov001_02121280 kind:function(arm,size=0x18c) addr:0x02121280
-func_ov001_0212140c kind:function(arm,size=0x1e0) addr:0x0212140c
-func_ov001_021215ec kind:function(arm,size=0x1ec) addr:0x021215ec
-func_ov001_021217d8 kind:function(arm,size=0x1ec) addr:0x021217d8
-func_ov001_021219c4 kind:function(arm,size=0x1ec) addr:0x021219c4
-func_ov001_02121bb0 kind:function(arm,size=0xc0) addr:0x02121bb0
-func_ov001_02121c70 kind:function(arm,size=0xc0) addr:0x02121c70
-func_ov001_02121d30 kind:function(arm,size=0xc0) addr:0x02121d30
-func_ov001_02121df0 kind:function(arm,size=0xc0) addr:0x02121df0
-func_ov001_02121eb0 kind:function(arm,size=0x2c0) addr:0x02121eb0
-func_ov001_02122170 kind:function(arm,size=0x320) addr:0x02122170
-func_ov001_02122490 kind:function(arm,size=0x258) addr:0x02122490
-func_ov001_021226e8 kind:function(arm,size=0x1e4) addr:0x021226e8
-func_ov001_021228cc kind:function(arm,size=0x44) addr:0x021228cc
-func_ov001_02122910 kind:function(arm,size=0x130) addr:0x02122910
-func_ov001_02122a40 kind:function(arm,size=0x78) addr:0x02122a40
-func_ov001_02122ab8 kind:function(arm,size=0x48) addr:0x02122ab8
+_ZN15FieldPlayerDoku12getSingletonEv kind:function(arm,size=0x2c) addr:0x021210e0
+_ZN15FieldPlayerDoku5setupEv kind:function(arm,size=0x2c) addr:0x0212110c
+_ZN15FieldPlayerDoku12checkBarrierEv kind:function(arm,size=0x8) addr:0x02121138
+_ZN15FieldPlayerDoku11checkPoisonEv kind:function(arm,size=0x14) addr:0x02121140
+_ZN15FieldPlayerDoku19setPartyMemberColorEii kind:function(arm,size=0xf0) addr:0x02121154
+_ZN15FieldPlayerDoku15checkDokuDamageERN3dss12Fix32Vector3ES2_ kind:function(arm,size=0x34) addr:0x02121244
+_ZN15FieldPlayerDoku12setBlockAttrEi kind:function(arm,size=0x8) addr:0x02121278
+_ZN20FieldActionCalculate13playerFixMoveEP15FieldPlayerInfoP13FieldCollInfoiiN3dss5Fix32E kind:function(arm,size=0x18c) addr:0x02121280
+_ZN20FieldActionCalculate15playerFixMoveUpEP15FieldPlayerInfoP13FieldCollInfoN3dss5Fix32Eb kind:function(arm,size=0x1e0) addr:0x0212140c
+_ZN20FieldActionCalculate18playerFixMoveRightEP15FieldPlayerInfoP13FieldCollInfoN3dss5Fix32Eb kind:function(arm,size=0x1ec) addr:0x021215ec
+_ZN20FieldActionCalculate17playerFixMoveDownEP15FieldPlayerInfoP13FieldCollInfoN3dss5Fix32Eb kind:function(arm,size=0x1ec) addr:0x021217d8
+_ZN20FieldActionCalculate17playerFixMoveLeftEP15FieldPlayerInfoP13FieldCollInfoN3dss5Fix32Eb kind:function(arm,size=0x1ec) addr:0x021219c4
+_ZN20FieldActionCalculate20playerFixMoveRightUpEP15FieldPlayerInfoP13FieldCollInfoiiN3dss5Fix32E kind:function(arm,size=0xc0) addr:0x02121bb0
+_ZN20FieldActionCalculate22playerFixMoveRightDownEP15FieldPlayerInfoP13FieldCollInfoiiN3dss5Fix32E kind:function(arm,size=0xc0) addr:0x02121c70
+_ZN20FieldActionCalculate21playerFixMoveLeftDownEP15FieldPlayerInfoP13FieldCollInfoiiN3dss5Fix32E kind:function(arm,size=0xc0) addr:0x02121d30
+_ZN20FieldActionCalculate19playerFixMoveLeftUpEP15FieldPlayerInfoP13FieldCollInfoiiN3dss5Fix32E kind:function(arm,size=0xc0) addr:0x02121df0
+_ZN20FieldActionCalculate11frontHitFixEP15FieldPlayerInfoP13FieldCollInfoN3dss5Fix32E kind:function(arm,size=0x2c0) addr:0x02121eb0
+_ZN20FieldActionCalculate13frontBlankFixEP15FieldPlayerInfoP13FieldCollInfoN3dss5Fix32E kind:function(arm,size=0x320) addr:0x02122170
+_ZN20FieldActionCalculate17checkDiagonalLineERN3dss12Fix32Vector3Eiii kind:function(arm,size=0x258) addr:0x02122490
+_ZN20FieldActionCalculate16getDir8ByVector3ERN3dss12Fix32Vector3E kind:function(arm,size=0x1e4) addr:0x021226e8
+_ZN20FieldActionCalculate13getDir8RotIdxEii kind:function(arm,size=0x44) addr:0x021228cc
+_ZN20FieldActionCalculate16getVector3ByDir8Ei kind:function(arm,size=0x130) addr:0x02122910
+_ZN20FieldActionCalculate20getVecByScriptParam4ERN3dss12Fix32Vector3Ei kind:function(arm,size=0x78) addr:0x02122a40
+_ZN20FieldActionCalculate14getIdxByParam4Ei kind:function(arm,size=0x48) addr:0x02122ab8
 func_ov001_02122b00 kind:function(arm,size=0x24) addr:0x02122b00
 func_ov001_02122b24 kind:function(arm,size=0x4) addr:0x02122b24
 func_ov001_02122b28 kind:function(arm,size=0x10) addr:0x02122b28
@@ -142,7 +142,7 @@ func_ov001_0212785c kind:function(arm,size=0x54) addr:0x0212785c
 func_ov001_021278b0 kind:function(arm,size=0x160) addr:0x021278b0
 func_ov001_02127a10 kind:function(arm,size=0x58) addr:0x02127a10
 func_ov001_02127a68 kind:function(arm,size=0xc0) addr:0x02127a68
-func_ov001_02127b28 kind:function(arm,size=0x54) addr:0x02127b28
+_ZN18FieldPlayerManager12getSingletonEv kind:function(arm,size=0x54) addr:0x02127b28
 func_ov001_02127b7c kind:function(arm,size=0x40) addr:0x02127b7c
 func_ov001_02127bbc kind:function(arm,size=0x1cc) addr:0x02127bbc
 func_ov001_02127d88 kind:function(arm,size=0x13c) addr:0x02127d88
@@ -159,8 +159,8 @@ func_ov001_02128f58 kind:function(arm,size=0x4) addr:0x02128f58
 func_ov001_02128f5c kind:function(arm,size=0x218) addr:0x02128f5c
 func_ov001_02129174 kind:function(arm,size=0x184) addr:0x02129174
 func_ov001_021292f8 kind:function(arm,size=0x28) addr:0x021292f8
-func_ov001_02129320 kind:function(arm,size=0x10) addr:0x02129320
-func_ov001_02129330 kind:function(arm,size=0x10) addr:0x02129330
+_ZN18FieldPlayerManager8inputPadEi kind:function(arm,size=0x10) addr:0x02129320
+_ZN18FieldPlayerManager10inputClearEv kind:function(arm,size=0x10) addr:0x02129330
 func_ov001_02129340 kind:function(arm,size=0x138) addr:0x02129340
 func_ov001_02129478 kind:function(arm,size=0xa4) addr:0x02129478
 func_ov001_0212951c kind:function(arm,size=0x10) addr:0x0212951c
@@ -172,7 +172,7 @@ func_ov001_02129b2c kind:function(arm,size=0xd0) addr:0x02129b2c
 func_ov001_02129bfc kind:function(arm,size=0x10) addr:0x02129bfc
 func_ov001_02129c0c kind:function(arm,size=0x120) addr:0x02129c0c
 func_ov001_02129d2c kind:function(arm,size=0x1f8) addr:0x02129d2c
-func_ov001_02129f24 kind:function(arm,size=0x50) addr:0x02129f24
+_ZN18FieldPlayerManager14getDamageColorEi kind:function(arm,size=0x50) addr:0x02129f24
 func_ov001_02129f74 kind:function(arm,size=0x34) addr:0x02129f74
 func_ov001_02129fa8 kind:function(arm,size=0xd8) addr:0x02129fa8
 func_ov001_0212a080 kind:function(arm,size=0x88) addr:0x0212a080
@@ -189,32 +189,32 @@ func_ov001_0212a620 kind:function(arm,size=0x14) addr:0x0212a620
 func_ov001_0212a634 kind:function(arm,size=0x28) addr:0x0212a634
 func_ov001_0212a65c kind:function(arm,size=0x80) addr:0x0212a65c
 func_ov001_0212a6dc kind:function(arm,size=0xc) addr:0x0212a6dc
-func_ov001_0212a6e8 kind:function(arm,size=0x4c) addr:0x0212a6e8
-func_ov001_0212a734 kind:function(arm,size=0x38) addr:0x0212a734
-func_ov001_0212a76c kind:function(arm,size=0x78) addr:0x0212a76c
-func_ov001_0212a7e4 kind:function(arm,size=0x2c) addr:0x0212a7e4
-func_ov001_0212a810 kind:function(arm,size=0x1ec) addr:0x0212a810
-func_ov001_0212a9fc kind:function(arm,size=0x18) addr:0x0212a9fc
+_ZN13FieldImageMapC1Ev kind:function(arm,size=0x4c) addr:0x0212a6e8
+_ZN13FieldImageMapD1Ev kind:function(arm,size=0x38) addr:0x0212a734
+_ZN13FieldImageMap5setupEP11FieldSystem kind:function(arm,size=0x78) addr:0x0212a76c
+_ZN13FieldImageMap7cleanupEv kind:function(arm,size=0x2c) addr:0x0212a7e4
+_ZN13FieldImageMap7executeEv kind:function(arm,size=0x1ec) addr:0x0212a810
+_ZN13FieldImageMap4drawEv kind:function(arm,size=0x18) addr:0x0212a9fc
 func_ov001_0212aa14 kind:function(arm,size=0xc) addr:0x0212aa14
 func_ov001_0212aa20 kind:function(arm,size=0xc) addr:0x0212aa20
 func_ov001_0212aa2c kind:function(arm,size=0xc) addr:0x0212aa2c
 func_ov001_0212aa38 kind:function(arm,size=0xc) addr:0x0212aa38
 func_ov001_0212aa44 kind:function(arm,size=0x14) addr:0x0212aa44
 func_ov001_0212aa58 kind:function(arm,size=0x14) addr:0x0212aa58
-func_ov001_0212aa6c kind:function(arm,size=0x2c) addr:0x0212aa6c
-func_ov001_0212aa98 kind:function(arm,size=0x14) addr:0x0212aa98
-func_ov001_0212aaac kind:function(arm,size=0x54) addr:0x0212aaac
-func_ov001_0212ab00 kind:function(arm,size=0x14) addr:0x0212ab00
-func_ov001_0212ab14 kind:function(arm,size=0x34) addr:0x0212ab14
-func_ov001_0212ab48 kind:function(arm,size=0x18) addr:0x0212ab48
-func_ov001_0212ab60 kind:function(arm,size=0x18) addr:0x0212ab60
-func_ov001_0212ab78 kind:function(arm,size=0x14) addr:0x0212ab78
-func_ov001_0212ab8c kind:function(arm,size=0xc) addr:0x0212ab8c
-func_ov001_0212ab98 kind:function(arm,size=0xc) addr:0x0212ab98
-func_ov001_0212aba4 kind:function(arm,size=0xc) addr:0x0212aba4
-func_ov001_0212abb0 kind:function(arm,size=0xc) addr:0x0212abb0
-func_ov001_0212abbc kind:function(arm,size=0xc) addr:0x0212abbc
-func_ov001_0212abc8 kind:function(arm,size=0x14) addr:0x0212abc8
+_ZN13FieldImageMap11clearAllMapEv kind:function(arm,size=0x2c) addr:0x0212aa6c
+_ZN17FieldWindowSystemC1Ev kind:function(arm,size=0x14) addr:0x0212aa98
+_ZN17FieldWindowSystem12getSingletonEv kind:function(arm,size=0x54) addr:0x0212aaac
+_ZN17FieldWindowSystemD1Ev kind:function(arm,size=0x14) addr:0x0212ab00
+_ZN17FieldWindowSystem10initializeEv kind:function(arm,size=0x34) addr:0x0212ab14
+_ZN17FieldWindowSystem9terminateEv kind:function(arm,size=0x18) addr:0x0212ab48
+_ZN17FieldWindowSystem7executeEv kind:function(arm,size=0x18) addr:0x0212ab60
+_ZN17FieldWindowSystem4drawEv kind:function(arm,size=0x14) addr:0x0212ab78
+_ZN17FieldWindowSystem11openMessageEii kind:function(arm,size=0xc) addr:0x0212ab8c
+_ZN17FieldWindowSystem16addCommonMessageEi kind:function(arm,size=0xc) addr:0x0212ab98
+_ZN17FieldWindowSystem17openCommonMessageEv kind:function(arm,size=0xc) addr:0x0212aba4
+_ZN17FieldWindowSystem6isOpenEv kind:function(arm,size=0xc) addr:0x0212abb0
+_ZN17FieldWindowSystem13setMenuPermitEb kind:function(arm,size=0xc) addr:0x0212abbc
+_ZN17FieldWindowSystem11clearAllMapEv kind:function(arm,size=0x14) addr:0x0212abc8
 func_ov001_0212abdc kind:function(arm,size=0x38) addr:0x0212abdc
 func_ov001_0212ac14 kind:function(arm,size=0x24) addr:0x0212ac14
 func_ov001_0212ac38 kind:function(arm,size=0x304) addr:0x0212ac38
@@ -236,7 +236,7 @@ func_ov001_0212b824 kind:function(arm,size=0x5c) addr:0x0212b824
 func_ov001_0212b880 kind:function(arm,size=0xa0) addr:0x0212b880
 func_ov001_0212b920 kind:function(arm,size=0x14) addr:0x0212b920
 func_ov001_0212b934 kind:function(arm,size=0x14) addr:0x0212b934
-func_ov001_0212b948 kind:function(arm,size=0x54) addr:0x0212b948
+_ZN3fld10FieldStage12getSingletonEv kind:function(arm,size=0x54) addr:0x0212b948
 func_ov001_0212b99c kind:function(arm,size=0x218) addr:0x0212b99c
 func_ov001_0212bbb4 kind:function(arm,size=0x1c) addr:0x0212bbb4
 func_ov001_0212bbd0 kind:function(arm,size=0x108) addr:0x0212bbd0
@@ -248,7 +248,7 @@ func_ov001_0212c058 kind:function(arm,size=0xc) addr:0x0212c058
 func_ov001_0212c064 kind:function(arm,size=0xc) addr:0x0212c064
 func_ov001_0212c070 kind:function(arm,size=0xc) addr:0x0212c070
 func_ov001_0212c07c kind:function(arm,size=0xc) addr:0x0212c07c
-func_ov001_0212c088 kind:function(arm,size=0xf0) addr:0x0212c088
+_ZN3fld10FieldStage10ChangeTimeEi kind:function(arm,size=0xf0) addr:0x0212c088
 func_ov001_0212c178 kind:function(arm,size=0x140) addr:0x0212c178
 func_ov001_0212c2b8 kind:function(arm,size=0x48) addr:0x0212c2b8
 func_ov001_0212c300 kind:function(arm,size=0x3c) addr:0x0212c300
@@ -312,27 +312,27 @@ func_ov001_0212d8f8 kind:function(arm,size=0x5c) addr:0x0212d8f8
 _Z22cmd_field_erase_symbolPi kind:function(thumb,size=0x12) addr:0x0212d954
 _Z25cmd_field_player_set_shipPi kind:function(thumb,size=0x74) addr:0x0212d968
 _Z24cmd_set_field_player_posPi kind:function(thumb,size=0x24) addr:0x0212d9dc
-func_ov001_0212da00 kind:function(thumb,size=0x64) addr:0x0212da00
-func_ov001_0212da64 kind:function(thumb,size=0x18) addr:0x0212da64
-func_ov001_0212da7c kind:function(thumb,size=0x54) addr:0x0212da7c
-func_ov001_0212dad0 kind:function(thumb,size=0x14) addr:0x0212dad0
-func_ov001_0212dae4 kind:function(thumb,size=0x28) addr:0x0212dae4
-func_ov001_0212db0c kind:function(thumb,size=0x14) addr:0x0212db0c
-func_ov001_0212db20 kind:function(thumb,size=0x10) addr:0x0212db20
-func_ov001_0212db30 kind:function(thumb,size=0xc) addr:0x0212db30
+_ZN29__cmd_field_player_set_ballon10initializeEPc kind:function(thumb,size=0x64) addr:0x0212da00
+_ZN29__cmd_field_player_set_ballon5isEndEv kind:function(thumb,size=0x18) addr:0x0212da64
+_ZN26__cmd_field_player_move_to10initializeEPc kind:function(thumb,size=0x54) addr:0x0212da7c
+_ZN26__cmd_field_player_move_to5isEndEv kind:function(thumb,size=0x14) addr:0x0212dad0
+_ZN21__cmd_field_move_line10initializeEPc kind:function(thumb,size=0x28) addr:0x0212dae4
+_ZN21__cmd_field_move_line5isEndEv kind:function(thumb,size=0x14) addr:0x0212db0c
+_ZN25__cmd_field_get_down_ship10initializeEPc kind:function(thumb,size=0x10) addr:0x0212db20
+_ZN25__cmd_field_get_down_ship5isEndEv kind:function(thumb,size=0xc) addr:0x0212db30
 _Z21cmd_field_symbol_dispPi kind:function(thumb,size=0x16) addr:0x0212db3c
-func_ov001_0212db54 kind:function(arm,size=0x4) addr:0x0212db54
-func_ov001_0212db58 kind:function(arm,size=0x4) addr:0x0212db58
-func_ov001_0212db5c kind:function(arm,size=0x4) addr:0x0212db5c
-func_ov001_0212db60 kind:function(arm,size=0x4) addr:0x0212db60
-func_ov001_0212db64 kind:function(arm,size=0x4) addr:0x0212db64
-func_ov001_0212db68 kind:function(arm,size=0x4) addr:0x0212db68
-func_ov001_0212db6c kind:function(arm,size=0x4) addr:0x0212db6c
-func_ov001_0212db70 kind:function(arm,size=0x4) addr:0x0212db70
-func_ov001_0212db74 kind:function(thumb,size=0x2) addr:0x0212db74
-func_ov001_0212db78 kind:function(thumb,size=0x2) addr:0x0212db78
-func_ov001_0212db7c kind:function(thumb,size=0x2) addr:0x0212db7c
-func_ov001_0212db80 kind:function(thumb,size=0x2) addr:0x0212db80
+_ZN21__cmd_field_move_line9terminateEv kind:function(arm,size=0x4) addr:0x0212db54
+_ZN21__cmd_field_move_line7executeEv kind:function(arm,size=0x4) addr:0x0212db58
+_ZN26__cmd_field_player_move_to9terminateEv kind:function(arm,size=0x4) addr:0x0212db5c
+_ZN26__cmd_field_player_move_to7executeEv kind:function(arm,size=0x4) addr:0x0212db60
+_ZN25__cmd_field_get_down_ship9terminateEv kind:function(arm,size=0x4) addr:0x0212db64
+_ZN25__cmd_field_get_down_ship7executeEv kind:function(arm,size=0x4) addr:0x0212db68
+_ZN29__cmd_field_player_set_ballon9terminateEv kind:function(arm,size=0x4) addr:0x0212db6c
+_ZN29__cmd_field_player_set_ballon7executeEv kind:function(arm,size=0x4) addr:0x0212db70
+_ZN29__cmd_field_player_set_ballonD1Ev kind:function(thumb,size=0x2) addr:0x0212db74
+_ZN26__cmd_field_player_move_toD1Ev kind:function(thumb,size=0x2) addr:0x0212db78
+_ZN21__cmd_field_move_lineD1Ev kind:function(thumb,size=0x2) addr:0x0212db7c
+_ZN25__cmd_field_get_down_shipD1Ev kind:function(thumb,size=0x2) addr:0x0212db80
 data_ov001_0212db94 kind:data(any) addr:0x0212db94
 data_ov001_0212dba0 kind:data(any) addr:0x0212dba0
 data_ov001_0212dbac kind:data(any) addr:0x0212dbac
@@ -450,32 +450,25 @@ data_ov001_021601bc kind:data(any) addr:0x021601bc ambiguous
 data_ov001_021601c2 kind:data(any) addr:0x021601c2 ambiguous
 __sinit_ov001_0216037c kind:function(arm,size=0xa0) addr:0x0216037c
 __sinit_ov001_0216041c kind:function(arm,size=0x78) addr:0x0216041c
-__sinit_ov001_02160494 kind:function(arm,size=0x2c) addr:0x02160494
+__sinit_FieldWindowSystem.cpp kind:function(arm,size=0x2c) addr:0x02160494 local
 __sinit_ov001_021604c0 kind:function(arm,size=0x160) addr:0x021604c0
-__sinit_ov001_02160620 kind:function(thumb,size=0x88) addr:0x02160620
+__sinit_FieldCommand.cpp kind:function(thumb,size=0x88) addr:0x02160620 local
 .p__sinit_ov001_0216037c kind:data(word) addr:0x021606a8
 .p__sinit_ov001_0216041c kind:data(word) addr:0x021606ac
-.p__sinit_ov001_02160494 kind:data(word) addr:0x021606b0
+.p__sinit_FieldWindowSystem.cpp kind:data(word) addr:0x021606b0 local
 .p__sinit_ov001_021604c0 kind:data(word) addr:0x021606b4
-.p__sinit_ov001_02160620 kind:data(word) addr:0x021606b8
-data_ov001_021606c8 kind:data(any) addr:0x021606c8
-data_ov001_021606d4 kind:data(any) addr:0x021606d4
-data_ov001_021606d8 kind:data(any) addr:0x021606d8
-data_ov001_021606dc kind:data(any) addr:0x021606dc
-data_ov001_021606e0 kind:data(any) addr:0x021606e0
-data_ov001_021606e4 kind:data(any) addr:0x021606e4
-data_ov001_021606e8 kind:data(any) addr:0x021606e8
-data_ov001_021606ec kind:data(any) addr:0x021606ec
-data_ov001_021606f0 kind:data(any) addr:0x021606f0
-data_ov001_021606f4 kind:data(any) addr:0x021606f4
-data_ov001_021606f8 kind:data(any) addr:0x021606f8
-data_ov001_02160704 kind:data(any) addr:0x02160704
-data_ov001_02160710 kind:data(any) addr:0x02160710
-data_ov001_0216071c kind:data(any) addr:0x0216071c
-data_ov001_02160728 kind:data(any) addr:0x02160728
-data_ov001_02160734 kind:data(any) addr:0x02160734
-data_ov001_02160740 kind:data(any) addr:0x02160740
-data_ov001_0216074c kind:data(any) addr:0x0216074c
+.p__sinit_FieldCommand.cpp kind:data(word) addr:0x021606b8 local
+_ZTV15FieldPlayerDoku kind:data(byte[20]) addr:0x021606c0
+@877 kind:data(word) addr:0x021606d4 local
+cosPAI_3_8$870 kind:data(word) addr:0x021606d8 local
+@871 kind:data(word) addr:0x021606dc local
+cosPAI_1_8$866 kind:data(word) addr:0x021606e0 local
+@867 kind:data(word) addr:0x021606e4 local
+@816 kind:data(word) addr:0x021606e8 local
+@812 kind:data(word) addr:0x021606ec local
+@807 kind:data(word) addr:0x021606f0 local
+@803 kind:data(word) addr:0x021606f4 local
+retVec$940 kind:data(byte[96]) addr:0x021606f8 local
 data_ov001_02160760 kind:data(any) addr:0x02160760
 data_ov001_02160778 kind:data(any) addr:0x02160778
 data_ov001_02160790 kind:data(any) addr:0x02160790
@@ -598,13 +591,15 @@ data_ov001_02160d70 kind:data(any) addr:0x02160d70
 data_ov001_02160d90 kind:data(any) addr:0x02160d90
 data_ov001_02160db0 kind:data(any) addr:0x02160db0
 data_ov001_02160dcc kind:data(any) addr:0x02160dcc
-data_ov001_02160dec kind:data(any) addr:0x02160dec
-data_ov001_02160e04 kind:data(any) addr:0x02160e04
-data_ov001_02160e1c kind:data(any) addr:0x02160e1c
-data_ov001_02160e34 kind:data(any) addr:0x02160e34
-data_ov001_02160e60 kind:bss addr:0x02160e60
-data_ov001_02160e64 kind:bss addr:0x02160e64
-data_ov001_02160e78 kind:bss addr:0x02160e78
+_ZTV25__cmd_field_get_down_ship kind:data(byte[24]) addr:0x02160de4
+_ZTV21__cmd_field_move_line kind:data(byte[24]) addr:0x02160dfc
+_ZTV26__cmd_field_player_move_to kind:data(byte[24]) addr:0x02160e14
+_ZTV29__cmd_field_player_set_ballon kind:data(byte[24]) addr:0x02160e2c
+_ZGVfieldPlayerDoku$918 kind:bss(size=0x4) addr:0x02160e60 local
+fieldPlayerDoku$918 kind:bss(size=0x14) addr:0x02160e64 local
+_ZGVretVec$940 kind:bss(size=0x4) addr:0x02160e78 local
+_ZGVcosPAI_3_8$870 kind:bss(size=0x4) addr:0x02160e7c local
+_ZGVcosPAI_1_8$866 kind:bss(size=0x4) addr:0x02160e80 local
 data_ov001_02160e84 kind:bss addr:0x02160e84
 data_ov001_02160e88 kind:bss addr:0x02160e88
 data_ov001_02160e90 kind:bss addr:0x02160e90
@@ -614,11 +609,11 @@ data_ov001_021614b8 kind:bss addr:0x021614b8
 data_ov001_021614d8 kind:bss addr:0x021614d8
 data_ov001_021614e4 kind:bss addr:0x021614e4
 data_ov001_021614f0 kind:bss addr:0x021614f0
-data_ov001_02162084 kind:bss addr:0x02162084
-data_ov001_02162088 kind:bss addr:0x02162088
-data_ov001_02162094 kind:bss addr:0x02162094
-data_ov001_021620a0 kind:bss addr:0x021620a0
-data_ov001_02162114 kind:bss addr:0x02162114
+_ZGVm_singleton$30 kind:bss addr:0x02162084 local
+@22 kind:bss addr:0x02162088 local
+@33 kind:bss addr:0x02162094 local
+m_singleton$30 kind:bss addr:0x021620a0 local
+imageMap kind:bss addr:0x02162114 local
 data_ov001_02162614 kind:bss addr:0x02162614
 data_ov001_02162618 kind:bss addr:0x02162618
 data_ov001_02162624 kind:bss addr:0x02162624
@@ -628,11 +623,11 @@ data_ov001_02164820 kind:bss addr:0x02164820
 data_ov001_0216498c kind:bss addr:0x0216498c
 data_ov001_02164990 kind:bss addr:0x02164990
 data_ov001_02164a1c kind:bss addr:0x02164a1c
-data_ov001_02164a20 kind:bss addr:0x02164a20
-data_ov001_02164a24 kind:bss addr:0x02164a24
-data_ov001_02164a28 kind:bss addr:0x02164a28
-data_ov001_02164a2c kind:bss addr:0x02164a2c
-data_ov001_02164a30 kind:bss addr:0x02164a30
-data_ov001_02164a3c kind:bss addr:0x02164a3c
-data_ov001_02164a48 kind:bss addr:0x02164a48
-data_ov001_02164a54 kind:bss addr:0x02164a54
+g_cmd_field_move_line kind:bss addr:0x02164a20
+g_cmd_field_player_move_to kind:bss addr:0x02164a24
+g_cmd_field_player_set_ballon kind:bss addr:0x02164a28
+g_cmd_field_get_down_ship kind:bss addr:0x02164a2c
+@1170 kind:bss(size=0xc) addr:0x02164a30 local
+@1173 kind:bss(size=0xc) addr:0x02164a3c local
+@1171 kind:bss(size=0xc) addr:0x02164a48 local
+@1172 kind:bss(size=0xc) addr:0x02164a54 local

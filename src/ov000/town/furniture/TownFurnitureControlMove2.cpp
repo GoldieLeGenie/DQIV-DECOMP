@@ -12,7 +12,7 @@ THUMB TownFurnitureControlMove2::~TownFurnitureControlMove2()
 THUMB void TownFurnitureControlMove2::execute()
 {
     if (enable_) {
-        dss::Fix32Vector3 step = func_02088bdc(func_02088988(goal_, start_), frame_);
+        dss::Fix32Vector3 step = (goal_ - start_) / frame_;
         dss::Fix32Vector3 pos = start_ + step * counter_;
         if (counter_ >= frame_) {
             enable_ = 0;

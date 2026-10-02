@@ -16,6 +16,9 @@ namespace cmn{
         int extend_;
         int enable_;
         int index_;
+        CommonEffectLocation();
+        ~CommonEffectLocation();
+        static CommonEffectLocation* getSingleton();
         void initialize();
         void terminate();
         void execute();
@@ -26,7 +29,6 @@ namespace cmn{
     };
 }
 
-extern "C" cmn::CommonEffectLocation* func_0203e8f8(void);   // CommonEffectLocation::getSingleton
 
 
 
@@ -35,7 +37,6 @@ struct TownStageManager;
 
 extern "C"
 {
-    int  func_02058114(void*, int);
     void func_02046f74(fld::FLDObject*, VecFx32*, int);    // fld::FLDObject::SetRGBRate
     int func_0203ea64(cmn::CommonEffectLocation*,int index);
     int func_0203eb24(cmn::CommonEffectLocation*);

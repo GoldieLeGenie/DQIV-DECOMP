@@ -10,7 +10,7 @@ struct MaterielMenu_PICTUREBOOK_DETAIL : menu::MenuBase
     static const int MONSTER_COUNT_IN_PAGE = 16;    
 
     menu::MenuItem menuItem_;           /* 0x1C */
-    menu::MenuNavigator navigator_;     /* 0x80 */
+    CursorMoveGridLoop navigator_;     /* 0x80 */
     int monsterNo_;                     /* 0x8C */
     int activeMonster_;                 /* 0x90 */
     int isOpen_;                        /* 0x94 */
@@ -26,7 +26,7 @@ struct MaterielMenu_PICTUREBOOK_DETAIL : menu::MenuBase
 struct MaterielMenu_PICTUREBOOK_ROOT : menu::MenuBase
 {
     menu::MenuItem menuItem_;           /* 0x1C */
-    menu::MenuNavigator navigator_;     /* 0x80 */
+    CursorMoveGridLoop navigator_;     /* 0x80 */
     param::BookData* m_bookData;        /* 0x8C */
     int m_activeMonster;                /* 0x90 */
     int m_nowPage;                      /* 0x94 */

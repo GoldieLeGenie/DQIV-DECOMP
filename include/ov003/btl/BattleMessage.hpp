@@ -1,4 +1,6 @@
 #pragma once
+#include "main/btl/BattleAutoFeed.hpp"
+#include "main/menu/MenuAPI.hpp"
 #include "main/text/TextAPI.hpp"
 #include <globaldefs.h>
 #include "GameInfo.hpp"
@@ -23,22 +25,3 @@ namespace btl {
     };
     
 }
-
-extern "C" void func_0200d6d0(void);
-extern "C" void func_0200d728(int message);
-extern "C" void func_020899a4(void);   // BattleAutoFeed::setCursor
-extern "C" void func_02089678(void);   // BattleAutoFeed::setMessage
-extern "C" void func_02089720(void);
-extern "C" int  func_02089738(void);   // BattleAutoFeed::isEndEncountMessage
-extern "C" int  func_0200d78c(void);   // MenuAPI::isFinishMessageWindow
-extern "C" void func_020896f0(void);   // BattleAutoFeed::setMessageSend
-extern "C" void func_02089acc(int flag);   // BattleAutoFeed::setDisableCursor
-extern "C" int  func_02089684(void);   // BattleAutoFeed::isEndMessage
-extern "C" void func_02089abc(void);   // BattleAutoFeed::disableAutoFeed
-extern "C" void func_0200d510(void);   // MenuAPI::closeMenu
-extern "C" int  func_0200d528(void);   // MenuAPI::isFinishMenu
-extern "C" void func_0200d5a0(void);   // MenuAPI::openBattleMenu
-extern "C" void func_0200d61c(void);
-extern "C" void func_0200d748();
-extern "C" void func_0200d6a0(void);
-extern "C" void func_0200d738(int message);

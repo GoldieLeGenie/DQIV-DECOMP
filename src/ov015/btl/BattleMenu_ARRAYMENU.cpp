@@ -6,8 +6,8 @@
 THUMB void BattleMenu_ARRAYMENU::menuSetup()
 {
     status::g_Party.setMemberShiftMode();
-    func_02051900(&menuItem_, 1, 5);
-    func_02051900(&cancelItem_, 2, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
+    cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     if (!gBattleMenuSub_HISTORY.isOpen()) {
         btl::BattleMenuPlayerControl::getSingleton()->clear();
         btl::BattleMenuPlayerControl::getSingleton()->activeChara_ = -1;
@@ -31,7 +31,7 @@ THUMB void BattleMenu_ARRAYMENU::menuDraw()
 {
     if (!data_020ed1bc.isOpen()) {
         func_ov015_0216bd94();
-        func_02051968(&menuItem_);
+        menuItem_.drawActive();
     }
 }
 
@@ -43,7 +43,7 @@ THUMB void BattleMenu_ARRAYMENU::menuUpdate()
         }
         return;
     }
-    if (func_02023230(&cancelItem_)) {
+    if (MenuUpdate_Assist::isCancel(cancelItem_)) {
         cancelItem_.result_ = 0;
         cancelItem_.lastresult_ = 0;
         close();

@@ -6,10 +6,10 @@
 THUMB void MaterielMenu_SHOP_SELL_SACK::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02051900(&menuItem_, 3, 5);
-    func_02051900(&menuItem3_, 0, 0);
-    func_02051900(&menuItem2_, 2, 0);
-    func_02023324(&navigator_);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
+    menuItem3_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH, menu::MenuItem::CURSORTYPE_NONE);
+    menuItem2_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
+    navigator_.setupBase();
     itemIndex_ = 0;
     pageStart_ = 0;
     func_ov016_0216ff2c()->activeItem_ = 0;
@@ -37,7 +37,7 @@ THUMB void MaterielMenu_SHOP_SELL_SACK::menuDraw()
         return;
     }
     func_ov016_0216fbf4();
-    func_02051968(&menuItem_);
+    menuItem_.drawActive();
 }
 
 THUMB void MaterielMenu_SHOP_SELL_SACK::menuUpdate()
@@ -48,17 +48,17 @@ THUMB void MaterielMenu_SHOP_SELL_SACK::menuUpdate()
         }
         return;
     }
-    if (func_02023230(&menuItem2_)) {
+    if (MenuUpdate_Assist::isCancel(menuItem2_)) {
         close();
         data_ov016_02186d28.open();
     }
-    func_02023504(&navigator_, 2, 3, status::g_Party.haveItemSack_.getCount());
-    int result = func_02023274(&menuItem_, &navigator_);
+    navigator_.setup(2, 3, status::g_Party.haveItemSack_.getCount());
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         if (result == 2) {
             selectItem();
         }
-        pageStart_ = func_0202333c(&navigator_);
+        pageStart_ = navigator_.getPageNo();
         int itemIndex = menuItem_.active_;
         itemIndex_ = itemIndex;
         func_ov016_0216ff2c()->activeItem_ = itemIndex;
@@ -68,9 +68,9 @@ THUMB void MaterielMenu_SHOP_SELL_SACK::menuUpdate()
         redraw_ = 1;
     }
     int active = menuItem_.active_;
-    if (func_020231c8(&menuItem3_, &navigator_, &active)) {
+    if (MenuUpdate_Assist::isPageFlip(menuItem3_, navigator_, active)) {
         itemIndex_ = menuItem_.active_ = active;
-        pageStart_ = func_0202333c(&navigator_);
+        pageStart_ = navigator_.getPageNo();
         int itemIndex = itemIndex_;
         func_ov016_0216ff2c()->activeItem_ = itemIndex;
         int pageStart = pageStart_;

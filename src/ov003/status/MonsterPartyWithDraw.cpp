@@ -46,7 +46,7 @@ THUMB int status::MonsterPartyWithDraw::add(int monsterGroup, int monsterIndex, 
 
             btl::BattleMonsterDraw2* draw = btl::BattleMonsterDraw2::getSingleton();
             btl::BattleMonster*      m    = &draw->monsters_[drawId];
-            func_0205b2f0(m, pos);
+            m->monsterDraw_.setPositionInt(pos);
 
             btl::BattleMonsterDraw2::getSingleton()->monsters_[drawId].screenPosition_ = spacePos - spaceWidth / 2;
             btl::BattleMonsterDraw2::getSingleton()->monsters_[drawId].screenWidth_    = spaceWidth;

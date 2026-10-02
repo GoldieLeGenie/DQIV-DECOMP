@@ -5,8 +5,8 @@
 
 THUMB void BattleMenu_ATTACK::menuSetup()
 {
-    func_02051900(&menuItem_, 1, 0);
-    func_02051900(&cancelItem_, 2, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_NONE);
+    cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     monsterMask_ = 1;
     menuItem_.active_ = 0;
     enemyMaxNum_ = BattleMenuJudge::getSingleton()->getMonsterTouchRect(touchRect_);
@@ -43,7 +43,7 @@ THUMB void BattleMenu_ATTACK::menuUpdate()
 {
     int group = touchRect_[menuItem_.active_].group;
     g_monster.getGroupCount();
-    if (func_02023230(&cancelItem_)) {
+    if (MenuUpdate_Assist::isCancel(cancelItem_)) {
         gBattleMenu_ACTIONMENU.open();
         gBattleMenu_ACTIONMENU.pageItem_.active_ = 0;
         BattleMonsterMask::getSingleton()->select(-1);

@@ -11,8 +11,8 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::menuSetup()
     unk_150 = 0;
     unk_154 = 0;
     unk_158 = 0;
-    func_02051900(&menuItem_, 1, 0);
-    func_02051900(&cancelItem_, 2, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_NONE);
+    cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     menuItem_.active_ = 0;
     unk_150 = BattleMenuJudge::getSingleton()->getMonsterTouchRect(unk_160);
     for (int i = 0; i < unk_150; i++) {
@@ -141,7 +141,7 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::unkfunc_0216ce00()
 
 THUMB int BattleMenu_ITEMUSE2ENEMY::unkfunc_0216cee0()
 {
-    if (func_02023230(&cancelItem_)) {
+    if (MenuUpdate_Assist::isCancel(cancelItem_)) {
         unk_15c = 0;
         close();
         gBattleMenu_ITEM.open();

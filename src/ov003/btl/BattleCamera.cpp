@@ -51,8 +51,8 @@ THUMB void BattleCamera::reset()
 {
     dss::Vector3<short> angle;
     dss::Fix32Vector3 position;
-    func_0201da1c(&livecamera, "inicamera", 0);
-    func_0201e048(&livecamera, &position, &angle);
+    livecamera.readCameraData("inicamera", 0);
+    livecamera.moveCamera(position, angle);
     normalCamera_.setPosition(position);
     normalCamera_.setAngle(angle);
     initposition_ = position;
@@ -66,8 +66,8 @@ THUMB void BattleCamera::executeForMap()
     dss::Fix32Vector3 position2;
 
     if (enable_ != 0) {
-        if (func_0201dac8(&livecamera, &position, &angle)) {
-            if (func_0201dac8(&livecamera2, &position2, &angle2)) {
+        if (livecamera.calc(position, angle)) {
+            if (livecamera2.calc(position2, angle2)) {
                 dss::Vector3<short> rot;
                 rot.vx -= livecamera.iniAngle_.vx;
                 rot.vy -= livecamera.iniAngle_.vy;
@@ -76,7 +76,7 @@ THUMB void BattleCamera::executeForMap()
                 rot.vy += angle.vy + angle2.vy;
                 rot.vz += angle.vz + angle2.vz;
                 normalCamera_.setAngle(rot);
-                normalCamera_.setPosition(func_02088988(position + position2, livecamera.iniPosition_));
+                normalCamera_.setPosition((position + position2 - livecamera.iniPosition_));
                 normalCamera_.applyCamera();
             }
             else {
@@ -87,7 +87,7 @@ THUMB void BattleCamera::executeForMap()
             }
         }
         else {
-            if (func_0201dac8(&livecamera2, &position2, &angle2)) {
+            if (livecamera2.calc(position2, angle2)) {
                 normalCamera_.setAngle(angle2);
                 normalCamera_.setPosition(position2);
                 normalCamera_.applyCamera();
@@ -120,11 +120,11 @@ THUMB void BattleCamera::initCamera()
 {
     enable_ = 1;
     if (camera1 != 0) {
-        func_0201da1c(&livecamera, file_, 1);
+        livecamera.readCameraData(file_, 1);
         livecamera.initCameraControl(normalCamera_.getPosition(), normalCamera_.getAngle());
     }
     if (camera2 != 0) {
-        func_0201da1c(&livecamera2, file2_, 1);
+        livecamera2.readCameraData(file2_, 1);
         livecamera2.initCameraControl(normalCamera_.getPosition(), normalCamera_.getAngle());
     }
 }

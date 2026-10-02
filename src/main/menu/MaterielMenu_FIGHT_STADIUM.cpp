@@ -1,5 +1,6 @@
 #include "main/menu/MaterielMenu_FIGHT_STADIUM.hpp"
-#include "ov016/FightStadiumManager.hpp"
+#include "main/dss/Pad.hpp"
+#include "ov016/casino/FightStadiumManager.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/text/TextAPI.hpp"
 #include "main/global/Global.hpp"
@@ -15,8 +16,8 @@ const int MaterielMenu_FIGHT_STADIUM::BET_CURSOR_X = 232;
 THUMB void MaterielMenu_FIGHT_STADIUM::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02051900(&betItem_, 3, 1);
-    func_02051900(&monsterItem_, 3, 5);
+    betItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_UP);
+    monsterItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     betItem_.active_ = 1;
     setMenuStatus(FIGHT_STADIUM_START);
     haveCoin_ = status::g_Party.casinoCoin_;
@@ -46,7 +47,7 @@ THUMB void MaterielMenu_FIGHT_STADIUM::menuDraw()
         if (status_ == FIGHT_STADIUM_BET) {
             if (blink_ != 0) {
                 if (blinkCount_ > 15) {
-                    func_02051968(&betItem_);
+                    betItem_.drawActive();
                 }
                 if (blinkCount_ == 0 || blinkCount_ == 16) {
                     redraw_ = 1;
@@ -56,26 +57,26 @@ THUMB void MaterielMenu_FIGHT_STADIUM::menuDraw()
                     blinkCount_ = 0;
                 }
             } else {
-                func_02051968(&betItem_);
+                betItem_.drawActive();
             }
         }
         if (status_ == FIGHT_STADIUM_BET) {
-            func_ov016_02177bac(0xb8, 0, 0x48, 0x40, -1);
+            unkfunc_02177bac(0xb8, 0, 0x48, 0x40, -1);
         } else {
-            func_ov016_02177bac(0xb0, 0, 0x50, 0x40, -1);
+            unkfunc_02177bac(0xb0, 0, 0x50, 0x40, -1);
         }
     } else {
-        func_ov016_02177bac(0xb8, 0, 0x48, 0x20, -1);
+        unkfunc_02177bac(0xb8, 0, 0x48, 0x20, -1);
     }
     if (status_ == FIGHT_STADIUM_CHOICE || status_ == FIGHT_STADIUM_BET) {
         int count = FightStadiumManager::getSingleton()->cardCount_;
-        func_02051968(&monsterItem_);
+        monsterItem_.drawActive();
         for (int i = 0; i < count; i++) {
             int monsterID = FightStadiumManager::getSingleton()->getMonsterID(i);
             int diameter = FightStadiumManager::getSingleton()->getDiameter(i);
             func_ov016_02177eb8(monsterID, diameter, i, FightStadiumManager::getSingleton()->getOrderCount(i));
         }
-        func_ov016_02177bac(0, 0, 0xb8, count * 16 + 0x30, -1);
+        unkfunc_02177bac(0, 0, 0xb8, count * 16 + 0x30, -1);
         func_ov016_02177c54(flag);
     }
     if (status_ == FIGHT_STADIUM_BET) {
@@ -127,7 +128,7 @@ THUMB bool MaterielMenu_FIGHT_STADIUM::messageUpdate()
     case FIGHT_STADIUM_RETRY:
         if (messageCount_ != 0) {
             if (g_Global.betCoin_ > 0) {
-                if ((func_0207f280(&data_02116d40) & 1) || (func_0207f280(&data_02116d40) & 0x400)) {
+                if ((data_02116d40.unkfunc_0207f280() & 1) || (data_02116d40.unkfunc_0207f280() & 0x400)) {
                     SoundManager::playSe(0x15e, 0);
                     haveCoin_ += g_Global.betCoin_;
                     g_Global.betCoin_ = 0;
@@ -178,7 +179,7 @@ THUMB void MaterielMenu_FIGHT_STADIUM::statusUpdate()
             showMessage(0xc8edd);
             data_020ed1bc.addMessageWAITKEY();
             monsterItem_.active_ = 0;
-            func_02051900(&monsterItem_, 3, 6);
+            monsterItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_INACTIVE);
             setMenuStatus(FIGHT_STADIUM_CHOICE);
         }
         break;
@@ -218,7 +219,7 @@ THUMB void MaterielMenu_FIGHT_STADIUM::monsterListUpdate()
     }
     if (oldWaitProg == 0 && waitProg_ != 0) {
         int active = monsterItem_.active_;
-        func_02051900(&monsterItem_, 3, 5);
+        monsterItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
         monsterItem_.active_ = active;
     }
     func_02051a7c(&monsterItem_);

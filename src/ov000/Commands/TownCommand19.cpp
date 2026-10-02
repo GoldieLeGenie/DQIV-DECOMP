@@ -1,4 +1,5 @@
 #include "main/cmn/CommonEffectLocation.hpp"
+#include "ov000/town/TownEndrollManager.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/cmn/PartyTalk.hpp"
 #include "main/dss/Random.hpp"
@@ -29,6 +30,6 @@ THUMB int cmd_is_not_go_into_tenku(int* param)
 
 THUMB int cmd_set_end_roll_clear(int* param)
 {
-    *(int*)(func_ov000_021439fc() + 0x170) = 0;
+    TownEndrollManager::getSingleton()->clearScroll();
     return 1;
 }

@@ -1,4 +1,5 @@
 #include "main/cmn/CommonEffectLocation.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "ov000/town/TownWindowSystem.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/cmn/PartyTalk.hpp"
@@ -29,11 +30,11 @@ THUMB int cmd_check_shoplist(int* param)
     name[0] = g_Global.getMapName()[0];
     name[1] = g_Global.getMapName()[1];
 
-    if (func_020882b0(name, mc) == 0 && !g_AreaFlag.check(0x57)) {
-        func_0202a81c(TownWindowSystem::getSingleton(), 0);
+    if (dss::DssUtils::unkfunc_020882b0(name, mc) == 0 && !g_AreaFlag.check(0x57)) {
+        TownWindowSystem::getSingleton()->cmdWindow_.setShoplistPermit(false);
     }
-    if (func_020882b0(name, cc) == 0 && status::g_Story.chapter_ != 2) {
-        func_0202a81c(TownWindowSystem::getSingleton(), 0);
+    if (dss::DssUtils::unkfunc_020882b0(name, cc) == 0 && status::g_Story.chapter_ != 2) {
+        TownWindowSystem::getSingleton()->cmdWindow_.setShoplistPermit(false);
     }
     return 1;
 }

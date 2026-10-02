@@ -1,7 +1,9 @@
 #include "ov034/MaterielMenuExtraChapterTitle/MaterielMenuExtraChapterTitle.hpp"
+#include "ov001/window/FieldWindowSystem.hpp"
 #include "main/cmn/PartyTalk.hpp"
 #include "main/status/StoryStatus.hpp"
 #include "main/global/Global.hpp"
+#include "main/dss/UnkSprite2D.hpp"
 
 
 THUMB void MaterielMenuExtraChapterTitle::menuSetup()
@@ -9,8 +11,7 @@ THUMB void MaterielMenuExtraChapterTitle::menuSetup()
     if (m_chapter_end == 1) {
         cmn::PartyTalk::getSingleton()->initialize();
         if (m_chapter == 2 || m_chapter == 4) {
-            func_ov001_0212aaac();
-            func_ov001_0212abc8();
+            FieldWindowSystem::getSingleton()->clearAllMap();
         }
     }
 
@@ -32,7 +33,7 @@ THUMB void MaterielMenuExtraChapterTitle::menuDraw()
         if (m_chapter == 0 && m_chapter_end == 1) {
             func_ov016_0216fe50(m_chapter, m_chapter_end);
         } else {
-            func_020848a8();
+            unkfunc_020848a8();
             func_ov016_0216fe50(m_chapter, m_chapter_end);
         }
 

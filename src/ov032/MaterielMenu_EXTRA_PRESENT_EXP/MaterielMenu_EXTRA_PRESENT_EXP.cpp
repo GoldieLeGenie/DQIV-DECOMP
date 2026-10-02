@@ -1,3 +1,4 @@
+#include "main/btl/BattleExecLevelup.hpp"
 #include "ov032/MaterielMenu_EXTRA_PRESENT_EXP/MaterielMenu_EXTRA_PRESENT_EXP.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
@@ -8,9 +9,9 @@
 THUMB void MaterielMenu_EXTRA_PRESENT_EXP::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02051900(&menuItem_, 3, 0);
-    func_02023324(&navigator_);
-    func_02023504(&navigator_, 1, 1, 1);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
+    navigator_.setupBase();
+    navigator_.setup(1, 1, 1);
     activeChara_ = func_ov016_0216ff2c()->activeChara_;
     extraExp_ = func_ov016_0216ff2c()->extraExp_;
     subExp_ = extraExp_ <= 10000 ? 60 : 300;
@@ -58,18 +59,18 @@ THUMB void MaterielMenu_EXTRA_PRESENT_EXP::menuUpdate()
         break;
     case 1:
         if (status::g_Party.getLevelupPlayer() != -1) {
-            if (data_020ef8f0.execute() == false) {
-                func_02036010(&data_020ef8f0);
+            if (g_BattleExecLevelup.execute() == false) {
+                g_BattleExecLevelup.terminate();
             }
         } else {
-            if (data_020ef8f0.execute() == false) {
-                func_02036010(&data_020ef8f0);
+            if (g_BattleExecLevelup.execute() == false) {
+                g_BattleExecLevelup.terminate();
                 levelUpMode_ = 2;
             }
         }
         break;
     case 2:
-        if (func_02023274(&menuItem_, &navigator_) != 0) {
+        if (MenuUpdate_Assist::menuSelect(menuItem_, navigator_) != 0) {
             SoundManager::playBgm(bgm_, 0);
             MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
         }

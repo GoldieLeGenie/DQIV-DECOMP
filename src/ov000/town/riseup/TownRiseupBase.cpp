@@ -59,9 +59,9 @@ THUMB void TownRiseupBase::calcNearPos(dss::Fix32Vector3& pos, dss::Fix32 scale)
 {
     dss::Fix32Vector3 camera = getCamera()->getPosition();
     dss::Fix32Vector3 position = pos;
-    dss::Fix32Vector3 dir = func_02088988(camera, position);
-    dss::Fix32 length = func_02088e90(dir);
-    func_02089168(&dir);
+    dss::Fix32Vector3 dir = camera - position;
+    dss::Fix32 length = dir.length();
+    dir.normalize();
     position += dir;
     dss::Fix32 rate = length - dss::Fix32(1L);
     scale = scale * rate / length;

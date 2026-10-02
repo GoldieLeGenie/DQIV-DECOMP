@@ -36,7 +36,7 @@ namespace dss {
         void setTarget(const Fix32Vector3& target);
         Fix32Vector3& getTarget();
         void setAngle(const Vector3short& angle);
-        Vector3short& getAngle();
+        Vector3<short>& getAngle();
         void setDistance(const Fix32& distance);
         Fix32& getDistance();
         Fix32& getDistanceSq();
@@ -62,7 +62,6 @@ extern short data_020c4158[4];
 
 extern "C" {
     int func_02081254(void);
-    void func_02089168(dss::Fix32Vector3* v);
     void func_02049984(dss::Camera* camera);
     void func_0205710c(int index, dss::Fix32Vector3* position);
     dss::Vector2<int>* func_02057128(int idx);

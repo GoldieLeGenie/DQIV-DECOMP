@@ -24,6 +24,6 @@ THUMB void TownFurnitureEncount::setSecondMessage()
 THUMB void TownFurnitureEncount::cleanup()
 {
     TownFurnitureObject::cleanup();
-    func_0200acc8(func_0200a6c8(), data_);
+    encount::Encount::getSingleton()->forceBrew(data_);
     g_Stage.encountMapUid_ = uid_;
 }

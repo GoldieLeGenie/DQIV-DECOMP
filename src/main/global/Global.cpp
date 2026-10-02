@@ -43,8 +43,7 @@ THUMB Global::~Global(){
 THUMB void Global::initialize()
 {
     status::excelParam.setup();
-    func_0200a6c8();
-    func_0200a734();
+    encount::Encount::getSingleton()->initialize();
     status::Status::initialize();
     status::Status::initialize_character();
     cmn::PlayerManager::initLock();
@@ -176,7 +175,7 @@ THUMB void Global::startField()
 
 THUMB void Global::startBattle()
 {
-    if (func_0200a6c8()->battleMode_ == encount::Encount::Normal) {
+    if (encount::Encount::getSingleton()->battleMode_ == encount::Encount::Normal) {
         SoundManager::battlePlay();
     } else {
         SoundManager::crusingPlay();
@@ -198,7 +197,7 @@ THUMB void Global::acceptBattle()
 THUMB void Global::directStartBattle()
 {
     cmn::PlayerManager::setLock(1);
-    if (func_0200a6c8()->battleMode_ == encount::Encount::Normal) {
+    if (encount::Encount::getSingleton()->battleMode_ == encount::Encount::Normal) {
         SoundManager::battlePlay();
     } else {
         SoundManager::crusingPlay();

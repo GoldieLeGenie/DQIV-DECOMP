@@ -9,10 +9,10 @@ THUMB void MaterielMenu_SURECHIGAI_MAKE_TAISHI::menuSetup()
 {
     status::g_Party.setPlayerMode();
     data_020f0078 = 1;
-    func_02051900(&menuItem_, 3, 5);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = 0;
-    func_02023324(&navigator_);
-    func_02023504(&navigator_, 6, 2, 50);
+    navigator_.setupBase();
+    navigator_.setup(6, 2, 50);
     mode_ = 0;
     firstFlag_ = 1;
     changeTaishi_ = 0;
@@ -35,7 +35,7 @@ THUMB void MaterielMenu_SURECHIGAI_MAKE_TAISHI::menuSetup()
 THUMB void MaterielMenu_SURECHIGAI_MAKE_TAISHI::menuExecute()
 {
     int count = 12;
-    if (func_0202333c(&navigator_) == 4) {
+    if (navigator_.getPageNo() == 4) {
         count = 2;
     }
     func_ov016_02177b3c(&menuItem_, menuItem_.active_, count);
@@ -45,11 +45,11 @@ THUMB void MaterielMenu_SURECHIGAI_MAKE_TAISHI::menuDraw()
 {
     if (data_020ed1bc.isMessageWAITPROG()) {
         int active = menuItem_.active_;
-        func_ov016_0216fe9c(mode_, active, func_0202333c(&navigator_), func_02023348(&navigator_));
-        func_02051968(&menuItem_);
+        func_ov016_0216fe9c(mode_, active, navigator_.getPageNo(), navigator_.getPageMaxCount());
+        menuItem_.drawActive();
     }
     if (mode_ == 1) {
-        func_ov016_0216fe9c(mode_, func_0203a5ec(&data_020f0078), func_0202333c(&navigator_), func_02023348(&navigator_));
+        func_ov016_0216fe9c(mode_, func_0203a5ec(&data_020f0078), navigator_.getPageNo(), navigator_.getPageMaxCount());
     }
 }
 
@@ -62,11 +62,11 @@ THUMB void MaterielMenu_SURECHIGAI_MAKE_TAISHI::menuUpdate()
                 firstFlag_ = 0;
                 return;
             }
-            func_02023504(&navigator_, 6, 2, 50);
-            int result = func_02023274(&menuItem_, &navigator_);
+            navigator_.setup(6, 2, 50);
+            int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
             if (result != 0) {
                 if (result == 2) {
-                    int index = func_020233cc(&navigator_, menuItem_.active_);
+                    int index = navigator_.getIndex(menuItem_.active_);
                     if (func_0203ab30(&data_020f0078, index) == 1) {
                         data_020ed1bc.clearMessageWAITPROG();
                         data_020ed1bc.close();

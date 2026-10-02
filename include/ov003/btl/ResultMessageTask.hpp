@@ -1,4 +1,5 @@
 #pragma once
+#include "main/btl/BattleAutoFeed.hpp"
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 #include "main/status/UseActionParam.hpp"
@@ -24,7 +25,5 @@ namespace btl {
 extern int currentTarget_; //currentTarget_
 extern int targetCount_;   //targetCount_
 
-extern "C" int func_02089820();
-extern "C" void func_0208980c();
 extern "C" void func_ov003_0212c09c(status::UseActionParam* uap, int idx);
 extern "C" void func_ov003_02129480(status::UseActionParam* uap, int idx);

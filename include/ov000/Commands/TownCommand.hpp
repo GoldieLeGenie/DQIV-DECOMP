@@ -13,7 +13,7 @@ struct TownPartyDraw;
 #include "ov000/town/TownDoorAction.hpp"
 #include "main/Commands/CommonCommand.hpp"
 #include "main/cmn/CommonEffectLocation.hpp"
-#include "ov016/MaterielMenu_SLOT/MaterielMenu_SLOT.hpp"
+#include "ov016/casino/MaterielMenu_SLOT/MaterielMenu_SLOT.hpp"
 
 struct TownFurnitureManager;
 struct TownStageManager;
@@ -26,6 +26,7 @@ struct TownCharaMoveParam {
     int unk_38;
 };
 
+void searchItem(int index, int* found, int* items);
 int cmd_enable_event_item(int* param);
 int cmn_set_event_door(int* param);
 int cmd_map_change_timezone(int* param);
@@ -209,8 +210,6 @@ extern "C" {
     void func_ov016_0216fa48(char* a, char* b, char* c, int value);
     void* func_020835d8(void);
     void func_02085d88(void);
-    void func_ov000_021429c8(void* obj, int id, dss::Fix32Vector3 pos);
-    dss::Fix32 func_0208908c(const dss::Fix32Vector3& a, const dss::Fix32Vector3& b);
     int func_0200c020(void);
     int func_02037f84(void* obj, int type);
     void func_0208a114(char* dst, int size, int id);
@@ -218,7 +217,5 @@ extern "C" {
     int func_0203a388(void* mgr);
     void func_02055998(int value);
     void func_02037f98(void* obj);
-    void func_0202a81c(void* obj, int value);
     void func_020857c8(void* obj, dss::Fix32Vector3 pos);
-    char* func_ov000_021439fc(void);
 }

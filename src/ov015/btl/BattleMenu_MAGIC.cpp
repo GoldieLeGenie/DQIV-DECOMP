@@ -1,4 +1,5 @@
 #include "ov015/btl/BattleMenu.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "ov015/btl/BattleMenuPlayerControl.hpp"
 #include "ov003/btl/BattleMonsterMask.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
@@ -12,21 +13,21 @@
 THUMB void BattleMenu_MAGIC::menuSetup()
 {
     status::g_Party.setBattleMode();
-    func_02051900(&menuItem_, 1, 5);
-    func_02051900(&cancelItem_, 2, 0);
-    func_02051900(&unk_e4, 0, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
+    cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
+    unk_e4.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH, menu::MenuItem::CURSORTYPE_NONE);
     BattleMonsterMask::getSingleton()->select(-1);
     count_ = 0;
-    func_020882d4(haveAction_, -1, sizeof(haveAction_));
-    func_020882d4(haveActionIndex_, -1, sizeof(haveActionIndex_));
+    dss::DssUtils::unkfunc_020882d4(haveAction_, -1, sizeof(haveAction_));
+    dss::DssUtils::unkfunc_020882d4(haveActionIndex_, -1, sizeof(haveActionIndex_));
     unkfunc_0216ded8();
-    func_02023324(&navigator_);
-    func_02023504(&navigator_, 2, 3, count_);
+    navigator_.setupBase();
+    navigator_.setup(2, 3, count_);
     int pos = btl::BattleMenuPlayerControl::getSingleton()->getMagicPosition();
     int page = pos / 6;
     pos = pos % 6;
     menuItem_.active_ = pos;
-    func_02023344(&navigator_, page);
+    navigator_.setPageNo(page);
     int magic = haveActionIndex_[pos];
     btl::BattleMenuPlayerControl::getSingleton()->activeMagic_ = magic;
 }
@@ -36,51 +37,51 @@ THUMB void BattleMenu_MAGIC::setActiveMagicPos(int pos)
     int active = pos;
     active %= 6;
     menuItem_.active_ = active;
-    func_02023344(&navigator_, pos / 6);
+    navigator_.setPageNo(pos / 6);
 }
 
 THUMB void BattleMenu_MAGIC::menuExecute()
 {
-    func_02023504(&navigator_, 2, 3, count_);
-    func_ov015_0216c60c(&menuItem_, func_020233f0(&navigator_));
+    navigator_.setup(2, 3, count_);
+    func_ov015_0216c60c(&menuItem_, navigator_.getCountInPage());
     func_ov015_0216c5c4(&cancelItem_);
-    int max = func_02023348(&navigator_) - 1;
-    func_0201e684(&unk_e4, func_020233cc(&navigator_, unk_e4.active_), max, 0xd8, 0x78);
+    int max = navigator_.getPageMaxCount() - 1;
+    func_0201e684(&unk_e4, navigator_.getIndex(unk_e4.active_), max, 0xd8, 0x78);
 }
 
 THUMB void BattleMenu_MAGIC::menuDraw()
 {
     if (!data_020ed1bc.isOpen()) {
-        func_ov015_0216bb00(haveAction_, count_, func_0202333c(&navigator_));
-        func_02051968(&menuItem_);
-        func_02051968(&cancelItem_);
+        func_ov015_0216bb00(haveAction_, count_, navigator_.getPageNo());
+        menuItem_.drawActive();
+        cancelItem_.drawActive();
     }
 }
 
 THUMB void BattleMenu_MAGIC::menuUpdate()
 {
     status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus((short)btl::BattleMenuPlayerControl::getSingleton()->activeChara_)->haveStatusInfo_;
-    short pos = func_020233cc(&navigator_, menuItem_.active_);
+    short pos = navigator_.getIndex(menuItem_.active_);
     int action = haveAction_[pos];
-    int magic = haveActionIndex_[func_020233cc(&navigator_, menuItem_.active_)];
+    int magic = haveActionIndex_[navigator_.getIndex(menuItem_.active_)];
     if (data_020ed1bc.isOpen()) {
         if ((unsigned int)(data_020ed1bc.stat_ - 1) <= 1) {
             data_020ed1bc.close();
             return;
         }
     } else {
-        if (func_02023230(&cancelItem_)) {
+        if (MenuUpdate_Assist::isCancel(cancelItem_)) {
             BattleMenuJudge::getSingleton()->backActionMenu(1);
             close();
             return;
         }
         int active = menuItem_.active_;
-        if (func_02023204(&unk_e4, &navigator_, &active)) {
+        if (MenuUpdate_Assist::isPageFlipOne(unk_e4, navigator_, active)) {
             menuItem_.active_ = active;
             redraw_ = 1;
             return;
         }
-        int result = func_02023274(&menuItem_, &navigator_);
+        int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
         if (result != 0) {
             redraw_ = 1;
             if (result == 2) {
@@ -110,7 +111,7 @@ THUMB void BattleMenu_MAGIC::menuUpdate()
                             func_ov015_0216aa54(func_ov015_0216aa2c());
                             btl::BattleMenuPlayerControl::getSingleton()->activeMagic_ = magic;
                             gBattleMenu_MAGIC2ENEMY.open();
-                            gBattleMenu_MAGIC2ENEMY.activeMagicPos_ = func_020233cc(&navigator_, menuItem_.active_);
+                            gBattleMenu_MAGIC2ENEMY.activeMagicPos_ = navigator_.getIndex(menuItem_.active_);
                             gBattleMenu_MAGIC2ENEMY.activeMagicIndex_ = action;
                         } else {
                             if (action == 0x13) {
@@ -139,7 +140,7 @@ THUMB void BattleMenu_MAGIC::menuUpdate()
                         if (status::g_Party.getCarriageOutCount() > 1) {
                             btl::BattleMenuPlayerControl::getSingleton()->activeMagic_ = magic;
                             gBattleMenu_MAGIC2PARTY.open();
-                            gBattleMenu_MAGIC2PARTY.activeMagicPos_ = func_020233cc(&navigator_, menuItem_.active_);
+                            gBattleMenu_MAGIC2PARTY.activeMagicPos_ = navigator_.getIndex(menuItem_.active_);
                         } else {
                             BattleMenuJudge::getSingleton()->setMagicParty(magic, 0);
                             BattleMenuJudge::getSingleton()->setNextPlayer();
@@ -165,8 +166,8 @@ THUMB void BattleMenu_MAGIC::unkfunc_0216ded8()
     count = info->haveAction_.getCount();
     int num = 0;
     count_ = num;
-    func_020882d4(haveAction_, -1, sizeof(haveAction_));
-    func_020882d4(haveActionIndex_, -1, sizeof(haveActionIndex_));
+    dss::DssUtils::unkfunc_020882d4(haveAction_, -1, sizeof(haveAction_));
+    dss::DssUtils::unkfunc_020882d4(haveActionIndex_, -1, sizeof(haveActionIndex_));
     for (int i = 0; i < count; i++) {
         int action = info->haveAction_.getAction(i);
         if (status::UseAction::isBattleUse(action)) {

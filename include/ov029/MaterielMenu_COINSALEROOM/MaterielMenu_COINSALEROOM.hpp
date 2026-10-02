@@ -6,7 +6,7 @@
 struct MaterielMenu_COINSALEROOM_ROOT : menu::MenuBase
 {
     menu::MenuItem menuItem_;           /* 0x1C */
-    menu::MenuNavigator navigator_;     /* 0x80 */
+    CursorMoveGridLoop navigator_;     /* 0x80 */
     int coin_;                          /* 0x8C */
     int first_;                         /* 0x90 */
     int blink_;                         /* 0x94 */

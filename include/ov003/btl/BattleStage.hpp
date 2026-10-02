@@ -1,4 +1,5 @@
 #pragma once
+#include "main/menu/MenuAPI.hpp"
 #include <globaldefs.h>
 #include "main/dss/DssUtils.hpp"
 #include "main/fld/FldStage.hpp"
@@ -30,5 +31,4 @@ struct BattleStage {
 };
 
 extern "C" {
-    void func_0200d5cc(unsigned short color);
 }

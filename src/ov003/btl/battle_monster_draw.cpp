@@ -21,11 +21,11 @@ THUMB void btl::BattleMonster::setup(int monsterGroup, int monsterIndex)
     monsterGroup_ = monsterGroup;
     monsterIndex_ = monsterIndex;
     func_0204d04c(&monsterDraw_, monsterIndex_);
-    func_0205b368(&monsterDraw_, 0, dssrand::rand(30));
+    monsterDraw_.setCurrentFrame(0, dssrand::rand(30));
     screenPosition_ = 0;
     screenWidth_ = 0;
     animationFlag_ = 0;
-    func_0205b384(&monsterDraw_, DSSAObjectWithCamera::Near2);
+    monsterDraw_.setCameraType(DSSAObjectWithCamera::Near2);
 }
 
 THUMB void btl::BattleMonster::cleanup()
@@ -76,11 +76,11 @@ THUMB void btl::BattleMonster::draw()
         dss::Fix32Vector3 pos = *monsterDraw_.getPosition();
         pos.vz.value += 0x100;
         monsterDraw_.setPosition(pos);
-        func_0205aa8c(&monsterDraw_);
+        monsterDraw_.draw();
         pos.vz.value -= 0x100;
         monsterDraw_.setPosition(pos);
     } else {
-        func_0205aa8c(&monsterDraw_);
+        monsterDraw_.draw();
     }
 }
 
@@ -90,22 +90,22 @@ THUMB void btl::BattleMonster::startAnimation(int actionIndex, int animIndex)
         actionIndex = 0x47;
     }
     if (actionIndex == 0x144) {
-        func_0205af20(&monsterDraw_, 0xb, 0);
+        monsterDraw_.start(0xb, 0);
     } else if (animIndex == 0x22) {
-        func_0205af20(&monsterDraw_, 0x22, 0);
+        monsterDraw_.start(0x22, 0);
     } else if (animIndex == 0x23) {
-        func_0205af20(&monsterDraw_, 0x23, 0);
+        monsterDraw_.start(0x23, 0);
     } else if (animIndex == 0x20) {
-        func_0205af20(&monsterDraw_, 0x20, 0);
+        monsterDraw_.start(0x20, 0);
     } else if (animIndex == 0x1f) {
         if (actionIndex == 0x104) {
-            func_0205af20(&monsterDraw_, 0x1f, 0);
+            monsterDraw_.start(0x1f, 0);
         }
         if (actionIndex == 0) {
-            func_0205af20(&monsterDraw_, 0x1f, 0);
+            monsterDraw_.start(0x1f, 0);
         }
     } else {
-        int anim = status::excelParam.monsterAnim_->getAnimData(monsterIndex_, actionIndex, animIndex);
+        int anim = param::MonsterAnim::getAnimData(status::excelParam.monsterAnim_, monsterIndex_, actionIndex, animIndex);
         int animNo;
         SoundManager::playSe(status::excelParam.monsterAnim_[anim].sound, 0);
         if (anim < 0) {
@@ -114,7 +114,7 @@ THUMB void btl::BattleMonster::startAnimation(int actionIndex, int animIndex)
             setCameraAnimation(anim);
             animNo = status::excelParam.monsterAnim_[anim].animfile;
         }
-        func_0205af20(&monsterDraw_, animNo, 0);
+        monsterDraw_.start(animNo, 0);
         setPaletteAnim(animNo);
     }
 }
@@ -127,18 +127,18 @@ THUMB void btl::BattleMonster::setCameraAnimation(int index)
 
 THUMB void btl::BattleMonster::startAnimation(int animIndex)
 {
-    func_0205af20(&monsterDraw_, animIndex, 0);
+    monsterDraw_.start(animIndex, 0);
 }
 
 THUMB void btl::BattleMonster::startAnimationWithLoop(int animIndex, int flag)
 {
-    func_0205af20(&monsterDraw_, animIndex, flag);
+    monsterDraw_.start(animIndex, flag);
 }
 
 THUMB bool btl::BattleMonster::startGattai()
 {
     if (monsterIndex_ == 0xa9 && monsterDraw_.currentAnimationIndex_ != 9) {
-        func_0205af20(&monsterDraw_, 9, 0);
+        monsterDraw_.start(9, 0);
         dss::Fix32Vector3 pos(0, 0, 0);
         monsterDraw_.setPosition(pos);
         return true;
@@ -149,13 +149,13 @@ THUMB bool btl::BattleMonster::startGattai()
 THUMB void btl::BattleMonster::disappearGattaiSlime()
 {
     if (monsterIndex_ == 0xa9 && monsterDraw_.currentAnimationIndex_ != 9) {
-        func_0205af20(&monsterDraw_, 0x24, 1);
+        monsterDraw_.start(0x24, 1);
     }
 }
 
 THUMB bool btl::BattleMonster::isAppearKingSlime2()
 {
-    if (monsterIndex_ == 0xa9 && monsterDraw_.currentAnimationIndex_ == 9 && func_0205b1b8(&monsterDraw_) == func_0205b1cc(&monsterDraw_) - 1) {
+    if (monsterIndex_ == 0xa9 && monsterDraw_.currentAnimationIndex_ == 9 && monsterDraw_.getCurrentFrame() == monsterDraw_.getMaxFrame() - 1) {
         return true;
     }
     return false;
@@ -167,7 +167,7 @@ THUMB void btl::BattleMonster::setPaletteAnim(int animNo)
 
 THUMB void btl::BattleMonster::setTransOfEnd()
 {
-    monsterDraw_.flag_ |= 0x20;
+    monsterDraw_.flag_.set(0x20);
 }
 
 THUMB btl::BattleMonsterDraw2::BattleMonsterDraw2()
@@ -338,7 +338,7 @@ THUMB void btl::BattleMonsterDraw2::searchArrayPos(int monsterIndex)
 {
     signed char temp_[270];
     resetArrayPos();
-    int width = func_02035348(monsterIndex);
+    int width = getMonsterWidthInt(monsterIndex);
     spaceCount_ = 0;
     bool start = false;
     for (int i = 128 - width; i < 256 - width; i++) {

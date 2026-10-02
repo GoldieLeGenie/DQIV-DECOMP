@@ -93,7 +93,7 @@ ARM void cmn::CommonWalkDamage::checkWalk(dss::Fix32Vector3& pos, dss::Fix32Vect
 
     if (pos != prevPos) {
         if (encountFlag_ == 1) {
-            func_0200a8b8(func_0200a6c8());
+            encount::Encount::getSingleton()->execWalk();
         }
         if (memberDamage_ == 1 && checkWalkStride() == 1 && partyDamage_[0].type != None) {
             partyDamage_[0].counter = 0;

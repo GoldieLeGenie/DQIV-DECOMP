@@ -21,8 +21,8 @@ namespace param{
         char byte_1;
         unsigned char dmmy0;
         unsigned char dmmy1;
-        static unsigned short getDataIndex(int index);
-        int getAnimData(unsigned int monsterId, unsigned short actionId, unsigned short animId);
+        static unsigned short getDataIndex(unsigned int index);
+        static int getAnimData(MonsterAnim* anim, unsigned int monsterId, unsigned short actionId, unsigned short animId);
     };
 }
 

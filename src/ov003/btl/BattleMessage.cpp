@@ -10,44 +10,44 @@ THUMB void btl::BattleMessage::setMessage(int message1, int message2, int messag
         return;
     }
 
-    func_0200d6d0();
+    MenuAPI::openBattleMessage();
 
     if (message1 != 0) {
-        func_0200d728(message1);
+        MenuAPI::addMessageSerial(message1);
     }
     if (message2 != 0) {
-        func_0200d728(message2);
+        MenuAPI::addMessageSerial(message2);
     }
     if (message3 != 0) {
-        func_0200d728(message3);
+        MenuAPI::addMessageSerial(message3);
     }
     if (message4 != 0) {
-        func_0200d728(message4);
+        MenuAPI::addMessageSerial(message4);
     }
 
-    func_020899a4();
-    func_02089678();
+    BattleAutoFeed::setCursor();
+    BattleAutoFeed::setMessage();
 }
 
 THUMB void btl::BattleMessage::setMessageInTown(int message1, int message2, int message3, int message4)
 {
-    func_0200d61c();
+    MenuAPI::openCommonMessage();
 
     if (message1 != 0) {
-        func_0200d728(message1);
+        MenuAPI::addMessageSerial(message1);
     }
     if (message2 != 0) {
-        func_0200d728(message2);
+        MenuAPI::addMessageSerial(message2);
     }
     if (message3 != 0) {
-        func_0200d728(message3);
+        MenuAPI::addMessageSerial(message3);
     }
     if (message4 != 0) {
-        func_0200d728(message4);
+        MenuAPI::addMessageSerial(message4);
     }
 
-    func_020899a4();
-    func_02089678();
+    BattleAutoFeed::setCursor();
+    BattleAutoFeed::setMessage();
 }
 
 THUMB int btl::BattleMessage::setBeforeMessage(status::UseActionParam* useActionParam)
@@ -163,17 +163,17 @@ THUMB void btl::BattleMessage::setShakeMessage(status::UseActionParam* useAction
         return;
     }
     if (target->haveStatusInfo_.effectValue_ != 0) {
-        func_0200d748();
+        MenuAPI::shakeMessage();
     }
 }
 
 THUMB void btl::BattleMessage::openEncountMessage()
 {
-    func_0200d6a0();
+    MenuAPI::openEncountMessage();
 }
 
 THUMB void btl::BattleMessage::addEncountMessage(int message)
 {
-    func_0200d738(message);
-    func_02089678();
+    MenuAPI::catMessage(message);
+    BattleAutoFeed::setMessage();
 }

@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "ov003/btl/BattleRoot.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "ov003/btl/BattleActorManager2.hpp"
 #include "ov003/btl/BattleActorExec.hpp"
 #include "ov003/btl/BattleMonsterMask.hpp"
@@ -40,7 +41,7 @@ THUMB btl::BattleRoot* btl::BattleRoot::getSingleton()
 THUMB void btl::BattleRoot::initialize()
 {
     status::HaveAction::setBattleMode();
-    if (func_0200a6c8()->battleMode_ == encount::Encount::Normal) {
+    if (encount::Encount::getSingleton()->battleMode_ == encount::Encount::Normal) {
         setupBattle();
     }
     else {
@@ -51,7 +52,7 @@ THUMB void btl::BattleRoot::initialize()
 
 THUMB void btl::BattleRoot::terminate()
 {
-    if (func_0200a6c8()->battleMode_ == encount::Encount::Normal) {
+    if (encount::Encount::getSingleton()->battleMode_ == encount::Encount::Normal) {
         cleanupBattle();
     }
     else {
@@ -87,7 +88,7 @@ THUMB void btl::BattleRoot::draw()
 THUMB void btl::BattleRoot::setupBattle()
 {
     BattleActorManager2::getSingleton()->initialize();
-    eventEncount_ = func_0200a6c8()->encountParam_.isEventEncount();
+    eventEncount_ = encount::Encount::getSingleton()->encountParam_.isEventEncount();
     setupMonster();
 
     g_PartTaskManager.registerTask(0, &encountTask_);
@@ -120,7 +121,7 @@ THUMB void btl::BattleRoot::setupBattle()
     g_PartTaskManager.setNextTask(0);
 
     if (!g_Global.fightStadiumFlag_) {
-        func_020882d4(BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_, 0, sizeof(BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_));
+        dss::DssUtils::unkfunc_020882d4(BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_, 0, sizeof(BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_));
         BattleMenuPlayerControl::getSingleton()->allClear();
         BattleMenuPlayerControl::getSingleton()->activeChara_ = -1;
         BattleMonsterMask::getSingleton()->setup();
@@ -149,8 +150,8 @@ THUMB void btl::BattleRoot::setupMonster()
     int i;
     int j;
     for (i = 0; i < 4; i++) {
-        int monsterIndex = func_0200a6c8()->monsterIndex_[i];
-        int monsterCount = func_0200a6c8()->monsterCount_[i];
+        int monsterIndex = encount::Encount::getSingleton()->monsterIndex_[i];
+        int monsterCount = encount::Encount::getSingleton()->monsterCount_[i];
         for (j = 0; j < monsterCount; j++) {
             if (monsterCount != 0) {
                 g_monster.add(i, monsterIndex, 1);
@@ -194,14 +195,14 @@ THUMB void btl::BattleRoot::setupMonster()
         g_monster.getMonsterStatus(i)->haveStatusInfo_.noDamage_ = noDamage;
     }
 
-    int tileId = func_0200a6c8()->tileId_;
+    int tileId = encount::Encount::getSingleton()->tileId_;
     status::HaveBattleStatus::eventFlag_ = eventEncount_;
     BattleActorManager2::getSingleton()->setEventBattle(eventEncount_, tileId);
     status::BaseAction::eventBattle_ = eventEncount_;
     status::BaseActionStatus::eventBattle_ = eventEncount_;
     status::g_Party.startBattle();
 
-    BattleActorManager2::getSingleton()->setFirstAttack(func_0200a978(func_0200a6c8()));
+    BattleActorManager2::getSingleton()->setFirstAttack(encount::Encount::getSingleton()->getFirstAttack());
     if (status::g_BattleResult.monsterFirstAttack_) {
         BattleActorManager2::getSingleton()->setFirstAttack((FirstAttack)2);
     }
@@ -246,10 +247,10 @@ THUMB void btl::BattleRoot::setupCrusingMenu()
     g_PartTaskManager.registerTask(7, &exitTask_);
     g_PartTaskManager.registerTask(8, &exitWaitTask_);
     g_PartTaskManager.setNextTask(11);
-    if (func_0200a6c8()->battleMode_ == encount::Encount::CrusingTrader) {
+    if (encount::Encount::getSingleton()->battleMode_ == encount::Encount::CrusingTrader) {
         g_monster.add(0, 0xad, 1);
     }
-    if (func_0200a6c8()->battleMode_ == encount::Encount::CrusingInnKeeper) {
+    if (encount::Encount::getSingleton()->battleMode_ == encount::Encount::CrusingInnKeeper) {
         g_monster.add(0, 0xf7, 1);
     }
 }

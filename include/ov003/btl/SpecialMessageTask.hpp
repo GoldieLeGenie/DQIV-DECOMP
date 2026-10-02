@@ -1,4 +1,5 @@
 #pragma once
+#include "main/btl/BattleAutoFeed.hpp"
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 #include "main/sound/SoundManager.hpp"
@@ -29,5 +30,4 @@ namespace btl {
 extern int currentTarget_; //currentTarget_
 extern int targetCount_; //targetCount_ 
 
-extern "C" int  func_020897a0();
 

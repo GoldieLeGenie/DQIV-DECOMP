@@ -18,10 +18,13 @@ struct RenderObject {
     unsigned char polygonID_;                   // 0x0C
     unsigned char alpha_;                       // 0x0D
     int enable_;                                // 0x10
+
+    RenderObject();                             // C2 func_02083658
 };
 
 /* vtable 0x020c1c88 */
 struct RenderObject3D : RenderObject, Position {
+    virtual void draw();                        // never defined: key function so the main vtable is not re-emitted (Multiply-defined)
     ~RenderObject3D() {}
 };
 

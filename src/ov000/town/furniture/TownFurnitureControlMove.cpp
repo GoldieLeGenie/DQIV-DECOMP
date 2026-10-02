@@ -20,8 +20,8 @@ THUMB void TownFurnitureControlMove::execute()
 {
     if (enable_) {
         counter_++;
-        dss::Fix32Vector3 diff = func_02088988(goal_, start_);
-        dss::Fix32Vector3 pos = start_ + func_02088bdc(diff * counter_, frame_);
+        dss::Fix32Vector3 diff = goal_ - start_;
+        dss::Fix32Vector3 pos = start_ + (diff * counter_ / frame_);
         TownStageManager::getSingleton()->setMapUidPosFX32(uid_, pos);
         if (counter_ >= frame_) {
             enable_ = 0;

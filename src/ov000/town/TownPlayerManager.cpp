@@ -1,5 +1,8 @@
 #pragma ipa file
 #include "ov000/town/TownPlayerManager.hpp"
+#include "main/dss/Pad.hpp"
+#include "main/dss/DssUtils.hpp"
+#include "main/object/DisplayCharacter.hpp"
 #include "ov000/town/TownActionBallonHorn.hpp"
 #include "ov000/town/TownActionHenge.hpp"
 #include "ov000/town/TownActionRuraFailed.hpp"
@@ -123,7 +126,7 @@ ARM void TownPlayerManager::initialize()
         getSingleton()->setLock(1);
     }
     defaultClip_ = 2;
-    func_020499a4(1);
+    BillboardCharacter::setAllCharaAnim(1);
     static const dss::Fix32 CLIP120(0x78000);
     static const dss::Fix32 CLIP80(0x50000);
     static const dss::Fix32 CLIP70(0x46000);
@@ -168,7 +171,7 @@ ARM void TownPlayerManager::execute()
 {
     TownCharacterManager::getSingleton()->search_ = 0;
     g_cmnPartyInfo.playerTalk = 0;
-    if (func_0200a99c(func_0200a6c8())) {
+    if (encount::Encount::getSingleton()->isEncounted()) {
         return;
     }
     if (g_Global.partChangeFlag_ == 1 && player_.actionType_ != ACTION_TYPE_FALL) {
@@ -307,7 +310,7 @@ ARM void TownPlayerManager::setup()
     setRemote(1);
     searchAction_ = 0;
     mapFKLock_ = 0;
-    if (func_020882b0(g_Global.getMapName(), "fk01") == 0) {
+    if (dss::DssUtils::unkfunc_020882b0(g_Global.getMapName(), "fk01") == 0) {
         mapFKLock_ = 1;
     }
 }
@@ -327,8 +330,8 @@ ARM void TownPlayerManager::normalExec()
     if (!cmn::PlayerManager::isLock()) {
         checkCommandEnd();
         g_cmnPartyInfo.ctrlID_ = 1;
-        if (g_Global.partChangeFlag_ == 0 && func_0200a99c(func_0200a6c8()) == 0 && remoteFlag_ == 0) {
-            if (func_0207f280(data_02116d40) & 1) {
+        if (g_Global.partChangeFlag_ == 0 && encount::Encount::getSingleton()->isEncounted() == 0 && remoteFlag_ == 0) {
+            if (data_02116d40.unkfunc_0207f280() & 1) {
                 setPlayerCommand(PUSH_BENRI_BUTTON);
                 TownCharacterManager::getSingleton()->search_ = 1;
                 g_cmnPartyInfo.ctrlID_ = 0;
@@ -365,9 +368,9 @@ ARM void TownPlayerManager::normalExec()
     if (scriptRotFlag_ == 1) {
         dss::Vector3<short> angle;
         angle.set(0, getDirection(), 0);
-        func_02031154(&scriptMove_, &angle);
+        scriptMove_.execRot(angle);
         setDirection(angle.vy);
-        if (func_020311c8(&scriptMove_) == 1) {
+        if (scriptMove_.rotUpdate() == 1) {
             scriptRotFlag_ = 0;
         }
     }
@@ -411,7 +414,7 @@ ARM void TownPlayerManager::mormalMapLink()
     if (mapChangeSE_ == 1) {
         TownSystem::getSingleton()->playExitSE_ = 1;
     }
-    if (func_020882b0(name, "world") == 0) {
+    if (dss::DssUtils::unkfunc_020882b0(name, "world") == 0) {
         int id = func_0200bff8();
         func_0200c02c(id);
         g_Global.nextFieldType_ = cmn::g_extraMapLink.getFieldTypeBySurface(id);
@@ -575,11 +578,11 @@ ARM void TownPlayerManager::setFormation(int frmDir, int charaDir, dss::Fix32 sp
     dss::Fix32Vector3 frmVec;
     short dirIdx = TownActionCalculate::getIdxByParam(charaDir);
     frmVec = TownActionCalculate::getParamVec(frmDir);
-    func_02089168(&frmVec);
-    func_02088b10(&frmVec, &TownPlayerAction::walkSpeed);
+    frmVec.normalize();
+    frmVec *= TownPlayerAction::walkSpeed;
     setDirection(dirIdx);
     party_.setFormation(frmVec, dirIdx, speed);
-    func_02088b3c(&frmVec, -1);
+    frmVec *= -1;
     TownActionCalculate::getIdxByVec(dirIdx, frmVec);
     frmDirIdx_ = dirIdx;
 }
@@ -698,8 +701,8 @@ ARM void TownPlayerManager::setCameraRot()
 ARM void TownPlayerManager::setSimpleMove(dss::Fix32Vector3& prev, dss::Fix32Vector3& next, int frame)
 {
     setLock(1);
-    func_020311f0(&scriptMove_, &prev, &next);
-    func_020312e8(&scriptMove_, frame);
+    scriptMove_.setActionMove(prev, next);
+    scriptMove_.setMoveFrame(frame);
     scriptType_ = 1;
     party_.script_ = 1;
     party_.fixFlag_ = 0;
@@ -710,8 +713,8 @@ ARM void TownPlayerManager::setSpeedMove(dss::Fix32Vector3& prev, dss::Fix32Vect
     setLock(1);
     static const dss::Fix32 defaultSpeed(0x66);
     speed = defaultSpeed * speed;
-    func_020311f0(&scriptMove_, &prev, &next);
-    func_02031278(&scriptMove_, speed);
+    scriptMove_.setActionMove(prev, next);
+    scriptMove_.setMoveSpeed(speed);
     scriptType_ = 1;
     party_.script_ = 1;
     party_.fixFlag_ = 0;
@@ -720,7 +723,7 @@ ARM void TownPlayerManager::setSpeedMove(dss::Fix32Vector3& prev, dss::Fix32Vect
 ARM void TownPlayerManager::setJumpMove(dss::Fix32Vector3& endPos, int frame)
 {
     dss::Fix32Vector3 pos = getPosition();
-    func_02031bd8(&scriptMove_, &pos, &endPos, frame);
+    scriptMove_.setJumpMove(pos, endPos, frame);
     scriptType_ = 2;
     for (int i = 0; i < partyDraw_.countReal_; i++) {
         func_02049880(&partyDraw_.partyCharacter_[i], 0);
@@ -769,9 +772,9 @@ ARM void TownPlayerManager::setEncountLock(int flag)
 ARM bool TownPlayerManager::isIdoLinkPos()
 {
     dss::Fix32Vector3 pos = TownStageManager::getSingleton()->getHitSurfacePosByType(5);
-    dss::Fix32Vector3 vec = func_02088988(pos, g_cmnPartyInfo.position_);
+    dss::Fix32Vector3 vec = pos - g_cmnPartyInfo.position_;
     vec.vy = 0L;
-    func_02089168(&vec);
+    vec.normalize();
     dss::Fix32Vector3 dir;
     TownActionCalculate::getDirByIdx(g_cmnPartyInfo.dirIdx_, dir);
     dss::Fix32 dot = vec * dir;
@@ -847,7 +850,7 @@ ARM void TownPlayerManager::checkMenuAction()
     menuSearch_ = 0;
     if (nextEncount_ == 1) {
         btl::BattleScriptManager::getSingleton()->setEncountMap(encountTile_);
-        func_0200acec(func_0200a6c8(), encountTile_);
+        encount::Encount::getSingleton()->forceEventBrew(encountTile_);
         encountTile_ = 0;
         return;
     }
@@ -931,11 +934,11 @@ ARM void TownPlayerManager::scriptExecute()
     dss::Fix32Vector3 nowPos = getPosition();
     dss::Fix32Vector3 nextPos = nowPos;
     short dirIdx = getDirection();
-    func_020310f4(&scriptMove_, &nextPos);
+    scriptMove_.execMove(nextPos);
     if (rotLock_ == 1) {
         setDirection(dirIdx);
     } else if (nextPos != nowPos) {
-        dss::Fix32Vector3 vec = func_02088988(nextPos, nowPos);
+        dss::Fix32Vector3 vec = nextPos - nowPos;
         short idx = getDirection();
         TownActionCalculate::getIdxByVec(idx, vec);
         setDirection(idx);
@@ -951,7 +954,7 @@ ARM void TownPlayerManager::scriptExecute()
     if (scriptType_ == 4) {
         TownIkadaAction2::getSingleton()->setIkadaPosition(nextPos);
     }
-    if (func_02031160(&scriptMove_) == 1) {
+    if (scriptMove_.moveUpdate() == 1) {
         party_.script_ = 0;
         party_.fixFlag_ = 0;
         switch (scriptType_) {
@@ -1015,7 +1018,7 @@ ARM void TownPlayerManager::setScriptRot(int frame, short idx, int flag)
         add = idx;
     }
     dss::Vector3<short> rot(0, add, 0);
-    func_02031580(&scriptMove_, &start, &rot, frame);
+    scriptMove_.setSimpleRot(start, rot, frame);
 }
 
 ARM void TownPlayerManager::setStartEraseParty()
@@ -1128,7 +1131,7 @@ ARM void TownPlayerManager::setMessage()
         g_cmnPartyInfo.ctrlID_ = 0;
         return;
     }
-    if (func_0200a99c(func_0200a6c8()) == 1) {
+    if (encount::Encount::getSingleton()->isEncounted() == 1) {
         g_cmnPartyInfo.ctrlID_ = 0;
         return;
     }

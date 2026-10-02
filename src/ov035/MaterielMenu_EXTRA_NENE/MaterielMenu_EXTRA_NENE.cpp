@@ -13,8 +13,8 @@
 THUMB void MaterielMenu_EXTRA_NENE::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02051900(&menuItem_, 3, 5);
-    func_02023324(&navigator_);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
+    navigator_.setupBase();
     func_ov016_0216ff34(func_ov016_0216ff2c());
     activeChara_ = 0;
     proceeds_ = 0;
@@ -37,27 +37,27 @@ THUMB void MaterielMenu_EXTRA_NENE::menuExecute()
         } else {
             count = status::g_Party.getPlayerStatus(activeChara_)->haveStatusInfo_.haveItem_.getCount();
         }
-        if (func_0202333c(&navigator_) == 0 && count > 6) {
+        if (navigator_.getPageNo() == 0 && count > 6) {
             count = 6;
-        } else if (func_0202333c(&navigator_) == func_02023348(&navigator_) - 1) {
-            count -= func_0202333c(&navigator_) * 6;
+        } else if (navigator_.getPageNo() == navigator_.getPageMaxCount() - 1) {
+            count -= navigator_.getPageNo() * 6;
         }
         func_0201e6c4(&menuItem_, count, menuItem_.active_);
         break;
     }
     case 2: {
         unsigned int count;
-        int lastPage = func_02023348(&navigator_) - 1;
-        int page = func_0202333c(&navigator_);
+        int lastPage = navigator_.getPageMaxCount() - 1;
+        int page = navigator_.getPageNo();
         if (page != lastPage && neneItemCount_ > 6) {
             count = 6;
         } else {
-            lastPage = func_02023348(&navigator_) - 1;
-            page = func_0202333c(&navigator_);
+            lastPage = navigator_.getPageMaxCount() - 1;
+            page = navigator_.getPageNo();
             if (page == lastPage) {
                 count = neneItemCount_;
                 if (count > 6) {
-                    lastPage = func_02023348(&navigator_) - 1;
+                    lastPage = navigator_.getPageMaxCount() - 1;
                     count = neneItemCount_ - lastPage * 6;
                 }
             } else {
@@ -81,12 +81,12 @@ THUMB void MaterielMenu_EXTRA_NENE::menuDraw()
             func_ov016_0216fdcc();
             break;
         case 2: {
-            int lastPage = func_02023348(&navigator_) - 1;
-            func_ov016_0216fe10(neneItemCount_, func_0202333c(&navigator_), lastPage);
+            int lastPage = navigator_.getPageMaxCount() - 1;
+            func_ov016_0216fe10(neneItemCount_, navigator_.getPageNo(), lastPage);
             break;
         }
         }
-        func_02051968(&menuItem_);
+        menuItem_.drawActive();
     }
 }
 
@@ -123,8 +123,8 @@ THUMB void MaterielMenu_EXTRA_NENE::menuUpdate()
         count = status::g_Shop.haveItemNene_.getCount();
         break;
     }
-    func_02023504(&navigator_, 2, 3, count);
-    int result = func_02023274(&menuItem_, &navigator_);
+    navigator_.setup(2, 3, count);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result == 0) {
         return;
     }
@@ -145,7 +145,7 @@ THUMB void MaterielMenu_EXTRA_NENE::menuUpdate()
                     drawMode_ = 1;
                 }
             }
-            func_02023344(&navigator_, 0);
+            navigator_.setPageNo(0);
             break;
         case 1:
             checkSellItem();
@@ -175,7 +175,7 @@ THUMB void MaterielMenu_EXTRA_NENE::menuUpdate()
     }
     int cursor = menuItem_.active_;
     func_ov016_0216ff2c()->activeItem_ = cursor;
-    int page = func_0202333c(&navigator_);
+    int page = navigator_.getPageNo();
     func_ov016_0216ff2c()->activeItemPage_ = page;
     redraw_ = 1;
 }
@@ -215,7 +215,7 @@ THUMB void MaterielMenu_EXTRA_NENE::selectYes()
         mode_ = 4;
         break;
     case 2: {
-        int index = func_020233cc(&navigator_, menuItem_.active_);
+        int index = navigator_.getIndex(menuItem_.active_);
         int item;
         int count;
         if (func_ov016_0216ff2c()->activeChara_ == 1) {
@@ -235,9 +235,9 @@ THUMB void MaterielMenu_EXTRA_NENE::selectYes()
                 drawMode_ = 0;
             }
         }
-        if (func_020233cc(&navigator_, menuItem_.active_) >= count) {
+        if (navigator_.getIndex(menuItem_.active_) >= count) {
             menuItem_.active_ = 0;
-            func_02023344(&navigator_, 0);
+            navigator_.setPageNo(0);
             func_ov016_0216ff2c()->activeItem_ = 0;
             func_ov016_0216ff2c()->activeItemPage_ = 0;
         }
@@ -258,8 +258,8 @@ THUMB void MaterielMenu_EXTRA_NENE::selectYes()
             return;
         }
         menuItem_.active_ = 0;
-        func_02023504(&navigator_, 2, 3, neneItemCount_);
-        func_02023344(&navigator_, 0);
+        navigator_.setup(2, 3, neneItemCount_);
+        navigator_.setPageNo(0);
         drawMode_ = 2;
         func_ov016_0216ff2c()->activeItem_ = 0;
         func_ov016_0216ff2c()->activeItemPage_ = 0;
@@ -298,7 +298,7 @@ THUMB void MaterielMenu_EXTRA_NENE::selectNo()
 
 THUMB void MaterielMenu_EXTRA_NENE::checkSellItem()
 {
-    int index = func_020233cc(&navigator_, menuItem_.active_);
+    int index = navigator_.getIndex(menuItem_.active_);
     int itemID;
     switch (func_ov016_0216ff2c()->activeChara_) {
     case 1:

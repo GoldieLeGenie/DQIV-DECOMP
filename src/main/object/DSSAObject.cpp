@@ -1,4 +1,5 @@
 #include "main/object/DSSAObject.hpp"
+#include "main/dss/UnkSprite2D.hpp"
 #include "nitro/g3.hpp"
 #include "nitro/fx/fx_trig.h"
 #include "main/status/HaveBattleStatus.hpp"
@@ -495,7 +496,7 @@ ARM void UnkDSSAObject::setupDraw()
     func_0206ae08(&position_);
     func_0206adcc();
     func_0206dcf0();
-    func_020847e8();
+    unkfunc_020847e8();
     if (dssaData_.texture_) {
         func_02086abc(dssaData_.texture_);
         func_02086abc(dssaData_.texture_);

@@ -7,9 +7,9 @@
 THUMB void MaterielMenu_SURECHIGAI_ROOT::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02051900(&menuItem_, 3, 5);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = 0;
-    func_02023324(&navigator_);
+    navigator_.setupBase();
     firstFlag_ = 1;
     mode_ = 5;
     MaterielMenu_WINDOW_MANAGER::getSingleton()->surechigaiStart_ = 0;
@@ -24,7 +24,7 @@ THUMB void MaterielMenu_SURECHIGAI_ROOT::menuDraw()
 {
     if (data_020ed1bc.isMessageWAITPROG()) {
         func_ov016_0216fe58();
-        func_02051968(&menuItem_);
+        menuItem_.drawActive();
     }
 }
 
@@ -37,8 +37,8 @@ THUMB void MaterielMenu_SURECHIGAI_ROOT::menuUpdate()
                 firstFlag_ = 0;
                 return;
             }
-            func_02023504(&navigator_, 1, 5, 5);
-            int result = func_02023274(&menuItem_, &navigator_);
+            navigator_.setup(1, 5, 5);
+            int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
             if (result != 0) {
                 if (result == 2) {
                     data_020ed1bc.clearMessageWAITPROG();

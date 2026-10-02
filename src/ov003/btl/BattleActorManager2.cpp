@@ -633,7 +633,7 @@ THUMB void btl::BattleActorManager2::setEscape(int escape)
         return;
     }
 
-    int tileLevel = func_0200a6c8()->encountParam_.tileLevel_;
+    int tileLevel = encount::Encount::getSingleton()->encountParam_.tileLevel_;
     int level = status::g_Party.getStoryPlayerStatus()->haveStatusInfo_.haveStatus_.level_;
     
         switch (status::g_Story.chapter_) {

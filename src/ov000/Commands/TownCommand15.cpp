@@ -22,7 +22,7 @@ THUMB int cmd_set_door_close(int* param)
 
 THUMB int cmd_map_camera_default_angle(int* param)
 {
-    status::StageVector3short rot;
+    dss::Vector3<short> rot;
     rot.set(param[0], param[1], param[2]);
     TownCamera::getSingleton()->setDefaultAngle(rot);
     return 1;
@@ -45,7 +45,7 @@ THUMB int cmd_start_game(int* param)
 
 THUMB int cmd_opening_backcolor(int* param)
 {
-    func_0203e8f8()->start(0x9b, 0);
+    cmn::CommonEffectLocation::getSingleton()->start(0x9b, 0);
     return 1;
 }
 

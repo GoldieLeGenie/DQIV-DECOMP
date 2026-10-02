@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "main/task/PartTaskManager.hpp"
+#include "main/btl/BattleAutoFeed.hpp"
 
 task::PartTaskManager g_PartTaskManager;
 task::Sample00Task g_Sample00Task;
@@ -37,7 +38,7 @@ THUMB void task::PartTaskManager::run() {
         data_0211ec50.unk14 = 0;
     }
 
-    func_02089ab8();
+    BattleAutoFeed::printCounter();
 }
 
 

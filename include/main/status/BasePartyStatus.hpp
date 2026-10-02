@@ -40,7 +40,7 @@ namespace status{
         void addPlayerMedalCoin(unsigned int coin);
         int isFirstMedalCoin();
         virtual void setSaveData(profile::PROFILE_PARTY* data);
-        virtual void setLoadData(profile::PROFILE_PARTY *data, profile::PROFILE_HISTORY* history);
+        virtual void setLoadData(profile::PROFILE_PARTY *data);
         int getBattleExp();
         int getBattleGold();
     };

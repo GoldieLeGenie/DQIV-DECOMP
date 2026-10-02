@@ -1,4 +1,8 @@
 #include "main/cmn/NonBattleActionManager.hpp"
+#include "main/global/GlobalDQ4.hpp"
+#include "main/dss/DssUtils.hpp"
+#include "main/object/SpriteCharacter.hpp"
+#include "main/object/DisplayCharacter.hpp"
 #include "ov000/town/TownStageManager.hpp"
 #include "ov001/fld/FieldStage.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
@@ -25,15 +29,15 @@ ARM void cmn::NonBattleActionManager::execute()
                 if (!func_0202adc4()->unk_c->vf08()) {
                     return;
                 }
-                if (func_02058114(&data_0210bb94, 12) == 1) {
+                if (data_0210bb94.unkfunc_02058114(12) == 1) {
                     TownPlayerManager::getSingleton()->setLock(1);
                 } else {
-                    func_ov001_02127b28();
+                    FieldPlayerManager::getSingleton();
                     PlayerManager::setLock(1);
                 }
-                if (func_02058114(&data_0210bb94, 12)) {
+                if (data_0210bb94.unkfunc_02058114(12)) {
                     TownStageManager::getSingleton()->stage_.m_fld.m_flag &= ~4;
-                    func_020499a4(1);
+                    BillboardCharacter::setAllCharaAnim(1);
                     if (g_Stage.getTimeZone() == TIME_ZONE_DAYTIME || g_Stage.getTimeZone() == TIME_ZONE_EVENING) {
                         g_Stage.setTimeZone(TIME_ZONE_NIGHT);
                         g_Stage.setWorldTime(0xa40);
@@ -41,9 +45,9 @@ ARM void cmn::NonBattleActionManager::execute()
                         g_Stage.setTimeZone(TIME_ZONE_DAYTIME);
                         g_Stage.setWorldTime(0x100);
                     }
-                } else if (func_02058114(&data_0210bb94, 14)) {
-                    func_ov001_0212b948()->fieldData.pause_ = 0;
-                    func_0204b694(1);
+                } else if (data_0210bb94.unkfunc_02058114(14)) {
+                    fld::FieldStage::getSingleton()->fieldData.pause_ = 0;
+                    SpriteCharacter::setAllCharaAnim(1);
                     if (g_Stage.getWorldTime() < 0x840) {
                         g_Stage.setTimeZone(TIME_ZONE_NIGHT);
                         g_Stage.setWorldTime(0xa40);
@@ -53,7 +57,7 @@ ARM void cmn::NonBattleActionManager::execute()
                     }
                 }
                 g_Global.fadeOutBlack(0xf);
-                func_020882b0(g_Global.getMapName(), data_020c1328);
+                dss::DssUtils::unkfunc_020882b0(g_Global.getMapName(), data_020c1328);
                 cmn::g_extraMapLink.setRanaLink();
                 g_Global.setRanarutaFlag(false);
                 return;
@@ -61,18 +65,18 @@ ARM void cmn::NonBattleActionManager::execute()
                 if (!func_0202adc4()->unk_c->vf08()) {
                     return;
                 }
-                if (func_02058114(&data_0210bb94, 12) == 1) {
+                if (data_0210bb94.unkfunc_02058114(12) == 1) {
                     TownPlayerManager::getSingleton()->setLock(0);
                 } else {
-                    func_ov001_02127b28();
+                    FieldPlayerManager::getSingleton();
                     PlayerManager::setLock(0);
                 }
-                if (func_02058114(&data_0210bb94, 12)) {
+                if (data_0210bb94.unkfunc_02058114(12)) {
                     TownStageManager::getSingleton()->stage_.m_fld.m_flag &= ~4;
-                    func_020499a4(1);
-                } else if (func_02058114(&data_0210bb94, 14)) {
-                    func_ov001_0212b948()->fieldData.pause_ = 0;
-                    func_0204b694(1);
+                    BillboardCharacter::setAllCharaAnim(1);
+                } else if (data_0210bb94.unkfunc_02058114(14)) {
+                    fld::FieldStage::getSingleton()->fieldData.pause_ = 0;
+                    SpriteCharacter::setAllCharaAnim(1);
                 }
                 g_cmnPartyInfo.setMenuAction(MENU_RIREMIT);
                 g_Global.setRanarutaFlag(false);
@@ -81,18 +85,18 @@ ARM void cmn::NonBattleActionManager::execute()
                 if (!func_0202adc4()->unk_c->vf08()) {
                     return;
                 }
-                if (func_02058114(&data_0210bb94, 12) == 1) {
+                if (data_0210bb94.unkfunc_02058114(12) == 1) {
                     TownPlayerManager::getSingleton()->setLock(0);
                 } else {
-                    func_ov001_02127b28();
+                    FieldPlayerManager::getSingleton();
                     PlayerManager::setLock(0);
                 }
-                if (func_02058114(&data_0210bb94, 12)) {
+                if (data_0210bb94.unkfunc_02058114(12)) {
                     TownStageManager::getSingleton()->stage_.m_fld.m_flag &= ~4;
-                    func_020499a4(1);
-                } else if (func_02058114(&data_0210bb94, 14)) {
-                    func_ov001_0212b948()->fieldData.pause_ = 0;
-                    func_0204b694(1);
+                    BillboardCharacter::setAllCharaAnim(1);
+                } else if (data_0210bb94.unkfunc_02058114(14)) {
+                    fld::FieldStage::getSingleton()->fieldData.pause_ = 0;
+                    SpriteCharacter::setAllCharaAnim(1);
                 }
                 g_Global.acceptBattle();
                 g_Global.setRanarutaFlag(false);
@@ -105,11 +109,11 @@ ARM void cmn::NonBattleActionManager::execute()
                     func_0208214c(data_0211c4f0, 0x10, 0);
                     func_02082144(data_0211c4f0, 0);
                     g_Global.setRanarutaFlag(false);
-                    if (func_02058114(&data_0210bb94, 12) == 1) {
+                    if (data_0210bb94.unkfunc_02058114(12) == 1) {
                         TownPlayerManager::getSingleton()->setLock(0);
                         TownPlayerManager::getSingleton()->flagMapLink_ = 1;
                     } else {
-                        func_ov001_02127b28();
+                        FieldPlayerManager::getSingleton();
                         PlayerManager::setLock(0);
                     }
                     return;
@@ -117,12 +121,12 @@ ARM void cmn::NonBattleActionManager::execute()
                 if (!func_0202adc4()->unk_c->vf08()) {
                     return;
                 }
-                if (func_02058114(&data_0210bb94, 12)) {
+                if (data_0210bb94.unkfunc_02058114(12)) {
                     TownStageManager::getSingleton()->stage_.m_fld.m_flag &= ~4;
-                    func_020499a4(1);
-                } else if (func_02058114(&data_0210bb94, 14)) {
-                    func_ov001_0212b948()->fieldData.pause_ = 0;
-                    func_0204b694(1);
+                    BillboardCharacter::setAllCharaAnim(1);
+                } else if (data_0210bb94.unkfunc_02058114(14)) {
+                    fld::FieldStage::getSingleton()->fieldData.pause_ = 0;
+                    SpriteCharacter::setAllCharaAnim(1);
                 }
                 if (func_0202adc4()->unk_150 != 0) {
                     TownPlayerManager::getSingleton()->flagMapLink_ = 1;
@@ -142,20 +146,20 @@ ARM void cmn::NonBattleActionManager::execute()
                 data_020edc40 = 1;
                 TownPlayerManager::getSingleton()->resetMapLink(RESET_EXIT_LOCK_TABI);
                 g_Global.setRanarutaFlag(false);
-                if (func_02058114(&data_0210bb94, 12) == 1) {
+                if (data_0210bb94.unkfunc_02058114(12) == 1) {
                     TownPlayerManager::getSingleton()->setLock(0);
                     TownPlayerManager::getSingleton()->execMapLink();
                 } else {
-                    func_ov001_02127b28();
+                    FieldPlayerManager::getSingleton();
                     PlayerManager::setLock(0);
                 }
                 return;
         }
     } else {
-        if (func_02058114(&data_0210bb94, 12) == 1) {
+        if (data_0210bb94.unkfunc_02058114(12) == 1) {
             TownPlayerManager::getSingleton()->setLock(1);
         } else {
-            func_ov001_02127b28();
+            FieldPlayerManager::getSingleton();
             PlayerManager::setLock(1);
         }
         switch (status_) {
@@ -164,19 +168,19 @@ ARM void cmn::NonBattleActionManager::execute()
             case ACTION_RANARUTA:
                 SoundManager::playSe(0x23d, 0);
                 func_0202aec4(func_0202adc4(), 5);
-                if (func_02058114(&data_0210bb94, 12)) {
+                if (data_0210bb94.unkfunc_02058114(12)) {
                     if (g_Stage.getTimeZone() == TIME_ZONE_DAYTIME || g_Stage.getTimeZone() == TIME_ZONE_EVENING) {
                         func_0202adc4()->unk_cc = 0;
                     } else {
                         func_0202adc4()->unk_cc = 1;
                     }
-                } else if (func_02058114(&data_0210bb94, 14)) {
+                } else if (data_0210bb94.unkfunc_02058114(14)) {
                     if (g_Stage.getWorldTime() < 0x840) {
                         func_0202adc4()->unk_cc = 0;
                     } else {
                         func_0202adc4()->unk_cc = 1;
                     }
-                    func_ov001_02129bfc(func_ov001_02127b28());
+                    func_ov001_02129bfc(FieldPlayerManager::getSingleton());
                 }
                 break;
             case ACTION_RIREMITO:
@@ -201,12 +205,12 @@ ARM void cmn::NonBattleActionManager::execute()
 ARM void cmn::NonBattleActionManager::setAction(ACTION_EFFECT action)
 {
     waitTurn_ = 0;
-    if (func_02058114(&data_0210bb94, 12)) {
+    if (data_0210bb94.unkfunc_02058114(12)) {
         TownStageManager::getSingleton()->stage_.m_fld.m_flag |= 4;
-        func_020499a4(0);
-    } else if (func_02058114(&data_0210bb94, 14)) {
-        func_ov001_0212b948()->fieldData.pause_ = 1;
-        func_0204b694(0);
+        BillboardCharacter::setAllCharaAnim(0);
+    } else if (data_0210bb94.unkfunc_02058114(14)) {
+        fld::FieldStage::getSingleton()->fieldData.pause_ = 1;
+        SpriteCharacter::setAllCharaAnim(0);
     }
     status_ = action;
     startFlag_ = 0;

@@ -6,7 +6,7 @@
 struct MaterielMenu_BANK_PUTIN : menu::MenuBase
 {
     menu::MenuItem menuItem_;           /* 0x1C */
-    menu::MenuNavigator navigator_;     /* 0x80 */
+    CursorMoveGridLoop navigator_;     /* 0x80 */
     int oldActive_;                     /* 0x8C */
     int unk_90;                         /* 0x90 */
     int putinMoney_;                    /* 0x94 */
@@ -26,7 +26,7 @@ struct MaterielMenu_BANK_PUTIN : menu::MenuBase
 struct MaterielMenu_BANK_ROOT : menu::MenuBase
 {
     menu::MenuItem menuItem_;           /* 0x1C */
-    menu::MenuNavigator navigator_;     /* 0x80 */
+    CursorMoveGridLoop navigator_;     /* 0x80 */
     int oldActive_;                     /* 0x8C */
     int playerID_;                      /* 0x90 */
     int first_;                         /* 0x94 */
@@ -42,7 +42,7 @@ struct MaterielMenu_BANK_ROOT : menu::MenuBase
 struct MaterielMenu_BANK_DRAW : menu::MenuBase
 {
     menu::MenuItem menuItem_;           /* 0x1C */
-    menu::MenuNavigator navigator_;     /* 0x80 */
+    CursorMoveGridLoop navigator_;     /* 0x80 */
     int oldActive_;                     /* 0x8C */
     int unk_90;                         /* 0x90 */
     int drawMoney_;                     /* 0x94 */

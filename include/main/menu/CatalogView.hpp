@@ -13,7 +13,6 @@ struct CatalogView {
     int time_;                  /* 0x58 */
 };
 
-/* DS only: what the load/save menus keep of each CatalogView */
 struct DiaryInfo {
     char* name_;
     int chapter_;

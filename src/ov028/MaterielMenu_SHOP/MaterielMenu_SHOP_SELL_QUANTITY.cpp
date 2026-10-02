@@ -6,9 +6,9 @@
 
 THUMB void MaterielMenu_SHOP_SELL_QUANTITY::menuSetup()
 {
-    func_02051900(&menuItem_, 3, 5);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = 0;
-    func_02023324(&navigator_);
+    navigator_.setupBase();
     quantity_ = 1;
     MaterielMenuPlayerControl* control = func_ov016_0216ff2c();
     itemIndex_ = control->activeItem_ + control->activeItemPage_ * 6;
@@ -28,7 +28,7 @@ THUMB void MaterielMenu_SHOP_SELL_QUANTITY::menuDraw()
 {
     if (data_020ed1bc.isMessageWAITPROG()) {
         func_ov016_0216fc2c(quantity_);
-        func_02051968(&menuItem_);
+        menuItem_.drawActive();
     } else if (data_020ed1bc.isOpen()) {
         func_ov016_0216fc58();
     }
@@ -40,8 +40,8 @@ THUMB void MaterielMenu_SHOP_SELL_QUANTITY::menuUpdate()
         redraw_ = 1;
         unk_24 = 1;
     }
-    func_02023504(&navigator_, 1, 1, 1);
-    int result = func_02023274(&menuItem_, &navigator_);
+    navigator_.setup(1, 1, 1);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         if (result == 2) {
             data_020ed1bc.clearMessageWAITPROG();

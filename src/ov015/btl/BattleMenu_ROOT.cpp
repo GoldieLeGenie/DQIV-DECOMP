@@ -14,15 +14,15 @@ THUMB void BattleMenu_ROOT::menuSetup()
     btl::BattleMenuPlayerControl::getSingleton()->clear();
     btl::BattleMenuPlayerControl::getSingleton()->activeChara_ = -1;
     BattleMenuJudge::getSingleton()->turnSetup();
-    func_02051900(&menuItem_, 1, 5);
-    func_02051900(&cancelItem_, 2, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
+    cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     if (!gBattleMenuSub_HISTORY.isOpen()) {
         gBattleMenuSub_HISTORY.open();
         gBattleMenuSub_HISTORY.commandChara_ = -1;
     }
     gBattleMenuSub_HISTORY.update_ = 1;
     gBattleMenuSub_HISTORY.history_ = 1;
-    func_02023324(&navigator_);
+    navigator_.setupBase();
     unk_f4 = 0;
     unk_f0 = 0;
     unk_f8 = 1;
@@ -44,7 +44,7 @@ THUMB void BattleMenu_ROOT::menuExecute()
         return;
     }
     int count = unk_f8 ? 2 : 4;
-    func_02023504(&navigator_, 2, 2, count);
+    navigator_.setup(2, 2, count);
     func_ov015_0216c5d8(&menuItem_, count, menuItem_.active_);
     func_ov015_0216c734(&cancelItem_);
 }
@@ -53,7 +53,7 @@ THUMB void BattleMenu_ROOT::menuDraw()
 {
     if (unk_f4 == 0) {
         func_ov015_0216b9c8(unk_f8);
-        func_02051968(&menuItem_);
+        menuItem_.drawActive();
     }
 }
 
@@ -76,7 +76,7 @@ THUMB void BattleMenu_ROOT::menuUpdate()
                 redraw_ = 1;
                 return;
             }
-            int result = func_02023274(&menuItem_, &navigator_);
+            int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
             if (result == 0) {
                 return;
             }

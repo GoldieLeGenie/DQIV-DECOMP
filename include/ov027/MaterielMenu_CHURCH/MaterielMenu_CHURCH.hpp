@@ -22,7 +22,7 @@ struct MaterielMenu_CHURCH_MIRACLE : menu::MenuBase
 
     menu::MenuItem menuItem_;           /* 0x1C */
     unsigned char unk_80[0x64];         /* 0x80 */
-    menu::MenuNavigator navigator_;     /* 0xE4 */
+    CursorMoveGridLoop navigator_;     /* 0xE4 */
     int miracle_;                       /* 0xF0 */
     int activeChara_;                   /* 0xF4 */
     MIRACLE_STATUS miracleStatus_;      /* 0xF8 */
@@ -38,7 +38,7 @@ struct MaterielMenu_CHURCH_MIRACLE : menu::MenuBase
     bool messageUpdate();
     bool listUpdate();
     void selectRevival();
-    void selectRevivalEnd();            /* DS only, invented name */
+    void selectRevivalEnd();            
     void selectAntidote();
     void selectAntiCurse();
     bool resistCurseEquip(ItemType equip);
@@ -69,7 +69,7 @@ struct MaterielMenu_CHURCH_ROOT : menu::MenuBase
     int commandNum_;                    /* 0x15C */
     int firstFlag_;                     /* 0x160 */
     int unk_164;                        /* 0x164 */
-    menu::MenuNavigator navigator_;     /* 0x168 */
+    CursorMoveGridLoop navigator_;     /* 0x168 */
 
     virtual void menuSetup();
     virtual void menuExecute();

@@ -7,7 +7,11 @@
 #include "main/menu/MaterielMenu_SAVE.hpp"
 #include "main/menu/MaterielMenu_NameEdit.hpp"
 #include "main/menu/MaterielMenu_FIGHT_STADIUM.hpp"
-#include "ov016/MaterielMenu_SLOT/MaterielMenu_SLOT.hpp"
+#include "ov016/casino/MaterielMenu_SLOT/MaterielMenu_SLOT.hpp"
+#include "ov016/casino/MaterielMenuPoker/MaterielMenuPokerBetcoin.hpp"
+#include "ov016/casino/MaterielMenuPoker/MaterielMenuPokerHiandlow.hpp"
+#include "ov016/casino/MaterielMenuPoker/MaterielMenuPokerSelectcard.hpp"
+#include "ov016/casino/MaterielMenuPoker/MaterielMenuPokerChangecard.hpp"
 #include "ov024/MaterielMenu_INN_ROOT/MaterielMenu_INN_ROOT.hpp"
 #include "ov025/MaterielMenu_EXTRA_SIDEJOB/MaterielMenu_EXTRA_SIDEJOB.hpp"
 #include "ov026/MaterielMenu_SURECHIGAI/MaterielMenu_SURECHIGAI.hpp"
@@ -25,6 +29,3 @@
 
 /* menus that are not decompiled yet */
 extern menu::MenuBase data_ov016_02185ef0;                  /* surechigai menu opened by MAKE_TAISHI */
-extern menu::MenuBase data_ov016_02186324;                  /* gMaterielMenu_POKER_BETCOIN */
-extern menu::MenuBase data_ov016_02186e34;                  /* poker menu */
-extern menu::MenuBase data_ov016_0218739c;                  /* poker menu */

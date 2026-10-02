@@ -16,13 +16,13 @@ ARM dss::Camera::Camera()
 
 ARM void dss::Camera::setup()
 {
-    func_0208888c(&m_target_pos, 0, 0, 0);
+    m_target_pos.setFix32(0, 0, 0);
     m_angle.vx = data_020c4158[0];
     m_angle.vy = data_020c4158[2];
     m_angle.vz = data_020c4158[1];
     m_distance = 0x10L;
     m_distanceSq = m_distance * m_distance;
-    func_0208888c(&m_up, 0, 1, 0);
+    m_up.setFix32(0, 1, 0);
 }
 
 ARM void dss::Camera::calcPosition()
@@ -33,13 +33,13 @@ ARM void dss::Camera::calcPosition()
     func_020885f8(&rotY);
     func_02088698(&rotX, m_angle.vx);
     func_020886d0(&rotY, m_angle.vy);
-    func_0208888c(&direction_, 0, 0, 1);
-    func_02088b10(&direction_, &m_distance);
+    direction_.setFix32(0, 0, 1);
+    direction_ *= m_distance;
     direction_ = func_02088670(&rotX, &direction_);
     direction_ = func_02088670(&rotY, &direction_);
     m_pos = m_target_pos + direction_;
     direction_ = direction_ * -1;
-    func_02089168(&direction_);
+    direction_.normalize();
 }
 
 ARM void dss::Camera::applyCamera()
@@ -94,7 +94,7 @@ ARM void dss::Camera::setAngle(const Vector3short& angle)
     m_angle.vz = angle.vz;
 }
 
-ARM dss::Vector3short& dss::Camera::getAngle()
+ARM dss::Vector3<short>& dss::Camera::getAngle()
 {
     return m_angle;
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "main/btl/BattleAutoFeed.hpp"
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 #include "main/status/UseActionParam.hpp"
@@ -20,5 +21,3 @@ namespace btl {
 
 extern task::PartTaskManager partTaskManager; //data_ov003_021492dc
 
-extern "C" void func_0208988c();
-extern "C" int func_020898a0();

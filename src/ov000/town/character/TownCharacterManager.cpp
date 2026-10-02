@@ -1,4 +1,5 @@
 #include "ov000/town/TownCharacterManager.hpp"
+#include "main/object/DisplayCharacter.hpp"
 #include "ov000/town/TownCamera.hpp"
 #include "ov000/town/TownSystem.hpp"
 #include "ov000/town/TownStageManager.hpp"
@@ -174,8 +175,8 @@ ARM void TownCharacterManager::setPlayerDirection(int index)
 {
     dss::Fix32Vector3 pos = TownPlayerManager::getSingleton()->getPosition();
     dss::Fix32Vector3 target = getPosition(index);
-    dss::Fix32Vector3 dir = func_02088988(pos, target);
-    func_02089168(&dir);
+    dss::Fix32Vector3 dir = pos - target;
+    dir.normalize();
     character_[index]->setSwingRoundIdx();
     setRotate(index, FX_Atan2Idx(dir.vx.value, dir.vz.value));
 }
@@ -321,8 +322,8 @@ ARM bool TownCharacterManager::charaToCharaColl(TownCharacterBase* chara)
     for (int i = 0; i < TOWN_CHARACTER_MAX; i++) {
         TownCharacterBase* p = character_[i];
         if (p && (p->stageColl_ & 4) && p != chara && p->isDisplay() == 1) {
-            vec = func_02088988(character_[i]->data_.position, chara->data_.position);
-            if (func_02088f20(vec) <= RR) {
+            vec = character_[i]->data_.position - chara->data_.position;
+            if (vec.lengthsq() <= RR) {
                 return true;
             }
         }
@@ -341,10 +342,10 @@ ARM void TownCharacterManager::characterColl(dss::Fix32Vector3& nowPos, dss::Fix
     for (int i = 0; i < TOWN_CHARACTER_MAX; i++) {
         if (character_[i] && character_[i]->isDisplay()) {
             dss::Fix32Vector3& target = character_[i]->data_.position;
-            vec = func_02088988(target, pos);
-            if (func_02031e84(vec.vy.value) < 0x1000) {
+            vec = target - pos;
+            if (unkfunc_02031e84(vec.vy.value) < 0x1000) {
                 vec.vy = 0L;
-                if (func_02088e90(vec) <= TownPlayerAction::talkR) {
+                if (vec.length() <= TownPlayerAction::talkR) {
                     character_[i]->setSpeak(1);
                 }
                 if (search_ == 1) {
@@ -352,7 +353,7 @@ ARM void TownCharacterManager::characterColl(dss::Fix32Vector3& nowPos, dss::Fix
                         if (TownStageManager::getSingleton()->isPolyFacePosition(polyNo, target, len) == 1) {
                             dss::Fix32Vector3 normal;
                             TownStageManager::getSingleton()->getPolyDirection(normal, polyNo);
-                            func_02089168(&vec);
+                            vec.normalize();
                             if ((vec * normal).value > 0xe42) {
                                 character_[i]->setSpeak(1);
                                 character_[i]->setCounterTalk(1);
@@ -360,8 +361,8 @@ ARM void TownCharacterManager::characterColl(dss::Fix32Vector3& nowPos, dss::Fix
                         }
                     }
                     if (farTalk == 1) {
-                        if (func_02088f20(vec) <= ctrLen * ctrLen) {
-                            func_02089168(&vec);
+                        if (vec.lengthsq() <= ctrLen * ctrLen) {
+                            vec.normalize();
                             if ((vec * vecN).value > 0xe42) {
                                 character_[i]->setSpeak(1);
                                 character_[i]->setCounterTalk(1);
@@ -381,7 +382,7 @@ ARM bool TownCharacterManager::checkAbortPlayerPos(dss::Fix32Vector3 pos)
 {
     for (int i = 0; i < TOWN_CHARACTER_MAX; i++) {
         if (character_[i]) {
-            if (func_02088f20(func_02088988(character_[i]->data_.position, pos)) < TownPlayerAction::coll2RR) {
+            if (((character_[i]->data_.position - pos)).lengthsq() < TownPlayerAction::coll2RR) {
                 return false;
             }
         }
@@ -405,15 +406,15 @@ ARM bool TownCharacterManager::checkTalkingNearCharacter(dss::Fix32Vector3& pos,
     for (int i = 0; i < TOWN_CHARACTER_MAX; i++) {
         if (character_[i] && character_[i]->getSpeak()) {
             target = character_[i]->data_.position;
-            vec = func_02088988(target, pos);
+            vec = target - pos;
             vec.vy = 0L;
-            if (func_02088f20(vec) < tempLen2) {
+            if (vec.lengthsq() < tempLen2) {
                 dss::Fix32Vector3 tvec(vec);
-                func_02089168(&tvec);
+                tvec.normalize();
                 tempDot = tvec * playerDir;
                 if (dot < tempDot) {
                     charNo = i;
-                    tempLen2 = func_02088f20(vec);
+                    tempLen2 = vec.lengthsq();
                     tempPos = target;
                 }
             }
@@ -443,7 +444,7 @@ ARM void TownCharacterManager::setCharaAnim(int index, short count)
 
 ARM void TownCharacterManager::eventLockAllChraraAnim()
 {
-    func_020499a4(0);
+    BillboardCharacter::setAllCharaAnim(0);
     for (int i = 0; i < TOWN_CHARACTER_MAX; i++) {
         if (character_[i] && !character_[i]->isMotionLock()) {
             character_[i]->setAnimation(2);
@@ -461,7 +462,7 @@ ARM int TownCharacterManager::getCharaIndex(int index)
 
 ARM void TownCharacterManager::restoreCharacterAnim()
 {
-    func_020499a4(1);
+    BillboardCharacter::setAllCharaAnim(1);
     for (int i = 0; i < TOWN_CHARACTER_MAX; i++) {
         if (character_[i] && !character_[i]->isMotionLock()) {
             character_[i]->setAnimation(1);
@@ -497,12 +498,12 @@ ARM bool TownCharacterManager::checkIkadaTalk(dss::Fix32Vector3& target, dss::Fi
     dss::Fix32 farTargetsq = TownPlayerAction::collR * TownPlayerAction::collR * 3;
     for (int i = 0; i < TOWN_CHARACTER_MAX; i++) {
         if (character_[i] && character_[i]->isDisplay()) {
-            vec = func_02088988(target, character_[i]->data_.position);
+            vec = target - character_[i]->data_.position;
             vec.vy = 0L;
             dss::Fix32Vector3 tvec(vec);
-            func_02089168(&tvec);
-            if (func_02088f20(vec) < farTargetsq) {
-                farTargetsq = func_02088f20(vec);
+            tvec.normalize();
+            if (vec.lengthsq() < farTargetsq) {
+                farTargetsq = vec.lengthsq();
                 charNo = i;
             }
         }

@@ -7,7 +7,6 @@ namespace fld {
 }
 
 extern "C" {
-    fld::FieldStage* func_ov001_0212b948(void);                                     // FieldStage::getSingleton
     void func_ov001_0212c300(fld::FieldStage* stage, int id);                       // FieldStage::eraseSymbol
     void func_ov001_021245dc(fld::FieldData* data, int id, int disp);               // FieldData::setDispSymbol
 }
@@ -22,5 +21,8 @@ namespace fld {
 
     struct FieldStage {
         FieldData fieldData;                                                        // 0x0000
+
+        static FieldStage* getSingleton();
+        void ChangeTime(int flag);
     };
 }

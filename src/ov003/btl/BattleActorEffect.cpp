@@ -128,7 +128,7 @@ THUMB int btl::BattleActorEffect::setPlayerEffect(status::UseActionParam* useAct
             mgr->unit_[unitIndex].setTarget(*useActionParam, 0);
         }
 
-        wait = func_0208995c();
+        wait = BattleAutoFeed::getMessageSpeed();
         if (wait < 0) {
             wait = 24;
         }
@@ -213,7 +213,7 @@ THUMB int btl::BattleActorEffect::setEnemyEffect(status::UseActionParam* useActi
         actionIndex = 71;
     }
 
-    int animDataIndex = status::excelParam.monsterAnim_->getAnimData( monsterNo, actionIndex, animIndex);
+    int animDataIndex = param::MonsterAnim::getAnimData(status::excelParam.monsterAnim_, monsterNo, actionIndex, animIndex);
     if (animDataIndex >= 0) {
         param::MonsterAnim* animData = &status::excelParam.monsterAnim_[animDataIndex];
         int effectID = animData->effect;

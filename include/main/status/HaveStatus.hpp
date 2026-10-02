@@ -20,6 +20,7 @@ namespace status{
         char isMonster_;
         JobType job_;
         status::BaseStatus baseStatus_;
+        static status::BaseStatus diffStatus_;
         HaveStatus();
         ~HaveStatus();
         bool isPlayer() { return isPlayer_; }
@@ -53,8 +54,14 @@ namespace status{
         void addMpMax(char mp);                                                          
         void addBaseHp(int hp);                                                          
         void addBaseMp(int hp);                                                          
+        static status::BaseStatus* getDiffStatus();
     };
 }
+
+#pragma push
+#pragma thumb on
+inline status::BaseStatus* status::HaveStatus::getDiffStatus() { return &diffStatus_; }
+#pragma pop
 
 struct LevelEntry {
     int exp;                        // 0x00
@@ -72,7 +79,6 @@ struct LevelEntry {
 };
 
 
-extern status::BaseStatus data_020d0698;
 
 extern "C" long long func_0200602c(int numerator, int denominator); 
 extern "C" void func_0200e004(status::BaseStatus*);

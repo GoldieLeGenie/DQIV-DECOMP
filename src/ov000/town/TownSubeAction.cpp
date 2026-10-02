@@ -38,7 +38,7 @@ ARM void TownSubeAction::execute()
         if (subeDir4_ == 0 || subeDir4_ == 2) {
             if (subePos.vx != position_.vx) {
                 dss::Fix32 len = subePos.vx - position_.vx;
-                if (func_02031e84(len.value) < subeSpeed.value) {
+                if (unkfunc_02031e84(len.value) < subeSpeed.value) {
                     position_.vx += len;
                 } else {
                     position_.vx += len.value >= 0 ? subeSpeed : subeSpeed * -1;
@@ -49,7 +49,7 @@ ARM void TownSubeAction::execute()
         } else {
             if (subePos.vz != position_.vz) {
                 dss::Fix32 len = subePos.vz - position_.vz;
-                if (func_02031e84(len.value) < subeSpeed.value) {
+                if (unkfunc_02031e84(len.value) < subeSpeed.value) {
                     position_.vz += len;
                 } else {
                     position_.vz += len.value >= 0 ? subeSpeed : subeSpeed * -1;
@@ -95,7 +95,7 @@ ARM int TownSubeAction::update()
 ARM int TownSubeAction::startCheck()
 {
     int ret = -1;
-    if (func_02088ca8(&g_cmnPartyInfo.prev_position_, &position_)) {
+    if ((g_cmnPartyInfo.prev_position_ == position_)) {
         return ret;
     }
     int surfaceId = TownStageManager::getSingleton()->getHitSurfaceIdByType(8);

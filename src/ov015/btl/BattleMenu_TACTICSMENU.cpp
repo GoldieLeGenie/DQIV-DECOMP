@@ -1,4 +1,5 @@
 #include "ov015/btl/BattleMenu.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "ov015/btl/BattleMenuPlayerControl.hpp"
 #include "main/profile/Profile.hpp"
 #include "main/status/PartyStatus.hpp"
@@ -7,15 +8,15 @@
 THUMB void BattleMenu_TACTICSMENU::menuSetup()
 {
     status::g_Party.setBattleMode();
-    func_02051900(&menuItem_, 1, 5);
-    func_02051900(&unk_120, 0, 0);
-    func_02051900(&cancelItem_, 2, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
+    unk_120.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH, menu::MenuItem::CURSORTYPE_NONE);
+    cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     unk_20 = 0;
     unk_1c = 0;
     unk_28 = status::g_Party.getPlayerStatus(0)->haveStatusInfo_.battleCommand_;
     unk_24 = 0;
     unk_54 = 1;
-    func_020882d4(unk_2c, -1, sizeof(unk_2c));
+    dss::DssUtils::unkfunc_020882d4(unk_2c, -1, sizeof(unk_2c));
     for (int i = 0; i < status::g_Party.getCarriageOutCount(); i++) {
         status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(i)->haveStatusInfo_;
         if (info->haveStatus_.isPlayer_ != 0 && (int)info->haveStatus_.playerIndex_ > 2) {
@@ -25,13 +26,13 @@ THUMB void BattleMenu_TACTICSMENU::menuSetup()
     }
     unk_2c[0] = -1;
     unk_2c[unk_54] = -1;
-    func_02023324(&unk_1f4);
+    unk_1f4.setupBase();
 }
 
 THUMB void BattleMenu_TACTICSMENU::menuExecute()
 {
-    func_02023504(&unk_1f4, 3, 2, 6);
-    func_02023504(&unk_1e8, 5, 1, unk_54);
+    unk_1f4.setup(3, 2, 6);
+    unk_1e8.setup(5, 1, unk_54);
     if (unk_1c == 0) {
         func_ov015_0216c66c(&menuItem_, unk_24, unk_54);
     } else {
@@ -47,8 +48,8 @@ THUMB void BattleMenu_TACTICSMENU::menuDraw()
     } else {
         func_ov015_0216bc84();
     }
-    func_02051968(&menuItem_);
-    func_02051968(&unk_120);
+    menuItem_.drawActive();
+    unk_120.drawActive();
 }
 
 THUMB void BattleMenu_TACTICSMENU::menuUpdate()
@@ -56,15 +57,15 @@ THUMB void BattleMenu_TACTICSMENU::menuUpdate()
     if (!unkfunc_0216fc4c() && !unkfunc_0216fb88()) {
         unkfunc_0216fbdc();
     }
-    unk_24 = func_020233cc(&unk_1e8, menuItem_.active_);
-    unk_28 = func_020233cc(&unk_1f4, unk_120.active_);
+    unk_24 = unk_1e8.getIndex(menuItem_.active_);
+    unk_28 = unk_1f4.getIndex(unk_120.active_);
     if (unk_20 != unk_1c) {
         if (unk_1c == 0) {
-            func_02051900(&menuItem_, 3, 5);
-            func_02051900(&unk_120, 0, 0);
+            menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
+            unk_120.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH, menu::MenuItem::CURSORTYPE_NONE);
         } else {
-            func_02051900(&menuItem_, 0, 0);
-            func_02051900(&unk_120, 3, 5);
+            menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH, menu::MenuItem::CURSORTYPE_NONE);
+            unk_120.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
         }
         menuItem_.active_ = unk_24;
         unk_120.active_ = unk_28;
@@ -74,7 +75,7 @@ THUMB void BattleMenu_TACTICSMENU::menuUpdate()
 
 THUMB int BattleMenu_TACTICSMENU::unkfunc_0216fb88()
 {
-    int result = func_02023274(&menuItem_, &unk_1e8);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, unk_1e8);
     if (result != 0) {
         menuItem_.result_ = 0;
         menuItem_.lastresult_ = 0;
@@ -84,7 +85,7 @@ THUMB int BattleMenu_TACTICSMENU::unkfunc_0216fb88()
         } else if (result == 2) {
             unk_1c = 1;
         }
-        unk_24 = func_020233cc(&unk_1e8, menuItem_.active_);
+        unk_24 = unk_1e8.getIndex(menuItem_.active_);
         unkfunc_0216fc98();
         return 1;
     }
@@ -93,7 +94,7 @@ THUMB int BattleMenu_TACTICSMENU::unkfunc_0216fb88()
 
 THUMB void BattleMenu_TACTICSMENU::unkfunc_0216fbdc()
 {
-    int result = func_02023274(&unk_120, &unk_1f4);
+    int result = MenuUpdate_Assist::menuSelect(unk_120, unk_1f4);
     if (result != 0) {
         if (result == 1) {
             unk_1c = 1;
@@ -121,7 +122,7 @@ THUMB void BattleMenu_TACTICSMENU::unkfunc_0216fbdc()
 
 THUMB int BattleMenu_TACTICSMENU::unkfunc_0216fc4c()
 {
-    if (func_02023230(&cancelItem_)) {
+    if (MenuUpdate_Assist::isCancel(cancelItem_)) {
         cancelItem_.result_ = 0;
         cancelItem_.lastresult_ = 0;
         if (unk_1c == 0) {

@@ -7,8 +7,8 @@
 THUMB void BattleMenu_MAGIC2ENEMY::menuSetup()
 {
     status::g_Party.setBattleMode();
-    func_02051900(&menuItem_, 1, 0);
-    func_02051900(&cancelItem_, 2, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_NONE);
+    cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     unk_f8 = 1;
     menuItem_.active_ = 0;
     enemyNumMax_ = BattleMenuJudge::getSingleton()->getMonsterTouchRect(touchRect_);
@@ -49,7 +49,7 @@ THUMB void BattleMenu_MAGIC2ENEMY::menuUpdate()
     int old = menuItem_.active_;
     func_02051a7c(&menuItem_);
     int i = menuItem_.active_;
-    if (func_02023230(&cancelItem_)) {
+    if (MenuUpdate_Assist::isCancel(cancelItem_)) {
         status::g_Party.getPlayerStatus(btl::BattleMenuPlayerControl::getSingleton()->activeChara_)->haveBattleStatus_.setSelectCommand(status::HaveBattleStatus::UseAction, -1);
         gBattleMenu_MAGIC.open();
         gBattleMenu_MAGIC.setActiveMagicPos(activeMagicPos_);

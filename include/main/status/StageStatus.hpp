@@ -183,12 +183,10 @@ extern status::StageStatus g_Stage; //data_020d08e0
 struct FieldPlayerManager;
 
 extern "C" {
-    FieldPlayerManager* func_ov001_02127b28();
+    FieldPlayerManager* FieldPlayerManager::getSingleton();
     void func_02088360(void* dest, int size, void* src); 
-    int func_020882b0(const char*, const char*);
     void func_02037d28();
     void* func_02037da4();
-    int func_02058114(void*, int);
     void func_02088740(dss::Fix32Vector3* vec);
 }
 

@@ -39,7 +39,7 @@ ARM void TownCharacterFuniture::cleanup()
 
 ARM void TownCharacterFuniture::setPosition(dss::Fix32Vector3& pos)
 {
-    dss::Fix32Vector3 diff = func_02088988(pos, data_.position);
+    dss::Fix32Vector3 diff = pos - data_.position;
     TownStageManager::getSingleton()->addMapUidPosFX32(mapUid_, diff);
     data_.position = pos;
 }
@@ -57,7 +57,7 @@ ARM void TownCharacterFuniture::execMovePassive()
     }
     dss::Fix32Vector3 pos = data_.position;
     dss::Fix32Vector3 party = g_cmnPartyInfo.position_;
-    dss::Fix32Vector3 dir = func_02088988(pos, party);
+    dss::Fix32Vector3 dir = pos - party;
     if (TownActionWalk::getSingleton()->moveFlag_ == 0) {
         return;
     }

@@ -37,7 +37,7 @@ THUMB int cmd_set_ship_pos(int* param)
     pos.vx.value = param[0];
     pos.vy.value = param[1];
     pos.vz.value = param[2];
-    func_02088b3c(&pos, 0x10);
+    pos *= 0x10;
     g_Stage.shipPosition_ = dss::Fix32Vector3(pos);
     return 1;
 }

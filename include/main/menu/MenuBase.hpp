@@ -1,4 +1,5 @@
 #pragma once
+#include "main/menu/CursorMoveGridLoop.hpp"
 
 namespace menu {
 
@@ -31,6 +32,23 @@ struct MenuBase {
 };
 
 struct MenuItem {
+    enum MENUITEM_TYPE {
+        MENUITEM_TYPE_TOUCH,
+        MENUITEM_TYPE_TOUCH_PAD,
+        MENUITEM_TYPE_TOUCH_CANCEL,
+        MENUITEM_TYPE_TOUCH_PAD_CANCEL,
+    };
+    enum CURSORTYPE {
+        CURSORTYPE_NONE,
+        CURSORTYPE_UP,
+        CURSORTYPE_DOWN,
+        CURSORTYPE_LEFT,
+        CURSORTYPE_RIGHT,
+        CURSORTYPE_ACTIVE,
+        CURSORTYPE_INACTIVE,
+        CURSORTYPE_WIRELESS,
+    };
+
     int unk_00[6];
     int flagTouch_;
     int enablePad_;
@@ -51,36 +69,27 @@ struct MenuItem {
     int mtype_;
     int bActive_;
     int navMode_;
-};
 
-struct MenuNavigator {
-    int unk_00;
-    short w_;             /* 0x4 */
-    short h_;             /* 0x6 */
-    short count_;         /* 0x8 */
-    short unk_0a;
+    void setup(MENUITEM_TYPE type, CURSORTYPE cursor);
+    void drawActive();
 };
 
 }  // namespace menu
 
+struct MENUITEM_DATA {
+    char code;      /* 0x0 */
+    char view;      /* 0x1 */
+    short x;        /* 0x2 */
+    short y;        /* 0x4 */
+    short w;        /* 0x6 */
+    short h;        /* 0x8 */
+};
+
 extern "C" {
-    void func_02023324(menu::MenuNavigator* navigator);
-    int  func_0202333c(menu::MenuNavigator* navigator);
-    int  func_020231c8(menu::MenuItem* menuItem, menu::MenuNavigator* navigator, int* active);
-    void func_02023344(menu::MenuNavigator* navigator, int page);
-    int  func_02023348(menu::MenuNavigator* navigator);
-    int  func_020233cc(menu::MenuNavigator* navigator, int active);
-    int  func_02023364(menu::MenuNavigator* navigator, int active);
-    int  func_0202339c(menu::MenuNavigator* navigator, int active);
+    void func_02051a60(menu::MenuItem* menuItem, MENUITEM_DATA* data, int min, int max, int active);
     void func_0201e6c4(menu::MenuItem* menuItem, int count, int active);
-    void func_02023504(void* cursor, int a, int b, int count);
-    int  func_02023274(void* list, void* cursor);                /* poll -> 0/2/3/4/5 */
-    void func_02051900(menu::MenuItem*, int, int);
-    void func_02051968(menu::MenuItem*);
     void func_02051a7c(menu::MenuItem*);
-    int  func_02023230(menu::MenuItem*);
-    int  func_02023204(menu::MenuItem* menuItem, menu::MenuNavigator* navigator, int* active);
-    int  func_020233e4(menu::MenuNavigator* navigator);
-    int  func_020233f0(menu::MenuNavigator* navigator);
     void func_0201e684(menu::MenuItem* menuItem, int active, int max, int x, int y);
 }
+
+#include "main/menu/MenuUpdateAssist.hpp"

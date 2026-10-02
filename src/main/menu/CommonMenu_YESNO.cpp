@@ -1,0 +1,102 @@
+#pragma ipa file
+#include "main/menu/CommonMenu_YESNO.hpp"
+#include "main/menu/TownMenu_MESSAGE.hpp"
+#include "main/menu/TownMenu_PARTY_TALK.hpp"
+#include "main/menu/MenuUpdateAssist.hpp"
+#include "main/sound/SoundManager.hpp"
+#include "globaldefs.h"
+
+static MENUITEM_DATA yesNoItemData[] = {
+    {1, 2, 0xd0, 0x08, 0x28, 0x10},
+    {1, 2, 0xd0, 0x20, 0x28, 0x10},
+    {-1, -1, 0, 0, 0, 0},
+};
+
+THUMB void CommonMenu_YESNO::menuSetup()
+{
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
+    menuItem_.active_ = 0;
+    menuItem_.unk_2C = 1;
+    Data020f6340* const window = &data_020f7e10;
+    func_0204f264(window, 1);
+    func_02052a28(window, 0xa0000064, 0xa0000065);
+    func_0204f270(window, 0xc0, 0xc0);
+    func_02056184(0);
+    func_020559b0(0x130);
+    superCancel_ = 1;
+    wait_ = 0;
+}
+
+THUMB void CommonMenu_YESNO::menuExecute()
+{
+    func_02051a60(&menuItem_, yesNoItemData, 1, 2, 2);
+}
+
+THUMB void CommonMenu_YESNO::menuDraw()
+{
+    func_02056174();
+    menuItem_.drawActive();
+}
+
+THUMB void CommonMenu_YESNO::menuUpdate()
+{
+    if (wait_ < 4) {
+        wait_++;
+        return;
+    }
+    func_02051a7c(&menuItem_);
+    switch (menuItem_.result_) {
+        case 1:
+            func_02056184(menuItem_.active_);
+            break;
+        case 2:
+            if (menuItem_.active_ == 0) {
+                stat_ = MENUBASE_STAT_OK;
+            } else {
+                stat_ = MENUBASE_STAT_CANCEL;
+            }
+            close();
+            break;
+        case 3:
+            stat_ = MENUBASE_STAT_CANCEL;
+            close();
+            break;
+        case 4:
+            if (superCancel_ != 0) {
+                if (MenuAPI::isTownMenuRoot()) {
+                    data_ov016_02187c60.stat_ = MENUBASE_STAT_CANCEL;
+                    MenuAPI::clearMenuAll();
+                }
+                stat_ = MENUBASE_STAT_CANCEL;
+                close();
+            }
+            break;
+        case 5:
+            menuItem_.active_ = 1;
+            func_02056184(1);
+            break;
+        case 6:
+            menuItem_.active_ = 0;
+            func_02056184(0);
+            break;
+        case 7:
+        case 8:
+            break;
+    }
+}
+
+THUMB void CommonMenu_YESNO::setYesNo(int cursor)
+{
+    menuItem_.active_ = cursor;
+    func_02056184(cursor);
+}
+
+THUMB void CommonMenu_YESNO::setPosition(int x, int y)
+{
+    func_0204f270(&data_020f7e10, x, y + 0xc0);
+}
+
+THUMB void CommonMenu_YESNO::setSuperCancel(int flag)
+{
+    superCancel_ = flag;
+}

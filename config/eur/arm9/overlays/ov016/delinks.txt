@@ -15,7 +15,13 @@ src/ov016/status/FukuroItemInfo.cpp:
     complete
     .text start:0x02175b9c end:0x02175db0
 
-src/ov016/MaterielMenu_SLOT/MaterielMenu_SLOT.cpp:
+src/ov016/casino/FightStadiumManager.cpp:
+    complete
+    .text start:0x0216b7a4 end:0x0216ba40
+    .data start:0x02180aec end:0x02180e30
+    .bss start:0x02185890 end:0x021858b0
+
+src/ov016/casino/MaterielMenu_SLOT/MaterielMenu_SLOT.cpp:
     complete
     .text start:0x0217830c end:0x021787ec
     .data start:0x021848d0 end:0x021848ec
@@ -40,3 +46,24 @@ src/ov016/MaterielMenu_LOAD/MaterielMenu_LOAD.cpp:
     .text start:0x02174204 end:0x02174bfc
     .rodata start:0x0217ed8c end:0x0217edb8
     .data start:0x02182960 end:0x02182980
+
+src/ov016/casino/MaterielMenuPoker/MaterielMenuPokerBetcoin.cpp:
+    complete
+    .text start:0x0216ff44 end:0x0217027c
+    .data start:0x02182008 end:0x02182024
+
+src/ov016/casino/MaterielMenuPoker/MaterielMenuPokerHiandlow.cpp:
+    complete
+    .text start:0x0217027c end:0x0217053c
+    .data start:0x02182024 end:0x02182040
+
+src/ov016/casino/MaterielMenuPoker/MaterielMenuPokerSelectcard.cpp:
+    complete
+    .text start:0x0217053c end:0x02170e28
+    .data start:0x02182040 end:0x0218205c
+
+src/ov016/casino/MaterielMenuPoker/MaterielMenuPokerChangecard.cpp:
+    complete
+    .text start:0x02170e28 end:0x02171794
+    .data start:0x0218205c end:0x02182078
+    .bss start:0x021858f4 end:0x021858f8

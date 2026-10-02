@@ -1,4 +1,5 @@
 #include "main/param/ColorCorrect.hpp"
+#include "main/dss/DssUtils.hpp"
 
 
 THUMB int param::ColorCorrect::getCorrectIndex(param::ColorCorrect *data, char *name)
@@ -61,7 +62,7 @@ THUMB int param::ColorCorrect::getCorrectIndex(param::ColorCorrect *data, char *
 
     while (index < 0x21C)
     {
-        if (func_020882b0(data[index].floor, name) == 0)
+        if (dss::DssUtils::unkfunc_020882b0(data[index].floor, name) == 0)
             return index;
         index++;
     }

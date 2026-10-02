@@ -82,7 +82,7 @@ struct MaterielMenu_SHOP_ROOT : menu::MenuBase
 {
     int mode_;                          /* 0x1C */
     menu::MenuItem menuItem_;           /* 0x20 */
-    menu::MenuNavigator navigator_;     /* 0x84 */
+    CursorMoveGridLoop navigator_;     /* 0x84 */
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -99,7 +99,7 @@ struct MaterielMenu_SHOP_BUYMENU : menu::MenuBase
     int activeItem_;                    /* 0xE4 */
     int fukuroItemCount_[6];            /* 0xE8 */
     int message_;                       /* 0x100 */
-    menu::MenuNavigator navigator_;     /* 0x104 */
+    CursorMoveGridLoop navigator_;     /* 0x104 */
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -142,7 +142,7 @@ struct MaterielMenu_SHOP_WHOSE : menu::MenuBase
     int maxCharaCount_;                 /* 0xF4 */
     int yesno_;                         /* 0xF8 */
     int endMessage_;                    /* 0xFC */
-    menu::MenuNavigator navigator_;     /* 0x100 */
+    CursorMoveGridLoop navigator_;     /* 0x100 */
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -168,7 +168,7 @@ struct MaterielMenu_SHOP_WHO_SELL : menu::MenuBase
     int extraMode_;                     /* 0x34 */
     menu::MenuItem menuItem_;           /* 0x38 */
     menu::MenuItem menuItem2_;          /* 0x9C */
-    menu::MenuNavigator navigator_;     /* 0x100 */
+    CursorMoveGridLoop navigator_;     /* 0x100 */
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -206,7 +206,7 @@ struct MaterielMenu_SHOP_SELL_ITEM : menu::MenuBase
     menu::MenuItem menuItem_;           /* 0x2C */
     menu::MenuItem menuItem2_;          /* 0x90 */
     menu::MenuItem menuItem3_;          /* 0xF4 */
-    menu::MenuNavigator navigator_;     /* 0x158 */
+    CursorMoveGridLoop navigator_;     /* 0x158 */
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -222,7 +222,7 @@ struct MaterielMenu_SHOP_SELL_SACK : menu::MenuBase
     menu::MenuItem menuItem_;           /* 0x28 */
     menu::MenuItem menuItem3_;          /* 0x8C */
     menu::MenuItem menuItem2_;          /* 0xF0 */
-    menu::MenuNavigator navigator_;     /* 0x154 */
+    CursorMoveGridLoop navigator_;     /* 0x154 */
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -238,7 +238,7 @@ struct MaterielMenu_SHOP_SELL_QUANTITY : menu::MenuBase
     int itemIndex_;                     /* 0x20 */
     int unk_24;                         /* 0x24 */
     menu::MenuItem menuItem_;           /* 0x28 */
-    menu::MenuNavigator navigator_;     /* 0x8C */
+    CursorMoveGridLoop navigator_;     /* 0x8C */
 
     virtual void menuSetup();
     virtual void menuExecute();

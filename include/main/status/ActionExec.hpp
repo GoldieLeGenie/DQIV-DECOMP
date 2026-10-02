@@ -49,7 +49,6 @@ namespace status {
 extern status::CallMonsterInfo CallMonster; //data_020d06c8
 extern status::CharacterStatus* callMonsterStatus_[12];  //data_020d06e8
 
-extern "C" int   func_02058114(void* global, int partId);       // checkPartId (g_Global2.m_part_id == partId) ?                 
 struct TownPlayerManager;
 namespace btl { struct BattleMonsterDraw2; }
 extern "C" int   func_ov003_0212e37c(void*);                   // MonsterParty::getCount

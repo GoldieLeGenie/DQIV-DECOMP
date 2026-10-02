@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "ov000/town/TownShipAction2.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "ov000/town/TownActionCalculate.hpp"
 #include "ov000/town/TownActionMoveToTarget.hpp"
 #include "ov000/town/TownDoorAction.hpp"
@@ -39,7 +40,7 @@ ARM int TownShipAction2::setup()
                 shipNamiPosition_ = TownStageManager::getSingleton()->getMapUidPos(0x1f3);
                 g_cmnPartyInfo.setShipInfo(g_Global.getMapName(), &shipPosition_, shipDirection_);
             }
-            if (func_020882b0(g_cmnPartyInfo.getShipMapName(), g_Global.getMapName()) == 0) {
+            if (dss::DssUtils::unkfunc_020882b0(g_cmnPartyInfo.getShipMapName(), g_Global.getMapName()) == 0) {
                 g_cmnPartyInfo.getShipInfo(&shipPosition_, &shipDirection_);
                 TownStageManager::getSingleton()->rotObjectUid(0x1f4, shipDirection_);
                 setShipPosition(shipPosition_);
@@ -103,15 +104,15 @@ ARM int TownShipAction2::update()
                 break;
             }
         }
-        shipVec_ = func_02088988(shipPosition_, prevShipPosition_);
+        shipVec_ = shipPosition_ - prevShipPosition_;
         {
             dss::Fix32Vector3 surfaceDir;
             dss::Fix32Vector3 surfacePos;
             if (TownActionCalculate::checkGetDownShipAndIkada(position_, dirIdx_, targetPos_, surfaceDir, surfacePos, TownPlayerAction::getDownL) == true) {
-                dss::Fix32Vector3 vec = func_02088988(shipPosition_, surfacePos);
+                dss::Fix32Vector3 vec = shipPosition_ - surfacePos;
                 vec.vy = 0L;
                 dockedLen_ = surfaceDir * vec - fixOne;
-                dockedatPos_ = func_02088988(position_, surfaceDir * dockedLen_);
+                dockedatPos_ = position_ - surfaceDir * dockedLen_;
                 short idx = 0;
                 TownActionCalculate::getIdxByVec(idx, surfaceDir);
                 short idx1 = idx + 0x4000 - shipDirection_;
@@ -156,7 +157,7 @@ ARM int TownShipAction2::update()
             TownPlayerManager::getSingleton()->setRemote(0);
             g_cmnPartyInfo.rideOnType_ = cmn::RIDE_ON_SHIP_IKADA;
             prevShipPosition_ = shipPosition_;
-            shipVec_ = func_02088988(shipPosition_, prevShipPosition_);
+            shipVec_ = shipPosition_ - prevShipPosition_;
             moveMode_ = SHIP_MOVE;
         }
         break;
@@ -196,9 +197,9 @@ ARM int TownShipAction2::startCheck()
                 dss::Fix32 retLen;
                 if (TownStageManager::getSingleton()->stage_.collCrossCheckPoly(shipPosition_, pos, &retLen, 1) > 0) {
                     dockedLen_ = retLen;
-                    dockedatPos_ = func_02088988(shipPosition_, vec * dockedLen_);
+                    dockedatPos_ = shipPosition_ - vec * dockedLen_;
                 }
-                pos = func_02088988(shipPosition_, vec * searchL);
+                pos = shipPosition_ - vec * searchL;
                 if (TownStageManager::getSingleton()->stage_.collCrossCheckPoly(shipPosition_, pos, &retLen, 1) > 0) {
                     dockedLen_ = retLen;
                     dockedatPos_ = shipPosition_ + vec * dockedLen_;
@@ -236,10 +237,10 @@ ARM void TownShipAction2::setDirection(short playerDir)
 ARM void TownShipAction2::setShipNamiAlpha()
 {
     dss::Fix32Vector3 vec;
-    vec = func_02088988(shipPosition_, prevShipPosition_);
+    vec = shipPosition_ - prevShipPosition_;
     short dir = shipDirection_ - prevShipDirection_;
     int add;
-    if (func_02031e84(func_02088f20(vec).value) > 10 || status::BaseActionStatus::abs(dir) > 200) {
+    if (unkfunc_02031e84(vec.lengthsq().value) > 10 || status::BaseActionStatus::abs(dir) > 200) {
         add = 2;
     } else {
         add = -2;

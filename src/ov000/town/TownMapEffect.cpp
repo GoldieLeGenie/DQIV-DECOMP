@@ -9,36 +9,36 @@ ARM void TownMapEffect::setup(EFFECT_TYPE type)
     unkfunc_02142790();
     m_enable = 0;
     if (loaded_) {
-        func_02057e34(&sprite0_);
+        sprite0_.unkfunc_02057e34();
     }
     loaded_ = 1;
     if (exist_) {
         switch (type_) {
         case EFFECT_TYPE_DREAM1:
             func_02088308(path, sizeof(path), "data/mask/siro1a1.tex");
-            func_02057d60(&sprite0_, path, 0);
-            func_02057edc(&sprite0_);
-            func_02057f00(&sprite0_, 30);
-            func_02057f18(&sprite0_, 60);
-            func_02057ee8(&sprite1_);
-            func_02057f18(&sprite1_, 61);
+            sprite0_.unkfunc_02057d60(path, 0);
+            sprite0_.unkfunc_02057edc();
+            sprite0_.unkfunc_02057f00(30);
+            sprite0_.unkfunc_02057f18(60);
+            sprite1_.unkfunc_02057ee8();
+            sprite1_.unkfunc_02057f18(61);
             break;
         case EFFECT_TYPE_DREAM2:
             func_02088308(path, sizeof(path), "data/mask/siro1a2.tex");
-            func_02057d60(&sprite0_, path, 0);
-            func_02057edc(&sprite0_);
-            func_02057f00(&sprite0_, 30);
-            func_02057f18(&sprite0_, 60);
-            func_02057dac(&sprite1_);
-            func_02057ee8(&sprite1_);
-            func_02057f18(&sprite1_, 61);
+            sprite0_.unkfunc_02057d60(path, 0);
+            sprite0_.unkfunc_02057edc();
+            sprite0_.unkfunc_02057f00(30);
+            sprite0_.unkfunc_02057f18(60);
+            sprite1_.unkfunc_02057dac();
+            sprite1_.unkfunc_02057ee8();
+            sprite1_.unkfunc_02057f18(61);
             break;
         case EFFECT_TYPE_DEATHPISARO:
             func_02088308(path, sizeof(path), "data/mask/pisaro.tex");
-            func_02057d60(&sprite0_, path, 0);
-            func_02057edc(&sprite0_);
-            func_02057f00(&sprite0_, 30);
-            func_02057f18(&sprite0_, 60);
+            sprite0_.unkfunc_02057d60(path, 0);
+            sprite0_.unkfunc_02057edc();
+            sprite0_.unkfunc_02057f00(30);
+            sprite0_.unkfunc_02057f18(60);
             x_ = 128;
             y_ = 96;
             width_ = 256;
@@ -58,10 +58,10 @@ ARM void TownMapEffect::execute()
         return;
     }
     if (exist_) {
-        func_02057ed4(&sprite0_, 1);
+        sprite0_.unkfunc_02057ed4(1);
     } else {
         loaded_ = 0;
-        func_02057ed4(&sprite0_, 0);
+        sprite0_.unkfunc_02057ed4(0);
     }
 }
 
@@ -71,39 +71,39 @@ ARM void TownMapEffect::draw()
         return;
     }
     if (exist_) {
-        func_020847e8();
+        unkfunc_020847e8();
         switch (type_) {
         case EFFECT_TYPE_DREAM1:
         case EFFECT_TYPE_DREAM2:
-            func_02057ea8(&sprite0_, 0, 0, 127, 95);
-            func_02057e98(&sprite0_, 128, 96);
-            func_02057e88(&sprite0_, 0, 0);
-            func_02057f38(&sprite0_, 0);
-            func_02057f40(&sprite0_, red_, green_, blue_);
-            func_02057ec0(&sprite0_);
-            func_02057e88(&sprite0_, 128, 96);
-            func_02057f38(&sprite0_, 0x8000);
-            func_02057f40(&sprite0_, red_, green_, blue_);
-            func_02057ec0(&sprite0_);
-            func_02057ea8(&sprite0_, 127, 0, 0, 95);
-            func_02057e98(&sprite0_, 128, 96);
-            func_02057e88(&sprite0_, 128, 0);
-            func_02057f38(&sprite0_, 0);
-            func_02057f40(&sprite0_, red_, green_, blue_);
-            func_02057ec0(&sprite0_);
-            func_02057e88(&sprite0_, 0, 96);
-            func_02057f38(&sprite0_, 0x8000);
-            func_02057f40(&sprite0_, red_, green_, blue_);
-            func_02057ec0(&sprite0_);
-            func_02057e88(&sprite1_, 0, 0);
-            func_02057e98(&sprite1_, 256, 192);
-            func_02057f40(&sprite1_, red_, green_, blue_);
-            func_02057ec0(&sprite1_);
+            sprite0_.unkfunc_02057ea8(0, 0, 127, 95);
+            sprite0_.unkfunc_02057e98(128, 96);
+            sprite0_.unkfunc_02057e88(0, 0);
+            sprite0_.unkfunc_02057f38(0);
+            sprite0_.unkfunc_02057f40(red_, green_, blue_);
+            sprite0_.unkfunc_02057ec0();
+            sprite0_.unkfunc_02057e88(128, 96);
+            sprite0_.unkfunc_02057f38(0x8000);
+            sprite0_.unkfunc_02057f40(red_, green_, blue_);
+            sprite0_.unkfunc_02057ec0();
+            sprite0_.unkfunc_02057ea8(127, 0, 0, 95);
+            sprite0_.unkfunc_02057e98(128, 96);
+            sprite0_.unkfunc_02057e88(128, 0);
+            sprite0_.unkfunc_02057f38(0);
+            sprite0_.unkfunc_02057f40(red_, green_, blue_);
+            sprite0_.unkfunc_02057ec0();
+            sprite0_.unkfunc_02057e88(0, 96);
+            sprite0_.unkfunc_02057f38(0x8000);
+            sprite0_.unkfunc_02057f40(red_, green_, blue_);
+            sprite0_.unkfunc_02057ec0();
+            sprite1_.unkfunc_02057e88(0, 0);
+            sprite1_.unkfunc_02057e98(256, 192);
+            sprite1_.unkfunc_02057f40(red_, green_, blue_);
+            sprite1_.unkfunc_02057ec0();
             break;
         case EFFECT_TYPE_DEATHPISARO:
-            func_02057e98(&sprite0_, width_, height_);
-            func_02057e88(&sprite0_, x_ - (width_ >> 1), y_ - (height_ >> 1));
-            func_02057ec0(&sprite0_);
+            sprite0_.unkfunc_02057e98(width_, height_);
+            sprite0_.unkfunc_02057e88(x_ - (width_ >> 1), y_ - (height_ >> 1));
+            sprite0_.unkfunc_02057ec0();
             break;
         }
     }
@@ -123,7 +123,7 @@ ARM void TownMapEffect::setPisaroEvent(int count)
 ARM void TownMapEffect::cleanup()
 {
     if (loaded_) {
-        func_02057e34(&sprite0_);
+        sprite0_.unkfunc_02057e34();
         exist_ = 0;
         m_enable = 0;
     }

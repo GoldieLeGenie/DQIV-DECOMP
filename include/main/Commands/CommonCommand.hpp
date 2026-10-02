@@ -24,14 +24,14 @@ struct TownStageManager;
 struct CommandParameter;
 
 struct ScriptCommand {
-    virtual void initialize(char* scriptParam);
-    virtual void execute() {}
-    virtual void terminate() {}
-    virtual bool isEnd();
+    virtual void initialize(char* scriptParam) = 0;
+    virtual void execute() {}   
+    virtual void terminate() {} 
+    virtual int isEnd() = 0;
     ~ScriptCommand() {}
     int exec(CommandParameter* command);
 };
-extern "C" int func_02020008(CommandParameter* command);
+int unkfunc_02020008(CommandParameter* command);
 
 enum TriggerCheck {
     TRIGGER_CHECK_0,
@@ -173,19 +173,14 @@ extern const float data_020be0a4;
 extern const float data_020be0a8;
 
 extern "C" {
-    int  func_02058114(void* global, int partId);
-    FieldPlayerManager* func_ov001_02127b28(void);
     void func_ov001_0212a620(FieldPlayerManager* mgr, int lock);
-    void func_020499a4(int flag);
     void* func_02037da4(void);
     int func_02037d6c(void* obj, int type);
-    short func_0202528c(int* param);
-    short func_020254a4(short count, short alive, int mode);
-    int func_020254b8(int index, int type);
-    int func_02025514(int index, int type);
-    int func_0202555c(int index, int type);
     void func_02055980(int id);
-    void func_02088b3c(dss::Fix32Vector3* v, int value);
-    void* func_ov001_0212aaac(void);
-    void func_ov001_0212ab8c(void* obj, int message, int count);
 }
+
+short unkfunc_0202528c(int* param);
+short unkfunc_020254a4(short count, short alive, int mode);
+int unkfunc_020254b8(int index, int type);
+int unkfunc_02025514(int index, int type);
+int unkfunc_0202555c(int index, int type);

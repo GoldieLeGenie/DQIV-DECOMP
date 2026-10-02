@@ -1,4 +1,5 @@
 #include "ov003/btl/BattleMonster.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "ov015/btl/BattleSecondCheck.hpp"
 #include "main/status/UseAction.hpp"
 #include "ov003/status/MonsterParty.hpp"
@@ -1384,7 +1385,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckEscape(BattleSelectTargetParam *
         return false;
 
     actorLevel = battleSelectTargetParam->actorCharacterStatus_->haveBattleStatus_.level_;
-    tileLevel = func_0200a6c8()->encountParam_.tileLevel_;
+    tileLevel = encount::Encount::getSingleton()->encountParam_.tileLevel_;
     maxLevel = 0;
 
     status::g_Party.setPlayerMode();
@@ -1630,7 +1631,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckRandomGroup(BattleSelectTargetPa
     int count;
     status::CharacterStatus* actor;
 
-    func_020882d4(groups, -1, sizeof(groups));
+    dss::DssUtils::unkfunc_020882d4(groups, -1, sizeof(groups));
 
     groupCount = 0;
     i = 0;
@@ -1679,7 +1680,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckMahokantaGroup(BattleSelectTarge
     status::CharacterStatus* source;
     status::StatusChange* statusChange;
 
-    func_020882d4(groups, -1, sizeof(groups));
+    dss::DssUtils::unkfunc_020882d4(groups, -1, sizeof(groups));
     int groupCount = 0;
     int i;
 
@@ -1781,7 +1782,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckRukanan(BattleSelectTargetParam 
     int count;
     int selectedGroup;
 
-    func_020882d4(groups, -1, sizeof(groups));
+    dss::DssUtils::unkfunc_020882d4(groups, -1, sizeof(groups));
 
     i = 0;
     groupCount = 0;
@@ -1848,7 +1849,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckSukuruto(BattleSelectTargetParam
     int count;
     int selectedGroup;
 
-    func_020882d4(groups, -1, sizeof(groups));
+    dss::DssUtils::unkfunc_020882d4(groups, -1, sizeof(groups));
 
     i = 0;
     groupCount = 0;
@@ -1916,7 +1917,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckPiorimu(BattleSelectTargetParam 
     int count;
     int selectedGroup;
 
-    func_020882d4(groups, -1, sizeof(groups));
+    dss::DssUtils::unkfunc_020882d4(groups, -1, sizeof(groups));
 
     i = 0;
     groupCount = 0;
@@ -1986,7 +1987,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckRarihoForGod(BattleSelectTargetP
     status::CharacterStatus* source;
     status::StatusChange* statusChange;
 
-    func_020882d4(groups, -1, sizeof(groups));
+    dss::DssUtils::unkfunc_020882d4(groups, -1, sizeof(groups));
 
     groupCount = 0;
     i = 0;
@@ -2056,7 +2057,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckMahotonForGod(BattleSelectTarget
     status::HaveStatus* haveStatus;
     status::StatusChange* statusChange;
 
-    func_020882d4(groups, -1, sizeof(groups));
+    dss::DssUtils::unkfunc_020882d4(groups, -1, sizeof(groups));
 
     groupCount = 0;
     i = 0;
@@ -2127,7 +2128,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckRukananForGod(BattleSelectTarget
     status::HaveStatusInfo* info;
     status::StatusChange* statusChange;
 
-    func_020882d4(groups, -1, sizeof(groups));
+    dss::DssUtils::unkfunc_020882d4(groups, -1, sizeof(groups));
 
     groupCount = 0;
     i = 0;
@@ -2201,7 +2202,7 @@ THUMB bool btl::BattleSecondCheck::personalCheckNormalMember(BattleSelectTargetP
     int count;
     int selectedGroup;
 
-    func_020882d4(groups, -1, sizeof(groups));
+    dss::DssUtils::unkfunc_020882d4(groups, -1, sizeof(groups));
 
     i = 0;
     groupCount = 0;

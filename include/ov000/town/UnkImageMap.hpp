@@ -1,11 +1,12 @@
 #pragma once
 #include "globaldefs.h"
 #include "main/window/ImageMap.hpp"
+#include "main/window/UnkWindow_02033700.hpp"
 
 struct TownSystem;
 
 struct UnkImageMap_02141f6c : window::ImageMap {
-    char unk_04[0x150];                         // 0x004
+    UnkWindow_02033700 window_;                 // 0x004
     int isEnable_;                              // 0x154
     int frame_;                                 // 0x158
     int phase_;                                 // 0x15C

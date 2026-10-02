@@ -7,10 +7,10 @@
 THUMB void MaterielMenu_BANK_PUTIN::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02051900(&menuItem_, 3, 1);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_UP);
     menuItem_.active_ = 2;
     oldActive_ = 2;
-    func_02023324(&navigator_);
+    navigator_.setupBase();
     putinMoney_ = 0;
     first_ = 1;
     end_ = 0;
@@ -28,7 +28,7 @@ THUMB void MaterielMenu_BANK_PUTIN::menuDraw()
             func_ov016_0216fd00(1, 1, putinMoney_);
         } else {
             func_ov016_0216fd00(0, 1, putinMoney_);
-            func_02051968(&menuItem_);
+            menuItem_.drawActive();
         }
     }
 }
@@ -79,8 +79,8 @@ THUMB void MaterielMenu_BANK_PUTIN::bankUpdate()
         addMoney = 1000;
         break;
     }
-    func_02023504(&navigator_, 3, 1, 3);
-    int result = func_02023274(&menuItem_, &navigator_);
+    navigator_.setup(3, 1, 3);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         if (result == 2) {
             if (putinMoney_ == 0) {

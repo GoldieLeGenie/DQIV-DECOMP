@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "ov000/town/TownImageMap.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "ov000/town/TownCamera.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
 #include "main/dss/Camera.hpp"
@@ -30,26 +31,26 @@ ARM void TownImageMap::setup()
     if (!isEnable_) {
         return;
     }
-    func_02057d60(&mapSprite_, mapdata, 0);
-    func_02057ee8(&mapSprite_);
-    func_02057f00(&mapSprite_, 0);
-    func_02057f18(&mapSprite_, 0x3f);
+    mapSprite_.unkfunc_02057d60(mapdata, 0);
+    mapSprite_.unkfunc_02057ee8();
+    mapSprite_.unkfunc_02057f00(0);
+    mapSprite_.unkfunc_02057f18(0x3f);
     mapSprite_.sprite_.unk_32 = 1;
     func_02088308(filename, 0x80, "data/field/2d/point_s.tex");
-    func_02057d60(&pointSprite_, filename, 0);
-    func_02057ee8(&pointSprite_);
-    func_02057f00(&pointSprite_, 0);
-    func_02057f18(&pointSprite_, 0x3d);
-    func_02057f30(&pointSprite_, 0x18);
-    func_02057ea8(&pointSprite_, 8, 7, 0x18, 0x18);
-    func_02057e98(&pointSprite_, 0x10, 0x10);
+    pointSprite_.unkfunc_02057d60(filename, 0);
+    pointSprite_.unkfunc_02057ee8();
+    pointSprite_.unkfunc_02057f00(0);
+    pointSprite_.unkfunc_02057f18(0x3d);
+    pointSprite_.unkfunc_02057f30(0x18);
+    pointSprite_.unkfunc_02057ea8(8, 7, 0x18, 0x18);
+    pointSprite_.unkfunc_02057e98(0x10, 0x10);
 }
 
 ARM void TownImageMap::cleanup()
 {
     if (isEnable_) {
-        func_02057e34(&mapSprite_);
-        func_02057e34(&pointSprite_);
+        mapSprite_.unkfunc_02057e34();
+        pointSprite_.unkfunc_02057e34();
     }
     isEnable_ = 0;
 }
@@ -65,9 +66,9 @@ ARM void TownImageMap::execute()
         break;
     case 1:
         calcTargetPos();
-        func_02057ed4(&mapSprite_, 1);
+        mapSprite_.unkfunc_02057ed4(1);
         if (frame_ >= 2) {
-            func_02057ed4(&pointSprite_, 1);
+            pointSprite_.unkfunc_02057ed4(1);
             unkfunc_02137c00();
         }
         if (++frame_ == 0x1f) {
@@ -78,7 +79,7 @@ ARM void TownImageMap::execute()
         break;
     case 3:
         if (--frame_ <= 0) {
-            func_02057ed4(&mapSprite_, 0);
+            mapSprite_.unkfunc_02057ed4(0);
             cleanup();
             phase_ = 0;
         }
@@ -97,9 +98,9 @@ ARM void TownImageMap::execute()
             y = 0x10;
         }
     }
-    func_02057e88(&pointSprite_, x, y - 0x10);
-    func_02057f00(&mapSprite_, frame_);
-    func_02057f00(&pointSprite_, frame_);
+    pointSprite_.unkfunc_02057e88(x, y - 0x10);
+    mapSprite_.unkfunc_02057f00(frame_);
+    pointSprite_.unkfunc_02057f00(frame_);
 }
 
 ARM void TownImageMap::exitFloor()
@@ -148,7 +149,7 @@ ARM void TownImageMap::checkData()
             func_02088308(mapdata, 0x80, "data/2d/map/ha_map1.tex");
             isEnable_ = 1;
         }
-        func_020882b0(g_Stage.getMapName(), "mcout2");
+        dss::DssUtils::unkfunc_020882b0(g_Stage.getMapName(), "mcout2");
     } else {
         isEnable_ = 0;
     }
@@ -160,16 +161,16 @@ ARM void TownImageMap::draw()
         return;
     }
     camera.applyCamera();
-    func_020847e8();
-    func_02057ec0(&mapSprite_);
-    func_02057ec0(&pointSprite_);
+    unkfunc_020847e8();
+    mapSprite_.unkfunc_02057ec0();
+    pointSprite_.unkfunc_02057ec0();
 }
 
 ARM void TownImageMap::open()
 {
     setup();
     camera.applyCamera();
-    func_020847e8();
+    unkfunc_020847e8();
     phase_ = 1;
 }
 

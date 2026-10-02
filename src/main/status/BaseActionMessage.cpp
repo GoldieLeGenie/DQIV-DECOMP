@@ -1,4 +1,5 @@
 #include "main/status/BaseActionMessage.hpp"
+#include "main/global/GlobalDQ4.hpp"
 #include "main/status/ActionExec.hpp"
 #include "main/status/BaseAction.hpp"
 #include "ov003/status/MonsterParty.hpp"
@@ -54,7 +55,7 @@ THUMB void status::BaseActionMessage::setExecMessageAdd(int actionIndex, status:
 THUMB void status::BaseActionMessage::setResultMessage(status::CharacterStatus* target, status::UseActionMessage* message) {
     message->resultMessage_[0] = getResultMessage();
     if (target->characterType_ == MONSTER
-        && func_02058114(&data_0210bb94, 0xD) != 0
+        && data_0210bb94.unkfunc_02058114(0xD) != 0
         && target->haveStatusInfo_.isDeath() != 0
         && target->haveStatusInfo_.isEscapeFlag() == 0
         && target->haveStatusInfo_.isDisappearFlag() == 0) {
@@ -539,7 +540,7 @@ THUMB int status::BaseActionMessage::getMessageNoUse(status::CharacterStatus* ta
 
     if (messageData_.splitMsg_[splitIndex].wastePlace != 0) {
         if (actionIndex_ == 0xD0 || actionIndex_ == 0xB2) {
-            if (func_02058114(&data_0210bb94, 0xC) == 1 && g_Stage.lastFldSurface_ == -1) {
+            if (data_0210bb94.unkfunc_02058114(0xC) == 1 && g_Stage.lastFldSurface_ == -1) {
                 result = messageData_.splitMsg_[splitIndex].wastePlace;
                 splitFlag_ = 0;
             }
@@ -620,7 +621,7 @@ THUMB int status::BaseActionMessage::getMessageVainTimeZone(int splitIndex)
             splitFlag_ = 0;
         }
         if (actionIndex_ == 0xD4
-         && func_02058114(&data_0210bb94, 0xC) == 0) {
+         && data_0210bb94.unkfunc_02058114(0xC) == 0) {
             result = messageData_.splitMsg_[splitIndex].wasteTime;
             splitFlag_ = 0;
         }
@@ -634,7 +635,7 @@ THUMB int status::BaseActionMessage::getMessageItemInBox(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].cofferItem != 0
-     && func_02058114(&data_0210bb94, 0xC) == 1) {
+     && data_0210bb94.unkfunc_02058114(0xC) == 1) {
         int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
         if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 7
          && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 2) {
@@ -650,7 +651,7 @@ THUMB int status::BaseActionMessage::getMessageMonsterInBox(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].cofferMonster != 0
-     && func_02058114(&data_0210bb94, 0xC) == 1) {
+     && data_0210bb94.unkfunc_02058114(0xC) == 1) {
         int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
         if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 7
          && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 4) {
@@ -667,7 +668,7 @@ THUMB int status::BaseActionMessage::getMessageGoldInBox(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].cofferGold != 0
-     && func_02058114(&data_0210bb94, 0xC) == 1) {
+     && data_0210bb94.unkfunc_02058114(0xC) == 1) {
         int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
         if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 7
          && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 3) {
@@ -683,7 +684,7 @@ THUMB int status::BaseActionMessage::getMessageZeroInBox(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].cofferNothing != 0
-     && func_02058114(&data_0210bb94, 0xC) == 1) {
+     && data_0210bb94.unkfunc_02058114(0xC) == 1) {
         int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
         if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 7
          && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 1) {
@@ -699,7 +700,7 @@ THUMB int status::BaseActionMessage::getMessageItemInPot(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].tuboItem != 0
-     && func_02058114(&data_0210bb94, 0xC) == 1) {
+     && data_0210bb94.unkfunc_02058114(0xC) == 1) {
         int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
         if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x27
          && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 2) {
@@ -715,7 +716,7 @@ THUMB int status::BaseActionMessage::getMessageMonsterInPot(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].tuboMonster != 0
-     && func_02058114(&data_0210bb94, 0xC) == 1) {
+     && data_0210bb94.unkfunc_02058114(0xC) == 1) {
         int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
         if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x27
          && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 4) {
@@ -732,7 +733,7 @@ THUMB int status::BaseActionMessage::getMessageGoldInPot(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].tuboGold != 0
-     && func_02058114(&data_0210bb94, 0xC) == 1) {
+     && data_0210bb94.unkfunc_02058114(0xC) == 1) {
         int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
         if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x27
          && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 3) {
@@ -750,7 +751,7 @@ THUMB int status::BaseActionMessage::getMessageZeroInPot(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].tuboNothing != 0
-     && func_02058114(&data_0210bb94, 0xC) == 1) {
+     && data_0210bb94.unkfunc_02058114(0xC) == 1) {
         int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
         if (TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x27
          && TownFurnitureManager::getSingleton()->checkCoffer(uid) == 1) {
@@ -767,7 +768,7 @@ THUMB int status::BaseActionMessage::getMessageNoTarget(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].noTarget != 0) {
-        if (func_02058114(&data_0210bb94, 0xC) == 1) {
+        if (data_0210bb94.unkfunc_02058114(0xC) == 1) {
             int uid = TownPlayerManager::getSingleton()->getInpasMapObj();
             int type = TownFurnitureManager::getSingleton()->getCofferType(uid);
             if (uid == 0 || (type != 0x27 && type != 7)) {
@@ -787,7 +788,7 @@ THUMB int status::BaseActionMessage::getMessageNorthEast(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].northEast != 0
-     && func_02058114(&data_0210bb94, 0xE) != 0) {
+     && data_0210bb94.unkfunc_02058114(0xE) != 0) {
         char dx = func_ov016_021755a0()->takanomeX_;
         char dy = func_ov016_021755a0()->takanomeY_;
         if (dx <= 0 && dy >= 0) {
@@ -804,7 +805,7 @@ THUMB int status::BaseActionMessage::getMessageSouthEast(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].northEast != 0     
-     && func_02058114(&data_0210bb94, 0xE) != 0) {
+     && data_0210bb94.unkfunc_02058114(0xE) != 0) {
         char dx = func_ov016_021755a0()->takanomeX_;
         char dy = func_ov016_021755a0()->takanomeY_;
         if (dx <= 0 && dy < 0) {
@@ -820,7 +821,7 @@ THUMB int status::BaseActionMessage::getMessageNorthWest(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].northWest != 0
-     && func_02058114(&data_0210bb94, 0xE) != 0) {
+     && data_0210bb94.unkfunc_02058114(0xE) != 0) {
         char dx = func_ov016_021755a0()->takanomeX_;
         char dy = func_ov016_021755a0()->takanomeY_;
         if (dx > 0 && dy >= 0) {
@@ -836,7 +837,7 @@ THUMB int status::BaseActionMessage::getMessageSouthWest(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].southWest != 0
-     && func_02058114(&data_0210bb94, 0xE) != 0) {
+     && data_0210bb94.unkfunc_02058114(0xE) != 0) {
         char dx = func_ov016_021755a0()->takanomeX_;
         char dy = func_ov016_021755a0()->takanomeY_;
         if (dx > 0 && dy < 0) {
@@ -853,7 +854,7 @@ THUMB int status::BaseActionMessage::getMessageZero(int splitIndex)
     int result = 0;
 
     if (messageData_.splitMsg_[splitIndex].nothing != 0
-     && func_02058114(&data_0210bb94, 0xC) == 1) {
+     && data_0210bb94.unkfunc_02058114(0xC) == 1) {
         if (TownFurnitureManager::getSingleton()->searchFloorItem() == 0) {
             result = messageData_.splitMsg_[splitIndex].nothing;
             splitFlag_ = 0;

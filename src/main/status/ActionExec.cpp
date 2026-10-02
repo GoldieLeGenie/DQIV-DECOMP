@@ -1,4 +1,5 @@
 #include "ov003/btl/BattleMonster.hpp"
+#include "main/global/GlobalDQ4.hpp"
 #include "main/status/ActionExec.hpp"
 #include "main/status/BaseAction.hpp"
 #include "main/status/BaseActionMessage.hpp"
@@ -105,7 +106,7 @@ THUMB bool status::execImpas()
 {
     int mapObj;
     int r;
-    if (func_02058114(&data_0210bb94, 12) == 1) {
+    if (data_0210bb94.unkfunc_02058114(12) == 1) {
         mapObj = TownPlayerManager::getSingleton()->getInpasMapObj();
         r = TownFurnitureManager::getSingleton()->checkCoffer(mapObj);
         if (mapObj == 0 || r == 0) {
@@ -129,7 +130,7 @@ THUMB int status::execLanaruta()
     if (g_Stage.timestop_) {
         return 0;
     }
-    if (func_02058114(&data_0210bb94, 0xc) == 1 && g_Stage.lastFldSurface_ == -1) {
+    if (data_0210bb94.unkfunc_02058114(0xc) == 1 && g_Stage.lastFldSurface_ == -1) {
         return 0;
     }
     return 1;

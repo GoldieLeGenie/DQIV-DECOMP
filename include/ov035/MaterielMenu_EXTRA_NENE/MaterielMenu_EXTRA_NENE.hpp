@@ -12,7 +12,7 @@ struct MaterielMenu_EXTRA_NENE : menu::MenuBase
     unsigned char neneItemCount_;       /* 0x1F */
     int proceeds_;                      /* 0x20 */
     menu::MenuItem menuItem_;           /* 0x24 */
-    menu::MenuNavigator navigator_;     /* 0x88 */
+    CursorMoveGridLoop navigator_;     /* 0x88 */
     int sellItem_;                      /* 0x94 */
 
     virtual void menuSetup();

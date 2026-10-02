@@ -25,7 +25,7 @@ struct MaterielMenuExtraChangeHostage : menu::MenuBase
     short hostageID_;
     short newHostageID_;
     menu::MenuItem menuItem_;            /* 0x28 */
-    menu::MenuNavigator navigator_;        /* 0x8C */
+    CursorMoveGridLoop navigator_;        /* 0x8C */
     virtual void menuSetup();      
     virtual void menuExecute();
     virtual void menuDraw();
@@ -38,7 +38,6 @@ struct MaterielMenuExtraChangeHostage : menu::MenuBase
 
 extern "C" {
 
-    void func_020499a4(int);
     void func_ov016_0216fdb8(void);       
     void func_ov016_02177350(menu::MenuItem*, int active, int count);
 }

@@ -26,9 +26,6 @@ struct MaterielMenuExtraChapterTitle : menu::MenuBase
 
 extern "C" {
     void func_ov016_0216fe50(int chapter, int chapterEnd);  
-    void func_020848a8(void);                               
-    void* func_ov001_0212aaac(void);
-    void func_ov001_0212abc8(void);      
 }
 
 extern MaterielMenuExtraChapterTitle data_ov016_02185a90;   /* gMaterielMenu_EXTRA_CHAPTER_TITLE */

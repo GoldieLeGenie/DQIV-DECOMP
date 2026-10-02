@@ -7,14 +7,14 @@
 THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02051900(&menuItem_, 1, 5);
-    func_02051900(&menuItem2_, 2, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
+    menuItem2_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     activeChara_ = 0;
     maxCharaCount_ = status::g_Party.getCount();
     if (status::g_Party.fukuro_ != 0) {
         maxCharaCount_++;
     }
-    func_02023324(&navigator_);
+    navigator_.setupBase();
 }
 
 THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuExecute()
@@ -26,8 +26,8 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuExecute()
 THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuDraw()
 {
     func_ov016_0216fb6c(1);
-    func_02051968(&menuItem_);
-    func_02051968(&menuItem2_);
+    menuItem_.drawActive();
+    menuItem2_.drawActive();
 }
 
 THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuUpdate()
@@ -38,12 +38,12 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuUpdate()
         }
         return;
     }
-    if (func_02023230(&menuItem2_)) {
+    if (MenuUpdate_Assist::isCancel(menuItem2_)) {
         cancelChange();
         return;
     }
-    func_02023504(&navigator_, 5, 2, maxCharaCount_);
-    int result = func_02023274(&menuItem_, &navigator_);
+    navigator_.setup(5, 2, maxCharaCount_);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         activeChara_ = menuItem_.active_;
         int activeChara = activeChara_;

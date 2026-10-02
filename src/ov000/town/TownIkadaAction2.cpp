@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "ov000/town/TownIkadaAction2.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "ov000/town/TownActionCalculate.hpp"
 #include "ov000/town/TownActionMoveToTarget.hpp"
 #include "ov000/town/TownDamageFloor.hpp"
@@ -18,7 +19,7 @@ ARM int TownIkadaAction2::setup()
     ctrSurfaceId_ = -1;
     counter_ = 0;
     ikadaObjectId_ = TownStageManager::getSingleton()->getObjectIDfromMapUid(0x1ea);
-    if (func_020882b0("hhk1f1", g_Global.getPrevMapName()) == 0) {
+    if (dss::DssUtils::unkfunc_020882b0("hhk1f1", g_Global.getPrevMapName()) == 0) {
         g_cmnPartyInfo.setIkadaMapName("hhout");
     }
     if (ikadaObjectId_ != -1) {
@@ -34,7 +35,7 @@ ARM int TownIkadaAction2::setup()
                 ikadaPosition_ = TownStageManager::getSingleton()->getMapUidPos(0x1ea);
                 g_cmnPartyInfo.setIkadaInfo(g_Global.getMapName(), &ikadaPosition_);
             }
-            if (func_020882b0(g_cmnPartyInfo.getIkadaMapName(), g_Global.getMapName()) == 0) {
+            if (dss::DssUtils::unkfunc_020882b0(g_cmnPartyInfo.getIkadaMapName(), g_Global.getMapName()) == 0) {
                 ikadaPosition_ = g_cmnPartyInfo.getIkadaPos();
                 setIkadaPosition(ikadaPosition_);
             } else {
@@ -161,7 +162,7 @@ ARM void TownIkadaAction2::ikadaMove()
 ARM void TownIkadaAction2::setIkadaDataByScript(const char* name, dss::Fix32Vector3& pos)
 {
     g_cmnPartyInfo.setIkadaInfo((char*)name, &pos);
-    if (func_020882b0(name, g_Global.getMapName()) == 0) {
+    if (dss::DssUtils::unkfunc_020882b0(name, g_Global.getMapName()) == 0) {
         ikadaPosition_ = pos;
         ikadaObjectId_ = TownStageManager::getSingleton()->getObjectIDfromMapUid(0x1ea);
     } else {

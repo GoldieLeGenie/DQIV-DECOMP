@@ -1,4 +1,5 @@
 #include "ov003/btl/BattleMonster.hpp"
+#include "main/global/GlobalDQ4.hpp"
 #include "main/status/BaseActionStatus.hpp"
 #include "ov003/btl/BattleActorManager2.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
@@ -237,7 +238,7 @@ THUMB int status::BaseActionStatus::actionTypeRebirth(status::CharacterStatus *t
             target->setRebirthAnimation();
             ret = 1;
 
-            if (func_02058114(&data_0210bb94, 0xD) && target->characterType_ == MONSTER)
+            if (data_0210bb94.unkfunc_02058114(0xD) && target->characterType_ == MONSTER)
             {
                 short log;
                 for (int i = 0; i < g_monster.getCount(); i++)
@@ -268,7 +269,7 @@ THUMB int status::BaseActionStatus::actionTypeRebirth(status::CharacterStatus *t
         target->setRebirthAnimation();
         ret = 1;
 
-        if (func_02058114(&data_0210bb94, 0xD) &&
+        if (data_0210bb94.unkfunc_02058114(0xD) &&
             target->characterType_ == MONSTER)
         {
             short log;
@@ -301,7 +302,7 @@ THUMB int status::BaseActionStatus::actionTypeRebirth(status::CharacterStatus *t
 
         btl::BattleMonsterDraw2* draw = btl::BattleMonsterDraw2::getSingleton();
         btl::BattleMonster* m = &draw->monsters_[idx];
-        func_0205b2f0(m, pos);
+        m->monsterDraw_.setPositionInt(pos);
 
         btl::BattleMonsterDraw2::getSingleton()->monsters_[idx].screenPosition_ = spacePos - spaceWidth / 2;
         btl::BattleMonsterDraw2::getSingleton()->monsters_[idx].screenWidth_    = spaceWidth;
@@ -814,7 +815,7 @@ THUMB int status::BaseActionStatus::actionTypeNone(status::CharacterStatus *acto
                 pos.vx = spacePos;               
                 int idx = target->haveStatusInfo_.drawCtrlId_;
                 btl::BattleMonsterDraw2* draw = btl::BattleMonsterDraw2::getSingleton();          
-                func_0205b2f0(&draw->monsters_[idx], pos);
+                draw->monsters_[idx].monsterDraw_.setPositionInt(pos);
                 btl::BattleMonsterDraw2::getSingleton()->monsters_[idx].screenPosition_ = spacePos - spaceWidth / 2;
                 btl::BattleMonsterDraw2::getSingleton()->monsters_[idx].screenWidth_ = spaceWidth;
             }
@@ -851,19 +852,19 @@ THUMB int status::BaseActionStatus::actionTypeNone(status::CharacterStatus *acto
 
     int action = status::BaseActionStatus::actionIndex_;
     if (action == 0xA3 || action == 0xCF) {
-        func_0200ad18(func_0200a6c8(), action);
+        encount::Encount::getSingleton()->disableEncount(action);
     }
     action = status::BaseActionStatus::actionIndex_;
     if (action == 0xA6) {
-        func_0200ad28(func_0200a6c8(), action);
+        encount::Encount::getSingleton()->easyEncount(action);
     }
     action = status::BaseActionStatus::actionIndex_;
     if (action == 0xD7) {
-        func_0200ad38(func_0200a6c8(), action);
+        encount::Encount::getSingleton()->differentEncount(action);
     }
 
     if (status::BaseActionStatus::actionIndex_ == 0xD4) {
-        if (func_02058114(&data_0210bb94, 0xc) == 0) {
+        if (data_0210bb94.unkfunc_02058114(0xc) == 0) {
             ret = 0;
         } else {
             if (TownFurnitureManager::getSingleton()->searchFloorItem() == 0) {
@@ -873,16 +874,16 @@ THUMB int status::BaseActionStatus::actionTypeNone(status::CharacterStatus *acto
     }
 
     if (status::BaseActionStatus::actionIndex_ == 0xD8) {
-        if (g_Stage.isEncount() != 0 && func_0200a6c8()->enable_ != 0) {
-            if (func_02058114(&data_0210bb94, 0xc) != 0) {
+        if (g_Stage.isEncount() != 0 && encount::Encount::getSingleton()->enable_ != 0) {
+            if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
                 if (TownPlayerManager::getSingleton()->isSaveAndBattleOK() == 0) {
                     ret = 0;
                 } else {
-                    func_0200ad08(func_0200a6c8());
+                    encount::Encount::getSingleton()->forceEncount();
                     ret = 1;
                 }
             } else {
-                func_0200ad08(func_0200a6c8());
+                encount::Encount::getSingleton()->forceEncount();
                 ret = 1;
             }
         } else {
@@ -998,13 +999,13 @@ THUMB int status::BaseActionStatus::actionTypeNone(status::CharacterStatus *acto
 
     if (status::BaseActionStatus::actionIndex_ == 0xB2) {
         ret = 0;
-        if (func_02058114(&data_0210bb94, 0xc) != 0) {
+        if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
             if (g_Stage.getTimeZone() == TIME_ZONE_DAYTIME || g_Stage.getTimeZone() == TIME_ZONE_EVENING) {
                 ret = execLanaruta();
             } else {
                 ret = 0;
             }
-        } else if (func_02058114(&data_0210bb94, 0xe) != 0) {
+        } else if (data_0210bb94.unkfunc_02058114(0xe) != 0) {
             if (g_Stage.getWorldTime() < 0x840) {
                 ret = execLanaruta();
             } else {

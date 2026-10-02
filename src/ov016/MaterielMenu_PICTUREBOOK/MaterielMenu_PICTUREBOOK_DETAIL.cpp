@@ -7,14 +7,14 @@
 THUMB void MaterielMenu_PICTUREBOOK_DETAIL::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02051900(&menuItem_, 3, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     menuItem_.enableSE_ = 0;
     bookData_ = status::excelParam.bookData_;
     int activeItem = func_ov016_0216ff2c()->activeItem_;
     activeMonster_ = activeItem + func_ov016_0216ff2c()->activeItemPage_ * MONSTER_COUNT_IN_PAGE;
-    func_02023324(&navigator_);
-    func_02023504(&navigator_, 1, 1, MAX_MONSTER_NO + 1);
-    func_02023344(&navigator_, activeMonster_);
+    navigator_.setupBase();
+    navigator_.setup(1, 1, MAX_MONSTER_NO + 1);
+    navigator_.setPageNo(activeMonster_);
     BookMonsterDraw::getSingleton()->setup(bookData_[activeMonster_].name);
 }
 
@@ -26,13 +26,13 @@ THUMB void MaterielMenu_PICTUREBOOK_DETAIL::menuExecute()
 THUMB void MaterielMenu_PICTUREBOOK_DETAIL::menuDraw()
 {
     func_ov016_0216fda8(activeMonster_, bookData_[activeMonster_].name);
-    func_02051968(&menuItem_);
+    menuItem_.drawActive();
 }
 
 THUMB void MaterielMenu_PICTUREBOOK_DETAIL::menuUpdate()
 {
-    func_02023504(&navigator_, 1, 1, MAX_MONSTER_NO + 1);
-    int result = func_02023274(&menuItem_, &navigator_);
+    navigator_.setup(1, 1, MAX_MONSTER_NO + 1);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         if (result == 3) {
             int activeItem = activeMonster_ % MONSTER_COUNT_IN_PAGE;
@@ -43,12 +43,12 @@ THUMB void MaterielMenu_PICTUREBOOK_DETAIL::menuUpdate()
             data_ov016_0218727c.open();
         }
         if (result == 7) {
-            activeMonster_ = func_020233cc(&navigator_, 0);
+            activeMonster_ = navigator_.getIndex(0);
             checkPage(true);
             BookMonsterDraw::getSingleton()->setup(bookData_[activeMonster_].name);
         }
         if (result == 6) {
-            activeMonster_ = func_020233cc(&navigator_, 0);
+            activeMonster_ = navigator_.getIndex(0);
             checkPage(false);
             BookMonsterDraw::getSingleton()->setup(bookData_[activeMonster_].name);
         }
@@ -71,5 +71,5 @@ THUMB void MaterielMenu_PICTUREBOOK_DETAIL::checkPage(bool next)
             }
         }
     }
-    func_02023344(&navigator_, activeMonster_);
+    navigator_.setPageNo(activeMonster_);
 }

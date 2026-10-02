@@ -15,8 +15,8 @@
 THUMB void MaterielMenu_CHURCH_ROOT::menuSetup()
 {
     status::g_Party.setBattleMode();
-    func_02051900(&menuItem_, 3, 5);
-    func_02051900(&menuItem2_, 2, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
+    menuItem2_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     func_ov016_0216ff34(func_ov016_0216ff2c());
     activeCommand_ = -1;
     expMessageCount_ = -1;
@@ -56,7 +56,7 @@ THUMB void MaterielMenu_CHURCH_ROOT::menuSetup()
     }
     func_02056358(type);
     timeType_ = g_Stage.getTimeZone();
-    func_02023324(&navigator_);
+    navigator_.setupBase();
     menuItem_.active_ = 0;
     if (g_Global.bookingFlag_ != Global::BOOKING_NONE) {
         activeCommand_ = 7;
@@ -77,7 +77,7 @@ THUMB void MaterielMenu_CHURCH_ROOT::menuDraw()
     if (activeCommand_ != 7) {
         func_ov016_0216fc94(activeCommand_, firstFlag_);
         if (activeCommand_ == -1 && firstFlag_ == 0 && data_020ed1bc.isMessageWAITPROG()) {
-            func_02051968(&menuItem_);
+            menuItem_.drawActive();
         }
     }
 }
@@ -143,8 +143,8 @@ THUMB bool MaterielMenu_CHURCH_ROOT::commandUpdate()
             return false;
         }
         int offset = 6 - commandNum_;
-        func_02023504(&navigator_, 2, 3, commandNum_);
-        int result = func_02023274(&menuItem_, &navigator_);
+        navigator_.setup(2, 3, commandNum_);
+        int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
         if (result != 0) {
             if (result == 2) {
                 int cmd = offset + menuItem_.active_;

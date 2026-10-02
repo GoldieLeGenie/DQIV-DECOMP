@@ -22,7 +22,7 @@ namespace status {
         int memberOutside_[4];
         int memberBackside_[4];
         virtual void setSaveData(profile::PROFILE_PARTY* data);
-        virtual void setLoadData(profile::PROFILE_PARTY* data, profile::PROFILE_HISTORY* history);
+        virtual void setLoadData(profile::PROFILE_PARTY* data);
         PartyStatus();
         ~PartyStatus();
         static void initialize();
@@ -144,7 +144,6 @@ extern "C" {
     void func_0200f144(void);
     int func_0200efb0(void);
     int func_0201c9b8(status::StageStatus* stage);
-    encount::Encount* func_0200a6c8(void);
     void func_0201123c(void);
     int  func_020100f4(void* self, int actionIndex, int* valueBMax, int* valueCMax);   /* calcRecoveryValue */
     void func_020102ec(void* self, int *target);                                /* getBehomalaTargetIndex */

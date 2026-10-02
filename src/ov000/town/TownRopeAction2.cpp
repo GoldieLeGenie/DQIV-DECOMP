@@ -121,12 +121,12 @@ ARM int TownRopeAction2::startCheck()
     int surfaceId = TownStageManager::getSingleton()->getHitSurfaceIdByType(6);
     if (surfaceId != -1) {
         TownActionCalculate::getDirByIdx(dirIdx_, playerDir);
-        func_02089168(&playerDir);
+        playerDir.normalize();
         surfacePos = TownStageManager::getSingleton()->getHitSurfacePosByType(6);
         surfaceDir = TownStageManager::getSingleton()->getHitSurfaceDirByType(6);
-        vec = func_02088988(surfacePos, position_);
+        vec = surfacePos - position_;
         vec.vy = 0L;
-        func_02089168(&vec);
+        vec.normalize();
         getRopeSide(surfaceId);
         dss::Fix32 center = (minY_ + maxY_) / 2;
         dss::Fix32Vector3 dir = surfaceDir * -1;

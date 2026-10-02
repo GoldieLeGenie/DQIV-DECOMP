@@ -29,7 +29,7 @@ THUMB void BattleStage::initialize()
 
     stage_.setRender(&btl::BattleSystem2::getSingleton()->render_);
     stage_.setPath(btlMapPath);
-    switch (func_0200a6c8()->battleMode_) {
+    switch (encount::Encount::getSingleton()->battleMode_) {
     case 0:
         if (stage_.isExist(g_Stage.getBtlMapName())) {
             stage_.load(g_Stage.getBtlMapName());
@@ -61,12 +61,12 @@ THUMB void BattleStage::initialize()
     stage_.setup();
     frame_ = 0;
     counter_ = 1;
-    func_0200d5cc(battleMap[index].R | (battleMap[index].G << 5) | (battleMap[index].B << 10));
+    MenuAPI::setBattleBackDrop(battleMap[index].R | (battleMap[index].G << 5) | (battleMap[index].B << 10));
 }
 
 THUMB void BattleStage::terminate()
 {
-    func_0200d5cc(0);
+    MenuAPI::setBattleBackDrop(0);
     stage_.cleanup();
     stage_.terminate();
 }

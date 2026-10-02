@@ -43,7 +43,7 @@ THUMB void btl::BattleEffectTransform::setup(int index, int nearDist, int rev)
         func_0205b3d0(&paletteAnim_);
     }
 
-    int animIndex = status::excelParam.monsterAnim_->getAnimData(index, 0, 0x1e);
+    int animIndex = param::MonsterAnim::getAnimData(status::excelParam.monsterAnim_, index, 0, 0x1e);
     if (animIndex >= 0) {
         param::MonsterAnim* anim = &status::excelParam.monsterAnim_[animIndex];
         unsigned char camera = anim->camera;
@@ -74,7 +74,7 @@ THUMB void btl::BattleEffectTransform::draw()
         enable_ = 0;
     }
 
-    int animIndex = status::excelParam.monsterAnim_->getAnimData(index_, 0, 0x1e);
+    int animIndex = param::MonsterAnim::getAnimData(status::excelParam.monsterAnim_, index_, 0, 0x1e);
     if (animIndex >= 0) {
         param::MonsterAnim* anim = &status::excelParam.monsterAnim_[animIndex];
         if (counter_ == anim->hitframe && anim->sound) {
@@ -213,7 +213,7 @@ THUMB void btl::BattleTransform::setup(int index)
     for (int i = 0; i < 3; i++) {
         int monster = indexOffset[transIndex_][i];
         if (monster != -1) {
-            int animIndex = status::excelParam.monsterAnim_->getAnimData(monster, 0, 0x1e);
+            int animIndex = param::MonsterAnim::getAnimData(status::excelParam.monsterAnim_, monster, 0, 0x1e);
             if (animIndex >= 0) {
                 param::MonsterAnim* anim = &status::excelParam.monsterAnim_[animIndex];
                 unsigned char camera = anim->camera;

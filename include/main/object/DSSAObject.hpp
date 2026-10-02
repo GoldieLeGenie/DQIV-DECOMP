@@ -211,7 +211,6 @@ struct PaletteAnimation {
 extern "C" {
     int  func_02081254(void);
     void func_020843d4(void);
-    void func_020847e8(void);
     void func_0206ae30(VecFx32* scale);                         /* NNS_G3dGlbSetBaseScale */
     void func_0206ae08(dss::Fix32Vector3* trans);                /* NNS_G3dGlbSetBaseTrans */
     void func_0206adcc(void);

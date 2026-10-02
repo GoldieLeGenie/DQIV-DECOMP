@@ -10,11 +10,9 @@ struct Render {
     int unk_204[128];           // 0x204
     int unk_404[128];           // 0x404
     int unk_604;                // 0x604
-};
 
-extern "C" {
-    void func_02084ef0(Render* self);   // ctor
-    void func_02084efc(Render* self);   // initialize
-    void func_02084f50(Render* self);   // terminate
-    void func_02084fa4(Render* self);   // draw
-}
+    Render();
+    void unkfunc_02084efc();
+    void unkfunc_02084f50();
+    void unkfunc_02084fa4();
+};

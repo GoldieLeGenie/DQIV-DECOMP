@@ -17,7 +17,7 @@ ARM void btl::BeforeMessageTask::initialize()
     btl::BattleActorMacro::setMacroTarget(useActionParam_->targetCharacterStatus_[0], 0, 0);
     status::UseActionMacro::setBeforeMacro(useActionParam_->actorCharacterStatus_, useActionParam_->actionIndex_);
     message_ = btl::BattleMessage::setBeforeMessage(useActionParam_);
-    func_0208988c();
+    BattleAutoFeed::setAfterMessage();
 
     if ((unsigned int)(useActionParam_->actionIndex_ - 0x201) > 1) {
         return;
@@ -40,7 +40,7 @@ ARM void btl::BeforeMessageTask::terminate()
 ARM void btl::BeforeMessageTask::execute()
 {
     if (message_ != 0) {
-        if (func_020898a0() != 0) {
+        if (BattleAutoFeed::isEndAfterMessage() != 0) {
             partTaskManager.setNextTask(3);
         }
     }

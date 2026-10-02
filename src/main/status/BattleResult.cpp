@@ -5,11 +5,6 @@ status::BattleResult status::g_BattleResult;
 
 THUMB status::BattleResult::BattleResult()
 {
-    dss::BitFlag<unsigned int>* p = encountFlag_.flag_;
-    do {
-        p->flag_ = 0;
-        p++;
-    } while (p < &encountFlag_.flag_[7]);
 }
 
 

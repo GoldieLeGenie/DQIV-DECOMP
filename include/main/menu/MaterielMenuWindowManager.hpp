@@ -62,4 +62,6 @@ struct MaterielMenu_WINDOW_MANAGER {
     static MaterielMenu_WINDOW_MANAGER* getSingleton();
     void openMaterielWindow(int menuType);
     void closeMaterielWindow();
+    void setSaveMenuType(int type) { type_ = type; }
+    void setChapterTitleInfo(int chapter, int flag) { chapter_ = chapter; titleFlag_ = flag; }
 };

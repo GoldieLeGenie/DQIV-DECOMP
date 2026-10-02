@@ -52,7 +52,7 @@ ARM void btl::AfterActionTask::execute()
         if (this->mess_ == 0) {
             cleanup();
         }
-        else if (func_02089684() != 0) {
+        else if (BattleAutoFeed::isEndMessage() != 0) {
             this->mess_ = isMessageStatusChangeRelease();
             if (this->mess_ == 0) {
                 cleanup();

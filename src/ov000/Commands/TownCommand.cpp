@@ -322,7 +322,7 @@ THUMB int cmd_furniture_move_request(int* param)
     if (param[4] == 0) {
         param[4] = 0x1000;
     }
-    int frame = func_02088e90(func_02088988(base, pos)).value / ((param[4] * data_ov000_021487a8.unk_8) / 4096);
+    int frame = ((base - pos)).length().value / ((param[4] * data_ov000_021487a8.unk_8) / 4096);
     TownFurnitureControlManager::getSingleton()->setFurnitureMove(param[0], frame, pos);
     return 1;
 }

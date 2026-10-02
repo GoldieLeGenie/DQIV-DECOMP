@@ -1,4 +1,5 @@
 #include "ov015/btl/BattleMenuPlayerControl.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "ov015/btl/BattleMenu.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
@@ -46,14 +47,14 @@ THUMB void btl::BattleMenuPlayerControl::clear()
     activeMagic_ = -1;
     targetChara_ = -1;
 
-    func_020882d4(secondHistory_, -1, sizeof(secondHistory_));
-    func_020882d4(firstHistory_, -1, sizeof(firstHistory_));
-    func_020882d4(memberHP_, 0, sizeof(memberHP_));
-    func_020882d4(memberMP_, 0, sizeof(memberMP_));
-    func_020882d4(memberLv_, 1, sizeof(memberLv_));
-    func_020882d4(memberHPColor_, 0, sizeof(memberHPColor_));
-    func_020882d4(memberCondition_, 0, sizeof(memberCondition_));
-    func_020882d4(conditionChange_, 0, sizeof(conditionChange_));
+    dss::DssUtils::unkfunc_020882d4(secondHistory_, -1, sizeof(secondHistory_));
+    dss::DssUtils::unkfunc_020882d4(firstHistory_, -1, sizeof(firstHistory_));
+    dss::DssUtils::unkfunc_020882d4(memberHP_, 0, sizeof(memberHP_));
+    dss::DssUtils::unkfunc_020882d4(memberMP_, 0, sizeof(memberMP_));
+    dss::DssUtils::unkfunc_020882d4(memberLv_, 1, sizeof(memberLv_));
+    dss::DssUtils::unkfunc_020882d4(memberHPColor_, 0, sizeof(memberHPColor_));
+    dss::DssUtils::unkfunc_020882d4(memberCondition_, 0, sizeof(memberCondition_));
+    dss::DssUtils::unkfunc_020882d4(conditionChange_, 0, sizeof(conditionChange_));
 
     tacticsSex_ = 0;
     if (status::g_Story.sex_ == 1) {
@@ -78,7 +79,7 @@ THUMB void btl::BattleMenuPlayerControl::clear()
 THUMB void btl::BattleMenuPlayerControl::allClear()
 {
     clear();
-    func_020882d4(magicPosition_, 0, sizeof(magicPosition_));
+    dss::DssUtils::unkfunc_020882d4(magicPosition_, 0, sizeof(magicPosition_));
 }
 
 THUMB void btl::BattleMenuPlayerControl::setNoSelectHistory(int index)

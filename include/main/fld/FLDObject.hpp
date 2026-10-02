@@ -67,6 +67,7 @@ struct FLDObject
     ~FLDObject();                           // func_020421d8
     void SetSepia();
     void SetRGBRate(VecFx32* rate, int real_time);
+    void SetPause(int pause) { if (pause) { m_flag |= 4; } else { m_flag &= ~4; } }
 };
 
 }  // namespace fld
@@ -74,6 +75,7 @@ struct FLDObject
 extern "C"
 {
     void func_02044a48(fld::FLDObject*);
+    void func_020422ec(fld::FLDObject* fld, int channel, int screen);
     void func_0204722c(fld::FLDObject*);
     void func_02047350(fld::FLDObject* self, fx32 r, fx32 g, fx32 b);
 }

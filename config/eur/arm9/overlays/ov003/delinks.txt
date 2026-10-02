@@ -122,6 +122,7 @@ src/ov003/btl/BattleMessage.cpp:
     .text start:0x0212be8c end:0x0212c0e8
 
 src/ov003/status/ExcelParamBis.cpp:
+    complete
     .text start:0x0212c0e8 end:0x0212c118
     .rodata start:0x02130e9c end:0x02139040
 
@@ -174,8 +175,9 @@ src/ov003/btl/BattleRoot.cpp:
     .bss start:0x02148b04 end:0x02148cac
 
 src/ov003/btl/BattleExecVictory.cpp:
+    complete
     .text start:0x02123fa0 end:0x021259fc
-    .rodata start:0x02130e58 end:0x02130e9c
+    .rodata start:0x02130e58 end:0x02130e98
     .init start:0x021391a0 end:0x02139628
     .ctor start:0x021396bc end:0x021396c0
     .data start:0x0213a060 end:0x0213a3d0

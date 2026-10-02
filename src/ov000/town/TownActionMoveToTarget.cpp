@@ -21,8 +21,8 @@ ARM void TownActionMoveToTarget::execute()
     dss::Fix32Vector3 vec;
     if (moveMode_ == MOVE_TO_TARGET) {
         nowPos_ = nowPos_ + moveVec_;
-        vec = func_02088988(target_, nowPos_);
-        if (func_02088f20(vec) < speed_ * speed_) {
+        vec = target_ - nowPos_;
+        if (vec.lengthsq() < speed_ * speed_) {
             if (partyMoveFlag_ == 1) {
                 moveMode_ = MOVE_TO_FIRST;
                 TownPlayerManager::getSingleton()->party_.moveFirstFlag_ = 1;
@@ -31,7 +31,7 @@ ARM void TownActionMoveToTarget::execute()
                 moveMode_ = MOVE_END;
             }
             nowPos_ = target_;
-        } else if (func_02088f20(vec) < drawLen2) {
+        } else if (vec.lengthsq() < drawLen2) {
             if (eraseFlag_ == 0) {
                 eraseFlag_ = 1;
                 count_ = 0;
@@ -57,14 +57,14 @@ ARM void TownActionMoveToTarget::setAction(dss::Fix32Vector3& startPos, dss::Fix
     target_ = target;
     nowPos_ = startPos;
     speed_ = speed;
-    moveVec_ = func_02088988(target_, position_);
-    func_02089168(&moveVec_);
+    moveVec_ = target_ - position_;
+    moveVec_.normalize();
     moveVec_ = moveVec_ * speed;
     moveType_ = moveFlag;
     partyMoveFlag_ = moveFlag == 1;
     drawType_ = drawFlag;
     nextAction_ = nextAction;
-    dss::Fix32Vector3 dir = func_02088988(target_, position_);
+    dss::Fix32Vector3 dir = target_ - position_;
     TownActionCalculate::getIdxByVec(dirIdx_, dir);
     moveMode_ = MOVE_TO_TARGET;
     eraseFlag_ = 0;

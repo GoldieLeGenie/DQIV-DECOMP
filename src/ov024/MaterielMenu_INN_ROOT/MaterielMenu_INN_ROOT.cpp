@@ -1,4 +1,5 @@
 #include "ov024/MaterielMenu_INN_ROOT/MaterielMenu_INN_ROOT.hpp"
+#include "main/object/DisplayCharacter.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/text/TextAPI.hpp"
 #include "main/status/PartyStatus.hpp"
@@ -111,7 +112,7 @@ THUMB void MaterielMenu_INN_ROOT::selectYes()
         cmn::GameManager::getSingleton();
         cmn::PlayerManager::setLock(0);
         cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 1;
-        func_020499a4(1);
+        BillboardCharacter::setAllCharaAnim(1);
         g_Global.bookingFlag_ = Global::BOOKING_NONE;
         MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
         MaterielMenu_WINDOW_MANAGER::getSingleton()->extraImuruEnd_ = 0;
@@ -186,7 +187,7 @@ THUMB void MaterielMenu_INN_ROOT::fadeEffect()
                 cmn::GameManager::getSingleton();
                 cmn::PlayerManager::setLock(1);
                 cmn::GameManager::getSingleton()->playerManager_->charaColl_ = 0;
-                func_020499a4(0);
+                BillboardCharacter::setAllCharaAnim(0);
                 g_Global.bookingFlag_ = Global::BOOKING_INN;
                 mode_ = 4;
             }

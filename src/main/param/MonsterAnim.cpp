@@ -42,33 +42,32 @@ unsigned short monsterAnimDataIndex[310] = {
     0x043b, 0x0442, 0x0448, 0x044e, 0x0455, 0x045c,
 };
 
-THUMB unsigned short param::MonsterAnim::getDataIndex(int index)
+THUMB unsigned short param::MonsterAnim::getDataIndex(unsigned int index)
 {
     return monsterAnimDataIndex[index];
 }
 
-THUMB int param::MonsterAnim::getAnimData(unsigned int monsterId, unsigned short actionId, unsigned short animId)
+THUMB int param::MonsterAnim::getAnimData(MonsterAnim* anim, unsigned int monsterId, unsigned short actionId, unsigned short animId)
 {
-    unsigned int index = getDataIndex(monsterId);
-    param::MonsterAnim* p = &this[index];
-    while (index < 0x463)
+    unsigned int line = getDataIndex(monsterId);
+    MonsterAnim* panim = &anim[line];
+    while (line < 0x463)
     {
-        if (animId == p->anim && actionId == p->action)
+        if (animId == panim->anim && actionId == panim->action)
         {
             break;
         }
-        p++;
-        if (monsterId != p->monster && p->monster != 1000)
-
+        panim++;
+        if (monsterId != panim->monster && panim->monster != 1000)
         {
-            index = -1;
+            line = -1;
             break;
         }
-        index++;
+        line++;
     }
-    if (index == 0x463)
+    if (line == 0x463)
     {
-        index = -1;
+        line = -1;
     }
-    return index;
+    return line;
 }

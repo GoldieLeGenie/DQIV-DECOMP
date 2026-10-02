@@ -28,20 +28,20 @@ THUMB void BattleMonsterMask::initialize()
     sprite_.setPolygonID(0x3e);
     sprite_.unk_28 = 0;
     sprite_.setAlpha(10);
-    func_02084534(&sprite_, 0, 0);
-    func_0208456c(&sprite_, 0x80, 0x80);
+    sprite_.unkfunc_02084534(0, 0);
+    sprite_.unkfunc_0208456c(0x80, 0x80);
     sprite_.enable_ = 0;
     func_02084e8c(&sprite_, 0, 0, 0);
-    func_02057d60(&mask_[0], "data/mask/en02.tex", 0);
-    func_02057f00(&mask_[0], 1);
-    func_02057d60(&mask_[1], "data/mask/en01.tex", 0);
-    func_02057f00(&mask_[1], 1);
+    mask_[0].unkfunc_02057d60("data/mask/en02.tex", 0);
+    mask_[0].unkfunc_02057f00(1);
+    mask_[1].unkfunc_02057d60("data/mask/en01.tex", 0);
+    mask_[1].unkfunc_02057f00(1);
     for (int i = 0; i < 2; i++) {
-        func_02057ef4(&mask_[i]);
-        func_02057f18(&mask_[i], 0x3e);
-        func_02057f30(&mask_[i], 0);
-        func_02057e88(&mask_[i], 0, 0);
-        func_02057ed4(&mask_[i], 0);
+        mask_[i].unkfunc_02057ef4();
+        mask_[i].unkfunc_02057f18(0x3e);
+        mask_[i].unkfunc_02057f30(0);
+        mask_[i].unkfunc_02057e88(0, 0);
+        mask_[i].unkfunc_02057ed4(0);
     }
     scale_ = 0x1000;
 }
@@ -59,7 +59,7 @@ THUMB void BattleMonsterMask::setup()
 THUMB void BattleMonsterMask::terminate()
 {
     for (int i = 0; i < 2; i++) {
-        func_02057e34(&mask_[i]);
+        mask_[i].unkfunc_02057e34();
     }
 }
 
@@ -77,26 +77,26 @@ THUMB void BattleMonsterMask::draw()
     if (select_ < 0) {
         sprite_.enable_ = 0;
         for (int i = 0; i < 2; i++) {
-            func_02057ed4(&mask_[i], 0);
+            mask_[i].unkfunc_02057ed4(0);
         }
         return;
     }
     sprite_.enable_ = 1;
     for (int i = 0; i < 2; i++) {
-        func_02057ed4(&mask_[i], 1);
+        mask_[i].unkfunc_02057ed4(1);
     }
     for (int i = 0; i < g_monster.getCount(); i++) {
         if (g_monster.getMonsterStatus(i)->isBattleEnable() && select_ == g_monster.getMonsterGroup(i)) {
             targetPos[i] = getTargetPos(i);
         }
     }
-    func_020848a8();
+    unkfunc_020848a8();
     for (int j = 0; j < 2; j++) {
         for (int i = 0; i < 12; i++) {
             if (select_ == g_monster.getMonsterGroup(i) && g_monster.getMonsterStatus(i)->isBattleEnable()) {
-                func_02057e88(&mask_[j], targetPos[i].vx / 2, targetPos[i].vy * 2 / 3);
-                func_02057f38(&mask_[j], 0);
-                func_02057ec0(&mask_[j]);
+                mask_[j].unkfunc_02057e88(targetPos[i].vx / 2, targetPos[i].vy * 2 / 3);
+                mask_[j].unkfunc_02057f38(0);
+                mask_[j].unkfunc_02057ec0();
             }
         }
     }
@@ -127,7 +127,7 @@ THUMB dss::Vector2<int> BattleMonsterMask::getTargetPos(int actorindex)
     screen.vx -= maskScaleY;
     screen.vy -= maskScaleX;
     for (int i = 0; i < 2; i++) {
-        func_02057e98(&mask_[i], maskScaleY, maskScaleX);
+        mask_[i].unkfunc_02057e98(maskScaleY, maskScaleX);
     }
     return screen;
 }

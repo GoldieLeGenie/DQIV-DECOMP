@@ -6,15 +6,15 @@
 THUMB void BattleMenu_MAGIC2PARTY::menuSetup()
 {
     status::g_Party.setBattleMode();
-    func_02051900(&menuItem_, 1, 5);
-    func_02051900(&cancelItem_, 2, 0);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
+    cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     partyMax_ = status::g_Party.getCarriageOutCount();
     magic_ = btl::BattleMenuPlayerControl::getSingleton()->activeMagic_;
 }
 
 THUMB void BattleMenu_MAGIC2PARTY::menuExecute()
 {
-    func_02023504(&navigator_, 2, 2, partyMax_);
+    navigator_.setup(2, 2, partyMax_);
     func_ov015_0216c63c(&menuItem_, partyMax_);
     func_ov015_0216c5c4(&cancelItem_);
 }
@@ -22,20 +22,20 @@ THUMB void BattleMenu_MAGIC2PARTY::menuExecute()
 THUMB void BattleMenu_MAGIC2PARTY::menuDraw()
 {
     func_ov015_0216bbd0();
-    func_02051968(&menuItem_);
+    menuItem_.drawActive();
 }
 
 THUMB void BattleMenu_MAGIC2PARTY::menuUpdate()
 {
     int chara = btl::BattleMenuPlayerControl::getSingleton()->activeChara_;
-    if (func_02023230(&cancelItem_)) {
+    if (MenuUpdate_Assist::isCancel(cancelItem_)) {
         status::g_Party.getPlayerStatus(chara)->haveBattleStatus_.setSelectCommand(status::HaveBattleStatus::UseAction, -1);
         close();
         gBattleMenu_MAGIC.open();
         gBattleMenu_MAGIC.setActiveMagicPos(activeMagicPos_);
         return;
     }
-    int result = func_02023274(&menuItem_, &navigator_);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         redraw_ = 1;
         if (result == 2) {

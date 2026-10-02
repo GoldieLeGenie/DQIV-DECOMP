@@ -1,4 +1,5 @@
 #include "main/CommandParameter/CommandParameter.hpp"
+#include "main/global/GlobalDQ4.hpp"
 #include "main/Commands/CommonCommand.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
@@ -72,17 +73,17 @@ ARM int cmd_set_party_total_recovery(int* param)
         }
     }
     if (param[0] == 1) {
-        if (func_02058114(&data_0210bb94, 0xc) != 0) {
+        if (data_0210bb94.unkfunc_02058114(0xc) != 0) {
             TownPlayerManager::getSingleton()->resetParty();
         } else {
-            func_ov001_02127b28()->resetParty();
+            FieldPlayerManager::getSingleton()->resetParty();
         }
     }
     return 1;
 }
 
 //IDK THe name yet
-extern "C" ARM int func_02020008(CommandParameter* command)
+ARM int unkfunc_02020008(CommandParameter* command)
 {
     if (command->flag_ & 1) {
         if (command->flag_ & 0x40) {

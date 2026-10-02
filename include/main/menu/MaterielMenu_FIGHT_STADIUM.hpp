@@ -1,6 +1,7 @@
 #pragma once
 #include "globaldefs.h"
 #include "main/menu/MenuBase.hpp"
+#include "ov016/MenuTemplate_materiel.hpp"
 #include "main/menu/MaterielMenuWindowManager.hpp"
 
 struct MaterielMenu_FIGHT_STADIUM : menu::MenuBase
@@ -57,7 +58,6 @@ extern MaterielMenu_FIGHT_STADIUM data_ov016_02186914;      /* gMaterielMenu_FIG
 extern "C" {
     void func_ov016_0217736c(menu::MenuItem* menuItem, int active, int count, int x, int y);
     void func_ov016_0217742c(menu::MenuItem* menuItem, int active, int count);
-    void func_ov016_02177bac(int x, int y, int w, int h, int color);
     void func_ov016_02177c54(int flag);
     void func_ov016_02177c78(bool flag);
     void func_ov016_02177eb8(int monsterID, int diameter, int index, int orderCount);

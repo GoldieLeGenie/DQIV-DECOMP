@@ -14,7 +14,7 @@ const dss::Fix32 TownActionCalculate::cos_PI_6(0xddb);
 
 ARM bool TownActionCalculate::IntersectRaySphere(dss::Fix32Vector3& p, dss::Fix32Vector3& d, dss::Fix32Vector3& sc, dss::Fix32 r, dss::Fix32& t, dss::Fix32Vector3& q)
 {
-    dss::Fix32Vector3 m = func_02088988(p, sc);
+    dss::Fix32Vector3 m = p - sc;
     dss::Fix32 b = m * d;
     dss::Fix32 c = m * m - r * r;
     if (c > dss::Fix32(0L) && b > dss::Fix32(0L)) {
@@ -26,7 +26,7 @@ ARM bool TownActionCalculate::IntersectRaySphere(dss::Fix32Vector3& p, dss::Fix3
     }
     t = 0L;
     t -= b;
-    t -= func_02087438(discr);
+    t -= discr.sqrt();
     if (t < dss::Fix32(0L)) {
         t = 0L;
     }
@@ -36,27 +36,27 @@ ARM bool TownActionCalculate::IntersectRaySphere(dss::Fix32Vector3& p, dss::Fix3
 
 ARM bool TownActionCalculate::crossCheck(dss::Fix32Vector3& nowPos, dss::Fix32Vector3& nextPos, dss::Fix32Vector3& target, dss::Fix32 radius)
 {
-    dss::Fix32Vector3 vec = func_02088988(target, nextPos);
+    dss::Fix32Vector3 vec = target - nextPos;
     dss::Fix32 r2;
     r2.value = radius.value << 1;
     static const dss::Fix32 unusedR(0x7b);
-    if (func_02088f20(vec) < r2 * r2) {
-        func_02089168(&vec);
+    if (vec.lengthsq() < r2 * r2) {
+        vec.normalize();
         dss::Fix32Vector3 ret;
-        dss::Fix32Vector3 dir = func_02088988(nextPos, nowPos);
-        func_02089168(&dir);
+        dss::Fix32Vector3 dir = nextPos - nowPos;
+        dir.normalize();
         dss::Fix32 dot = dir * vec;
         dss::Fix32 t;
         if (dot.value > 0x92d) {
             if (IntersectRaySphere(nowPos, dir, target, r2, t, ret)) {
-                if (func_02088f98(nextPos, ret) <= radius) {
+                if (nextPos.length(ret) <= radius) {
                     nextPos = ret;
                 } else {
                     nextPos = nowPos;
                 }
             }
         } else {
-            nextPos = func_02088988(target, (vec * radius) * 2);
+            nextPos = target - (vec * radius) * 2;
         }
         return true;
     }
@@ -80,7 +80,7 @@ ARM void TownActionCalculate::townCharaColl(dss::Fix32Vector3& nowPos, dss::Fix3
         farTalk = 1;
     } else if (commonId != -1) {
         if (TownStageManager::getSingleton()->getSearchPolyDirection(vec) == 1) {
-            func_02088b3c(&vec, -1);
+            vec *= -1;
         } else {
             commonId = -1;
             vec.set(0, 0, 0);
@@ -133,8 +133,8 @@ ARM int TownActionCalculate::townStageColl(dss::Fix32Vector3& nowPos, dss::Fix32
     } else {
         nextPos.vy += height;
     }
-    vec = func_02088988(nextPos, nowPos);
-    if (func_02088f20(vec) < dv * dv) {
+    vec = nextPos - nowPos;
+    if (vec.lengthsq() < dv * dv) {
         nextPos = nowPos;
     } else {
         int collId = TownStageManager::getSingleton()->coll_.m_id;
@@ -142,7 +142,7 @@ ARM int TownActionCalculate::townStageColl(dss::Fix32Vector3& nowPos, dss::Fix32
         int surfaceId = func_0204098c(TownStageManager::getSingleton()->stage_.m_fld.m_coll, collId);
         int mapUid = func_02046e10(&TownStageManager::getSingleton()->stage_.m_fld, objectId);
         if (surfaceId != -1 || mapUid != 0) {
-            if (func_02088f20(vec) < dvObj * dvObj) {
+            if (vec.lengthsq() < dvObj * dvObj) {
                 nextPos = nowPos;
             }
         }
@@ -162,7 +162,7 @@ ARM void TownActionCalculate::townShipStageColl(dss::Fix32Vector3& nowPos, dss::
     temp = TownStageManager::getSingleton()->compute(nowPos, nextPos, radius, surfaceRad, preR, height);
     nextPos = temp;
     nextPos.vy += height;
-    vec = func_02088988(temp, nowPos);
+    vec = temp - nowPos;
 }
 
 ARM bool TownActionCalculate::directionCheckByPosition(dss::Fix32Vector3& pos, dss::Fix32Vector3& target, short idx, int value)
@@ -170,9 +170,9 @@ ARM bool TownActionCalculate::directionCheckByPosition(dss::Fix32Vector3& pos, d
     dss::Fix32Vector3 dir;
     dss::Fix32Vector3 vec;
     getDirByIdx(idx, dir);
-    vec = func_02088988(target, pos);
+    vec = target - pos;
     vec.vy = 0L;
-    func_02089168(&vec);
+    vec.normalize();
     return (vec * dir).value >= value;
 }
 
@@ -217,8 +217,8 @@ ARM int TownActionCalculate::searchPairWdoor(int objectId, dss::Fix32Vector3* do
     }
     if (commonId1 == commonId2) {
         TownStageManager::getSingleton()->getObjectPos(objectId2, 0, &posDoor2);
-        vec = func_02088988(posDoor2, posDoor1);
-        if (func_02088f20(vec) < wDoorlength * wDoorlength) {
+        vec = posDoor2 - posDoor1;
+        if (vec.lengthsq() < wDoorlength * wDoorlength) {
             retObjId = objectId2;
             ret = true;
         }
@@ -232,8 +232,8 @@ ARM int TownActionCalculate::searchPairWdoor(int objectId, dss::Fix32Vector3* do
         }
         if (commonId1 == commonId2) {
             TownStageManager::getSingleton()->getObjectPos(objectId2, 0, &posDoor2);
-            vec = func_02088988(posDoor2, posDoor1);
-            if (func_02088f20(vec) < wDoorlength * wDoorlength) {
+            vec = posDoor2 - posDoor1;
+            if (vec.lengthsq() < wDoorlength * wDoorlength) {
                 retObjId = objectId2;
             }
         }
@@ -310,7 +310,7 @@ ARM void TownActionCalculate::normalMove(dss::Fix32Vector3& position, short& dir
     unsigned short dirInput = TownPlayerManager::getSingleton()->player_.dirInput_;
     dss::Fix32Vector3 dir(TownCamera::getSingleton()->camera_.unk_004.getDirection());
     dir.vy = 0L;
-    func_02089168(&dir);
+    dir.normalize();
     MtxFx43 mtx;
     func_020885f8(&mtx);
     func_020886d0(&mtx, -dirInput);
@@ -325,13 +325,13 @@ ARM bool TownActionCalculate::checkGetOnShipAndIkada(const dss::Fix32Vector3& ne
 {
     bool ret = false;
     static const dss::Fix32 dot(0xa66);
-    dss::Fix32Vector3 vec = func_02088988(pos, nextPos);
+    dss::Fix32Vector3 vec = pos - nextPos;
     dss::Fix32Vector3 playerDir;
     getDirByIdx(dirIdx, playerDir);
     vec.vy.value = 0;
-    if (func_02088f20(vec) < length * length) {
-        func_02089168(&vec);
-        func_02089168(&playerDir);
+    if (vec.lengthsq() < length * length) {
+        vec.normalize();
+        playerDir.normalize();
         if (playerDir * vec > dot) {
             ret = true;
         }
@@ -362,15 +362,15 @@ ARM bool TownActionCalculate::checkGetDownShipAndIkada(dss::Fix32Vector3& nextPo
         if (!TownStageManager::getSingleton()->isPolyFacePosition(surfacePoly, nextPos, len)) {
             return false;
         }
-        func_02089168(&surfaceDir);
-        func_02089168(&playerDir);
+        surfaceDir.normalize();
+        playerDir.normalize();
         if ((surfaceDir * playerDir).value > -0x800) {
             return false;
         }
-        vec = func_02088988(nextPos, surfacePos);
+        vec = nextPos - surfacePos;
         vec.vy = 0L;
         length = vec * surfaceDir;
-        length.value = func_02031e84(length.value);
+        length.value = unkfunc_02031e84(length.value);
         length += downL;
         checkPos = nextPos + (surfaceDir * -1) * length;
         dss::Fix32 fy;
@@ -444,7 +444,7 @@ ARM short TownActionCalculate::getIdxByParam(unsigned char dir)
 ARM bool TownActionCalculate::checkLineOver(dss::Fix32Vector3& pos, dss::Fix32Vector3& linePos, dss::Fix32Vector3 normal)
 {
     bool ret = false;
-    dss::Fix32Vector3 vec = func_02088988(pos, linePos);
+    dss::Fix32Vector3 vec = pos - linePos;
     dss::Fix32 dot = vec * normal;
     if (dot >= dss::Fix32(0L)) {
         ret = true;
@@ -483,15 +483,15 @@ ARM bool TownActionCalculate::checkGetDownIkada(dss::Fix32Vector3& nextPos, shor
         surfaceDir = TownStageManager::getSingleton()->getHitSurfaceDirByType(10);
         surfacePos = TownStageManager::getSingleton()->getHitSurfacePosByType(10);
         int surfacePoly = TownStageManager::getSingleton()->coll_.m_id;
-        func_02089168(&surfaceDir);
-        func_02089168(&playerDir);
+        surfaceDir.normalize();
+        playerDir.normalize();
         if ((surfaceDir * -1) * playerDir < cos_PI_6) {
             return false;
         }
-        vec = func_02088988(nextPos, surfacePos);
+        vec = nextPos - surfacePos;
         vec.vy = 0L;
         length = vec * surfaceDir;
-        length.value = func_02031e84(length.value);
+        length.value = unkfunc_02031e84(length.value);
         length += downL;
         checkPos = nextPos + (surfaceDir * -1) * length;
         dss::Fix32 fy;
@@ -506,9 +506,9 @@ ARM bool TownActionCalculate::checkGetDownIkada(dss::Fix32Vector3& nextPos, shor
             tempPos = TownStageManager::getSingleton()->compute(targetPos, targetPos, TownPlayerAction::collR, TownPlayerAction::collR, TownPlayerAction::collR * 2, fy);
             tnext = nextPos;
             tnext.vy = tempPos.vy;
-            if (func_02088ca8(&tempPos, &targetPos)) {
+            if ((tempPos == targetPos)) {
                 townCharaColl(tempPos, tempPos, TownPlayerAction::townCharaR, -1, -1, -1, TownPlayerAction::walkCtrLen, 0);
-                if (func_02088ca8(&tempPos, &targetPos)) {
+                if ((tempPos == targetPos)) {
                     tnext.vy = targetPos.vy = height;
                     int polyNo;
                     if (TownStageManager::getSingleton()->checkCrossNumEraseSurface(tnext, targetPos, 0xc000, 1, polyNo) == 2) {

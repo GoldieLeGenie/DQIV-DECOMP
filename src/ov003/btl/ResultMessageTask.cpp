@@ -59,7 +59,7 @@ ARM void btl::ResultMessageTask::initialize()
         message_ = btl::BattleMessage::setResultMessage(useActionParam_, currentTarget_);
     }
 
-    func_0208980c();
+    BattleAutoFeed::setResultMessage();
     btl::BattleMessage::setShakeMessage(useActionParam_, currentTarget_);
     btl::BattleActorAnimation::setResultAnimation(useActionParam_, currentTarget_);
 
@@ -79,7 +79,7 @@ ARM void btl::ResultMessageTask::terminate()
 
 ARM void btl::ResultMessageTask::execute()
 {
-    if (func_02089820() || message_ == 0) {
+    if (BattleAutoFeed::isEndResultMessage() || message_ == 0) {
         cleanup();
     }
 }

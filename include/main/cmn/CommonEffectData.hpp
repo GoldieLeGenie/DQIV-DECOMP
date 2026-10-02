@@ -28,4 +28,6 @@ namespace cmn {
 extern "C" {
     void func_02086798(void* texture, int flag);   /* load texture */
     void func_02086868(void* texture);             /* release texture */
+    void func_02086968(void* texture, int flag);
+    int  func_02086a9c(void* texture);
 }

@@ -21,5 +21,4 @@ extern TownMenu_PARTY_TALK data_ov016_02187b28;
 extern menu::MenuBase data_ov016_02187c60;
 
 extern "C" {
-    int  func_02058114(void* global, int partId);
 }

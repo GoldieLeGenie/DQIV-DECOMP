@@ -8,9 +8,9 @@ THUMB void MaterielMenu_SHOP_BUYMENU::menuSetup()
 {
     status::g_Party.setPlayerMode();
     func_02080e64(-4, 0);
-    func_02051900(&menuItem_, 1, 5);
-    func_02051900(&menuItem2_, 3, 0);
-    func_02023324(&navigator_);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
+    menuItem2_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
+    navigator_.setupBase();
     activeItem_ = func_ov016_0216ff2c()->activeItem_;
     message_ = 0;
     for (int i = 0; i < MaterielMenu_SHOP_MANAGER::getSingleton()->getSellItemCount(); i++) {
@@ -47,7 +47,7 @@ THUMB void MaterielMenu_SHOP_BUYMENU::menuDraw()
         return;
     }
     func_ov016_0216fb24(fukuroItemCount_, 0);
-    func_02051968(&menuItem_);
+    menuItem_.drawActive();
 }
 
 THUMB void MaterielMenu_SHOP_BUYMENU::menuUpdate()
@@ -56,13 +56,13 @@ THUMB void MaterielMenu_SHOP_BUYMENU::menuUpdate()
         if ((unsigned int)(data_020ed1bc.stat_ - 1) <= 1) {
             data_020ed1bc.close();
             if (message_) {
-                func_02051900(&menuItem_, 3, 5);
+                menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
                 message_ = 0;
             }
         }
         return;
     }
-    if (func_02023230(&menuItem2_)) {
+    if (MenuUpdate_Assist::isCancel(menuItem2_)) {
         close();
         data_020ed1bc.openMessageForTALK();
         data_020ed1bc.addMessageNOWAIT(MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->cancel());
@@ -71,9 +71,9 @@ THUMB void MaterielMenu_SHOP_BUYMENU::menuUpdate()
         data_ov016_02185c10.mode_ = 1;
         return;
     }
-    func_02023504(&navigator_, 1, 6, MaterielMenu_SHOP_MANAGER::getSingleton()->getSellItemCount());
+    navigator_.setup(1, 6, MaterielMenu_SHOP_MANAGER::getSingleton()->getSellItemCount());
     int active = menuItem_.active_;
-    int result = func_02023274(&menuItem_, &navigator_);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         if (result == 2) {
             checkBuy();

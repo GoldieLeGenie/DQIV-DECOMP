@@ -12,4 +12,3 @@ namespace param {
     };
 }
 
-extern "C" int func_020882b0(const char*, const char*);                   // strcmp

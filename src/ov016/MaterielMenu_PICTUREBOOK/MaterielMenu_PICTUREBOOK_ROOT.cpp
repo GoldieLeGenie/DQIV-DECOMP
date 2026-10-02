@@ -11,15 +11,15 @@
 THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02051900(&menuItem_, 3, 5);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     m_bookData = status::excelParam.bookData_;
     m_activeMonster = func_ov016_0216ff2c()->activeItem_;
     m_nowPage = func_ov016_0216ff2c()->activeItemPage_;
     unk_98 = 1;
     m_state = 0;
     menuItem_.active_ = m_activeMonster;
-    func_02023324(&navigator_);
-    func_02023504(&navigator_, 2, 8, MaterielMenu_PICTUREBOOK_DETAIL::MAX_MONSTER_NO + 1);
+    navigator_.setupBase();
+    navigator_.setup(2, 8, MaterielMenu_PICTUREBOOK_DETAIL::MAX_MONSTER_NO + 1);
     int find = 0;
     data_ov016_02186288.isOpen_ = 0;
     if (m_activeMonster == 0 && m_nowPage == 0) {
@@ -39,7 +39,7 @@ THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuSetup()
             }
         }
     }
-    func_02023344(&navigator_, m_nowPage);
+    navigator_.setPageNo(m_nowPage);
     getMonsterFlag();
     int activeItem = m_activeMonster;
     func_ov016_0216ff2c()->activeItem_ = activeItem;
@@ -61,7 +61,7 @@ THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuDraw()
     if (status::g_BattleResult.getEncountCount() != 0) {
         func_ov016_0216fda0(monsterName_, monsterFlag_);
         if (m_state == 0 && !data_020ed1bc.isOpen()) {
-            func_02051968(&menuItem_);
+            menuItem_.drawActive();
         }
     }
 }
@@ -85,14 +85,14 @@ THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuUpdate()
     if (m_state == 1) {
         return;
     }
-    func_02023504(&navigator_, 2, 8, MaterielMenu_PICTUREBOOK_DETAIL::MAX_MONSTER_NO + 1);
-    int result = func_02023274(&menuItem_, &navigator_);
+    navigator_.setup(2, 8, MaterielMenu_PICTUREBOOK_DETAIL::MAX_MONSTER_NO + 1);
+    int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         m_activeMonster = menuItem_.active_;
         int activeItem = m_activeMonster;
         func_ov016_0216ff2c()->activeItem_ = activeItem;
-        if (m_nowPage != func_0202333c(&navigator_)) {
-            m_nowPage = func_0202333c(&navigator_);
+        if (m_nowPage != navigator_.getPageNo()) {
+            m_nowPage = navigator_.getPageNo();
             int activeItemPage = m_nowPage;
             func_ov016_0216ff2c()->activeItemPage_ = activeItemPage;
             getMonsterFlag();
@@ -110,12 +110,12 @@ THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuUpdate()
         }
         if (result == 7) {
             if (status::g_BattleResult.getEncountCount() == 0) {
-                m_activeMonster = func_0202339c(&navigator_, m_activeMonster);
-                m_nowPage = func_0202333c(&navigator_);
+                m_activeMonster = navigator_.pageBack(m_activeMonster);
+                m_nowPage = navigator_.getPageNo();
             } else {
                 while (!checkPage()) {
-                    m_activeMonster = func_02023364(&navigator_, m_activeMonster);
-                    m_nowPage = func_0202333c(&navigator_);
+                    m_activeMonster = navigator_.pageNext(m_activeMonster);
+                    m_nowPage = navigator_.getPageNo();
                 }
                 getMonsterFlag();
             }
@@ -126,12 +126,12 @@ THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuUpdate()
         }
         if (result == 6) {
             if (status::g_BattleResult.getEncountCount() == 0) {
-                m_activeMonster = func_02023364(&navigator_, m_activeMonster);
-                m_nowPage = func_0202333c(&navigator_);
+                m_activeMonster = navigator_.pageNext(m_activeMonster);
+                m_nowPage = navigator_.getPageNo();
             } else {
                 while (!checkPage()) {
-                    m_activeMonster = func_0202339c(&navigator_, m_activeMonster);
-                    m_nowPage = func_0202333c(&navigator_);
+                    m_activeMonster = navigator_.pageBack(m_activeMonster);
+                    m_nowPage = navigator_.getPageNo();
                 }
                 getMonsterFlag();
             }

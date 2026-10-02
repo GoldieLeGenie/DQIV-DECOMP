@@ -222,7 +222,6 @@ public:
 };
 
 extern int data_020f0078;     // manager SELECTTAISHI
-extern "C" void* func_020882d4(void* dst, int c, int n);                   
 extern "C" void func_02030df8(void* prof, unsigned char* dst, void* flag);  // Profile::collectGameFlag 
 extern "C" void func_0201d288(void* stage, int savetype, void* pparty);     // collectMapFlag
 extern "C" unsigned char func_0203ab30(void* mgr, int index);               // getter SELECTTAISHI
@@ -256,7 +255,6 @@ extern "C" void func_02037ca4(void);                              //
 extern "C" void* func_020882ec(void* dst, void* src, int n);      // memcpy
 extern "C" int STD_CompareString(void* a, void* b);   // strcmp
 extern "C" int func_0201d3a4(void* stage);        // "restartChurch" 
-extern char data_020c13a0[8];
 extern "C" void func_0200b864(Global *g);                        // init g_Global
 extern "C" void func_0205594c(int fade);                         // SoundManager::stopBgm
 extern "C" void func_0203ab20(void *mgr, int index, unsigned char value); // 

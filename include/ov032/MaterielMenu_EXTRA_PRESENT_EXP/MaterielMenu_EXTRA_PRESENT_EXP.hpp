@@ -12,7 +12,7 @@ struct MaterielMenu_EXTRA_PRESENT_EXP : menu::MenuBase
     unsigned char levelUpMode_;         /* 0x28 */
     int bgm_;                           /* 0x2C */
     menu::MenuItem menuItem_;           /* 0x30 */
-    menu::MenuNavigator navigator_;     /* 0x94 */
+    CursorMoveGridLoop navigator_;     /* 0x94 */
 
     virtual void menuSetup();
     virtual void menuExecute();

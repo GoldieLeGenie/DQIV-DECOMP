@@ -39,14 +39,48 @@ namespace encount {
         int monsterGroupWidth_[4];
         int encountNumberIndex_;
         int encountCountType_[4];
+
+        enum {
+            MONSTER_NONE = 1000,
+            WALK_COUNT = 16,
+        };
+
+        Encount();
+        ~Encount();
+        static Encount* getSingleton();
+        void initialize();
+        void setup(EncountPart part, LandType land);
+        void exec();
+        void execDungeon();
+        void execWalk();
+        btl::FirstAttack getFirstAttack();
+        bool isEncounted();
+        bool isEncountedNext();
+        void setStage(char* stage, LandType land);
+        void setBlock(int x, int y);
+        void setBlockGot(int x, int y);
+        void setBlockYami(int x, int y);
+        void setTileId(int tile);
+        void setTimeZone(TIME_ZONE timeZone);
+        void setChapter(int chapter);
+        void setPartyCount(int count);
+        bool brew();
+        void execThinning();
+        void forceBrew(int tile);
+        void forceEventBrew(int tile);
+        void forceEncount();
+        void disableEncount(int actionIndex);
+        void easyEncount(int actionIndex);
+        void differentEncount(int actionIndex);
+        bool checkScreenOver();
+        void setThinning(int index);
+        void checkFiveGroup();
+        bool checkFiveGroupMonster(int monsterIndex);
+        void setFiveGroupMonster(int monsterIndex);
+        void setCrusingPeople();
+        void setMonsterCountName();
+        bool getMonsterCountName(int monsterIndex);
+        int getEncountNumberType();
     };
 }  // namespace encount
 
-extern "C" {
-    encount::Encount* func_0200a6c8(void);
-    void func_0200a8b8(encount::Encount* encount);                     // execWalk
-    btl::FirstAttack func_0200a978(encount::Encount* encount);
-    void func_0200acc8(encount::Encount* encount, int id);
-    void func_0200acec(encount::Encount* encount, int id);
-    int  func_0200aef8(encount::Encount* encount, int monsterIndex);
-}

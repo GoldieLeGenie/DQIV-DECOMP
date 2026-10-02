@@ -2932,7 +2932,7 @@ from:0x0217667c kind:load to:0x02179a14 module:overlay(15)
 from:0x02176680 kind:load to:0x02177674 add:0x8 module:overlay(15)
 from:0x02176684 kind:load to:0x021799bc module:overlay(15)
 from:0x02176688 kind:load to:0x02179abc module:overlay(15)
-from:0x0217668c kind:load to:0x020be03c module:main
+from:0x0217668c kind:load to:0x020be034 add:0x8 module:main
 from:0x02176690 kind:load to:0x02179ec4 module:overlay(15)
 from:0x02176694 kind:load to:0x021777bc add:0x8 module:overlay(15)
 from:0x02176698 kind:load to:0x02179ebc module:overlay(15)

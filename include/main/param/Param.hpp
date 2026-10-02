@@ -452,26 +452,32 @@ namespace param {
 
     struct EncountSeaTile {
         unsigned char* tile_;
+        static const unsigned int width_;
     };
 
     struct EncountTile1 {
         unsigned char* tile_;
+        static const unsigned int width_;
     };
 
     struct EncountTile2 {
         unsigned char* tile_;
+        static const unsigned int width_;
     };
 
     struct EncountTile3 {
         unsigned char* tile_;
+        static const unsigned int width_;
     };
 
     struct EncountGotTile {
         unsigned char* tile_;
+        static const unsigned int width_;
     };
 
     struct EncountYamiTile {
         unsigned char* tile_;
+        static const unsigned int width_;
     };
 
     

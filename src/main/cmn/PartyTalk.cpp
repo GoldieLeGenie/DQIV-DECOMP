@@ -1,4 +1,5 @@
 #include "main/cmn/PartyTalk.hpp"
+#include "main/dss/DssUtils.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/StageStatus.hpp"
@@ -85,7 +86,7 @@ THUMB void cmn::PartyTalk::setPartyTalkMessage()
     if (floor_ == -1)
     {
         char* mapname = "field\0\0";
-        func_020882b0(mapname, g_Global.getMapName());
+        dss::DssUtils::unkfunc_020882b0(mapname, g_Global.getMapName());
         if (g_Global.getFieldType() == 2)
         {
             floor_ = 0x221;

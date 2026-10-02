@@ -316,11 +316,10 @@ THUMB void status::Status::setFlagShopExec()
     if (flagShopIndex_ != -1) {
         param::Event* event = param::Event::getFileData(flagShopIndex_);
         char floor[10];
-        func_020882d4(floor, 0, 10);
+        dss::DssUtils::unkfunc_020882d4(floor, 0, 10);
         dss::DssUtils::strcpy_s(floor, 10, event->floor);
         func_02057f80(&data_020c7830);
-        func_0200a6c8();
-        func_0200a734();
+        encount::Encount::getSingleton()->initialize();
         initialize();
         setEventParty(flagShopIndex_);
         flagShopIndex_ = -1;

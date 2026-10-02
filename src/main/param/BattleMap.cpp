@@ -1,4 +1,5 @@
 #include "main/param/BattleMap.hpp"
+#include "main/dss/DssUtils.hpp"
 
 THUMB int param::BattleMap::getBattleMap(param::BattleMap *data, char *name)
 {
@@ -75,7 +76,7 @@ THUMB int param::BattleMap::getBattleMap(param::BattleMap *data, char *name)
 
     while (index < 0x8A)
     {
-        if (func_020882b0(data[index].map, name) == 0)
+        if (dss::DssUtils::unkfunc_020882b0(data[index].map, name) == 0)
             return index;
         index++;
     }

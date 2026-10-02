@@ -142,7 +142,7 @@ THUMB void TownRiseupSprite::setScriptData(dss::Fix32Vector3 start, dss::Fix32Ve
     phase_ = SPRITE_MOVE;
     start_ = start;
     end_ = end;
-    move_ = func_02088bdc(func_02088988(end, start), frame);
+    move_ = (end - start) / frame;
     frame_ = frame;
     counter_ = 0;
     setPosition(start);

@@ -7,9 +7,9 @@
 THUMB void MaterielMenu_COINSALEROOM_ROOT::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02051900(&menuItem_, 3, 1);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_UP);
     menuItem_.active_ = 5;
-    func_02023324(&navigator_);
+    navigator_.setupBase();
     mode_ = 0;
     oldActive_ = menuItem_.active_;
     coin_ = 0;
@@ -36,7 +36,7 @@ THUMB void MaterielMenu_COINSALEROOM_ROOT::menuDraw()
         func_ov016_0216fd34(coin_, 1);
         if (blink_ != 0) {
             if (blinkCount_ > 15) {
-                func_02051968(&menuItem_);
+                menuItem_.drawActive();
             }
             if (blinkCount_ == 0 || blinkCount_ == 16) {
                 redraw_ = 1;
@@ -46,7 +46,7 @@ THUMB void MaterielMenu_COINSALEROOM_ROOT::menuDraw()
                 blinkCount_ = 0;
             }
         } else {
-            func_02051968(&menuItem_);
+            menuItem_.drawActive();
         }
     }
 }
@@ -127,8 +127,8 @@ THUMB void MaterielMenu_COINSALEROOM_ROOT::buyCoinUpdata()
             addCoin = 1;
             break;
         }
-        func_02023504(&navigator_, 6, 1, 6);
-        int result = func_02023274(&menuItem_, &navigator_);
+        navigator_.setup(6, 1, 6);
+        int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
         if (result != 0) {
             if (result == 2) {
                 if (coin_ == 0) {
