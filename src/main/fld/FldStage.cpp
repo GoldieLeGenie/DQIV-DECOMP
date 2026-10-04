@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "main/fld/FldStage.hpp"
+#include "main/fld/FldCollision.hpp"
 #include "main/cmn/MoveBase.hpp"
 #include "main/data/FileLoader.hpp"
 #include "main/text/TextAPI.hpp"
@@ -40,11 +41,11 @@ ARM void FldStage::terminate()
 ARM void FldStage::setup()
 {
     func_0208532c(this, m_render);
-    func_02083354(&m_anim, m_model.getAddr());
+    m_anim.unkfunc_02083354(m_model.getAddr());
     void* model = m_model.getAddr();
     void* texture = m_texture.getAddr();
     void* coll = m_coll.getAddr();
-    func_02042428(&m_fld, model, texture, coll, *func_0207f88c(data_0211a60c));
+    m_fld.Setup(model, texture, coll, *func_0207f88c(&data_0211a60c));
     dss::Fix32Vector3 scale(1, 1, 1);
     func_020857a8(0, scale);
     int color = m_fld.m_scene->backColor;
@@ -56,30 +57,30 @@ ARM void FldStage::cleanup()
 {
     func_02084c78(0, 0, 0);
     func_02085348(this);
-    func_02045e10(&m_fld);
+    m_fld.Final();
     m_model.cleanup();
     m_texture.cleanup();
     m_coll.cleanup();
-    func_02083360(&m_anim);
+    m_anim.unkfunc_02083360();
     m_data.cleanup();
 }
 
 ARM void FldStage::setPath(const char* path)
 {
-    func_02088258(path_, "%s", path);
+    dss::sprintf(path_, "%s", path);
 }
 
 ARM bool FldStage::isExist(char* name)
 {
     char buf[0x80];
-    func_02088258(buf, "%s/%s.lz", path_, name);
-    return func_0207ebd4(&data_02116ce8, buf) != 0;
+    dss::sprintf(buf, "%s/%s.lz", path_, name);
+    return dss::g_File.isExist(buf) != 0;
 }
 
 ARM void FldStage::load(char* name)
 {
     char buf[0x80];
-    func_02088308(buf, sizeof(buf), "%s/%s.lz", path_, name);
+    dss::sprintf_s(buf, sizeof(buf), "%s/%s.lz", path_, name);
     m_data.setup(buf, 1, 1);
     m_model.setup(func_0207f8dc(m_data.getAddr(), 0));
     m_texture.setup(func_0207f8dc(m_data.getAddr(), 1));
@@ -97,11 +98,11 @@ ARM void FldStage::draw()
 {
     drawTick = func_0207e7e8();
     resetGlbMatrix();
-    func_02045004(&m_fld);
+    m_fld.unkfunc_02045004();
     resetGlbMatrix();
     if (collisionDrawFlag_ == 0) {
         func_0206ae30((VecFx32*)&scale_);
-        func_0204545c(&m_fld);
+        m_fld.unkfunc_0204545c();
     }
     resetGlbMatrix();
     drawTick = func_0207e7e8() - drawTick;
@@ -137,25 +138,25 @@ ARM dss::Fix32 FldStage::getCameraLimitL()
 
 ARM void FldStage::eraseObject(int uid, int flag)
 {
-    func_020463e4(&m_fld, uid);
-    func_02046194(&m_fld, uid, flag);
+    m_fld.CollEraseMapUid(uid);
+    m_fld.SetMapUidOnOff(uid, flag);
 }
 
 ARM void FldStage::setMapUidOnOff(int uid, int flag)
 {
-    func_02046194(&m_fld, uid, flag);
+    m_fld.SetMapUidOnOff(uid, flag);
 }
 
 ARM int FldStage::eventAnim(int anim, int frame)
 {
     if (frame == 0) {
-        func_020465b4(&m_fld, anim);
+        m_fld.unkfunc_020465b4(anim);
         return 1;
     }
-    if (func_02046e40(&m_fld, frame) != func_02046eac(&m_fld, frame)) {
+    if (m_fld.unkfunc_02046e40(frame) != m_fld.unkfunc_02046eac(frame)) {
         return 0;
     }
-    func_020465b4(&m_fld, anim);
+    m_fld.unkfunc_020465b4(anim);
     return 1;
 }
 
@@ -163,15 +164,15 @@ ARM void FldStage::repop(int uid)
 {
     int* list = GetMapUidObj(uid);
     for (int i = 0; i < pool_counter; i++) {
-        func_02045fd0(&m_fld, list[i], 0);
-        func_020468b8(&m_fld, list[i], 0);
+        m_fld.SetMapObjOnOff(list[i], 0);
+        m_fld.SetCommonAnimation(list[i], 0);
         func_02040a8c(m_fld.m_coll, list[i]);
     }
 }
 
 ARM void FldStage::commonAnim(int obj, int frame)
 {
-    func_020468b8(&m_fld, obj, frame);
+    m_fld.SetCommonAnimation(obj, frame);
 }
 
 ARM void FldStage::animLocation(int id, int frame, int uidFlag)
@@ -188,27 +189,27 @@ ARM void FldStage::animLocation(int id, int frame, int uidFlag)
 
 ARM void FldStage::setAnimLocation(int obj, int frame)
 {
-    if (func_02046c20(&m_fld, obj) == 1) {
-        func_020468b8(&m_fld, obj, 0);
+    if (m_fld.IsCommonAnimationEnd(obj) == 1) {
+        m_fld.SetCommonAnimation(obj, 0);
         func_02040a8c(m_fld.m_coll, obj);
     }
     if (frame == 0) {
         func_020409f0(m_fld.m_coll, obj);
-        func_02045fd0(&m_fld, obj, 1);
+        m_fld.SetMapObjOnOff(obj, 1);
         return;
     }
-    if (func_02046ba4(&m_fld, obj) < frame) {
+    if (m_fld.GetCommonAnimationNum(obj) < frame) {
         return;
     }
-    if (frame == func_02046f34(&m_fld, obj)) {
+    if (frame == m_fld.GetCommonAnimationNo(obj)) {
         return;
     }
-    func_020468b8(&m_fld, obj, frame);
+    m_fld.SetCommonAnimation(obj, frame);
 }
 
 ARM void FldStage::setAlpha(int obj, int alpha)
 {
-    func_02045f68(&m_fld, obj, alpha, 0);
+    m_fld.SetMapObjAlpha(obj, alpha, 0);
 }
 
 ARM void FldStage::setFldColl(FldCollision* coll)
@@ -222,7 +223,7 @@ ARM bool FldStage::collGetPolygonPos(int poly, dss::Fix32Vector3* pos)
 {
     COLL_POLY p;
     *pos *= 0;
-    if (!func_0203f464(m_fld.m_coll, poly, &p)) {
+    if (!coll_GetPoly(m_fld.m_coll, poly, &p)) {
         return false;
     }
     if (p.type & 1) {
@@ -259,7 +260,7 @@ ARM int FldStage::collCrossCheckPoly(dss::Fix32Vector3& start, dss::Fix32Vector3
     int ret = -1;
     fx32 min = 0x7ffffff;
     while ((poly = collCrossCheck(s, e, poly, &d)) != -1) {
-        if (func_0204098c(m_fld.m_coll, poly) != -1 && !all) {
+        if (coll_GetSurface(m_fld.m_coll, poly) != -1 && !all) {
             poly++;
             continue;
         }
@@ -298,18 +299,18 @@ ARM int FldStage::collCrossCheckOtherNo(dss::Fix32Vector3& start, dss::Fix32Vect
 ARM void FldStage::setRotObjectUid(int uid, dss::Fix32Vector3& rot)
 {
     VecFx32 v = getVecFx32(rot);
-    func_0204627c(&m_fld, uid, &v);
+    m_fld.unkfunc_0204627c(uid, &v);
 }
 
 ARM int FldStage::collGetPoly(int poly, COLL_POLY* out)
 {
-    return func_0203f464(m_fld.m_coll, poly, out);
+    return coll_GetPoly(m_fld.m_coll, poly, out);
 }
 
 ARM void FldStage::setPosByObjectID(int id, dss::Fix32Vector3& pos)
 {
     VecFx32 v = getVecFx32(pos);
-    func_02046034(&m_fld, id, &v);
+    m_fld.SetMapObjPosFX32(id, &v);
 }
 
 ARM dss::Fix32Vector3 FldStage::getFx32Vector3(const VecFx32& vec)
@@ -341,10 +342,10 @@ ARM bool FldStage::getObjectIn(int uid, dss::Fix32Vector3& pos)
     int maxX = 0x80000000;
     int maxZ = 0x80000000;
 
-    i = func_02040bd4(m_fld.m_coll, uid, 0);
+    i = coll_GetPolyNoByMapObj(m_fld.m_coll, uid, 0);
     if (i != -1) do {
         in = true;
-        func_0203f464(m_fld.m_coll, i, &poly);
+        coll_GetPoly(m_fld.m_coll, i, &poly);
         int lx = poly.bbox[0].x <= poly.bbox[1].x ? poly.bbox[0].x : poly.bbox[1].x;
         int hx = poly.bbox[0].x >= poly.bbox[1].x ? poly.bbox[0].x : poly.bbox[1].x;
         int lz = poly.bbox[0].z <= poly.bbox[1].z ? poly.bbox[0].z : poly.bbox[1].z;
@@ -353,7 +354,7 @@ ARM bool FldStage::getObjectIn(int uid, dss::Fix32Vector3& pos)
         if (hx > maxX) maxX = hx;
         if (lz < minZ) minZ = lz;
         if (hz > maxZ) maxZ = hz;
-        i = func_02040bd4(m_fld.m_coll, uid, i + 1);
+        i = coll_GetPolyNoByMapObj(m_fld.m_coll, uid, i + 1);
     } while (i != -1);
     if (in == true) {
         if (p.x < minX || p.x > maxX || p.z < minZ || p.z > maxZ) {
@@ -365,7 +366,7 @@ ARM bool FldStage::getObjectIn(int uid, dss::Fix32Vector3& pos)
 
 ARM int FldStage::getObjWallNo(int obj, int wall)
 {
-    if (obj != func_02040928(m_fld.m_coll, wall)) {
+    if (obj != coll_GetObjId(m_fld.m_coll, wall)) {
         return -1;
     }
     return func_02053abc(m_fld.m_coll, obj, wall);
@@ -373,12 +374,12 @@ ARM int FldStage::getObjWallNo(int obj, int wall)
 
 ARM int FldStage::getObjWallPolyNo(int obj, int wall)
 {
-    int poly = func_02040bd4(m_fld.m_coll, obj, 0);
+    int poly = coll_GetPolyNoByMapObj(m_fld.m_coll, obj, 0);
     if (poly == -1) {
         return -1;
     }
     poly += wall;
-    if (obj != func_02040928(m_fld.m_coll, poly)) {
+    if (obj != coll_GetObjId(m_fld.m_coll, poly)) {
         poly = -1;
     }
     return poly;
@@ -386,7 +387,7 @@ ARM int FldStage::getObjWallPolyNo(int obj, int wall)
 
 ARM short FldStage::getObjectRotIdxY(int obj)
 {
-    return func_02046e28(&m_fld, obj)->y;
+    return m_fld.GetMapObjRotFX32(obj)->y;
 }
 
 ARM VecFx32 FldStage::getUidPos(int uid)
@@ -395,14 +396,13 @@ ARM VecFx32 FldStage::getUidPos(int uid)
     pos.x = 0;
     pos.y = 0;
     pos.z = 0;
-    fld::FLDObjTable* table = m_fld.m_objTable;
+    fld::FLD_MAP* map = m_fld.m_map;
     int* list = GetMapUidObj(uid);
     int count = pool_counter;
     for (int i = 0; i < count; i++) {
-        fld::FLDObjEntry* entry = &((fld::FLDObjEntry*)table)[list[i]];
-        pos.x += entry->pos.x;
-        pos.y += entry->pos.y;
-        pos.z += entry->pos.z;
+        pos.x += map->obj[list[i]].pos.x;
+        pos.y += map->obj[list[i]].pos.y;
+        pos.z += map->obj[list[i]].pos.z;
     }
     pos.x /= count;
     pos.y /= count;
@@ -413,16 +413,16 @@ ARM VecFx32 FldStage::getUidPos(int uid)
 ARM int* FldStage::GetMapUidObj(int uid)
 {
     pool_counter = 0;
-    fld::FLDObjTable* table = m_fld.m_objTable;
+    fld::FLD_MAP* map = m_fld.m_map;
     for (int i = 0; i < 128; i++) {
         obj_index[i] = -1;
     }
     if (uid <= 0) {
         return obj_index;
     }
-    for (int i = 0; i < table->count; i++) {
-        short index = table->index[i];
-        if (index >= 0 && uid == ((fld::FLDObjEntry*)table)[index].uid) {
+    for (int i = 0; i < map->obj_num; i++) {
+        short index = map->index[i];
+        if (index >= 0 && uid == map->obj[index].uid) {
             obj_index[pool_counter] = i;
             pool_counter++;
         }
@@ -434,7 +434,7 @@ ARM bool FldStage::IsCommonAnimationEnd(int uid)
 {
     int* list = GetMapUidObj(uid);
     for (int i = 0; i < pool_counter; i++) {
-        if (func_02046c20(&m_fld, list[i]) == 0) {
+        if (m_fld.IsCommonAnimationEnd(list[i]) == 0) {
             return false;
         }
     }
@@ -463,7 +463,7 @@ ARM int unkfunc_020484ec(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecFx32* bo
 ARM int FldStage::addBoxCollistion(dss::Fix32Vector3& pos, dss::Fix32Vector3& size, int* id, int flag)
 {
     if (extraObjectNum_ == 0) {
-        extraObjectNum_ = m_fld.m_objTable->unk_08 + 100;
+        extraObjectNum_ = m_fld.m_map->uid_num + 100;
     }
     short objId;
     if (*id == -1) {
@@ -498,7 +498,7 @@ ARM int FldStage::addBoxCollistion(dss::Fix32Vector3& pos, dss::Fix32Vector3& si
         work = pos + p[i];
         poly.vertex[i] = getVecFx32(work);
     }
-    result = func_02041afc(*id, 0, m_fld.m_coll, &poly, m_fld.unk_238, flag);
+    result = func_02041afc(*id, 0, m_fld.m_coll, &poly, &m_fld.m_allocator, flag);
     if (result != 3) {
         return result;
     }
@@ -516,7 +516,7 @@ ARM int FldStage::addBoxCollistion(dss::Fix32Vector3& pos, dss::Fix32Vector3& si
         work = pos + p[i];
         poly.vertex[i] = getVecFx32(work);
     }
-    result = func_02041afc(*id, 1, m_fld.m_coll, &poly, m_fld.unk_238, flag);
+    result = func_02041afc(*id, 1, m_fld.m_coll, &poly, &m_fld.m_allocator, flag);
     if (result != 3) {
         return result;
     }
@@ -534,7 +534,7 @@ ARM int FldStage::addBoxCollistion(dss::Fix32Vector3& pos, dss::Fix32Vector3& si
         work = pos + p[i];
         poly.vertex[i] = getVecFx32(work);
     }
-    result = func_02041afc(*id, 2, m_fld.m_coll, &poly, m_fld.unk_238, flag);
+    result = func_02041afc(*id, 2, m_fld.m_coll, &poly, &m_fld.m_allocator, flag);
     if (result != 3) {
         return result;
     }
@@ -552,7 +552,7 @@ ARM int FldStage::addBoxCollistion(dss::Fix32Vector3& pos, dss::Fix32Vector3& si
         work = pos + p[i];
         poly.vertex[i] = getVecFx32(work);
     }
-    result = func_02041afc(*id, 3, m_fld.m_coll, &poly, m_fld.unk_238, flag);
+    result = func_02041afc(*id, 3, m_fld.m_coll, &poly, &m_fld.m_allocator, flag);
     if (result != 3) {
         return result;
     }
@@ -570,7 +570,7 @@ ARM int FldStage::getPolyNoBySurfaceId(int surface, int index)
 ARM void FldStage::addMovePosByObjNo(int obj, dss::Fix32Vector3& move)
 {
     VecFx32 v = getVecFx32(move);
-    func_02046558(&m_fld, obj, &v);
+    m_fld.CollAddPolyPosByMapObj(obj, &v);
 }
 
 ARM int FldStage::getCrossPolygonOtherSurface(dss::Fix32Vector3& start, dss::Fix32Vector3& end, short* surface, int count, int* polyOut, dss::Fix32* dist, int all)
@@ -591,7 +591,7 @@ ARM int FldStage::getCrossPolygonOtherSurface(dss::Fix32Vector3& start, dss::Fix
         }
         int hit = 0;
         for (int i = 0; i < count; i++) {
-            short attr = func_0204098c(m_fld.m_coll, poly);
+            short attr = coll_GetSurface(m_fld.m_coll, poly);
             if ((attr & 0xf000) == surface[i]) {
                 hit = 1;
             }

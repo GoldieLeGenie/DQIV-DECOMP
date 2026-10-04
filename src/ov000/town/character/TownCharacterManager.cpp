@@ -12,6 +12,7 @@
 #include "ov003/btl/BattleActorAnimation.hpp"
 #include "ov003/btl/BattleMonsterMask.hpp"
 #include <nitro/fx/fx_atan.h>
+#include "main/dss/ScreenPosition.hpp"
 
 static const int max_change = 36;
 static int monsterObj[max_change][3] = {
@@ -89,7 +90,7 @@ ARM void TownCharacterManager::execute()
     for (int i = 0; i < TOWN_CHARACTER_MAX; i++) {
         if (character_[i]) {
             character_[i]->execute();
-            character_[i]->setPosition2d(even, *func_02057128(i));
+            character_[i]->setPosition2d(even, *unkfunc_02057128(i));
         }
     }
     TownCharacterBase::areaCheck_ = 0;
@@ -115,7 +116,7 @@ ARM int TownCharacterManager::setup(TOWN_CHARACTER& chara)
             character_[i]->type_ = drawType;
             character_[i]->data_.ctrlNo = i;
             character_[i]->setMonsterSpeak(TownCharacterBase::monsterTalk_);
-            func_0205710c(i, &character_[i]->data_.position);
+            unkfunc_0205710c(i, &character_[i]->data_.position);
             result = i;
             break;
         }

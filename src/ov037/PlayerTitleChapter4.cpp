@@ -15,7 +15,7 @@ THUMB int cmn::PlayerTitleChapter4::getPartyTitle()
     int inMap = false;
     const char* checkName = "mjf1n1";
     char* mapName = g_Stage.getMapName();
-    if (dss::DssUtils::unkfunc_020882b0(mapName, checkName) == 0 || dss::DssUtils::unkfunc_020882b0(mapName, "mjf1b1") == 0) {
+    if (dss::strcmp(mapName, checkName) == 0 || dss::strcmp(mapName, "mjf1b1") == 0) {
         inMap = true;
     }
     status::HaveEquipment& haveEquipment = status::g_Party.getPlayerStatus(index)->haveStatusInfo_.haveEquipment_;

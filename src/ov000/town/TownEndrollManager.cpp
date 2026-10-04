@@ -29,10 +29,10 @@ THUMB void TownEndrollManager::setup()
         staffPos_[i] = -(i * 0xc0);
         staffIndex_[i] = i;
         if (func_0208a104() == 2) {
-            func_02088308(filename, 0x80, "data/endroll_na/endroll%02d.tex", i);
+            dss::sprintf_s(filename, 0x80, "data/endroll_na/endroll%02d.tex", i);
             staffCount_ = 0x40;
         } else {
-            func_02088308(filename, 0x80, "data/endroll_eu/endroll%02d.tex", i);
+            dss::sprintf_s(filename, 0x80, "data/endroll_eu/endroll%02d.tex", i);
             staffCount_ = 0x40;
         }
         staff_[i].unkfunc_02057d60(filename, 1);
@@ -72,10 +72,10 @@ THUMB void TownEndrollManager::animTheEnd()
         if (theEndData_.getAddr()) {
             theEndData_.cleanup();
         }
-        func_02088308(filename, 0x80, "data/fin/fin_%03d.tex", theEndFrame_);
+        dss::sprintf_s(filename, 0x80, "data/fin/fin_%03d.tex", theEndFrame_);
         theEndData_.setup(filename, 0, 0);
         theEndTexture_ = theEndData_.getAddr();
-        func_020882ec((void*)func_02086a9c(texture_), (char*)theEndTexture_ + func_02086a9c(theEndTexture_), 0x1800);
+        dss::memcpy((void*)func_02086a9c(texture_), (char*)theEndTexture_ + func_02086a9c(theEndTexture_), 0x1800);
         func_02086968(texture_, 0);
         theEndFrame_++;
         if (theEndFrame_ == 0xb5) {
@@ -121,9 +121,9 @@ THUMB void TownEndrollManager::drawStaffRoll()
             staff_[i].unkfunc_02057e34();
             if (staffIndex_[i] < staffCount_) {
                 if (func_0208a104() == 2) {
-                    func_02088308(filename, 0x80, "data/endroll_na/endroll%02d.tex", staffIndex_[i]);
+                    dss::sprintf_s(filename, 0x80, "data/endroll_na/endroll%02d.tex", staffIndex_[i]);
                 } else {
-                    func_02088308(filename, 0x80, "data/endroll_eu/endroll%02d.tex", staffIndex_[i]);
+                    dss::sprintf_s(filename, 0x80, "data/endroll_eu/endroll%02d.tex", staffIndex_[i]);
                 }
                 staff_[i].unkfunc_02057d60(filename, 1);
                 staff_[i].unkfunc_02057e98(0x100, 0xc0);
@@ -139,7 +139,7 @@ THUMB void TownEndrollManager::startTheEnd()
     char filename[0x80];
     enableTheEnd_ = 1;
     enableScroll_ = 0;
-    func_02088308(filename, 0x80, "data/fin/fin_000.tex");
+    dss::sprintf_s(filename, 0x80, "data/fin/fin_000.tex");
     textureData_.setup(filename, 0, 0);
     texture_ = textureData_.getAddr();
     func_02086798(texture_, 1);

@@ -50,6 +50,4 @@ extern MaterielMenu_PICTUREBOOK_ROOT data_ov016_0218727c;   /* gMaterielMenu_PIC
 extern "C" {
     void func_ov016_0216fda0(int* monsterName, int* monsterFlag);
     void func_ov016_0216fda8(int monsterNo, int monsterName);
-    void func_ov016_02177a5c(menu::MenuItem* menuItem, int active, int count);
-    void func_ov016_02177a78(menu::MenuItem* menuItem);
 }

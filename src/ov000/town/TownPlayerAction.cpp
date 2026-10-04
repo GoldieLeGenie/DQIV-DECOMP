@@ -182,3 +182,11 @@ ARM void TownPlayerAction::execute()
         actionType_ = (TOWN_PLAYER_ACTION_TYPE)type;
     }
 }
+
+ARM void TownPlayerAction::unkfunc_0213c9b0()
+{
+}
+
+ARM void TownPlayerAction::unkfunc_0213c9b4()
+{
+}

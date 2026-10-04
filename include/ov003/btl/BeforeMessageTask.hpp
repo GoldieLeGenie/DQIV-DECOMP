@@ -7,7 +7,6 @@
 #include "main/task/PartTaskManager.hpp"
 #include "main/status/UseActionMacro.hpp"
 
-
 namespace btl {
     struct BeforeMessageTask : task::PartTask {
         status::UseActionParam *useActionParam_;
@@ -18,6 +17,3 @@ namespace btl {
         virtual void execute();
     };
 }
-
-extern task::PartTaskManager partTaskManager; //data_ov003_021492dc
-

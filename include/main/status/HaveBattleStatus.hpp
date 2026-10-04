@@ -191,15 +191,3 @@ extern const TorunekoActionTable torunekoParupunte;
 extern const TorunekoActionTable torunekoNormal;
 extern const ParupunteArraySmall parupunteSmallTable;
 extern const ParupunteArrayLarge parupunteLargeTable;
-
-extern "C" {
-    void func_02012044(status::HaveStatusInfo*, int pro);
-    void func_02011e44(status::HaveStatusInfo*, unsigned char agi);
-    unsigned char func_02013fb4(status::BaseHaveItem*, int index);
-    int func_0201c270(status::HaveBattleStatus*, int index);
-    void func_0200efe0(status::PartyStatus*);
-    int func_0200f5fc(status::PartyStatus*);
-    int func_02013f88(status::BaseHaveItem*);
-    int func_0201152c(status::HaveAction*, int actionIndex);
-    status::PlayerStatus* func_0200ecec(status::PartyStatus*, int index);
-}

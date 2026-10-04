@@ -1,6 +1,7 @@
 #pragma once
 #include "globaldefs.h"
 #include "main/dss/DssUtils.hpp"
+#include "main/global/StageLink.hpp"
 #include "main/cmn/PlayerManager.hpp"
 #include "main/cmn/MoveBase.hpp"
 #include "main/object/DisplayCharacter.hpp"
@@ -44,7 +45,6 @@ struct TownFurnitureManager;
 extern "C" {
 
 
-    int   func_0200bff8(void);                                                              /* StageLink::getSymbolIndex */
 }
 
 

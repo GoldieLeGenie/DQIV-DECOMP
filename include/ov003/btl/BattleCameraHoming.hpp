@@ -14,13 +14,6 @@ struct BattleCameraHoming {
 
     BattleCameraHoming();
     ~BattleCameraHoming();
-    void init()
-    {
-        startTime_ = 30;
-        waitTime_ = 60;
-        restoreTime_ = 30;
-        step_ = 0;
-    }
     void setup(dss::Fix32Vector3 target, int drawCtrlId);
     void calcHomingTarget(dss::Vector3short& angle);
     void waitHomingTarget(dss::Vector3short& angle);

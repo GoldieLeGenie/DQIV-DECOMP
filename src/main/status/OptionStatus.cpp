@@ -1,4 +1,5 @@
 #include "main/status/OptionStatus.hpp"
+#include "main/sound/Sound.hpp"
 
 status::OptionStatus g_Option;
 
@@ -46,7 +47,7 @@ THUMB char status::OptionStatus::getSackSort()
 
 THUMB void status::OptionStatus::setBgmVolume(char vol) {
     this->bgmVolume_ = vol;
-    func_02055a60((0x7F * (this->bgmVolume_ + 1)) / 5);
+    Sound::setBgmVolumeSys((0x7F * (this->bgmVolume_ + 1)) / 5);
 }
 
 THUMB char status::OptionStatus::getBgmVolume()
@@ -57,7 +58,7 @@ THUMB char status::OptionStatus::getBgmVolume()
 
 THUMB void status::OptionStatus::setSeVolume(char vol) {
     this->seVolume_ = vol;
-    func_02055a78((0x7F * (this->seVolume_ + 1)) / 5);
+    Sound::setSeVolumeSys((0x7F * (this->seVolume_ + 1)) / 5);
 }
 
 THUMB char status::OptionStatus::getSeVolume()

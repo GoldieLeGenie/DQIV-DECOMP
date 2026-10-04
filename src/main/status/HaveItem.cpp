@@ -3,19 +3,15 @@
 #include "main/param/Param.hpp"
 #include "main/status/UseItem.hpp"
 
-extern "C" int func_02013f88(status::BaseHaveItem*);   // BaseHaveItem::getCount
-
 THUMB status::HaveItem::HaveItem() {
     this->item_ = this->itemArray_;
     this->itemMax_ = 12;
     this->clear();
 }
 
-
 THUMB status::HaveItem::~HaveItem() {
     return;
 }
-
 
 THUMB void status::HaveItem::setup(int index) {
     const param::CharInitData* CharaInitData;
@@ -40,7 +36,6 @@ THUMB int status::HaveItem::add(int index){
     return BaseHaveItem::addOne(index);
 }
 
-
 THUMB int status::HaveItem::del(int ctrlId)
 {
   int iVar1 = delOne(ctrlId);
@@ -55,20 +50,16 @@ THUMB void status::HaveItem::sort(int index) {
     }
 }
 
-
-
 THUMB void status::HaveItem::setEquipmentForTest(int index)
 {
     if (index != -1)
         this->item_[index].equip_ = 1;
 }
 
-
 THUMB void status::HaveItem::sortEquipmentForTest(int index) {
     item_[index].equip_ = 0;
     sortEquipment();
 }
-
 
 THUMB void status::HaveItem::resetEquipmentWithItemIndex(int itemIndex)
 {
@@ -91,11 +82,9 @@ THUMB int status::HaveItem::isEquipment(int index)
     return this->item_[index].equip_;
 }
 
-
 THUMB void status::HaveItem::sortEquipment() {
     ItemData sp18[12];
     unsigned int targetIdx;
-
 
     for (int i = 0; i < 12; i++) {
         sp18[i].index_ = 0;
@@ -156,13 +145,10 @@ THUMB void status::HaveItem::sortEquipment() {
 
 }
 
-
 THUMB int status::HaveItem::isSpace() {
     if (getCount() < 0xC) {
         return 1;
     }
     return 0;
 }
-
-
 

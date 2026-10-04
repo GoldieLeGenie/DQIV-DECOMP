@@ -50,8 +50,8 @@ ARM void TownCharacterFuniture::execMovePassive()
     if (id == -1) {
         return;
     }
-    int obj = func_02040928(TownStageManager::getSingleton()->stage_.m_fld.m_coll, id);
-    int uid = func_02046e10(&TownStageManager::getSingleton()->stage_.m_fld, obj);
+    int obj = coll_GetObjId(TownStageManager::getSingleton()->stage_.m_fld.m_coll, id);
+    int uid = TownStageManager::getSingleton()->stage_.m_fld.GetMapObjUid(obj);
     if (uid != mapUid_) {
         return;
     }

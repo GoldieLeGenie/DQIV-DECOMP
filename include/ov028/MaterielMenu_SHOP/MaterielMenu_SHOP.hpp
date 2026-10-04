@@ -196,7 +196,6 @@ struct MaterielMenu_SHOP_VALUE : menu::MenuBase
     void showMessage(int mes1, int mes2, int mes3);
 };
 
-
 struct MaterielMenu_SHOP_SELL_ITEM : menu::MenuBase
 {
     int activeChara_;                   /* 0x1C */
@@ -261,19 +260,12 @@ extern MaterielMenu_SHOP_BUYMENU data_ov016_02186f40;       /* gMaterielMenu_SHO
 extern "C" {
     void func_02080e64(int, int);
     void func_02080e78(void);
-    void func_ov016_02177318(menu::MenuItem* menuItem, int active);
-    void func_ov016_021779ec(menu::MenuItem* menuItem, int active, int count);
-    void func_ov016_02177a08(menu::MenuItem* menuItem, int active, int count);
-    void func_ov016_02177a98(menu::MenuItem* menuItem);
     void func_ov016_0216fb14(void);
     void func_ov016_0216fb24(int* fukuroItemCount, int flag);
     void func_ov016_0216fb98(void);
     void func_ov016_0216fbbc(void);
     void func_ov016_0216fbf4(void);
     void func_ov016_0216fc2c(int quantity);
-    void func_ov016_02177aac(menu::MenuItem* menuItem);
-    void func_ov016_02177acc(menu::MenuItem* menuItem, int active);
-    void func_ov016_02177ae8(menu::MenuItem* menuItem, int active);
     void func_ov016_0216fb6c(int flag);
     void func_ov016_0216fc58(void);
 }

@@ -25,11 +25,11 @@ _ZN24MaterielMenu_CHURCH_ROOT13selectNextExpEv kind:function(thumb,size=0x190) a
 _ZN24MaterielMenu_CHURCH_ROOT9selectEndEv kind:function(thumb,size=0x18) addr:0x0218a32c
 _ZN24MaterielMenu_CHURCH_ROOT12firstMessageEv kind:function(thumb,size=0x80) addr:0x0218a344
 _ZN24MaterielMenu_CHURCH_ROOT10oneMessageEi kind:function(thumb,size=0x20) addr:0x0218a3c4
-@1288 kind:data(byte[3]) addr:0x0218a3e4 local
-@1396 kind:data(byte[20]) addr:0x0218a3e8 local
+@3455 kind:data(byte[3]) addr:0x0218a3e4 local
+@3563 kind:data(byte[20]) addr:0x0218a3e8 local
 _ZTV27MaterielMenu_CHURCH_MIRACLE kind:data(byte[28]) addr:0x0218a400
 miracleMessage kind:data(byte[84]) addr:0x0218a41c local
 _ZTV24MaterielMenu_CHURCH_ROOT kind:data(byte[28]) addr:0x0218a470
-@1501 kind:data(byte[3]) addr:0x0218a48c local
-@1502 kind:data(byte[3]) addr:0x0218a490 local
-@1503 kind:data(byte[4]) addr:0x0218a494 local
+@2767 kind:data(byte[3]) addr:0x0218a48c local
+@2768 kind:data(byte[3]) addr:0x0218a490 local
+@2769 kind:data(byte[4]) addr:0x0218a494 local

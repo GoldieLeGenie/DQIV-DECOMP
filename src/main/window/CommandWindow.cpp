@@ -72,43 +72,43 @@ ARM void window::CommandWindow::changeNextPhase(int phase)
 ARM void window::CommandWindow::setPermit()
 {
     permit_.clear();
-    permit_.set(PHASE_NORMAL | PHASE_SHOPMENU | PHASE_MENU | PHASE_MESSAGE | PHASE_EVENT | PHASE_PARTY_TALK);
+    permit_.flag_ |= (PHASE_NORMAL | PHASE_SHOPMENU | PHASE_MENU | PHASE_MESSAGE | PHASE_EVENT | PHASE_PARTY_TALK);
     if (g_Stage.isMapIcon()) {
-        permit_.set(PHASE_MAP);
+        permit_.flag_ |= PHASE_MAP;
     }
     if (g_Stage.isShopIcon()) {
-        permit_.set(PHASE_SHOPLIST);
+        permit_.flag_ |= PHASE_SHOPLIST;
     }
 }
 
 ARM void window::CommandWindow::setIcon()
 {
     icon_.flag_ = 0;
-    if (dss::DssUtils::unkfunc_020882b0(g_Stage.getMapName(), s_field) == 0) {
-        icon_.set(2);
-        icon_.set(8);
+    if (dss::strcmp(g_Stage.getMapName(), s_field) == 0) {
+        icon_.flag_ |= 2;
+        icon_.flag_ |= 8;
         return;
     }
     if (g_Stage.isCameraIcon()) {
-        icon_.set(1);
+        icon_.flag_ |= 1;
     }
     if (g_Stage.isMapIcon()) {
-        icon_.set(2);
+        icon_.flag_ |= 2;
     }
     if (g_Stage.isShopIcon()) {
-        icon_.set(4);
+        icon_.flag_ |= 4;
     }
-    icon_.set(8);
+    icon_.flag_ |= 8;
 }
 
 ARM void window::CommandWindow::setMenuPermit(bool flag)
 {
     if (flag) {
-        permit_.set(PHASE_MENU);
-        icon_.set(8);
+        permit_.flag_ |= PHASE_MENU;
+        icon_.flag_ |= 8;
     } else {
-        permit_.remove(PHASE_MENU);
-        icon_.remove(8);
+        permit_.flag_ &= ~PHASE_MENU;
+        icon_.flag_ &= ~8;
     }
     phase_->setupIcon();
 }
@@ -116,11 +116,11 @@ ARM void window::CommandWindow::setMenuPermit(bool flag)
 ARM void window::CommandWindow::setShoplistPermit(bool flag)
 {
     if (flag) {
-        permit_.set(PHASE_SHOPLIST);
-        icon_.set(4);
+        permit_.flag_ |= PHASE_SHOPLIST;
+        icon_.flag_ |= 4;
     } else {
-        permit_.remove(PHASE_SHOPLIST);
-        icon_.remove(4);
+        permit_.flag_ &= ~PHASE_SHOPLIST;
+        icon_.flag_ &= ~4;
     }
     phase_->setupIcon();
 }

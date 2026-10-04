@@ -18,8 +18,8 @@ THUMB param::Event* param::Event::getFileData(unsigned int id) {
         filename = player_event4;
     }
 
-    param::Event* result = (param::Event*)func_02057f50(
-        func_02057f58(&data_020c7830, filename), 
+    param::Event* result = (param::Event*)ExcelBinaryData::checkSum(
+        ExcelBinaryData::readFileData(&data_020c7830, filename),
         0xEA9C
     );
 

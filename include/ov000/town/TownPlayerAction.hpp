@@ -90,6 +90,6 @@ struct TownPlayerAction : cmn::PlayerAction {
     void cleanup();
     void checkAbortPos();
     void execute();
-    virtual void unkfunc_0213c9b4() {}
-    virtual void unkfunc_0213c9b0() {}
+    virtual void unkfunc_0213c9b4();
+    virtual void unkfunc_0213c9b0();
 };

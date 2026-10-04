@@ -39,8 +39,6 @@ struct TextHook : TextHookBase {
 };
 
 extern TextHook gTextHook;
-extern int data_02109e4c;   /* TextAPI language (same as data_02109e48.language_) */
 
 extern "C" {
-    char* func_02088298(char* dst, const char* src);   /* strcat */
 }

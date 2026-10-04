@@ -1,10 +1,6 @@
 #include "main/status/HaveItemSack.hpp"
 #include "main/status/UseItem.hpp"
 
-
-extern "C" void func_02007a0c(void* buf, int count, int size, void* cmp1, void* cmp2);
-extern "C" void func_02007abc(void* buf, int count, int size, void* cmp);
-
 THUMB status::HaveItemSack::HaveItemSack() : sortType_(Kind) {
     item_ = itemArray_;
     itemMax_ = 162;
@@ -45,9 +41,6 @@ THUMB int status::HaveItemSack::del(int itemIndex) {
 THUMB void status::HaveItemSack::execThrow(int itemIndex) {
     del(itemIndex);
 }
-
-
-
 
 THUMB void status::HaveItemSack::sortOutSack(status::HaveItemSack::SortType type) {
     int t;

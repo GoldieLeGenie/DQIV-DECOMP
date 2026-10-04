@@ -83,7 +83,7 @@ ARM void cmn::CommonEffectFlat::setup(CommonEffectData* data, int flag)
     dssaEffect_.type_ = DSSAObjectWithCamera::Near;
     if (effectData_->isPamEnable()) {
         paletteAnim_.anim_.setup(effectData_->getPaletteAnimData());
-        paletteAnim_.texture_ = texture_;
+        paletteAnim_.texture_ = (TextureObject*)texture_;
         paletteAnim_.colorCount_ = paletteAnim_.anim_.getColorCount();
     }
     rate_.value = 0x1000;
@@ -94,7 +94,7 @@ ARM void cmn::CommonEffectFlat::cleanup(int flag)
     if (!isEnable()) {
         return;
     }
-    func_0205b648(&paletteAnim_);
+    paletteAnim_.unkfunc_0205b648();
     dssaEffect_.cleanup();
     effectData_ = 0;
 }
@@ -104,7 +104,7 @@ ARM void cmn::CommonEffectFlat::draw()
     dssaEffect_.draw();
     dssaEffect_.execute();
     if (effectData_->isPamEnable()) {
-        func_0205b44c(&paletteAnim_);
+        paletteAnim_.unkfunc_0205b44c();
     }
 }
 
@@ -129,7 +129,7 @@ ARM void cmn::CommonEffectFlat::start()
 {
     dssaEffect_.start(0);
     if (effectData_->isPamEnable()) {
-        func_0205b3d0(&paletteAnim_);
+        paletteAnim_.unkfunc_0205b3d0();
     }
 }
 
@@ -150,10 +150,10 @@ ARM void cmn::CommonEffectCubic::setup(CommonEffectData* data, int flag)
 {
     effectData_ = data;
     int count = 0;
-    func_02058768(&model_, data->getModelData(), flag);
+    model_.setup(data->getModelData(), flag);
     for (int i = 0; i < 4; i++) {
         if (effectData_->getAnimData(count)) {
-            func_0205887c(&model_, effectData_->getAnimData(count), count);
+            model_.unkfunc_0205887c(effectData_->getAnimData(count), count);
             count++;
         }
     }
@@ -176,23 +176,23 @@ ARM void cmn::CommonEffectCubic::draw()
 
 ARM void cmn::CommonEffectCubic::setPosition(dss::Fix32Vector3& position)
 {
-    func_02058bcc(&model_, position);
+    model_.setPosition(position);
 }
 
 ARM void cmn::CommonEffectCubic::setScale(dss::Fix32 scale)
 {
-    func_02058af4(&model_, scale);
+    model_.setScale(scale);
     rate_ = scale;
 }
 
 ARM void cmn::CommonEffectCubic::start()
 {
-    func_02058a2c(&model_, 0);
+    model_.start(0);
 }
 
 ARM int cmn::CommonEffectCubic::isEnd()
 {
-    return model_.unk_c28 == 0;
+    return model_.m_play_flag == 0;
 }
 
 ARM void cmn::CommonEffectCubic::setDisplayType(int type)
@@ -222,9 +222,9 @@ ARM void cmn::CommonEffectData::setup(int index)
 {
     char path[0x80];
     if (index < 10000) {
-        func_02088308(path, 0x80, "data/effect/effect%03d.lz", index);
+        dss::sprintf_s(path, 0x80, "data/effect/effect%03d.lz", index);
     } else {
-        func_02088308(path, 0x80, "data/effect/effect%03db.lz", index - 10000);
+        dss::sprintf_s(path, 0x80, "data/effect/effect%03db.lz", index - 10000);
     }
     effectData_.setup(path, 1, 1);
     m_effect_type = *(int*)func_0207f8dc(effectData_.getAddr(), 0);
@@ -302,6 +302,6 @@ ARM int cmn::CommonEffectData::getEffectType()
 ARM int cmn::CommonEffectData::isSecondEffect(int index)
 {
     char path[0x100];
-    func_02088308(path, 0x80, "data/effect/effect%03db.lz", index);
-    return func_0207ebd4(&data_02116ce8, path);
+    dss::sprintf_s(path, 0x80, "data/effect/effect%03db.lz", index);
+    return dss::g_File.isExist(path);
 }

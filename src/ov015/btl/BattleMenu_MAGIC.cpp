@@ -18,8 +18,8 @@ THUMB void BattleMenu_MAGIC::menuSetup()
     unk_e4.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH, menu::MenuItem::CURSORTYPE_NONE);
     BattleMonsterMask::getSingleton()->select(-1);
     count_ = 0;
-    dss::DssUtils::unkfunc_020882d4(haveAction_, -1, sizeof(haveAction_));
-    dss::DssUtils::unkfunc_020882d4(haveActionIndex_, -1, sizeof(haveActionIndex_));
+    dss::memset(haveAction_, -1, sizeof(haveAction_));
+    dss::memset(haveActionIndex_, -1, sizeof(haveActionIndex_));
     unkfunc_0216ded8();
     navigator_.setupBase();
     navigator_.setup(2, 3, count_);
@@ -166,8 +166,8 @@ THUMB void BattleMenu_MAGIC::unkfunc_0216ded8()
     count = info->haveAction_.getCount();
     int num = 0;
     count_ = num;
-    dss::DssUtils::unkfunc_020882d4(haveAction_, -1, sizeof(haveAction_));
-    dss::DssUtils::unkfunc_020882d4(haveActionIndex_, -1, sizeof(haveActionIndex_));
+    dss::memset(haveAction_, -1, sizeof(haveAction_));
+    dss::memset(haveActionIndex_, -1, sizeof(haveActionIndex_));
     for (int i = 0; i < count; i++) {
         int action = info->haveAction_.getAction(i);
         if (status::UseAction::isBattleUse(action)) {

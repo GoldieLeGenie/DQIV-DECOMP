@@ -3,6 +3,7 @@
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/ExcelParam.hpp"
+#include "main/menu/UiMsg.hpp"
 
 const CharaVoiceCount charaVoiceCount_ = { 0xd9, 0x1a };  // 0x020b614c
 
@@ -26,7 +27,7 @@ ARM void cmn::TalkSoundManager::setMessageSound(int count, int index)
 {
     int order[33];
 
-    func_02056358(getDefaultMessageSound());
+    ui_MsgSndSet(getDefaultMessageSound());
 
     if (orderDataCount_ > 0) {
         int sound;
@@ -38,14 +39,14 @@ ARM void cmn::TalkSoundManager::setMessageSound(int count, int index)
                     order[i] = sound;
                 } else {
                     order[i] = MESSAGESOUND_STOP;
-                    func_02056384(order);
+                    ui_MsgSndSet(order);
                     return;
                 }
                 i++;
             } while (i < count);
         }
         order[count] = MESSAGESOUND_STOP;
-        func_02056384(order);
+        ui_MsgSndSet(order);
         return;
     }
 
@@ -55,7 +56,7 @@ ARM void cmn::TalkSoundManager::setMessageSound(int count, int index)
     if (TownCharacterManager::getSingleton()->character_[index]->checkVoice() != 1) {
         return;
     }
-    func_02056358(TownCharacterManager::getSingleton()->character_[index]->getVoice());
+    ui_MsgSndSet(TownCharacterManager::getSingleton()->character_[index]->getVoice());
 }
 
 ARM cmn::TalkSoundManager::MESSAGESOUND cmn::TalkSoundManager::getOrderMessageSound()

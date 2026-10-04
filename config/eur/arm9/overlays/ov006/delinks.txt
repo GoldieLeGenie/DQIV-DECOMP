@@ -5,3 +5,29 @@
     .data       start:0x02129ae0 end:0x02129dc0 kind:data align:32
     .bss        start:0x02129dc0 end:0x0212cc80 kind:bss align:32
 
+src/ov006/book/BookMonsterDraw.cpp:
+    complete
+    .text start:0x021210e0 end:0x021219ac
+    .rodata start:0x02122170 end:0x02129a60
+    .data start:0x02129ae0 end:0x02129ba4
+    .bss start:0x02129dc0 end:0x0212c4e8
+
+src/ov006/book/BookSystem.cpp:
+    complete
+    .text start:0x021219ac end:0x02121bcc
+    .data start:0x02129ba4 end:0x02129bc4
+    .bss start:0x0212c4e8 end:0x0212cb54
+
+src/ov006/book/BookCamera.cpp:
+    complete
+    .text start:0x02121bcc end:0x02121d6c
+    .rodata start:0x02129a60 end:0x02129a64
+    .init start:0x02129a64 end:0x02129ad8
+    .ctor start:0x02129ad8 end:0x02129adc
+    .data start:0x02129bc4 end:0x02129be0
+    .bss start:0x0212cb54 end:0x0212cc80
+
+src/ov006/book/BookEffectGroup.cpp:
+    complete
+    .text start:0x02121d6c end:0x02122170
+    .data start:0x02129be0 end:0x02129dc0

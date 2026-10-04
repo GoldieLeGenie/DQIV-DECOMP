@@ -64,6 +64,8 @@ namespace encount {
         void setTimeZone(TIME_ZONE timeZone);
         void setChapter(int chapter);
         void setPartyCount(int count);
+        void setMonsterIndex(int index, int monster) { monsterIndex_[index] = monster; }
+        void setMonsterCount(int index, int count) { monsterCount_[index] = count; }
         bool brew();
         void execThinning();
         void forceBrew(int tile);

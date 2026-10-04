@@ -48,14 +48,3 @@ namespace status{
     extern StoryStatus g_Story; //data_020ee1cc
     
 }
-
-
-
-extern "C" {
-    extern void func_02014090(status::HaveItemSack* dst, status::HaveItemSack* src);
-    extern int func_02013f88(status::BaseHaveItem* haveItem);
-    extern unsigned char func_02013fb4(status::BaseHaveItem *p, int index);
-    extern void func_0201411c(status::HaveItemSack* sack, int index);
-    extern int  func_02013ff0(status::HaveItemSack *p, int index);
-    extern void func_020140c8(status::HaveItemSack *sack, int itemIndex, int count);
-}

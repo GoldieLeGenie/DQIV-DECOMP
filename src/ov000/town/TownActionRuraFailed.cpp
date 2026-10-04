@@ -78,7 +78,7 @@ ARM int TownActionRuraFailed::update()
             break;
         case FAILED_RURA_DOWN2:
             TextAPI::setMACRO0(1, 0x50000000, g_cmnPartyInfo.actorIndex_);
-            func_02056358(0x30);
+            ui_MsgSndSet(0x30);
             TownWindowSystem::getSingleton()->openCommonMessage();
             TownWindowSystem::getSingleton()->addCommonMessage(0xc3cf5);
             TownPlayerManager::getSingleton()->setRemote(0);

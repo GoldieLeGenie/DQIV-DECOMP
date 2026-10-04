@@ -30,4 +30,8 @@ extern "C" {
     void func_02086868(void* texture);             /* release texture */
     void func_02086968(void* texture, int flag);
     int  func_02086a9c(void* texture);
+    void func_020868dc(void* texture);
+    void func_020869ec(void* texture, int a, int b);
+    int  func_02086c18(void* texture);             /* width */
+    int  func_02086c64(void* texture);             /* height */
 }

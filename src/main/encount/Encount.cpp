@@ -173,7 +173,7 @@ THUMB bool encount::Encount::isEncountedNext()
 THUMB void encount::Encount::setStage(char* stage, LandType land)
 {
     landType_ = land;
-    if (dss::DssUtils::unkfunc_020882b0(stage, "field") != 0) {
+    if (dss::strcmp(stage, "field") != 0) {
         int index = param::MonsterMap::getFloorIndex(status::excelParam.monsterMap_, chapter_, stage);
         if (chapter_ == 6) {
             index = param::MonsterMap::getFloorIndex(status::excelParam.monsterMap_, 5, stage);

@@ -23,11 +23,3 @@ namespace status{
 
     };
 }
-
-extern "C" {
-    void func_02010688(status::HaveItem*,int index);
-    void func_02010714(status::HaveItem* self);
-    void func_02007a0c(void*, int, int, void*, void*);
-    void func_02007abc(void*, int, int, void*);
-    int func_0201a47c(int);
-}

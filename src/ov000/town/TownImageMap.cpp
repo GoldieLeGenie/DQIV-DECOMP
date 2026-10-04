@@ -10,6 +10,7 @@
 #include "main/status/GameFlag.hpp"
 #include "main/status/ExcelParam.hpp"
 #include "main/data/FileLoader.hpp"
+#include "main/dss/ScreenPosition.hpp"
 
 static dss::Camera camera;
 static char mapdata[0x80];
@@ -36,7 +37,7 @@ ARM void TownImageMap::setup()
     mapSprite_.unkfunc_02057f00(0);
     mapSprite_.unkfunc_02057f18(0x3f);
     mapSprite_.sprite_.unk_32 = 1;
-    func_02088308(filename, 0x80, "data/field/2d/point_s.tex");
+    dss::sprintf_s(filename, 0x80, "data/field/2d/point_s.tex");
     pointSprite_.unkfunc_02057d60(filename, 0);
     pointSprite_.unkfunc_02057ee8();
     pointSprite_.unkfunc_02057f00(0);
@@ -108,10 +109,10 @@ ARM void TownImageMap::exitFloor()
     dss::Fix32Vector3 pos;
     param::MapCamera& mapcamera = status::excelParam.mapCamera_[index_];
     const char* pm = g_Global.getPrevMapName();
-    if (!func_020882bc(pm, mapcamera.floor, func_02088280(mapcamera.floor))) {
+    if (!dss::strncmp(pm, mapcamera.floor, dss::strlen(mapcamera.floor))) {
         pos = TownPlayerManager::getSingleton()->getPosition();
         g_Stage.overviewTempPosition_ = pos;
-    } else if (!func_020882bc(g_Global.getPrevMapName(), "mpout", 5)) {
+    } else if (!dss::strncmp(g_Global.getPrevMapName(), "mpout", 5)) {
         pos = TownPlayerManager::getSingleton()->getPosition();
         g_Stage.overviewTempPosition_ = pos;
     }
@@ -135,21 +136,21 @@ ARM void TownImageMap::checkData()
             head[1] = 'h';
         }
         if (g_AreaFlag.check(0x147) && head[0] == 'm' && head[1] == 'b') {
-            func_02088308(mapdata, 0x80, "data/2d/map/%c%c_map2.tex", head[0], head[1]);
+            dss::sprintf_s(mapdata, 0x80, "data/2d/map/%c%c_map2.tex", head[0], head[1]);
         } else if (g_AreaFlag.check(0x147) && head[0] == 'h' && head[1] == 'c') {
-            func_02088308(mapdata, 0x80, "data/2d/map/%c%c_map3.tex", head[0], head[1]);
+            dss::sprintf_s(mapdata, 0x80, "data/2d/map/%c%c_map3.tex", head[0], head[1]);
         } else if (status::g_Story.chapter_ >= 5 && head[0] == 'h' && head[1] == 'c') {
-            func_02088308(mapdata, 0x80, "data/2d/map/%c%c_map2.tex", head[0], head[1]);
+            dss::sprintf_s(mapdata, 0x80, "data/2d/map/%c%c_map2.tex", head[0], head[1]);
         } else {
-            func_02088308(mapdata, 0x80, "data/2d/map/%c%c_map1.tex", head[0], head[1]);
+            dss::sprintf_s(mapdata, 0x80, "data/2d/map/%c%c_map1.tex", head[0], head[1]);
         }
-        if (func_0207ebd4(&data_02116ce8, mapdata)) {
+        if (dss::g_File.isExist(mapdata)) {
             isEnable_ = 1;
         } else {
-            func_02088308(mapdata, 0x80, "data/2d/map/ha_map1.tex");
+            dss::sprintf_s(mapdata, 0x80, "data/2d/map/ha_map1.tex");
             isEnable_ = 1;
         }
-        dss::DssUtils::unkfunc_020882b0(g_Stage.getMapName(), "mcout2");
+        dss::strcmp(g_Stage.getMapName(), "mcout2");
     } else {
         isEnable_ = 0;
     }
@@ -194,23 +195,23 @@ ARM void TownImageMap::calcTargetPos()
     dss::Fix32Vector3 pos;
     param::MapCamera& mapcamera = status::excelParam.mapCamera_[index_];
     const char* mn = g_Global.getMapName();
-    if (!func_020882bc(mn, mapcamera.floor, func_02088280(mapcamera.floor))) {
+    if (!dss::strncmp(mn, mapcamera.floor, dss::strlen(mapcamera.floor))) {
         pos = TownPlayerManager::getSingleton()->getPosition();
-    } else if (!func_020882bc(g_Global.getMapName(), "mpout", 5)) {
+    } else if (!dss::strncmp(g_Global.getMapName(), "mpout", 5)) {
         pos = TownPlayerManager::getSingleton()->getPosition();
-    } else if (!func_020882bc(g_Global.getMapName(), "mcout2", 6)) {
+    } else if (!dss::strncmp(g_Global.getMapName(), "mcout2", 6)) {
         pos.vx.value = 0;
         pos.vy.value = 0;
         pos.vz.value = -0xfa67;
     } else {
         pos = dss::Fix32Vector3(g_Stage.overviewTempPosition_);
     }
-    func_0205710c(0, &pos);
+    unkfunc_0205710c(0, &pos);
 }
 
 ARM void TownImageMap::unkfunc_02137c00()
 {
-    unk_04 = *func_02057128(0);
+    unk_04 = *unkfunc_02057128(0);
 }
 
 ARM void TownImageMap::initialize()
@@ -226,7 +227,7 @@ ARM void TownImageMap::initialize()
     unsigned int i;
     param::MapCamera* mapcamera = status::excelParam.mapCamera_;
     char mapname[32];
-    func_0208828c(mapname, g_Stage.getMapName());
+    dss::strcpy(mapname, g_Stage.getMapName());
     for (i = 0; i < param::MapCamera::size_; i++) {
         if (mapname[0] == 'c' && mapname[1] == 'a') {
             mapname[0] = 'h';

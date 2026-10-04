@@ -28,7 +28,3 @@ namespace btl {
         int isEnd();
     };
 }
-
-extern "C" {
-    int func_02003268(char* buf, const char* fmt, ...);        /* sprintf */
-}

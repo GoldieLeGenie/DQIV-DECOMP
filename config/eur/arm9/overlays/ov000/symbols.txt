@@ -1425,7 +1425,7 @@ _ZN18TownEndrollManager11isEndTheEndEv kind:function(thumb,size=0x12) addr:0x021
 _ZN18TownEndrollManager4drawEv kind:function(thumb,size=0x26) addr:0x02143e30
 _ZN18TownEndrollManager7executeEv kind:function(thumb,size=0x12) addr:0x02143e58
 _ZN18TownEndrollManager14isStaffRollEndEv kind:function(thumb,size=0x8) addr:0x02143e6c
-@3327 kind:data(byte[4]) addr:0x02143e74 local
+@4135 kind:data(byte[4]) addr:0x02143e74 local
 TOWN_CAMERA_DISTANCE kind:data(any) addr:0x02143e78 local
 _ZN13TownPartyDraw9colorDokuE kind:data(short) addr:0x02143e7c
 _ZN13TownPartyDraw12colorBarrierE kind:data(short) addr:0x02143e7e
@@ -1489,7 +1489,7 @@ _ZTV20TownActionBallonHorn kind:data(byte[20]) addr:0x02147860
 _ZTV21TownCharacterFuniture kind:data(byte[144]) addr:0x02147874
 _ZTV15TownActionHenge kind:data(byte[20]) addr:0x02147904
 _ZTV20TownFurnitureEncount kind:data(byte[40]) addr:0x02147918
-dy$1610 kind:data(any) addr:0x02147940 local
+dy$2268 kind:data(any) addr:0x02147940 local
 _ZTV20TownActionRuraFailed kind:data(byte[20]) addr:0x02147944
 _ZTV20TownFurnitureMessage kind:data(byte[40]) addr:0x02147958
 _ZTV20TownFurnitureNothing kind:data(byte[40]) addr:0x02147980
@@ -1499,8 +1499,8 @@ _ZTV24TownFurnitureControlFade kind:data(byte[36]) addr:0x021479f4
 _ZTV24TownFurnitureControlMove kind:data(byte[36]) addr:0x02147a18
 _ZTV17TownFurnitureGold kind:data(byte[40]) addr:0x02147a3c
 _ZTV17TownFurnitureItem kind:data(byte[40]) addr:0x02147a64
-@3735 kind:data(byte[29]) addr:0x02147a8c local
-bigRockR$1395 kind:data(byte[4]) addr:0x02147aac local
+@4801 kind:data(byte[29]) addr:0x02147a8c local
+bigRockR$2348 kind:data(byte[4]) addr:0x02147aac local
 unusedR2 kind:data(byte[4]) addr:0x02147ab0 local
 unusedR1 kind:data(byte[4]) addr:0x02147ab4 local
 data_ov000_02147ab8 kind:data(any) addr:0x02147ab8
@@ -1510,249 +1510,249 @@ data_ov000_02147ac4 kind:data(any) addr:0x02147ac4
 data_ov000_02147ad0 kind:data(any) addr:0x02147ad0
 data_ov000_02147af0 kind:data(any) addr:0x02147af0
 _ZTV21BillboardItemResource kind:data(byte[24]) addr:0x02147b04
-@717 kind:data(byte[19]) addr:0x02147b1c local
-@718 kind:data(byte[19]) addr:0x02147b30 local
-@719 kind:data(byte[26]) addr:0x02147b44 local
-@720 kind:data(byte[23]) addr:0x02147b60 local
-@721 kind:data(byte[21]) addr:0x02147b78 local
-@695 kind:data(byte[4]) addr:0x02147b90 local
-@641 kind:data(byte[4]) addr:0x02147b94 local
+@996 kind:data(byte[19]) addr:0x02147b1c local
+@997 kind:data(byte[19]) addr:0x02147b30 local
+@998 kind:data(byte[26]) addr:0x02147b44 local
+@999 kind:data(byte[23]) addr:0x02147b60 local
+@1000 kind:data(byte[21]) addr:0x02147b78 local
+@974 kind:data(byte[4]) addr:0x02147b90 local
+@920 kind:data(byte[4]) addr:0x02147b94 local
 _ZTV14TownRiseupBase kind:data(byte[60]) addr:0x02147b98
 _ZN14TownRiseupBase12defaultParamE kind:data(byte[112]) addr:0x02147bd4
 _ZTV14TownRiseupIcon kind:data(byte[60]) addr:0x02147c44
 _ZTV16TownRiseupSprite kind:data(byte[60]) addr:0x02147c80
 _ZTV15TownShopListMap kind:data(byte[40]) addr:0x02147cbc
-@679 kind:data(byte[21]) addr:0x02147ce4 local
-dy$1759 kind:data(any) addr:0x02147cfc local
+@946 kind:data(byte[21]) addr:0x02147ce4 local
+dy$2147 kind:data(any) addr:0x02147cfc local
 _ZTV14TownActionRura kind:data(byte[20]) addr:0x02147d00
 _ZTV14TownActionWalk kind:data(byte[20]) addr:0x02147d14
-@3542 kind:data(byte[4]) addr:0x02147d28 local
+@4350 kind:data(byte[4]) addr:0x02147d28 local
 length kind:data(any) addr:0x02147d2c local
-@3566 kind:data(byte[4]) addr:0x02147d30 local
-front$3532 kind:data(byte[12]) addr:0x02147d34 local
-side$3535 kind:data(byte[12]) addr:0x02147d40 local
+@4374 kind:data(byte[4]) addr:0x02147d30 local
+front$4340 kind:data(byte[12]) addr:0x02147d34 local
+side$4343 kind:data(byte[12]) addr:0x02147d40 local
 _ZTV14TownDoorAction kind:data(byte[20]) addr:0x02147d4c
 _ZN14TownFallAction12fallStartFixE kind:data(any) addr:0x02147d60
 _ZN14TownFallAction9fallSpeedE kind:data(any) addr:0x02147d64
-searchLen$1872 kind:data(byte[4]) addr:0x02147d68 local
-sideLen$1875 kind:data(byte[4]) addr:0x02147d6c local
+searchLen$2245 kind:data(byte[4]) addr:0x02147d68 local
+sideLen$2248 kind:data(byte[4]) addr:0x02147d6c local
 _ZTV14TownFallAction kind:data(byte[20]) addr:0x02147d70
 _ZTV16TownIkadaAction2 kind:data(byte[20]) addr:0x02147d84
-@1949 kind:data(byte[7]) addr:0x02147d98 local
-@1950 kind:data(byte[6]) addr:0x02147da0 local
+@2325 kind:data(byte[7]) addr:0x02147d98 local
+@2326 kind:data(byte[6]) addr:0x02147da0 local
 kaidanF kind:data(any) addr:0x02147da8 local
 kaidanSideFix kind:data(any) addr:0x02147dac local
-fixL$1775 kind:data(any) addr:0x02147db0 local
+fixL$2120 kind:data(any) addr:0x02147db0 local
 kaidanUp kind:data(any) addr:0x02147db4 local
-@1856 kind:data(any) addr:0x02147db8 local
-@1689 kind:data(any) addr:0x02147dbc local
-dotN1$1684 kind:data(any) addr:0x02147dc0 local
-@1685 kind:data(any) addr:0x02147dc4 local
-dotN2$1688 kind:data(any) addr:0x02147dc8 local
-@1609 kind:data(any) addr:0x02147dcc local
-col$1530 kind:data(any) addr:0x02147dd0 local
-rad$1527 kind:data(any) addr:0x02147dd4 local
+@2201 kind:data(any) addr:0x02147db8 local
+@2034 kind:data(any) addr:0x02147dbc local
+dotN1$2029 kind:data(any) addr:0x02147dc0 local
+@2030 kind:data(any) addr:0x02147dc4 local
+dotN2$2033 kind:data(any) addr:0x02147dc8 local
+@1954 kind:data(any) addr:0x02147dcc local
+col$1875 kind:data(any) addr:0x02147dd0 local
+rad$1872 kind:data(any) addr:0x02147dd4 local
 startSearchLen kind:data(any) addr:0x02147dd8 local
-upN$1681 kind:data(byte[12]) addr:0x02147ddc local
+upN$2026 kind:data(byte[12]) addr:0x02147ddc local
 _ZTV17TownKaidanAction2 kind:data(byte[20]) addr:0x02147de8
 ropeFix kind:data(any) addr:0x02147dfc local
-@1693 kind:data(any) addr:0x02147e00 local
-cosRope$1794 kind:data(any) addr:0x02147e04 local
-@1795 kind:data(any) addr:0x02147e08 local
+@2066 kind:data(any) addr:0x02147e00 local
+cosRope$2167 kind:data(any) addr:0x02147e04 local
+@2168 kind:data(any) addr:0x02147e08 local
 ropeUpFixY kind:data(any) addr:0x02147e0c local
 ropeSearchR kind:data(any) addr:0x02147e10 local
-@1696 kind:data(any) addr:0x02147e14 local
+@2069 kind:data(any) addr:0x02147e14 local
 lengthGetDown kind:data(any) addr:0x02147e18 local
-@1695 kind:data(any) addr:0x02147e1c local
+@2068 kind:data(any) addr:0x02147e1c local
 ropeUpDY kind:data(any) addr:0x02147e20 local
-@1694 kind:data(any) addr:0x02147e24 local
+@2067 kind:data(any) addr:0x02147e24 local
 ropeDownDY kind:data(any) addr:0x02147e28 local
 _ZTV15TownRopeAction2 kind:data(byte[20]) addr:0x02147e2c
-@2391 kind:data(any) addr:0x02147e40 local
+@2888 kind:data(any) addr:0x02147e40 local
 unusedR kind:data(any) addr:0x02147e44 local
-searchL$2514 kind:data(any) addr:0x02147e48 local
-unusedL$2511 kind:data(any) addr:0x02147e4c local
+searchL$3011 kind:data(any) addr:0x02147e48 local
+unusedL$3008 kind:data(any) addr:0x02147e4c local
 _ZTV15TownShipAction2 kind:data(byte[20]) addr:0x02147e50
 _ZN14TownSubeAction5subeRE kind:data(any) addr:0x02147e64
 _ZN14TownSubeAction9subeSpeedE kind:data(any) addr:0x02147e68
-@1475 kind:data(any) addr:0x02147e6c local
-@1472 kind:data(any) addr:0x02147e70 local
-@1467 kind:data(any) addr:0x02147e74 local
-@1464 kind:data(any) addr:0x02147e78 local
-@1459 kind:data(any) addr:0x02147e7c local
-@1456 kind:data(any) addr:0x02147e80 local
-@1451 kind:data(any) addr:0x02147e84 local
-@1448 kind:data(any) addr:0x02147e88 local
+@1814 kind:data(any) addr:0x02147e6c local
+@1811 kind:data(any) addr:0x02147e70 local
+@1806 kind:data(any) addr:0x02147e74 local
+@1803 kind:data(any) addr:0x02147e78 local
+@1798 kind:data(any) addr:0x02147e7c local
+@1795 kind:data(any) addr:0x02147e80 local
+@1790 kind:data(any) addr:0x02147e84 local
+@1787 kind:data(any) addr:0x02147e88 local
 _ZTV14TownSubeAction kind:data(byte[20]) addr:0x02147e8c
-drawLen2$700 kind:data(any) addr:0x02147ea0 local
+drawLen2$963 kind:data(any) addr:0x02147ea0 local
 _ZTV22TownActionMoveToTarget kind:data(byte[20]) addr:0x02147ea4
-@3106 kind:data(byte[2]) addr:0x02147eb8 local
-@3107 kind:data(byte[2]) addr:0x02147eba local
-@2741 kind:data(byte[2]) addr:0x02147ebc local
-@3098 kind:data(byte[2]) addr:0x02147ebe local
-@2740 kind:data(byte[2]) addr:0x02147ec0 local
-@2739 kind:data(byte[2]) addr:0x02147ec2 local
-@2742 kind:data(byte[2]) addr:0x02147ec4 local
-@2744 kind:data(byte[2]) addr:0x02147ec6 local
-@2743 kind:data(byte[2]) addr:0x02147ec8 local
-@3100 kind:data(byte[2]) addr:0x02147eca local
-@2925 kind:data(byte[4]) addr:0x02147ecc local
+@4535 kind:data(byte[2]) addr:0x02147eb8 local
+@4536 kind:data(byte[2]) addr:0x02147eba local
+@4170 kind:data(byte[2]) addr:0x02147ebc local
+@4527 kind:data(byte[2]) addr:0x02147ebe local
+@4169 kind:data(byte[2]) addr:0x02147ec0 local
+@4168 kind:data(byte[2]) addr:0x02147ec2 local
+@4171 kind:data(byte[2]) addr:0x02147ec4 local
+@4173 kind:data(byte[2]) addr:0x02147ec6 local
+@4172 kind:data(byte[2]) addr:0x02147ec8 local
+@4529 kind:data(byte[2]) addr:0x02147eca local
+@4354 kind:data(byte[4]) addr:0x02147ecc local
 fixLen kind:data(byte[4]) addr:0x02147ed0 local
-Len$2585 kind:data(byte[4]) addr:0x02147ed4 local
-@2621 kind:data(byte[4]) addr:0x02147ed8 local
-passiveSpeed$2789 kind:data(byte[4]) addr:0x02147edc local
-blinkFrame$2479 kind:data(byte[24]) addr:0x02147ee0 local
-fadeData$2478 kind:data(byte[40]) addr:0x02147ef8 local
+Len$4019 kind:data(byte[4]) addr:0x02147ed4 local
+@4055 kind:data(byte[4]) addr:0x02147ed8 local
+passiveSpeed$4218 kind:data(byte[4]) addr:0x02147edc local
+blinkFrame$3913 kind:data(byte[24]) addr:0x02147ee0 local
+fadeData$3912 kind:data(byte[40]) addr:0x02147ef8 local
 _ZN17TownCharacterBase10areaCheck_E kind:bss addr:0x0214eb94
 _ZN17TownCharacterBase13allEventLock_E kind:bss addr:0x0214eb98
 _ZN17TownCharacterBase12monsterTalk_E kind:bss addr:0x0214eb9c
-_ZGVlength2$2520 kind:bss addr:0x0214eba0 local
-length2$2520 kind:bss addr:0x0214eba4 local
-_ZGVLen$2585 kind:bss addr:0x0214eba8 local
-_ZGVpassiveSpeed$2789 kind:bss addr:0x0214ebac local
+_ZGVlength2$3954 kind:bss addr:0x0214eba0 local
+length2$3954 kind:bss addr:0x0214eba4 local
+_ZGVLen$4019 kind:bss addr:0x0214eba8 local
+_ZGVpassiveSpeed$4218 kind:bss addr:0x0214ebac local
 _ZTV17TownCharacterBase kind:data(byte[144]) addr:0x02147f20
 _ZTV15TownMonsterDraw kind:data(byte[144]) addr:0x02147fb0
-@2104 kind:data(byte[2]) addr:0x02148040 local
-@2111 kind:data(byte[2]) addr:0x02148042 local
-@2103 kind:data(byte[2]) addr:0x02148044 local
-@2348 kind:data(byte[2]) addr:0x02148046 local
-@2312 kind:data(byte[2]) addr:0x02148048 local
-@2110 kind:data(byte[2]) addr:0x0214804a local
-@2347 kind:data(byte[2]) addr:0x0214804c local
-@2053 kind:data(byte[2]) addr:0x0214804e local
-@2341 kind:data(byte[2]) addr:0x02148050 local
-@2340 kind:data(byte[2]) addr:0x02148052 local
-@2338 kind:data(byte[2]) addr:0x02148054 local
-@2330 kind:data(byte[2]) addr:0x02148056 local
-@2334 kind:data(byte[2]) addr:0x02148058 local
-@2105 kind:data(byte[2]) addr:0x0214805a local
-@2311 kind:data(byte[2]) addr:0x0214805c local
-@2349 kind:data(byte[2]) addr:0x0214805e local
-@2051 kind:data(byte[2]) addr:0x02148060 local
-@2052 kind:data(byte[2]) addr:0x02148062 local
-@2325 kind:data(byte[2]) addr:0x02148064 local
-@2323 kind:data(byte[2]) addr:0x02148066 local
-@2322 kind:data(byte[2]) addr:0x02148068 local
-@2318 kind:data(byte[2]) addr:0x0214806a local
-@2317 kind:data(byte[2]) addr:0x0214806c local
-@2315 kind:data(byte[2]) addr:0x0214806e local
-@2337 kind:data(byte[2]) addr:0x02148070 local
-@2345 kind:data(byte[2]) addr:0x02148072 local
-@2203 kind:data(byte[2]) addr:0x02148074 local
-@2344 kind:data(byte[2]) addr:0x02148076 local
-@2332 kind:data(byte[2]) addr:0x02148078 local
-@2204 kind:data(byte[2]) addr:0x0214807a local
-@2310 kind:data(byte[2]) addr:0x0214807c local
-@2343 kind:data(byte[2]) addr:0x0214807e local
-@2331 kind:data(byte[2]) addr:0x02148080 local
-@2335 kind:data(byte[2]) addr:0x02148082 local
-@2314 kind:data(byte[2]) addr:0x02148084 local
-@2326 kind:data(byte[2]) addr:0x02148086 local
-@2193 kind:data(byte[2]) addr:0x02148088 local
-@2192 kind:data(byte[2]) addr:0x0214808a local
-@2120 kind:data(byte[2]) addr:0x0214808c local
-@2119 kind:data(byte[2]) addr:0x0214808e local
-@2118 kind:data(byte[2]) addr:0x02148090 local
-@2112 kind:data(byte[2]) addr:0x02148092 local
-unkLength$2300 kind:data(byte[4]) addr:0x02148094 local
+@3351 kind:data(byte[2]) addr:0x02148040 local
+@3358 kind:data(byte[2]) addr:0x02148042 local
+@3350 kind:data(byte[2]) addr:0x02148044 local
+@3592 kind:data(byte[2]) addr:0x02148046 local
+@3556 kind:data(byte[2]) addr:0x02148048 local
+@3357 kind:data(byte[2]) addr:0x0214804a local
+@3591 kind:data(byte[2]) addr:0x0214804c local
+@3300 kind:data(byte[2]) addr:0x0214804e local
+@3585 kind:data(byte[2]) addr:0x02148050 local
+@3584 kind:data(byte[2]) addr:0x02148052 local
+@3582 kind:data(byte[2]) addr:0x02148054 local
+@3574 kind:data(byte[2]) addr:0x02148056 local
+@3578 kind:data(byte[2]) addr:0x02148058 local
+@3352 kind:data(byte[2]) addr:0x0214805a local
+@3555 kind:data(byte[2]) addr:0x0214805c local
+@3593 kind:data(byte[2]) addr:0x0214805e local
+@3298 kind:data(byte[2]) addr:0x02148060 local
+@3299 kind:data(byte[2]) addr:0x02148062 local
+@3569 kind:data(byte[2]) addr:0x02148064 local
+@3567 kind:data(byte[2]) addr:0x02148066 local
+@3566 kind:data(byte[2]) addr:0x02148068 local
+@3562 kind:data(byte[2]) addr:0x0214806a local
+@3561 kind:data(byte[2]) addr:0x0214806c local
+@3559 kind:data(byte[2]) addr:0x0214806e local
+@3581 kind:data(byte[2]) addr:0x02148070 local
+@3589 kind:data(byte[2]) addr:0x02148072 local
+@3447 kind:data(byte[2]) addr:0x02148074 local
+@3588 kind:data(byte[2]) addr:0x02148076 local
+@3576 kind:data(byte[2]) addr:0x02148078 local
+@3448 kind:data(byte[2]) addr:0x0214807a local
+@3554 kind:data(byte[2]) addr:0x0214807c local
+@3587 kind:data(byte[2]) addr:0x0214807e local
+@3575 kind:data(byte[2]) addr:0x02148080 local
+@3579 kind:data(byte[2]) addr:0x02148082 local
+@3558 kind:data(byte[2]) addr:0x02148084 local
+@3570 kind:data(byte[2]) addr:0x02148086 local
+@3437 kind:data(byte[2]) addr:0x02148088 local
+@3436 kind:data(byte[2]) addr:0x0214808a local
+@3367 kind:data(byte[2]) addr:0x0214808c local
+@3366 kind:data(byte[2]) addr:0x0214808e local
+@3365 kind:data(byte[2]) addr:0x02148090 local
+@3359 kind:data(byte[2]) addr:0x02148092 local
+unkLength$3544 kind:data(byte[4]) addr:0x02148094 local
 bigRockSpeed kind:data(byte[4]) addr:0x02148098 local
 collLine kind:data(byte[4]) addr:0x0214809c local
 prev_stop kind:data(byte[4]) addr:0x021480a0 local
-length$2297 kind:data(byte[4]) addr:0x021480a4 local
+length$3541 kind:data(byte[4]) addr:0x021480a4 local
 modelNameTable kind:data(byte[76]) addr:0x021480a8 local
-@2015 kind:data(byte[5]) addr:0x021480f4 local
-@2014 kind:data(byte[5]) addr:0x021480fc local
-@2016 kind:data(byte[5]) addr:0x02148104 local
-@2019 kind:data(byte[5]) addr:0x0214810c local
-@2017 kind:data(byte[6]) addr:0x02148114 local
-@2020 kind:data(byte[6]) addr:0x0214811c local
-@2023 kind:data(byte[7]) addr:0x02148124 local
-@2024 kind:data(byte[7]) addr:0x0214812c local
-@2025 kind:data(byte[7]) addr:0x02148134 local
-@2026 kind:data(byte[7]) addr:0x0214813c local
-@2027 kind:data(byte[7]) addr:0x02148144 local
-@2028 kind:data(byte[7]) addr:0x0214814c local
-@2029 kind:data(byte[7]) addr:0x02148154 local
-@2030 kind:data(byte[7]) addr:0x0214815c local
-@2018 kind:data(byte[7]) addr:0x02148164 local
-@2021 kind:data(byte[7]) addr:0x0214816c local
-@2022 kind:data(byte[7]) addr:0x02148174 local
-@2031 kind:data(byte[10]) addr:0x0214817c local
-@2032 kind:data(byte[13]) addr:0x02148188 local
-@2515 kind:data(byte[18]) addr:0x02148228 local
-@2516 kind:data(byte[21]) addr:0x0214823c local
-@2517 kind:data(byte[21]) addr:0x02148254 local
-@2518 kind:data(byte[21]) addr:0x0214826c local
-_ZGVunkLength$2300 kind:bss addr:0x0214ebb0 local
+@3262 kind:data(byte[5]) addr:0x021480f4 local
+@3261 kind:data(byte[5]) addr:0x021480fc local
+@3263 kind:data(byte[5]) addr:0x02148104 local
+@3266 kind:data(byte[5]) addr:0x0214810c local
+@3264 kind:data(byte[6]) addr:0x02148114 local
+@3267 kind:data(byte[6]) addr:0x0214811c local
+@3270 kind:data(byte[7]) addr:0x02148124 local
+@3271 kind:data(byte[7]) addr:0x0214812c local
+@3272 kind:data(byte[7]) addr:0x02148134 local
+@3273 kind:data(byte[7]) addr:0x0214813c local
+@3274 kind:data(byte[7]) addr:0x02148144 local
+@3275 kind:data(byte[7]) addr:0x0214814c local
+@3276 kind:data(byte[7]) addr:0x02148154 local
+@3277 kind:data(byte[7]) addr:0x0214815c local
+@3265 kind:data(byte[7]) addr:0x02148164 local
+@3268 kind:data(byte[7]) addr:0x0214816c local
+@3269 kind:data(byte[7]) addr:0x02148174 local
+@3278 kind:data(byte[10]) addr:0x0214817c local
+@3279 kind:data(byte[13]) addr:0x02148188 local
+@3759 kind:data(byte[18]) addr:0x02148228 local
+@3760 kind:data(byte[21]) addr:0x0214823c local
+@3761 kind:data(byte[21]) addr:0x02148254 local
+@3762 kind:data(byte[21]) addr:0x0214826c local
+_ZGVunkLength$3544 kind:bss addr:0x0214ebb0 local
 count kind:bss addr:0x0214ebb4 local
 stop kind:bss addr:0x0214ebb8 local
-_ZGVlength$2297 kind:bss addr:0x0214ebbc local
+_ZGVlength$3541 kind:bss addr:0x0214ebbc local
 _ZTV13TownModelDraw kind:data(byte[144]) addr:0x02148198
-@2097 kind:data(byte[2]) addr:0x02148284 local
-@2084 kind:data(byte[4]) addr:0x0214828c local
-len$1949 kind:data(byte[4]) addr:0x02148290 local
-dot$1924 kind:data(byte[4]) addr:0x02148294 local
-len$1870 kind:data(byte[4]) addr:0x02148298 local
-wDoorlength$1800 kind:data(byte[4]) addr:0x0214829c local
-@1781 kind:data(byte[4]) addr:0x021482a0 local
-dvObj$1729 kind:data(byte[4]) addr:0x021482a4 local
-@1510 kind:data(byte[4]) addr:0x021482a8 local
-dv$1726 kind:data(byte[4]) addr:0x021482ac local
-@1778 kind:data(byte[4]) addr:0x021482b0 local
-unusedB$1723 kind:data(byte[4]) addr:0x021482b4 local
-unusedA$1720 kind:data(byte[4]) addr:0x021482b8 local
-dvObj$1655 kind:data(byte[4]) addr:0x021482bc local
-dv$1652 kind:data(byte[4]) addr:0x021482c0 local
-unusedR$1554 kind:data(byte[4]) addr:0x021482c4 local
-@1514 kind:data(byte[4]) addr:0x021482c8 local
-@1505 kind:data(byte[4]) addr:0x021482cc local
-@1502 kind:data(byte[4]) addr:0x021482d0 local
+@2925 kind:data(byte[2]) addr:0x02148284 local
+@2912 kind:data(byte[4]) addr:0x0214828c local
+len$2777 kind:data(byte[4]) addr:0x02148290 local
+dot$2752 kind:data(byte[4]) addr:0x02148294 local
+len$2700 kind:data(byte[4]) addr:0x02148298 local
+wDoorlength$2630 kind:data(byte[4]) addr:0x0214829c local
+@2611 kind:data(byte[4]) addr:0x021482a0 local
+dvObj$2559 kind:data(byte[4]) addr:0x021482a4 local
+@2340 kind:data(byte[4]) addr:0x021482a8 local
+dv$2556 kind:data(byte[4]) addr:0x021482ac local
+@2608 kind:data(byte[4]) addr:0x021482b0 local
+unusedB$2553 kind:data(byte[4]) addr:0x021482b4 local
+unusedA$2550 kind:data(byte[4]) addr:0x021482b8 local
+dvObj$2485 kind:data(byte[4]) addr:0x021482bc local
+dv$2482 kind:data(byte[4]) addr:0x021482c0 local
+unusedR$2384 kind:data(byte[4]) addr:0x021482c4 local
+@2344 kind:data(byte[4]) addr:0x021482c8 local
+@2335 kind:data(byte[4]) addr:0x021482cc local
+@2332 kind:data(byte[4]) addr:0x021482d0 local
 _ZN19TownActionCalculate8cos_PI_6E kind:data(byte[4]) addr:0x021482d4
-downL$2111 kind:data(byte[4]) addr:0x021482d8 local
-@1549 kind:data(byte[4]) addr:0x021482dc local
+downL$2939 kind:data(byte[4]) addr:0x021482d8 local
+@2415 kind:data(byte[4]) addr:0x021482dc local
 DAMAGE_DISTANCE kind:data(byte[4]) addr:0x021482e0 local
 _ZTV15TownDamageFloor kind:data(byte[20]) addr:0x021482e4
-@2744 kind:data(byte[4]) addr:0x021482f8 local
-@2738 kind:data(byte[4]) addr:0x021482fc local
-@2741 kind:data(byte[4]) addr:0x02148300 local
-@2881 kind:data(byte[5]) addr:0x02148304 local
-@2919 kind:data(byte[6]) addr:0x0214830c local
+@4753 kind:data(byte[4]) addr:0x021482f8 local
+@4747 kind:data(byte[4]) addr:0x021482fc local
+@4750 kind:data(byte[4]) addr:0x02148300 local
+@4906 kind:data(byte[5]) addr:0x02148304 local
+@4944 kind:data(byte[6]) addr:0x0214830c local
 cameraParam kind:data(any) addr:0x02148374
-@1832 kind:data(any) addr:0x02148384 local
-@2065 kind:data(any) addr:0x02148388 local
-@2081 kind:data(any) addr:0x0214838c local
-@1828 kind:data(any) addr:0x02148390 local
-@1854 kind:data(any) addr:0x02148394 local
-@1997 kind:data(any) addr:0x02148398 local
-@1836 kind:data(any) addr:0x0214839c local
+@4078 kind:data(any) addr:0x02148384 local
+@4311 kind:data(any) addr:0x02148388 local
+@4327 kind:data(any) addr:0x0214838c local
+@4074 kind:data(any) addr:0x02148390 local
+@4100 kind:data(any) addr:0x02148394 local
+@4243 kind:data(any) addr:0x02148398 local
+@4082 kind:data(any) addr:0x0214839c local
 position kind:data(any) addr:0x021483a0 local
-@1329 kind:data(byte[4]) addr:0x021483ac local
+@1746 kind:data(byte[4]) addr:0x021483ac local
 _ZTV12TownImageMap kind:data(byte[40]) addr:0x021483b0
-@1435 kind:data(byte[26]) addr:0x021483d8 local
-@1465 kind:data(byte[6]) addr:0x021483f4 local
-@1493 kind:data(byte[26]) addr:0x021483fc local
-@1494 kind:data(byte[26]) addr:0x02148418 local
-@1495 kind:data(byte[26]) addr:0x02148434 local
-@1496 kind:data(byte[24]) addr:0x02148450 local
-@1497 kind:data(byte[7]) addr:0x02148468 local
+@1848 kind:data(byte[26]) addr:0x021483d8 local
+@1878 kind:data(byte[6]) addr:0x021483f4 local
+@1906 kind:data(byte[26]) addr:0x021483fc local
+@1907 kind:data(byte[26]) addr:0x02148418 local
+@1908 kind:data(byte[26]) addr:0x02148434 local
+@1909 kind:data(byte[24]) addr:0x02148450 local
+@1910 kind:data(byte[7]) addr:0x02148468 local
 monsterObj kind:data(byte[432]) addr:0x02148470 local
 _ZTV17TownCharacterDraw kind:data(byte[144]) addr:0x02148620
-@836 kind:data(byte[20]) addr:0x021486b0 local
-@2598 kind:data(byte[4]) addr:0x021486c4 local
-@3095 kind:data(byte[4]) addr:0x021486c8 local
-@3088 kind:data(byte[4]) addr:0x021486cc local
-@3084 kind:data(byte[4]) addr:0x021486d8 local
-@3042 kind:data(byte[4]) addr:0x021486dc local
-@3038 kind:data(byte[4]) addr:0x021486e4 local
-@2599 kind:data(byte[9]) addr:0x021486e8 local
-@3361 kind:data(byte[9]) addr:0x021486f4 local
-@2297 kind:data(any) addr:0x02148700 local
+@1301 kind:data(byte[20]) addr:0x021486b0 local
+@3606 kind:data(byte[4]) addr:0x021486c4 local
+@4101 kind:data(byte[4]) addr:0x021486c8 local
+@4094 kind:data(byte[4]) addr:0x021486cc local
+@4090 kind:data(byte[4]) addr:0x021486d8 local
+@4050 kind:data(byte[4]) addr:0x021486dc local
+@4046 kind:data(byte[4]) addr:0x021486e4 local
+@3607 kind:data(byte[9]) addr:0x021486e8 local
+@4367 kind:data(byte[9]) addr:0x021486f4 local
+@2901 kind:data(any) addr:0x02148700 local
 unkLength kind:data(any) addr:0x02148714 local
-@1151 kind:data(any) addr:0x02148718 local
-@1094 kind:data(any) addr:0x0214871c local
-unkLength2$1085 kind:data(any) addr:0x02148720 local
-@1086 kind:data(any) addr:0x02148724 local
-@1277 kind:data(any) addr:0x02148728 local
+@1471 kind:data(any) addr:0x02148718 local
+@1414 kind:data(any) addr:0x0214871c local
+unkLength2$1405 kind:data(any) addr:0x02148720 local
+@1406 kind:data(any) addr:0x02148724 local
+@1597 kind:data(any) addr:0x02148728 local
 _ZN16TownPlayerAction5collRE kind:data(any) addr:0x0214872c
 _ZN16TownPlayerAction10changePreRE kind:data(any) addr:0x02148730
 _ZN16TownPlayerAction13townCharaPreRE kind:data(any) addr:0x02148734
@@ -1868,14 +1868,14 @@ data_ov000_02148f48 kind:data(any) addr:0x02148f48
 data_ov000_02148f60 kind:data(any) addr:0x02148f60
 data_ov000_02148f78 kind:data(any) addr:0x02148f78
 data_ov000_02148f90 kind:data(any) addr:0x02148f90
-@845 kind:data(any) addr:0x02148fa0 local
-@2022 kind:data(any) addr:0x02148fa4 local
-@2023 kind:data(any) addr:0x02148fa8 local
+@4040 kind:data(byte[3]) addr:0x02148fa0 local
+@4013 kind:data(byte[3]) addr:0x02148fa4 local
+@4014 kind:data(byte[3]) addr:0x02148fa8 local
 _ZTV20UnkImageMap_02141f6c kind:data(byte[40]) addr:0x02148fac
 _ZTV20TownRiseupScriptMove kind:data(byte[60]) addr:0x02148fd4
-@363 kind:data(byte[22]) addr:0x02149010 local
-@364 kind:data(byte[22]) addr:0x02149028 local
-@365 kind:data(byte[21]) addr:0x02149040 local
+@496 kind:data(byte[22]) addr:0x02149010 local
+@497 kind:data(byte[22]) addr:0x02149028 local
+@498 kind:data(byte[21]) addr:0x02149040 local
 _ZTV25TownFurnitureControlMove2 kind:data(byte[36]) addr:0x02149058
 _ZTV15TownRiseupMedal kind:data(byte[60]) addr:0x0214907c
 data_ov000_021490b8 kind:data(any) addr:0x021490b8
@@ -1892,32 +1892,32 @@ data_ov000_02149130 kind:data(any) addr:0x02149130
 data_ov000_02149150 kind:data(any) addr:0x02149150
 data_ov000_02149170 kind:data(any) addr:0x02149170
 data_ov000_02149190 kind:data(any) addr:0x02149190
-@620 kind:data(byte[32]) addr:0x021491a8 local
-@621 kind:data(byte[32]) addr:0x021491c8 local
-@662 kind:data(byte[22]) addr:0x021491e8 local
-@728 kind:data(byte[21]) addr:0x02149200 local
-_ZGVtownActionBallonHorn$1221 kind:bss addr:0x02149220 local
-townActionBallonHorn$1221 kind:bss addr:0x02149224 local
-_ZGVtownActionHenge$1166 kind:bss addr:0x02149234 local
-townActionHenge$1166 kind:bss addr:0x02149238 local
-_ZGVdy$1610 kind:bss addr:0x02149248 local
-_ZGVtownActionRuraFailed$1713 kind:bss addr:0x0214924c local
-townActionRuraFailed$1713 kind:bss addr:0x02149250 local
-_ZGVtownFurnitureControlManager$2310 kind:bss addr:0x0214927c local
-@2313 kind:bss addr:0x02149280 local
-townFurnitureControlManager$2310 kind:bss addr:0x0214928c local
-_ZGVm_singleton$3193 kind:bss addr:0x021497f8 local
+@837 kind:data(byte[32]) addr:0x021491a8 local
+@838 kind:data(byte[32]) addr:0x021491c8 local
+@879 kind:data(byte[22]) addr:0x021491e8 local
+@945 kind:data(byte[21]) addr:0x02149200 local
+_ZGVtownActionBallonHorn$1702 kind:bss addr:0x02149220 local
+townActionBallonHorn$1702 kind:bss addr:0x02149224 local
+_ZGVtownActionHenge$1601 kind:bss addr:0x02149234 local
+townActionHenge$1601 kind:bss addr:0x02149238 local
+_ZGVdy$2268 kind:bss addr:0x02149248 local
+_ZGVtownActionRuraFailed$2332 kind:bss addr:0x0214924c local
+townActionRuraFailed$2332 kind:bss addr:0x02149250 local
+_ZGVtownFurnitureControlManager$3193 kind:bss addr:0x0214927c local
+@3196 kind:bss addr:0x02149280 local
+townFurnitureControlManager$3193 kind:bss addr:0x0214928c local
+_ZGVm_singleton$4260 kind:bss addr:0x021497f8 local
 boxTestRate kind:bss addr:0x021497fc local
 boxTestScale kind:bss addr:0x02149800 local
 boxTestParam kind:bss addr:0x0214980c local
-@3196 kind:bss addr:0x02149818 local
+@4263 kind:bss addr:0x02149818 local
 boxTestRotate kind:bss addr:0x02149824 local
-m_singleton$3193 kind:bss addr:0x02149830 local
-_ZGVbigRockR$1395 kind:bss addr:0x02149a00 local
+m_singleton$4260 kind:bss addr:0x02149830 local
+_ZGVbigRockR$2348 kind:bss addr:0x02149a00 local
 _ZN20TownExtraCollManager11sleepCharaYE kind:bss addr:0x02149a04
 _ZN20TownExtraCollManager11sleepCharaHE kind:bss addr:0x02149a08
 _ZN20TownExtraCollManager11sleepCharaWE kind:bss addr:0x02149a0c
-townExtraCollManager$1360 kind:bss addr:0x02149a10 local
+townExtraCollManager$2313 kind:bss addr:0x02149a10 local
 data_ov000_02149c14 kind:bss addr:0x02149c14
 data_ov000_02149c16 kind:bss addr:0x02149c16
 data_ov000_02149c18 kind:bss addr:0x02149c18
@@ -1951,81 +1951,81 @@ data_ov000_02149c68 kind:bss addr:0x02149c68
 data_ov000_02149c6c kind:bss addr:0x02149c6c
 data_ov000_02149c70 kind:bss addr:0x02149c70
 _ZN17TownRiseupManager14riseupCounter_E kind:bss addr:0x02149c74
-_ZGVm_singleton$738 kind:bss addr:0x02149c78 local
-@741 kind:bss addr:0x02149c7c local
-m_singleton$738 kind:bss addr:0x02149c88 local
+_ZGVm_singleton$1015 kind:bss addr:0x02149c78 local
+@1018 kind:bss addr:0x02149c7c local
+m_singleton$1015 kind:bss addr:0x02149c88 local
 _ZN14TownRiseupBase7camera_E kind:bss addr:0x0214e7a8
 unusedScale kind:bss addr:0x0214e7ac local
-_ZGVdy$1759 kind:bss addr:0x0214e7b0 local
-_ZGVtownActionRura$1790 kind:bss addr:0x0214e7b4 local
-townActionRura$1790 kind:bss addr:0x0214e7b8 local
-_ZGVtownActionWalk$3110 kind:bss addr:0x0214e7d4 local
-townActionWalk$3110 kind:bss addr:0x0214e7d8 local
-_ZGVtownDoorAction$3416 kind:bss addr:0x0214e810 local
-_ZGVside$3535 kind:bss addr:0x0214e814 local
-_ZGVfront$3532 kind:bss addr:0x0214e818 local
-townDoorAction$3416 kind:bss addr:0x0214e81c local
-_ZGVsideLen$1875 kind:bss addr:0x0214e900 local
-_ZGVsearchLen$1872 kind:bss addr:0x0214e904 local
-_ZGVtownFallAction$1859 kind:bss addr:0x0214e908 local
-townFallAction$1859 kind:bss addr:0x0214e90c local
-_ZGVtownIkadaAction$1817 kind:bss addr:0x0214e93c local
-townIkadaAction$1817 kind:bss addr:0x0214e940 local
-_ZGVfixL$1775 kind:bss addr:0x0214e964 local
-_ZGVdotN1$1684 kind:bss addr:0x0214e968 local
-_ZGVupN$1681 kind:bss addr:0x0214e96c local
-_ZGVdotN2$1688 kind:bss addr:0x0214e970 local
-_ZGVtownKaidanAction2$1653 kind:bss addr:0x0214e974 local
-_ZGVcol$1530 kind:bss addr:0x0214e978 local
-_ZGVrad$1527 kind:bss addr:0x0214e97c local
-townKaidanAction2$1653 kind:bss addr:0x0214e980 local
-_ZGVtownRopeAction2$1858 kind:bss addr:0x0214ea58 local
-_ZGVcosRope$1794 kind:bss addr:0x0214ea5c local
-townRopeAction2$1858 kind:bss addr:0x0214ea60 local
-_ZGVtownShipAction$2563 kind:bss addr:0x0214ea7c local
-_ZGVsearchL$2514 kind:bss addr:0x0214ea80 local
-_ZGVunusedL$2511 kind:bss addr:0x0214ea84 local
-fixOne$2426 kind:bss addr:0x0214ea88 local
-_ZGVfixOne$2426 kind:bss addr:0x0214ea8c local
-townShipAction$2563 kind:bss addr:0x0214ea90 local
-_ZGVtownSubeAction$1612 kind:bss addr:0x0214eb04 local
-townSubeAction$1612 kind:bss addr:0x0214eb08 local
-_ZGVdrawLen2$700 kind:bss addr:0x0214eb48 local
+_ZGVdy$2147 kind:bss addr:0x0214e7b0 local
+_ZGVtownActionRura$2163 kind:bss addr:0x0214e7b4 local
+townActionRura$2163 kind:bss addr:0x0214e7b8 local
+_ZGVtownActionWalk$3891 kind:bss addr:0x0214e7d4 local
+townActionWalk$3891 kind:bss addr:0x0214e7d8 local
+_ZGVtownDoorAction$4224 kind:bss addr:0x0214e810 local
+_ZGVside$4343 kind:bss addr:0x0214e814 local
+_ZGVfront$4340 kind:bss addr:0x0214e818 local
+townDoorAction$4224 kind:bss addr:0x0214e81c local
+_ZGVsideLen$2248 kind:bss addr:0x0214e900 local
+_ZGVsearchLen$2245 kind:bss addr:0x0214e904 local
+_ZGVtownFallAction$2232 kind:bss addr:0x0214e908 local
+townFallAction$2232 kind:bss addr:0x0214e90c local
+_ZGVtownIkadaAction$2193 kind:bss addr:0x0214e93c local
+townIkadaAction$2193 kind:bss addr:0x0214e940 local
+_ZGVfixL$2120 kind:bss addr:0x0214e964 local
+_ZGVdotN1$2029 kind:bss addr:0x0214e968 local
+_ZGVupN$2026 kind:bss addr:0x0214e96c local
+_ZGVdotN2$2033 kind:bss addr:0x0214e970 local
+_ZGVtownKaidanAction2$1998 kind:bss addr:0x0214e974 local
+_ZGVcol$1875 kind:bss addr:0x0214e978 local
+_ZGVrad$1872 kind:bss addr:0x0214e97c local
+townKaidanAction2$1998 kind:bss addr:0x0214e980 local
+_ZGVtownRopeAction2$2231 kind:bss addr:0x0214ea58 local
+_ZGVcosRope$2167 kind:bss addr:0x0214ea5c local
+townRopeAction2$2231 kind:bss addr:0x0214ea60 local
+_ZGVtownShipAction$3060 kind:bss addr:0x0214ea7c local
+_ZGVsearchL$3011 kind:bss addr:0x0214ea80 local
+_ZGVunusedL$3008 kind:bss addr:0x0214ea84 local
+fixOne$2923 kind:bss addr:0x0214ea88 local
+_ZGVfixOne$2923 kind:bss addr:0x0214ea8c local
+townShipAction$3060 kind:bss addr:0x0214ea90 local
+_ZGVtownSubeAction$1951 kind:bss addr:0x0214eb04 local
+townSubeAction$1951 kind:bss addr:0x0214eb08 local
+_ZGVdrawLen2$963 kind:bss addr:0x0214eb48 local
 gMoveToTarget kind:bss addr:0x0214eb4c
-_ZGVlen$1870 kind:bss addr:0x0214ebc0 local
-_ZGVtownDamageFloor$1553 kind:bss addr:0x0214ebf0 local
-townDamageFloor$1553 kind:bss addr:0x0214ebf4 local
-_ZGVm_singleton$2701 kind:bss addr:0x0214ec04 local
-m_singleton$2701 kind:bss addr:0x0214ec08 local
-_ZGVm_singleton$1850 kind:bss addr:0x02150a04 local
+_ZGVlen$2700 kind:bss addr:0x0214ebc0 local
+_ZGVtownDamageFloor$2419 kind:bss addr:0x0214ebf0 local
+townDamageFloor$2419 kind:bss addr:0x0214ebf4 local
+_ZGVm_singleton$4710 kind:bss addr:0x0214ec04 local
+m_singleton$4710 kind:bss addr:0x0214ec08 local
+_ZGVm_singleton$4096 kind:bss addr:0x02150a04 local
 distance kind:bss addr:0x02150a08 local
 offset kind:bss addr:0x02150a0c local
 default_angle kind:bss(size=0x6) addr:0x02150a10 local
-@1853 kind:bss addr:0x02150a18 local
-m_singleton$1850 kind:bss addr:0x02150a24 local
-_ZGVm_singleton$370 kind:bss addr:0x02150c94 local
-@373 kind:bss addr:0x02150c98 local
-@360 kind:bss addr:0x02150ca4 local
-@362 kind:bss addr:0x02150cb0 local
-@361 kind:bss addr:0x02150cbc local
-m_singleton$370 kind:bss addr:0x02150cc8 local
+@4099 kind:bss addr:0x02150a18 local
+m_singleton$4096 kind:bss addr:0x02150a24 local
+_ZGVm_singleton$527 kind:bss addr:0x02150c94 local
+@530 kind:bss addr:0x02150c98 local
+@517 kind:bss addr:0x02150ca4 local
+@519 kind:bss addr:0x02150cb0 local
+@518 kind:bss addr:0x02150cbc local
+m_singleton$527 kind:bss addr:0x02150cc8 local
 shopListMap kind:bss addr:0x02150d40 local
 imageMap kind:bss addr:0x02150df0 local
 unkImageMap kind:bss addr:0x02150eb8 local
 camera kind:bss addr:0x0215101c local
 mapdata kind:bss addr:0x02151080 local
-_ZGVm_singleton$3017 kind:bss addr:0x02151100 local
-@3020 kind:bss addr:0x02151104 local
-m_singleton$3017 kind:bss addr:0x02151110 local
-_ZGVm_singleton$2616 kind:bss addr:0x0215ef54 local
+_ZGVm_singleton$4207 kind:bss addr:0x02151100 local
+@4210 kind:bss addr:0x02151104 local
+m_singleton$4207 kind:bss addr:0x02151110 local
+_ZGVm_singleton$3624 kind:bss addr:0x0215ef54 local
 radius kind:bss addr:0x0215ef58 local
-@2619 kind:bss addr:0x0215ef5c local
-m_singleton$2616 kind:bss addr:0x0215ef68 local
+@3627 kind:bss addr:0x0215ef5c local
+m_singleton$3624 kind:bss addr:0x0215ef68 local
 defaultPosition kind:bss addr:0x0215fb40 local
-_ZGVunkLength2$1085 kind:bss addr:0x0215fb4c local
-start$1052 kind:bss addr:0x0215fb50 local
-_ZGVvec$2753 kind:bss addr:0x0215fb54 local
-vec$2753 kind:bss addr:0x0215fb58 local
+_ZGVunkLength2$1405 kind:bss addr:0x0215fb4c local
+start$1372 kind:bss addr:0x0215fb50 local
+_ZGVvec$3655 kind:bss addr:0x0215fb54 local
+vec$3655 kind:bss addr:0x0215fb58 local
 data_ov000_0215fb88 kind:bss addr:0x0215fb88
 data_ov000_0215fb8c kind:bss addr:0x0215fb8c
 data_ov000_0215fb90 kind:bss addr:0x0215fb90
@@ -2203,58 +2203,58 @@ data_ov000_021601bc kind:bss addr:0x021601bc
 data_ov000_021601c0 kind:bss addr:0x021601c0
 data_ov000_021601c2 kind:bss addr:0x021601c2 ambiguous
 data_ov000_021601d4 kind:bss addr:0x021601d4
-_ZGVm_singleton$895 kind:bss addr:0x02160238 local
-m_singleton$895 kind:bss addr:0x0216023c local
+_ZGVm_singleton$1194 kind:bss addr:0x02160238 local
+m_singleton$1194 kind:bss addr:0x0216023c local
 data_ov000_02160380 kind:bss addr:0x02160380
 data_ov000_02160384 kind:bss addr:0x02160384
 data_ov000_02160390 kind:bss addr:0x02160390
-_ZGVm_singleton$591 kind:bss addr:0x021608a0 local
-@594 kind:bss addr:0x021608a4 local
-m_singleton$591 kind:bss addr:0x021608b0 local
-@2099 kind:data(byte[2]) addr:0x02148286 local
-@2098 kind:data(byte[2]) addr:0x02148288 local
-_ZGVdot$1924 kind:bss addr:0x0214ebc4 local
-_ZGVdv$1726 kind:bss addr:0x0214ebc8 local
-_ZGVunusedA$1720 kind:bss addr:0x0214ebcc local
-_ZGVwDoorlength$1800 kind:bss addr:0x0214ebd0 local
-_ZGVdvObj$1729 kind:bss addr:0x0214ebd4 local
-_ZGVunusedB$1723 kind:bss addr:0x0214ebd8 local
-_ZGVlen$1949 kind:bss addr:0x0214ebdc local
-_ZGVdvObj$1655 kind:bss addr:0x0214ebe0 local
-_ZGVdv$1652 kind:bss addr:0x0214ebe4 local
-_ZGVunusedR$1554 kind:bss addr:0x0214ebe8 local
-_ZGVdownL$2111 kind:bss addr:0x0214ebec local
-@2597 kind:data(byte[4]) addr:0x021486d0 local
-@3019 kind:data(byte[4]) addr:0x021486d4 local
+_ZGVm_singleton$808 kind:bss addr:0x021608a0 local
+@811 kind:bss addr:0x021608a4 local
+m_singleton$808 kind:bss(size=0x390) addr:0x021608b0 local
+@2927 kind:data(byte[2]) addr:0x02148286 local
+@2926 kind:data(byte[2]) addr:0x02148288 local
+_ZGVdot$2752 kind:bss addr:0x0214ebc4 local
+_ZGVdv$2556 kind:bss addr:0x0214ebc8 local
+_ZGVunusedA$2550 kind:bss addr:0x0214ebcc local
+_ZGVwDoorlength$2630 kind:bss addr:0x0214ebd0 local
+_ZGVdvObj$2559 kind:bss addr:0x0214ebd4 local
+_ZGVunusedB$2553 kind:bss addr:0x0214ebd8 local
+_ZGVlen$2777 kind:bss addr:0x0214ebdc local
+_ZGVdvObj$2485 kind:bss addr:0x0214ebe0 local
+_ZGVdv$2482 kind:bss addr:0x0214ebe4 local
+_ZGVunusedR$2384 kind:bss addr:0x0214ebe8 local
+_ZGVdownL$2939 kind:bss addr:0x0214ebec local
+@3605 kind:data(byte[4]) addr:0x021486d0 local
+@4027 kind:data(byte[4]) addr:0x021486d4 local
 TOWN_MAP_PATH kind:data(byte[4]) addr:0x021486e0 local
-@3605 kind:data(any) addr:0x02148314 local
-@4091 kind:data(any) addr:0x02148316 local
-@4084 kind:data(any) addr:0x02148318 local
-@4090 kind:data(any) addr:0x0214831a local
-@3603 kind:data(any) addr:0x0214831c local
-@4082 kind:data(any) addr:0x0214831e local
-shadowHeight$3927 kind:data(any) addr:0x02148320 local
-@3950 kind:data(any) addr:0x02148324 local
-defaultSpeed$3850 kind:data(any) addr:0x02148328 local
-CLIP120$3415 kind:data(any) addr:0x0214832c local
-dId$3646 kind:data(any) addr:0x02148330 local
-fixMax$3924 kind:data(any) addr:0x02148334 local
-CLIP70$3421 kind:data(any) addr:0x02148338 local
-CLIP80$3418 kind:data(any) addr:0x0214833c local
+@4645 kind:data(any) addr:0x02148314 local
+@5131 kind:data(any) addr:0x02148316 local
+@5124 kind:data(any) addr:0x02148318 local
+@5130 kind:data(any) addr:0x0214831a local
+@4643 kind:data(any) addr:0x0214831c local
+@5122 kind:data(any) addr:0x0214831e local
+shadowHeight$4967 kind:data(any) addr:0x02148320 local
+@4990 kind:data(any) addr:0x02148324 local
+defaultSpeed$4890 kind:data(any) addr:0x02148328 local
+CLIP120$4457 kind:data(any) addr:0x0214832c local
+dId$4686 kind:data(any) addr:0x02148330 local
+fixMax$4964 kind:data(any) addr:0x02148334 local
+CLIP70$4463 kind:data(any) addr:0x02148338 local
+CLIP80$4460 kind:data(any) addr:0x0214833c local
 _ZTV17TownPlayerManager kind:data(byte[24]) addr:0x02148340
-@4790 kind:data(any) addr:0x02148358 local
-@4791 kind:data(any) addr:0x0214835c local
-@4852 kind:data(any) addr:0x02148364 local
-@4919 kind:data(any) addr:0x0214836c local
-_ZGVdefaultSpeed$3850 kind:bss addr:0x0214f224 local
-_ZGVfixMax$3924 kind:bss addr:0x0214f228 local
-_ZGVCLIP70$3421 kind:bss addr:0x0214f22c local
-_ZGVCLIP80$3418 kind:bss addr:0x0214f230 local
-_ZGVshadowHeight$3927 kind:bss addr:0x0214f234 local
-_ZGVCLIP120$3415 kind:bss addr:0x0214f238 local
-_ZGVm_singleton$3349 kind:bss addr:0x0214f23c local
-_ZGVreturnIkadaPos$3369 kind:bss addr:0x0214f240 local
+@5830 kind:data(byte[1]) addr:0x02148358 local
+@5831 kind:data(byte[6]) addr:0x0214835c local
+@5892 kind:data(byte[5]) addr:0x02148364 local
+@5959 kind:data(byte[6]) addr:0x0214836c local
+_ZGVdefaultSpeed$4890 kind:bss addr:0x0214f224 local
+_ZGVfixMax$4964 kind:bss addr:0x0214f228 local
+_ZGVCLIP70$4463 kind:bss addr:0x0214f22c local
+_ZGVCLIP80$4460 kind:bss addr:0x0214f230 local
+_ZGVshadowHeight$4967 kind:bss addr:0x0214f234 local
+_ZGVCLIP120$4457 kind:bss addr:0x0214f238 local
+_ZGVm_singleton$4391 kind:bss addr:0x0214f23c local
+_ZGVreturnIkadaPos$4411 kind:bss addr:0x0214f240 local
 position kind:bss addr:0x0214f244 local
-@3352 kind:bss addr:0x0214f250 local
-returnIkadaPos$3369 kind:bss addr:0x0214f25c local
-m_singleton$3349 kind:bss addr:0x0214f268 local
+@4394 kind:bss addr:0x0214f250 local
+returnIkadaPos$4411 kind:bss addr:0x0214f25c local
+m_singleton$4391 kind:bss addr:0x0214f268 local

@@ -56,7 +56,7 @@ THUMB void MaterielMenu_CHURCH_MIRACLE::menuSetup()
         type = 0x31;
         soundType_ = 0;
     }
-    func_02056358(type);
+    ui_MsgSndSet(type);
     for (int i = 0; i < 2; i++) {
         miracleAmount_[i] = 0;
     }
@@ -133,7 +133,7 @@ THUMB bool MaterielMenu_CHURCH_MIRACLE::messageUpdate()
             if (soundType_ == 0) {
                 type = 0x31;
             }
-            func_02056358(type);
+            ui_MsgSndSet(type);
             data_020ed1bc.close();
             data_020ed1bc.openMessageForTALK();
             data_020ed1bc.addMessageNOWAIT(sexType_ + 0xc7008);

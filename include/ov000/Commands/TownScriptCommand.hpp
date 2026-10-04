@@ -19,11 +19,11 @@ struct _check_shop_end {
     void init() { m_flag = 0; }
     bool check()
     {
-        if (!TownWindowSystem::getSingleton()->isShopMenu() && !m_flag) {
+        if (!TownWindowSystem::getSingleton()->cmdWindow_.isShopMenu() && !m_flag) {
             m_flag = 1;
             return false;
         }
-        if (!TownWindowSystem::getSingleton()->isShopMenu() && m_flag) {
+        if (!TownWindowSystem::getSingleton()->cmdWindow_.isShopMenu() && m_flag) {
             return true;
         }
         return false;

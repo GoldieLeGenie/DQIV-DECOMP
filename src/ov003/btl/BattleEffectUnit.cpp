@@ -148,8 +148,8 @@ THUMB void btl::BattleEffectUnit::setup(param::EffectParam* effect)
     char file[0x80];
 
     effect_ = effect;
-    func_02088308(file, sizeof(file), "data/effect/effect%03d.lz", effect_->index);
-    if (func_0207ebd4(&data_02116ce8, file) == 0) {
+    dss::sprintf_s(file, sizeof(file), "data/effect/effect%03d.lz", effect_->index);
+    if (dss::g_File.isExist(file) == 0) {
         effect_ = 0;
     }
     else {
@@ -216,8 +216,8 @@ THUMB void btl::BattleEffectUnit::setupEffectGroup(int index)
 {
     char file[0x80];
 
-    func_02088308(file, sizeof(file), "data/effect/effect%03d.lz", effect_->index);
-    if (func_0207ebd4(&data_02116ce8, file) == 0) {
+    dss::sprintf_s(file, sizeof(file), "data/effect/effect%03d.lz", effect_->index);
+    if (dss::g_File.isExist(file) == 0) {
         return;
     }
 

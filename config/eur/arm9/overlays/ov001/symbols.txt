@@ -41,7 +41,7 @@ func_ov001_02122da0 kind:function(arm,size=0x44) addr:0x02122da0
 func_ov001_02122de4 kind:function(arm,size=0x18) addr:0x02122de4
 func_ov001_02122dfc kind:function(arm,size=0x74) addr:0x02122dfc
 func_ov001_02122e70 kind:function(arm,size=0x10) addr:0x02122e70
-func_ov001_02122e80 kind:function(arm,size=0x4) addr:0x02122e80
+_ZN11FieldSystem16unkfunc_02122e80Ev kind:function(arm,size=0x4) addr:0x02122e80
 func_ov001_02122e84 kind:function(arm,size=0xc) addr:0x02122e84
 func_ov001_02122e90 kind:function(arm,size=0xc) addr:0x02122e90
 func_ov001_02122e9c kind:function(arm,size=0xe0) addr:0x02122e9c
@@ -134,11 +134,11 @@ func_ov001_021273d4 kind:function(arm,size=0x8) addr:0x021273d4
 func_ov001_021273dc kind:function(arm,size=0x8) addr:0x021273dc
 func_ov001_021273e4 kind:function(arm,size=0x60) addr:0x021273e4
 func_ov001_02127444 kind:function(arm,size=0x14) addr:0x02127444
-func_ov001_02127458 kind:function(arm,size=0x3c) addr:0x02127458
-func_ov001_02127494 kind:function(arm,size=0x1ac) addr:0x02127494
-func_ov001_02127640 kind:function(arm,size=0x130) addr:0x02127640
-func_ov001_02127770 kind:function(arm,size=0xec) addr:0x02127770
-func_ov001_0212785c kind:function(arm,size=0x54) addr:0x0212785c
+_ZN11FieldSystem12getSingletonEv kind:function(arm,size=0x3c) addr:0x02127458
+_ZN11FieldSystem10initializeEv kind:function(arm,size=0x1ac) addr:0x02127494
+_ZN11FieldSystem9terminateEv kind:function(arm,size=0x130) addr:0x02127640
+_ZN11FieldSystem7executeEv kind:function(arm,size=0xec) addr:0x02127770
+_ZN11FieldSystem4drawEv kind:function(arm,size=0x54) addr:0x0212785c
 func_ov001_021278b0 kind:function(arm,size=0x160) addr:0x021278b0
 func_ov001_02127a10 kind:function(arm,size=0x58) addr:0x02127a10
 func_ov001_02127a68 kind:function(arm,size=0xc0) addr:0x02127a68
@@ -338,8 +338,6 @@ data_ov001_0212dba0 kind:data(any) addr:0x0212dba0
 data_ov001_0212dbac kind:data(any) addr:0x0212dbac
 data_ov001_0212dbb8 kind:data(any) addr:0x0212dbb8
 data_ov001_0212dbc4 kind:data(any) addr:0x0212dbc4
-data_ov001_02130016 kind:data(any) addr:0x02130016
-data_ov001_02130017 kind:data(any) addr:0x02130017
 data_ov001_02131315 kind:data(any) addr:0x02131315
 data_ov001_02131539 kind:data(any) addr:0x02131539
 data_ov001_02132039 kind:data(any) addr:0x02132039
@@ -350,10 +348,6 @@ data_ov001_0214e0a4 kind:data(any) addr:0x0214e0a4
 data_ov001_0214e0a6 kind:data(any) addr:0x0214e0a6
 data_ov001_0214e0a8 kind:data(any) addr:0x0214e0a8
 data_ov001_0214eb98 kind:data(any) addr:0x0214eb98 ambiguous
-data_ov001_02150018 kind:data(any) addr:0x02150018
-data_ov001_0215019f kind:data(any) addr:0x0215019f
-data_ov001_021501f7 kind:data(any) addr:0x021501f7
-data_ov001_02150211 kind:data(any) addr:0x02150211
 data_ov001_0215028c kind:data(any) addr:0x0215028c
 data_ov001_02150fdd kind:data(any) addr:0x02150fdd ambiguous
 data_ov001_02152c35 kind:data(any) addr:0x02152c35
@@ -459,16 +453,16 @@ __sinit_FieldCommand.cpp kind:function(thumb,size=0x88) addr:0x02160620 local
 .p__sinit_ov001_021604c0 kind:data(word) addr:0x021606b4
 .p__sinit_FieldCommand.cpp kind:data(word) addr:0x021606b8 local
 _ZTV15FieldPlayerDoku kind:data(byte[20]) addr:0x021606c0
-@877 kind:data(word) addr:0x021606d4 local
-cosPAI_3_8$870 kind:data(word) addr:0x021606d8 local
-@871 kind:data(word) addr:0x021606dc local
-cosPAI_1_8$866 kind:data(word) addr:0x021606e0 local
-@867 kind:data(word) addr:0x021606e4 local
-@816 kind:data(word) addr:0x021606e8 local
-@812 kind:data(word) addr:0x021606ec local
-@807 kind:data(word) addr:0x021606f0 local
-@803 kind:data(word) addr:0x021606f4 local
-retVec$940 kind:data(byte[96]) addr:0x021606f8 local
+@987 kind:data(word) addr:0x021606d4 local
+cosPAI_3_8$980 kind:data(word) addr:0x021606d8 local
+@981 kind:data(word) addr:0x021606dc local
+cosPAI_1_8$976 kind:data(word) addr:0x021606e0 local
+@977 kind:data(word) addr:0x021606e4 local
+@926 kind:data(word) addr:0x021606e8 local
+@922 kind:data(word) addr:0x021606ec local
+@917 kind:data(word) addr:0x021606f0 local
+@913 kind:data(word) addr:0x021606f4 local
+retVec$1050 kind:data(byte[96]) addr:0x021606f8 local
 data_ov001_02160760 kind:data(any) addr:0x02160760
 data_ov001_02160778 kind:data(any) addr:0x02160778
 data_ov001_02160790 kind:data(any) addr:0x02160790
@@ -595,11 +589,11 @@ _ZTV25__cmd_field_get_down_ship kind:data(byte[24]) addr:0x02160de4
 _ZTV21__cmd_field_move_line kind:data(byte[24]) addr:0x02160dfc
 _ZTV26__cmd_field_player_move_to kind:data(byte[24]) addr:0x02160e14
 _ZTV29__cmd_field_player_set_ballon kind:data(byte[24]) addr:0x02160e2c
-_ZGVfieldPlayerDoku$918 kind:bss(size=0x4) addr:0x02160e60 local
-fieldPlayerDoku$918 kind:bss(size=0x14) addr:0x02160e64 local
-_ZGVretVec$940 kind:bss(size=0x4) addr:0x02160e78 local
-_ZGVcosPAI_3_8$870 kind:bss(size=0x4) addr:0x02160e7c local
-_ZGVcosPAI_1_8$866 kind:bss(size=0x4) addr:0x02160e80 local
+_ZGVfieldPlayerDoku$1218 kind:bss(size=0x4) addr:0x02160e60 local
+fieldPlayerDoku$1218 kind:bss(size=0x14) addr:0x02160e64 local
+_ZGVretVec$1050 kind:bss(size=0x4) addr:0x02160e78 local
+_ZGVcosPAI_3_8$980 kind:bss(size=0x4) addr:0x02160e7c local
+_ZGVcosPAI_1_8$976 kind:bss(size=0x4) addr:0x02160e80 local
 data_ov001_02160e84 kind:bss addr:0x02160e84
 data_ov001_02160e88 kind:bss addr:0x02160e88
 data_ov001_02160e90 kind:bss addr:0x02160e90
@@ -609,10 +603,10 @@ data_ov001_021614b8 kind:bss addr:0x021614b8
 data_ov001_021614d8 kind:bss addr:0x021614d8
 data_ov001_021614e4 kind:bss addr:0x021614e4
 data_ov001_021614f0 kind:bss addr:0x021614f0
-_ZGVm_singleton$30 kind:bss addr:0x02162084 local
-@22 kind:bss addr:0x02162088 local
-@33 kind:bss addr:0x02162094 local
-m_singleton$30 kind:bss addr:0x021620a0 local
+_ZGVm_singleton$361 kind:bss addr:0x02162084 local
+@353 kind:bss addr:0x02162088 local
+@364 kind:bss addr:0x02162094 local
+m_singleton$361 kind:bss addr:0x021620a0 local
 imageMap kind:bss addr:0x02162114 local
 data_ov001_02162614 kind:bss addr:0x02162614
 data_ov001_02162618 kind:bss addr:0x02162618
@@ -627,7 +621,7 @@ g_cmd_field_move_line kind:bss addr:0x02164a20
 g_cmd_field_player_move_to kind:bss addr:0x02164a24
 g_cmd_field_player_set_ballon kind:bss addr:0x02164a28
 g_cmd_field_get_down_ship kind:bss addr:0x02164a2c
-@1170 kind:bss(size=0xc) addr:0x02164a30 local
-@1173 kind:bss(size=0xc) addr:0x02164a3c local
-@1171 kind:bss(size=0xc) addr:0x02164a48 local
-@1172 kind:bss(size=0xc) addr:0x02164a54 local
+@1645 kind:bss(size=0xc) addr:0x02164a30 local
+@1648 kind:bss(size=0xc) addr:0x02164a3c local
+@1646 kind:bss(size=0xc) addr:0x02164a48 local
+@1647 kind:bss(size=0xc) addr:0x02164a54 local

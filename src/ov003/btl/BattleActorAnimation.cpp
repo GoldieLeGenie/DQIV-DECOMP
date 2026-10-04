@@ -4,6 +4,7 @@
 #include "main/status/UseAction.hpp"
 #include "main/status/HaveEquipment.hpp"
 #include "ov003/btl/BattleExecVictory.hpp"
+#include "main/dss/ScreenPosition.hpp"
 
 int monsterChangeCount;
 
@@ -179,7 +180,7 @@ THUMB void btl::BattleActorAnimation::setResultAnimation(status::UseActionParam*
                         }
                     }
 
-                    int* ctrl = (int*)func_02057128(partyIndex);
+                    int* ctrl = (int*)unkfunc_02057128(partyIndex);
                     int a = ctrl[0];
                     int b = ctrl[1];
                     int value = b - status::HaveEquipment::getAbsoluteValue(tai[1] - tai[3]);

@@ -9,6 +9,7 @@
 #include "main/cmn/CommonCalculate.hpp"
 #include "main/dss/Camera.hpp"
 #include "main/fld/FldStage.hpp"
+#include "main/sound/Sound.hpp"
 
 static const dss::Fix32 kaidanF(0x4cd);
 static const dss::Fix32 kaidanUp(0x666);
@@ -33,10 +34,10 @@ ARM int TownKaidanAction2::setup()
     side2Wall_ = 0;
     downKaidanFixY_ = 0L;
     int polyNo = TownStageManager::getSingleton()->stage_.collCrossCheckPoly(pos1, pos2, &length, 0);
-    int objectNo = func_02040928(TownStageManager::getSingleton()->stage_.m_fld.m_coll, polyNo);
+    int objectNo = coll_GetObjId(TownStageManager::getSingleton()->stage_.m_fld.m_coll, polyNo);
     int commonId = TownStageManager::getSingleton()->getMapObjCommonId(objectNo);
     if (commonId == 0x8a || commonId == 0x8b) {
-        int id = func_0200c020();
+        int id = StageLink::getTownExitIndex();
         if (id == -1) {
             return -1;
         }
@@ -106,7 +107,7 @@ ARM int TownKaidanAction2::update()
             speedToTarget = TownPlayerAction::walkSpeed / 2;
             break;
         case KAIDAN_MOVE_UP:
-            func_02055a04(0x131);
+            Sound::sePlayDirect(0x131);
             TownPlayerManager::getSingleton()->mapChangeSE_ = 0;
             TownPlayerManager::getSingleton()->resetMapLink(RESET_EXIT_LOCK_KAIDAN);
             TownStageManager::getSingleton()->compute(position_, position_, col, col, rad, h);
@@ -180,7 +181,7 @@ ARM TownKaidanAction2* TownKaidanAction2::getSingleton()
 ARM void TownKaidanAction2::checkObject()
 {
     int polyNo = TownStageManager::getSingleton()->coll_.m_id;
-    int objectNo = func_02040928(TownStageManager::getSingleton()->stage_.m_fld.m_coll, polyNo);
+    int objectNo = coll_GetObjId(TownStageManager::getSingleton()->stage_.m_fld.m_coll, polyNo);
     if (objectNo == -1) {
         return;
     }

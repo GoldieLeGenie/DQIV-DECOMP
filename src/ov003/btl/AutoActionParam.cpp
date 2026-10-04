@@ -262,7 +262,7 @@ THUMB void btl::AttackAutoActionParam::calcEffectValueException()
 
     if (actionIndex_ == 109) {
         int value = status::getRandomVariation(
-            func_02008ea0(player_->haveStatusInfo_.haveStatus_.level_ * 2 + 30, 0, 95), 10, 10);
+            dss::clamp<int>(player_->haveStatusInfo_.haveStatus_.level_ * 2 + 30, 0, 95), 10, 10);
         targetCount_ = battleSelectTargetParam_.sourceCount_;
         for (int i = 0; i < targetCount_; i++) {
             battleSelectTargetParam_.getSourceCharacterStatus(i);

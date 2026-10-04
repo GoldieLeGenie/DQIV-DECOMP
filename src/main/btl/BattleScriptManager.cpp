@@ -14,7 +14,7 @@ char btldpou6[12] = "btldpou6";
 char btldpou7[12] = "btldpou7";
 char btldpou8[12] = "btldpou8";
 char btldpou9[12] = "btldpou9";
-char btlmc2_d[20] = "btlmc2_d";
+char btlmc2_d[12] = "btlmc2_d";
 
 
 THUMB btl::BattleScriptManager::BattleScriptManager()

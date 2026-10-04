@@ -8,7 +8,6 @@
 #include "main/cmn/CommonEffect.hpp"
 #include "main/cmn/CommonEffectResource.hpp"
 
-/* vtables 0x02147ad0 / 0x02147af0 (TU 0x02123bb4-0x02123ddc, not decompiled) */
 struct BillboardItem : Billboard {
     void* texture_;                             // 0xB4
     DataObject data_;                           // 0xB8

@@ -222,16 +222,7 @@ public:
 };
 
 extern int data_020f0078;     // manager SELECTTAISHI
-extern "C" void func_02030df8(void* prof, unsigned char* dst, void* flag);  // Profile::collectGameFlag 
-extern "C" void func_0201d288(void* stage, int savetype, void* pparty);     // collectMapFlag
 extern "C" unsigned char func_0203ab30(void* mgr, int index);               // getter SELECTTAISHI
-extern "C" int func_02030ef0(void* prof);    // isValidData (thumb)
-extern "C" int func_02030eb0(void* prof);    // calcCheckSum 
-extern "C" void func_02038d2c(void* prof);   // deliverDATA_PARTY
-extern "C" void func_02039190(void* prof);   // deliverDATA_CHAPTER
-extern "C" void func_02039214(void* prof);   // deliverDATA_PLAYER
-extern "C" void func_02039250(void* prof);   // deliverDATA_MONSTER
-extern "C" void func_020392a0(void* prof);   // deliverDATA (HISTORY) ?
 extern "C" int func_0203a358(void* mgr, int index);   // isEnable(i)
 extern "C" int func_0203a354(void* mgr);              // isEnable slot final
 extern "C" void func_0203a34c(void* mgr, int index);  // select
@@ -252,9 +243,4 @@ extern "C" void func_0203a730(void* mgr, unsigned char age);      // setAge
 extern "C" void func_0203a76c(void* mgr, unsigned char skill);    // setSkill            
 extern "C" void* func_02037da4(void);                            //
 extern "C" void func_02037ca4(void);                              //
-extern "C" void* func_020882ec(void* dst, void* src, int n);      // memcpy
-extern "C" int STD_CompareString(void* a, void* b);   // strcmp
-extern "C" int func_0201d3a4(void* stage);        // "restartChurch" 
-extern "C" void func_0200b864(Global *g);                        // init g_Global
-extern "C" void func_0205594c(int fade);                         // SoundManager::stopBgm
 extern "C" void func_0203ab20(void *mgr, int index, unsigned char value); // 

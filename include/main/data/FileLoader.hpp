@@ -1,12 +1,13 @@
 #pragma once
 #include <globaldefs.h>
 
-struct FileLoader;
+namespace dss {
+    struct File {
+        void* unkfunc_0207eb28(const char* fname, int a, int b);   // load file
+        int unkfunc_0207ebf0();                                     // last loaded size
+        bool isExist(const char* fname);
+        void unkfunc_0207eac0(const char* fname, void* dst, int a); // load file into buffer
+    };
 
-extern FileLoader data_02116ce8;
-
-extern "C" {
-    void* func_0207eb28(FileLoader* loader, const char* fname, int a, int b);  // load file
-    int   func_0207ebf0(FileLoader* loader);                                    // last loaded size
-    int   func_0207ebd4(FileLoader* loader, const char* fname);                 // file exists
+    extern File g_File;
 }

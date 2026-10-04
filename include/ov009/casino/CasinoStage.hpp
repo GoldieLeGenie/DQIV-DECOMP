@@ -16,5 +16,4 @@ struct CasinoStage {
     void terminate();
     void setRotObjectUid(int uid, dss::Fix32Vector3& rot) { stage_.setRotObjectUid(uid, rot); }
     void setObjectDraw(int id, int draw, int uidFlag);
-    int eventAnim(int anim, int frame) { return stage_.eventAnim(anim, frame); }
 };

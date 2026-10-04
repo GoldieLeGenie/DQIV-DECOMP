@@ -1,4 +1,5 @@
 #include "main/status/UseActionMacro.hpp"
+#include "ov016/TownMenuPlayerControl.hpp"
 #include "main/global/GlobalDQ4.hpp"
 #include "main/status/UseAction.hpp"
 #include "main/status/ActionExec.hpp"
@@ -169,8 +170,8 @@ THUMB void status::UseActionMacro::setResultMacro(CharacterStatus* actor, Charac
         TextAPI::setMACRO0(0x3d, 0xf0000000, TownFurnitureManager::getSingleton()->searchFloorItem());
     }
     if (actionIndex == 0xd1) {
-        char x = func_ov016_021755a0()->takanomeX_;
-        char y = func_ov016_021755a0()->takanomeY_;
+        char x = TownMenuPlayerControl::getSingleton()->takanomeX_;
+        char y = TownMenuPlayerControl::getSingleton()->takanomeY_;
         if (x <= 0) {
             TextAPI::setMACRO0(0x59, 0xf0000000, HaveEquipment::getAbsoluteValue(x));
         } else {

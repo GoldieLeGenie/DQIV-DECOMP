@@ -158,7 +158,7 @@ THUMB void btl::RoundTask::terminate()
 
 THUMB void btl::RoundTask::execute()
 {
-    if (g_Global.fightStadiumFlag_ && (data_02116d40.unkfunc_0207f280() & 2)) {
+    if (g_Global.fightStadiumFlag_ && (dss::g_Pad.edge() & 2)) {
         waitFlag_ = 1;
     }
     if (battleRound_.isEnd()) {

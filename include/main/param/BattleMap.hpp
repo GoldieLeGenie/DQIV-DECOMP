@@ -1,5 +1,6 @@
 #pragma once
 #include <globaldefs.h>
+#include "main/dss/DssUtils.hpp"
 
 
 namespace param{
@@ -18,4 +19,3 @@ extern char btl_[8];
 extern char btldougu[12];
 extern char btlyado[8];
 
-extern "C" int  func_020882a4(char *name, char *prefix);

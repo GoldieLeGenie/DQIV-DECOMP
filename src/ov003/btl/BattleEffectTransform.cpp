@@ -8,6 +8,7 @@
 #include "main/param/MonsterAnim.hpp"
 #include "main/sound/SoundManager.hpp"
 #include "ov003/btl/BattleCamera.hpp"
+#include <printf.h>
 
 #pragma profile on
 
@@ -26,21 +27,21 @@ THUMB void btl::BattleEffectTransform::setup(int index, int nearDist, int rev)
 
     index_ = index;
     rev_ = rev;
-    func_02088308(buf, sizeof(buf), "data/trans/m%03d.tex", index_);
+    dss::sprintf_s(buf, sizeof(buf), "data/trans/m%03d.tex", index_);
     dataObject_.setup(buf, 1, 0);
     texture_ = dataObject_.getAddr();
     func_02086798(texture_, 0);
 
-    func_02003268(buf, "data/pam/m%03d_tai.pam", index);
-    if (func_0207ebd4(&data_02116ce8, buf)) {
+    sprintf(buf, "data/pam/m%03d_tai.pam", index);
+    if (dss::g_File.isExist(buf)) {
         if (paletteData_.getAddr()) {
             paletteData_.cleanup();
         }
         paletteData_.setup(buf, 1, 0);
         paletteAnim_.anim_.setup(paletteData_.getAddr());
-        paletteAnim_.texture_ = texture_;
+        paletteAnim_.texture_ = (TextureObject*)texture_;
         paletteAnim_.colorCount_ = paletteAnim_.anim_.getColorCount();
-        func_0205b3d0(&paletteAnim_);
+        paletteAnim_.unkfunc_0205b3d0();
     }
 
     int animIndex = param::MonsterAnim::getAnimData(status::excelParam.monsterAnim_, index, 0, 0x1e);
@@ -68,7 +69,7 @@ THUMB void btl::BattleEffectTransform::draw()
     dssaObject_.draw();
     dssaObject_.execute();
     if (paletteAnim_.texture_) {
-        func_0205b44c(&paletteAnim_);
+        paletteAnim_.unkfunc_0205b44c();
     }
     if (dssaObject_.isEnd() && !readNext()) {
         enable_ = 0;
@@ -90,7 +91,7 @@ THUMB void btl::BattleEffectTransform::cleanup()
         func_02086868(texture_);
         dataObject_.cleanup();
         texture_ = 0;
-        func_0205b648(&paletteAnim_);
+        paletteAnim_.unkfunc_0205b648();
         paletteData_.cleanup();
     }
 }
@@ -104,8 +105,8 @@ THUMB int btl::BattleEffectTransform::readNext()
         animData_.cleanup();
     }
 
-    func_02088308(buf, sizeof(buf), "data/trans/m%03d_%02d.dssa", index_, process_);
-    if (!func_0207ebd4(&data_02116ce8, buf)) {
+    dss::sprintf_s(buf, sizeof(buf), "data/trans/m%03d_%02d.dssa", index_, process_);
+    if (!dss::g_File.isExist(buf)) {
         return 0;
     }
 

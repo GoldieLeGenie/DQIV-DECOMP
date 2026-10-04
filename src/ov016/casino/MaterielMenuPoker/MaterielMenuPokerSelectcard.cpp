@@ -18,9 +18,9 @@ THUMB void MaterielMenuPokerSelectcard::menuSetup()
     menuItem_.active_ = 1;
     activeCard_ = menuItem_.active_;
     doubleUpCount_ = 0;
-    int betCoin = PokerManager::getSingleton()->getBetCoin();
+    int betCoin = PokerManager::getSingleton()->betCoin_;
     getCoin_ = betCoin * PokerManager::getSingleton()->getMultiple();
-    haveCoin_ = status::g_Party.casinoCoin_ - PokerManager::getSingleton()->getBetCoin();
+    haveCoin_ = status::g_Party.casinoCoin_ - PokerManager::getSingleton()->betCoin_;
     gameMode_ = 0;
     win_ = 0;
     blink_ = 1;
@@ -68,7 +68,7 @@ THUMB void MaterielMenuPokerSelectcard::menuDraw()
         menuItem_.drawActive();
         break;
     }
-    int betCoin = PokerManager::getSingleton()->getBetCoin();
+    int betCoin = PokerManager::getSingleton()->betCoin_;
     int combination = PokerManager::getSingleton()->winningCombination_ - 2;
     if (blink_ == 0) {
         combination = -1;
@@ -92,7 +92,7 @@ THUMB bool MaterielMenuPokerSelectcard::messageUpdate()
     if (data_020ed1bc.isOpen()) {
         if (gameMode_ == 7) {
             SoundManager::playSe(0x15e, 0);
-            if ((data_02116d40.unkfunc_0207f280() & 1) || (data_02116d40.unkfunc_0207f280() & 0x400)) {
+            if ((dss::g_Pad.edge() & 1) || (dss::g_Pad.edge() & 0x400)) {
                 status::g_Party.addCasinoCoin(getCoin_);
                 getCoin_ = 0;
                 haveCoin_ = status::g_Party.casinoCoin_;
@@ -234,7 +234,7 @@ THUMB void MaterielMenuPokerSelectcard::doubleupUpdate()
         menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_NONE);
         break;
     case 1: {
-        int betCoin = PokerManager::getSingleton()->getBetCoin();
+        int betCoin = PokerManager::getSingleton()->betCoin_;
         status::g_Party.setCasinoCoin(status::g_Party.casinoCoin_ - betCoin);
         getCoin_ = 0;
         doubleUpCount_ = 0;

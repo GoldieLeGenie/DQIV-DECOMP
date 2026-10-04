@@ -109,16 +109,9 @@ namespace status{
         static void setBreakPrayRing(int flag);
         static bool isBreakPrayRing();
 
-
     };
     
 }
 
 struct SplitJoukTable { int v[3]; };
 extern const SplitJoukTable splitJoukTable;
-
-
-
-extern "C" void func_02019f78(status::BaseAction*, int, int);
-extern "C" void func_ov015_021721cc(status::UseActionParam*);
-extern "C" void func_ov015_02172784(status::UseActionParam*);

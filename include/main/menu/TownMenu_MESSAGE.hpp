@@ -2,6 +2,8 @@
 #include "globaldefs.h"
 #include "GameInfo.hpp"
 #include "main/menu/MenuBase.hpp"
+#include "main/menu/UiMsg.hpp"
+#include "main/menu/UnkMenuDisplay.hpp"
 
 struct TownMenu_MESSAGE : menu::MenuBase
 {
@@ -49,44 +51,44 @@ struct TownMenu_MESSAGE : menu::MenuBase
     void SetNoClose(bool flag);
 };
 
-struct MessageWindow {
-    char unk_000[0x9a8];
+struct MessageWindow : UnkMenuDisplay {
+    char unk_030[0x978];
     int intervalCursor_;    // 0x9A8
     int lastCursor_;        // 0x9AC
     char unk_9b0[0x20];
     int shake_;             // 0x9D0
     int shakeCount_;        // 0x9D4
+
+    virtual void setup(int id);
+    virtual void update(UnkOamBuffer* main, UnkOamBuffer* sub);
+    virtual void execute(UnkOamBuffer* main, UnkOamBuffer* sub);
+    virtual void draw(UnkOamBuffer* main, UnkOamBuffer* sub);
 };
 
 struct Data020f6340;
 extern "C" {
-    void func_0204f264(void* obj, int flag);
-    void func_0204f270(Data020f6340* obj, int x, int y);
     void func_0204f53c(Data020f6340* obj, int flag);
 }
 
-struct Data020f6340 {
-    char unk_00[0x34];
+struct Data020f6340 : UnkMenuDisplay {
+    int unk_30;
     int unk_34;
+
+    virtual void setup(int id);
+    virtual void update(UnkOamBuffer* main, UnkOamBuffer* sub);
+    virtual void execute(UnkOamBuffer* main, UnkOamBuffer* sub);
+    virtual void draw(UnkOamBuffer* main, UnkOamBuffer* sub);
 };
 
 extern TownMenu_MESSAGE data_020ed1bc; //gTownMenu_MESSAGE 
-extern MessageWindow* data_0210b380;
-extern int data_0210b384;
 extern char data_020f1d88[];
 extern Data020f6340 data_020f6340;
 extern Data020f6340 data_020f7e10;
 
 extern "C" {
-    void func_02056040(int type, int language);
-    void func_02056074(int messageID);
     void func_0203cc20(void* mgr, int messageID);
-    void func_0205614c(void);
-    void func_0205607c(int messageID);
-    void func_020560b8(const char* message);
     void func_0204dfc0(MessageWindow* window);
     void func_0203cc0c(void* mgr);
-    void func_02056160(void);
     bool func_0204e02c(MessageWindow* window);
     void func_0204e064(MessageWindow* window, int flag);
     void func_0204f554(Data020f6340* obj);

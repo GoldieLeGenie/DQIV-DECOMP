@@ -15,7 +15,7 @@ ARM void TownMapEffect::setup(EFFECT_TYPE type)
     if (exist_) {
         switch (type_) {
         case EFFECT_TYPE_DREAM1:
-            func_02088308(path, sizeof(path), "data/mask/siro1a1.tex");
+            dss::sprintf_s(path, sizeof(path), "data/mask/siro1a1.tex");
             sprite0_.unkfunc_02057d60(path, 0);
             sprite0_.unkfunc_02057edc();
             sprite0_.unkfunc_02057f00(30);
@@ -24,7 +24,7 @@ ARM void TownMapEffect::setup(EFFECT_TYPE type)
             sprite1_.unkfunc_02057f18(61);
             break;
         case EFFECT_TYPE_DREAM2:
-            func_02088308(path, sizeof(path), "data/mask/siro1a2.tex");
+            dss::sprintf_s(path, sizeof(path), "data/mask/siro1a2.tex");
             sprite0_.unkfunc_02057d60(path, 0);
             sprite0_.unkfunc_02057edc();
             sprite0_.unkfunc_02057f00(30);
@@ -34,7 +34,7 @@ ARM void TownMapEffect::setup(EFFECT_TYPE type)
             sprite1_.unkfunc_02057f18(61);
             break;
         case EFFECT_TYPE_DEATHPISARO:
-            func_02088308(path, sizeof(path), "data/mask/pisaro.tex");
+            dss::sprintf_s(path, sizeof(path), "data/mask/pisaro.tex");
             sprite0_.unkfunc_02057d60(path, 0);
             sprite0_.unkfunc_02057edc();
             sprite0_.unkfunc_02057f00(30);
@@ -136,16 +136,16 @@ ARM void TownMapEffect::unkfunc_02142790()
     exist_ = 0;
     switch (type_) {
     case EFFECT_TYPE_DREAM1:
-        func_02088308(path, sizeof(path), "data/mask/siro1a1.tex");
-        exist_ = func_0207ebd4(&data_02116ce8, path);
+        dss::sprintf_s(path, sizeof(path), "data/mask/siro1a1.tex");
+        exist_ = dss::g_File.isExist(path);
         break;
     case EFFECT_TYPE_DREAM2:
-        func_02088308(path, sizeof(path), "data/mask/siro1a2.tex");
-        exist_ = func_0207ebd4(&data_02116ce8, path);
+        dss::sprintf_s(path, sizeof(path), "data/mask/siro1a2.tex");
+        exist_ = dss::g_File.isExist(path);
         break;
     case EFFECT_TYPE_DEATHPISARO:
-        func_02088308(path, sizeof(path), "data/mask/pisaro.tex");
-        exist_ = func_0207ebd4(&data_02116ce8, path);
+        dss::sprintf_s(path, sizeof(path), "data/mask/pisaro.tex");
+        exist_ = dss::g_File.isExist(path);
         break;
     }
 }

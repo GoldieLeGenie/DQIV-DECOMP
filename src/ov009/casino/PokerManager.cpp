@@ -146,18 +146,18 @@ ARM void PokerManager::startSelectCard(int count)
 
 ARM void PokerManager::setSelectCard(int count, int active)
 {
-    PokerDoubleupSelectCard::getSingleton()->setSelectActive(count, active);
+    PokerDoubleupSelectCard::getSingleton()->selectDoubleup_[count].selectActive_ = active;
 }
 
 ARM int PokerManager::getSelectCard(int count)
 {
-    return PokerDoubleupSelectCard::getSingleton()->getSelectActive(count);
+    return PokerDoubleupSelectCard::getSingleton()->selectDoubleup_[count].selectActive_;
 }
 
 ARM int PokerManager::getSelectCardNo(int count, int active)
 {
     if (active == 0) {
-        return changeCardNo(PokerDoubleupSelectCard::getSingleton()->getTargetCard(count));
+        return changeCardNo(PokerDoubleupSelectCard::getSingleton()->selectDoubleup_[count].targetCard_);
     }
     return changeCardNo(PokerDoubleupSelectCard::getSingleton()->getSelectCard(count, active));
 }
@@ -165,7 +165,7 @@ ARM int PokerManager::getSelectCardNo(int count, int active)
 ARM int PokerManager::getSelectCardType(int count, int active)
 {
     if (active == 0) {
-        return changeCardType(PokerDoubleupSelectCard::getSingleton()->getTargetCard(count));
+        return changeCardType(PokerDoubleupSelectCard::getSingleton()->selectDoubleup_[count].targetCard_);
     }
     return changeCardType(PokerDoubleupSelectCard::getSingleton()->getSelectCard(count, active));
 }
@@ -182,7 +182,7 @@ ARM void PokerManager::startHighAndLow()
 
 ARM void PokerManager::setAnswer(int count, int answer)
 {
-    PokerDoubleupHighAndLow::getSingleton()->setAnswer(count, answer);
+    PokerDoubleupHighAndLow::getSingleton()->answer_[count] = answer;
 }
 
 ARM int PokerManager::getHighAndLowResult(int count)

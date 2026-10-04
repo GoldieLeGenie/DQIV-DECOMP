@@ -1,5 +1,9 @@
 #pragma once
 #include "globaldefs.h"
+#include "main/dss/DssUtils.hpp"
+#include "main/data/DataObject.hpp"
+
+struct TextHookBase;
 
 struct TextAPI {
     static void setLanguage(int language);
@@ -21,6 +25,19 @@ struct TextAPI {
     static void setHeroName(char* name);
     static void setUserString(int index, char* string);
     static int isGermanMonsterException(int monsterIndex);
+    static void unkfunc_02054690();
+    static void Init();
+    static void unkfunc_020547f0();
+    static void unkfunc_020547f4();
+    static void unkfunc_0205487c();
+    static void unkfunc_02054884();
+    static void unkfunc_02054888();
+
+    static unsigned char m_msg_last_sound;
+    static int m_lang;
+    static int m_extra;
+    static char m_work2[0x80];
+    static char m_work1[0x200];
 };
 
 enum MACRO_STAT {
@@ -45,62 +62,190 @@ enum MACRO_STAT {
     MST_ALLMEMBER       = 0x20000
 };
 
-
 struct MsgVar {
-    int m_def;          /* 0x00 */
-    int m_type;         /* 0x04 */
-    int m_kind;         /* 0x08 */
-    int m_no;           /* 0x0C */
-    int m_index;        /* 0x10 */
-    int m_fake;         /* 0x14 */
-    int m_tmp;          /* 0x18 */
+    int m_def;                  /* 0x00 */
+    int m_array_index_no;       /* 0x04 */
+    int m_type;                 /* 0x08 */
+    int m_no;                   /* 0x0C */
+    int m_opt;                  /* 0x10 */
+    int m_fake;                 /* 0x14 */
+    MACRO_STAT m_macro_stat;    /* 0x18 */
+
+    void set(int def, int array_index_no, int type, int no, int fake, int opt);
+    void set(int def, int array_index_no, int type, int no, int opt);
+    int unkfunc_02053b2c(int def, int array_index_no);
+    int extract_var(char* dst, int size, int ex);
+    int unkfunc_02053d04();
+};
+
+struct TextEnv {
+    MsgVar m_msg_var[64];           /* 0x000 */
+    int m_msg_var_length;           /* 0x700 */
+    TextHookBase* m_text_hook;      /* 0x704 */
+
+    TextEnv();
+    void resetMacro();
+    void add_msg_var(int def, int array_index_no, int type, int no);
+    void add_msg_var(int def, int array_index_no, int type, int no, int opt);
+    void add_msg_var(int def, int array_index_no, int type, int no, int fake, int opt);
+    void process_msg(char* dst, int size, const char* src);
+    void unkfunc_02053e04(char* dst, int size, unsigned char* src);
+    MsgVar* search_msg_var(int def, int array_index_no);
+    char* check_text_hook(int def, int array_index_no);
+    MACRO_STAT unkfunc_02053f74(int def, int array_index_no);
+    char* unkfunc_02053f90(int def, int array_index_no);
+    char* unkfunc_02054010(char* dst, int size, unsigned char* src, int cap);
+    MACRO_STAT macro_getMacroStat(int def, int array_index_no);
+    MACRO_STAT macro_checkActorTarget();
+    MACRO_STAT macro_checkVowel(char* text);
+    MACRO_STAT macro_checkLastS(char* text);
+};
+
+struct TextExtractor {
+    char m_hero_name[32];           /* 0x000 */
+    char m_user_str[8][64];         /* 0x020 */
+    MACRO_STAT m_macro_stat;        /* 0x220 */
+
+    TextExtractor();
+    int extractText(char* dst, int size, int msg_id);
+    int extractText(char* dst, int size, int type, int no);
+    int extract_text(char* dst, int size, int type, int no, int ex, int plural);
+    int extract_text_msg(char* dst, int size, unsigned int msg_id, int ex, int plural);
+    void setHeroName(char* name);
+    int extract_text_user_str(char* dst, int size, int no);
+    void setUserString(int num, char* name);
+    int extract_text_number(char* dst, int size, int no);
+    const char* unkfunc_02055280(int type);
+    void unkfunc_020553c4(char* dst, const unsigned char* src, int number, int art, int casus);
+    const char* unkfunc_02055438(int number, int art, int casus, int c);
+};
+
+struct GrammarSuffix {
+    int ch;
+    int art;
+    const char* str[4];
+};
+
+struct MsgData {
+    char* m_addr;                   /* 0x00 */
+    int m_size;                     /* 0x04 */
+    int m_msg_base_id;              /* 0x08 */
+    int unk_0c;                     /* 0x0C */
+    int unk_10;                     /* 0x10 */
+    int unk_14;                     /* 0x14 */
+    int unk_18;                     /* 0x18 */
+
+    MsgData();
+    void msg_setup(int msg_base_id, int arg1, int size, int count);
+    void unkfunc_020554ec();
+    int unkfunc_02055510(unsigned int msg_id);
+    int unkfunc_02055524(unsigned int msg_id, int lang);
+};
+
+struct MsgMeta {
+    unsigned char m_meta[10][0x80];  /* 0x000 */
+    unsigned char m_head[0x80];      /* 0x500 */
+    unsigned char m_body[0x200];     /* 0x580 */
+    unsigned char m_sound[0x80];     /* 0x780 */
+
+    int unkfunc_02055604(const unsigned char* src, int msg_id, int lang);
+    unsigned char* unkfunc_02055740(int index);
+};
+
+struct MsgFile {
+    unsigned char* m_addr;          /* 0x000 */
+    int m_size;                     /* 0x004 */
+    MsgMeta m_meta;                 /* 0x008 */
+    int m_msg_id;                   /* 0x808 */
+    int unk_80c;                    /* 0x80C */
+
+    void unkfunc_020557cc();
+    void unkfunc_020557f8();
+    int unkfunc_02055810(unsigned int msg_id, int lang);
+    int unkfunc_02055848(unsigned int msg_id, int lang);
+    int unkfunc_02055894(unsigned int msg_id, int lang);
+    unsigned char* unkfunc_020558cc(int index);
+};
+
+struct BadWordList {
+    DataObject m_data;              /* 0x00 */
+
+    void unkfunc_02056b00();
+    void unkfunc_02056b48();
+    int unkfunc_02056b50(char* name);
+    int unkfunc_02056c1c(char* word);
+};
+
+struct MessageMacro {
+    int stateStackPos_;             /* 0x00 */
+    int stateStack_[16];            /* 0x04 */
+    int stateNow_;                  /* 0x44 */
+    char* dst_;                     /* 0x48 */
+    int size_;                      /* 0x4C */
+    const char* src_;               /* 0x50 */
+
+    void initialize(char* dst, int size, const char* src);
+    void processMessage(char* dst, int size, const char* src);
+    void judgeState(MACRO_STAT mask, int def, int array_index_no);
+    void processIF();
+    void processELSE();
+    void processENDIF();
+    void stateStackPush(int state) {
+        stateStackPos_++;
+        stateStack_[stateStackPos_] = state;
+    }
+};
+
+struct MacroName {
+    int id;
+    const char* name;
 };
 
 struct Utf8Iterator {
     unsigned char unk_00[0x24];
 };
 
-MACRO_STAT macro_checkVowel(void* macro, char* text);
-MACRO_STAT macro_checkLastS(void* macro, char* text);
+MsgData* unkfunc_0205488c(int msg_id);
+int unkfunc_02054970(int msg_id, int lang);
+int unkfunc_02054984(int msg_id, int lang);
+char* msg_get_head();
+char* msg_get_body();
+unsigned char msg_get_sound();
+int CheckBadWord(char* name);
+int unkfunc_020549f0(char* name);
 
-/* 0x02109e48 */
-struct TextAPIWork {
-    unsigned char messageSound_;
-    int language_;
-};
+extern MsgData g_msg_data_default;
+extern MsgData g_msg_data[11];
+extern TextEnv g_text_env;
+extern TextExtractor g_text_extractor;
+extern BadWordList g_bad_word_list;
+extern MsgFile g_msg_file;
 
-extern TextAPIWork data_02109e48;
 extern int data_021098c4;
-extern char data_02109e54[0x80];
-extern char data_02109ed4[0x200];
-extern char data_0210a240[];    /* text extractor object */
-extern char data_0210a464[];    /* macro table object */
-extern char data_020c2c2c[];    /* "%s" */
-extern char data_020c2c30[];    /* "%s  %s%s" */
-extern char data_020c2c3c[];
+extern unsigned char* data_02120544;    /* last found message */
+extern int data_020c4978;               /* last found message length */
 extern unsigned short data_020c45b0[];  /* uppercase table */
 extern unsigned short data_020c4618[];  /* lowercase table */
+extern unsigned short data_020c47d4[];
+extern unsigned short data_020c4894[];
+extern unsigned short data_020c455c[];
+extern unsigned short data_020c4586[];
+extern unsigned short data_020c4680[];
+extern unsigned short data_020c472a[];
 
 extern "C" {
-    void func_02053afc(MsgVar* var, int def, int type, int kind, int no, int fake, int index);
-    void func_02053b44(MsgVar* var, char* text, int size, int opt);                         /* MsgVar::extract_var */
-    void func_02087fbc(unsigned short* upper, unsigned short* lower, char* dst, int size, char* src, int count);
-    int  func_02088258(char* dst, const char* format, ...);                                 /* sprintf */
+    void func_02087fbc(unsigned short* upper, unsigned short* lower, char* dst, int size, const char* src, int count);
+    void func_02087f14(unsigned short* from, unsigned short* to, char* dst, int size, const char* src);
     void func_020876f4(Utf8Iterator* it);
     void func_020875ec(Utf8Iterator* it, char* text);
     int  func_0208771c(Utf8Iterator* it);                                                   /* current char */
     void func_020877b8(Utf8Iterator* it);                                                   /* next */
-    void func_02053d24(void* macro);                                                        /* resetMacro */
-    void func_02053d30(void* macro, int slot, int kind, int type, int value);
-    void func_02053d48(void* macro, int slot, int kind, int type, int value, int value2);
-    void func_02053d60(void* macro, int slot, int kind, int type, int value, int value2, int value3);
-    void func_02053dbc(void* macro, char* dst, int size, const char* src);                  /* process_msg */
-    int  func_02054970(int messageID, int language);                                        /* msg_find */
-    void func_02054984(int messageID, int language);
-    char* func_02054998(void);
-    char* func_020549a8(void);
-    unsigned char func_020549b8(void);
-    void func_02054a6c(void* extractor, char* text, int size, int type, int value);         /* extract_text */
-    void func_020551f0(void* extractor, char* name);
-    void func_0205521c(void* extractor, int index, char* string);
+    void* func_0207f77c(void* heap, int size, int align);                                   /* heap alloc */
+    void func_02080038(int font);
+    void func_0207f9b8(int a, int b, int c, int d, const char* text, int f);
+    int  func_02080100(void);
+    char* func_02088078(const char* str);
+    int  func_02088484(char* addr, unsigned int msg_id);                                    /* find message */
+    int  func_02087a74(Utf8Iterator* it, char* line, int size);                             /* read line */
+    void func_02087e08(char* dst, int size, const char* src);
 }

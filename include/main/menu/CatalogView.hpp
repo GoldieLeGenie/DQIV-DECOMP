@@ -31,6 +31,7 @@ extern "C" {
     bool func_0202b9f8(int diary);
     void func_0202bc10(CatalogView* view);
     int func_0202c040(void);
+    int func_0202c058(void);                    // card check result (1 ok, <0 error)
     void func_0202b928(int diary, int saveType);
     int func_0202b990(void);
     int func_0202b9a8(void);

@@ -1,6 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "nitro/fx.hpp"
+#include <stddef.h>
 
 extern "C" fx32 FX_Divide(fx32 numer, fx32 denom);
 extern "C" fx32 FX_Sqrt(fx32 value);
@@ -71,8 +72,6 @@ namespace dss{
         T flag_;
 
         BitFlag() { flag_ = 0; }
-        void set(T flag) { flag_ |= flag; }
-        void remove(T flag) { flag_ &= ~flag; }
         bool check(T flag) const { return (flag_ & flag) ? true : false; }
         void clear() { flag_ = 0; }
     };
@@ -82,9 +81,7 @@ namespace dss{
     {
         unsigned char flag_;
         BitFlag() { flag_ = 0; }
-        bool check(unsigned char flag) const { return (flag_ & flag) ? true : false; }
-        void set(unsigned char flag) { flag_ |= flag; }
-        void remove(unsigned char flag) { flag_ &= ~flag; }
+        void clear() { flag_ = 0; }
     };
 
     typedef BitFlag<unsigned int> Flag;
@@ -115,7 +112,6 @@ namespace dss{
         short vx;
         short vy;
         short vz;
-        void set(short x, short y, short z) { vx = x; vy = y; vz = z; }
     };
     template <typename T>
     struct Vector2 {
@@ -198,30 +194,52 @@ namespace dss{
     int arrayToIndex(int* array, int value, int max);
     int getRandomVariation(int value, int under, int over);
     int arrayToMinIndex(int* array, int count);
+    template <typename T> T max(T a, T b);
+    template <typename T> T min(T a, T b);
+    template <typename T> T clamp(T a, T b, T c);      // min(max(a, b), c)
+    template <typename T> T loop(T x, T a, T b);       // x > b: a, x < a: b
 
-    struct DssUtils
-    {
-    
-       static int strcpy_s(char* dest, int size, char* src); 
-       static int strcat_s(char* dest, int size, char* src);
-       static int unkfunc_020882b0(const char* str1, const char* str2);   // strcmp
-       static void* unkfunc_020882d4(void* dst, int c, int n);               // memset
-    };
+    int sprintf(char* dst, const char* fmt, ...);
+    unsigned int strlen(const char* str);
+    char* strcpy(char* dst, const char* src);
+    char* strcat(char* dst, const char* src);
+    char* strstr(const char* str, const char* sub);
+    int strcmp(const char* str1, const char* str2);
+    int strncmp(const char* str1, const char* str2, unsigned int n);
+    char* strchr(const char* str, int c);
+    void* memset(void* dst, int c, int n);
+    void* memcpy(void* dst, void* src, int n);
+    int sprintf_s(char* dst, size_t size, const char* fmt, ...);    // -1 if truncated
+    int strcpy_s(char* dst, size_t size, const char* src);
+    int strcat_s(char* dst, size_t size, const char* src);
     
 }
 
 extern "C" {
-    unsigned int func_02008ea0(unsigned int value, unsigned int min, unsigned int max);   // clamp
-    char* func_0208828c(char* dst, const char* src);                                   // strcpy
-    unsigned int func_02088280(const char* str);                                       // strlen
-    int func_020882bc(const char* a, const char* b, unsigned int n);                   // strncmp
-    int func_02088308(char* buf, int size, const char* fmt, ...);                      // sprintf_s
+    unsigned int STD_GetStringLength(const char* str);
+    char* STD_ConcatenateString(char* dst, const char* src);
+    char* func_0207c2d0(const char* str, const char* sub);                             // strstr
+    void MI_CpuSet(void* dest, unsigned char value, unsigned int count);
+    void MI_CpuCopyU8(const void* src, void* dest, unsigned int count);
     int func_0208a104(void);                                                          // language
     int func_02080d94(dss::Fix32 value);
     void func_020885f8(MtxFx43* m);
     void func_02088698(MtxFx43* m, short angle);
     void func_020886d0(MtxFx43* m, short angle);
     dss::Fix32Vector3 func_02088670(MtxFx43* m, dss::Fix32Vector3* v);
-    int func_02008eb8(int a, int b);                                           // max
-    int func_02008ec4(int a, int b);                                           // min
+    void func_02087590(int id);                                               // FS_LoadOverlay(arm9, id)
+    void func_020875a4(int id);                                               // FS_UnloadOverlay(arm9, id)
+    void func_02087564(void* slot);                                           // unload the overlay held by the slot
+    void func_02084dd4(int value);
 }
+
+extern char data_020efc58[];                    // overlay slot (loaded flag, id)
+
+// overlay ids: OVERLAY_<n>_ID are defined by the linker script, the address is the id
+extern unsigned int OVERLAY_0_ID;
+extern unsigned int OVERLAY_1_ID;
+extern unsigned int OVERLAY_3_ID;
+extern unsigned int OVERLAY_6_ID;
+extern unsigned int OVERLAY_9_ID;
+extern unsigned int OVERLAY_15_ID;
+extern unsigned int OVERLAY_16_ID;

@@ -69,16 +69,4 @@ namespace btl {
 }
 extern status::PlayerStatus dummyPlayer_;
 
-extern "C" void func_ov003_02126fbc(btl::BattleActorManager2* thisptr);
-extern "C" void func_ov003_021270e4(btl::BattleActorManager2* thisptr);
-extern "C" void func_ov003_0212859c(btl::BattleActorManager2* thisptr);
-extern "C" int func_ov003_02128570(btl::BattleActorManager2*);
-extern "C" void func_ov003_02127338(btl::BattleActor2* a, btl::BattleActor2* b);
-extern "C" void func_ov003_02127df0(btl::BattleActorManager2* mgr);
-extern "C" void func_ov003_02128388(btl::BattleActorManager2* mgr);
-extern "C" void func_ov003_02128920(btl::BattleActorManager2* mgr, int n);   // ~ addMonsterEscapeCount
-extern "C" void func_ov003_0212897c(btl::BattleActorManager2* mgr, int n);   // ~ addMonsterDisappearCount
-extern "C" void func_ov003_021288c4(btl::BattleActorManager2* mgr, int n);   // ~ addMonsterDeathCount
-extern "C" void func_ov003_021281f4(btl::BattleActorManager2* mgr, int index);
-extern "C" void func_ov003_02127f7c(btl::BattleActorManager2* mgr, int n);
 extern "C" void func_02039460(int index);

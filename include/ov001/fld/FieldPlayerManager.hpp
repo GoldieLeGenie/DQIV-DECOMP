@@ -59,6 +59,10 @@ struct FieldPlayerManager : cmn::PlayerManager {
     FieldShipDraw shipDraw_;                                                        // 0x880
     FieldBalloonDraw balloonDraw_;                                                  // 0xA50
 
+    virtual void setPosition(dss::Fix32Vector3& pos);
+    virtual dss::Fix32Vector3 getPosition();
+    virtual short getDirection();
+    virtual void resetParty();
     static FieldPlayerManager* getSingleton();
     int getDamageColor(int type);
     void inputPad(int padDir);

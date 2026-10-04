@@ -43,19 +43,8 @@ namespace status {
 
 }
 
-
-
-
 extern status::CallMonsterInfo CallMonster; //data_020d06c8
 extern status::CharacterStatus* callMonsterStatus_[12];  //data_020d06e8
 
 struct TownPlayerManager;
 namespace btl { struct BattleMonsterDraw2; }
-extern "C" int   func_ov003_0212e37c(void*);                   // MonsterParty::getCount
-extern "C" int   func_ov003_0212e428(void*, int);              // MonsterParty::getMonsterCountInGroup(group)
-extern "C" int   func_ov003_0212e464(void*, int);              // MonsterParty::getMonsterCountInGroupExist(group)
-extern "C" int   func_ov003_0212e988(void*, int, int, int);    // MonsterPartyWithDraw::add(group, monsterIndex, flag) → index
-extern "C" int   func_ov003_0212e6c4(void*, int);              // MonsterParty::getMonsterGroupForMonsterIndex(monsterIndex)
-extern "C" int   func_ov003_0212e7bc(void*);   // MonsterParty::getMonsterCallIndex
-extern "C" int   func_ov003_0212e5fc(void*, int);   // MonsterParty::getCtrlId
-extern "C" void  func_ov003_0212ea84(void*, int);   // MonsterPartyWithDraw::del(party, ctrlId)

@@ -68,7 +68,4 @@ extern SpecialItem specialItem[26];//data_ov003_0213c618
 extern const GroupIndices monsterCallTypeTable;
 extern const MonsterFormation monsterFormationTable;
 
-extern "C" int func_ov003_0212e8e8(int index);
-extern "C" int func_ov003_0212e938(int, int);
-
 #include "ov003/status/MonsterPartyWithDraw.hpp"

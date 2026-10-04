@@ -42,8 +42,5 @@ struct PokerDoubleupSelectCard {
     DOUBLEUP_RESULT getResult(int no);
     int getCardNo(int no, int index);
     void clearDebugCard();
-    void setSelectActive(int count, short active) { selectDoubleup_[count].selectActive_ = active; }
-    short getSelectActive(int count) { return selectDoubleup_[count].selectActive_; }
     short getSelectCard(int count, int active) { return selectDoubleup_[count].selectCard_[active - 1]; }
-    short getTargetCard(int count) { return selectDoubleup_[count].targetCard_; }
 };

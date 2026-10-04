@@ -2,6 +2,7 @@
 #include "globaldefs.h"
 #include "main/param/Param.hpp"
 #include "GameInfo.hpp"
+#include "main/menu/UiMsg.hpp"
 
 struct TownCharacterManager;
 
@@ -41,12 +42,3 @@ struct CharaVoiceCount {
 };
 
 extern const CharaVoiceCount charaVoiceCount_; //data_020b614c
-
-
-extern "C" {
-    void func_02039874(void);                        // getPlayerVoice
-    void func_02056358(int sound);                   // ui_MsgSndSet
-    int  func_02039838(cmn::TalkSoundManager* self); //
-    void func_02056384(int* order);                  // 
-
-}

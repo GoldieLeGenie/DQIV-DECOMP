@@ -53,7 +53,7 @@ THUMB void TownFurnitureObject::execute()
         if (TownWindowSystem::getSingleton()->isWait()) {
             phase_ = PHASE_OPEN;
         }
-        if (!TownWindowSystem::getSingleton()->isMessage()) {
+        if (!TownWindowSystem::getSingleton()->cmdWindow_.isMessage()) {
             cleanup();
             phase_ = PHASE_NONE;
         }
@@ -73,7 +73,7 @@ THUMB void TownFurnitureObject::execute()
         if (TownWindowSystem::getSingleton()->isWait()) {
             phase_ = PHASE_EXTEND_CLOSE;
         }
-        if (!TownWindowSystem::getSingleton()->isMessage() && TownStageManager::getSingleton()->isCommonAnimationEnd(uid_)) {
+        if (!TownWindowSystem::getSingleton()->cmdWindow_.isMessage() && TownStageManager::getSingleton()->isCommonAnimationEnd(uid_)) {
             closeObject();
             cleanup();
             phase_ = PHASE_NONE;
@@ -175,7 +175,7 @@ THUMB void TownFurnitureObject::addMessage(int message, bool serial)
 {
     if (openWindow_ != 0) {
         openWindow_ = 0;
-        func_02056358(0x30);
+        ui_MsgSndSet(0x30);
         TownWindowSystem::getSingleton()->openCommonMessage();
     }
     if (serial) {

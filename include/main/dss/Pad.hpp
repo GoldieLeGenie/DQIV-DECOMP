@@ -3,10 +3,12 @@
 
 namespace dss {
     struct Pad {
-        int unkfunc_0207f268();                 // held keys & enable mask
-        int unkfunc_0207f278();                 // direction
-        int unkfunc_0207f280();                 // triggered keys & enable mask
+        int pad();                              // held keys & enable mask
+        int padDir();                           // direction
+        int edge();                             // triggered keys & enable mask
+        int unkfunc_0207f290();                 // repeat keys & enable mask
+        void unkfunc_0207f2b4(int flag);        // flag != 0: mask out the L button
     };
-}
 
-extern dss::Pad data_02116d40;
+    extern Pad g_Pad;
+}

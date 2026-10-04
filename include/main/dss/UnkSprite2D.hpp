@@ -23,14 +23,19 @@ struct UnkSprite2D : RenderObject {
 };
 
 struct UnkMenuSprite {
-    int unk_00;                                 // 0x00
+    Render* render_;                            // 0x00
     DataObject data_;                           // 0x04
-    int unk_14;                                 // 0x14
+    void* texture_;                             // 0x14
     UnkSprite2D sprite_;                        // 0x18
 
     UnkMenuSprite();
     ~UnkMenuSprite();
+    void unkfunc_02057d1c();
+    void unkfunc_02057d2c();
+    void unkfunc_02057d40();
+    int unkfunc_02057d50();
     void unkfunc_02057d60(const char* filename, int a);
+    void unkfunc_02057d88(void* addr);
     void unkfunc_02057dac();
     void unkfunc_02057e34();
     void unkfunc_02057e58(Render* render);
@@ -52,3 +57,4 @@ struct UnkMenuSprite {
 
 void unkfunc_020847e8();
 void unkfunc_020848a8();
+void unkfunc_02084964();

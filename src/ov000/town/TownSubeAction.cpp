@@ -7,6 +7,7 @@
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/fld/FldStage.hpp"
 #include "main/sound/SoundManager.hpp"
+#include "main/sound/Sound.hpp"
 
 const dss::Fix32 TownSubeAction::subeR(0x59a);
 const dss::Fix32 TownSubeAction::subeSpeed(0x19a);
@@ -106,7 +107,7 @@ ARM int TownSubeAction::startCheck()
         ret = ACTION_TYPE_SUBE;
         TownPlayerManager::getSingleton()->setRemote(1);
         TownPlayerManager::getSingleton()->partyDraw_.setAnimation(0);
-        func_02055a04(0x14a);
+        Sound::sePlayDirect(0x14a);
     }
     return ret;
 }

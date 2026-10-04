@@ -127,10 +127,10 @@ struct __cmd_message_with_sound : ScriptCommand {
     virtual int isEnd();
 };
 
-extern __cmd_character_action_tremble data_020ec59c;
-extern __cmd_character_action_vanish data_020ec5a0;
-extern __cmd_map_animation_b data_020ec5a4;
-extern __cmd_wait data_020ec5e8;
-extern __cmd_menu_yes_no data_020ec60c;
-extern __cmd_count data_020ec61c;
-extern __cmd_message_with_sound data_020ec630;
+extern __cmd_character_action_tremble g_cmd_character_action_tremble;
+extern __cmd_character_action_vanish g_cmd_character_action_vanish;
+extern __cmd_map_animation_b g_cmd_map_animation_b;
+extern __cmd_wait g_cmd_wait;
+extern __cmd_menu_yes_no g_cmd_menu_yes_no;
+extern __cmd_count g_cmd_count;
+extern __cmd_message_with_sound g_cmd_message_with_sound;

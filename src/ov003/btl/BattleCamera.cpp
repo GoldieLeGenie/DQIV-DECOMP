@@ -158,10 +158,10 @@ THUMB void BattleCamera::setFilename(const char* file, const char* file2)
 {
     camera2 = 0;
     camera1 = 1;
-    dss::DssUtils::strcpy_s(file_, 16, (char*)file);
+    dss::strcpy_s(file_, 16, (char*)file);
     if (file2 != 0) {
         camera2 = 1;
-        dss::DssUtils::strcpy_s(file2_, 16, (char*)file2);
+        dss::strcpy_s(file2_, 16, (char*)file2);
     }
 }
 

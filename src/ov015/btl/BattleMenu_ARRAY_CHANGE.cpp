@@ -52,7 +52,7 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuDraw()
         func_ov015_0216bdd4();
     } else {
         int list[10];
-        dss::DssUtils::unkfunc_020882d4(list, -1, sizeof(list));
+        dss::memset(list, -1, sizeof(list));
         int out = status::g_Party.getCarriageOutCount();
         int num = 0;
         for (int i = out; i < status::g_Party.getCount(); i++) {
@@ -71,7 +71,7 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuDraw()
     int count = info->haveAction_.getCount();
     int actions[20];
     int num = 0;
-    dss::DssUtils::unkfunc_020882d4(actions, 0, sizeof(actions));
+    dss::memset(actions, 0, sizeof(actions));
     for (int i = 0; i < count; i++) {
         if (status::UseAction::isBattleUse(info->haveAction_.getAction(i))) {
             actions[num] = info->haveAction_.getAction(i);
@@ -141,7 +141,7 @@ THUMB int BattleMenu_ARRAY_CHANGE::unkfunc_0216f3c4()
         }
         if (result == 2) {
             int order[4];
-            dss::DssUtils::unkfunc_020882d4(order, 0, sizeof(order));
+            dss::memset(order, 0, sizeof(order));
             for (int i = 0; i < status::g_Party.getCarriageOutCount(); i++) {
                 order[i] = status::g_Party.getPlayerIndex(i);
                 if (i == btl::BattleMenuPlayerControl::getSingleton()->activeChara_) {
@@ -152,7 +152,7 @@ THUMB int BattleMenu_ARRAY_CHANGE::unkfunc_0216f3c4()
             unk_8c.result_ = 0;
             unk_8c.lastresult_ = 0;
             redraw_ = 1;
-            dss::DssUtils::unkfunc_020882d4(btl::BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_, 0, sizeof(btl::BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_));
+            dss::memset(btl::BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_, 0, sizeof(btl::BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_));
             close();
             gBattleMenu_ROOT.open();
             gBattleMenu_ROOT.menuItem_.active_ = 1;

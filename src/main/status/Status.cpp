@@ -173,8 +173,8 @@ THUMB void status::Status::setEventParty(unsigned int index)
         member++;
     } while (member->index == 0xffff);
 
-    func_02057f80(&data_020c7830);
-    func_02057f80(data_020c7980);
+    ExcelBinaryData::clearData(&data_020c7830);
+    ExcelBinaryData::clearData(&data_020c7980);
     setEventFlag(index);
 
     if (g_AreaFlag.check(0x13d)) {
@@ -192,7 +192,7 @@ THUMB void status::Status::setEventParty(unsigned int index)
 
 THUMB void status::Status::setEventFlag(unsigned int index)
 {
-    param::EventFlag* data = (param::EventFlag*)func_02057f50(func_02057f58(&param::EventFlag::data_, param::EventFlag::filename_[0]), data_020b5d64);
+    param::EventFlag* data = (param::EventFlag*)ExcelBinaryData::checkSum(ExcelBinaryData::readFileData(&param::EventFlag::data_, param::EventFlag::filename_[0]), data_020b5d64);
 
     g_AreaFlag.clear();
     for (unsigned int i = 0; i <= index; i++) {
@@ -302,7 +302,7 @@ THUMB void status::Status::setEventFlag(unsigned int index)
     }
 
     cmn::CommonRuraData::getSingleton()->setGlobalRuraFlagAll();
-    func_02057f80(&param::EventFlag::data_);
+    ExcelBinaryData::clearData(&param::EventFlag::data_);
     g_Stage.timestop_ = 0;
 }
 
@@ -316,9 +316,9 @@ THUMB void status::Status::setFlagShopExec()
     if (flagShopIndex_ != -1) {
         param::Event* event = param::Event::getFileData(flagShopIndex_);
         char floor[10];
-        dss::DssUtils::unkfunc_020882d4(floor, 0, 10);
-        dss::DssUtils::strcpy_s(floor, 10, event->floor);
-        func_02057f80(&data_020c7830);
+        dss::memset(floor, 0, 10);
+        dss::strcpy_s(floor, 10, event->floor);
+        ExcelBinaryData::clearData(&data_020c7830);
         encount::Encount::getSingleton()->initialize();
         initialize();
         setEventParty(flagShopIndex_);

@@ -2,7 +2,6 @@
 #include <globaldefs.h>
 #include "GameInfo.hpp"
 
-
 namespace btl {
     struct SetFlagInfo {
         short flagNo;
@@ -27,5 +26,3 @@ namespace btl {
         void setEncountMap(int tile);
     };
 }
-
-extern "C" int func_02023828(btl::SetFlagParam* param);

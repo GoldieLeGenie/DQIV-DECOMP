@@ -1,6 +1,7 @@
 #pragma once
 #include "main/dss/DssUtils.hpp"
-
+#include "main/global/GlobalGamePart.hpp"
+#include "main/global/GlobalDQ4.hpp"
 
 struct Global {
     enum BOOKING_FLAG {
@@ -74,13 +75,7 @@ struct Global {
     int getFieldType();
 };
 
-struct GlobalGamePart {
-    virtual void update();
-    virtual void draw();
-    virtual bool isEnd();
-};
-
-struct GlobalChangePart : GlobalGamePart {
+struct GlobalChangePart : UnkGlobalPart {
     int nextPart_;                             
 
     virtual void update();
@@ -88,7 +83,7 @@ struct GlobalChangePart : GlobalGamePart {
     void setNextPart(int part);
 };
 
-struct GlobalWaitPart : GlobalGamePart {
+struct GlobalWaitPart : UnkGlobalPart {
     int count_;                                 
     int frames_;                                
 
@@ -98,7 +93,7 @@ struct GlobalWaitPart : GlobalGamePart {
     int isRunning();
 };
 
-struct GlobalFade : GlobalGamePart {
+struct GlobalFade : UnkGlobalPart {
     enum FADE_STATE {
         FADE_NONE      = 0,
         FADE_OUT_BLACK = 1,
@@ -130,28 +125,16 @@ extern Global g_Global; // 0x020c768c
 extern GlobalChangePart g_GlobalChangePart;
 extern GlobalWaitPart g_GlobalWaitPart;
 extern GlobalFade g_GlobalFade;
-extern GlobalFade data_020f21f8;   // second fade part (battle)
+extern GlobalFade data_020f21f8;   // 
 extern unsigned char data_020f220c[0x38];   // screen, RGB555 color at 0x34
 extern unsigned char data_020f2244[0x38];   // screen, RGB555 color at 0x34
 
-
-
-extern char s_mapBtlda1[]; // "btlda1"
 extern char mlb1a[8]; // "mlb1a data_0208c9ec"
 extern char za1f1[8]; //za1f1 data_0208c9f4
-extern char s_mapSurechigai[];                            // "surechigai"
-extern char s_mapField[];                            // "field"
 extern char s_mapEv01[];                            // "ev01"
-extern char s_mapBook[];                            // "book"
-extern char s_mapCasino[];                            // "casino"
-extern int  data_0210bc18[];                            //
 
-extern "C" void func_02058294(void* mgr, void* part);   // 
 extern "C" void func_02084e8c(void* screen, int r, int g, int b);   // sets RGB555 color at 0x34
-extern "C" int  func_0205810c(void* mgr);               // current game mode (13 = battle auto feed)
 extern "C" {
-    void func_020582b8(void* mgr, void* task);
     void func_0207ed24(int brightness);
     void func_0207ed3c(int brightness);
 }
-extern "C" void func_020559ec(int value);

@@ -64,8 +64,6 @@ extern MaterielMenu_BANK_PUTIN data_ov016_021863c0;     /* gMaterielMenu_BANK_PU
 extern MaterielMenu_BANK_DRAW data_ov016_02186500;      /* gMaterielMenu_BANK_DRAW */
 
 extern "C" {
-    void func_ov016_02177a24(menu::MenuItem* menuItem, int active, int count);
-    void func_ov016_02177318(menu::MenuItem* menuItem, int active);
     void func_ov016_0216fd00(int a, int b, int money);
     void func_ov016_0216fcf0(void);
 }

@@ -48,17 +48,3 @@ struct EncountFormNumHeader {
     unsigned int unk_8;                      // 0x08
 };
 extern const EncountFormNumHeader encountFormNumHeader; //data_0208ca04
-
-
-extern "C"
-{
-    int func_0200b1b0(formation::FormationId*);                     // getMonsterCountA_E
-    int func_0200b228(formation::FormationId*, EncountType type);   // getMonsterCountF_J
-    int func_0200b250(formation::FormationId*);                     // getMonsterCountK_L
-    int func_0200b254(formation::FormationId*);                     // getMonsterCountM_N
-
-}
-
-
-
-

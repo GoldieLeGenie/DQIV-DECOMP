@@ -13,7 +13,6 @@
 #include "main/status/StatusChange.hpp"
 #include "main/dss/DssUtils.hpp"
 
-
 struct HaveBattleStatus;
 struct UseItem;
 
@@ -261,17 +260,4 @@ namespace status{
         int isActionEnable();
         int isAttackEnable();
     };
-}
-
-
-extern "C" {
-  int func_02010708(status::HaveItem*, int index);//isEquipment(int index)
-  void func_020106b8(status::HaveItem*, int itemIndex);//sortEquipmentForTest
-  void func_020106cc(status::HaveItem*,int ItemIndex);
-  void func_02010688(status::HaveItem*,int ItemIndex);
-  void func_020105d8(status::HaveItem*,int index);
-  void func_02011274(status::HaveAction*,int index);
-  void func_020115bc(status::HaveAction*);//forceLearn
-  void func_02011360(status::HaveAction*,int index,int level,int wisdom,bool flag);//haveaction::levelup
-  void func_020115fc(status::HaveEquipment*);//HaveEquipment::~HaveEquipment
 }

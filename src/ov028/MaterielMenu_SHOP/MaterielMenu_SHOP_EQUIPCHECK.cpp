@@ -31,11 +31,11 @@ THUMB void MaterielMenu_SHOP_EQUIPCHECK::menuUpdate()
     if (data_020ed1bc.isOpen()) {
         if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
             data_020ed1bc.close();
-            func_02056358(cmn::g_talkSound.getCharacterVoice(ctrlID_));
+            ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(ctrlID_));
             yesAdmin();
         } else if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_CANCEL) {
             data_020ed1bc.close();
-            func_02056358(cmn::g_talkSound.getCharacterVoice(ctrlID_));
+            ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(ctrlID_));
             noAdmin();
         }
         return;
@@ -88,7 +88,7 @@ THUMB void MaterielMenu_SHOP_EQUIPCHECK::yesAdmin()
         status::g_Party.getPlayerStatus(activeChara)->haveStatusInfo_.setEquipment(itemIndex);
         TextAPI::setMACRO0(0x12, 0x50000000, playerIndex);
         TextAPI::setMACRO0(0xa, 0x40000000, itemID);
-        func_02056358(0x30);
+        ui_MsgSndSet(0x30);
         showMessage(MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->equipItem());
         data_020ed1bc.setMessageLastCursor(true);
         mode_ = 5;

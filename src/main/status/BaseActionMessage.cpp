@@ -1,4 +1,5 @@
 #include "main/status/BaseActionMessage.hpp"
+#include "ov016/TownMenuPlayerControl.hpp"
 #include "main/global/GlobalDQ4.hpp"
 #include "main/status/ActionExec.hpp"
 #include "main/status/BaseAction.hpp"
@@ -789,8 +790,8 @@ THUMB int status::BaseActionMessage::getMessageNorthEast(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].northEast != 0
      && data_0210bb94.unkfunc_02058114(0xE) != 0) {
-        char dx = func_ov016_021755a0()->takanomeX_;
-        char dy = func_ov016_021755a0()->takanomeY_;
+        char dx = TownMenuPlayerControl::getSingleton()->takanomeX_;
+        char dy = TownMenuPlayerControl::getSingleton()->takanomeY_;
         if (dx <= 0 && dy >= 0) {
             result = messageData_.splitMsg_[splitIndex].northEast;
             splitFlag_ = 0;
@@ -806,8 +807,8 @@ THUMB int status::BaseActionMessage::getMessageSouthEast(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].northEast != 0     
      && data_0210bb94.unkfunc_02058114(0xE) != 0) {
-        char dx = func_ov016_021755a0()->takanomeX_;
-        char dy = func_ov016_021755a0()->takanomeY_;
+        char dx = TownMenuPlayerControl::getSingleton()->takanomeX_;
+        char dy = TownMenuPlayerControl::getSingleton()->takanomeY_;
         if (dx <= 0 && dy < 0) {
             result = messageData_.splitMsg_[splitIndex].southEast;
             splitFlag_ = 0;
@@ -822,8 +823,8 @@ THUMB int status::BaseActionMessage::getMessageNorthWest(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].northWest != 0
      && data_0210bb94.unkfunc_02058114(0xE) != 0) {
-        char dx = func_ov016_021755a0()->takanomeX_;
-        char dy = func_ov016_021755a0()->takanomeY_;
+        char dx = TownMenuPlayerControl::getSingleton()->takanomeX_;
+        char dy = TownMenuPlayerControl::getSingleton()->takanomeY_;
         if (dx > 0 && dy >= 0) {
             result = messageData_.splitMsg_[splitIndex].northWest;
             splitFlag_ = 0;
@@ -838,8 +839,8 @@ THUMB int status::BaseActionMessage::getMessageSouthWest(int splitIndex)
 
     if (messageData_.splitMsg_[splitIndex].southWest != 0
      && data_0210bb94.unkfunc_02058114(0xE) != 0) {
-        char dx = func_ov016_021755a0()->takanomeX_;
-        char dy = func_ov016_021755a0()->takanomeY_;
+        char dx = TownMenuPlayerControl::getSingleton()->takanomeX_;
+        char dy = TownMenuPlayerControl::getSingleton()->takanomeY_;
         if (dx > 0 && dy < 0) {
             result = messageData_.splitMsg_[splitIndex].southWest;
             splitFlag_ = 0;

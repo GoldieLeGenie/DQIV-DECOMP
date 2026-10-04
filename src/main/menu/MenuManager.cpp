@@ -71,7 +71,7 @@ THUMB int MenuManager::isRequesting()
 
 THUMB void MenuManager::execute()
 {
-    if (func_02058380(data_0210bc40) == 1) {
+    if (data_0210bc40.unkfunc_02058380() == 1) {
         s_redraw = 1;
         return;
     }

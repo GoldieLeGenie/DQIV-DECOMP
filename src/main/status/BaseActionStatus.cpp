@@ -157,7 +157,7 @@ THUMB int status::BaseActionStatus::actionTypeAddMP(status::CharacterStatus *tar
     if (Mp <  target->haveStatusInfo_.getMpMax())
     {
         int effect = getEffectValue(target);
-        int value = func_02008ea0(
+        int value = dss::clamp<int>(
             effect, 0,
             target->haveStatusInfo_.getMpMax() - target->haveStatusInfo_.getMp());
 
@@ -698,7 +698,7 @@ THUMB int status::BaseActionStatus::actionTypeMosyas(status::CharacterStatus *ac
     actor->haveStatusInfo_.setAttack(target->haveStatusInfo_.getAttack(0));
     actor->haveStatusInfo_.setDefence(target->haveStatusInfo_.getDefence(0));
 
-    int count = func_02008ea0(target->haveStatusInfo_.haveAction_.getCount(), 0, 14);
+    int count = dss::clamp<int>(target->haveStatusInfo_.haveAction_.getCount(), 0, 14);
     actor->haveBattleStatus_.clearMosyasAction();
 
     int i = 0;
@@ -754,7 +754,7 @@ THUMB int status::BaseActionStatus::actionTypeNone(status::CharacterStatus *acto
             target->haveStatusInfo_.setUseActionEffectValue(0);
         } else {
             int hp = target->haveStatusInfo_.getHp();
-            short keep = (short)func_02008ea0((short)(hp * 5 / 100 - 1), 1, 0x3FF);
+            short keep = (short)dss::clamp<int>((short)(hp * 5 / 100 - 1), 1, 0x3FF);
             hp = hp - keep;
             target->haveStatusInfo_.addHpInBattle(HaveStatusInfo::ResultAction, -hp);
             target->haveStatusInfo_.setDamage(true);

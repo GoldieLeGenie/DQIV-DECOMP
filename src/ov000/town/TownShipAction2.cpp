@@ -40,7 +40,7 @@ ARM int TownShipAction2::setup()
                 shipNamiPosition_ = TownStageManager::getSingleton()->getMapUidPos(0x1f3);
                 g_cmnPartyInfo.setShipInfo(g_Global.getMapName(), &shipPosition_, shipDirection_);
             }
-            if (dss::DssUtils::unkfunc_020882b0(g_cmnPartyInfo.getShipMapName(), g_Global.getMapName()) == 0) {
+            if (dss::strcmp(g_cmnPartyInfo.getShipMapName(), g_Global.getMapName()) == 0) {
                 g_cmnPartyInfo.getShipInfo(&shipPosition_, &shipDirection_);
                 TownStageManager::getSingleton()->rotObjectUid(0x1f4, shipDirection_);
                 setShipPosition(shipPosition_);
@@ -246,8 +246,8 @@ ARM void TownShipAction2::setShipNamiAlpha()
         add = -2;
     }
     namiAlpha_ += add;
-    namiAlpha_ = func_02008ec4(namiAlpha_, 0x1f);
-    namiAlpha_ = func_02008eb8(namiAlpha_, 0);
+    namiAlpha_ = dss::min<int>(namiAlpha_, 0x1f);
+    namiAlpha_ = dss::max<int>(namiAlpha_, 0);
     TownStageManager::getSingleton()->setAlpha(shipNamiObjectId_, namiAlpha_);
 }
 

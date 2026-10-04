@@ -2,7 +2,6 @@
 #include <globaldefs.h>
 #include "main/status/ItemData.hpp"
 
-
 namespace status{
     struct BaseHaveItem {
         status::ItemData* item_;
@@ -26,13 +25,4 @@ namespace status{
         int isItem(int itemIndex);
         int getItemMax();
     };
-}
-
-extern "C" {
-    int func_02013e9c(status::BaseHaveItem*,int ctrlId);
-    void func_02007a0c(void*, int, int, void*, void*); //NOT DECOMPILED
-    void func_02007abc(void*, int, int, void*);//NOT DECOMPILED
-    void func_02013dc8(void*);//NOT DECOMPILED
-    void func_02013d9c();//NOT DECOMPILED
-    void func_02013da8();//NOT DECOMPILED
 }

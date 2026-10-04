@@ -7,7 +7,7 @@ THUMB int param::BattleMap::getBattleMap(param::BattleMap *data, char *name)
     char c;
     int t;
 
-    if (func_020882a4(name, btl_) != 0)
+    if (dss::strstr(name, btl_) != 0)
     {
         c = name[5];
         k = 4;
@@ -19,9 +19,9 @@ THUMB int param::BattleMap::getBattleMap(param::BattleMap *data, char *name)
     }
     t = c + 100 * name[k];
 
-    if (func_020882a4(name, btldougu) != 0)
+    if (dss::strstr(name, btldougu) != 0)
         t = 0x2EE0;
-    if (func_020882a4(name, btlyado) != 0)
+    if (dss::strstr(name, btlyado) != 0)
         t = 0x2EE0;
 
     unsigned int index = 0;
@@ -76,7 +76,7 @@ THUMB int param::BattleMap::getBattleMap(param::BattleMap *data, char *name)
 
     while (index < 0x8A)
     {
-        if (dss::DssUtils::unkfunc_020882b0(data[index].map, name) == 0)
+        if (dss::strcmp(data[index].map, name) == 0)
             return index;
         index++;
     }

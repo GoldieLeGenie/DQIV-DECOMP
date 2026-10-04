@@ -71,7 +71,7 @@ ARM void TownActionCalculate::townCharaColl(dss::Fix32Vector3& nowPos, dss::Fix3
     fld::FLDObject* fld = &TownStageManager::getSingleton()->stage_.m_fld;
     int commonId = -1;
     if (objectId != -1) {
-        commonId = func_02046f4c(fld, objectId);
+        commonId = fld->GetMapObjCommonId(objectId);
     }
     if (surfaceId != -1) {
         vec = TownStageManager::getSingleton()->getHitSurfaceDirByType(12);
@@ -101,7 +101,7 @@ ARM void TownActionCalculate::townCharaColl(dss::Fix32Vector3& nowPos, dss::Fix3
         case 0x18:
         case 0xf4:
             TownCharacterManager::getSingleton()->checkObjectInTalk(objectId);
-            frontPoly = func_0204cf3c(&TownStageManager::getSingleton()->coll_, polyNo, objectId);
+            frontPoly = TownStageManager::getSingleton()->coll_.getFrontPoly(polyNo, objectId);
             break;
         case 5:
         case 6:
@@ -138,9 +138,9 @@ ARM int TownActionCalculate::townStageColl(dss::Fix32Vector3& nowPos, dss::Fix32
         nextPos = nowPos;
     } else {
         int collId = TownStageManager::getSingleton()->coll_.m_id;
-        int objectId = func_02040928(TownStageManager::getSingleton()->stage_.m_fld.m_coll, collId);
-        int surfaceId = func_0204098c(TownStageManager::getSingleton()->stage_.m_fld.m_coll, collId);
-        int mapUid = func_02046e10(&TownStageManager::getSingleton()->stage_.m_fld, objectId);
+        int objectId = coll_GetObjId(TownStageManager::getSingleton()->stage_.m_fld.m_coll, collId);
+        int surfaceId = coll_GetSurface(TownStageManager::getSingleton()->stage_.m_fld.m_coll, collId);
+        int mapUid = TownStageManager::getSingleton()->stage_.m_fld.GetMapObjUid(objectId);
         if (surfaceId != -1 || mapUid != 0) {
             if (vec.lengthsq() < dvObj * dvObj) {
                 nextPos = nowPos;
@@ -205,15 +205,15 @@ ARM int TownActionCalculate::searchPairWdoor(int objectId, dss::Fix32Vector3* do
     fld = &TownStageManager::getSingleton()->stage_.m_fld;
     commonId1 = -1;
     if (objectId != -1) {
-        commonId1 = func_02046f4c(fld, objectId);
+        commonId1 = fld->GetMapObjCommonId(objectId);
     }
-    mapUid1 = func_02046e10(&TownStageManager::getSingleton()->stage_.m_fld, objectId);
+    mapUid1 = TownStageManager::getSingleton()->stage_.m_fld.GetMapObjUid(objectId);
     TownStageManager::getSingleton()->getObjectPos(objectId, 0, &posDoor1);
     objectId2 = TownStageManager::getSingleton()->getObjectIDfromMapUid(mapUid1 - 1);
     fld = &TownStageManager::getSingleton()->stage_.m_fld;
     commonId2 = -1;
     if (objectId2 != -1) {
-        commonId2 = func_02046f4c(fld, objectId2);
+        commonId2 = fld->GetMapObjCommonId(objectId2);
     }
     if (commonId1 == commonId2) {
         TownStageManager::getSingleton()->getObjectPos(objectId2, 0, &posDoor2);
@@ -228,7 +228,7 @@ ARM int TownActionCalculate::searchPairWdoor(int objectId, dss::Fix32Vector3* do
         fld = &TownStageManager::getSingleton()->stage_.m_fld;
         commonId2 = -1;
         if (objectId2 != -1) {
-            commonId2 = func_02046f4c(fld, objectId2);
+            commonId2 = fld->GetMapObjCommonId(objectId2);
         }
         if (commonId1 == commonId2) {
             TownStageManager::getSingleton()->getObjectPos(objectId2, 0, &posDoor2);
@@ -353,7 +353,7 @@ ARM bool TownActionCalculate::checkGetDownShipAndIkada(dss::Fix32Vector3& nextPo
         if (surfacePoly == -1) {
             return false;
         }
-        int surfaceId = func_0204098c(TownStageManager::getSingleton()->stage_.m_fld.m_coll, surfacePoly);
+        int surfaceId = coll_GetSurface(TownStageManager::getSingleton()->stage_.m_fld.m_coll, surfacePoly);
         if (surfaceId == -1 || (surfaceId & 0xf000) != 0xa000) {
             return false;
         }

@@ -39,8 +39,3 @@ namespace status{
 
     };
 }
-
-extern "C" unsigned char func_02013fb4(status::BaseHaveItem*, int index);
-extern "C" void func_02011348(status::HaveAction*);
-extern "C" void func_020106a4(status::HaveItem*, int index);
-

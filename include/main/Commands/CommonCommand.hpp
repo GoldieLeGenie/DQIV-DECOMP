@@ -20,7 +20,6 @@ struct TownPlayerManager;
 struct TownCharacterManager;
 struct TownStageManager;
 
-
 struct CommandParameter;
 
 struct ScriptCommand {
@@ -28,10 +27,11 @@ struct ScriptCommand {
     virtual void execute() {}   
     virtual void terminate() {} 
     virtual int isEnd() = 0;
+    ScriptCommand() {}
     ~ScriptCommand() {}
     int exec(CommandParameter* command);
 };
-int unkfunc_02020008(CommandParameter* command);
+int checkCommandType(CommandParameter* command);
 
 enum TriggerCheck {
     TRIGGER_CHECK_0,
@@ -136,47 +136,9 @@ int cmd_set_player_ride_on(int* param);
 int cmd_set_ship_pos(int* param);
 int cmd_set_title_part(int* param);
 
-
-struct MapNameTable5 {
-    const char* name_[5];
-};
-struct MapNameTable6 {
-    const char* name_[6];
-};
-
-extern MapNameTable6 data_020b4fe8;
-extern MapNameTable5 data_020b4fd4;
-extern const float data_020be058;
-extern const float data_020be064;
-extern const float data_020be06c;
-extern const float data_020be070;
-extern const float data_020be074;
-extern const float data_020be07c;
-extern const float data_020be084;
-extern const float data_020be088;
-extern const float data_020be09c;
-extern int data_020ecf3c;
-extern const long data_020be04c;
-extern const long data_020be054;
-extern const long data_020be05c;
-extern const long data_020be060;
-extern const long data_020be068;
-extern const long data_020be080;
-extern const long data_020be090;
-extern const long data_020be098;
-extern const long data_020be0a0;
-extern const float data_020be050;
-extern const float data_020be078;
-extern const float data_020be08c;
-extern const float data_020be094;
-extern const float data_020be0a4;
-extern const float data_020be0a8;
-
 extern "C" {
     void func_ov001_0212a620(FieldPlayerManager* mgr, int lock);
-    void* func_02037da4(void);
     int func_02037d6c(void* obj, int type);
-    void func_02055980(int id);
 }
 
 short unkfunc_0202528c(int* param);

@@ -8,7 +8,6 @@
 #include "ov003/status/MonsterPartyWithDraw.hpp"
 #include "main/object/DSSAObject.hpp"
 
-
 namespace btl {
     struct BattleActorAnimation
     {
@@ -39,19 +38,6 @@ namespace btl {
 }
 extern short data_020c04f4[310][5]; //MonsterTaiData
 extern int monsterChangeCount;
-extern "C" int  func_ov003_021293c0(status::UseActionParam* uap);
-extern "C" int  func_ov003_021293e4(status::UseActionParam* uap);
-extern "C" void func_ov003_0212a028(status::CharacterStatus* actor);
-extern "C" void func_ov003_021295e4(status::UseActionParam* uap, int idx);
 extern "C" void func_02050e88(int a, int b, int c, int d);
-extern "C" void func_ov003_0212976c(status::UseActionParam* uap, int idx);
-extern "C" void func_ov003_021299d0(status::CharacterStatus* actor, status::CharacterStatus* target, int idx);
-extern "C" void func_ov003_02129ca8(status::CharacterStatus* actor);
-extern "C" void func_ov003_0212a174(status::UseActionParam* uap);
-extern "C" int func_ov003_0212993c(status::UseActionParam* useActionParam, int currentTarget);
-extern "C" void func_ov003_02129810(status::UseActionParam* useActionParam);
-extern "C" void func_ov003_02129dbc(status::CharacterStatus* chara);  
-extern "C" void func_ov003_02129dec();                                  
-extern "C" void func_ov003_0212a084();
 extern "C" void func_0204d0c4(int);
 extern "C" void func_0204d0dc(int);

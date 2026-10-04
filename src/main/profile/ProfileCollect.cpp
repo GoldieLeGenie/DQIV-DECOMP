@@ -17,8 +17,8 @@
 THUMB int profile::Profile::collectDATA(int bookNo, int saveType)
 {
     presetMember();
-    dss::DssUtils::unkfunc_020882d4(&this->profiledata_, 0xFF, 0x3300);
-    dss::DssUtils::unkfunc_020882d4(this->profiledummy_, 0xFF, 0x900);
+    dss::memset(&this->profiledata_, 0xFF, 0x3300);
+    dss::memset(this->profiledummy_, 0xFF, 0x900);
     this->pSYSTEM->MAGIC = 0x65747261;      // 'arte'
     this->pSYSTEM->VER = 0x0BF7FF5C;
     this->pSYSTEM->CHECKSUM = 0;
@@ -40,8 +40,8 @@ THUMB int profile::Profile::collectDATA(int bookNo, int saveType)
 
 THUMB void profile::Profile::collectDATA_PARTY()
 {
-    dss::DssUtils::unkfunc_020882d4(this->pPARTY->RESTART, 0, 0x10);
-    dss::DssUtils::unkfunc_020882d4(this->pPARTY->CHURCH, 0, 0x10);
+    dss::memset(this->pPARTY->RESTART, 0, 0x10);
+    dss::memset(this->pPARTY->CHURCH, 0, 0x10);
 
     char* church = ::g_Stage.getChurchMapName();
     char* map = g_Global.getMapName();
@@ -58,8 +58,8 @@ THUMB void profile::Profile::collectDATA_PARTY()
     if (strcmp(map, "field") == 0) {
         fieldType = g_Global.getFieldType();
     }
-    dss::DssUtils::strcpy_s((char*)this->pPARTY->CHURCH, 0x10, church);
-    dss::DssUtils::strcpy_s((char*)this->pPARTY->RESTART, 0x10, map);
+    dss::strcpy_s((char*)this->pPARTY->CHURCH, 0x10, church);
+    dss::strcpy_s((char*)this->pPARTY->RESTART, 0x10, map);
     this->pPARTY->FIELDTYPE = fieldType;
 
     dss::Fix32Vector3 pos;
@@ -93,7 +93,7 @@ THUMB void profile::Profile::collectDATA_PARTY()
     this->pPARTY->RIDEON = g_cmnPartyInfo.rideOnType_;
     this->pPARTY->BALLOON_FIELD = ::g_Stage.balloonFieldType_;
     
-    dss::DssUtils::strcpy_s((char*)this->pPARTY->RANALUTA_MAP, 0xA, ::g_Stage.lastRanaStageName_);
+    dss::strcpy_s((char*)this->pPARTY->RANALUTA_MAP, 0xA, ::g_Stage.lastRanaStageName_);
     this->pPARTY->RANALUTA_SURFACE = ::g_Stage.lastFldSurface_;
     this->pPARTY->CHAPTER = status::g_Story.chapter_;
 
@@ -111,8 +111,8 @@ THUMB void profile::Profile::collectDATA_PARTY()
     this->pPARTY->TIMESTOP = ::g_Stage.timestop_;
     this->pPARTY->SEX = status::g_Story.sex_;
 
-    dss::DssUtils::unkfunc_020882d4(this->pPARTY->NAME, 0, 0x20);
-    dss::DssUtils::strcpy_s((char*)this->pPARTY->NAME, 0x20, status::g_Story.heroName);
+    dss::memset(this->pPARTY->NAME, 0, 0x20);
+    dss::strcpy_s((char*)this->pPARTY->NAME, 0x20, status::g_Story.heroName);
 
     for (int i = 0; i < 0x10; i++) {
         this->pPARTY->DAY_COUNTER[i] = cmn::g_CommonCounterInfo.dayCounter_[i];
@@ -158,8 +158,8 @@ THUMB void profile::Profile::collectDATA_PARTY()
     this->pPARTY->HENGE_INDEX = g_HengeNoTsue.index_;
     this->pPARTY->PLAYERMEDAL = status::g_Party.playerMedalCoin_;
 
-    dss::DssUtils::unkfunc_020882d4(this->pPARTY->IKADAMAP, 0, 0x10);
-    dss::DssUtils::strcpy_s((char*)this->pPARTY->IKADAMAP, 0x10, g_cmnPartyInfo.getIkadaMapName());
+    dss::memset(this->pPARTY->IKADAMAP, 0, 0x10);
+    dss::strcpy_s((char*)this->pPARTY->IKADAMAP, 0x10, g_cmnPartyInfo.getIkadaMapName());
     this->pPARTY->BALONFLAG = g_cmnPartyInfo.barron_;
     this->pPARTY->UNIQUEID = status::g_Game.getUniqueID();
 
@@ -204,7 +204,7 @@ THUMB void profile::Profile::collectDATA_CHAPTER()
 THUMB void profile::Profile::collectDATA_PLAYER()
 {
 
-    dss::DssUtils::unkfunc_020882d4(this->pPARTY->PARTY, 0, 14);
+    dss::memset(this->pPARTY->PARTY, 0, 14);
     this->pPARTY->PARTY[0] = 1;
     this->pPARTY->PARTY[1] = 2;
     this->pPARTY->PARTY[2] = 3;
@@ -264,10 +264,10 @@ THUMB void profile::Profile::collectDATA_ENVOY()
             this->pENVOY->SEX = func_0203a714(&data_020f0078);
             this->pENVOY->AGE = func_0203a750(&data_020f0078);
             this->pENVOY->SKILL = func_0203a78c(&data_020f0078);
-            func_020882ec(this->pENVOY->NAME, func_0203a65c(&data_020f0078), 0x1A);
-            func_020882ec(this->pENVOY->HERONAME, func_0203a6d8(&data_020f0078), 0x1A);
-            func_020882ec(this->pENVOY->TOWNNAME, func_0203a820(&data_020f0078), 0x2A);
-            func_020882ec(this->pENVOY->COMMENT, func_0203a938(&data_020f0078), 0x5C);
+            dss::memcpy(this->pENVOY->NAME, func_0203a65c(&data_020f0078), 0x1A);
+            dss::memcpy(this->pENVOY->HERONAME, func_0203a6d8(&data_020f0078), 0x1A);
+            dss::memcpy(this->pENVOY->TOWNNAME, func_0203a820(&data_020f0078), 0x2A);
+            dss::memcpy(this->pENVOY->COMMENT, func_0203a938(&data_020f0078), 0x5C);
         } else {
             this->pENVOY->TYPE = 0xFF;
         }
@@ -280,10 +280,10 @@ THUMB void profile::Profile::collectDATA_ENVOY()
         this->pENVOY->SEX = func_0203a714(&data_020f0078);
         this->pENVOY->AGE = func_0203a750(&data_020f0078);
         this->pENVOY->SKILL = func_0203a78c(&data_020f0078);
-        func_020882ec(this->pENVOY->NAME, func_0203a65c(&data_020f0078), 0x1A);
-        func_020882ec(this->pENVOY->HERONAME, func_0203a6d8(&data_020f0078), 0x1A);
-        func_020882ec(this->pENVOY->TOWNNAME, func_0203a820(&data_020f0078), 0x2A);
-        func_020882ec(this->pENVOY->COMMENT, func_0203a938(&data_020f0078), 0x5C);
+        dss::memcpy(this->pENVOY->NAME, func_0203a65c(&data_020f0078), 0x1A);
+        dss::memcpy(this->pENVOY->HERONAME, func_0203a6d8(&data_020f0078), 0x1A);
+        dss::memcpy(this->pENVOY->TOWNNAME, func_0203a820(&data_020f0078), 0x2A);
+        dss::memcpy(this->pENVOY->COMMENT, func_0203a938(&data_020f0078), 0x5C);
     } else {
         this->pENVOY->TYPE = 0xFF;
     }

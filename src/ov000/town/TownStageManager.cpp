@@ -44,7 +44,7 @@ ARM TownStageManager* TownStageManager::getSingleton()
 
 ARM void TownStageManager::initialize()
 {
-    func_0204cd6c(&coll_);
+    coll_.resetEraseSurface();
     stage_.setRender(&TownSystem::getSingleton()->render_);
     stage_.setPath(TOWN_MAP_PATH);
     stage_.load(g_Global.getMapName());
@@ -96,19 +96,19 @@ ARM void TownStageManager::execute()
         switch (encount::Encount::getSingleton()->disableAction_) {
         case 0xa3:
             TextAPI::setMACRO0(10, 0x40000000, 0x71);
-            func_02056358(0x30);
+            ui_MsgSndSet(0x30);
             TownWindowSystem::getSingleton()->openMessage(0xc3d90, 1);
             TownSystem::getSingleton()->scriptLock_ = 1;
             stopScript_ = 1;
             break;
         case 0xcf:
-            func_02056358(0x30);
+            ui_MsgSndSet(0x30);
             TownWindowSystem::getSingleton()->openMessage(0xc3d92, 1);
             TownSystem::getSingleton()->scriptLock_ = 1;
             stopScript_ = 1;
             break;
         case 0xd7:
-            func_02056358(0x30);
+            ui_MsgSndSet(0x30);
             TownWindowSystem::getSingleton()->openMessage(0xc3d94, 1);
             TownSystem::getSingleton()->scriptLock_ = 1;
             stopScript_ = 1;
@@ -123,7 +123,7 @@ ARM void TownStageManager::execute()
         return;
     }
     TextAPI::setMACRO0(10, 0x40000000, 0x74);
-    func_02056358(0x30);
+    ui_MsgSndSet(0x30);
     TownWindowSystem::getSingleton()->openMessage(0xc3d90, 1);
     TownSystem::getSingleton()->scriptLock_ = 1;
     stopScript_ = 1;
@@ -137,8 +137,8 @@ ARM void TownStageManager::draw()
 ARM bool TownStageManager::isStageExist(char* name)
 {
     char path[128];
-    func_02088308(path, sizeof(path), "%s/%s.lz", TOWN_MAP_PATH, name);
-    return func_0207ebd4(&data_02116ce8, path) != 0;
+    dss::sprintf_s(path, sizeof(path), "%s/%s.lz", TOWN_MAP_PATH, name);
+    return dss::g_File.isExist(path) != 0;
 }
 
 ARM dss::Fix32Vector3 TownStageManager::compute(dss::Fix32Vector3& nowPos, dss::Fix32Vector3& nextPos, dss::Fix32 radius, dss::Fix32 surfaceRad, dss::Fix32 preR, dss::Fix32& height)
@@ -147,13 +147,13 @@ ARM dss::Fix32Vector3 TownStageManager::compute(dss::Fix32Vector3& nowPos, dss::
     dss::Fix32Vector3 dir;
     TownActionCalculate::getDirByIdx(dirIdx, dir);
     coll_.m_playerDir = dir;
-    return func_0204ba1c(&coll_, nowPos, nextPos, radius, surfaceRad, preR, height);
+    return coll_.compute(nowPos, nextPos, radius, surfaceRad, preR, height);
 }
 
 ARM char* TownStageManager::getLinkMapName()
 {
     if (getExitIndex() != -1) {
-        char* name = func_0200bfc4(g_Global.getMapName(), getExitIndex());
+        char* name = StageLink::getName(g_Global.getMapName(), getExitIndex());
         if (name) {
             return name;
         }
@@ -163,7 +163,7 @@ ARM char* TownStageManager::getLinkMapName()
 
 ARM void TownStageManager::setExitPosition(dss::Fix32Vector3* pos, int index)
 {
-    func_0204b850(&coll_, pos, index);
+    coll_.setExitPosition(pos, index);
 }
 
 ARM dss::Fix32Vector3 TownStageManager::getMapUidPos(int uid)
@@ -182,8 +182,8 @@ ARM void TownStageManager::addMapUidPosFX32(int uid, dss::Fix32Vector3& pos)
     vec.x = pos.vx.value;
     vec.y = pos.vy.value;
     vec.z = pos.vz.value;
-    func_020464fc(&stage_.m_fld, uid, &vec);
-    func_020462f0(&stage_.m_fld, uid, &vec);
+    stage_.m_fld.CollAddPolyPosByMapUid(uid, &vec);
+    stage_.m_fld.AddMapUidPosFX32(uid, &vec);
 }
 
 ARM void TownStageManager::setMapUidPosFX32(int uid, dss::Fix32Vector3& pos)
@@ -192,7 +192,7 @@ ARM void TownStageManager::setMapUidPosFX32(int uid, dss::Fix32Vector3& pos)
     vec.x = pos.vx.value;
     vec.y = pos.vy.value;
     vec.z = pos.vz.value;
-    func_02046208(&stage_.m_fld, uid, &vec);
+    stage_.m_fld.SetMapUidPosFX32(uid, &vec);
 }
 
 ARM dss::Fix32Vector3 TownStageManager::getRiseupPos(int uid, int type)
@@ -202,7 +202,7 @@ ARM dss::Fix32Vector3 TownStageManager::getRiseupPos(int uid, int type)
     switch (type) {
     case 7:
         for (int i = 0; i < stage_.pool_counter; i++) {
-            int commonId = obj[i] == -1 ? -1 : func_02046f4c(&stage_.m_fld, obj[i]);
+            int commonId = obj[i] == -1 ? -1 : stage_.m_fld.GetMapObjCommonId(obj[i]);
             if (commonId == 0xf5) {
                 getObjectPos(obj[i], 0, &ret);
                 return ret;
@@ -211,7 +211,7 @@ ARM dss::Fix32Vector3 TownStageManager::getRiseupPos(int uid, int type)
         break;
     case 0x1c:
         for (int i = 0; i < stage_.pool_counter; i++) {
-            int commonId = obj[i] == -1 ? -1 : func_02046f4c(&stage_.m_fld, obj[i]);
+            int commonId = obj[i] == -1 ? -1 : stage_.m_fld.GetMapObjCommonId(obj[i]);
             if (commonId == 0xe9) {
                 getObjectPos(obj[i], 0, &ret);
                 return ret;
@@ -220,7 +220,7 @@ ARM dss::Fix32Vector3 TownStageManager::getRiseupPos(int uid, int type)
         break;
     case 0x11:
         for (int i = 0; i < stage_.pool_counter; i++) {
-            int commonId = obj[i] == -1 ? -1 : func_02046f4c(&stage_.m_fld, obj[i]);
+            int commonId = obj[i] == -1 ? -1 : stage_.m_fld.GetMapObjCommonId(obj[i]);
             if (commonId == 0x61) {
                 getObjectPos(obj[i], 0, &ret);
                 return ret;
@@ -336,7 +336,7 @@ ARM bool TownStageManager::checkCrossPolygon(dss::Fix32Vector3 pos0, dss::Fix32V
     vec0 = FldStage::getVecFx32(pos0);
     VecFx32 vec1;
     vec1 = FldStage::getVecFx32(pos1);
-    return func_0204c45c(&coll_, &vec0, &vec1, polyNo);
+    return coll_.checkCrossPolygon(vec0, vec1, polyNo);
 }
 
 ARM int TownStageManager::checkCrossNumCheckUnder(dss::Fix32Vector3& pos0, dss::Fix32Vector3& pos1, int flag)
@@ -345,7 +345,7 @@ ARM int TownStageManager::checkCrossNumCheckUnder(dss::Fix32Vector3& pos0, dss::
     vec0 = FldStage::getVecFx32(pos0);
     VecFx32 vec1;
     vec1 = FldStage::getVecFx32(pos1);
-    return func_0204c64c(&coll_, &vec0, &vec1, flag);
+    return coll_.checkCrossNumCheckUnder(vec0, vec1, flag);
 }
 
 ARM int TownStageManager::checkCrossNum(dss::Fix32Vector3& pos0, dss::Fix32Vector3& pos1, int flag)
@@ -354,7 +354,7 @@ ARM int TownStageManager::checkCrossNum(dss::Fix32Vector3& pos0, dss::Fix32Vecto
     vec0 = FldStage::getVecFx32(pos0);
     VecFx32 vec1;
     vec1 = FldStage::getVecFx32(pos1);
-    return func_0204c564(&coll_, &vec0, &vec1, flag);
+    return coll_.checkCrossNum(vec0, vec1, flag);
 }
 
 ARM int TownStageManager::checkCrossNumEraseSurface(dss::Fix32Vector3& pos0, dss::Fix32Vector3& pos1, int surface, int flag, int& polyNo)
@@ -363,12 +363,12 @@ ARM int TownStageManager::checkCrossNumEraseSurface(dss::Fix32Vector3& pos0, dss
     vec0 = FldStage::getVecFx32(pos0);
     VecFx32 vec1;
     vec1 = FldStage::getVecFx32(pos1);
-    return func_0204c740(&coll_, vec0, vec1, surface, flag, &polyNo);
+    return coll_.checkCrossNumEraseSurface(vec0, vec1, surface, flag, polyNo);
 }
 
 ARM bool TownStageManager::getSearchPolyDirection(dss::Fix32Vector3& dir)
 {
-    return getPolyDirection(dir, func_0204c2dc(&coll_));
+    return getPolyDirection(dir, coll_.getSearchPolyNo());
 }
 
 ARM bool TownStageManager::getPolyDirection(dss::Fix32Vector3& dir, int polyNo)
@@ -385,7 +385,7 @@ ARM bool TownStageManager::getPolyDirection(dss::Fix32Vector3& dir, int polyNo)
 
 ARM int TownStageManager::getHitSurfaceIdByType(int type)
 {
-    return func_0204c558(&coll_, type);
+    return coll_.getSurfaceByType(type);
 }
 
 ARM dss::Fix32Vector3 TownStageManager::getHitSurfaceDirByType(int type)
@@ -408,9 +408,9 @@ ARM void TownStageManager::execSoftErase()
 {
     for (int i = 0; i < 4; i++) {
         if (softEraseObjId_[i] != -1) {
-            int alpha = func_02047474(&stage_.m_fld, softEraseObjId_[i]) - 2;
+            int alpha = stage_.m_fld.GetMapObjAlpha(softEraseObjId_[i]) - 2;
             if (alpha <= 0) {
-                stage_.eraseObject(func_02046e10(&stage_.m_fld, softEraseObjId_[i]), 1);
+                stage_.eraseObject(stage_.m_fld.GetMapObjUid(softEraseObjId_[i]), 1);
                 softEraseObjId_[i] = -1;
                 softEraseNum_--;
             } else {
@@ -442,15 +442,15 @@ ARM dss::Fix32Vector3 TownStageManager::getHitSurfacePosByType(int type)
 ARM int TownStageManager::getExitIndex()
 {
     int polyNo = -1;
-    int id = func_0204c558(&coll_, 5);
+    int id = coll_.getSurfaceByType(5);
     if (id != -1) {
         return id;
     }
-    id = func_0204c558(&coll_, 1);
+    id = coll_.getSurfaceByType(1);
     if (id != -1) {
         polyNo = coll_.m_surfacePolyNo[1];
     } else {
-        id = func_0204c558(&coll_, 7);
+        id = coll_.getSurfaceByType(7);
         if (id != -1) {
             polyNo = coll_.m_surfacePolyNo[7];
         }
@@ -524,7 +524,7 @@ ARM bool TownStageManager::isPolyFacePosition(int polyNo, dss::Fix32Vector3& pla
 
 ARM int TownStageManager::getObjectPos(int objectId, int index, dss::Fix32Vector3* pos)
 {
-    return func_0204c874(&coll_, objectId, index, pos);
+    return coll_.getObjectPos(objectId, index, pos);
 }
 
 ARM void TownStageManager::addMovePosByObjNo(int objNo, dss::Fix32Vector3& nowPos, dss::Fix32Vector3& nextPos)
@@ -542,7 +542,7 @@ ARM void TownStageManager::collEraseMapUid(int uid)
 {
     TownPlayerManager::getSingleton()->searchMapUid_ = 0;
     TownActionWalk::getSingleton()->searchObjectId_ = -1;
-    func_020463e4(&stage_.m_fld, uid);
+    stage_.m_fld.CollEraseMapUid(uid);
 }
 
 ARM bool TownStageManager::isRozariStage()

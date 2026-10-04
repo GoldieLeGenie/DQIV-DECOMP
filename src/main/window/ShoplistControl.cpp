@@ -29,18 +29,18 @@ ARM void window::ShoplistControl::execute()
             }
             break;
         case TOWNMAP_VIEWING:
-            if (data_02116d40.unkfunc_0207f280() & 0x800) {
+            if (dss::g_Pad.edge() & 0x800) {
                 if (unkfunc_0202a2d8()) {
                     state_ = TOWNMAP_WAIT_CLOSE_TO_MAP;
                     return;
                 }
                 closeList();
                 state_ = TOWMMAP_WAIT_CLOSE;
-            } else if ((data_02116d40.unkfunc_0207f280() & 1) || (data_02116d40.unkfunc_0207f280() & 2)) {
+            } else if ((dss::g_Pad.edge() & 1) || (dss::g_Pad.edge() & 2)) {
                 closeList();
                 state_ = TOWMMAP_WAIT_CLOSE;
             } else {
-                data_02116d40.unkfunc_0207f280();
+                dss::g_Pad.edge();
             }
             break;
         case TOWMMAP_WAIT_CLOSE:

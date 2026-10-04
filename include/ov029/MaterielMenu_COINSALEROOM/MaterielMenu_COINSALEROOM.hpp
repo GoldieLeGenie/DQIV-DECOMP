@@ -48,6 +48,5 @@ extern MaterielMenu_COINSALEROOM_BUY data_ov016_021859e0;       /* gMaterielMenu
 extern MaterielMenu_COINSALEROOM_ROOT data_ov016_021861ec;      /* gMaterielMenu_COINSALEROOM_ROOT */
 
 extern "C" {
-    void func_ov016_02177a40(menu::MenuItem* menuItem, int active, int count);
     void func_ov016_0216fd34(int coin, int flag);
 }

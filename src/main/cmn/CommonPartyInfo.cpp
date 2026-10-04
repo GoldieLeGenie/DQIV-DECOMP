@@ -88,7 +88,7 @@ ARM void cmn::CommonPartyInfo::setStartPosition()
 
 ARM void cmn::CommonPartyInfo::setShipInfo(char* name, dss::Fix32Vector3* pos, short idx)
 {
-    dss::DssUtils::strcpy_s(this->mapNameAtShip_, 10, name);
+    dss::strcpy_s(this->mapNameAtShip_, 10, name);
     this->townShipPos_ = *pos;
     this->shipDirection_ = idx;
 }
@@ -107,14 +107,14 @@ ARM void cmn::CommonPartyInfo::getShipInfo(dss::Fix32Vector3* pos, short* idx)
 
 ARM void cmn::CommonPartyInfo::setIkadaInfo(char *name,dss::Fix32Vector3 *pos)
 {
-  dss::DssUtils::strcpy_s(this->mapNameAtIkada_,10,name);
+  dss::strcpy_s(this->mapNameAtIkada_,10,name);
   this->townIkadaPos_ = *pos;
   return;
 }
 
 ARM void cmn::CommonPartyInfo::setIkadaMapName(char *name)
 {
-  dss::DssUtils::strcpy_s(this->mapNameAtIkada_,10,name);
+  dss::strcpy_s(this->mapNameAtIkada_,10,name);
   return;
 }
 
@@ -193,7 +193,7 @@ ARM int cmn::CommonPartyInfo::isBarronArea(dss::Fix32Vector3* pos)
     if (data_0210bb94.unkfunc_02058114(0xE) != 0) {
         return func_ov001_0212a460(FieldPlayerManager::getSingleton(), pos);
     }
-    if (dss::DssUtils::unkfunc_020882b0(s_srout_map, g_Global.getMapName()) == 0) {
+    if (dss::strcmp(s_srout_map, g_Global.getMapName()) == 0) {
         return 1;
     }
     this->barron_ = 0;

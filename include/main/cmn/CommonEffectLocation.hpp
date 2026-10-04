@@ -29,15 +29,4 @@ namespace cmn{
     };
 }
 
-
-
-
 struct TownStageManager;
-
-
-extern "C"
-{
-    void func_02046f74(fld::FLDObject*, VecFx32*, int);    // fld::FLDObject::SetRGBRate
-    int func_0203ea64(cmn::CommonEffectLocation*,int index);
-    int func_0203eb24(cmn::CommonEffectLocation*);
-}

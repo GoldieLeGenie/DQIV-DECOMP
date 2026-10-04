@@ -28,7 +28,6 @@ struct MaterielMenu_EXTRA_NENE : menu::MenuBase
 };
 
 extern "C" {
-    void func_ov016_02177a08(menu::MenuItem* menuItem, int active, int count);
     void func_ov016_0216fb98(void);
     void func_ov016_0216fdcc(void);
     void func_ov016_0216fe10(int count, int page, int pageMax);

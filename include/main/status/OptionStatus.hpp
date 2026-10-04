@@ -29,9 +29,3 @@ namespace status {
 }
 
 extern status::OptionStatus g_Option;
-
-extern "C" {
-    void func_02055a78(int vol);/* extern */
-    void func_02055a60(int vol);
-
-};

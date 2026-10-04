@@ -1,5 +1,6 @@
 #pragma once
 #include "main/dss/DssUtils.hpp"
+#include "main/data/DataObject.hpp"
 #include "main/param/FloorParam.hpp"
 #include <globaldefs.h>
 #include "main/param/ColorCorrect.hpp"
@@ -318,7 +319,7 @@ namespace param {
         char byte_1;
         char byte_2;
 
-        static int size_;                   // data_020b610c
+        static const unsigned int size_;    // data_020b610c
     };
 
     struct EffectColorParam {
@@ -424,7 +425,7 @@ namespace param {
         char byte_1;                                    // 0x17
 
         static const unsigned int ID_;                  // data_0208ca60
-        static int data_;                               // data_020c7964 (ExcelBinaryData)
+        static DataObject data_;                        // data_020c7964
     };
 
     struct CommonParam {
@@ -747,10 +748,7 @@ namespace param {
 extern const unsigned char charInitDataTable[0x521];  
 extern const unsigned char charInitDataTable2[0x42b];
 extern const unsigned char heroDataTable[0x964];
-extern const unsigned char warriorDataTable[0x250];
-extern const unsigned char unk_data_02090000[0xf];
-extern const unsigned char unk_data_0209000f[0x186];
-extern const unsigned char unk_data_02090195[0x57f];
+extern const unsigned char warriorDataTable[0x964];
 extern const unsigned char princessDataTable[0x964];
 extern const unsigned char priestDataTable[];
 

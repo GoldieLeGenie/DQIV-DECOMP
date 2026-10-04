@@ -988,7 +988,7 @@ THUMB short status::HaveStatusInfo::getChangeAttack(unsigned int itemIndex)
     unsigned short equipAttack = havequipment.attack_;
 
     int total = baseStrength + equipStrength + equipAttack;
-    unsigned int result = func_02008ea0(total, 0, 9999);
+    unsigned int result = dss::clamp<int>(total, 0, 9999);
     return result;
 }
 
@@ -1008,7 +1008,7 @@ THUMB short status::HaveStatusInfo::getChangeDefence(unsigned int itemIndex)
         }
     }
 
-    unsigned int result = func_02008ea0(equipDefence, 0, 999);
+    unsigned int result = dss::clamp<int>(equipDefence, 0, 999);
     return result;
 }
 

@@ -17,7 +17,7 @@ THUMB ExecTask::~ExecTask()
 THUMB bool ExecTask::execute()
 {
     if (!flag_.check(1)) {
-        flag_.set(1);
+        flag_.flag_ |= 1;
         setup();
     } else {
         exec();
@@ -39,13 +39,13 @@ THUMB void ExecTask::setup()
 THUMB void ExecTask::exec()
 {
     if (isEnd()) {
-        flag_.set(2);
+        flag_.flag_ |= 2;
     }
 }
 
 THUMB void ExecTask::terminate()
 {
-    flag_.set(2);
+    flag_.flag_ |= 2;
 }
 
 THUMB void ExecTask::cleanup()
@@ -55,7 +55,7 @@ THUMB void ExecTask::cleanup()
 
 THUMB bool ExecTask::isEnd()
 {
-    if (func_0205810c(&data_0210bb94) == 13) {
+    if (data_0210bb94.unkfunc_0205810c() == 13) {
         if (BattleAutoFeed::isEndMessageSend()) {
             return true;
         }
@@ -78,13 +78,13 @@ THUMB void ExecTaskManager::terminate()
 THUMB bool ExecTaskManager::execute()
 {
     if (!flag_.check(1)) {
-        flag_.set(1);
+        flag_.flag_ |= 1;
         initialize();
     } else if (!flag_.check(2)) {
         if (pExecTask_[currentId_] != 0 && !pExecTask_[currentId_]->execute()) {
             currentId_++;
             if (pExecTask_[currentId_] == 0) {
-                flag_.set(2);
+                flag_.flag_ |= 2;
             }
         }
     } else {

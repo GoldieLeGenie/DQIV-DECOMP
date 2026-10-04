@@ -262,7 +262,7 @@ ARM void TownPlayerManager::setup()
     allShadowReset_ = 1;
     shadowSet_ = 0;
     mapChangeSE_ = 1;
-    int exitIndex = func_0200c020();
+    int exitIndex = StageLink::getTownExitIndex();
     dss::Fix32Vector3 pos;
     if (exitIndex != -1 && g_Stage.idoLink_.data_.link_.encount_ == 0 && g_cmnPartyInfo.prevLocation_ == 0) {
         TownStageManager::getSingleton()->setExitPosition(&pos, exitIndex);
@@ -288,7 +288,7 @@ ARM void TownPlayerManager::setup()
     }
     player_.setup();
     party_.setup();
-    func_0204bc50(&TownStageManager::getSingleton()->coll_);
+    TownStageManager::getSingleton()->coll_.searchClear();
     g_cmnPartyInfo.prevLocation_ = 0;
     g_Stage.idoLink_.data_.link_.encount_ = 0;
     g_Stage.menuTalk_ = 0;
@@ -310,7 +310,7 @@ ARM void TownPlayerManager::setup()
     setRemote(1);
     searchAction_ = 0;
     mapFKLock_ = 0;
-    if (dss::DssUtils::unkfunc_020882b0(g_Global.getMapName(), "fk01") == 0) {
+    if (dss::strcmp(g_Global.getMapName(), "fk01") == 0) {
         mapFKLock_ = 1;
     }
 }
@@ -331,7 +331,7 @@ ARM void TownPlayerManager::normalExec()
         checkCommandEnd();
         g_cmnPartyInfo.ctrlID_ = 1;
         if (g_Global.partChangeFlag_ == 0 && encount::Encount::getSingleton()->isEncounted() == 0 && remoteFlag_ == 0) {
-            if (data_02116d40.unkfunc_0207f280() & 1) {
+            if (dss::g_Pad.edge() & 1) {
                 setPlayerCommand(PUSH_BENRI_BUTTON);
                 TownCharacterManager::getSingleton()->search_ = 1;
                 g_cmnPartyInfo.ctrlID_ = 0;
@@ -389,7 +389,7 @@ ARM void TownPlayerManager::mormalMapLink()
     }
     if (idoMess_ == 0) {
         if (flagIdoLink_ == 1) {
-            func_02056358(0x30);
+            ui_MsgSndSet(0x30);
             TownWindowSystem::getSingleton()->openCommonMessage();
             TownWindowSystem::getSingleton()->addCommonMessage(0xc40c6);
             idoMess_ = 1;
@@ -414,16 +414,16 @@ ARM void TownPlayerManager::mormalMapLink()
     if (mapChangeSE_ == 1) {
         TownSystem::getSingleton()->playExitSE_ = 1;
     }
-    if (dss::DssUtils::unkfunc_020882b0(name, "world") == 0) {
-        int id = func_0200bff8();
-        func_0200c02c(id);
+    if (dss::strcmp(name, "world") == 0) {
+        int id = StageLink::getSymbolIndex();
+        StageLink::setFieldSymbolIndex(id);
         g_Global.nextFieldType_ = cmn::g_extraMapLink.getFieldTypeBySurface(id);
         g_Global.startField();
         getSingleton()->setLock(1);
         g_Stage.idoLink_.data_.link_.inFlag_ = 0;
         g_Stage.idoLink_.data_.link_.outFlag_ = 0;
     } else if (TownStageManager::getSingleton()->isStageExist(name)) {
-        func_0200c004(TownStageManager::getSingleton()->getExitIndex());
+        StageLink::setTownExitIndex(TownStageManager::getSingleton()->getExitIndex());
         g_Global.startTown(name);
         getSingleton()->setLock(1);
     }
@@ -1141,13 +1141,13 @@ ARM void TownPlayerManager::setMessage()
         if (uid == 0) {
             return;
         }
-        func_02056358(0x30);
+        ui_MsgSndSet(0x30);
         TownFurnitureManager::getSingleton()->checkObject(uid, 0, 1, 1);
         TownFurnitureManager::getSingleton()->setFurnFlag(uid, 0);
         break;
     }
     case 7:
-        func_02056358(0x30);
+        ui_MsgSndSet(0x30);
         TownWindowSystem::getSingleton()->openCommonMessage();
         TownWindowSystem::getSingleton()->addCommonMessage(0x1dca2);
         TownWindowSystem::getSingleton()->addCommonMessage(0x1d8c6);
@@ -1181,14 +1181,14 @@ ARM void TownPlayerManager::demolitionChurch()
 {
     if (wait_ == 0) {
         if (church_ == 0) {
-            func_02056358(0x32);
+            ui_MsgSndSet(0x32);
             TownWindowSystem::getSingleton()->openMessage(0xc7013, 1);
         } else {
             const char* mapname = g_Global.getMapName();
             if (mapname[0] == 'm' && mapname[1] == 's') {
-                func_02056358(0x32);
+                ui_MsgSndSet(0x32);
             } else {
-                func_02056358(0x31);
+                ui_MsgSndSet(0x31);
             }
             TownWindowSystem::getSingleton()->openMessage(0xc73fb, 1);
         }
@@ -1203,14 +1203,14 @@ ARM void TownPlayerManager::loadChurch()
     if (wait_ == 0) {
         if (g_Stage.chapterLoad_ == 0) {
             if (church_ == 0) {
-                func_02056358(0x32);
+                ui_MsgSndSet(0x32);
                 TownWindowSystem::getSingleton()->openMessage(0xc7012, 2);
             } else {
                 const char* mapname = g_Global.getMapName();
                 if (mapname[0] == 'm' && mapname[1] == 's') {
-                    func_02056358(0x32);
+                    ui_MsgSndSet(0x32);
                 } else {
-                    func_02056358(0x31);
+                    ui_MsgSndSet(0x31);
                 }
                 TownWindowSystem::getSingleton()->openMessage(0xc73fa, 2);
             }

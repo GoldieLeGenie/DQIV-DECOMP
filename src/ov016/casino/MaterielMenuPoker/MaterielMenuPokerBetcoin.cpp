@@ -13,7 +13,7 @@ THUMB void MaterielMenuPokerBetcoin::menuSetup()
 {
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     menuItem_.active_ = 0;
-    betCoin_ = PokerManager::getSingleton()->getBetCoin();
+    betCoin_ = PokerManager::getSingleton()->betCoin_;
     for (int i = 0; i < 5; i++) {
         CasinoPokerDraw::getSingleton()->setCardTexture(i, 4, 1);
     }
@@ -119,7 +119,7 @@ THUMB bool MaterielMenuPokerBetcoin::unkfunc_021700f0()
                 betCoin_--;
                 haveCoin_++;
                 PokerManager::getSingleton()->setBetCoin(betCoin_, status::g_Party.casinoCoin_);
-                PokerManager::getSingleton()->setCardPosition(0);
+                PokerManager::getSingleton()->cardPosition_ = 0;
                 data_020ed1bc.close();
                 data_020ed1bc.clearMessageWAITPROG();
                 close();
@@ -146,7 +146,7 @@ THUMB bool MaterielMenuPokerBetcoin::unkfunc_021700f0()
                 return false;
             }
             PokerManager::getSingleton()->setBetCoin(bet, status::g_Party.casinoCoin_);
-            PokerManager::getSingleton()->setCardPosition(0);
+            PokerManager::getSingleton()->cardPosition_ = 0;
             data_020ed1bc.close();
             data_020ed1bc.clearMessageWAITPROG();
             close();

@@ -16,6 +16,7 @@
 #include "main/status/StageStatus.hpp"
 #include "ov000/town/TownSystem.hpp"
 #include "ov026/MaterielMenu_SURECHIGAI/MaterielMenu_SURECHIGAI.hpp"
+#include "main/menu/UiMsg.hpp"
 
 THUMB void MaterielMenu_SAVE::menuSetup()
 {
@@ -264,7 +265,7 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
                 setYesNoMessage(0xcb9d3, true);
                 break;
             case TYPE_LASTDUNGEON:
-                func_02056358(0x31);
+                ui_MsgSndSet(0x31);
                 setTalkYesNoMessage(0xcb9e7, true);
                 break;
             case TYPE_CLEAR:
@@ -505,7 +506,7 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
             data_020f21f8.frames_ = 120;
             func_02084e8c(data_020f220c, 0, 0, 0);
             func_02084e8c(data_020f2244, 0, 0, 0);
-            func_02058294(data_0210bc18, &data_020f21f8);
+            data_0210bc18.unkfunc_02058294(&data_020f21f8);
             messageCounter_++;
             TownSystem::getSingleton()->fadeCount_ = 0;
             g_Global.bookingFlag_ = Global::BOOKING_GAMESET;
@@ -517,7 +518,7 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
             MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
         } else if (messageCounter_ == 1) {
             if (!g_GlobalFade.isEnd()) {
-                func_02056358(0x30);
+                ui_MsgSndSet(0x30);
                 setMessage(0xc6fbc);
                 messageCounter_++;
             }
@@ -648,9 +649,9 @@ THUMB void MaterielMenu_SAVE::setTalkMessage(int messageID)
         if (sexType_ == 1000 && mother_ == 0) {
             sound = 0x31;
         }
-        func_02056358(sound);
+        ui_MsgSndSet(sound);
     } else if (saveType_ == TYPE_LASTDUNGEON) {
-        func_02056358(0x31);
+        ui_MsgSndSet(0x31);
     }
     data_020ed1bc.openMessageForTALK();
     data_020ed1bc.addMessage(messageID);
@@ -665,9 +666,9 @@ THUMB void MaterielMenu_SAVE::setTalkMessage(int messageID1, int messageID2)
         if (sexType_ == 1000 && mother_ == 0) {
             sound = 0x31;
         }
-        func_02056358(sound);
+        ui_MsgSndSet(sound);
     } else if (saveType_ == TYPE_LASTDUNGEON) {
-        func_02056358(0x31);
+        ui_MsgSndSet(0x31);
     }
     data_020ed1bc.openMessageForTALK();
     data_020ed1bc.addMessage(messageID1, messageID2);
@@ -681,9 +682,9 @@ THUMB void MaterielMenu_SAVE::setTalkWaitMessage(int messageID)
         if (sexType_ == 1000 && mother_ == 0) {
             sound = 0x31;
         }
-        func_02056358(sound);
+        ui_MsgSndSet(sound);
     } else if (saveType_ == TYPE_LASTDUNGEON) {
-        func_02056358(0x31);
+        ui_MsgSndSet(0x31);
     }
     data_020ed1bc.openMessageForTALK();
     data_020ed1bc.addMessageNOWAIT(messageID);
@@ -698,9 +699,9 @@ THUMB void MaterielMenu_SAVE::setTalkYesNoMessage(int messageID, bool yes)
         if (sexType_ == 1000 && mother_ == 0) {
             sound = 0x31;
         }
-        func_02056358(sound);
+        ui_MsgSndSet(sound);
     } else if (saveType_ == TYPE_LASTDUNGEON) {
-        func_02056358(0x31);
+        ui_MsgSndSet(0x31);
     }
     data_020ed1bc.openMessageForTALK();
     data_020ed1bc.addMessage(messageID);
@@ -716,9 +717,9 @@ THUMB void MaterielMenu_SAVE::setTalkYesNoMessage2(int messageID1, int messageID
         if (sexType_ == 1000 && mother_ == 0) {
             sound = 0x31;
         }
-        func_02056358(sound);
+        ui_MsgSndSet(sound);
     } else if (saveType_ == TYPE_LASTDUNGEON) {
-        func_02056358(0x31);
+        ui_MsgSndSet(0x31);
     }
     int cursor = yes ? 0 : 1;
     data_020ed1bc.openMessageForTALK();

@@ -285,23 +285,23 @@ _ZN29MaterielMenu_PICTUREBOOK_ROOT10menuUpdateEv kind:function(thumb,size=0x250)
 _ZN29MaterielMenu_PICTUREBOOK_ROOT9checkPageEv kind:function(thumb,size=0x30) addr:0x021751c0
 _ZN29MaterielMenu_PICTUREBOOK_ROOT14getMonsterFlagEv kind:function(thumb,size=0xe0) addr:0x021751f0
 _ZN29MaterielMenu_PICTUREBOOK_ROOT24checkCompletePictureBookEv kind:function(thumb,size=0x54) addr:0x021752d0
-func_ov016_02175324 kind:function(thumb,size=0xb0) addr:0x02175324
-func_ov016_021753d4 kind:function(thumb,size=0x10) addr:0x021753d4
-func_ov016_021753e4 kind:function(thumb,size=0x54) addr:0x021753e4
-func_ov016_02175438 kind:function(thumb,size=0x58) addr:0x02175438
-func_ov016_02175490 kind:function(thumb,size=0x110) addr:0x02175490
-func_ov016_021755a0 kind:function(thumb,size=0x8) addr:0x021755a0
-func_ov016_021755a8 kind:function(thumb,size=0x34) addr:0x021755a8
-func_ov016_021755dc kind:function(thumb,size=0x36) addr:0x021755dc
-func_ov016_02175614 kind:function(thumb,size=0x36) addr:0x02175614
-func_ov016_0217564c kind:function(thumb,size=0x92) addr:0x0217564c
-func_ov016_021756e0 kind:function(thumb,size=0x94) addr:0x021756e0
-func_ov016_02175774 kind:function(thumb,size=0x2c) addr:0x02175774
-func_ov016_021757a0 kind:function(thumb,size=0x50) addr:0x021757a0
-func_ov016_021757f0 kind:function(thumb,size=0x56) addr:0x021757f0
-func_ov016_02175848 kind:function(thumb,size=0x50) addr:0x02175848
-func_ov016_02175898 kind:function(thumb,size=0x56) addr:0x02175898
-func_ov016_021758f0 kind:function(thumb,size=0x8) addr:0x021758f0
+_ZN25TownMenu_OPERATION_CAREER9menuSetupEv kind:function(thumb,size=0xb0) addr:0x02175324
+_ZN25TownMenu_OPERATION_CAREER11menuExecuteEv kind:function(thumb,size=0x10) addr:0x021753d4
+_ZN25TownMenu_OPERATION_CAREER8menuDrawEv kind:function(thumb,size=0x54) addr:0x021753e4
+_ZN25TownMenu_OPERATION_CAREER10menuUpdateEv kind:function(thumb,size=0x58) addr:0x02175438
+_ZN25TownMenu_OPERATION_CAREER11SetTextPageEii kind:function(thumb,size=0x110) addr:0x02175490
+_ZN21TownMenuPlayerControl12getSingletonEv kind:function(thumb,size=0x8) addr:0x021755a0
+_ZN21TownMenuPlayerControl10initializeEv kind:function(thumb,size=0x34) addr:0x021755a8
+_ZN21TownMenuPlayerControl23getActiveItemIndexToAllEv kind:function(thumb,size=0x36) addr:0x021755dc
+_ZN21TownMenuPlayerControl23getTargetItemIndexToAllEv kind:function(thumb,size=0x36) addr:0x02175614
+_ZN21TownMenuPlayerControl16setActiveCommandEh kind:function(thumb,size=0x92) addr:0x0217564c
+_ZN21TownMenuPlayerControl16getActiveCommandEv kind:function(thumb,size=0x94) addr:0x021756e0
+_ZN21TownMenuPlayerControl17getDrawCharaCountE9TOWN_MENU kind:function(thumb,size=0x2c) addr:0x02175774
+_ZN21TownMenuPlayerControl30setPlayerActiveItemByChangeMaxEv kind:function(thumb,size=0x50) addr:0x021757a0
+_ZN21TownMenuPlayerControl30setFukuroActiveItemByChangeMaxEv kind:function(thumb,size=0x56) addr:0x021757f0
+_ZN21TownMenuPlayerControl30setPlayerTargetItemByChangeMaxEv kind:function(thumb,size=0x50) addr:0x02175848
+_ZN21TownMenuPlayerControl30setFukuroTargetItemByChangeMaxEv kind:function(thumb,size=0x56) addr:0x02175898
+_ZN21TownMenuPlayerControl11setTakanomeEcc kind:function(thumb,size=0x8) addr:0x021758f0
 _ZN6status14PlayerItemInfo12getItemIndexEii kind:function(thumb,size=0x1c) addr:0x021758f8
 _ZN6status14PlayerItemInfo15getItemMaxCountEi kind:function(thumb,size=0x18) addr:0x02175914
 _ZN6status14PlayerItemInfo10ableToShowEv kind:function(thumb,size=0x30) addr:0x0217592c
@@ -445,18 +445,18 @@ func_ov016_0217981c kind:function(thumb,size=0xa4) addr:0x0217981c
 func_ov016_021798c0 kind:function(thumb,size=0x24c) addr:0x021798c0
 func_ov016_02179b0c kind:function(thumb,size=0x9c) addr:0x02179b0c
 func_ov016_02179ba8 kind:function(thumb,size=0xa4) addr:0x02179ba8
-func_ov016_02179c4c kind:function(thumb,size=0xa4) addr:0x02179c4c
-func_ov016_02179cf0 kind:function(thumb,size=0x98) addr:0x02179cf0
-func_ov016_02179d88 kind:function(thumb,size=0x8c) addr:0x02179d88
-func_ov016_02179e14 kind:function(thumb,size=0x464) addr:0x02179e14
-func_ov016_0217a278 kind:function(thumb,size=0x28) addr:0x0217a278
-func_ov016_0217a2a0 kind:function(thumb,size=0x78) addr:0x0217a2a0
-func_ov016_0217a318 kind:function(thumb,size=0xc8) addr:0x0217a318
-func_ov016_0217a3e0 kind:function(thumb,size=0x58) addr:0x0217a3e0
-func_ov016_0217a438 kind:function(thumb,size=0xac) addr:0x0217a438
-func_ov016_0217a4e4 kind:function(thumb,size=0x74) addr:0x0217a4e4
-func_ov016_0217a558 kind:function(thumb,size=0x124) addr:0x0217a558
-func_ov016_0217a67c kind:function(thumb,size=0x90) addr:0x0217a67c
+_ZN23TownMenu_OPERATION_ROOT9menuSetupEv kind:function(thumb,size=0xa4) addr:0x02179c4c
+_ZN23TownMenu_OPERATION_ROOT11menuExecuteEv kind:function(thumb,size=0x98) addr:0x02179cf0
+_ZN23TownMenu_OPERATION_ROOT8menuDrawEv kind:function(thumb,size=0x8c) addr:0x02179d88
+_ZN23TownMenu_OPERATION_ROOT10menuUpdateEv kind:function(thumb,size=0x464) addr:0x02179e14
+_ZN23TownMenu_OPERATION_ROOT16unkfunc_0217a278Ev kind:function(thumb,size=0x28) addr:0x0217a278
+_ZN23TownMenu_OPERATION_ROOT16unkfunc_0217a2a0Ev kind:function(thumb,size=0x78) addr:0x0217a2a0
+_ZN23TownMenu_OPERATION_ROOT16unkfunc_0217a318Ev kind:function(thumb,size=0xc8) addr:0x0217a318
+_ZN23TownMenu_OPERATION_ROOT16unkfunc_0217a3e0Ev kind:function(thumb,size=0x58) addr:0x0217a3e0
+_ZN23TownMenu_OPERATION_ROOT16unkfunc_0217a438Ev kind:function(thumb,size=0xac) addr:0x0217a438
+_ZN23TownMenu_OPERATION_ROOT16unkfunc_0217a4e4EPc kind:function(thumb,size=0x74) addr:0x0217a4e4
+_ZN23TownMenu_OPERATION_ROOT18allRecoveryMessageERN6status14UseActionParamE kind:function(thumb,size=0x124) addr:0x0217a558
+_ZN23TownMenu_OPERATION_ROOT16unkfunc_0217a67cEv kind:function(thumb,size=0x90) addr:0x0217a67c
 func_ov016_0217a70c kind:function(thumb,size=0x64) addr:0x0217a70c
 func_ov016_0217a770 kind:function(thumb,size=0x34) addr:0x0217a770
 func_ov016_0217a7a4 kind:function(thumb,size=0x94) addr:0x0217a7a4
@@ -579,16 +579,16 @@ data_ov016_0217ed44 kind:data(any) addr:0x0217ed44
 data_ov016_0217ed68 kind:data(any) addr:0x0217ed68
 _ZN17MaterielMenu_LOAD10ROOT_COUNTE kind:data(byte[4]) addr:0x0217ed8c
 _ZN17MaterielMenu_LOAD17ROOT_RESUME_COUNTE kind:data(byte[4]) addr:0x0217ed90
-@496 kind:data(byte[8]) addr:0x0217ed94 local
-@502 kind:data(byte[12]) addr:0x0217ed9c local
-@504 kind:data(byte[16]) addr:0x0217eda8 local
+@1635 kind:data(byte[8]) addr:0x0217ed94 local
+@1641 kind:data(byte[12]) addr:0x0217ed9c local
+@1643 kind:data(byte[16]) addr:0x0217eda8 local
 data_ov016_0217edb8 kind:data(any) addr:0x0217edb8
 data_ov016_0217edcc kind:data(any) addr:0x0217edcc
 data_ov016_0217ee18 kind:data(any) addr:0x0217ee18
 data_ov016_0217ee2c kind:data(any) addr:0x0217ee2c
 data_ov016_0217ee40 kind:data(any) addr:0x0217ee40
 data_ov016_0217ee5c kind:data(any) addr:0x0217ee5c
-data_ov016_0217eeb4 kind:data(any) addr:0x0217eeb4
+@2796 kind:data(byte[8]) addr:0x0217eeb4 local
 data_ov016_0217eebc kind:data(any) addr:0x0217eebc
 data_ov016_0217eec8 kind:data(any) addr:0x0217eec8
 data_ov016_0217eed8 kind:data(any) addr:0x0217eed8
@@ -610,14 +610,11 @@ __sinit_ov016_0217f554 kind:function(thumb,size=0x2c8) addr:0x0217f554
 data_ov016_0217f840 kind:data(any) addr:0x0217f840
 data_ov016_0217fa50 kind:data(any) addr:0x0217fa50
 data_ov016_0217fc60 kind:data(any) addr:0x0217fc60
-data_ov016_02180000 kind:data(any) addr:0x02180000
-data_ov016_0218001a kind:data(any) addr:0x0218001a
-data_ov016_02180196 kind:data(any) addr:0x02180196
 data_ov016_02180249 kind:data(any) addr:0x02180249
 data_ov016_02180398 kind:data(any) addr:0x02180398
 data_ov016_02180ad8 kind:data(any) addr:0x02180ad8
 _ZN19FightStadiumManager13cardDataList_E kind:data(byte[828]) addr:0x02180aec
-@1416 kind:data(byte[7]) addr:0x02180e28 local
+@1691 kind:data(byte[7]) addr:0x02180e28 local
 data_ov016_02180e38 kind:data(any) addr:0x02180e38
 data_ov016_02180e54 kind:data(any) addr:0x02180e54
 data_ov016_02180e70 kind:data(any) addr:0x02180e70
@@ -715,6 +712,10 @@ data_ov016_02181fc0 kind:data(any) addr:0x02181fc0
 data_ov016_02181fc4 kind:data(any) addr:0x02181fc4
 data_ov016_02181fc8 kind:data(any) addr:0x02181fc8
 data_ov016_02181fd0 kind:data(any) addr:0x02181fd0
+_ZTV24MaterielMenuPokerBetcoin kind:data(byte[28]) addr:0x02182008
+_ZTV25MaterielMenuPokerHiandlow kind:data(byte[28]) addr:0x02182024
+_ZTV27MaterielMenuPokerSelectcard kind:data(byte[28]) addr:0x02182040
+_ZTV27MaterielMenuPokerChangecard kind:data(byte[28]) addr:0x0218205c
 data_ov016_02182080 kind:data(any) addr:0x02182080
 data_ov016_0218209c kind:data(any) addr:0x0218209c
 data_ov016_021820b8 kind:data(any) addr:0x021820b8
@@ -767,7 +768,7 @@ _ZN17MaterielMenu_LOAD14activeDiaryNo_E kind:data(byte[4]) addr:0x02182960
 _ZTV17MaterielMenu_LOAD kind:data(byte[28]) addr:0x02182964
 _ZTV31MaterielMenu_PICTUREBOOK_DETAIL kind:data(byte[28]) addr:0x02182980
 _ZTV29MaterielMenu_PICTUREBOOK_ROOT kind:data(byte[28]) addr:0x0218299c
-data_ov016_021829c0 kind:data(any) addr:0x021829c0
+_ZTV25TownMenu_OPERATION_CAREER kind:data(byte[28]) addr:0x021829b8
 data_ov016_021829dc kind:data(any) addr:0x021829dc
 data_ov016_021829f8 kind:data(any) addr:0x021829f8
 data_ov016_02182a0c kind:data(any) addr:0x02182a0c
@@ -895,7 +896,7 @@ data_ov016_02184974 kind:data(any) addr:0x02184974
 data_ov016_02184984 kind:data(any) addr:0x02184984
 data_ov016_021849a0 kind:data(any) addr:0x021849a0
 data_ov016_021849bc kind:data(any) addr:0x021849bc
-data_ov016_021849d8 kind:data(any) addr:0x021849d8
+_ZTV23TownMenu_OPERATION_ROOT kind:data(byte[28]) addr:0x021849d0
 data_ov016_021849f4 kind:data(any) addr:0x021849f4
 data_ov016_02184a08 kind:data(any) addr:0x02184a08
 data_ov016_02184a58 kind:data(any) addr:0x02184a58
@@ -980,12 +981,13 @@ data_ov016_02185848 kind:data(any) addr:0x02185848
 data_ov016_02185850 kind:data(any) addr:0x02185850
 data_ov016_02185854 kind:data(any) addr:0x02185854
 data_ov016_0218585c kind:data(any) addr:0x0218585c
-windowManager$3353 kind:bss(size=0x30) addr:0x02185860 local
-_ZGVfightStadiumManager$1332 kind:bss(size=0x4) addr:0x02185890 local
-fightStadiumManager$1332 kind:bss(size=0x1c) addr:0x02185894 local
+windowManager$5186 kind:bss(size=0x30) addr:0x02185860 local
+_ZGVfightStadiumManager$1607 kind:bss(size=0x4) addr:0x02185890 local
+fightStadiumManager$1607 kind:bss(size=0x1c) addr:0x02185894 local
 data_ov016_021858b0 kind:bss addr:0x021858b0
 data_ov016_021858bc kind:bss addr:0x021858bc
-data_ov016_021858f8 kind:bss addr:0x021858f8
+reverse$4512 kind:bss(size=0x4) addr:0x021858f4 local
+gTownMenuPlayerControl kind:bss addr:0x021858f8
 data_ov016_02185920 kind:bss addr:0x02185920
 data_ov016_02185928 kind:bss addr:0x02185928
 data_ov016_02185948 kind:bss addr:0x02185948
@@ -1127,8 +1129,3 @@ data_ov016_02188edc kind:bss addr:0x02188edc
 data_ov016_02188f30 kind:bss addr:0x02188f30
 data_ov016_021890dc kind:bss addr:0x021890dc
 data_ov016_0218912c kind:bss addr:0x0218912c
-_ZTV25MaterielMenuPokerHiandlow kind:data(byte[28]) addr:0x02182024
-_ZTV24MaterielMenuPokerBetcoin kind:data(byte[28]) addr:0x02182008
-_ZTV27MaterielMenuPokerSelectcard kind:data(byte[28]) addr:0x02182040
-_ZTV27MaterielMenuPokerChangecard kind:data(byte[28]) addr:0x0218205c
-reverse$3272 kind:bss(size=0x4) addr:0x021858f4 local

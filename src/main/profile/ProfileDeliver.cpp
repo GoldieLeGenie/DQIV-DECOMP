@@ -13,6 +13,7 @@
 #include "main/cmn/CommonCounterInfo.hpp"
 #include "main/cmn/HengeNoTsueManager.hpp"
 #include "main/cmn/PartyTalk.hpp"
+#include "main/sound/Sound.hpp"
 
 THUMB int profile::Profile::deliverDATA()
 {
@@ -35,7 +36,7 @@ THUMB int profile::Profile::deliverDATA()
 THUMB void profile::Profile::deliverDATA_PARTY()
 {
     g_Global.initialize();
-    func_0205594c(15);
+    Sound::unkfunc_0205594c(15);
 
     g_Stage.profileBank_ = pSYSTEM->BOOKNO;                       
     g_Stage.loadType_    = (profile::SAVETYPE)pSYSTEM->SAVETYPE;  
@@ -216,10 +217,10 @@ THUMB void profile::Profile::deliverDATA_ENVOY()
             func_0203a6f4(&data_020f0078, this->pENVOY->SEX);
             func_0203a730(&data_020f0078, this->pENVOY->AGE);
             func_0203a76c(&data_020f0078, this->pENVOY->SKILL);
-            func_020882ec(func_0203a65c(&data_020f0078), this->pENVOY->NAME, 0x1A);
-            func_020882ec(func_0203a6d8(&data_020f0078), this->pENVOY->HERONAME, 0x1A);
-            func_020882ec(func_0203a820(&data_020f0078), this->pENVOY->TOWNNAME, 0x2A);
-            func_020882ec(func_0203a938(&data_020f0078), this->pENVOY->COMMENT, 0x5C);
+            dss::memcpy(func_0203a65c(&data_020f0078), this->pENVOY->NAME, 0x1A);
+            dss::memcpy(func_0203a6d8(&data_020f0078), this->pENVOY->HERONAME, 0x1A);
+            dss::memcpy(func_0203a820(&data_020f0078), this->pENVOY->TOWNNAME, 0x2A);
+            dss::memcpy(func_0203a938(&data_020f0078), this->pENVOY->COMMENT, 0x5C);
         } else {
             func_0203a574(&data_020f0078, 0);
         }
@@ -235,10 +236,10 @@ THUMB void profile::Profile::deliverDATA_ENVOY()
         func_0203a6f4(&data_020f0078, this->pENVOY->SEX);
         func_0203a730(&data_020f0078, this->pENVOY->AGE);
         func_0203a76c(&data_020f0078, this->pENVOY->SKILL);
-        func_020882ec(func_0203a65c(&data_020f0078), this->pENVOY->NAME, 0x1A);
-        func_020882ec(func_0203a6d8(&data_020f0078), this->pENVOY->HERONAME, 0x1A);
-        func_020882ec(func_0203a820(&data_020f0078), this->pENVOY->TOWNNAME, 0x2A);
-        func_020882ec(func_0203a938(&data_020f0078), this->pENVOY->COMMENT, 0x5C);
+        dss::memcpy(func_0203a65c(&data_020f0078), this->pENVOY->NAME, 0x1A);
+        dss::memcpy(func_0203a6d8(&data_020f0078), this->pENVOY->HERONAME, 0x1A);
+        dss::memcpy(func_0203a820(&data_020f0078), this->pENVOY->TOWNNAME, 0x2A);
+        dss::memcpy(func_0203a938(&data_020f0078), this->pENVOY->COMMENT, 0x5C);
     } else {
         func_0203a574(&data_020f0078, 0);
     }
@@ -251,7 +252,7 @@ THUMB void profile::Profile::deliverRESTART_MAP(dss::Fix32Vector3* pos, short di
         g_Stage.load_ = 1;
         return;
     }
-    if (dss::DssUtils::unkfunc_020882b0((const char*)this->pPARTY->RESTART, "field") == 0) {
+    if (dss::strcmp((const char*)this->pPARTY->RESTART, "field") == 0) {
         cmn::g_extraMapLink.setExtraLinkFieldAbsPos(this->pPARTY->FIELDTYPE, *pos, 4);
         return;
     }

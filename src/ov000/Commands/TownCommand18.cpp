@@ -30,10 +30,10 @@ THUMB int cmd_check_shoplist(int* param)
     name[0] = g_Global.getMapName()[0];
     name[1] = g_Global.getMapName()[1];
 
-    if (dss::DssUtils::unkfunc_020882b0(name, mc) == 0 && !g_AreaFlag.check(0x57)) {
+    if (dss::strcmp(name, mc) == 0 && !g_AreaFlag.check(0x57)) {
         TownWindowSystem::getSingleton()->cmdWindow_.setShoplistPermit(false);
     }
-    if (dss::DssUtils::unkfunc_020882b0(name, cc) == 0 && status::g_Story.chapter_ != 2) {
+    if (dss::strcmp(name, cc) == 0 && status::g_Story.chapter_ != 2) {
         TownWindowSystem::getSingleton()->cmdWindow_.setShoplistPermit(false);
     }
     return 1;

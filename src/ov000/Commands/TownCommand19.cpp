@@ -30,6 +30,6 @@ THUMB int cmd_is_not_go_into_tenku(int* param)
 
 THUMB int cmd_set_end_roll_clear(int* param)
 {
-    TownEndrollManager::getSingleton()->clearScroll();
+    TownEndrollManager::getSingleton()->enableScroll_ = 0;
     return 1;
 }

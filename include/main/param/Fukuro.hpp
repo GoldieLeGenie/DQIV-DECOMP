@@ -1,5 +1,6 @@
 #pragma once
 #include <globaldefs.h>
+#include "main/data/DataObject.hpp"
 
 namespace param{
     struct Fukuro {
@@ -171,5 +172,4 @@ namespace param{
 }
 
 extern char player_fukuro1[];                       //data_020bc614 ./param/param_player_fukuro1.dat
-extern "C" int  data_020c7980[];                       //  ExcelBinaryData
-/* func_02057f58 and func_02057f50 declared in Event.hpp */
+extern DataObject data_020c7980;

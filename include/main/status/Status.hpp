@@ -1,6 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "GameInfo.hpp"
+#include "main/data/ExcelBinaryData.hpp"
 
 namespace status{
     struct Status {
@@ -16,7 +17,3 @@ namespace status{
 
 extern const unsigned int data_0208c9fc;
 extern const int data_020b5d64;
-
-extern "C" {
-    void func_02057f80(void* data);
-}

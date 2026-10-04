@@ -216,7 +216,7 @@ ARM int cmn::ExtraMapLink::checkFieldLink(int id)
                 if (id != 0x24) {
                     return 4;
                 }
-                func_0200c004(0x7001);
+                StageLink::setTownExitIndex(0x7001);
                 g_Global.startTown(s_mpout2);
                 FieldPlayerManager::getSingleton();
                 PlayerManager::setLock(1);
@@ -231,7 +231,7 @@ ARM int cmn::ExtraMapLink::checkFieldLink(int id)
                 case NOT_LINK_THIS_TOWN:
                     return 4;
                 case LINK_FIELD_TO_TOWN:
-                    func_0200c004(mapLinkData_[i].nextId);
+                    StageLink::setTownExitIndex(mapLinkData_[i].nextId);
                     g_Global.startTown(mapLinkData_[i].nextMapName);
                     FieldPlayerManager::getSingleton();
                     PlayerManager::setLock(1);
@@ -301,7 +301,7 @@ ARM void cmn::ExtraMapLink::startExitLoop()
 
 ARM void cmn::ExtraMapLink::setExtraExitTown(const char* mapName, int id)
 {
-    func_0200c004(id);
+    StageLink::setTownExitIndex(id);
     g_Global.startTown((char*)mapName);
     extraLink_ = EXIT_TOWN;
     PlayerManager::setLock(1);
@@ -318,7 +318,7 @@ ARM void cmn::ExtraMapLink::setExtraLinkTown(const char* mapName, dss::Fix32Vect
 
 ARM void cmn::ExtraMapLink::setLinkData(int nowId, int nextId, LINK_TYPE type, const char* nowMapName, const char* nextMapName, dss::Fix32Vector3& offset)
 {
-    if (nowMapName != NULL && dss::DssUtils::unkfunc_020882b0(g_Global.getMapName(), nowMapName) != 0) {
+    if (nowMapName != NULL && dss::strcmp(g_Global.getMapName(), nowMapName) != 0) {
         return;
     }
     for (int i = 0; i < mapLinkDataCount_; i++) {
@@ -335,7 +335,7 @@ ARM void cmn::ExtraMapLink::setLinkData(int nowId, int nextId, LINK_TYPE type, c
 {
     dss::Fix32Vector3 offset(0, 0, 0);
 
-    if (nowMapName != NULL && dss::DssUtils::unkfunc_020882b0(nowMapName, g_Global.getMapName()) != 0) {
+    if (nowMapName != NULL && dss::strcmp(nowMapName, g_Global.getMapName()) != 0) {
         return;
     }
     for (int i = 0; i < mapLinkDataCount_; i++) {
@@ -358,10 +358,10 @@ ARM int cmn::ExtraMapLink::checkTownMapLink(int id)
     }
 
     for (int i = 0; i < mapLinkDataCount_; i++) {
-        if (mapLinkData_[i].nowId == id && dss::DssUtils::unkfunc_020882b0(mapLinkData_[i].nowMapName, g_Global.getMapName()) == 0) {
+        if (mapLinkData_[i].nowId == id && dss::strcmp(mapLinkData_[i].nowMapName, g_Global.getMapName()) == 0) {
             switch (mapLinkData_[i].type) {
                 case LINK_TOWN_TO_TOWN:
-                    func_0200c004(mapLinkData_[i].nextId);
+                    StageLink::setTownExitIndex(mapLinkData_[i].nextId);
                     g_Global.startTown(mapLinkData_[i].nextMapName);
                     TownPlayerManager::getSingleton()->setLock(1);
                     return 1;
@@ -369,7 +369,7 @@ ARM int cmn::ExtraMapLink::checkTownMapLink(int id)
                     extraLink_ = LINK_TOWN_TO_FIELD;
                     offset_ = mapLinkData_[i].offsetData;
                     extraIdx_ = 4;
-                    func_0200c02c(mapLinkData_[i].nextId);
+                    StageLink::setFieldSymbolIndex(mapLinkData_[i].nextId);
                     g_Global.nextFieldType_ = getFieldTypeBySurface(mapLinkData_[i].nextId);
                     g_Global.startField();
                     TownPlayerManager::getSingleton()->setLock(1);
@@ -385,7 +385,7 @@ ARM int cmn::ExtraMapLink::checkTownMapLink(int id)
                 case LINK_TOWN_TO_TOWN_OFFSET:
                     offset_ = mapLinkData_[i].offsetData;
                     extraLink_ = LINK_TOWN_OFFSET;
-                    func_0200c004(mapLinkData_[i].nextId);
+                    StageLink::setTownExitIndex(mapLinkData_[i].nextId);
                     g_Global.startTown(mapLinkData_[i].nextMapName);
                     TownPlayerManager::getSingleton()->setLock(1);
                     return 1;
@@ -402,7 +402,7 @@ ARM void cmn::ExtraMapLink::setExtraExitField(int id, dss::Fix32Vector3& pos)
     extraLink_ = LINK_TOWN_TO_FIELD;
     offset_ = pos;
     extraIdx_ = 4;
-    func_0200c02c(id);
+    StageLink::setFieldSymbolIndex(id);
     g_Global.nextFieldType_ = getFieldTypeBySymbol(id);
     g_Global.startField();
     PlayerManager::setLock(1);
@@ -450,9 +450,9 @@ ARM void cmn::ExtraMapLink::eraseSurface(int surfaceId, LINK_TYPE type, const ch
         return;
     }
     if (type == NOT_LINK_THIS_TOWN) {
-        func_0204ccf4(&TownStageManager::getSingleton()->coll_, surfaceId, 1);
+        TownStageManager::getSingleton()->coll_.setEraseSurface(surfaceId, true);
     } else {
-        func_0204ccf4(&TownStageManager::getSingleton()->coll_, surfaceId, 0);
+        TownStageManager::getSingleton()->coll_.setEraseSurface(surfaceId, false);
     }
 }
 
@@ -476,7 +476,7 @@ ARM void cmn::ExtraMapLink::setFieldRectLinkToTown(dss::Fix32Vector3& topLeft, d
     rectLinkData_[rectLinkCount_].nowId = nowId;
     rectLinkData_[rectLinkCount_].nextId = nextId;
     rectLinkData_[rectLinkCount_].pos[3] = offset;  
-    dss::DssUtils::strcpy_s(rectLinkData_[rectLinkCount_].nextMapName, 10, (char*)mapName);
+    dss::strcpy_s(rectLinkData_[rectLinkCount_].nextMapName, 10, (char*)mapName);
     rectLinkCount_++;
 }
 
@@ -505,7 +505,7 @@ ARM int cmn::ExtraMapLink::checkFieldRectLinkByType(dss::Fix32Vector3& pos, int 
     int no = checkFieldRectLinkNo(pos);
     if (no != -1 && type == rectLinkData_[no].type) {
         if (rectLinkData_[no].type == RECT_FIELD_TO_TOWN) {
-            func_0200c004(rectLinkData_[no].nextId);
+            StageLink::setTownExitIndex(rectLinkData_[no].nextId);
             g_Global.startTown(rectLinkData_[no].nextMapName);
             FieldPlayerManager::getSingleton();
             PlayerManager::setLock(1);
@@ -583,13 +583,13 @@ ARM void cmn::ExtraMapLink::setRuraLink()
     }
 
     if (toField == 1) {
-        func_0200c02c(symbolId);
+        StageLink::setFieldSymbolIndex(symbolId);
         g_Global.nextFieldType_ = CommonRuraData::getSingleton()->getWorld(townId);
         g_Global.startField();
     } else {
         g_Stage.flagMapChange_ = 1;
         g_Stage.setRuraFlag(3);
-        func_0200c010();
+        StageLink::resetTownExitIndex();
     }
 }
 

@@ -17,8 +17,6 @@ struct CommonMenu_YESNO : menu::MenuBase {
 };
 
 extern "C" {
-    void func_02056174(void);
-    void func_02056184(int cursor);
     void func_02052a28(void* window, int messageId1, int messageId2);
 }
 

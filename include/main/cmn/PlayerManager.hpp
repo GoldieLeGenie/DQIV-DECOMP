@@ -6,10 +6,10 @@
 
 namespace cmn {
     struct PlayerManager{
-        virtual void setPosition(dss::Fix32Vector3& pos);
-        virtual dss::Fix32Vector3 getPosition();
-        virtual short getDirection();
-        virtual void resetParty();
+        virtual void setPosition(dss::Fix32Vector3& pos) = 0;
+        virtual dss::Fix32Vector3 getPosition() = 0;
+        virtual short getDirection() = 0;
+        virtual void resetParty() {}
         int flagMapLink_;  
         int charaColl_;
 

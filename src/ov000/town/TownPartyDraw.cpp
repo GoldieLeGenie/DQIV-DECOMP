@@ -76,7 +76,7 @@ ARM void TownPartyDraw::setup()
                     chara = g_HengeNoTsue.charNo_;
                 }
             }
-            func_02088308(path, sizeof(path), "data/chr/h%03d.pack", chara);
+            dss::sprintf_s(path, sizeof(path), "data/chr/h%03d.pack", chara);
             partyCharacter_[i].setRender(&TownSystem::getSingleton()->render_);
             func_02049984(&TownCamera::getSingleton()->camera_.unk_004);
             partyCharacter_[i].setup(path, 0);
@@ -86,7 +86,7 @@ ARM void TownPartyDraw::setup()
             func_0204977c(&partyCharacter_[i], 0);
             partyCharacter_[i].exec();
         }
-        count_ = func_02008ea0(count_, 0, 7);
+        count_ = dss::clamp<int>(count_, 0, 7);
         for (int i = 0; i < count_; i++) {
             partyCharacter_[i].enable_ = 1;
         }
@@ -109,7 +109,7 @@ ARM void TownPartyDraw::setup()
                     chara = g_HengeNoTsue.charNo_;
                 }
             }
-            func_02088308(path, sizeof(path), "data/chr/h%03d.pack", chara);
+            dss::sprintf_s(path, sizeof(path), "data/chr/h%03d.pack", chara);
             partyCharacter_[i].setRender(&TownSystem::getSingleton()->render_);
             func_02049984(&TownCamera::getSingleton()->camera_.unk_004);
             partyCharacter_[i].setup(path, 0);
@@ -296,7 +296,7 @@ ARM void TownPartyDraw::changePose(int pose)
     if (dataObject_.getAddr()) {
         dataObject_.cleanup();
     }
-    func_02088308(path, sizeof(path), "data/chr/h%03d.pack", pose);
+    dss::sprintf_s(path, sizeof(path), "data/chr/h%03d.pack", pose);
     OS_Wait();
     dataObject_.setup(path, 0, 0);
     partyCharacter_[0].setTexture(dataObject_.getAddr());
@@ -363,7 +363,7 @@ ARM void TownPartyDraw::setVanAndBasha()
             break;
         }
         }
-        func_02088308(path, sizeof(path), "data/chr/h%03d.pack", chara);
+        dss::sprintf_s(path, sizeof(path), "data/chr/h%03d.pack", chara);
         partyCharacter_[i].setRender(&TownSystem::getSingleton()->render_);
         func_02049984(&TownCamera::getSingleton()->camera_.unk_004);
         partyCharacter_[i].setup(path, 0);
@@ -372,7 +372,7 @@ ARM void TownPartyDraw::setVanAndBasha()
         partyCharacter_[i].enable_ = 0;
         func_0204977c(&partyCharacter_[i], 0);
     }
-    count_ = func_02008ea0(count_, 0, 6);
+    count_ = dss::clamp<int>(count_, 0, 6);
     for (int i = 0; i < count_; i++) {
         partyCharacter_[i].enable_ = 1;
     }

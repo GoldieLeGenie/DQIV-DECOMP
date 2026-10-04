@@ -82,8 +82,3 @@ namespace status{
 }
 
 extern status::UseitemData UseitemData_; //data_020d0820
-
-extern "C" {
-int  func_0201a430(void);                           // BaseAction::isBreakPrayRing
-void func_0201a3ec(int flag);                       // BaseAction::setBreakPrayRing
-}

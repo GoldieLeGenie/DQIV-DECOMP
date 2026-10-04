@@ -339,7 +339,7 @@ THUMB void status::HaveStatus::addExp(int exp)
     if (this->exp_ != -1) {
         totalExp = this->exp_ + exp;
         this->exp_ = totalExp;
-        totalExp = func_02008ea0(totalExp, 0, 0xffffff);
+        totalExp = dss::clamp<int>(totalExp, 0, 0xffffff);
         this->exp_ = totalExp;
     }
     return;
@@ -348,7 +348,7 @@ THUMB void status::HaveStatus::addExp(int exp)
 THUMB void status::HaveStatus::setExp(int exp) {
     if (this->exp_ != -1) {
         this->exp_ = exp;
-        this->exp_ = func_02008ea0(exp, 0, 0xffffff);
+        this->exp_ = dss::clamp<int>(exp, 0, 0xffffff);
     }
 }
 
@@ -453,13 +453,13 @@ THUMB void status::HaveStatus::addMpMax(char mp)
 }
 
 THUMB void status::HaveStatus::addBaseHp(int hp) {
-    this->baseStatus_.hp_ = func_02008ea0(this->baseStatus_.hp_ + hp, 0, this->baseStatus_.hpMax_);
+    this->baseStatus_.hp_ = dss::clamp<int>(this->baseStatus_.hp_ + hp, 0, this->baseStatus_.hpMax_);
     return;
 }
 
 THUMB void status::HaveStatus::addBaseMp(int mp) {
     if (this->baseStatus_.mp_ != 0x3E8) {
-        this->baseStatus_.mp_ = func_02008ea0(this->baseStatus_.mp_ + mp, 0, this->baseStatus_.mpMax_);
+        this->baseStatus_.mp_ = dss::clamp<int>(this->baseStatus_.mp_ + mp, 0, this->baseStatus_.mpMax_);
     }
     return;
 }

@@ -382,7 +382,7 @@ ARM void TownCharacterBase::changeAlpha()
     switch (changeAlphaType_) {
     case CHANGE_FADE_IN1:
     case CHANGE_FADE_OUT1: {
-        int index = func_02008ea0(0, alphaCounter_ * 10 / alphaFrame_, 9);
+        int index = dss::clamp<int>(0, alphaCounter_ * 10 / alphaFrame_, 9);
         unsigned char fadeIn = changeAlphaType_ == CHANGE_FADE_IN1 ? 1 : 0;
         unsigned char alpha;
         if (fadeIn) {
@@ -398,7 +398,7 @@ ARM void TownCharacterBase::changeAlpha()
     case CHANGE_FADE_IN2:
     case CHANGE_FADE_OUT2: {
         int prevIndex = (alphaCounter_ - 1) * 6 / alphaFrame_;
-        int index = func_02008ea0(0, alphaCounter_ * 6 / alphaFrame_, 5);
+        int index = dss::clamp<int>(0, alphaCounter_ * 6 / alphaFrame_, 5);
         unsigned char setA = changeAlphaType_ == CHANGE_FADE_IN2 ? 0x1f : 0;
         unsigned char resetA = changeAlphaType_ == CHANGE_FADE_IN2 ? 0 : 0x1f;
         if (blinkCounter_ == blinkFrame[index] || prevIndex != index) {

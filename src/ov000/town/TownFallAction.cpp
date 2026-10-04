@@ -9,6 +9,7 @@
 #include "ov000/town/TownSystem.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/status/StageStatus.hpp"
+#include "main/sound/Sound.hpp"
 
 const dss::Fix32 TownFallAction::fallStartFix(0x2000);
 const dss::Fix32 TownFallAction::fallSpeed(0x225);
@@ -70,7 +71,7 @@ ARM void TownFallAction::execute()
     }
     if (count_ == 4) {
         if (sePlay_ == 1) {
-            func_02055a04(0x138);
+            Sound::sePlayDirect(0x138);
         }
         return;
     }

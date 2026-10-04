@@ -20,7 +20,7 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
     case MENU_INN_TYPE2:
         if (extraInnType_ != TYPE_BATTLE) {
             func_ov016_0216ff34(func_ov016_0216ff2c());
-            func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+            ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         }
         func_02039460(1);
         data_ov016_02185b28.open();
@@ -28,7 +28,7 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
     case MENU_CHURCH:
     case MENU_CHURCH_TYPE2:
         func_02039460(2);
-        func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         data_ov016_021877a4.open();
         break;
     case MENU_CHURCH_MIRACLE:
@@ -43,7 +43,7 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
     case MENU_SHOP_ITEM_TYPE2:
         func_02039460(3);
         if (extraInnType_ != TYPE_BATTLE) {
-            func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+            ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         }
         MaterielMenu_SHOP_MANAGER::getSingleton()->allClear();
         MaterielMenu_SHOP_MANAGER::getSingleton()->openShopMenu(menuType);
@@ -51,14 +51,14 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
     case MENU_CHANGE_GIFT:
     case MENU_CHANGE_GIFT_TYPE2:
         func_02039460(3);
-        func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         MaterielMenu_SHOP_MANAGER::getSingleton()->allClear();
         MaterielMenu_SHOP_MANAGER::getSingleton()->setShopType(menuType);
         data_ov016_02185928.open();
         break;
     case MENU_COIN_SALEROOM:
         func_02039460(4);
-        func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         data_ov016_021861ec.open();
         break;
     case MENU_CASINO_SLOT:
@@ -71,29 +71,29 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
         data_ov016_02186324.open();
         break;
     case MENU_CASINO_FIGHTSTADIUM:
-        func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         data_ov016_02186914.open();
         break;
     case MENU_BANK:
         func_02039460(5);
-        func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         data_ov016_02186150.open();
         break;
     case MENU_MEDAL_KING:
         func_02039460(6);
-        func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         data_ov016_02185a60.open();
         break;
     case MENU_EXTRA_FOX_TOWN:
         func_02039460(3);
-        func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         MaterielMenu_SHOP_MANAGER::getSingleton()->allClear();
         MaterielMenu_SHOP_MANAGER::getSingleton()->openShopMenu(MENU_SHOP_ITEM);
         MaterielMenu_SHOP_MANAGER::getSingleton()->setExtraShop(1);
         break;
     case MENU_EXTRA_BONMOL_CASTLE:
         func_02039460(3);
-        func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         MaterielMenu_SHOP_MANAGER::getSingleton()->allClear();
         MaterielMenu_SHOP_MANAGER::getSingleton()->setExtraShop(2);
         data_ov016_02186d28.open();
@@ -110,12 +110,12 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
         break;
     case MENU_EXTRA_HOSTAGE:
         func_02039460(9);
-        func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         data_ov016_02186020.open();
         break;
     case MENU_EXTRA_NENE:
         func_02039460(10);
-        func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         data_ov016_021860b8.open();
         break;
     case MENU_EXTRA_CHAPTER_TITLE:
@@ -130,7 +130,7 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
             data_ov016_02186728.saveType_ = MaterielMenu_SAVE::TYPE_CHAPTER;
         }
         if (type_ == 1) {
-            func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+            ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
             data_ov016_02186728.saveType_ = MaterielMenu_SAVE::TYPE_LASTDUNGEON;
         }
         if (type_ == 2) {
@@ -142,7 +142,7 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
         break;
     case MENU_EXTRA_SIDEJOB:
         func_02039460(12);
-        func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         data_ov016_02185948.open();
         break;
     case MENU_SURECHIGAI_MAKE_TAISHI:
@@ -151,7 +151,7 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
         break;
     case MENU_SURECHIGAI_ROOT:
         func_02039460(13);
-        func_02056358(cmn::g_talkSound.getCharacterVoice(chara));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(chara));
         data_ov016_02185dc4.open();
         break;
     case MENU_SURECHIGAI_MAP_NAME:

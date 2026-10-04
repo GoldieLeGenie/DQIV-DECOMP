@@ -43,7 +43,7 @@ THUMB int status::ShopList::getDataIndex(int shop)
         name[1] = g_Stage.getMapName()[1];
         name[2] = '\0';
         
-        if (dss::DssUtils::unkfunc_020882b0(name, check) == 0) {
+        if (dss::strcmp(name, check) == 0) {
             name[2] = g_Stage.getMapName()[2];
             name[3] = '\0';
         }
@@ -86,11 +86,11 @@ THUMB int status::ShopList::getShopCount(int shop)
         case 2:
         {
             char* town = s_md;
-            if (dss::DssUtils::unkfunc_020882b0(buf, s_mj) == 0 && g_Story.chapter_ >= 5)
+            if (dss::strcmp(buf, s_mj) == 0 && g_Story.chapter_ >= 5)
             {
                 limit = 0;
             }
-            else if (dss::DssUtils::unkfunc_020882b0(buf, town) == 0 && g_AreaFlag.check(0x5E) == 0)
+            else if (dss::strcmp(buf, town) == 0 && g_AreaFlag.check(0x5E) == 0)
             {
                 limit = 0;
             }
@@ -101,15 +101,15 @@ THUMB int status::ShopList::getShopCount(int shop)
             break;
         }
         case 8:
-            if (dss::DssUtils::unkfunc_020882b0(buf, s_mb) == 0 && g_AreaFlag.check(0x147) == 0)
+            if (dss::strcmp(buf, s_mb) == 0 && g_AreaFlag.check(0x147) == 0)
             { limit = 0; } else { limit = 6; }
             break;
         case 3:
-            if (dss::DssUtils::unkfunc_020882b0(buf, s_cd ) == 0 && g_Story.chapter_ < 5)
+            if (dss::strcmp(buf, s_cd ) == 0 && g_Story.chapter_ < 5)
             { limit = 0; } else { limit = 6; }
             break;
         case 9:
-            if (dss::DssUtils::unkfunc_020882b0(buf, s_hc) == 0 && g_AreaFlag.check(0x147) == 0)
+            if (dss::strcmp(buf, s_hc) == 0 && g_AreaFlag.check(0x147) == 0)
             { limit = 0; } else { limit = 6; }
             break;
         case 4:

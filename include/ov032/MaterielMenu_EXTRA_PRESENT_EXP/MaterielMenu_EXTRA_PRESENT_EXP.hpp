@@ -21,7 +21,6 @@ struct MaterielMenu_EXTRA_PRESENT_EXP : menu::MenuBase
 };
 
 extern "C" {
-    void func_ov016_02177ae8(menu::MenuItem* menuItem, int active);
     void func_ov016_0216fdb0(int activeChara, int extraExp);
 }
 

@@ -9,7 +9,7 @@ static char* btlMapPath = "data/btlmap";
 
 THUMB BattleStage::BattleStage()
 {
-    func_0208828c(mapName_, "btl_pl_d");
+    dss::strcpy(mapName_, "btl_pl_d");
 }
 
 THUMB BattleStage::~BattleStage()
@@ -104,5 +104,5 @@ THUMB int BattleStage::isFade()
 
 THUMB void BattleStage::setRGBRate(dss::Fix32 r, dss::Fix32 g, dss::Fix32 b)
 {
-    func_02047350(&stage_.m_fld, r.value, g.value, b.value);
+    stage_.m_fld.unkfunc_02047350(r.value, g.value, b.value);
 }

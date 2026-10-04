@@ -231,7 +231,7 @@ THUMB int formation::FormationId::setMonsterCountLimit(int count)
     unsigned int i = 0;
     while (i < getEncountFormNumCount()) {
         if (chapter_ == tbl[i].section && partyCount_ == tbl[i].party) {
-            count = func_02008ea0(count, 0, tbl[i].groupmax);
+            count = dss::clamp<int>(count, 0, tbl[i].groupmax);
             break;
         }
         i++;

@@ -36,7 +36,7 @@ ARM void window::NormalControl::execute()
         }
         return;
     }
-    if (data_02116d40.unkfunc_0207f280() & 0x800) {
+    if (dss::g_Pad.edge() & 0x800) {
         if (permit_->check(PHASE_MAP)) {
             openMap();
         } else if (permit_->check(PHASE_SHOPLIST)) {
@@ -44,11 +44,11 @@ ARM void window::NormalControl::execute()
         }
         return;
     }
-    if (data_02116d40.unkfunc_0207f280() & 0x400) {
+    if (dss::g_Pad.edge() & 0x400) {
         openMenu();
         return;
     }
-    data_02116d40.unkfunc_0207f280();
+    dss::g_Pad.edge();
     checkCamera();
     executePlayer();
 }
@@ -60,8 +60,8 @@ ARM void window::NormalControl::executePlayer()
         if (NPCPulling()) {
             return;
         }
-        if (data_02116d40.unkfunc_0207f268() & 0xf0) {
-            FieldPlayerManager::getSingleton()->inputPad(data_02116d40.unkfunc_0207f278());
+        if (dss::g_Pad.pad() & 0xf0) {
+            FieldPlayerManager::getSingleton()->inputPad(dss::g_Pad.padDir());
         }
     }
     if (!data_0210bb94.unkfunc_02058114(0xc)) {
@@ -71,8 +71,8 @@ ARM void window::NormalControl::executePlayer()
     if (NPCPulling()) {
         return;
     }
-    if (data_02116d40.unkfunc_0207f268() & 0xf0) {
-        TownPlayerManager::getSingleton()->inputPad(data_02116d40.unkfunc_0207f278());
+    if (dss::g_Pad.pad() & 0xf0) {
+        TownPlayerManager::getSingleton()->inputPad(dss::g_Pad.padDir());
     }
 }
 
@@ -81,7 +81,7 @@ ARM void window::NormalControl::checkCamera()
     if (!data_0210bb94.unkfunc_02058114(0xc)) {
         return;
     }
-    switch ((data_02116d40.unkfunc_0207f268() & 0x100) | (data_02116d40.unkfunc_0207f268() & 0x200)) {
+    switch ((dss::g_Pad.pad() & 0x100) | (dss::g_Pad.pad() & 0x200)) {
         case 0x300:
             TownPlayerManager::getSingleton()->setCameraRotToNorth();
             break;
@@ -148,7 +148,7 @@ ARM bool window::NormalControl::isDeadParty()
 ARM bool window::NormalControl::NPCPulling()
 {
     if (isDeadParty() == true) {
-        if (data_0211a5d4.touch_ != 0 || (data_02116d40.unkfunc_0207f268() & 0xf0)) {
+        if (data_0211a5d4.touch_ != 0 || (dss::g_Pad.pad() & 0xf0)) {
             data_020ed1bc.openMessageForMENU();
             data_020ed1bc.addMessage(0xc3de0);
             data_020ed1bc.addMessage(0xc3de1);
@@ -156,7 +156,7 @@ ARM bool window::NormalControl::NPCPulling()
             return true;
         }
     } else if (isNPCParty() == true) {
-        if (data_0211a5d4.touch_ != 0 || (data_02116d40.unkfunc_0207f268() & 0xf0)) {
+        if (data_0211a5d4.touch_ != 0 || (dss::g_Pad.pad() & 0xf0)) {
             data_020ed1bc.openMessageForMENU();
             data_020ed1bc.addMessage(0xc3da0);
             data_020ed1bc.addMessage(0xc3da1);

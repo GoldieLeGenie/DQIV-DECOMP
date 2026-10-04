@@ -27,8 +27,8 @@ THUMB void MaterielMenuPokerChangecard::menuSetup()
     combination_ = -1;
     blink_ = 0;
     isPlaySound_ = 0;
-    betCoin_ = PokerManager::getSingleton()->getBetCoin();
-    getCoin_ = PokerManager::getSingleton()->getBetCoin();
+    betCoin_ = PokerManager::getSingleton()->betCoin_;
+    getCoin_ = PokerManager::getSingleton()->betCoin_;
     haveCoin_ = status::g_Party.casinoCoin_ - betCoin_;
     ang_ = 0x8000;
     gyre_ = 0;
@@ -73,7 +73,7 @@ THUMB void MaterielMenuPokerChangecard::menuDraw()
     }
     unkfunc_02177d24(haveCoin_, getCoin_, blink_, blink_);
     unkfunc_02177bac(0x90, 0, 0x70, 0x30, -1);
-    unkfunc_02177e34(PokerManager::getSingleton()->getBetCoin(), combination_, blink_);
+    unkfunc_02177e34(PokerManager::getSingleton()->betCoin_, combination_, blink_);
     unkfunc_02177bac(0, 0, 0x100, 0xc0, -1);
 }
 
@@ -86,7 +86,7 @@ THUMB void MaterielMenuPokerChangecard::menuUpdate()
     if (blink_ == 1 && animation_ == 0) {
         if (effectCount_ > 90) {
             for (int i = 0; i < 5; i++) {
-                if (PokerManager::getSingleton()->getCombinationCard(i) == 1) {
+                if (PokerManager::getSingleton()->combinationCard_[i] == 1) {
                     CasinoPokerDraw::getSingleton()->setEffect(i);
                 }
             }
@@ -108,7 +108,7 @@ THUMB bool MaterielMenuPokerChangecard::messageUpdata()
     if (data_020ed1bc.isOpen()) {
         if (gameMode_ == 6) {
             SoundManager::playSe(0x15e, 0);
-            if ((data_02116d40.unkfunc_0207f280() & 1) || (data_02116d40.unkfunc_0207f280() & 0x400)) {
+            if ((dss::g_Pad.edge() & 1) || (dss::g_Pad.edge() & 0x400)) {
                 status::g_Party.addCasinoCoin(getCoin_);
                 getCoin_ = 0;
                 haveCoin_ = status::g_Party.casinoCoin_;
@@ -207,7 +207,7 @@ THUMB void MaterielMenuPokerChangecard::menuUpdata()
         if (result != 0) {
             if (result == 4 || result == 5) {
                 int active = menuItem_.active_;
-                PokerManager::getSingleton()->setCardPosition(active);
+                PokerManager::getSingleton()->cardPosition_ = active;
                 menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_NONE);
                 menuItem2_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
                 menuItem2_.result_ = 0;
@@ -231,7 +231,7 @@ THUMB void MaterielMenuPokerChangecard::menuUpdata()
             if (result == 4 || result == 5) {
                 menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
                 menuItem2_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_NONE);
-                menuItem_.active_ = PokerManager::getSingleton()->getCardPosition();
+                menuItem_.active_ = PokerManager::getSingleton()->cardPosition_;
                 menuItem_.result_ = 0;
                 menuItem_.lastresult_ = 0;
                 gameMode_ = 1;
@@ -385,7 +385,7 @@ THUMB void MaterielMenuPokerChangecard::pokerReverseCard(bool doubleupNext)
         if (index_ > 4) {
             if (doubleupNext) {
                 close();
-                if (PokerManager::getSingleton()->getGroundSlum()) {
+                if (PokerManager::getSingleton()->groundSlum_) {
                     data_ov016_0218665c.open();
                 } else {
                     data_ov016_02186e34.open();

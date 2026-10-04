@@ -1,5 +1,6 @@
 #pragma once
 #include <globaldefs.h>
+#include "main/data/DataObject.hpp"
 
 namespace param {
     struct EventFlag {                                 // data/param/param_player_flag.dat
@@ -15,7 +16,7 @@ namespace param {
         unsigned char dmmy0;                            // 0x0E
         unsigned char dmmy1;                            // 0x0F
 
-        static int data_;                               // data_020edba0 (ExcelBinaryData)
+        static DataObject data_;                        // data_020edba0
         static const char* filename_[];                 // data_020be9a0
     };
 }

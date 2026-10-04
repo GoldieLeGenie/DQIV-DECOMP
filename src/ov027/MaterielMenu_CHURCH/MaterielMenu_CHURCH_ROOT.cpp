@@ -54,7 +54,7 @@ THUMB void MaterielMenu_CHURCH_ROOT::menuSetup()
     if (sexType_ == 1000 && mother == false) {
         type = 0x31;
     }
-    func_02056358(type);
+    ui_MsgSndSet(type);
     timeType_ = g_Stage.getTimeZone();
     navigator_.setupBase();
     menuItem_.active_ = 0;
@@ -272,7 +272,7 @@ THUMB void MaterielMenu_CHURCH_ROOT::firstMessage()
         }
         return;
     }
-    func_02056358(0x30);
+    ui_MsgSndSet(0x30);
     data_020ed1bc.addMessageNOWAIT(sexType_ + 0xc6fbc);
     data_020ed1bc.addMessageWAITKEY();
 }

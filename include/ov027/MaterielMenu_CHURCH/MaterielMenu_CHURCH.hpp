@@ -89,7 +89,4 @@ extern MaterielMenu_CHURCH_ROOT data_ov016_021877a4;        /* gMaterielMenu_CHU
 extern "C" {
     void func_ov016_0216fc94(int activeCommand, int firstFlag);
     void func_ov016_0216fcbc(int count);
-    void func_ov016_02173a40(menu::MenuItem* menuItem);
-    void func_ov016_02177334(menu::MenuItem* menuItem, int count, int active);
-    void func_ov016_02177350(menu::MenuItem* menuItem, int active, int count);
 }

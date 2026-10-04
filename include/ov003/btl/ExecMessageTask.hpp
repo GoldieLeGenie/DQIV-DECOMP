@@ -17,7 +17,3 @@ namespace btl{
     };
     
 }
-
-extern "C" void func_ov003_021293b0(status::CharacterStatus* actor);
-extern "C" int  func_ov003_0212bf48(status::UseActionParam* uap);
-extern "C" int  func_ov003_0212a064();

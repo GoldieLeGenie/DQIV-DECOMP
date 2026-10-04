@@ -18,5 +18,4 @@ struct PokerDoubleupHighAndLow {
     void startHighAndLow();
     int getResult(int count);
     int getCardNo(int count);
-    void setAnswer(int count, int answer) { answer_[count] = answer; }
 };

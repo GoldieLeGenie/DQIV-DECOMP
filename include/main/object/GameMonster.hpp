@@ -6,7 +6,7 @@
 
 struct GameMonster : DSSACharacter {
     int index_;                                 // 0xD30
-    void* dssaCharacterData_;                   // 0xD34
+    DSSACharacterData* dssaCharacterData_;      // 0xD34
 
     GameMonster();
     ~GameMonster();

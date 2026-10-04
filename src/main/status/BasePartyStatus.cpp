@@ -6,16 +6,6 @@
 #include "main/status/HaveAction.hpp"
 #include "main/status/UseAction.hpp"
 #include "main/status/UseActionParam.hpp"
-#include "main/status/PlayerStatus.hpp"
-#include "main/status/BaseAction.hpp"
-#include "main/status/HaveAction.hpp"
-#include "main/status/UseAction.hpp"
-#include "main/status/UseActionParam.hpp"
-
-extern "C" {
-    int func_0200ed54(status::PartyStatus*, int);
-    int func_02013ffc(status::BaseHaveItem*, int);    // isItem
-}
 
 THUMB
 int status::PartyStatus::noDamageEnable_;

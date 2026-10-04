@@ -17,7 +17,7 @@ THUMB int status::FukuroItemInfo::getItemMaxCount()
 THUMB int status::FukuroItemInfo::getPageItemCount(int page)
 {
     getPageMax();
-    return func_02008eb8(func_02008ec4(status::FukuroItemInfo::getItemMaxCount() - page * 6, 6), 0);
+    return dss::max<int>(dss::min<int>(status::FukuroItemInfo::getItemMaxCount() - page * 6, 6), 0);
 }
 
 THUMB int status::FukuroItemInfo::getItemId(int page, int index)

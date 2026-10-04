@@ -1,9 +1,9 @@
 #pragma ipa file
 #include "main/object/ModelObject.hpp"
 
+dss::Camera* ModelObjectWithCamera::camera_;
 dss::Fix32 ModelObjectWithCamera::distance_(2.5f);
 dss::Fix32 ModelObjectWithCamera::relativeScale_(0.4f);
-dss::Camera* ModelObjectWithCamera::camera_;
 
 ARM ModelObjectWithCamera::ModelObjectWithCamera()
 {
@@ -30,9 +30,9 @@ ARM void ModelObjectWithCamera::draw()
             execFollow();
         }
     }
-    func_020589a4(this);
-    func_02058bcc(this, position);
-    func_02058b88(this, scale);
+    ModelObject::draw();
+    setPosition(position);
+    setScale(scale);
 }
 
 ARM void ModelObjectWithCamera::execNormal()
@@ -42,8 +42,8 @@ ARM void ModelObjectWithCamera::execNormal()
     dss::Fix32Vector3 distance = cameraPosition - m_pos;
     dss::Fix32Vector3 unk1;
     dss::Fix32Vector3 unk2;
-    func_02058bcc(this, m_pos + (distance / 2));
-    func_02058b88(this, (m_scl / 2));
+    setPosition(m_pos + (distance / 2));
+    setScale(m_scl / 2);
 }
 
 ARM void ModelObjectWithCamera::execFollow()
@@ -56,8 +56,8 @@ ARM void ModelObjectWithCamera::execFollow()
     direction = target - cameraPosition;
     direction.normalize();
     target = cameraPosition + direction * distance_;
-    func_02058bcc(this, target);
-    func_02058af4(this, relativeScale_);
+    setPosition(target);
+    setScale(relativeScale_);
 }
 
 ARM void ModelObjectWithCamera::execNear()
@@ -67,8 +67,8 @@ ARM void ModelObjectWithCamera::execNear()
     dss::Fix32Vector3 distance = cameraPosition - m_pos;
     dss::Fix32Vector3 unk1;
     dss::Fix32Vector3 unk2;
-    func_02058bcc(this, m_pos + (distance * 15 / 16));
-    func_02058b88(this, (m_scl / 16));
+    setPosition(m_pos + (distance * 15 / 16));
+    setScale(m_scl / 16);
 }
 
 ARM void ModelObjectWithCamera::execNear2()
@@ -78,8 +78,8 @@ ARM void ModelObjectWithCamera::execNear2()
     dss::Fix32Vector3 distance = cameraPosition - m_pos;
     dss::Fix32Vector3 unk1;
     dss::Fix32Vector3 unk2;
-    func_02058bcc(this, m_pos + (distance * 3 / 4));
-    func_02058b88(this, (m_scl / 4));
+    setPosition(m_pos + (distance * 3 / 4));
+    setScale(m_scl / 4);
 }
 
 ARM void ModelObjectWithCamera::execFar()
@@ -89,6 +89,6 @@ ARM void ModelObjectWithCamera::execFar()
     dss::Fix32Vector3 distance = cameraPosition - m_pos;
     dss::Fix32Vector3 unk1;
     dss::Fix32Vector3 unk2;
-    func_02058bcc(this, m_pos + (distance * 1 / 4));
-    func_02058b88(this, (m_scl * 3 / 4));
+    setPosition(m_pos + (distance * 1 / 4));
+    setScale(m_scl * 3 / 4);
 }

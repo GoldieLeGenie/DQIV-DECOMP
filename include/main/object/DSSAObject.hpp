@@ -86,7 +86,6 @@ struct DSSAData {
     int getNullIndex(int index);
 };
 
-
 struct DSSAObject : Position {
     virtual void draw();                                            
     virtual void execute();                                         
@@ -144,9 +143,7 @@ struct UnkDSSAObject : DSSAObject {
     virtual void setupTRS(DSSAParts* parts);
     virtual void drawParts(DSSAParts* parts);
 
-    UnkDSSAObject() {}                  // func_ov000_02142ec8
 };
-
 
 struct DSSAObjectWithCamera : DSSAObject {
     enum CameraType {
@@ -170,6 +167,7 @@ struct DSSAObjectWithCamera : DSSAObject {
     static dss::Fix32 relativeScale_;
 
     DSSAObjectWithCamera();
+    static void setCamera(dss::Camera* camera) { camera_ = camera; }
     void execNormal2();
     void execNormal();
     void execFollow();
@@ -209,7 +207,6 @@ struct PaletteAnimation {
 };
 
 extern "C" {
-    int  func_02081254(void);
     void func_020843d4(void);
     void func_0206ae30(VecFx32* scale);                         /* NNS_G3dGlbSetBaseScale */
     void func_0206ae08(dss::Fix32Vector3* trans);                /* NNS_G3dGlbSetBaseTrans */

@@ -17,7 +17,8 @@ THUMB void MaterielMenu_SLOT::menuSetup()
     Casino_Slot::getSingleton()->setSlotType(slotType_);
     CasinoSlot::getSingleton()->setSlotType(slotType_);
     MenuSoundManager::getSingleton()->initialize();
-    setMenuStatus(SLOT_START);
+    status_ = SLOT_START;
+    messageCount_ = -1;
     haveCoin_ = 0;
     betCoin_ = 0;
 }
@@ -54,10 +55,12 @@ THUMB bool MaterielMenu_SLOT::messageUpdate()
     int stat = data_020ed1bc.stat_;
     if (status_ == SLOT_RETRY && messageCount_ == 0) {
         if (stat == menu::MenuBase::MENUBASE_STAT_OK) {
-            setMenuStatus(SLOT_START);
+            status_ = SLOT_START;
+            messageCount_ = -1;
             data_020ed1bc.close();
         } else if (stat == menu::MenuBase::MENUBASE_STAT_CANCEL) {
-            setMenuStatus(SLOT_END);
+            status_ = SLOT_END;
+            messageCount_ = -1;
             data_020ed1bc.close();
         }
     }
@@ -72,7 +75,8 @@ THUMB void MaterielMenu_SLOT::statusUpdate()
         if (messageCount_ == -1) {
             if (status::g_Party.casinoCoin_ == 0) {
                 showMessage(0xc96af);
-                setMenuStatus(SLOT_END);
+                status_ = SLOT_END;
+                messageCount_ = -1;
                 return;
             }
             showMessage(0xc96b2);
@@ -94,7 +98,8 @@ THUMB void MaterielMenu_SLOT::statusUpdate()
         if (resultCoin_ > 0) {
             TextAPI::setMACRO0(0x48, 0xf0000000, resultCoin_);
             showMessage(0xc96b8);
-            setMenuStatus(SLOT_RESULT_EFFECT);
+            status_ = SLOT_RESULT_EFFECT;
+            messageCount_ = -1;
             if (resultCoin_ >= GREAT_FANFARE_NUM) {
                 MenuSoundManager::getSingleton()->setPlaySound(MenuSoundManager::MENU_SOUND_FANFARE_L);
             } else if (resultCoin_ >= FANFARE_NUM) {
@@ -106,7 +111,8 @@ THUMB void MaterielMenu_SLOT::statusUpdate()
             showMessage(0xc96bc);
             Casino_Slot::getSingleton()->unkfunc_02123944();
             status::g_Party.setCasinoCoin(haveCoin_);
-            setMenuStatus(SLOT_RETRY);
+            status_ = SLOT_RETRY;
+            messageCount_ = -1;
         }
         break;
     case SLOT_RESULT_EFFECT:
@@ -136,14 +142,16 @@ THUMB void MaterielMenu_SLOT::inputUpdate()
     case 3:
         menuItem_.result_ = 0;
         menuItem_.lastresult_ = 0;
-        setMenuStatus(SLOT_END);
+        status_ = SLOT_END;
+        messageCount_ = -1;
         break;
     case 2:
         menuItem_.result_ = 0;
         menuItem_.lastresult_ = 0;
         if (betCoin_ > 0) {
             Casino_Slot::getSingleton()->startSlot();
-            setMenuStatus(SLOT_GAME);
+            status_ = SLOT_GAME;
+            messageCount_ = -1;
         }
         break;
     case 5:
@@ -151,7 +159,8 @@ THUMB void MaterielMenu_SLOT::inputUpdate()
         menuItem_.lastresult_ = 0;
         if (betCoin_ == 5) {
             Casino_Slot::getSingleton()->startSlot();
-            setMenuStatus(SLOT_GAME);
+            status_ = SLOT_GAME;
+            messageCount_ = -1;
         } else {
             Casino_Slot::getSingleton()->addCoin(haveCoin_);
             betCoin_ = Casino_Slot::getSingleton()->m_bet_coin;
@@ -176,9 +185,10 @@ THUMB void MaterielMenu_SLOT::resultEffectUpdate()
         status::g_Party.setCasinoCoin(haveCoin_);
         resultCoin_ = 0;
         Casino_Slot::getSingleton()->unkfunc_02123944();
-        setMenuStatus(SLOT_RETRY);
+        status_ = SLOT_RETRY;
+        messageCount_ = -1;
     }
-    if ((data_02116d40.unkfunc_0207f280() & 1) || (data_02116d40.unkfunc_0207f280() & 0x400)) {
+    if ((dss::g_Pad.edge() & 1) || (dss::g_Pad.edge() & 0x400)) {
         Casino_Slot::getSingleton()->cashAllCoin(haveCoin_);
         status::g_Party.setCasinoCoin(haveCoin_);
         resultCoin_ = 0;
@@ -194,7 +204,8 @@ THUMB void MaterielMenu_SLOT::gameUpdate()
     if (Casino_Slot::getSingleton()->runningSlot()) {
         resultCoin_ = 0;
         resultCoin_ = Casino_Slot::getSingleton()->getResultAllCoin();
-        setMenuStatus(SLOT_RESULT);
+        status_ = SLOT_RESULT;
+        messageCount_ = -1;
     }
 }
 

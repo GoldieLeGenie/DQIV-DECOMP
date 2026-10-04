@@ -74,7 +74,7 @@ THUMB void MaterielMenu_INN_ROOT::menuUpdate()
         int ctrlID = g_cmnPartyInfo.partyTalk;
         cmn::g_CommonCounterInfo.setChangeDay();
         cmn::g_CommonCounterInfo.freeCounter_[0]++;
-        func_02056358(cmn::g_talkSound.getCharacterVoice(ctrlID));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(ctrlID));
         showMessage(0xc67d2);
         mode_ = 3;
         return;

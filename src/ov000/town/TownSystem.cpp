@@ -79,7 +79,7 @@ ARM void TownSystem::initialize()
     if (g_Stage.ruraFlag_ != 0) {
         exitNo = -1;
     } else {
-        exitNo = func_0200c020();
+        exitNo = StageLink::getTownExitIndex();
     }
     if (exitNo != -1) {
         cmn::PartyTalk::getSingleton()->resetPartyTalk();
@@ -92,7 +92,7 @@ ARM void TownSystem::initialize()
     DSSAObject::setDefaultScale(scale);
     DSSAObject::setPriority(8);
     g_Stage.loadType_ = profile::SAVETYPE_INVALID;
-    if (dss::DssUtils::unkfunc_020882b0(g_Global.getMapName(), "ev01") == 0) {
+    if (dss::strcmp(g_Global.getMapName(), "ev01") == 0) {
         func_ov000_02143084(func_ov000_02143030());
     }
     trigger_ = 1;
@@ -105,7 +105,7 @@ ARM void TownSystem::terminate()
     cmn::CommonEffectLocation::getSingleton()->terminate();
     cmn::CommonChapterTitle::getSingleton()->cleanup();
     ScriptSystem::getSingleton()->terminate();
-    if (dss::DssUtils::unkfunc_020882b0(g_Global.getMapName(), "field") == 0) {
+    if (dss::strcmp(g_Global.getMapName(), "field") == 0) {
         TownCamera::getSingleton()->resetAngle();
         g_Stage.initDoorOpenFlag();
         g_Stage.setFallFlag(0);
@@ -194,9 +194,9 @@ ARM void TownSystem::draw()
     TownEndrollManager::getSingleton()->draw();
     bool cameraNo = TownCamera::getSingleton()->camera_.m_cameraNo == 0;
     if (cameraNo == true) {
-        TownStageManager::getSingleton()->stage_.unk_660 = 1;
+        TownStageManager::getSingleton()->stage_.m_fld.mainCameraFlag_ = 1;
     } else {
-        TownStageManager::getSingleton()->stage_.unk_660 = 0;
+        TownStageManager::getSingleton()->stage_.m_fld.mainCameraFlag_ = 0;
     }
     TownPlayerManager::getSingleton()->draw();
     render_.unkfunc_02084fa4();

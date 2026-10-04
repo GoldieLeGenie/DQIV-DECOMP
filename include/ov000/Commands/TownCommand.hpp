@@ -8,10 +8,12 @@ struct TownPartyDraw;
 #include "globaldefs.h"
 #include "GameInfo.hpp"
 #include "main/dss/DssUtils.hpp"
+#include "main/global/StageLink.hpp"
 #include "ov000/town/TownCharacterManager.hpp"
 #include "ov000/town/TownCamera.hpp"
 #include "ov000/town/TownDoorAction.hpp"
 #include "main/Commands/CommonCommand.hpp"
+#include "main/menu/MenuManager.hpp"
 #include "main/cmn/CommonEffectLocation.hpp"
 #include "ov016/casino/MaterielMenu_SLOT/MaterielMenu_SLOT.hpp"
 
@@ -192,16 +194,12 @@ struct Data021487a8 {
     int unk_14;
 };
 
-extern char data_02116ce0[];
-extern char data_ov000_02148fa4[];
-extern char data_ov000_02148fa8[];
 extern Data021487a8 data_ov000_021487a8;
 extern long data_ov000_021487ac;
 extern dss::Fix32 data_ov000_021487b0;
 
 extern "C" {
     int func_ov000_02141424(int* param);
-    void func_0207e88c(void* console, int x, int y, const char* format, ...);
 
     void func_02037db0(void* obj, int a, int b);
     void func_02037e20(void* obj, int a, int b, int count, int* values);
@@ -210,12 +208,10 @@ extern "C" {
     void func_ov016_0216fa48(char* a, char* b, char* c, int value);
     void* func_020835d8(void);
     void func_02085d88(void);
-    int func_0200c020(void);
     int func_02037f84(void* obj, int type);
     void func_0208a114(char* dst, int size, int id);
     void func_0203a7a8(void* mgr, char* name);
     int func_0203a388(void* mgr);
-    void func_02055998(int value);
     void func_02037f98(void* obj);
     void func_020857c8(void* obj, dss::Fix32Vector3 pos);
 }

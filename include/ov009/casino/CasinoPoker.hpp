@@ -15,5 +15,5 @@ struct CasinoPoker : CasinoMiniGameBase {
     virtual void terminate();
     virtual void execute();
     virtual void draw();
-    virtual char* getStageName() { return stagePoker; }
+    virtual char* getStageName();
 };

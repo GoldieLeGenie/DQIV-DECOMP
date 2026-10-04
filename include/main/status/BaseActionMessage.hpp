@@ -7,7 +7,6 @@
 #include "main/status/CharacterStatus.hpp"
 #include "ov003/status/MonsterParty.hpp"
 
-
 namespace status {
     struct BaseActionMessageData {
         param::SplitMsg* splitMsg_;
@@ -82,27 +81,3 @@ namespace status {
 
 }
 
-extern "C" int func_ov003_0212e6f8(void* battleObj);  
-
-//im lazy but need to be moved from here
-struct TownMenuPlayerControl {
-    unsigned char activeChara_;         // 0x00
-    unsigned char activeCharaIndex_;    // 0x01
-    short activeItem_;                  // 0x02
-    char activeItemPage_;               // 0x04
-    int activeFukuro_;                 // 0x05
-    unsigned char targetChara_;         // 0x06
-    short targetItem_;                  // 0x08
-    char targetItemPage_;               // 0x0A
-    int targetFukuro_;                 // 0x0B
-    unsigned char actorIndex_;          // 0x0C
-    unsigned char targetIndex_;         // 0x0D
-    unsigned char activeCommand_;       // 0x0E
-    unsigned char activeMagic_;         // 0x0F
-    short activeMagicID_;               // 0x10
-    unsigned char activeTactics_;       // 0x12
-    char takanomeX_;                    // 0x1F 
-    char takanomeY_;                    // 0x20 
-    int initializeLock_;               // 0x21
-};
-extern "C" TownMenuPlayerControl* func_ov016_021755a0();   

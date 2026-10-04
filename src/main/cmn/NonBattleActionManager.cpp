@@ -57,7 +57,7 @@ ARM void cmn::NonBattleActionManager::execute()
                     }
                 }
                 g_Global.fadeOutBlack(0xf);
-                dss::DssUtils::unkfunc_020882b0(g_Global.getMapName(), data_020c1328);
+                dss::strcmp(g_Global.getMapName(), data_020c1328);
                 cmn::g_extraMapLink.setRanaLink();
                 g_Global.setRanarutaFlag(false);
                 return;

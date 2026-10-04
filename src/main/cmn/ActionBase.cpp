@@ -3,7 +3,7 @@
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/status/BaseActionStatus.hpp"
 
-dss::Fix32Vector3& cmn::ActionBase::position_ = g_cmnPartyInfo.getPosition2();
+dss::Fix32Vector3& cmn::ActionBase::position_ = g_cmnPartyInfo.position_;
 short& cmn::ActionBase::dirIdx_ = g_cmnPartyInfo.getDirIdx2();
 const dss::Fix32 cmn::MoveBase::grav(0x29);
 
@@ -114,7 +114,7 @@ ARM void cmn::MoveBase::setMoveSpeed(dss::Fix32 speed)
 ARM void cmn::MoveBase::setMoveFrame(int frame)
 {
     endMoveFrame_ = frame;
-    int div = func_02008eb8(frame, 1);
+    int div = dss::max<int>(frame, 1);
     moveVec_ = ((targetPos_ - startPos_) / div);
 }
 

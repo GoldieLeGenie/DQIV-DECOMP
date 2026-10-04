@@ -63,10 +63,10 @@ ARM void DSSACharacter::draw()
         alpha /= 0x1f;
         dssaObject_[currentAnimationIndex_].setAlpha(alpha);
         flagCount_++;
-        flagCount_ = func_02008ea0(flagCount_, 0, 0x1f);
+        flagCount_ = dss::clamp<int>(flagCount_, 0, 0x1f);
         if (flagCount_ == 0x1f) {
             flagCount_ = 0;
-            flag_.remove(1);
+            flag_.flag_ &= ~1;
             dssaObject_[currentAnimationIndex_].setAlpha(dss::Fix32(0L));
         }
     }
@@ -75,10 +75,10 @@ ARM void DSSACharacter::draw()
         alpha /= 0x1f;
         dssaObject_[currentAnimationIndex_].setAlpha(alpha);
         flagCount_++;
-        flagCount_ = func_02008ea0(flagCount_, 0, 0x1f);
+        flagCount_ = dss::clamp<int>(flagCount_, 0, 0x1f);
         if (flagCount_ == 0x1f) {
             flagCount_ = 0;
-            flag_.remove(8);
+            flag_.flag_ &= ~8;
             dssaObject_[currentAnimationIndex_].setAlpha(dss::Fix32(0x1000));
         }
     }
@@ -94,7 +94,7 @@ ARM void DSSACharacter::draw()
             dssaObject_[flagIndex_].setAlpha(dss::Fix32(0x1000));
             dssaObject_[firstAnimationIndex_].setAlpha(dss::Fix32(0x1000));
             flagCount_ = 0;
-            flag_.remove(2);
+            flag_.flag_ &= ~2;
         }
     }
     if (flag_.check(4)) {
@@ -107,7 +107,7 @@ ARM void DSSACharacter::draw()
         }
         if (++flagCount_ >= 0x18) {
             flagCount_ = 0;
-            flag_.remove(4);
+            flag_.flag_ &= ~4;
             dssaObject_[flagIndex_].setAlpha(dss::Fix32(0x1000));
             dssaObject_[firstAnimationIndex_].setAlpha(dss::Fix32(0L));
             currentAnimationIndex_ = firstAnimationIndex_;
@@ -122,14 +122,14 @@ ARM bool DSSACharacter::start(int index, int loop)
     }
     if (index == 0x22) {
         specialIndex_ = 0x22;
-        flag_.set(4);
+        flag_.flag_ |= 4;
         flagCount_ = 0;
         flagIndex_ = currentAnimationIndex_;
         return true;
     }
     if (index == 0x23) {
         specialIndex_ = 0x23;
-        flag_.set(2);
+        flag_.flag_ |= 2;
         flagIndex_ = currentAnimationIndex_;
         flagCount_ = 0;
         return true;
@@ -146,13 +146,13 @@ ARM bool DSSACharacter::start(int index, int loop)
     }
     if (index == 0x1f) {
         specialIndex_ = 0x1f;
-        flag_.set(1);
+        flag_.flag_ |= 1;
         flagCount_ = 0;
         return true;
     }
     if (index == 0x20) {
         specialIndex_ = 0x20;
-        flag_.set(8);
+        flag_.flag_ |= 8;
         flagCount_ = 0;
         return true;
     }

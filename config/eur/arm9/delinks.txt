@@ -6,19 +6,22 @@
     .data       start:0x020bb4e0 end:0x020c4a20 kind:data align:32
     .bss        start:0x020c4a20 end:0x021210e0 kind:bss align:32
 
-src/main/Commands/CommandFunction.cpp:
+src/main/Commands/ScriptCommand.cpp:
     complete
-    .text start:0x02020030 end:0x02022a3c
+    .text start:0x0201f35c end:0x02022a80
+    .init start:0x0208aba8 end:0x0208ace8
+    .ctor start:0x020bb3bc end:0x020bb3c0
+    .data start:0x020bdf78 end:0x020be028
+    .bss start:0x020ec59c end:0x020ec658
 
 src/main/Commands/CommonCommand.cpp:
     complete
-    .text start:0x02023ca0 end:0x02024c90
-
-src/main/Commands/ScriptCommand1.cpp:
-    .text start:0x0201f6f0 end:0x0201faa4
-
-src/main/Commands/ScriptCommand2.cpp:
-    .text start:0x0201fd80 end:0x02020030
+    .text start:0x02023784 end:0x02025754
+    .init start:0x0208ad28 end:0x0208aee4
+    .rodata start:0x020b4fd4 end:0x020b5000
+    .ctor start:0x020bb3c8 end:0x020bb3cc
+    .data start:0x020be04c end:0x020be244
+    .bss start:0x020ecf3c end:0x020ed068
 
 src/main/menu/MenuUpdateAssist.cpp:
     complete
@@ -33,21 +36,6 @@ src/main/Commands/ScriptCommand3.cpp:
     complete
     .text start:0x02023518 end:0x02023784
     .bss start:0x020ecdb4 end:0x020ecf3c
-
-src/main/Commands/ScriptCommand4.cpp:
-    .text start:0x02023784 end:0x020238ac
-
-src/main/Commands/CommonCommand2.cpp:
-    .text start:0x02024cac end:0x02024cc0
-
-src/main/Commands/CommonCommand3.cpp:
-    .text start:0x02024e90 end:0x02024f10
-
-src/main/Commands/CommonCommand4.cpp:
-    .text start:0x02024f74 end:0x02025618
-
-src/main/Commands/CommonCommand5.cpp:
-    .text start:0x0202561c end:0x020256f4
 
 src/main/dss/arrayToIndex.cpp:
     complete
@@ -71,7 +59,8 @@ src/main/dss/DssVector.cpp:
     .data start:0x020c497c end:0x020c4988
 
 src/main/dss/DssUtils.cpp:
-    .text start:0x02088360 end:0x02088484
+    complete
+    .text start:0x02088258 end:0x02088484
 
 src/main/menu/CommonMenu_YESNO.cpp:
     complete
@@ -121,6 +110,10 @@ src/main/object/DSSACharacter.cpp:
     .text start:0x0205a8b8 end:0x0205b3d0
     .data start:0x020c3ba0 end:0x020c3be0
 
+src/main/object/PaletteAnimationObject.cpp:
+    complete
+    .text start:0x0205b3d0 end:0x0205b658
+
 src/main/script/sys/ScriptTree.cpp:
     complete
     .text start:0x0205b658 end:0x0205bad4
@@ -150,6 +143,80 @@ src/main/script/sys/PlacementParameter.cpp:
     complete
     .text start:0x0205c5dc end:0x0205c650
     .bss start:0x0210bd3c end:0x0210bd40
+
+src/main/sound/UnkSoundPlayer.cpp:
+    complete
+    .text start:0x0205c650 end:0x0205cafc
+    .init start:0x0208c4a0 end:0x0208c4cc
+    .ctor start:0x020bb484 end:0x020bb488
+    .bss start:0x0210bd40 end:0x0210beac
+
+src/main/dss/BuildDate.cpp:
+    complete
+    .text start:0x02056f88 end:0x0205710c
+    .rodata start:0x020b6290 end:0x020b62c0
+    .data start:0x020c395c end:0x020c39a4
+
+src/main/dss/ScreenPosition.cpp:
+    complete
+    .text start:0x0205710c end:0x020571c4
+    .init start:0x0208c250 end:0x0208c2a0
+    .ctor start:0x020bb45c end:0x020bb460
+    .bss start:0x0210b3f8 end:0x0210baf8
+
+src/main/dss/CsvData.cpp:
+    complete
+    .text start:0x020571c4 end:0x020573c4
+
+src/main/dss/UnkMenuSprite.cpp:
+    complete
+    .text start:0x02057cdc end:0x02057f50
+
+src/main/data/ExcelDataRead.cpp:
+    complete
+    .text start:0x02057f50 end:0x02057f8c
+
+src/main/global/UnkApplication.cpp:
+    complete
+    .text start:0x02057f8c end:0x02057fe8
+    .init start:0x0208c384 end:0x0208c39c
+    .ctor start:0x020bb468 end:0x020bb46c
+    .bss start:0x0210bb78 end:0x0210bb7c
+
+src/main/global/GlobalDQ4.cpp:
+    complete
+    .text start:0x02057fe8 end:0x020581d4
+    .init start:0x0208c39c end:0x0208c3dc
+    .ctor start:0x020bb46c end:0x020bb470
+    .data start:0x020c3a5c end:0x020c3a78
+    .bss start:0x0210bb7c end:0x0210bc0c
+
+src/main/global/GlobalGamePartManager.cpp:
+    complete
+    .text start:0x020581d4 end:0x020582e0
+    .init start:0x0208c3dc end:0x0208c408
+    .ctor start:0x020bb470 end:0x020bb474
+    .bss start:0x0210bc0c end:0x0210bc38
+
+src/main/menu/DebugMenu.cpp:
+    complete
+    .text start:0x020582e0 end:0x02058680
+    .init start:0x0208c408 end:0x0208c424
+    .ctor start:0x020bb474 end:0x020bb478
+    .data start:0x020c3a78 end:0x020c3acc
+    .bss start:0x0210bc38 end:0x0210bcbc
+
+src/main/dss/UnkTextureBillboard.cpp:
+    complete
+    .text start:0x02058680 end:0x020586e8
+
+src/main/object/ModelObject.cpp:
+    complete
+    .text start:0x020586e8 end:0x02058c44
+    .init start:0x0208c424 end:0x0208c43c
+    .ctor start:0x020bb478 end:0x020bb47c
+    .data start:0x020c3acc end:0x020c3ae4
+    .bss start:0x0210bcbc end:0x0210bcc0
 
 src/main/data/DataObject.cpp:
     complete
@@ -321,7 +388,7 @@ src/main/status/StoryStatus.cpp:
     .text start:0x0202c37c end:0x0202c678
     .bss start:0x020ee1c0 end:0x020eec88
 
-src/main/status/BaseActionMessage:
+src/main/status/BaseActionMessage.cpp:
     complete
     .text start:0x0202d018 end:0x0202e0c4
     .bss start:0x020eecc0 end:0x020eeccc
@@ -441,8 +508,70 @@ src/main/text/TextHook.cpp:
     .data start:0x020c1110 end:0x020c1164
     .bss start:0x020ef880 end:0x020ef8e4
 
+src/main/text/MsgVar.cpp:
+    complete
+    .text start:0x02053afc end:0x02053d18
+    .data start:0x020c2470 end:0x020c24dc
+
+src/main/text/TextEnv.cpp:
+    complete
+    .text start:0x02053d18 end:0x02054300
+    .data start:0x020c24dc end:0x020c2c2c
+    .bss start:0x02109a48 end:0x02109e48
+
 src/main/text/TextAPI.cpp:
-    .text start:0x02054178 end:0x02054690
+    complete
+    .text start:0x02054300 end:0x02054690
+    .data start:0x020c2c2c end:0x020c2c40
+    .bss start:0x02109e48 end:0x0210a0d4
+
+src/main/text/TextExtractor.cpp:
+    complete
+    .text start:0x02054a2c end:0x020554a0
+    .data start:0x020c2c40 end:0x020c32d0
+
+src/main/text/MsgData.cpp:
+    complete
+    .text start:0x020554a0 end:0x0205590c
+    .data start:0x020c32d0 end:0x020c332c
+
+src/main/sound/Sound.cpp:
+    complete
+    .text start:0x0205590c end:0x02055a90
+    .data start:0x020c332c end:0x020c3364
+
+src/main/menu/UnkMenuIconDisplay.cpp:
+    complete
+    .text start:0x02055a90 end:0x02056028
+    .rodata start:0x020b61f4 end:0x020b6290
+    .data start:0x020c3364 end:0x020c3398
+
+src/main/menu/UiMsg.cpp:
+    complete
+    .text start:0x02056028 end:0x020563d0
+    .data start:0x020c3398 end:0x020c33c8
+    .bss start:0x0210b37c end:0x0210b3f8
+
+src/main/object/GameMonsterData.cpp:
+    complete
+    .text start:0x020563d0 end:0x02056b00
+    .data start:0x020c33c8 end:0x020c3940
+
+src/main/text/BadWordList.cpp:
+    complete
+    .text start:0x02056b00 end:0x02056c94
+    .data start:0x020c3940 end:0x020c395c
+
+src/main/text/MessageMacro.cpp:
+    complete
+    .text start:0x02056c94 end:0x02056f88
+
+src/main/text/TextSystem.cpp:
+    complete
+    .text start:0x02054690 end:0x02054a2c
+    .init start:0x0208c1f8 end:0x0208c250
+    .ctor start:0x020bb458 end:0x020bb45c
+    .bss start:0x0210a0d4 end:0x0210b37c
 
 src/main/menu/MenuSubManager.cpp:
     complete
@@ -452,6 +581,15 @@ src/main/menu/MenuBase.cpp:
     complete
     .text start:0x02052380 end:0x02052424
     .data start:0x020c23d0 end:0x020c23ec
+
+src/main/menu/UnkMenuSystem.cpp:
+    complete
+    .text start:0x02052424 end:0x02052488
+
+src/main/menu/UnkMenuArrowDisplay.cpp:
+    complete
+    .text start:0x02052488 end:0x020526a0
+    .data start:0x020c23ec end:0x020c2454
 
 src/main/menu/MaterielMenu_SlotEnter.cpp:
     complete
@@ -507,10 +645,18 @@ src/main/param/FloorParam.cpp:
     complete
     .text start:0x0200c0a4 end:0x0200c5d8
 
+src/main/global/StageLink.cpp:
+    complete
+    .text start:0x0200bf98 end:0x0200c044
+    .init start:0x0208a5b8 end:0x0208a5d8
+    .ctor start:0x020bb334 end:0x020bb338
+    .data start:0x020bc2c8 end:0x020bc2f0
+    .bss start:0x020c7768 end:0x020c7798
+
 src/main/param/MonsterAnim.cpp:
     complete
     .text start:0x0200c044 end:0x0200c0a4
-    .data start:0x020bc2f4 end:0x020bc560
+    .data start:0x020bc2f0 end:0x020bc584
 
 src/main/cmn/CommonEffectData.cpp:
     complete
@@ -730,7 +876,136 @@ src/main/object/DisplayCharacter.cpp:
     .bss start:0x020f4e14 end:0x020f4e84
 
 src/main/fld/FLDObject.cpp:
-    .text start:0x02046f64 end:0x02046fe0
+    complete
+    .text start:0x020421bc end:0x020474b4
+    .rodata start:0x020b61dc end:0x020b61e8
+    .data start:0x020c1bcc end:0x020c1bd0
+    .bss start:0x020f227c end:0x020f22a8
+
+src/main/fld/MapLink.cpp:
+    complete
+    .text start:0x020474b4 end:0x02047658
+
+src/main/fld/FldCollision.cpp:
+    complete
+    .text start:0x0204b81c end:0x0204d010
+    .data start:0x020c1e00 end:0x020c1e08
+    .bss start:0x020f4ea8 end:0x020f4eb4
+
+src/main/part/CasinoPart.cpp:
+    complete
+    .text start:0x0200df0c end:0x0200e004
+    .init start:0x0208a858 end:0x0208a870
+    .ctor start:0x020bb388 end:0x020bb38c
+    .data start:0x020bc838 end:0x020bc870
+    .bss start:0x020c7a84 end:0x020c7a88
+
+src/main/part/BookPart.cpp:
+    complete
+    .text start:0x02030cb0 end:0x02030da8
+    .init start:0x0208b2ac end:0x0208b2c4
+    .ctor start:0x020bb3f8 end:0x020bb3fc
+    .data start:0x020bec60 end:0x020bec98
+    .bss start:0x020eed14 end:0x020eed18
+
+src/main/part/BattlePart.cpp:
+    complete
+    .text start:0x02008878 end:0x02008a00
+    .init start:0x0208a2a0 end:0x0208a2b8
+    .ctor start:0x020bb310 end:0x020bb314
+    .data start:0x020bbacc end:0x020bbb04
+    .bss start:0x020c5098 end:0x020c509c
+
+src/main/part/BattleMenuPart.cpp:
+    complete
+    .text start:0x02008a00 end:0x020093a4
+    .rodata start:0x0208c960 end:0x0208c978
+    .init start:0x0208a2b8 end:0x0208a2cc
+    .ctor start:0x020bb314 end:0x020bb318
+    .data start:0x020bbb04 end:0x020bbc58
+    .bss start:0x020c509c end:0x020c50e0
+
+src/main/part/FieldPart.cpp:
+    complete
+    .text start:0x020093a4 end:0x020094e0
+    .init start:0x0208a2cc end:0x0208a2e4
+    .ctor start:0x020bb318 end:0x020bb31c
+    .data start:0x020bbc58 end:0x020bbc90
+    .bss start:0x020c50e0 end:0x020c50e4
+
+src/main/part/TownPart.cpp:
+    complete
+    .text start:0x0200986c end:0x020099f0
+    .init start:0x0208a30c end:0x0208a324
+    .ctor start:0x020bb320 end:0x020bb324
+    .data start:0x020bbd9c end:0x020bbdd8
+    .bss start:0x020c5118 end:0x020c5120
+
+src/main/part/LogoPart.cpp:
+    complete
+    .text start:0x020099f0 end:0x02009f58
+    .rodata start:0x0208c978 end:0x0208c980
+    .init start:0x0208a324 end:0x0208a4d8
+    .ctor start:0x020bb324 end:0x020bb328
+    .data start:0x020bbdd8 end:0x020bbeb4
+    .bss start:0x020c5120 end:0x020c6da4
+
+src/main/part/GameStartPart.cpp:
+    complete
+    .text start:0x0202916c end:0x020292c0
+    .init start:0x0208afe0 end:0x0208aff8
+    .ctor start:0x020bb3d8 end:0x020bb3dc
+    .data start:0x020be968 end:0x020be9a0
+    .bss start:0x020edb84 end:0x020edb94
+
+src/main/part/GameEndPart.cpp:
+    complete
+    .text start:0x0205d174 end:0x0205d308
+    .init start:0x0208c4fc end:0x0208c510
+    .ctor start:0x020bb48c end:0x020bb490
+    .data start:0x020c3c18 end:0x020c3c50
+    .bss start:0x0210beb8 end:0x0210bec8
+
+src/main/part/CardCheckPart.cpp:
+    complete
+    .text start:0x0205d308 end:0x0205d3bc
+    .init start:0x0208c510 end:0x0208c528
+    .ctor start:0x020bb490 end:0x020bb494
+    .data start:0x020c3c50 end:0x020c3c88
+    .bss start:0x0210bec8 end:0x0210becc
+
+src/main/part/IshikuroTestPart.cpp:
+    complete
+    .text start:0x02027024 end:0x020270fc
+    .init start:0x0208af44 end:0x0208af58
+    .ctor start:0x020bb3d0 end:0x020bb3d4
+    .data start:0x020be714 end:0x020be768
+    .bss start:0x020ed284 end:0x020ed28c
+
+src/main/part/MenuPart.cpp:
+    complete
+    .text start:0x02009f58 end:0x0200a13c
+    .init start:0x0208a4d8 end:0x0208a540
+    .ctor start:0x020bb328 end:0x020bb32c
+    .data start:0x020bbeb4 end:0x020bbf5c
+    .bss start:0x020c6da4 end:0x020c7464
+
+src/main/part/TitlePart.cpp:
+    complete
+    .text start:0x020094e0 end:0x0200986c
+    .init start:0x0208a2e4 end:0x0208a30c
+    .ctor start:0x020bb31c end:0x020bb320
+    .data start:0x020bbc90 end:0x020bbd9c
+    .bss start:0x020c50e4 end:0x020c5118
+
+src/main/part/MessageDebugPart.cpp:
+    complete
+    .text start:0x0200a13c end:0x0200a680
+    .rodata start:0x0208c980 end:0x0208c9cc
+    .init start:0x0208a540 end:0x0208a574
+    .ctor start:0x020bb32c end:0x020bb330
+    .data start:0x020bbf5c end:0x020bc194
+    .bss start:0x020c7464 end:0x020c74a8
 
 src/main/formation/FormationId.cpp:
     complete
@@ -749,7 +1024,7 @@ src/main/btl/BattleScriptManager.cpp:
     complete
     .text start:0x02030aa8 end:0x02030cb0
     .bss start:0x020eed00 end:0x020eed14
-    .data start:0x020bebe8 end:0x020bec68
+    .data start:0x020bebe8 end:0x020bec60
 
 libs/MSL/src/buffer_io.c:
     complete

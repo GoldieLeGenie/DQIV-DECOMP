@@ -146,18 +146,18 @@ _ZN31MaterielMenu_SHOP_SELL_QUANTITY11menuExecuteEv kind:function(thumb,size=0x1
 _ZN31MaterielMenu_SHOP_SELL_QUANTITY8menuDrawEv kind:function(thumb,size=0x34) addr:0x0218ceb0
 _ZN31MaterielMenu_SHOP_SELL_QUANTITY10menuUpdateEv kind:function(thumb,size=0xec) addr:0x0218cee4
 _ZN31MaterielMenu_SHOP_SELL_QUANTITY14changeQuantityEb kind:function(thumb,size=0x3c) addr:0x0218cfd0
-@1447 kind:data(byte[12]) addr:0x0218d00c local
-@1403 kind:data(byte[12]) addr:0x0218d018 local
-@1425 kind:data(byte[12]) addr:0x0218d024 local
-@1287 kind:data(byte[12]) addr:0x0218d030 local
+@2676 kind:data(byte[12]) addr:0x0218d00c local
+@2632 kind:data(byte[12]) addr:0x0218d018 local
+@2778 kind:data(byte[12]) addr:0x0218d024 local
+@2607 kind:data(byte[12]) addr:0x0218d030 local
 _ZTV22MaterielMenu_SHOP_ROOT kind:data(byte[28]) addr:0x0218d040
 _ZTV25MaterielMenu_SHOP_BUYMENU kind:data(byte[28]) addr:0x0218d05c
 _ZTV28MaterielMenu_SHOP_EQUIPCHECK kind:data(byte[28]) addr:0x0218d078
 _ZTV23MaterielMenu_SHOP_WHOSE kind:data(byte[28]) addr:0x0218d094
 _ZTV27MaterielMenu_SHOP_SELL_ITEM kind:data(byte[28]) addr:0x0218d0b0
 _ZTV26MaterielMenu_SHOP_WHO_SELL kind:data(byte[28]) addr:0x0218d0cc
-@1278 kind:data(byte[4]) addr:0x0218d0e8 local
-@1279 kind:data(byte[8]) addr:0x0218d0ec local
+@1874 kind:data(byte[3]) addr:0x0218d0e8 local
+@1875 kind:data(byte[7]) addr:0x0218d0ec local
 _ZTV27MaterielMenu_SHOP_SELL_SACK kind:data(byte[28]) addr:0x0218d0f4
 _ZTV34MaterielMenu_CHANGEGIFT_EQUIPCHECK kind:data(byte[28]) addr:0x0218d110
 _ZTV28MaterielMenu_CHANGEGIFT_ROOT kind:data(byte[28]) addr:0x0218d12c
@@ -165,5 +165,5 @@ _ZTV35MaterielMenu_CHANGEGIFT_SELECTCHARA kind:data(byte[28]) addr:0x0218d148
 _ZTV34MaterielMenu_CHANGEGIFT_SELECTGIFT kind:data(byte[28]) addr:0x0218d164
 _ZTV23MaterielMenu_SHOP_VALUE kind:data(byte[28]) addr:0x0218d180
 _ZTV31MaterielMenu_SHOP_SELL_QUANTITY kind:data(byte[28]) addr:0x0218d19c
-shopMessage$85 kind:bss(size=0x4) addr:0x0218d1c0 local
-shopManager$1198 kind:bss(size=0x5c) addr:0x0218d1c4 local
+shopMessage$192 kind:bss(size=0x4) addr:0x0218d1c0 local
+shopManager$1794 kind:bss(size=0x5c) addr:0x0218d1c4 local

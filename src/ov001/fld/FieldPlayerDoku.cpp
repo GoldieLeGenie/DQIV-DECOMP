@@ -4,6 +4,7 @@
 #include "ov001/fld/FieldStage.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/sound/SoundManager.hpp"
+#include "main/sound/Sound.hpp"
 
 ARM FieldPlayerDoku* FieldPlayerDoku::getSingleton()
 {
@@ -47,7 +48,7 @@ ARM void FieldPlayerDoku::setPartyMemberColor(int index, int type)
     if (isPlaySe() == true) {
         nextSe_ = 0;
         if (type == 1) {
-            func_02055a04(0x13b);
+            Sound::sePlayDirect(0x13b);
         }
         seCounter_ = 0;
     } else {

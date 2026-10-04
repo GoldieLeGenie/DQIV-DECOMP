@@ -9,22 +9,18 @@ struct BattleExecVictory10 : ExecTask {
     int level_;                         // 0x0C
 
     virtual void setup();
-    void setPlayerIndex(int index) { index_ = index; }
-    void setLevel(int level) { level_ = level; }
 };
 
 struct BattleExecVictory13 : ExecTask {
     int index_;                         // 0x08
 
     virtual void setup();
-    void setPlayerIndex(int index) { index_ = index; }
 };
 
 struct BattleExecVictory12a : ExecTask {
     int index_;                         // 0x08
 
     virtual void setup();
-    void setPlayerIndex(int index) { index_ = index; }
 };
 
 struct BattleExecVictory16 : ExecTask {
@@ -41,7 +37,6 @@ struct BattleExecVictory15 : ExecTask {
 
     virtual void setup();
     virtual void exec();
-    void setPlayerIndex(int index) { playerIndex_ = index; }
     void setActionIndex(int index, int action) { actionIndex_[index] = action; }
 };
 
@@ -49,14 +44,12 @@ struct BattleExecVictory11 : ExecTask {
     int index_;                         // 0x08
 
     virtual void setup();
-    void setPlayerIndex(int index) { index_ = index; }
 };
 
 struct BattleExecVictory12 : ExecTask {
     int index_;                         // 0x08
 
     virtual void setup();
-    void setPlayerIndex(int index) { index_ = index; }
 };
 
 struct BattleExecLevelup : ExecTaskManager {

@@ -23,11 +23,19 @@ struct LZDataObject : DataObject {
     virtual void setup(void* addr);
 };
 
-extern char data_0211a60c[];   
+// DS-only main heap
+struct UnkHeap {
+    char unk_00[0x54];
+    unsigned int unk_54;                        // 0x54
+};
+
+extern UnkHeap data_0211a60c;
 
 extern "C" {
     void* func_0207f834(void* heap, int size, int align);  /* heap alloc */
     void  func_0207f840(void* heap, void* p);      /* heap free */
+    void  func_0207f898(void* heap);               /* heap */
+    unsigned int func_0207f87c(void* heap);        /* heap free size */
     int   func_0207f548(void* data);               /* is LZ compressed */
     long  func_0207f52c(void* data);               /* uncompressed size */
     void* func_0207f590(void* data);               /* decompress (allocates) */

@@ -113,7 +113,7 @@ THUMB int cmd_chara_talk_to_player_sure(int* param)
 {
     int index = getPlacementCtrlId();
     if (index < getObjectCount()) {
-        func_02056358(cmn::g_talkSound.getCharacterVoice(index));
+        ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(index));
     }
     if (param[1] == 1) {
         data_020f0078 = 1;
@@ -158,7 +158,7 @@ THUMB int cmd_chara_talk_to_player_sure(int* param)
     }
 
     if (param[1] != 1) {
-        func_02056358(0x30);
+        ui_MsgSndSet(0x30);
         TextAPI::setUserString(0, (char*)name);
         TextAPI::setMACRO0(0x1d, 0xd0000000, 0);
         TextAPI::setMACRO0(0x22, 0xa0000000, menu::MenuDataCommon::getSurechigaiAetas(aetas) & 0xfffffff);

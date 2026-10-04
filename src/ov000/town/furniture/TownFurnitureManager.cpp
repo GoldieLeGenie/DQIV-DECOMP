@@ -45,9 +45,9 @@ THUMB void TownFurnitureManager::initialize()
 {
     char path[128];
     common_ = status::excelParam.commonParam_;
-    func_02088308(path, sizeof(path), "data/param/param_item_%s.dat", g_Global.getMapName());
-    if (func_0207ebd4(&data_02116ce8, path)) {
-        list_ = (param::CommonList*)func_02057f50(func_02057f58(&param::CommonList::data_, path), param::CommonList::ID_);
+    dss::sprintf_s(path, sizeof(path), "data/param/param_item_%s.dat", g_Global.getMapName());
+    if (dss::g_File.isExist(path)) {
+        list_ = (param::CommonList*)ExcelBinaryData::checkSum(ExcelBinaryData::readFileData(&param::CommonList::data_, path), param::CommonList::ID_);
         size_ = list_->ListSize;
     } else {
         size_ = 0;
@@ -80,7 +80,7 @@ THUMB void TownFurnitureManager::initialize()
 
 THUMB void TownFurnitureManager::terminate()
 {
-    func_02057f80(&param::CommonList::data_);
+    ExcelBinaryData::clearData(&param::CommonList::data_);
     object_ = NULL;
     TownFurnitureControlManager::getSingleton()->terminate();
 }
@@ -280,7 +280,7 @@ THUMB bool TownFurnitureManager::checkRevMessage(int index)
 {
     param::CommonParam* pCommon = &common_[list_[index].type];
     if (pCommon->BackMsg != 0) {
-        func_02056358(0x30);
+        ui_MsgSndSet(0x30);
         TownWindowSystem::getSingleton()->openCommonMessage();
         unsigned int msg = pCommon->checkMsg;
         if (msg != 0) {
@@ -294,7 +294,7 @@ THUMB bool TownFurnitureManager::checkRevMessage(int index)
 
 THUMB void TownFurnitureManager::nothingGround()
 {
-    func_02056358(0x30);
+    ui_MsgSndSet(0x30);
     TownWindowSystem::getSingleton()->openCommonMessage();
     TownWindowSystem::getSingleton()->addCommonMessage(common_[44].checkMsg);
     TownWindowSystem::getSingleton()->addCommonMessage(common_[44].NothingMsg);
@@ -302,7 +302,7 @@ THUMB void TownFurnitureManager::nothingGround()
 
 THUMB void TownFurnitureManager::nothingWater()
 {
-    func_02056358(0x30);
+    ui_MsgSndSet(0x30);
     TownWindowSystem::getSingleton()->openCommonMessage();
     TownWindowSystem::getSingleton()->addCommonMessage(common_[45].checkMsg);
     TownWindowSystem::getSingleton()->addCommonMessage(common_[45].NothingMsg);

@@ -60,9 +60,6 @@ struct MaterielMenu_LOAD : menu::MenuBase
 extern MaterielMenu_LOAD data_ov016_02187918;               /* gMaterielMenu_LOAD */
 
 extern "C" {
-    void func_ov016_02177484(menu::MenuItem* menuItem, int count);
-    void func_ov016_0217752c(menu::MenuItem* menuItem);
-    void func_ov016_021779b4(menu::MenuItem* menuItem);
     void func_ov016_02177c00(int x, int y, int w, int h, int color);
     void func_ov016_02177c9c(int* message, int count, int x, int y);
     void func_ov016_02177ce0(int* message, int count, int x, int y);

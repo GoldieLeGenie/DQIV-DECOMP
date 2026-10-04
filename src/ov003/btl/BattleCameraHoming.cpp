@@ -6,7 +6,10 @@
 
 THUMB BattleCameraHoming::BattleCameraHoming()
 {
-    init();
+    startTime_ = 30;
+    waitTime_ = 60;
+    restoreTime_ = 30;
+    step_ = 0;
 }
 
 THUMB BattleCameraHoming::~BattleCameraHoming()

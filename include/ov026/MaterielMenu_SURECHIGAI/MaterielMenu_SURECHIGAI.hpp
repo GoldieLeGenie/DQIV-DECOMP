@@ -6,7 +6,6 @@
 #include "main/menu/MaterielMenu_SAVE.hpp"
 #include "main/menu/MaterielMenu_NameEdit.hpp"
 
-
 struct MaterielMenu_SURECHIGAI_MAKE_TAISHI : menu::MenuBase
 {
     signed char mode_;                  /* 0x1C */
@@ -49,6 +48,4 @@ extern "C" {
     void func_0203aaac(void* mgr);
     void func_ov016_0216fe58(void);
     void func_ov016_0216fe9c(int mode, int active, int page, int value);
-    void func_ov016_02177b04(menu::MenuItem* menuItem, int active);
-    void func_ov016_02177b3c(menu::MenuItem* menuItem, int active, int count);
 }

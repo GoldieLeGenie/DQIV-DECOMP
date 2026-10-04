@@ -16,7 +16,7 @@ THUMB void BattleMenu_TACTICSMENU::menuSetup()
     unk_28 = status::g_Party.getPlayerStatus(0)->haveStatusInfo_.battleCommand_;
     unk_24 = 0;
     unk_54 = 1;
-    dss::DssUtils::unkfunc_020882d4(unk_2c, -1, sizeof(unk_2c));
+    dss::memset(unk_2c, -1, sizeof(unk_2c));
     for (int i = 0; i < status::g_Party.getCarriageOutCount(); i++) {
         status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(i)->haveStatusInfo_;
         if (info->haveStatus_.isPlayer_ != 0 && (int)info->haveStatus_.playerIndex_ > 2) {

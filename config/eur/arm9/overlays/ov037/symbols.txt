@@ -16,6 +16,6 @@ _ZN3cmn11PlayerTitle19checkUhhunnpinkutaiEv kind:function(thumb,size=0x80) addr:
 _ZN3cmn11PlayerTitle13checkAllEquipEb kind:function(thumb,size=0xe0) addr:0x0218ab58
 _ZN3cmn11PlayerTitle10checkEquipEb kind:function(thumb,size=0x84) addr:0x0218ac38
 _ZN3cmn11PlayerTitle17getMetalSeriesExpEv kind:function(thumb,size=0x58) addr:0x0218acbc
-@1219 kind:data(byte[8]) addr:0x0218ad20 local
-@1220 kind:data(byte[8]) addr:0x0218ad28 local
-@1603 kind:data(byte[4]) addr:0x0218ad30 local
+@1679 kind:data(byte[7]) addr:0x0218ad20 local
+@1680 kind:data(byte[7]) addr:0x0218ad28 local
+@2063 kind:data(byte[3]) addr:0x0218ad30 local

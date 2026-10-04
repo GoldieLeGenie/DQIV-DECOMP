@@ -18,6 +18,7 @@ inline void G3_PopMtx(int num) {
     REG_GFX_FIFO_MATRIX_POP = num;
 }
 #define REG_GFX_FIFO_BOX_TEST                   (*(vu32*)0x040005C0)
+#define REG_GFX_RAM_COUNT                       (*(vu16*)0x04000604)
 
 typedef struct {
     fx16 x;
@@ -28,8 +29,14 @@ typedef struct {
     fx16 depth;
 } GXBoxTestParam;
 
+inline void G3_MtxMode(int mode) {
+    REG_GFX_FIFO_MATRIX_MODE = mode;
+}
 inline void G3_Identity(void) {
     REG_GFX_FIFO_MATRIX_IDENTITY = 0;
+}
+inline void G3_PolygonAttr(int light, int polyMode, int cullMode, int polygonID, int alpha, int misc) {
+    REG_GFX_FIFO_POLYGON_ATTR = (light << 0) | (polyMode << 4) | cullMode | (polygonID << 24) | (alpha << 16) | misc;
 }
 inline void G3_Translate(fx32 x, fx32 y, fx32 z) {
     REG_GFX_FIFO_MATRIX_TRANSLATE = x;

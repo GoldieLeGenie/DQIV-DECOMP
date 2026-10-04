@@ -29,4 +29,3 @@ namespace btl {
     };
     
 }
-extern "C" int func_0201d92c(int a, int b, int c);

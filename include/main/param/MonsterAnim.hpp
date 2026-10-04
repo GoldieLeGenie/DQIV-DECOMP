@@ -21,9 +21,9 @@ namespace param{
         char byte_1;
         unsigned char dmmy0;
         unsigned char dmmy1;
+        static const char* filename_;
+
         static unsigned short getDataIndex(unsigned int index);
         static int getAnimData(MonsterAnim* anim, unsigned int monsterId, unsigned short actionId, unsigned short animId);
     };
 }
-
-extern unsigned short monsterAnimDataIndex[310];  // 0x020bc2f4

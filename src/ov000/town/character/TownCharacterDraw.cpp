@@ -15,7 +15,7 @@ ARM void TownCharacterDraw::setup(TOWN_CHARACTER& data)
 {
     TownCharacterBase::setup(data);
     char name[128];
-    func_02088308(name, sizeof(name), "data/chr/h%03d.pack", data_.charaIndex);
+    dss::sprintf_s(name, sizeof(name), "data/chr/h%03d.pack", data_.charaIndex);
     character_.setup(name, 0);
     character_.setPosition(data_.position);
     func_0204948c(&character_, data_.dir);
@@ -106,7 +106,7 @@ ARM void TownCharacterDraw::changePose(int pose)
         dataObject_.cleanup();
     }
     char name[128];
-    func_02088308(name, sizeof(name), "data/chr/h%03d.pack", pose);
+    dss::sprintf_s(name, sizeof(name), "data/chr/h%03d.pack", pose);
     OS_Wait();
     dataObject_.setup(name, 0, 0);
     character_.setTexture(dataObject_.getAddr());

@@ -2686,14 +2686,14 @@ THUMB void status::BaseAction::setEffectValueException(status::CharacterStatus *
 
     if (actionIndex_ == 0x6C) {
         value = status::getRandomVariation(
-            func_02008ea0(actor->haveStatusInfo_.haveStatus_.level_ * 3 + 10, 0, 180), 15, 15);
+            dss::clamp<int>(actor->haveStatusInfo_.haveStatus_.level_ * 3 + 10, 0, 180), 15, 15);
         playerEffectValue_  = value;
         monsterEffectValue_ = value;
     }
 
     if (actionIndex_ == 0x6D) {
         value = status::getRandomVariation(
-            func_02008ea0(actor->haveStatusInfo_.haveStatus_.level_ * 2 + 30, 0, 95), 10, 10);
+            dss::clamp<int>(actor->haveStatusInfo_.haveStatus_.level_ * 2 + 30, 0, 95), 10, 10);
         playerEffectValue_  = value;
         monsterEffectValue_ = value;
     }

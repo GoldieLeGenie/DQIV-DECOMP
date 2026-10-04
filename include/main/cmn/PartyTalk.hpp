@@ -46,5 +46,3 @@ namespace cmn
         void setPreMessage(int count, int message);
     };
 }
-
-extern "C" cmn::PartyTalk* func_02037494();                                  // PartyTalk::getSingleton

@@ -14,7 +14,7 @@ ARM PokerCard::~PokerCard()
 ARM void PokerCard::unkfunc_021249cc()
 {
     m_ctrl.clear();
-    m_ctrl.set(1);
+    m_ctrl.flag_ |= 1;
 }
 
 ARM void PokerCard::unkfunc_021249dc(dss::Fix32 scale)
@@ -136,8 +136,8 @@ ARM void PokerCard::setEffect()
 ARM void PokerCard::unkfunc_02124e14(bool enable)
 {
     if (enable) {
-        m_ctrl.set(1);
+        m_ctrl.flag_ |= 1;
     } else {
-        m_ctrl.remove(1);
+        m_ctrl.flag_ &= ~1;
     }
 }

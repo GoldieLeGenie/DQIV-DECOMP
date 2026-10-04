@@ -72,7 +72,7 @@ THUMB void btl::BattleRoot::terminate()
     }
     data_020f21f8.count_ = 0;
     data_020f21f8.frames_ = 3;
-    func_02058294(data_0210bc18, &data_020f21f8);
+    data_0210bc18.unkfunc_02058294(&data_020f21f8);
 }
 
 THUMB void btl::BattleRoot::execute()
@@ -121,7 +121,7 @@ THUMB void btl::BattleRoot::setupBattle()
     g_PartTaskManager.setNextTask(0);
 
     if (!g_Global.fightStadiumFlag_) {
-        dss::DssUtils::unkfunc_020882d4(BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_, 0, sizeof(BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_));
+        dss::memset(BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_, 0, sizeof(BattleMenuPlayerControl::getSingleton()->targetMonsterGroup_));
         BattleMenuPlayerControl::getSingleton()->allClear();
         BattleMenuPlayerControl::getSingleton()->activeChara_ = -1;
         BattleMonsterMask::getSingleton()->setup();
@@ -141,9 +141,9 @@ THUMB void btl::BattleRoot::cleanupBattle()
 
 THUMB void btl::BattleRoot::setupMonster()
 {
-    backupPartyStatus_ = (status::PartyStatus*)func_0207f834(data_0211a60c, sizeof(status::PartyStatus), 0x20);
-    backupPlayerStatus_ = (status::PlayerStatus*)func_0207f834(data_0211a60c, sizeof(status::PlayerStatus) * 26, 0x20);
-    backupPlayerFlag_ = (status::PlayerFlag*)func_0207f834(data_0211a60c, sizeof(status::PlayerFlag) * 26, 0x20);
+    backupPartyStatus_ = (status::PartyStatus*)func_0207f834(&data_0211a60c, sizeof(status::PartyStatus), 0x20);
+    backupPlayerStatus_ = (status::PlayerStatus*)func_0207f834(&data_0211a60c, sizeof(status::PlayerStatus) * 26, 0x20);
+    backupPlayerFlag_ = (status::PlayerFlag*)func_0207f834(&data_0211a60c, sizeof(status::PlayerFlag) * 26, 0x20);
     store();
     status::MonsterParty::initializeSortIndex();
 
@@ -235,9 +235,9 @@ THUMB void btl::BattleRoot::cleanupMonster()
     status::BaseAction::doubleFlag_ = 0;
     status::BaseAction::allKaishinFlag_ = 0;
     g_monster.clear();
-    func_0207f840(data_0211a60c, backupPartyStatus_);
-    func_0207f840(data_0211a60c, backupPlayerStatus_);
-    func_0207f840(data_0211a60c, backupPlayerFlag_);
+    func_0207f840(&data_0211a60c, backupPartyStatus_);
+    func_0207f840(&data_0211a60c, backupPlayerStatus_);
+    func_0207f840(&data_0211a60c, backupPlayerFlag_);
 }
 
 THUMB void btl::BattleRoot::setupCrusingMenu()
@@ -262,18 +262,18 @@ THUMB void btl::BattleRoot::cleanupCrusingMenu()
 
 THUMB void btl::BattleRoot::store()
 {
-    func_020882ec(backupPartyStatus_, &status::g_Party, sizeof(status::PartyStatus));
+    dss::memcpy(backupPartyStatus_, &status::g_Party, sizeof(status::PartyStatus));
     for (int i = 0; i < 26; i++) {
-        func_020882ec(&backupPlayerStatus_[i], &originalPlayer_[i], sizeof(status::PlayerStatus));
-        func_020882ec(&backupPlayerFlag_[i], &originalPlayerFlag_[i], sizeof(status::PlayerFlag));
+        dss::memcpy(&backupPlayerStatus_[i], &originalPlayer_[i], sizeof(status::PlayerStatus));
+        dss::memcpy(&backupPlayerFlag_[i], &originalPlayerFlag_[i], sizeof(status::PlayerFlag));
     }
 }
 
 THUMB void btl::BattleRoot::restore()
 {
-    func_020882ec(&status::g_Party, backupPartyStatus_, sizeof(status::PartyStatus));
+    dss::memcpy(&status::g_Party, backupPartyStatus_, sizeof(status::PartyStatus));
     for (int i = 0; i < 26; i++) {
-        func_020882ec(&originalPlayer_[i], &backupPlayerStatus_[i], sizeof(status::PlayerStatus));
-        func_020882ec(&originalPlayerFlag_[i], &backupPlayerFlag_[i], sizeof(status::PlayerFlag));
+        dss::memcpy(&originalPlayer_[i], &backupPlayerStatus_[i], sizeof(status::PlayerStatus));
+        dss::memcpy(&originalPlayerFlag_[i], &backupPlayerFlag_[i], sizeof(status::PlayerFlag));
     }
 }

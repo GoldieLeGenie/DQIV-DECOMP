@@ -120,12 +120,12 @@ THUMB void TownMenu_PARTY_TALK::menuSetup()
             }
         }
         int message = getTalkMessage()->message;
-        func_02056358(cmn::TalkSoundManager::MESSAGESOUND_STOP);
+        ui_MsgSndSet(cmn::TalkSoundManager::MESSAGESOUND_STOP);
         if (message == 0xc3ddb) {
-            func_02056358(cmn::g_talkSound.getPlayerVoice(status::g_Party.getPlayerStatus(list[select])->haveStatusInfo_.haveStatus_.charaIndex_));
+            ui_MsgSndSet(cmn::g_talkSound.getPlayerVoice(status::g_Party.getPlayerStatus(list[select])->haveStatusInfo_.haveStatus_.charaIndex_));
         }
         if (message != 0xc3df2 && message != 0xc3d97 && message != 0xc3d99 && message != 0x80092 && g_HengeNoTsue.change_ == 1) {
-            func_02056358(cmn::g_talkSound.getPlayerVoice(g_HengeNoTsue.charNo_));
+            ui_MsgSndSet(cmn::g_talkSound.getPlayerVoice(g_HengeNoTsue.charNo_));
         }
         data_020ed1bc.openMessageForTALK();
         for (; i < mesCount; i++) {

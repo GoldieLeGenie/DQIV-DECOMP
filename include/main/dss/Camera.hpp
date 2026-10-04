@@ -63,8 +63,6 @@ extern short data_020c4158[4];
 extern "C" {
     int func_02081254(void);
     void func_02049984(dss::Camera* camera);
-    void func_0205710c(int index, dss::Fix32Vector3* position);
-    dss::Vector2<int>* func_02057128(int idx);
 }
 
 extern int data_020c4160[][2];
@@ -99,7 +97,6 @@ namespace dss {
         int m_pursue;                           // 0xF0
 
         DualCamera();
-        ~DualCamera() {}
         virtual void update();
         virtual void calcPosition();
 

@@ -14,7 +14,7 @@ BattleExecLevelup g_BattleExecLevelup;
 
 THUMB void setMessage(int mes0, int mes1, int mes2, int mes3)
 {
-    if (func_0205810c(&data_0210bb94) == 13) {
+    if (data_0210bb94.unkfunc_0205810c() == 13) {
         btl::BattleMessage::setMessage(mes0, mes1, mes2, mes3);
         return;
     }
@@ -141,8 +141,8 @@ THUMB void BattleExecLevelup::initialize()
     int index = status::g_Party.getLevelupPlayer();
     status::g_Party.getPlayerStatus(index)->haveStatusInfo_.levelup(0);
     status::g_Party.getPlayerStatus(index)->haveStatusInfo_.haveStatus_.getDiffStatus();
-    battleExecVictory10.setPlayerIndex(status::g_Party.getPlayerStatus(index)->haveStatusInfo_.haveStatus_.playerIndex_);
-    battleExecVictory10.setLevel(status::g_Party.getPlayerStatus(index)->haveStatusInfo_.haveStatus_.level_);
+    battleExecVictory10.index_ = status::g_Party.getPlayerStatus(index)->haveStatusInfo_.haveStatus_.playerIndex_;
+    battleExecVictory10.level_ = status::g_Party.getPlayerStatus(index)->haveStatusInfo_.haveStatus_.level_;
     int action = status::g_Party.getPlayerStatus(index)->haveStatusInfo_.haveAction_.getRememberingAction();
     if (action != 0) {
         resister(0, &battleExecVictory10);
@@ -153,11 +153,11 @@ THUMB void BattleExecLevelup::initialize()
         resister(5, &battleExecVictory15);
         resister(6, &battleExecVictory16);
         int playerIndex = status::g_Party.getPlayerStatus(index)->haveStatusInfo_.haveStatus_.playerIndex_;
-        battleExecVictory11.setPlayerIndex(playerIndex);
-        battleExecVictory12.setPlayerIndex(playerIndex);
-        battleExecVictory12a.setPlayerIndex(playerIndex);
-        battleExecVictory13.setPlayerIndex(playerIndex);
-        battleExecVictory15.setPlayerIndex(playerIndex);
+        battleExecVictory11.index_ = playerIndex;
+        battleExecVictory12.index_ = playerIndex;
+        battleExecVictory12a.index_ = playerIndex;
+        battleExecVictory13.index_ = playerIndex;
+        battleExecVictory15.playerIndex_ = playerIndex;
         battleExecVictory15.setActionIndex(0, action);
         battleExecVictory15.setActionIndex(1, status::g_Party.getPlayerStatus(index)->haveStatusInfo_.haveAction_.getRememberingAction());
         battleExecVictory15.setActionIndex(2, status::g_Party.getPlayerStatus(index)->haveStatusInfo_.haveAction_.getRememberingAction());
@@ -171,10 +171,10 @@ THUMB void BattleExecLevelup::initialize()
         resister(4, &battleExecVictory13);
         resister(5, &battleExecVictory16);
         int playerIndex = status::g_Party.getPlayerStatus(index)->haveStatusInfo_.haveStatus_.playerIndex_;
-        battleExecVictory11.setPlayerIndex(playerIndex);
-        battleExecVictory12.setPlayerIndex(playerIndex);
-        battleExecVictory12a.setPlayerIndex(playerIndex);
-        battleExecVictory13.setPlayerIndex(playerIndex);
+        battleExecVictory11.index_ = playerIndex;
+        battleExecVictory12.index_ = playerIndex;
+        battleExecVictory12a.index_ = playerIndex;
+        battleExecVictory13.index_ = playerIndex;
     }
 }
 

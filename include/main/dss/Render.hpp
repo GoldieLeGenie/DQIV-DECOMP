@@ -1,6 +1,8 @@
 #pragma once
 #include <globaldefs.h>
 
+struct RenderObject;
+
 // BattleSystem2::render_ (type Render)
 struct Render {
     int unk_000;                // 0x000
@@ -15,4 +17,5 @@ struct Render {
     void unkfunc_02084efc();
     void unkfunc_02084f50();
     void unkfunc_02084fa4();
+    void unkfunc_020852c8(RenderObject* object);    // add to the first free slot of unk_404
 };

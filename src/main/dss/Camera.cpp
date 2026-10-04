@@ -128,7 +128,7 @@ ARM void dss::Camera::setFOV(unsigned int sin, unsigned int cos)
 
 ARM void dss::Camera::setFOV2(int fovy)
 {
-    int index = (int)func_02008ea0(fovy, 0, 0x4e) / 2;
+    int index = (int)dss::clamp<int>(fovy, 0, 0x4e) / 2;
     m_fov2 = index;
     setFOV(data_020c4160[index][0], data_020c4160[index][1]);
 }

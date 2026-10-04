@@ -164,18 +164,18 @@ __sinit_CasinoPokerDraw.cpp kind:function(arm,size=0x284) addr:0x02124e30 local
 __sinit_CasinoCamera.cpp kind:function(arm,size=0x70) addr:0x021250b4 local
 .p__sinit_CasinoPokerDraw.cpp kind:data(word) addr:0x02125124 local
 .p__sinit_CasinoCamera.cpp kind:data(word) addr:0x02125128 local
-@876 kind:data(byte[4]) addr:0x02125140 local
-@863 kind:data(byte[4]) addr:0x02125144 local
-@861 kind:data(byte[4]) addr:0x02125148 local
-@862 kind:data(byte[4]) addr:0x0212514c local
-@875 kind:data(byte[4]) addr:0x02125150 local
-@1039 kind:data(byte[31]) addr:0x02125190 local
-@1040 kind:data(byte[31]) addr:0x021251b0 local
-@1041 kind:data(byte[30]) addr:0x021251d0 local
-@1042 kind:data(byte[29]) addr:0x021251f0 local
-@1043 kind:data(byte[36]) addr:0x02125210 local
-@1044 kind:data(byte[31]) addr:0x02125234 local
-_ZGVm_singleton$643 kind:bss addr:0x02125660 local
+@1062 kind:data(byte[4]) addr:0x02125140 local
+@1049 kind:data(byte[4]) addr:0x02125144 local
+@1047 kind:data(byte[4]) addr:0x02125148 local
+@1048 kind:data(byte[4]) addr:0x0212514c local
+@1061 kind:data(byte[4]) addr:0x02125150 local
+@1225 kind:data(byte[31]) addr:0x02125190 local
+@1226 kind:data(byte[31]) addr:0x021251b0 local
+@1227 kind:data(byte[30]) addr:0x021251d0 local
+@1228 kind:data(byte[29]) addr:0x021251f0 local
+@1229 kind:data(byte[36]) addr:0x02125210 local
+@1230 kind:data(byte[31]) addr:0x02125234 local
+_ZGVm_singleton$829 kind:bss addr:0x02125660 local
 s_vertexLeftTop kind:bss addr:0x02125664 local
 s_vertexRightBottom kind:bss addr:0x0212566a local
 s_vertexRightTop kind:bss addr:0x02125670 local
@@ -184,21 +184,21 @@ s_texCoordLeftTop kind:bss addr:0x0212567c local
 s_texCoordRightTop kind:bss addr:0x02125684 local
 s_texCoordRightBottom kind:bss addr:0x0212568c local
 s_texCoordLeftBottom kind:bss addr:0x02125694 local
-@646 kind:bss addr:0x0212569c local
+@832 kind:bss addr:0x0212569c local
 s_vertex kind:bss addr:0x021256a8 local
 s_texCoord kind:bss addr:0x021256c0 local
-m_singleton$643 kind:bss addr:0x021256e0 local
-@393 kind:data(byte[4]) addr:0x02125260 local
+m_singleton$829 kind:bss addr:0x021256e0 local
+@589 kind:data(byte[4]) addr:0x02125260 local
 position kind:data(byte[12]) addr:0x02125264 local
 stagePath kind:data(byte[4]) addr:0x02125270 local
-@687 kind:data(byte[9]) addr:0x02125274 local
+@931 kind:data(byte[9]) addr:0x02125274 local
 cameraAngleX kind:data(byte[2]) addr:0x02125280 local
 cameraDistance kind:data(byte[4]) addr:0x02125290 local
-@823 kind:data(byte[5]) addr:0x02125294 local
+@1067 kind:data(byte[5]) addr:0x02125294 local
 _ZN11CasinoPoker10stagePokerE kind:data(byte[4]) addr:0x021252b8
-@342 kind:data(byte[5]) addr:0x021252bc local
-@401 kind:data(byte[37]) addr:0x021252e0 local
-diameter$289 kind:data(byte[40]) addr:0x02125308 local
+@855 kind:data(byte[5]) addr:0x021252bc local
+@914 kind:data(byte[37]) addr:0x021252e0 local
+diameter$321 kind:data(byte[40]) addr:0x02125308 local
 unk_02125330 kind:data(byte[12]) addr:0x02125330 local
 _ZN11Casino_Slot10bingoList_E kind:data(byte[36]) addr:0x0212533c
 _ZN11Casino_Slot10avesTable_E kind:data(byte[180]) addr:0x02125360
@@ -207,37 +207,37 @@ _ZN18Casino_SlotMachine15slotBingoTable_E kind:data(byte[60]) addr:0x02125434
 _ZN18Casino_SlotMachine10Reel_Tbl_LE kind:data(byte[160]) addr:0x02125470
 _ZN18Casino_SlotMachine10Reel_Tbl_CE kind:data(byte[160]) addr:0x02125510
 _ZN18Casino_SlotMachine10Reel_Tbl_RE kind:data(byte[160]) addr:0x021255b0
-@700 kind:data(byte[4]) addr:0x02125650 local
-@701 kind:data(byte[4]) addr:0x02125654 local
+@881 kind:data(byte[4]) addr:0x02125650 local
+@882 kind:data(byte[4]) addr:0x02125654 local
 offset kind:bss(size=0x4) addr:0x02126334 local
 distance kind:bss(size=0x4) addr:0x02126338 local
-@392 kind:bss(size=0xc) addr:0x02126348 local
-m_singleton$389 kind:bss(size=0xf4) addr:0x02126354 local
-_ZGVcasinoStage$701 kind:bss(size=0x4) addr:0x02126448 local
-@704 kind:bss(size=0xc) addr:0x0212644c local
-casinoStage$701 kind:bss(size=0x8d4) addr:0x02126458 local
-_ZGVcasinoSlot$725 kind:bss(size=0x4) addr:0x02126d2c local
-@728 kind:bss(size=0xc) addr:0x02126d30 local
-casinoSlot$725 kind:bss(size=0x48) addr:0x02126d3c local
-_ZGVcasinoPoker$358 kind:bss(size=0x4) addr:0x02126d84 local
-@361 kind:bss(size=0xc) addr:0x02126d88 local
-casinoPoker$358 kind:bss(size=0x58) addr:0x02126d94 local
-_ZGVcasinoSystem$840 kind:bss(size=0x4) addr:0x02126dec local
-@843 kind:bss(size=0xc) addr:0x02126df0 local
-casinoSystem$840 kind:bss(size=0x60c) addr:0x02126dfc local
-pokerDoubleupSelectCard$22 kind:bss(size=0xa4) addr:0x02127408 local
-pokerJugement$36 kind:bss(size=0x14) addr:0x021274ac local
-pokerManager$104 kind:bss(size=0xd4) addr:0x021274c0 local
+@588 kind:bss(size=0xc) addr:0x02126348 local
+m_singleton$585 kind:bss(size=0xf4) addr:0x02126354 local
+_ZGVcasinoStage$945 kind:bss(size=0x4) addr:0x02126448 local
+@948 kind:bss(size=0xc) addr:0x0212644c local
+casinoStage$945 kind:bss(size=0x8d4) addr:0x02126458 local
+_ZGVcasinoSlot$969 kind:bss(size=0x4) addr:0x02126d2c local
+@972 kind:bss(size=0xc) addr:0x02126d30 local
+casinoSlot$969 kind:bss(size=0x48) addr:0x02126d3c local
+_ZGVcasinoPoker$871 kind:bss(size=0x4) addr:0x02126d84 local
+@874 kind:bss(size=0xc) addr:0x02126d88 local
+casinoPoker$871 kind:bss(size=0x58) addr:0x02126d94 local
+_ZGVcasinoSystem$1135 kind:bss(size=0x4) addr:0x02126dec local
+@1138 kind:bss(size=0xc) addr:0x02126df0 local
+casinoSystem$1135 kind:bss(size=0x60c) addr:0x02126dfc local
+pokerDoubleupSelectCard$50 kind:bss(size=0xa4) addr:0x02127408 local
+pokerJugement$87 kind:bss(size=0x14) addr:0x021274ac local
+pokerManager$136 kind:bss(size=0xd4) addr:0x021274c0 local
 pokerDoubleupHighAndLow$25 kind:bss(size=0x64) addr:0x02127594 local
-_ZGVcasinoSlot$1424 kind:bss(size=0x4) addr:0x021275f8 local
-@1427 kind:bss(size=0xc) addr:0x021275fc local
-casinoSlot$1424 kind:bss(size=0xd4) addr:0x02127608 local
+_ZGVcasinoSlot$1837 kind:bss(size=0x4) addr:0x021275f8 local
+@1840 kind:bss(size=0xc) addr:0x021275fc local
+casinoSlot$1837 kind:bss(size=0xd4) addr:0x02127608 local
 _ZTV10CasinoSlot kind:data(byte[28]) addr:0x0212529c
 cameraAngleZ kind:data(byte[2]) addr:0x02125282 local
 cameraAngleY kind:data(byte[2]) addr:0x02125284 local
 _ZN10CasinoSlot9stageSlotE kind:data(byte[4]) addr:0x02125288
 lampBlinkFrame kind:data(byte[4]) addr:0x0212528c local
-_ZGVm_singleton$389 kind:bss(size=0x4) addr:0x0212633c local
+_ZGVm_singleton$585 kind:bss(size=0x4) addr:0x0212633c local
 default_angle kind:bss(size=0x6) addr:0x02126340 local
 _ZTV11CasinoPoker kind:data(byte[28]) addr:0x021252c4
 cameraAngleY kind:data(byte[2]) addr:0x02125254 local

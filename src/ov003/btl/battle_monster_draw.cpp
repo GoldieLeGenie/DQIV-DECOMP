@@ -32,7 +32,7 @@ THUMB void btl::BattleMonster::cleanup()
 {
     UnkCharacterPalette* palette = &monsterDraw_.palette_;
     if (palette->enable_) {
-        func_0205b648(&paletteAnim_);
+        paletteAnim_.unkfunc_0205b648();
         palette->enable_ = 0;
         paletteData_.cleanup();
     }
@@ -66,8 +66,8 @@ THUMB void btl::BattleMonster::draw()
 {
     UnkCharacterPalette* palette = &monsterDraw_.palette_;
     if (palette->enable_) {
-        func_0205b584(&paletteAnim_, palette->unk_408, palette->unk_404);
-        if (func_0205b628(&paletteAnim_)) {
+        paletteAnim_.unkfunc_0205b584(palette->unk_408, palette->unk_404);
+        if (paletteAnim_.unkfunc_0205b628()) {
             palette->enable_ = 0;
             paletteData_.cleanup();
         }
@@ -167,7 +167,7 @@ THUMB void btl::BattleMonster::setPaletteAnim(int animNo)
 
 THUMB void btl::BattleMonster::setTransOfEnd()
 {
-    monsterDraw_.flag_.set(0x20);
+    monsterDraw_.flag_.flag_ |= 0x20;
 }
 
 THUMB btl::BattleMonsterDraw2::BattleMonsterDraw2()

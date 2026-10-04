@@ -4,6 +4,7 @@
 #include "ov003/status/MonsterPartyWithDraw.hpp"
 #include "main/status/HaveEquipment.hpp"
 #include "main/global/Global.hpp"
+#include "main/dss/ScreenPosition.hpp"
 
 static dss::Fix32 unkScale(1.0f);
 int BattleMonsterMask::monsterRectTemp[12];
@@ -111,7 +112,7 @@ THUMB void BattleMonsterMask::calcTargetPos(int actorindex)
     int index = g_monster.getMonsterStatus(actorindex)->haveStatusInfo_.drawCtrlId_;
     dss::Fix32Vector3* position = btl::BattleMonsterDraw2::getSingleton()->monsters_[index].monsterDraw_.getPosition();
     pos = dss::Fix32Vector3(*position);
-    func_0205710c(actorindex, &pos);
+    unkfunc_0205710c(actorindex, &pos);
 }
 
 THUMB dss::Vector2<int> BattleMonsterMask::getTargetPos(int actorindex)
@@ -122,7 +123,7 @@ THUMB dss::Vector2<int> BattleMonsterMask::getTargetPos(int actorindex)
     int maskScaleX = status::HaveEquipment::getAbsoluteValue(rect[1] - rect[3]);
     int maskScaleY = ((scale_ * status::HaveEquipment::getAbsoluteValue(rect[2] - rect[4])).value / 4096);
     maskScaleX = (scale_ * maskScaleX).value / 4096;
-    screen = *func_02057128(actorindex);
+    screen = *unkfunc_02057128(actorindex);
     maskScaleY = maskScaleY * 2 / 3;
     screen.vx -= maskScaleY;
     screen.vy -= maskScaleX;
@@ -138,7 +139,7 @@ THUMB int* BattleMonsterMask::getMonsterTouchRect(int actorindex)
     short* rect = data_020c04f4[monster];
     int w = status::HaveEquipment::getAbsoluteValue(rect[2] - rect[4]);
     int h = status::HaveEquipment::getAbsoluteValue(rect[1] - rect[3]);
-    dss::Vector2<int> screen = *func_02057128(actorindex);
+    dss::Vector2<int> screen = *unkfunc_02057128(actorindex);
     monsterRectTemp[0] = g_monster.getMonsterGroup(actorindex);
     monsterRectTemp[1] = screen.vx - w / 2;
     monsterRectTemp[2] = screen.vy - h - rect[3] / 2;

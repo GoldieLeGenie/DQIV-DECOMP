@@ -1,6 +1,7 @@
 #pragma once
 #include "main/sound/SoundManager.hpp"
 #include "globaldefs.h"
+#include "main/global/StageLink.hpp"
 #include "main/dss/Render.hpp"
 #include "main/status/ExcelParam.hpp"
 
@@ -28,7 +29,6 @@ extern "C" {
     void func_0202ad28(UnkManager_0202adc4* self);
     void func_0202ad98(UnkManager_0202adc4* self);
     int  func_0202af54(UnkManager_0202adc4* self);
-    int  func_0200c020(void);                                              // StageLink::getTownExitIndex
 }
 
 struct TownSystem {
@@ -41,7 +41,7 @@ struct TownSystem {
 
     TownSystem();
     static TownSystem* getSingleton();
-    void unkfunc_02132210();
+    static void unkfunc_02132210();
     void initialize();
     void terminate();
     void execute();
@@ -50,7 +50,7 @@ struct TownSystem {
     void playTownExitSE()
     {
         if (playExitSE_ && !defaultSELock_) {
-            func_02055a04(0x131);
+            Sound::sePlayDirect(0x131);
         }
     }
 };

@@ -92,7 +92,7 @@ THUMB int param::FloorParam::getFloorIndex(param::FloorParam* data, char* name)
     }
     for (; index < 0x220; index++)
     {
-        if (dss::DssUtils::unkfunc_020882b0(data[index].floor, name) == 0)
+        if (dss::strcmp(data[index].floor, name) == 0)
         {
             return index;
         }

@@ -41,7 +41,7 @@ THUMB int TextHook::extractDefaultTextTest(char* text, int size, int id, int par
                     str = (char*)name;
                 }
             }
-            dss::DssUtils::strcpy_s(text, size, str);
+            dss::strcpy_s(text, size, str);
             return 1;
         case 0x1c:
             str = "\xe3\x82\xbd\xe3\x83\xad";
@@ -52,7 +52,7 @@ THUMB int TextHook::extractDefaultTextTest(char* text, int size, int id, int par
                     str = (char*)name;
                 }
             }
-            dss::DssUtils::strcpy_s(text, size, str);
+            dss::strcpy_s(text, size, str);
             return 1;
     }
     return 0;
@@ -78,9 +78,9 @@ THUMB int TextHook::extractDefaultTextString(char* text, int size, int id, int p
                 if (i == 0) {
                     delimiter = "";
                 }
-                func_02088298(text, delimiter);
+                dss::strcat(text, delimiter);
                 extractParty(buffer, 0x200, equipable_pc_list_[i]);
-                func_02088298(text, buffer);
+                dss::strcat(text, buffer);
             }
             return 1;
         case 5:
@@ -134,7 +134,7 @@ THUMB void TextHook::resetEQUIPABLE_PC()
 {
     const char* delimiter1 = "";
     const char* delimiter2 = delimiter1;
-    switch (data_02109e4c) {
+    switch (TextAPI::m_lang) {
         case 0:
             delimiter1 = "\xe3\x80\x81";
             delimiter2 = delimiter1;
@@ -239,12 +239,12 @@ THUMB void TextHook::checkPlayer()
 
 THUMB void TextHook::extractParty(char* text, int size, int value)
 {
-    func_02054a6c(data_0210a240, text, size, 0x50000000, value);
+    g_text_extractor.extractText(text, size, 0x50000000, value);
 }
 
 THUMB void TextHook::extractNumber(char* text, int size, int value)
 {
-    func_02054a6c(data_0210a240, text, size, 0xf0000000, value);
+    g_text_extractor.extractText(text, size, 0xf0000000, value);
 }
 
 THUMB int TextHook::getMacroStat(int id, int param)

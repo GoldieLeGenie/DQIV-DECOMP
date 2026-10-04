@@ -204,7 +204,7 @@ THUMB void __cmd_character_move::initialize(char* scriptParam)
 {
     PARAM_CHARACTER_MOVE* param = (PARAM_CHARACTER_MOVE*)scriptParam;
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.node[0].vx.value = param->startX;
     scriptData.node[0].vy.value = param->startY;
     scriptData.node[0].vz.value = param->startZ;
@@ -214,7 +214,7 @@ THUMB void __cmd_character_move::initialize(char* scriptParam)
     scriptData.frame = param->frame;
     int ctrl = getPlacementCtrlId();
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
 }
 
 THUMB void __cmd_character_move::execute()
@@ -234,7 +234,7 @@ THUMB void __cmd_character_move2::initialize(char* scriptParam)
 {
     PARAM_CHARACTER_MOVE2* param = (PARAM_CHARACTER_MOVE2*)scriptParam;
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.node[0].vx.value = param->startX;
     scriptData.node[0].vy.value = param->startY;
     scriptData.node[0].vz.value = param->startZ;
@@ -248,7 +248,7 @@ THUMB void __cmd_character_move2::initialize(char* scriptParam)
     scriptData.frame = len.value / (param->rate * defaultSpeed.value / 0x1000);
     int ctrl = getPlacementCtrlId();
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
 }
 
 THUMB void __cmd_character_move2::execute()
@@ -268,7 +268,7 @@ THUMB void __cmd_character_wait::initialize(char* scriptParam)
 {
     PARAM_CHARACTER_WAIT* param = (PARAM_CHARACTER_WAIT*)scriptParam;
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.frame = param->frame;
     int ctrl = getPlacementCtrlId();
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
@@ -293,7 +293,7 @@ THUMB void __cmd_character_effect_mark::initialize(char* scriptParam)
 {
     PARAM_CHARACTER_EFFECT_MARK* param = (PARAM_CHARACTER_EFFECT_MARK*)scriptParam;
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.num[0] = param->mark;
     int ctrl = getPlacementCtrlId();
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
@@ -319,14 +319,14 @@ THUMB void __cmd_character_move_to::initialize(char* scriptParam)
     PARAM_CHARACTER_MOVE_TO* param = (PARAM_CHARACTER_MOVE_TO*)scriptParam;
     int ctrl = getPlacementCtrlId();
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.frame = param->frame;
     scriptData.node[0] = TownCharacterManager::getSingleton()->getPosition(ctrl);
     scriptData.node[1].vx.value = param->endX;
     scriptData.node[1].vy.value = param->endY;
     scriptData.node[1].vz.value = param->endZ;
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
 }
 
 THUMB void __cmd_character_move_to::execute()
@@ -347,7 +347,7 @@ THUMB void __cmd_character_move2_to::initialize(char* scriptParam)
     PARAM_CHARACTER_MOVE2_TO* param = (PARAM_CHARACTER_MOVE2_TO*)scriptParam;
     int ctrl = getPlacementCtrlId();
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.node[0] = TownCharacterManager::getSingleton()->getPosition(ctrl);
     scriptData.node[1].vx.value = param->endX;
     scriptData.node[1].vy.value = param->endY;
@@ -358,7 +358,7 @@ THUMB void __cmd_character_move2_to::initialize(char* scriptParam)
     dss::Fix32 len = ((scriptData.node[1] - scriptData.node[0])).length();
     scriptData.frame = len.value / (param->rate * defaultSpeed.value / 0x1000);
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
 }
 
 THUMB void __cmd_character_move2_to::execute()
@@ -379,15 +379,15 @@ THUMB void __cmd_character_move_party::initialize(char* scriptParam)
     PARAM_CHARACTER_MOVE_PARTY* param = (PARAM_CHARACTER_MOVE_PARTY*)scriptParam;
     int ctrl = getPlacementCtrlId();
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.num[0] = param->mode;
     scriptData.node[0] = TownCharacterManager::getSingleton()->getPosition(ctrl);
     int drawCount = TownPlayerManager::getSingleton()->partyDraw_.countReal_;
     scriptData.node[1] = TownPlayerManager::getSingleton()->party_.getMemberPosition(drawCount);
     scriptData.frame = param->frame;
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setMoveToParty(ctrl);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setMoveToParty();
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
     TownCharacterManager::getSingleton()->setCollFlag(ctrl, 0);
 }
 
@@ -409,7 +409,7 @@ THUMB void __cmd_character_move2_party::initialize(char* scriptParam)
     PARAM_CHARACTER_MOVE2_PARTY* param = (PARAM_CHARACTER_MOVE2_PARTY*)scriptParam;
     int ctrl = getPlacementCtrlId();
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.node[0] = TownCharacterManager::getSingleton()->getPosition(ctrl);
     int drawCount = TownPlayerManager::getSingleton()->partyDraw_.countReal_;
     scriptData.node[1] = TownPlayerManager::getSingleton()->party_.getMemberPosition(drawCount);
@@ -425,8 +425,8 @@ THUMB void __cmd_character_move2_party::initialize(char* scriptParam)
     scriptData.frame = dv.value / 0x1000;
     scriptData.num[0] = param->mode;
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setMoveToParty(ctrl);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setMoveToParty();
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
     TownCharacterManager::getSingleton()->setCollFlag(ctrl, 0);
 }
 
@@ -448,7 +448,7 @@ THUMB void __cmd_character_move_player::initialize(char* scriptParam)
     PARAM_CHARACTER_MOVE_PLAYER* param = (PARAM_CHARACTER_MOVE_PLAYER*)scriptParam;
     int ctrl = getPlacementCtrlId();
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.num[0] = param->mode;
     scriptData.node[0] = TownCharacterManager::getSingleton()->getPosition(ctrl);
     scriptData.node[1] = TownPlayerManager::getSingleton()->getPosition();
@@ -459,8 +459,8 @@ THUMB void __cmd_character_move_player::initialize(char* scriptParam)
     scriptData.node[1] += vec * rate;
     scriptData.frame = param->frame;
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setMoveToParty(ctrl);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setMoveToParty();
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
     TownCharacterManager::getSingleton()->setCollFlag(ctrl, 0);
 }
 
@@ -482,7 +482,7 @@ THUMB void __cmd_character_move2_player::initialize(char* scriptParam)
     PARAM_CHARACTER_MOVE2_PLAYER* param = (PARAM_CHARACTER_MOVE2_PLAYER*)scriptParam;
     int ctrl = getPlacementCtrlId();
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.num[0] = param->mode;
     scriptData.node[0] = TownCharacterManager::getSingleton()->getPosition(ctrl);
     scriptData.node[1] = TownPlayerManager::getSingleton()->getPosition();
@@ -497,8 +497,8 @@ THUMB void __cmd_character_move2_player::initialize(char* scriptParam)
     dss::Fix32 len = ((scriptData.node[1] - scriptData.node[0])).length();
     scriptData.frame = len.value / (param->rate * defaultSpeed.value / 0x1000);
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setMoveToParty(ctrl);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setMoveToParty();
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
     TownCharacterManager::getSingleton()->setCollFlag(ctrl, 0);
 }
 
@@ -520,7 +520,7 @@ THUMB void __cmd_character_move_relative::initialize(char* scriptParam)
     PARAM_CHARACTER_MOVE_RELATIVE* param = (PARAM_CHARACTER_MOVE_RELATIVE*)scriptParam;
     int ctrl = getPlacementCtrlId();
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.node[0] = TownCharacterManager::getSingleton()->getPosition(ctrl);
     scriptData.node[1] = scriptData.node[0];
     scriptData.node[1].vx.value += param->endX;
@@ -528,7 +528,7 @@ THUMB void __cmd_character_move_relative::initialize(char* scriptParam)
     scriptData.node[1].vz.value += param->endZ;
     scriptData.frame = param->frame;
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
 }
 
 THUMB int __cmd_character_move_relative::isEnd()
@@ -545,7 +545,7 @@ THUMB void __cmd_character_move2_relative::initialize(char* scriptParam)
     PARAM_CHARACTER_MOVE2_RELATIVE* param = (PARAM_CHARACTER_MOVE2_RELATIVE*)scriptParam;
     int ctrl = getPlacementCtrlId();
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.node[0] = TownCharacterManager::getSingleton()->getPosition(ctrl);
     scriptData.node[1] = scriptData.node[0];
     scriptData.node[1].vx.value += param->endX;
@@ -557,7 +557,7 @@ THUMB void __cmd_character_move2_relative::initialize(char* scriptParam)
     dss::Fix32 len = ((scriptData.node[1] - scriptData.node[0])).length();
     scriptData.frame = len.value / (param->rate * defaultSpeed.value / 0x1000);
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
 }
 
 THUMB int __cmd_character_move2_relative::isEnd()
@@ -574,13 +574,13 @@ THUMB void __cmd_character_move_x::initialize(char* scriptParam)
     PARAM_CHARACTER_MOVE_X* param = (PARAM_CHARACTER_MOVE_X*)scriptParam;
     int ctrl = getPlacementCtrlId();
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.node[0] = TownCharacterManager::getSingleton()->getPosition(ctrl);
     scriptData.node[1] = scriptData.node[0];
     scriptData.node[1].vx.value = param->endX;
     scriptData.frame = param->frame;
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
 }
 
 THUMB int __cmd_character_move_x::isEnd()
@@ -597,7 +597,7 @@ THUMB void __cmd_character_move2_x::initialize(char* scriptParam)
     PARAM_CHARACTER_MOVE2_X* param = (PARAM_CHARACTER_MOVE2_X*)scriptParam;
     int ctrl = getPlacementCtrlId();
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.node[0] = TownCharacterManager::getSingleton()->getPosition(ctrl);
     scriptData.node[1] = scriptData.node[0];
     scriptData.node[1].vx.value = param->endX;
@@ -607,7 +607,7 @@ THUMB void __cmd_character_move2_x::initialize(char* scriptParam)
     dss::Fix32 len = ((scriptData.node[1] - scriptData.node[0])).length();
     scriptData.frame = len.value / (param->rate * defaultSpeed.value / 0x1000);
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
 }
 
 THUMB int __cmd_character_move2_x::isEnd()
@@ -624,13 +624,13 @@ THUMB void __cmd_character_move_z::initialize(char* scriptParam)
     PARAM_CHARACTER_MOVE_Z* param = (PARAM_CHARACTER_MOVE_Z*)scriptParam;
     int ctrl = getPlacementCtrlId();
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.node[0] = TownCharacterManager::getSingleton()->getPosition(ctrl);
     scriptData.node[1] = scriptData.node[0];
     scriptData.node[1].vz.value = param->endZ;
     scriptData.frame = param->frame;
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
 }
 
 THUMB int __cmd_character_move_z::isEnd()
@@ -647,7 +647,7 @@ THUMB void __cmd_character_move2_z::initialize(char* scriptParam)
     PARAM_CHARACTER_MOVE2_Z* param = (PARAM_CHARACTER_MOVE2_Z*)scriptParam;
     int ctrl = getPlacementCtrlId();
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.node[0] = TownCharacterManager::getSingleton()->getPosition(ctrl);
     scriptData.node[1] = scriptData.node[0];
     scriptData.node[1].vz.value = param->endZ;
@@ -657,7 +657,7 @@ THUMB void __cmd_character_move2_z::initialize(char* scriptParam)
     dss::Fix32 len = ((scriptData.node[1] - scriptData.node[0])).length();
     scriptData.frame = len.value / (param->rate * defaultSpeed.value / 0x1000);
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
 }
 
 THUMB int __cmd_character_move2_z::isEnd()
@@ -809,7 +809,7 @@ THUMB void __cmd_map_flash::initialize(char* scriptParam)
     PARAM_MAP_FLASH* param = (PARAM_MAP_FLASH*)scriptParam;
     count_ = 0;
     countFrame_ = param->frame;
-    func_0205c948(data_0210bd4c, 0, param->se);
+    data_0210bd4c.unkfunc_0205c948(0, param->se);
     int flash_frame = countFrame_ / 2;
     unsigned char b = param->b;
     unsigned char g = param->g;
@@ -819,7 +819,7 @@ THUMB void __cmd_map_flash::initialize(char* scriptParam)
     data_020f21f8.frames_ = flash_frame;
     func_02084e8c(data_020f220c, r, g, b);
     func_02084e8c(data_020f2244, r, g, b);
-    func_02058294(data_0210bc18, &data_020f21f8);
+    data_0210bc18.unkfunc_02058294(&data_020f21f8);
 }
 
 THUMB void __cmd_map_flash::execute()
@@ -1066,7 +1066,7 @@ THUMB int __cmd_menu_event_imuru::isEnd()
         waitCounter_++;
         return false;
     }
-    if (!TownWindowSystem::getSingleton()->isShopMenu()) {
+    if (!TownWindowSystem::getSingleton()->cmdWindow_.isShopMenu()) {
         if (MaterielMenu_WINDOW_MANAGER::getSingleton()->extraImuruEnd_) {
             setFlag(true);
         } else {
@@ -1477,7 +1477,7 @@ THUMB void __cmd_menu_present_exp::initialize(char* scriptParam)
         } else if (param->index == 2 && index == -1) {
             index = status::g_Party.getSortIndex(1);
         }
-        func_ov016_0216ff2c()->setActiveChara(index);
+        func_ov016_0216ff2c()->activeChara_ = index;
         func_ov016_0216ff2c()->setExtraExp(param->exp);
         TownCharacterManager::getSingleton()->setPlayerDirection(ctrl);
         TownWindowSystem::getSingleton()->changeShopMenuPhase(MaterielMenu_WINDOW_MANAGER::MENU_EXTRA_PRESENT_EXP);
@@ -1694,11 +1694,11 @@ THUMB void __cmd_surechigai_save::initialize(char* scriptParam)
 
 THUMB int __cmd_surechigai_save::isEnd()
 {
-    if (!TownWindowSystem::getSingleton()->isShopMenu() && !m_end.m_flag) {
+    if (!TownWindowSystem::getSingleton()->cmdWindow_.isShopMenu() && !m_end.m_flag) {
         m_end.m_flag = 1;
         return false;
     }
-    if (!TownWindowSystem::getSingleton()->isShopMenu() && m_end.m_flag) {
+    if (!TownWindowSystem::getSingleton()->cmdWindow_.isShopMenu() && m_end.m_flag) {
         if (MaterielMenu_WINDOW_MANAGER::getSingleton()->surechigaiStart_ == 1) {
             setFlag(true);
         } else {
@@ -1752,11 +1752,11 @@ THUMB void __cmd_surechigai_root::initialize(char* scriptParam)
 
 THUMB int __cmd_surechigai_root::isEnd()
 {
-    if (!TownWindowSystem::getSingleton()->isShopMenu() && !m_end.m_flag) {
+    if (!TownWindowSystem::getSingleton()->cmdWindow_.isShopMenu() && !m_end.m_flag) {
         m_end.m_flag = 1;
         return false;
     }
-    if (!TownWindowSystem::getSingleton()->isShopMenu() && m_end.m_flag) {
+    if (!TownWindowSystem::getSingleton()->cmdWindow_.isShopMenu() && m_end.m_flag) {
         if (MaterielMenu_WINDOW_MANAGER::getSingleton()->surechigaiStart_ == 1) {
             setFlag(true, true);
         } else {
@@ -1835,11 +1835,11 @@ THUMB void __cmd_surechigai_message::initialize(char* scriptParam)
 
 THUMB int __cmd_surechigai_message::isEnd()
 {
-    if (!TownWindowSystem::getSingleton()->isShopMenu() && !m_end.m_flag) {
+    if (!TownWindowSystem::getSingleton()->cmdWindow_.isShopMenu() && !m_end.m_flag) {
         m_end.m_flag = 1;
         return false;
     }
-    if (!TownWindowSystem::getSingleton()->isShopMenu() && m_end.m_flag) {
+    if (!TownWindowSystem::getSingleton()->cmdWindow_.isShopMenu() && m_end.m_flag) {
         MaterielMenu_WINDOW_MANAGER::getSingleton()->editMessageForScript_ = 0;
         return true;
     }
@@ -1883,7 +1883,7 @@ THUMB void __cmd_chara_move_line_to_player::initialize(char* scriptParam)
         end.vx = start.vx;
     }
     TOWN_SCRIPT_DATA scriptData;
-    dss::DssUtils::unkfunc_020882d4(&scriptData, 0, sizeof(scriptData));
+    dss::memset(&scriptData, 0, sizeof(scriptData));
     scriptData.node[0] = start;
     scriptData.node[1] = end;
     if (param->rate == 0) {
@@ -1891,7 +1891,7 @@ THUMB void __cmd_chara_move_line_to_player::initialize(char* scriptParam)
     }
     scriptData.frame = ((scriptData.node[1] - scriptData.node[0])).length().value / (param->rate * defaultSpeed.value / 0x1000);
     TownCharacterManager::getSingleton()->setScriptData(ctrl, scriptData);
-    TownCharacterManager::getSingleton()->setSimpleMove(ctrl);
+    TownCharacterManager::getSingleton()->character_[ctrl]->setSimpleMove();
 }
 
 THUMB int __cmd_chara_move_line_to_player::isEnd()

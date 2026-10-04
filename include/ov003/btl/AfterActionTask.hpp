@@ -22,7 +22,3 @@ namespace btl {
         int isMessageStatusChangeRelease();
     };   
 }
-
-extern "C" int   func_ov003_0212fa2c(btl::AfterActionTask*);
-extern "C" void func_ov003_0212fa14(btl::AfterActionTask* thisptr);
-extern "C" int   func_ov003_0212fba0(btl::AfterActionTask* thisptr);

@@ -26,7 +26,7 @@ ARM void cmn::CommonChapterTitle::setup(int chapter, int flag)
     if (flag == 0) {
         switch (chapter) {
             case 1:
-                func_02088308(filename, sizeof(filename), "data/2d/map/hyodai1_1.tex");
+                dss::sprintf_s(filename, sizeof(filename), "data/2d/map/hyodai1_1.tex");
                 x = 0;
                 y = 0;
                 w = 0x80;
@@ -34,7 +34,7 @@ ARM void cmn::CommonChapterTitle::setup(int chapter, int flag)
                 texCoord = 1;
                 break;
             case 2:
-                func_02088308(filename, sizeof(filename), "data/2d/map/hyodai1_2.tex");
+                dss::sprintf_s(filename, sizeof(filename), "data/2d/map/hyodai1_2.tex");
                 x = 0;
                 y = 0;
                 w = 0x80;
@@ -42,7 +42,7 @@ ARM void cmn::CommonChapterTitle::setup(int chapter, int flag)
                 texCoord = 1;
                 break;
             case 3:
-                func_02088308(filename, sizeof(filename), "data/2d/map/hyodai1_3.tex");
+                dss::sprintf_s(filename, sizeof(filename), "data/2d/map/hyodai1_3.tex");
                 x = 0;
                 y = 0;
                 w = 0x80;
@@ -50,7 +50,7 @@ ARM void cmn::CommonChapterTitle::setup(int chapter, int flag)
                 texCoord = 1;
                 break;
             case 4:
-                func_02088308(filename, sizeof(filename), "data/2d/map/hyodai1_4.tex");
+                dss::sprintf_s(filename, sizeof(filename), "data/2d/map/hyodai1_4.tex");
                 x = 0;
                 y = 0;
                 w = 0x80;
@@ -58,7 +58,7 @@ ARM void cmn::CommonChapterTitle::setup(int chapter, int flag)
                 texCoord = 1;
                 break;
             case 5:
-                func_02088308(filename, sizeof(filename), "data/2d/map/hyodai1_5.tex");
+                dss::sprintf_s(filename, sizeof(filename), "data/2d/map/hyodai1_5.tex");
                 x = 0;
                 y = 0;
                 w = 0x80;
@@ -66,7 +66,7 @@ ARM void cmn::CommonChapterTitle::setup(int chapter, int flag)
                 texCoord = 1;
                 break;
             case 6:
-                func_02088308(filename, sizeof(filename), "data/2d/map/hyodai1_5.tex");
+                dss::sprintf_s(filename, sizeof(filename), "data/2d/map/hyodai1_5.tex");
                 x = 0;
                 y = 0;
                 w = 0x80;
@@ -74,7 +74,7 @@ ARM void cmn::CommonChapterTitle::setup(int chapter, int flag)
                 texCoord = 1;
                 break;
             default:
-                func_02088308(filename, sizeof(filename), "data/2d/map/hyodai1.tex");
+                dss::sprintf_s(filename, sizeof(filename), "data/2d/map/hyodai1.tex");
                 x = 0;
                 texCoord = 0;
                 y = 0x10;
@@ -83,7 +83,7 @@ ARM void cmn::CommonChapterTitle::setup(int chapter, int flag)
                 break;
         }
     } else {
-        func_02088308(filename, sizeof(filename), "data/2d/map/hyodai1.tex");
+        dss::sprintf_s(filename, sizeof(filename), "data/2d/map/hyodai1.tex");
         x = 0;
         texCoord = 0;
         y = 0x10;

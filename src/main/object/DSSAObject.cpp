@@ -328,7 +328,7 @@ ARM void DSSAObject::setAlpha(dss::Fix32 alpha)
 ARM void DSSAObject::setCurrentFrame(int frame)
 {
     frame_ = frame;
-    frame_ = func_02008ea0(frame, 0, dssaData_.frame_ - 1);
+    frame_ = dss::clamp<int>(frame, 0, dssaData_.frame_ - 1);
 }
 
 ARM dss::Fix32Vector3 DSSAObject::getNullPosition(int index)

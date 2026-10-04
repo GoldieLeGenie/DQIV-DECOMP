@@ -20,7 +20,3 @@ namespace btl {
         virtual void execute();
     };   
 }
-
-extern "C" void  func_ov003_02129c58(status::CharacterStatus*, int, int, int); // 
-extern "C" void func_ov003_02129ca0(status::CharacterStatus*, int);  // 
-

@@ -77,9 +77,3 @@ struct LevelEntry {
     unsigned char actionType;       // 0x15  
     unsigned char unk_16[2];        // 0x16-0x17
 };
-
-
-
-extern "C" long long func_0200602c(int numerator, int denominator); 
-extern "C" void func_0200e004(status::BaseStatus*);
-extern "C" void func_0200e01c(status::BaseStatus*);

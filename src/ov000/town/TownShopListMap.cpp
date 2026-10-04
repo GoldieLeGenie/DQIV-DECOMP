@@ -62,7 +62,7 @@ ARM void TownShopListMap::execute()
         shopSprite_.unkfunc_02057ed4(1);
         break;
     case 3:
-        frame_ = func_02008ea0(frame_, 0, 31);
+        frame_ = dss::clamp<int>(frame_, 0, 31);
         shopSprite_.unkfunc_02057f00(frame_);
         frame_--;
         if (frame_ <= 0) {
@@ -131,4 +131,9 @@ ARM int TownShopListMap::isOpen()
 ARM int TownShopListMap::isClose()
 {
     return phase_ == 0;
+}
+
+ARM int TownShopListMap::isEnable()
+{
+    return isEnable_;
 }

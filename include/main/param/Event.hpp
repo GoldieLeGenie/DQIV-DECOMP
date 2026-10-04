@@ -1,5 +1,6 @@
 #pragma once
 #include <globaldefs.h>
+#include "main/data/ExcelBinaryData.hpp"
 
 
 namespace param {
@@ -26,10 +27,6 @@ namespace param {
 }
 
 
-extern "C" {
-    void* func_02057f50(int, int);  //ExcelBinaryData::checkSum
-    int func_02057f58(void*, const char*);// ExcelBinaryData::readFileData
-}
 
 
-extern void* data_020c7830;
+extern DataObject data_020c7830;

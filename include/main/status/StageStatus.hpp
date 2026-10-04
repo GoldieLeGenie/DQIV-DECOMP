@@ -184,10 +184,7 @@ struct FieldPlayerManager;
 
 extern "C" {
     FieldPlayerManager* FieldPlayerManager::getSingleton();
-    void func_02088360(void* dest, int size, void* src); 
     void func_02037d28();
-    void* func_02037da4();
-    void func_02088740(dss::Fix32Vector3* vec);
 }
 
 struct MapChurchInfo {
@@ -195,13 +192,3 @@ struct MapChurchInfo {
     unsigned int unk4_;     // 0x020b6160
 };
 extern const MapChurchInfo data_020b615c; // MapChurchInfo
-
-
-struct ExternalData {
-    char pad[0x10];
-    int unk10;
-    int unk14;
-};
-
-
-

@@ -27,7 +27,7 @@ THUMB bool cmn::CommonCounterInfo::isEndWaitCounter()
     if (this->waitCounter_ == 0) {
         result = true;
     }
-    this->waitCounter_ = func_02008eb8(0, this->waitCounter_) - 1;
+    this->waitCounter_ = dss::max<int>(0, this->waitCounter_) - 1;
     return result;
 }
 
@@ -39,16 +39,16 @@ THUMB void cmn::CommonCounterInfo::setWaitZero(int frame) {
 
 THUMB int cmn::CommonCounterInfo::checkBottun()
 {
-    if ((data_02116d40.unkfunc_0207f280() & 1)
-     || (data_02116d40.unkfunc_0207f280() & 2)
-     || (data_02116d40.unkfunc_0207f280() & 0x400)
-     || (data_02116d40.unkfunc_0207f280() & 0x800)
-     || (data_02116d40.unkfunc_0207f280() & 0x200)
-     || (data_02116d40.unkfunc_0207f280() & 0x100)
-     || (data_02116d40.unkfunc_0207f280() & 0x40)
-     || (data_02116d40.unkfunc_0207f280() & 0x80)
-     || (data_02116d40.unkfunc_0207f280() & 0x20)
-     || (data_02116d40.unkfunc_0207f280() & 0x10)) {
+    if ((dss::g_Pad.edge() & 1)
+     || (dss::g_Pad.edge() & 2)
+     || (dss::g_Pad.edge() & 0x400)
+     || (dss::g_Pad.edge() & 0x800)
+     || (dss::g_Pad.edge() & 0x200)
+     || (dss::g_Pad.edge() & 0x100)
+     || (dss::g_Pad.edge() & 0x40)
+     || (dss::g_Pad.edge() & 0x80)
+     || (dss::g_Pad.edge() & 0x20)
+     || (dss::g_Pad.edge() & 0x10)) {
         return 1;
     }
     return 0;

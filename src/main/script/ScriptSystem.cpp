@@ -47,8 +47,8 @@ ARM void ScriptSystem::initialize(int chapter)
     if (chapter == 6) {
         chapter_ = 5;
     }
-    func_02088308(fname, sizeof(fname), "data/script/%s.bin", g_Stage.getMapName());
-    if (func_0207ebd4(&data_02116ce8, fname)) {
+    dss::sprintf_s(fname, sizeof(fname), "data/script/%s.bin", g_Stage.getMapName());
+    if (dss::g_File.isExist(fname)) {
         setup(fname);
         flag_ = 1;
     } else {

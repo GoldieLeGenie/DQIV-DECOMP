@@ -30,19 +30,19 @@ THUMB void SoundManager::initialize() {
 }
 
 THUMB void SoundManager::update() {
-    if (nextBgmIndex_ != 0 && !func_02055968()) {
+    if (nextBgmIndex_ != 0 && !Sound::unkfunc_02055968()) {
         bgmIndex_ = nextBgmIndex_;
         nextBgmIndex_ = 0;
-        func_0205590c(bgmIndex_);
+        Sound::unkfunc_0205590c(bgmIndex_);
         if (prevBgmIndex_ != 0) {
             nextBgmIndex_ = prevBgmIndex_;
             prevBgmIndex_ = 0;
         }
     }
-    if (!func_02055968()) {
+    if (!Sound::unkfunc_02055968()) {
         bgmIndex_ = 0;
     }
-    func_0205caa0(data_0210bd4c);
+    data_0210bd4c.unkfunc_0205caa0();
 }
 
 THUMB void SoundManager::play(int bgm, int param) {
@@ -53,10 +53,10 @@ THUMB void SoundManager::play(int bgm, int param) {
     if (bgmIndex_ != 0) {
         nextBgmIndex_ = bgm;
         nextBgmParam_ = param;
-        func_0205594c(15);
+        Sound::unkfunc_0205594c(15);
     } else {
         bgmIndex_ = bgm;
-        func_0205590c(bgm);
+        Sound::unkfunc_0205590c(bgm);
     }
 }
 
@@ -64,15 +64,15 @@ THUMB void SoundManager::playStart(int bgm, int param) {
     if (bgmIndex_ != 0) {
         nextBgmIndex_ = bgm;
         nextBgmParam_ = param;
-        func_0205594c(15);
+        Sound::unkfunc_0205594c(15);
     } else {
         bgmIndex_ = bgm;
-        func_0205590c(bgm);
+        Sound::unkfunc_0205590c(bgm);
     }
 }
 
 THUMB void SoundManager::stop(int fade) {
-    func_0205594c(fade);
+    Sound::unkfunc_0205594c(fade);
 }
 
 THUMB void SoundManager::playRestart(int bgm, int param) {
@@ -80,10 +80,10 @@ THUMB void SoundManager::playRestart(int bgm, int param) {
         nextBgmIndex_ = bgm;
         prevBgmIndex_ = bgmIndex_;
         nextBgmParam_ = param;
-        func_0205594c(15);
+        Sound::unkfunc_0205594c(15);
     } else {
         bgmIndex_ = bgm;
-        func_0205590c(bgm);
+        Sound::unkfunc_0205590c(bgm);
     }
 }
 
@@ -95,7 +95,7 @@ THUMB void SoundManager::townPlay() {
     townBgmEnable_ = 1;
     for (int i = 0; i < 15; i++) {
         update();
-        func_020866d8(data_0211fc7c);
+        data_0211fc7c.unkfunc_020866d8();
         OS_Wait();
     }
 }
@@ -192,7 +192,7 @@ THUMB void SoundManager::fieldPlay() {
     townBgmEnable_ = 1;
     for (int i = 0; i < 15; i++) {
         update();
-        func_020866d8(data_0211fc7c);
+        data_0211fc7c.unkfunc_020866d8();
         OS_Wait();
     }
 }
@@ -251,11 +251,11 @@ THUMB void SoundManager::stopBgm(int fade) {
 }
 
 THUMB int SoundManager::playSe(int seId, int param) {
-    return func_020559b0(seId);
+    return Sound::sePlay(seId);
 }
 
 THUMB void SoundManager::stopSeWithIndex(int seId, int index) {
-    func_020559cc(seId, index);
+    Sound::unkfunc_020559cc(seId, index);
 }
 
 THUMB int SoundManager::getFloorBgmIndex() {

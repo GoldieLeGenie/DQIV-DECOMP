@@ -17,6 +17,22 @@ struct UnkCharacterPalette {
     void unkfunc_02086d4c();
 };
 
+struct DSSACharacterData {
+    LZDataObject textureData_;                  // 0x00
+    LZDataObject animationData_;                // 0x10
+
+    DSSACharacterData();
+    ~DSSACharacterData();
+    void setup(void* texture, void* animation) {
+        textureData_.setup(texture);
+        animationData_.setup(animation);
+    }
+    void cleanup() {
+        animationData_.cleanup();
+        textureData_.cleanup();
+    }
+};
+
 struct DSSACharacter : Position {
     int unk_34;                                 // 0x034
     int currentAnimationIndex_;                 // 0x038
@@ -48,6 +64,7 @@ struct DSSACharacter : Position {
     void setPositionInt(dss::Vector3int position);
     void setCurrentFrame(int index, int frame);
     void setCameraType(DSSAObjectWithCamera::CameraType type);
+    static void setCamera(dss::Camera* camera) { DSSAObjectWithCamera::setCamera(camera); }
     void pause(bool pause);
 };
 

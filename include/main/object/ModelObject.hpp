@@ -4,7 +4,19 @@
 #include "main/data/DataObject.hpp"
 #include "main/dss/Camera.hpp"
 
-struct UnkModelObjectBase {
+struct UnkModelMember;
+
+// Abstract base of the DS model objects (DS-only, name invented). It has no home TU: every `#pragma ipa file`
+// TU constructing a model (LogoPart, TownModelDraw, ModelObjectWithCamera) emits a weak copy of its vtable
+// that the linker strips but that still takes part in the data sort, and its dead vptr store adds sinit pcodes.
+struct UnkModelInterface {
+    virtual void vf00() = 0;
+    virtual void vf04() = 0;
+    virtual void draw() = 0;
+    virtual void cleanup(int flag) = 0;
+};
+
+struct UnkModelObjectBase : UnkModelInterface {
     virtual void vf00();                    // slot 0
     virtual void vf04();                    // slot 1
     virtual void draw();                    // slot 2
@@ -20,6 +32,12 @@ struct UnkModelObjectBase {
     UnkModelObjectBase() { func_020885f8(&m_matrix); }
     dss::Fix32Vector3& getPosition() { return m_pos; }
     dss::Fix32Vector3& getScale() { return m_scl; }
+    void unkfunc_02085370(UnkModelMember* model);
+    void unkfunc_0208569c(NNSG3dAnmObj* obj);               // add animation
+    void unkfunc_020856ac(NNSG3dAnmObj* obj);               // remove animation
+    void unkfunc_020856bc(dss::Fix32Vector3 scale);
+    void unkfunc_020856cc(dss::Fix32Vector3 position);
+    void unkfunc_020856e0(dss::Vector3<short> rotation);
 };
 
 struct UnkModelMember {
@@ -27,6 +45,23 @@ struct UnkModelMember {
     void* unk_04;
 
     UnkModelMember();                       // func_02083344
+    void unkfunc_02083354(void* data);
+    void unkfunc_02083360();
+    void* unkfunc_020835d0();
+};
+
+struct UnkModelAnimation {
+    int flag_;                              /* 0x00  1: loop, 2: end */
+    void* resource_;                        /* 0x04 */
+    void* anm_;                             /* 0x08 */
+    NNSG3dAnmObj* obj_;                     /* 0x0C */
+    unsigned char allocator_[0x10];         /* 0x10 */
+
+    void unkfunc_02082b18(void* resource, void* model);
+    void unkfunc_02082b7c();
+    void unkfunc_02082b90(int loop);
+    void unkfunc_02082bb4();
+    int unkfunc_02082bfc();
 };
 
 /* vtable 0x020c3ad4 */
@@ -39,12 +74,24 @@ struct ModelObject : UnkModelObjectBase {
     DataObject animData_[6];                /* 0xAFC */
     UnkModelMember unk_b5c;                 /* 0xB5C */
     void* unk_b64;                          /* 0xB64 palette */
-    unsigned char unk_b68[0xc0];            /* 0xB68 */
-    int unk_c28;                            /* 0xC28 */
-    int unk_c2c;                            /* 0xC2C */
-    int unk_c30;                            /* 0xC30 */
+    UnkModelAnimation animation_[6];        /* 0xB68 */
+    int m_play_flag;                        /* 0xC28 */
+    int m_pause_flag;                       /* 0xC2C */
+    int m_animation_index;                  /* 0xC30 */
 
-    ModelObject() {}
+    static dss::Fix32 defaultScale;
+
+    void setup(const char* name, const char* animName = 0);
+    void setup(void* model, int flag);
+    void unkfunc_020587d4(const char* name, int index);    // set animation (file)
+    void unkfunc_0205887c(void* animation, int index);     // set animation
+    void start(int loop);
+    void startAnimation(int index, int loop);
+    void setScale(dss::Fix32 scale);
+    void setScale(const dss::Fix32Vector3& scale);
+    void setPosition(const dss::Fix32Vector3& position);
+    void setRotationIdx(const dss::Vector3<short>& rotation);
+    void pause(int flag);
 };
 
 /* vtable 0x020c3c08 */
@@ -76,18 +123,6 @@ struct ModelObjectWithCamera : ModelObject {
 };
 
 extern "C" {
-    void func_020586e8(ModelObject* self, const char* name, int flag);             /* setup (file) */
-    void func_02058768(ModelObject* self, void* model, int flag);                  /* setup */
-    void func_020587d4(ModelObject* self, const char* name, int index);            /* setAnimation (file) */
-    void func_0205887c(ModelObject* self, void* animation, int index);             /* setAnimation */
-    void func_02058a2c(ModelObject* self, int flag);                               /* start */
-    void func_02058a84(ModelObject* self, int index, int loop);                    /* startAnimation */
-    void func_020589a4(ModelObject* self);                                         /* ModelObject::draw */
-    void func_02058af4(ModelObject* self, dss::Fix32 scale);                        /* setScale */
-    void func_02058b88(ModelObject* self, const dss::Fix32Vector3& scale);          /* setScale */
-    void func_02058bcc(ModelObject* self, const dss::Fix32Vector3& position);       /* setPosition */
-    void func_02058c10(ModelObject* self, const dss::Vector3<short>& rotation);    /* setRotationIdx */
-    void func_02058c3c(ModelObject* self, int pause);                              /* pause */
     void func_02085798(void* palette);
     void func_020860b8(void* palette, int r, int g, int b, dss::Fix32 rate);
 }

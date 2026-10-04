@@ -47,14 +47,14 @@ THUMB void btl::BattleMenuPlayerControl::clear()
     activeMagic_ = -1;
     targetChara_ = -1;
 
-    dss::DssUtils::unkfunc_020882d4(secondHistory_, -1, sizeof(secondHistory_));
-    dss::DssUtils::unkfunc_020882d4(firstHistory_, -1, sizeof(firstHistory_));
-    dss::DssUtils::unkfunc_020882d4(memberHP_, 0, sizeof(memberHP_));
-    dss::DssUtils::unkfunc_020882d4(memberMP_, 0, sizeof(memberMP_));
-    dss::DssUtils::unkfunc_020882d4(memberLv_, 1, sizeof(memberLv_));
-    dss::DssUtils::unkfunc_020882d4(memberHPColor_, 0, sizeof(memberHPColor_));
-    dss::DssUtils::unkfunc_020882d4(memberCondition_, 0, sizeof(memberCondition_));
-    dss::DssUtils::unkfunc_020882d4(conditionChange_, 0, sizeof(conditionChange_));
+    dss::memset(secondHistory_, -1, sizeof(secondHistory_));
+    dss::memset(firstHistory_, -1, sizeof(firstHistory_));
+    dss::memset(memberHP_, 0, sizeof(memberHP_));
+    dss::memset(memberMP_, 0, sizeof(memberMP_));
+    dss::memset(memberLv_, 1, sizeof(memberLv_));
+    dss::memset(memberHPColor_, 0, sizeof(memberHPColor_));
+    dss::memset(memberCondition_, 0, sizeof(memberCondition_));
+    dss::memset(conditionChange_, 0, sizeof(conditionChange_));
 
     tacticsSex_ = 0;
     if (status::g_Story.sex_ == 1) {
@@ -79,7 +79,7 @@ THUMB void btl::BattleMenuPlayerControl::clear()
 THUMB void btl::BattleMenuPlayerControl::allClear()
 {
     clear();
-    dss::DssUtils::unkfunc_020882d4(magicPosition_, 0, sizeof(magicPosition_));
+    dss::memset(magicPosition_, 0, sizeof(magicPosition_));
 }
 
 THUMB void btl::BattleMenuPlayerControl::setNoSelectHistory(int index)

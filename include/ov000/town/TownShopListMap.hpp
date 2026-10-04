@@ -23,5 +23,5 @@ struct TownShopListMap : window::ImageMap {
     virtual void close();
     virtual int isOpen();
     virtual int isClose();
-    virtual int isEnable() { return isEnable_; }
+    virtual int isEnable();
 };

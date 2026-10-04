@@ -78,7 +78,6 @@ namespace cmn
                                         short* bashaLIdx, short* bashaRIdx,
                                         int* countParty, int* countLFix, int* countRFix);
         void setDirIdx(short dirIdx);
-        dss::Fix32Vector3& getPosition2() { return position_; }
         short& getDirIdx2() { return dirIdx_; }
         void setStartPosition();
         void setShipInfo(char* name, dss::Fix32Vector3* pos, short idx);
@@ -103,22 +102,7 @@ namespace cmn
 }
 extern cmn::CommonPartyInfo g_cmnPartyInfo; //data_020ef650
 
-
-struct Ov000unkstruct {
-    char pad_[0x610];
-    int flag_;
-};
-
 struct TownPlayerManager;
-extern "C" void func_020888bc(dss::Fix32Vector3* dst, dss::Fix32Vector3* src);
 extern "C" int func_ov001_0212a460(void*, dss::Fix32Vector3*);             // FieldPlayerManager::checkBarronArea
-extern "C" int STD_CompareString(void* a, void* b);   // strcmp
-
-extern "C" dss::Fix32Vector3 func_020335ec(cmn::CommonRuraData* self, int townID);
 
 extern char s_srout_map[8];                                        // map baron (rodata)
-
-
-
-
-

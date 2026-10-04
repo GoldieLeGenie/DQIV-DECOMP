@@ -37,8 +37,3 @@ namespace status{
     extern ShopData ShopData_;                 // data_020d0bcc
     extern ShopList g_Shop;                    // data_020d0be4
 }
-
-
-
-extern "C" int func_0200ce20(char* name);                        //
-extern "C" int func_0200cc64(char* name);                        //

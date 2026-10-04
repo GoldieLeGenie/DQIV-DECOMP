@@ -13,25 +13,23 @@
 #include "main/status/GameFlag.hpp"
 #include "main/status/BattleHistory.hpp"
 #include "main/status/BattleResult.hpp"
+#include "main/sound/Sound.hpp"
 
-extern "C" int func_0205810c(void* global);
-extern "C" int func_02058104(void* global);
-extern "C" void func_020580fc(void* global, int part);
 
 Global g_Global; //data_020c768c
 GlobalChangePart g_GlobalChangePart;
 GlobalFade g_GlobalFade;
 GlobalWaitPart g_GlobalWaitPart;
-char s_mapCasino[] = "casino\0";
-char s_mapBtlda1[] = "btlda1\0";
-char s_mapBook[] = "book\0\0\0";
-char s_mapField[] = "field\0\0";
-char s_mapSurechigai[] = "surechigai\0";
+static char DefaultCasinoMap[] = "casino\0";
+static char DefaultBtlMap[] = "btlda1\0";
+static char DefaultBookMap[] = "book\0\0\0";
+static char DefaultFieldMap[] = "field\0\0";
+static char s_mapSurechigai[] = "surechigai\0";
 
 THUMB Global::Global()
 {
-    dss::DssUtils::strcpy_s(nextMapName_, 32, mlb1a);
-    dss::DssUtils::strcpy_s(battleMapName, 32, s_mapBtlda1);
+    dss::strcpy_s(nextMapName_, 32, mlb1a);
+    dss::strcpy_s(battleMapName, 32, DefaultBtlMap);
     fightingarenaFlag_ = 0;
     partChangeFlag_ = 0;
 }
@@ -55,7 +53,7 @@ THUMB void Global::initialize()
 THUMB void Global::startGame()
 {
     g_GlobalChangePart.setNextPart(3);
-    func_02058294(data_0210bc18, &g_GlobalChangePart);
+    data_0210bc18.unkfunc_02058294(&g_GlobalChangePart);
     fadeOutBlack(30);
 }
 
@@ -63,7 +61,7 @@ THUMB void Global::startFirstTown()
 {
     setMapName(mlb1a);
     g_GlobalChangePart.setNextPart(12);
-    func_02058294(data_0210bc18, &g_GlobalChangePart);
+    data_0210bc18.unkfunc_02058294(&g_GlobalChangePart);
     fadeOutBlack(30);
 }
 
@@ -71,7 +69,7 @@ THUMB void Global::startDebugTown()
 {
     setMapName(za1f1);
     g_GlobalChangePart.setNextPart(12);
-    func_02058294(data_0210bc18, &g_GlobalChangePart);
+    data_0210bc18.unkfunc_02058294(&g_GlobalChangePart);
     fadeOutBlack(30);
 }
 
@@ -79,25 +77,25 @@ THUMB void Global::startTown(char* name)
 {
     setMapName(name);
     g_GlobalChangePart.setNextPart(12);
-    func_02058294(data_0210bc18, &g_GlobalChangePart);
+    data_0210bc18.unkfunc_02058294(&g_GlobalChangePart);
     fadeOutBlack(30);
     partChangeFlag_ = 1;
 }
 
 
 THUMB void Global::startCasino() {
-    setMapName(s_mapCasino);
+    setMapName(DefaultCasinoMap);
     g_GlobalChangePart.setNextPart(0xF);
-    func_02058294(data_0210bc18, &g_GlobalChangePart);
+    data_0210bc18.unkfunc_02058294(&g_GlobalChangePart);
     fadeOutBlack(0x1E);
 }
 
 
 THUMB void Global::startBook()
 {
-    setMapName(s_mapBook);
+    setMapName(DefaultBookMap);
     g_GlobalChangePart.setNextPart(0x10);
-    func_02058294(data_0210bc18, &g_GlobalChangePart);
+    data_0210bc18.unkfunc_02058294(&g_GlobalChangePart);
     fadeOutBlack(0x1E);
 }
 
@@ -106,7 +104,7 @@ THUMB void Global::startSurechigai()
 {
     setMapName(s_mapSurechigai);
     g_GlobalChangePart.setNextPart(0x13);
-    func_02058294(data_0210bc18, &g_GlobalChangePart);
+    data_0210bc18.unkfunc_02058294(&g_GlobalChangePart);
     fadeOutBlack(0x1E);
 }
 
@@ -146,9 +144,9 @@ THUMB char* Global::getPrevMapName() {
 
 THUMB void Global::setMapName(const char *name) {
     char temp[32];
-    dss::DssUtils::strcpy_s(temp, 0x20, (char*)name);
-    dss::DssUtils::strcpy_s(this->prevMapName_, 0x20, this->nextMapName_);
-    dss::DssUtils::strcpy_s(this->nextMapName_, 0x20, temp);
+    dss::strcpy_s(temp, 0x20, (char*)name);
+    dss::strcpy_s(this->prevMapName_, 0x20, this->nextMapName_);
+    dss::strcpy_s(this->nextMapName_, 0x20, temp);
 }
 
 THUMB bool Global::isAreaChange() {
@@ -166,9 +164,9 @@ THUMB int Global::getFieldType() {
 
 THUMB void Global::startField()
 {
-    setMapName(s_mapField);
+    setMapName(DefaultFieldMap);
     g_GlobalChangePart.setNextPart(0xE);
-    func_02058294(data_0210bc18, &g_GlobalChangePart);
+    data_0210bc18.unkfunc_02058294(&g_GlobalChangePart);
     fadeOutBlack(0x1E);
     partChangeFlag_ = 1;
 }
@@ -187,9 +185,9 @@ THUMB void Global::startBattle()
 THUMB void Global::acceptBattle()
 {
     cmn::PlayerManager::setLock(1);
-    currentGamePart_ = func_0205810c(&data_0210bb94);
+    currentGamePart_ = data_0210bb94.unkfunc_0205810c();
     g_GlobalChangePart.setNextPart(0xD);
-    func_02058294(data_0210bc18, &g_GlobalChangePart);
+    data_0210bc18.unkfunc_02058294(&g_GlobalChangePart);
     partChangeFlag_ = 1;
     fadeOutBlack(0xF);
 }
@@ -202,9 +200,9 @@ THUMB void Global::directStartBattle()
     } else {
         SoundManager::crusingPlay();
     }
-    currentGamePart_ = func_0205810c(&data_0210bb94);
+    currentGamePart_ = data_0210bb94.unkfunc_0205810c();
     g_GlobalChangePart.setNextPart(0xD);
-    func_02058294(data_0210bc18, &g_GlobalChangePart);
+    data_0210bc18.unkfunc_02058294(&g_GlobalChangePart);
     partChangeFlag_ = 1;
     fadeOutBlack(0xF);
 }
@@ -218,7 +216,7 @@ THUMB void Global::endBattle(bool wipeout)
         cmn::g_extraMapLink.setExtraLinkTown(fightingarenaMapName_, fightingarenaPosition_, 0);
     } else if (!wipeout) {
         g_GlobalChangePart.setNextPart(currentGamePart_);
-        func_02058294(data_0210bc18, &g_GlobalChangePart);
+        data_0210bc18.unkfunc_02058294(&g_GlobalChangePart);
     } else {
         g_GlobalFlag.clear();
         g_LocalFlag.clear();
@@ -244,7 +242,7 @@ THUMB void Global::endBattle(bool wipeout)
 
 THUMB void Global::setFightingArenaMapName(const char* name, dss::Fix32Vector3& pos)
 {
-    dss::DssUtils::strcpy_s(fightingarenaMapName_, 32, (char*)name);
+    dss::strcpy_s(fightingarenaMapName_, 32, (char*)name);
     fightingarenaPosition_ = pos;
     fightingarenaFlag_ = 1;
 }
@@ -254,22 +252,22 @@ THUMB void Global::startTitle()
     status::g_Story.setChapter(0);
     setMapName(s_mapEv01);
     g_GlobalChangePart.setNextPart(0xC);
-    func_02058294(data_0210bc18, &g_GlobalChangePart);
+    data_0210bc18.unkfunc_02058294(&g_GlobalChangePart);
     fadeOutBlack(0x1E);
-    func_020559ec(0xA);
+    Sound::unkfunc_020559ec(0xA);
     partChangeFlag_ = 1;
 }
 
 THUMB void Global::startLogo()
 {
     g_GlobalChangePart.setNextPart(0);
-    func_02058294(data_0210bc18, &g_GlobalChangePart);
+    data_0210bc18.unkfunc_02058294(&g_GlobalChangePart);
     fadeOutBlack(0x1E);
 }
 
 THUMB bool Global::isNextPart(int part)
 {
-    if (part == func_02058104(&data_0210bb94)) {
+    if (part == data_0210bb94.unkfunc_02058104()) {
         return true;
     }
     return false;
@@ -279,10 +277,10 @@ THUMB void Global::fadeOutBlack(int frames)
 {
     if (g_GlobalFade.isFadeOutBlack() == 0 && g_GlobalFade.isFadeOutWhite() == 0) {
         if (g_GlobalFade.isFadeInBlack() != 0) {
-            func_020582b8(data_0210bc18, &g_GlobalFade);
+            data_0210bc18.unkfunc_020582b8(&g_GlobalFade);
         }
         g_GlobalFade.fadeOutBlack(frames);
-        func_02058294(data_0210bc18, &g_GlobalFade);
+        data_0210bc18.unkfunc_02058294(&g_GlobalFade);
     }
 }
 
@@ -290,32 +288,32 @@ THUMB void Global::fadeOutWhite(int frames)
 {
     if (g_GlobalFade.isFadeOutWhite() == 0) {
         g_GlobalFade.fadeOutWhite(frames);
-        func_02058294(data_0210bc18, &g_GlobalFade);
+        data_0210bc18.unkfunc_02058294(&g_GlobalFade);
     }
 }
 
 THUMB void Global::fadeInBlack(int frames)
 {
     g_GlobalFade.fadeInBlack(frames);
-    func_02058294(data_0210bc18, &g_GlobalFade);
+    data_0210bc18.unkfunc_02058294(&g_GlobalFade);
 }
 
 THUMB void Global::fadeInWhite(int frames)
 {
     g_GlobalFade.fadeInWhite(frames);
-    func_02058294(data_0210bc18, &g_GlobalFade);
+    data_0210bc18.unkfunc_02058294(&g_GlobalFade);
 }
 
 THUMB void Global::fadeIn(int frames)
 {
     g_GlobalFade.fadeIn(frames);
-    func_02058294(data_0210bc18, &g_GlobalFade);
+    data_0210bc18.unkfunc_02058294(&g_GlobalFade);
 }
 
 THUMB void GlobalChangePart::update()
 {
     if (g_GlobalFade.isFadeEnd()) {
-        func_020580fc(&data_0210bb94, nextPart_);
+        data_0210bb94.unkfunc_020580fc(nextPart_);
         nextPart_ = 0x1A;
     }
 }
@@ -348,18 +346,18 @@ THUMB void GlobalFade::update()
 THUMB void GlobalFade::draw()
 {
     count_++;
-    count_ = func_02008ea0(count_, 0, frames_);
+    count_ = dss::clamp<int>(count_, 0, frames_);
     brightness_ = (count_ << 4) / frames_;
     switch (state_) {
         case FADE_NONE:
             break;
         case FADE_OUT_BLACK:
             brightness_ = -brightness_;
-            brightness_ = func_02008ea0(brightness_, -16, 0);
+            brightness_ = dss::clamp<int>(brightness_, -16, 0);
             break;
         case FADE_IN_BLACK:
             brightness_ -= 16;
-            brightness_ = func_02008ea0(brightness_, -16, 0);
+            brightness_ = dss::clamp<int>(brightness_, -16, 0);
             break;
         case FADE_OUT_WHITE:
             break;
@@ -385,7 +383,7 @@ THUMB void GlobalFade::fadeOutBlack(int frames)
     count_ = 0;
     frames_ = frames;
     count_ = (-brightness_ * frames) / 16;
-    count_ = func_02008ea0(count_, 0, frames_);
+    count_ = dss::clamp<int>(count_, 0, frames_);
 }
 
 THUMB void GlobalFade::fadeOutWhite(int frames)
@@ -468,7 +466,7 @@ THUMB void GlobalWaitPart::update()
 THUMB void GlobalWaitPart::draw()
 {
     count_++;
-    count_ = func_02008ea0(count_, 0, frames_);
+    count_ = dss::clamp<int>(count_, 0, frames_);
 }
 
 THUMB bool GlobalWaitPart::isEnd()
@@ -488,6 +486,6 @@ THUMB int GlobalWaitPart::isRunning()
     return 1;
 }
 
-THUMB void GlobalGamePart::draw()
+THUMB void UnkGlobalPart::draw()
 {
 }

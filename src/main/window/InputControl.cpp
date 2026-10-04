@@ -48,7 +48,7 @@ ARM bool window::InputControl::isPlayerLock()
 
 ARM void window::InputControl::setupIcon()
 {
-    data_020ed11c.unkfunc_020273a8(icon_->check(1), icon_->check(2), icon_->check(4), icon_->check(8));
+    data_020ed11c.unkfunc_020273a8(((icon_->flag_ & 1) ? true : false), ((icon_->flag_ & 2) ? true : false), ((icon_->flag_ & 4) ? true : false), ((icon_->flag_ & 8) ? true : false));
 }
 
 ARM void window::InputControl::setNextPhase(int phase)

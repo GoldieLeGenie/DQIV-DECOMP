@@ -102,7 +102,7 @@ ARM void CasinoSlot::rotReel(int reel, unsigned short position)
 
 ARM void CasinoSlot::stopEventAnim()
 {
-    CasinoStage::getSingleton()->eventAnim(0, 0);
+    CasinoStage::getSingleton()->stage_.eventAnim(0, 0);
     for (int i = 0; i < 5; i++) {
         m_bingo_line[i] = 0;
         m_bingo_counter[i] = 0;
@@ -127,7 +127,7 @@ ARM void CasinoSlot::setLineBingo(int line)
 
 ARM void CasinoSlot::setBingoAnim(int anim)
 {
-    CasinoStage::getSingleton()->eventAnim(anim, 0);
+    CasinoStage::getSingleton()->stage_.eventAnim(anim, 0);
 }
 
 char* CasinoSlot::stageSlot = "ev05";

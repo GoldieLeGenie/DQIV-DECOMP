@@ -34,11 +34,11 @@ ARM void CameraControl::initCameraControl(dss::Fix32Vector3 position, dss::Vecto
 ARM void CameraControl::readCameraData(const char* fname, int arg)
 {
     const char* path = "data/camera/";
-    func_02088308(camera_name, sizeof(camera_name), "%s%s", path, fname);
+    dss::sprintf_s(camera_name, sizeof(camera_name), "%s%s", path, fname);
     if (data_.getAddr() != 0) {
         data_.cleanup();
     }
-    if (func_02088280(fname) == 0) {
+    if (dss::strlen(fname) == 0) {
         seqPhase_ = 1;
         maxSeqPhase_ = 0;
         return;

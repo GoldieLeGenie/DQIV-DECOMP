@@ -41,7 +41,7 @@ struct PARAM_CHARACTER_PALETTE {
 };
 
 struct PARAM_MUSIC_VOLUME {
-    unsigned int volume;         // 0x00
+    int volume;                  // 0x00
     unsigned int frame;          // 0x04
 };
 
@@ -139,13 +139,6 @@ struct __cmd_player_effect_mark : ScriptCommand {
     virtual int isEnd();
 };
 
-/* vtable 0x020be19c, object 0x020ecf44 */
-struct __cmd_character_palette : ScriptCommand {
-    virtual void initialize(char* scriptParam);
-    virtual void execute() {}
-    virtual int isEnd();
-};
-
 /* vtable 0x020be1b4, object 0x020ed034 */
 struct __cmd_music_volume : ScriptCommand {
     int m_end_vol;               // 0x04
@@ -154,6 +147,13 @@ struct __cmd_music_volume : ScriptCommand {
     int m_counter;               // 0x10
     int m_start_vol;             // 0x14
 
+    virtual void initialize(char* scriptParam);
+    virtual void execute() {}
+    virtual int isEnd();
+};
+
+/* vtable 0x020be19c, object 0x020ecf44 */
+struct __cmd_character_palette : ScriptCommand {
     virtual void initialize(char* scriptParam);
     virtual void execute() {}
     virtual int isEnd();
@@ -190,16 +190,16 @@ struct __cmd_event_chapter_title : ScriptCommand {
     virtual int isEnd();
 };
 
-extern __cmd_event_chapter_title data_020ecf40;
-extern __cmd_character_palette data_020ecf44;
-extern __cmd_key_wait_type_b data_020ecf48;
-extern __cmd_player_effect_mark data_020ecf4c;
-extern __cmd_fade_out2 data_020ecf50;
-extern __cmd_fade_in data_020ecf58;
-extern __cmd_fade_in2 data_020ecf60;
-extern __cmd_fade_out data_020ecf68;
-extern __cmd_message1_self_closing data_020ecfe8;
-extern __cmd_speak_to_player_self_closing data_020ed000;
-extern __cmd_menu_save data_020ed024;
-extern __cmd_music_volume data_020ed034;
-extern __cmd_play_music data_020ed04c;
+extern __cmd_event_chapter_title g_cmd_event_chapter_title;
+extern __cmd_character_palette g_cmd_character_palette;
+extern __cmd_key_wait_type_b g_cmd_key_wait_type_b;
+extern __cmd_player_effect_mark g_cmd_player_effect_mark;
+extern __cmd_fade_out2 g_cmd_fade_out2;
+extern __cmd_fade_in g_cmd_fade_in;
+extern __cmd_fade_in2 g_cmd_fade_in2;
+extern __cmd_fade_out g_cmd_fade_out;
+extern __cmd_message1_self_closing g_cmd_message1_self_closing;
+extern __cmd_speak_to_player_self_closing g_cmd_speak_to_player_self_closing;
+extern __cmd_menu_save g_cmd_menu_save;
+extern __cmd_music_volume g_cmd_music_volume;
+extern __cmd_play_music g_cmd_play_music;

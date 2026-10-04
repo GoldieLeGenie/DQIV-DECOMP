@@ -25,7 +25,6 @@ struct RenderObject {
 /* vtable 0x020c1c88 */
 struct RenderObject3D : RenderObject, Position {
     virtual void draw();                        // never defined: key function so the main vtable is not re-emitted (Multiply-defined)
-    ~RenderObject3D() {}
 };
 
 struct BillboardVertex {
@@ -50,6 +49,14 @@ struct Billboard : RenderObject3D {
 
     Billboard();                                // C2 func_02083da8
     ~Billboard() {}
+};
+
+struct UnkTextureBillboard : Billboard {
+    void* texture_;                             // 0xB4
+
+    void unkfunc_02058680(const BillboardVertex* vertex, const BillboardTexCoord* texCoord, void* texture);
+    void unkfunc_020586c4();
+    void unkfunc_020586d4(int a);
 };
 
 extern "C" {

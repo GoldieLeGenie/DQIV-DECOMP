@@ -84,7 +84,7 @@ THUMB void btl::BattleExecEncount::setup()
 
 THUMB bool btl::BattleExecEncount::isEnd()
 {
-    if (func_0205810c(&data_0210bb94) == 13) {
+    if (data_0210bb94.unkfunc_0205810c() == 13) {
         if (BattleAutoFeed::isEndEncountMessage()) {
             return true;
         }
@@ -108,7 +108,7 @@ THUMB void btl::BattleExecStatus::setup()
 
 THUMB bool btl::BattleExecStatus::isEnd()
 {
-    if (func_0205810c(&data_0210bb94) == 13) {
+    if (data_0210bb94.unkfunc_0205810c() == 13) {
         if (BattleAutoFeed::isEndEncountMessage() && !isNext()) {
             return true;
         }
@@ -333,7 +333,7 @@ THUMB void btl::BattleExecFirstAttack::setup()
 
 THUMB bool btl::BattleExecFirstAttack::isEnd()
 {
-    if (func_0205810c(&data_0210bb94) == 13) {
+    if (data_0210bb94.unkfunc_0205810c() == 13) {
         if (BattleAutoFeed::isEndEncountMessage()) {
             return true;
         }
@@ -608,7 +608,7 @@ THUMB void btl::BattleExecVictory38::setup()
     data_020f21f8.frames_ = 30;
     func_02084e8c(data_020f220c, 0, 0, 0);
     func_02084e8c(data_020f2244, 0, 0, 0);
-    func_02058294(data_0210bc18, &data_020f21f8);
+    data_0210bc18.unkfunc_02058294(&data_020f21f8);
     MenuAPI::closeMenu();
     counter_ = 0;
 }
@@ -656,7 +656,7 @@ THUMB bool btl::BattleExecVictory40::isEnd()
         }
         data_020f21f8.count_ = 0;
         data_020f21f8.frames_ = 5;
-        func_02058294(data_0210bc18, &data_020f21f8);
+        data_0210bc18.unkfunc_02058294(&data_020f21f8);
     }
     counter_++;
     return false;

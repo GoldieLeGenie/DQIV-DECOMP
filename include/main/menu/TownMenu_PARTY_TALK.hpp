@@ -3,6 +3,7 @@
 #include "globaldefs.h"
 #include "main/menu/MenuBase.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
+#include "ov016/TownMenu_ROOT/TownMenu_ROOT.hpp"
 
 struct TownStageManager;
 
@@ -18,7 +19,6 @@ struct TownMenu_PARTY_TALK : menu::MenuBase
 };
 
 extern TownMenu_PARTY_TALK data_ov016_02187b28;
-extern menu::MenuBase data_ov016_02187c60;
 
 extern "C" {
 }

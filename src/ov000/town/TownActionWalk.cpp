@@ -119,8 +119,8 @@ ARM int TownActionWalk::update()
         return ret;
     }
     if (searchObjectId_ == -1) {
-        searchObjectId_ = func_0204c2d4(&TownStageManager::getSingleton()->coll_);
-        searchPolyNo_ = func_0204c2dc(&TownStageManager::getSingleton()->coll_);
+        searchObjectId_ = TownStageManager::getSingleton()->coll_.getSearchObjectId();
+        searchPolyNo_ = TownStageManager::getSingleton()->coll_.getSearchPolyNo();
     }
     checkCureFloor();
     if (sekaijyuSurfaceId_ == -1) {
@@ -213,7 +213,7 @@ ARM int TownActionWalk::unkfunc_02125dcc(int mapUid)
     if ((unsigned int)(monster - 0xa7) > 1) {
         return 0;
     }
-    func_02056358(0x30);
+    ui_MsgSndSet(0x30);
     TownWindowSystem::getSingleton()->openCommonMessage();
     TownWindowSystem::getSingleton()->addCommonMessage(0xc40c6);
     TownWindowSystem::getSingleton()->addCommonMessage(0xc40d8);

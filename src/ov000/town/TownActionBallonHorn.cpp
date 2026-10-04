@@ -29,7 +29,7 @@ ARM int TownActionBallonHorn::update()
             type_ = 1;
         } else {
             TownPlayerManager::getSingleton()->setRemote(0);
-            func_02056358(0x30);
+            ui_MsgSndSet(0x30);
             TownWindowSystem::getSingleton()->openCommonMessage();
             TownWindowSystem::getSingleton()->addCommonMessage(0xc3d6d);
             SoundManager::townPlay();

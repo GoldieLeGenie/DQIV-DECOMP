@@ -21,10 +21,6 @@ namespace cmn{
     extern CommonCounterInfo g_CommonCounterInfo;
 }
 
-
-
-
-
 struct UnkTouchPanel {                           // DS touch-panel state 
     char unk_00[0x18];
     int touch_;                                  // 0x18
@@ -32,7 +28,5 @@ struct UnkTouchPanel {                           // DS touch-panel state
     int y_;                                      // 0x20
 };
 extern UnkTouchPanel data_0211a5d4;
-extern "C"  int func_0203690c();                  // isAnyKeyPush — check global pad
 
  
-

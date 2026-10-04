@@ -59,8 +59,8 @@ FightCardData FightStadiumManager::cardDataList_[MAX_CARD_COUNT] = {
 
 THUMB void FightStadiumManager::setup()
 {
-    dss::DssUtils::unkfunc_020882d4(monster_, -1, sizeof(monster_));
-    dss::DssUtils::unkfunc_020882d4(diameter_, -1, sizeof(diameter_));
+    dss::memset(monster_, -1, sizeof(monster_));
+    dss::memset(diameter_, -1, sizeof(diameter_));
     encount_ = 0;
     int index = dssrand::rand(getCardCount());
     encount_ = cardDataList_[index].encount;
@@ -76,7 +76,7 @@ THUMB void FightStadiumManager::setup()
     while (cardCount_ < MAX_GROUP_NUM && monster_[cardCount_] != -1) {
         cardCount_++;
     }
-    dss::DssUtils::unkfunc_020882d4(orderNumber_, -1, sizeof(orderNumber_));
+    dss::memset(orderNumber_, -1, sizeof(orderNumber_));
     for (int i = 0; i < cardCount_; i++) {
         short count = 0;
         for (int j = 0; j < cardCount_; j++) {

@@ -1,11 +1,4 @@
 #pragma ipa file
-
-
-struct TownModelDrawPad {
-    virtual void f();
-    virtual void g();
-};
-
 #include "ov000/town/TownCharacter.hpp"
 #include "ov000/town/TownExtraCollManager.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
@@ -40,8 +33,8 @@ ARM void TownModelDraw::setup(TOWN_CHARACTER& data)
 {
     TownCharacterBase::setup(data);
     unkfunc_0212f19c(data.charaIndex);
-    func_02058a2c(&model_, 1);
-    func_02058bcc(&model_, data_.position);
+    model_.start(1);
+    model_.setPosition(data_.position);
     dirIdx_ = 0;
     display_ = 1;
     modelIdx3d_.set(0, 0, 0);
@@ -63,28 +56,28 @@ ARM void TownModelDraw::unkfunc_0212f19c(int index)
     int anim = 0;
     OS_Wait();
     char name[128];
-    func_02088308(name, sizeof(name), "data/chr/%s.nsbmd", modelNameTable[index]);
-    func_020586e8(&model_, name, anim);
+    dss::sprintf_s(name, sizeof(name), "data/chr/%s.nsbmd", modelNameTable[index]);
+    model_.setup(name);
     int i = 0;
     bool found;
     do {
         found = false;
-        func_02088308(name, sizeof(name), "data/chr/%s_%d.nsbma", modelNameTable[index], i);
-        if (func_0207ebd4(&data_02116ce8, name)) {
+        dss::sprintf_s(name, sizeof(name), "data/chr/%s_%d.nsbma", modelNameTable[index], i);
+        if (dss::g_File.isExist(name)) {
             found = true;
-            func_020587d4(&model_, name, anim);
+            model_.unkfunc_020587d4(name, anim);
             anim++;
         }
-        func_02088308(name, sizeof(name), "data/chr/%s_%d.nsbta", modelNameTable[index], i);
-        if (func_0207ebd4(&data_02116ce8, name)) {
+        dss::sprintf_s(name, sizeof(name), "data/chr/%s_%d.nsbta", modelNameTable[index], i);
+        if (dss::g_File.isExist(name)) {
             found = true;
-            func_020587d4(&model_, name, anim);
+            model_.unkfunc_020587d4(name, anim);
             anim++;
         }
-        func_02088308(name, sizeof(name), "data/chr/%s_%d.nsbca", modelNameTable[index], i);
-        if (func_0207ebd4(&data_02116ce8, name)) {
+        dss::sprintf_s(name, sizeof(name), "data/chr/%s_%d.nsbca", modelNameTable[index], i);
+        if (dss::g_File.isExist(name)) {
             found = true;
-            func_020587d4(&model_, name, anim);
+            model_.unkfunc_020587d4(name, anim);
             anim++;
         }
         i++;
@@ -118,8 +111,8 @@ ARM void TownModelDraw::changePose(int pose)
     model_.cleanup(1);
     data_.charaIndex = pose;
     unkfunc_0212f19c(pose);
-    func_02058a2c(&model_, 1);
-    func_02058bcc(&model_, data_.position);
+    model_.start(1);
+    model_.setPosition(data_.position);
     dirIdx_ = 0;
     display_ = 1;
     modelIdx3d_.set(0, 0, 0);
@@ -130,8 +123,8 @@ ARM void TownModelDraw::restorePose()
     model_.cleanup(1);
     data_.charaIndex = defaultIndex_;
     unkfunc_0212f19c(data_.charaIndex);
-    func_02058a2c(&model_, 1);
-    func_02058bcc(&model_, data_.position);
+    model_.start(1);
+    model_.setPosition(data_.position);
     dirIdx_ = 0;
     display_ = 1;
     modelIdx3d_.set(0, 0, 0);
@@ -139,19 +132,19 @@ ARM void TownModelDraw::restorePose()
 
 ARM void TownModelDraw::requestReload()
 {
-    int anim = model_.unk_c30;
+    int anim = model_.m_animation_index;
     model_.cleanup(1);
     unkfunc_0212f19c(data_.charaIndex);
-    func_02058a2c(&model_, 1);
-    func_02058bcc(&model_, data_.position);
+    model_.start(1);
+    model_.setPosition(data_.position);
     dirIdx_ = 0;
     modelIdx3d_.set(0, 0, 0);
-    func_02058a84(&model_, anim, 1);
+    model_.startAnimation(anim, 1);
 }
 
 ARM void TownModelDraw::setAnimation(int flag)
 {
-    func_02058c3c(&model_, flag == 0);
+    model_.pause(flag == 0);
 }
 
 ARM void TownModelDraw::setPosition(dss::Fix32Vector3& pos)
@@ -159,12 +152,12 @@ ARM void TownModelDraw::setPosition(dss::Fix32Vector3& pos)
     dss::Fix32Vector3 nowPos = getPosition();
     TownExtraCollManager::getSingleton()->addMoveColl(data_.ctrlNo, type_, nowPos, pos);
     data_.position = pos;
-    func_02058bcc(&model_, pos);
+    model_.setPosition(pos);
 }
 
 ARM void TownModelDraw::setRotation(dss::Vector3<short>& rot)
 {
-    func_02058c10(&model_, rot);
+    model_.setRotationIdx(rot);
 }
 
 ARM dss::Fix32Vector3 TownModelDraw::getPosition()
@@ -184,19 +177,19 @@ ARM void TownModelDraw::setPaletteRate(unsigned char r, unsigned char g, unsigne
     int rr = status::BaseStatus::getClampValue(0, r, 0x1f);
     int gg = status::BaseStatus::getClampValue(0, g, 0x1f);
     int bb = status::BaseStatus::getClampValue(0, b, 0x1f);
-    rate.value = func_02008ea0(0, rate.value, basePalletRate_.value);
+    rate.value = dss::clamp<int>(0, rate.value, basePalletRate_.value);
     func_020860b8(model_.unk_b64, rr, gg, bb, rate);
 }
 
 ARM void TownModelDraw::setMotion(int motion, int loop)
 {
     setAnimation(1);
-    func_02058a84(&model_, motion, loop);
+    model_.startAnimation(motion, loop);
 }
 
 ARM bool TownModelDraw::isMotion()
 {
-    return model_.unk_c28 == 0;
+    return model_.m_play_flag == 0;
 }
 
 ARM void TownModelDraw::setDir(int dir)
@@ -429,5 +422,3 @@ ARM int TownModelDraw::getDir()
     return dirIdx_;
 }
 
-void TownModelDrawPad::f() {}
-void TownModelDrawPad::g() {}

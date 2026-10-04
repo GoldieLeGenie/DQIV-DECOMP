@@ -16,7 +16,7 @@
 
 THUMB int cmd_is_doorway(int* param)
 {
-    int doorway = func_0200c020();
+    int doorway = StageLink::getTownExitIndex();
     if (doorway == param[0]) {
         return 1;
     }

@@ -36,31 +36,31 @@ THUMB void MenuAPI::unkfunc_0200d3c8()
     }
     if (name != 0) {
         menu::MenuBase* menu = 0;
-        if (dss::DssUtils::unkfunc_020882b0(name, "gMaterielMenu_LOAD") == 0) {
+        if (dss::strcmp(name, "gMaterielMenu_LOAD") == 0) {
             menu = &data_ov016_02187918;
         }
-        if (dss::DssUtils::unkfunc_020882b0(name, "gCommonMenu_APITEST") == 0) {
+        if (dss::strcmp(name, "gCommonMenu_APITEST") == 0) {
             menu = &data_020ed068;
         }
-        if (dss::DssUtils::unkfunc_020882b0(name, "gTownMenu_ROOT") == 0) {
+        if (dss::strcmp(name, "gTownMenu_ROOT") == 0) {
             menu = &data_ov016_02187c60;
         }
-        if (dss::DssUtils::unkfunc_020882b0(name, "gTownMenu_MESSAGE") == 0) {
+        if (dss::strcmp(name, "gTownMenu_MESSAGE") == 0) {
             menu = &data_020ed1bc;
         }
-        if (dss::DssUtils::unkfunc_020882b0(name, "gCmmonMenu_YESNO") == 0) {
+        if (dss::strcmp(name, "gCmmonMenu_YESNO") == 0) {
             menu = &data_020ed094;
         }
-        if (dss::DssUtils::unkfunc_020882b0(name, "gTownMenu_TOWN") == 0) {
+        if (dss::strcmp(name, "gTownMenu_TOWN") == 0) {
             menu = &data_020ed11c;
         }
-        if (dss::DssUtils::unkfunc_020882b0(name, "gTownShopMenu") == 0) {
+        if (dss::strcmp(name, "gTownShopMenu") == 0) {
             menu = &data_ov016_02187b48;
         }
-        if (dss::DssUtils::unkfunc_020882b0(name, "gMaterielMenu_SURECHIGAI_ROOT") == 0) {
+        if (dss::strcmp(name, "gMaterielMenu_SURECHIGAI_ROOT") == 0) {
             menu = &data_ov016_02185dc4;
         }
-        if (dss::DssUtils::unkfunc_020882b0(name, "gMaterielMenu_SURECHIGAI_SELECT_OBJECT") == 0) {
+        if (dss::strcmp(name, "gMaterielMenu_SURECHIGAI_SELECT_OBJECT") == 0) {
             menu = &data_ov016_02185e58;
         }
         if (menu != 0) {
@@ -202,17 +202,17 @@ THUMB bool MenuAPI::isWaitMessage()
 
 THUMB int MenuAPI::isMessageWaitTrigger()
 {
-    return func_0204dfd8(data_0210b380);
+    return func_0204dfd8(s_draw);
 }
 
 THUMB void MenuAPI::clearMessageWaitTriggerSE()
 {
-    func_0204e040(data_0210b380);
+    func_0204e040(s_draw);
 }
 
 THUMB void MenuAPI::clearMessageWaitTriggerNOSE()
 {
-    func_0204e050(data_0210b380);
+    func_0204e050(s_draw);
 }
 
 THUMB void MenuAPI::openEncountMessage()
@@ -256,7 +256,7 @@ THUMB void MenuAPI::catMessage(int message)
 
 THUMB void MenuAPI::shakeMessage()
 {
-    MessageWindow* window = data_0210b380;
+    MessageWindow* window = s_draw;
     window->shake_ = 1;
     window->shakeCount_ = 0;
 }
@@ -285,12 +285,12 @@ THUMB int MenuAPI::isFinishMessageWindow()
 
 THUMB int MenuAPI::isFinishMessage()
 {
-    return func_0204e004(data_0210b380);
+    return func_0204e004(s_draw);
 }
 
 THUMB int MenuAPI::isEndMessage()
 {
-    return func_0204e018(data_0210b380);
+    return func_0204e018(s_draw);
 }
 
 THUMB void MenuAPI::suspendMessageKeyInput(int flag)

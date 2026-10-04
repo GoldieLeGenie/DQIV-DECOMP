@@ -7,7 +7,7 @@ struct CasinoSystem {
     CasinoMiniGameBase* minigame;               // 0x00
     Render render_;                             // 0x04 (DS-only)
 
-    void unkfunc_021227cc();
+    static void unkfunc_021227cc();
     CasinoSystem();
     ~CasinoSystem();
     static CasinoSystem* getSingleton();

@@ -46,7 +46,7 @@ THUMB int cmd_is_speaked(int* param)
         if (TownCharacterManager::getSingleton()->character_[index]->checkMonsterSpeak() == 0 && g_HengeNoTsue.isMonster() == 1) {
             int message = g_HengeNoTsue.getMessage(voice);
             if (message != -1) {
-                func_02056358(cmn::g_talkSound.getCharacterVoice(index));
+                ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(index));
                 TownWindowSystem::getSingleton()->openCommonMessage();
                 TownWindowSystem::getSingleton()->addCommonMessage(message);
                 cmn::PartyTalk::getSingleton()->resetPartyTalk();

@@ -186,7 +186,7 @@ ARM int PokerJudgement::judgePairs(int* threeCard, int* pairsCount)
 ARM void PokerJudgement::setWinningPosition()
 {
     for (int i = 0; i < 5; i++) {
-        PokerManager::getSingleton()->setCombinationCard(i);
+        PokerManager::getSingleton()->combinationCard_[i] = 1;
     }
 }
 
@@ -196,7 +196,7 @@ ARM void PokerJudgement::setWinningPosition(int* numberCount)
         if (numberCount[i] > 1) {
             for (int j = 0; j < 5; j++) {
                 if (i == PokerManager::getSingleton()->getCardNo(j)) {
-                    PokerManager::getSingleton()->setCombinationCard(j);
+                    PokerManager::getSingleton()->combinationCard_[j] = 1;
                 }
             }
         }
@@ -204,7 +204,7 @@ ARM void PokerJudgement::setWinningPosition(int* numberCount)
     if (sortCard_[0] == -1) {
         for (int i = 0; i < 5; i++) {
             if (PokerManager::getSingleton()->getCardNo(i) == -1) {
-                PokerManager::getSingleton()->setCombinationCard(i);
+                PokerManager::getSingleton()->combinationCard_[i] = 1;
             }
         }
     }

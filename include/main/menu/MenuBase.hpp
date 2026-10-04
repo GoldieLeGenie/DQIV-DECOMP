@@ -72,6 +72,7 @@ struct MenuItem {
 
     void setup(MENUITEM_TYPE type, CURSORTYPE cursor);
     void drawActive();
+    int getActive() { return active_; }
 };
 
 }  // namespace menu
@@ -90,6 +91,32 @@ extern "C" {
     void func_0201e6c4(menu::MenuItem* menuItem, int count, int active);
     void func_02051a7c(menu::MenuItem*);
     void func_0201e684(menu::MenuItem* menuItem, int active, int max, int x, int y);
+    void func_0201e194(int x, int y, int w, int h, int arg);
+    // ov016 MenuItem setup helpers shared by the materiel menus
+    void func_ov016_02173a40(menu::MenuItem* menuItem);
+    void func_ov016_02173af4(menu::MenuItem* menuItem, int active);
+    void func_ov016_02177318(menu::MenuItem* menuItem, int active);
+    void func_ov016_02177334(menu::MenuItem* menuItem, int count, int active);
+    void func_ov016_02177350(menu::MenuItem* menuItem, int active, int count);
+    void func_ov016_0217736c(menu::MenuItem* menuItem, int active, int count, int x, int y);
+    void func_ov016_0217742c(menu::MenuItem* menuItem, int active, int count);
+    void func_ov016_02177470(menu::MenuItem* menuItem);
+    void func_ov016_02177484(menu::MenuItem* menuItem, int count);
+    void func_ov016_021774f4(menu::MenuItem* menuItem);
+    void func_ov016_0217752c(menu::MenuItem* menuItem);
+    void func_ov016_021779b4(menu::MenuItem* menuItem);
+    void func_ov016_021779ec(menu::MenuItem* menuItem, int active, int count);
+    void func_ov016_02177a08(menu::MenuItem* menuItem, int active, int count);
+    void func_ov016_02177a24(menu::MenuItem* menuItem, int active, int count);
+    void func_ov016_02177a40(menu::MenuItem* menuItem, int active, int count);
+    void func_ov016_02177a5c(menu::MenuItem* menuItem, int active, int count);
+    void func_ov016_02177a78(menu::MenuItem* menuItem);
+    void func_ov016_02177a98(menu::MenuItem* menuItem);
+    void func_ov016_02177aac(menu::MenuItem* menuItem);
+    void func_ov016_02177acc(menu::MenuItem* menuItem, int active);
+    void func_ov016_02177ae8(menu::MenuItem* menuItem, int active);
+    void func_ov016_02177b04(menu::MenuItem* menuItem, int active);
+    void func_ov016_02177b3c(menu::MenuItem* menuItem, int active, int count);
 }
 
 #include "main/menu/MenuUpdateAssist.hpp"

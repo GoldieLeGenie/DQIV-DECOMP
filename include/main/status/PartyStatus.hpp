@@ -121,34 +121,7 @@ namespace status {
     extern PartyStatus g_Party; // 0x020c7b1c
 }
 
-
 extern status::PlayerStatus originalPlayer_[26];
 extern status::PlayerFlag originalPlayerFlag_[26];
 
-
-extern "C" {
-    int func_0200eac8(void*, int);
-    int func_0200eb7c(void*, int);
-    void func_0200ef94(void*);
-    int func_0200f6bc(status::PartyStatus* self, int playerIndex);
-    int func_0200f6e0(void*, int);
-    int func_0200f704(void*, int);
-    int func_0200f728(void*, int);
-    int func_0200ed70(int playerIndex);
-    void func_0200f034(void);                              
-    int  func_0200f5fc(status::PartyStatus* self);         
-    void func_0200e484(void);
-    int func_0201c98c(status::StageStatus* stage);
-    void func_0200f0b0(status::PartyStatus* self);
-    void func_0200e150(status::PlayerStatus*, int);
-    void func_0200f144(void);
-    int func_0200efb0(void);
-    int func_0201c9b8(status::StageStatus* stage);
-    void func_0201123c(void);
-    int  func_020100f4(void* self, int actionIndex, int* valueBMax, int* valueCMax);   /* calcRecoveryValue */
-    void func_020102ec(void* self, int *target);                                /* getBehomalaTargetIndex */
-    void func_02015b70(status::UseActionParam* useActionParam);   /* UseAction::execUse */
-    
-};
-
-
+;

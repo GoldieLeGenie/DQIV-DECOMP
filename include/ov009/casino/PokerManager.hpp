@@ -54,11 +54,5 @@ struct PokerManager {
     int changeCardType(int cardNo);
     int getCardNo(int index) { return gameCard_[index].no_; }
     int getCardType(int index) { return gameCard_[index].type_; }
-    void setCombinationCard(int index) { combinationCard_[index] = 1; }
     void setGetCoin(int get) { getCoin_ = get; }
-    int getBetCoin() { return betCoin_; }
-    void setCardPosition(int active) { cardPosition_ = active; }
-    int getCardPosition() { return cardPosition_; }
-    int getCombinationCard(int index) { return combinationCard_[index]; }
-    int getGroundSlum() { return groundSlum_; }
 };

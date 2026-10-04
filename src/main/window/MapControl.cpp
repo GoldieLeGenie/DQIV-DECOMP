@@ -30,13 +30,13 @@ ARM void window::MapControl::execute()
             }
             break;
         case TOWNMAP_VIEWING:
-            if ((data_02116d40.unkfunc_0207f280() & 1) || (data_02116d40.unkfunc_0207f280() & 2)) {
+            if ((dss::g_Pad.edge() & 1) || (dss::g_Pad.edge() & 2)) {
                 closeMap();
                 state_ = TOWMMAP_WAIT_CLOSE;
-            } else if (data_02116d40.unkfunc_0207f280() & 1) {
+            } else if (dss::g_Pad.edge() & 1) {
                 showMapMessage();
                 state_ = TOWNMAP_MESSAGE;
-            } else if (data_02116d40.unkfunc_0207f280() & 0x800) {
+            } else if (dss::g_Pad.edge() & 0x800) {
                 if (goNext(PHASE_SHOPLIST)) {
                     imageMap_->close();
                     playerLock(false);

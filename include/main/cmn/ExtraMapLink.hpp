@@ -2,6 +2,7 @@
 #include "main/cmn/CommonCalculate.hpp"
 #include "globaldefs.h"
 #include "main/dss/DssUtils.hpp"
+#include "main/global/StageLink.hpp"
 
 namespace cmn
 {
@@ -91,8 +92,5 @@ namespace cmn
 
 struct Global;
 
-extern "C" void func_0200c004(int id);
-extern "C" void func_0200c02c(int id);
-extern "C" void func_0200c010();
 extern "C" void func_020290cc(cmn::ExtraMapLink* self, int index, int nowId, int nextId, int type, const char* mapName1, const char* mapName2, dss::Fix32Vector3* offset); // cmn::ExtraMapLink::setData
 

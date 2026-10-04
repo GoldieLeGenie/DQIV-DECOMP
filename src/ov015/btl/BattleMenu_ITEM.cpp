@@ -64,7 +64,7 @@ THUMB void BattleMenu_ITEM::menuDraw()
         status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(btl::BattleMenuPlayerControl::getSingleton()->activeChara_)->haveStatusInfo_;
         int count = info->haveItem_.getCount();
         int items[12];
-        dss::DssUtils::unkfunc_020882d4(items, 0, sizeof(items));
+        dss::memset(items, 0, sizeof(items));
         for (int i = 0; i < count; i++) {
             items[i] = info->haveItem_.getItem(i);
         }

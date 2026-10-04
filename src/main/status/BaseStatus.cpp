@@ -36,28 +36,28 @@ THUMB unsigned int status::BaseStatus::getMax(unsigned int a, unsigned int b) {
 
 THUMB void status::BaseStatus::addStrength(char str)
 {
-  this->strength_ =  func_02008ea0(this->strength_ + str,0,0xff) & 0xff;
+  this->strength_ =  dss::clamp<int>(this->strength_ + str,0,0xff) & 0xff;
   return;
 }
 
 
 THUMB void status::BaseStatus::addAgility(char agi)
 {
-  this->agility_ = func_02008ea0(this->agility_ + agi,0,0xff);
+  this->agility_ = dss::clamp<int>(this->agility_ + agi,0,0xff);
   return;
 }
 
 
 THUMB void status::BaseStatus::addProtection(char pr)
 {
-  this->protection_ = func_02008ea0(this->protection_ + pr,0,0xff) & 0xff;
+  this->protection_ = dss::clamp<int>(this->protection_ + pr,0,0xff) & 0xff;
   return;
 }
 
 
 THUMB void status::BaseStatus::addWisdom(char wis)
 {  
-  this->wisdom_ = func_02008ea0(this->wisdom_ + wis,0,0xff);
+  this->wisdom_ = dss::clamp<int>(this->wisdom_ + wis,0,0xff);
   return;
 }
 

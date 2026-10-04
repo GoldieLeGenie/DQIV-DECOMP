@@ -38,5 +38,4 @@ struct TownEndrollManager {
     void draw();
     void execute();
     int isStaffRollEnd();
-    void clearScroll() { enableScroll_ = 0; }
 };

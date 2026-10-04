@@ -13,6 +13,7 @@
 #include "ov000/Commands/TownCommand.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
 #include "ov000/town/TownStageManager.hpp"
+#include "main/sound/Sound.hpp"
 
 THUMB int cmd_set_door_close(int* param)
 {
@@ -39,7 +40,7 @@ THUMB int cmd_chara_mortion_lock(int* param)
 THUMB int cmd_start_game(int* param)
 {
     g_Global.startGame();
-    func_02055998(0xf);
+    Sound::unkfunc_02055998(0xf);
     return 1;
 }
 

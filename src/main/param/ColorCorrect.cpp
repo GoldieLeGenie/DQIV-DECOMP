@@ -62,7 +62,7 @@ THUMB int param::ColorCorrect::getCorrectIndex(param::ColorCorrect *data, char *
 
     while (index < 0x21C)
     {
-        if (dss::DssUtils::unkfunc_020882b0(data[index].floor, name) == 0)
+        if (dss::strcmp(data[index].floor, name) == 0)
             return index;
         index++;
     }

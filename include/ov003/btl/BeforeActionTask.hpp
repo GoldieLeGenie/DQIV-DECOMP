@@ -16,5 +16,3 @@ namespace btl {
         virtual void execute();
     };
 }
-
-extern "C" void func_ov003_02125ccc(status::UseActionParam* param);

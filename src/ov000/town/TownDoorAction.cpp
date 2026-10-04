@@ -12,6 +12,7 @@
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/StageStatus.hpp"
+#include "main/sound/Sound.hpp"
 
 static const dss::Fix32 length(0x1800);
 
@@ -38,7 +39,7 @@ ARM int TownDoorAction::setup()
     dss::Fix32Vector3 dir;
     TownActionCalculate::getDirByIdx(dirIdx, dir);
     dss::Fix32Vector3 end = pos - dir * len;
-    int exitIndex = func_0200c020();
+    int exitIndex = StageLink::getTownExitIndex();
     func_02040b28(TownStageManager::getSingleton()->stage_.m_fld.m_coll, exitIndex, 0);
     int poly;
     short surface[2] = { 0x1000, 0x7000 };
@@ -47,7 +48,7 @@ ARM int TownDoorAction::setup()
     }
     TownStageManager::getSingleton()->getCrossPolygonOtherSurface(pos, end, surface, 2, &poly, NULL, 0);
     if (poly != -1) {
-        int obj = func_02040928(TownStageManager::getSingleton()->stage_.m_fld.m_coll, poly);
+        int obj = coll_GetObjId(TownStageManager::getSingleton()->stage_.m_fld.m_coll, poly);
         if (obj != -1) {
             int commonId = TownStageManager::getSingleton()->getMapObjCommonId(obj);
             if (isDoorObject(commonId) == true) {
@@ -78,15 +79,15 @@ ARM void TownDoorAction::execute()
         switch (doorType_) {
         case DOOR_S:
             setDoorS(backupObj_);
-            func_02055a04(0x134);
+            Sound::sePlayDirect(0x134);
             break;
         case DOOR_T:
-            func_02055a04(0x136);
+            Sound::sePlayDirect(0x136);
             setDoorT(backupObj_);
             break;
         case DOOR_W:
             setDoorW(backupObj_);
-            func_02055a04(0x135);
+            Sound::sePlayDirect(0x135);
             break;
         }
     }
@@ -157,8 +158,8 @@ ARM int TownDoorAction::startCheck()
         ret = ACTION_TYPE_DOOR;
     }
     if (message_ == 1) {
-        func_02056358(0x30);
-        int obj = func_0204c2d4(&TownStageManager::getSingleton()->coll_);
+        ui_MsgSndSet(0x30);
+        int obj = TownStageManager::getSingleton()->coll_.getSearchObjectId();
         int msg = -1;
         int count = 1;
         switch (openType_) {
@@ -228,7 +229,7 @@ ARM bool TownDoorAction::checkSurface()
         end = pos - dir * length;
         int obj = TownStageManager::getSingleton()->stage_.collCrossCheckOtherNo(start, end, poly, &dist);
         if (obj != -1) {
-            obj = func_02040928(TownStageManager::getSingleton()->stage_.m_fld.m_coll, obj);
+            obj = coll_GetObjId(TownStageManager::getSingleton()->stage_.m_fld.m_coll, obj);
             if (checkOpen(obj, TownStageManager::getSingleton()->getMapObjCommonId(obj)) == true) {
                 return true;
             }
@@ -239,7 +240,7 @@ ARM bool TownDoorAction::checkSurface()
 
 ARM bool TownDoorAction::checkObject()
 {
-    int obj = func_0204c2d4(&TownStageManager::getSingleton()->coll_);
+    int obj = TownStageManager::getSingleton()->coll_.getSearchObjectId();
     int commonId = TownStageManager::getSingleton()->getMapObjCommonId(obj);
     if (commonId == -1) {
         return false;

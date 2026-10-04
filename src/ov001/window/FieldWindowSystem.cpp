@@ -17,7 +17,7 @@ ARM FieldWindowSystem* FieldWindowSystem::getSingleton()
 
 ARM void FieldWindowSystem::initialize()
 {
-    imageMap.setup(func_ov001_02127458());
+    imageMap.setup(FieldSystem::getSingleton());
     cmdWindow_.initialize();
     cmdWindow_.registImageMap(&imageMap);
 }

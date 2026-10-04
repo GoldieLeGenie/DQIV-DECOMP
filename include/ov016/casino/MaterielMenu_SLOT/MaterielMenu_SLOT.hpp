@@ -38,11 +38,6 @@ struct MaterielMenu_SLOT : menu::MenuBase
     void gameUpdate();
     void showMessage(int messageID);
     void closeMessage();
-    void setMenuStatus(int status) { status_ = status; messageCount_ = -1; }
 };
 
 extern MaterielMenu_SLOT data_ov016_02186a14;               /* gMaterielMenu_SLOT */
-
-extern "C" {
-    void func_ov016_02177470(menu::MenuItem* menuItem);
-}
