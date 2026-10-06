@@ -4,6 +4,7 @@
 #include "main/status/StoryStatus.hpp"
 #include "main/status/GameFlag.hpp"
 
+char* p_tatop = tatop;
 const RuraMapEntry storyFlagCompare[42] = {   // 0x020b5fbc
     { 0x0F, 1 }, { 0x10, 1 }, { 0x0B, 2 }, { 0x0C, 2 }, { 0x1A, 2 }, { 0x0D, 2 },
     { 0x01, 2 }, { 0x1B, 3 }, { 0x02, 3 }, { 0x01, 3 }, { 0x0A, 4 }, { 0x1C, 4 },
@@ -13,11 +14,10 @@ const RuraMapEntry storyFlagCompare[42] = {   // 0x020b5fbc
     { 0x0E, 5 }, { 0x0F, 5 }, { 0x10, 5 }, { 0x11, 5 }, { 0x12, 5 }, { 0x13, 5 },
     { 0x14, 5 }, { 0x15, 5 }, { 0x16, 5 }, { 0x17, 5 }, { 0x18, 5 }, { 0x19, 5 }
 };
-char* p_tatop = tatop;
+char  tatop[8]   = "tatop";
 #pragma explicit_zero_data on
 int   unusedRuraData = 0;
 #pragma explicit_zero_data reset
-char  tatop[16]  = "tatop";
 int   unusedRuraBss;
 
 

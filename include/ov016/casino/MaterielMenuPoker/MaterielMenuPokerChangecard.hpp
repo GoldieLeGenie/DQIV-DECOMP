@@ -38,4 +38,4 @@ struct MaterielMenuPokerChangecard : menu::MenuBase {
     void setSoundNo();
 };
 
-extern MaterielMenuPokerChangecard data_ov016_0218739c;    /* gMaterielMenu_POKER_CHANGE_CARD */
+extern MaterielMenuPokerChangecard gMaterielMenu_POKER_CHANGECARD;

@@ -26,8 +26,8 @@ THUMB void BattleMenu_NGMESSAGE::menuUpdate()
             data_020ed1bc.close();
             close();
             if (returnMenu_ == MENU_ACTIONMENU) {
-                func_ov015_0216aa34(func_ov015_0216aa2c());
-                func_ov015_0216aa54(func_ov015_0216aa2c());
+                BattleMonsterNamePlate::getSingleton().init();
+                BattleMonsterNamePlate::getSingleton().setMonster();
                 gBattleMenu_ACTIONMENU.open();
                 gBattleMenu_ACTIONMENU.pageItem_.active_ = returnPos_;
             } else {

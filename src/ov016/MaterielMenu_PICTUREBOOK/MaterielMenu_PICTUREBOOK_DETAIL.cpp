@@ -3,6 +3,8 @@
 #include "main/status/PartyStatus.hpp"
 #include "main/status/ExcelParam.hpp"
 #include "main/status/BattleResult.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_PICTUREBOOK_DETAIL::menuSetup()
 {
@@ -10,8 +12,8 @@ THUMB void MaterielMenu_PICTUREBOOK_DETAIL::menuSetup()
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     menuItem_.enableSE_ = 0;
     bookData_ = status::excelParam.bookData_;
-    int activeItem = func_ov016_0216ff2c()->activeItem_;
-    activeMonster_ = activeItem + func_ov016_0216ff2c()->activeItemPage_ * MONSTER_COUNT_IN_PAGE;
+    int activeItem = MaterielMenuPlayerControl::getSingleton()->activeItem_;
+    activeMonster_ = activeItem + MaterielMenuPlayerControl::getSingleton()->activeItemPage_ * MONSTER_COUNT_IN_PAGE;
     navigator_.setupBase();
     navigator_.setup(1, 1, MAX_MONSTER_NO + 1);
     navigator_.setPageNo(activeMonster_);
@@ -20,12 +22,12 @@ THUMB void MaterielMenu_PICTUREBOOK_DETAIL::menuSetup()
 
 THUMB void MaterielMenu_PICTUREBOOK_DETAIL::menuExecute()
 {
-    func_ov016_02177a78(&menuItem_);
+    MenuTemplate_materiel::MATERIEL_PICTUREBOOK_MONSTERANIME(&menuItem_);
 }
 
 THUMB void MaterielMenu_PICTUREBOOK_DETAIL::menuDraw()
 {
-    func_ov016_0216fda8(activeMonster_, bookData_[activeMonster_].name);
+    unkfunc_0216fda8(activeMonster_, bookData_[activeMonster_].name);
     menuItem_.drawActive();
 }
 
@@ -36,11 +38,11 @@ THUMB void MaterielMenu_PICTUREBOOK_DETAIL::menuUpdate()
     if (result != 0) {
         if (result == 3) {
             int activeItem = activeMonster_ % MONSTER_COUNT_IN_PAGE;
-            func_ov016_0216ff2c()->activeItem_ = activeItem;
+            MaterielMenuPlayerControl::getSingleton()->activeItem_ = activeItem;
             int activeItemPage = activeMonster_ / MONSTER_COUNT_IN_PAGE;
-            func_ov016_0216ff2c()->activeItemPage_ = activeItemPage;
+            MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = activeItemPage;
             close();
-            data_ov016_0218727c.open();
+            gMaterielMenu_PICTUREBOOK_ROOT.open();
         }
         if (result == 7) {
             activeMonster_ = navigator_.getIndex(0);

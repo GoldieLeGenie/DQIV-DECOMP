@@ -22,6 +22,9 @@ namespace btl {
         short targetMonsterGroup_[4];
         short magicPosition_[26];
         static BattleMenuPlayerControl* getSingleton();
+        int getHPColor(int index) { return (index < 0) ? 0 : memberHPColor_[index]; }
+        int getCondition(int index) { return memberCondition_[index]; }
+        bool isConditionChange(int index) { return conditionChange_[index]; }
         int getPlayerItemId();
         void clear();
         void allClear();
@@ -49,7 +52,3 @@ namespace btl {
 struct CondCheckTable { int v[6]; };     // data_ov015_021764e4 
 struct CondMessageTable { int v[7]; };   // data_ov015_02176514 
 
-extern "C" {
-int func_ov015_0216b980(status::HaveStatusInfo* info);
-
-}

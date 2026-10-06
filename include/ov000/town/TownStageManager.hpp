@@ -66,8 +66,8 @@ struct TownStageManager {
     int getMapObjUid(int obj) { return stage_.m_fld.GetMapObjUid(obj); }
     int getMapObjCommonId(int obj) { return obj == -1 ? -1 : stage_.m_fld.GetMapObjCommonId(obj); }
     int getObjWallNo(int obj, int wall) { return stage_.getObjWallNo(obj, wall); }
-    void collEraseObject(int obj) { func_020409f0(stage_.m_fld.m_coll, obj); }
-    void collResetObject(int obj) { func_02040a8c(stage_.m_fld.m_coll, obj); }
+    void collEraseObject(int obj) { coll_EraseObjId(stage_.m_fld.m_coll, obj); }
+    void collResetObject(int obj) { coll_ResetObjId(stage_.m_fld.m_coll, obj); }
     void commonAnim(int obj, int frame) { stage_.commonAnim(obj, frame); }
     void setPosByObjectID(int id, dss::Fix32Vector3& pos) { stage_.setPosByObjectID(id, pos); }
     void searchFloorSurface(dss::Fix32Vector3& pos, dss::Fix32 r, dss::Fix32 len, dss::Fix32Vector3& out) { coll_.searchFloorSurface(pos, r, len, out); }

@@ -35,7 +35,7 @@ ARM void TownExtraCollManager::resetCharaColl(int charaNo, int type)
             extraCollData_[i].flag = 0;
             int objectId = extraCollData_[i].objectId;
             TownStageManager* stage = TownStageManager::getSingleton();
-            func_020409f0(stage->stage_.m_fld.m_coll, objectId);
+            coll_EraseObjId(stage->stage_.m_fld.m_coll, objectId);
         }
     }
 }

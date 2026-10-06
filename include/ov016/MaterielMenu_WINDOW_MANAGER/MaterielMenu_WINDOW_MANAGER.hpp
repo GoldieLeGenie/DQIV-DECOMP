@@ -27,5 +27,3 @@
 #include "ov035/MaterielMenu_EXTRA_NENE/MaterielMenu_EXTRA_NENE.hpp"
 #include "ov036/MaterielMenuExtraChangeHostage/MaterielMenuExtraChangeHostage.hpp"
 
-/* menus that are not decompiled yet */
-extern menu::MenuBase data_ov016_02185ef0;                  /* surechigai menu opened by MAKE_TAISHI */

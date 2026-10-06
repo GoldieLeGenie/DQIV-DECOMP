@@ -18,8 +18,10 @@ struct UnkSprite2D : RenderObject {
 
     UnkSprite2D();
     void unkfunc_02084534(int x, int y);
+    void unkfunc_02084548(dss::Fix32 x, dss::Fix32 y);
     void unkfunc_0208456c(int w, int h);
     void unkfunc_02084578(int u0, int v0, int u1, int v1);
+    void unkfunc_02084590();
 };
 
 struct UnkMenuSprite {

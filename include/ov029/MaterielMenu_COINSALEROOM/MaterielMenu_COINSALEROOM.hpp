@@ -44,9 +44,6 @@ struct MaterielMenu_COINSALEROOM_BUY : menu::MenuBase
     void showMessage(int messageID);
 };
 
-extern MaterielMenu_COINSALEROOM_BUY data_ov016_021859e0;       /* gMaterielMenu_COINSALEROOM_BUY */
-extern MaterielMenu_COINSALEROOM_ROOT data_ov016_021861ec;      /* gMaterielMenu_COINSALEROOM_ROOT */
+extern MaterielMenu_COINSALEROOM_BUY gMaterielMenu_COINSALEROOM_BUY;
+extern MaterielMenu_COINSALEROOM_ROOT gMaterielMenu_COINSALEROOM_ROOT;
 
-extern "C" {
-    void func_ov016_0216fd34(int coin, int flag);
-}

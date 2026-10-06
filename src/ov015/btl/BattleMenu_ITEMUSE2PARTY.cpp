@@ -15,13 +15,13 @@ THUMB void BattleMenu_ITEMUSE2PARTY::menuSetup()
 THUMB void BattleMenu_ITEMUSE2PARTY::menuExecute()
 {
     navigator_.setup(2, 2, unk_ec);
-    func_ov015_0216c63c(&menuItem_, unk_ec);
-    func_ov015_0216c5c4(&cancelItem_);
+    MenuTemplate_battle::BATTLE_PARTY_2x2(&menuItem_, unk_ec);
+    MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
 }
 
 THUMB void BattleMenu_ITEMUSE2PARTY::menuDraw()
 {
-    func_ov015_0216bae8();
+    unkfunc_0216bae8();
     menuItem_.drawActive();
 }
 
@@ -31,7 +31,7 @@ THUMB void BattleMenu_ITEMUSE2PARTY::menuUpdate()
         int chara = btl::BattleMenuPlayerControl::getSingleton()->activeChara_;
         status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(chara)->haveStatusInfo_;
         if (info->isEquipEnable(info->haveItem_.getItem(btl::BattleMenuPlayerControl::getSingleton()->activeItem_))) {
-            data_ov015_02179c10.open();
+            gUnkBattleMenu_0216cf44.open();
         } else {
             gBattleMenu_ITEM.open();
         }

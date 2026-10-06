@@ -137,7 +137,7 @@ THUMB void TownMenu_PARTY_TALK::menuSetup()
         }
     } else {
         close();
-        data_ov016_02187c60.stat_ = menu::MenuBase::MENUBASE_STAT_OK;
+        gTownMenu_ROOT.stat_ = menu::MenuBase::MENUBASE_STAT_OK;
     }
 }
 
@@ -149,7 +149,7 @@ THUMB void TownMenu_PARTY_TALK::menuUpdate()
             data_020ed1bc.close();
             if (unk_1c == 2) {
                 close();
-                data_ov016_02187c60.stat_ = menu::MenuBase::MENUBASE_STAT_OK;
+                gTownMenu_ROOT.stat_ = menu::MenuBase::MENUBASE_STAT_OK;
                 return;
             }
             unk_1c = 2;

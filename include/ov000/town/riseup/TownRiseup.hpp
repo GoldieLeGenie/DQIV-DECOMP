@@ -8,8 +8,7 @@
 #include "main/cmn/CommonEffect.hpp"
 #include "main/cmn/CommonEffectResource.hpp"
 
-struct BillboardItem : Billboard {
-    void* texture_;                             // 0xB4
+struct BillboardItem : UnkTextureBillboard {
     DataObject data_;                           // 0xB8
 
     BillboardItem();
@@ -19,6 +18,12 @@ struct BillboardItem : Billboard {
     virtual void draw();
     void cleanup();
 };
+
+extern "C" {
+    void func_02067b88(const void* src, void* dst);              // MI_UncompressLZ8
+    void func_02067c1c(const void* src, void* dst);              // MI_UncompressHuffman
+    void func_02067cf4(const void* src, void* dst);              // MI_UncompressRL8
+}
 
 /* vtable 0x02147b0c */
 struct BillboardItemResource : cmn::ResourceStorage {

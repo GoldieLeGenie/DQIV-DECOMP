@@ -52,24 +52,44 @@ struct COLL_FILE {
     COLL_HEADER header;                         // 0x10
 };
 
+enum COLL_ADD_RESULT_TYPE {
+    MEMORY_ALLOC_ERROR,
+    ALLOC_MAX_OVER_ERROR,
+    NUM_MAX_OVER_ERROR,
+    RESULT_OK
+};
+
 extern "C" {
+    int coll_init(COLL_HEADER* header, NNSFndAllocator* allocator);
     int coll_GetPoly(COLL_HEADER* header, int poly_no, COLL_POLY* poly);
     int coll_Id2PolyNo(COLL_HEADER* header, int surface_id);
+    fx32 coll_GetCrossPoint3D(VecFx32* point, VecFx32* vertex, VecFx32* normal, VecFx32* cross);
+    int coll_CheckPolyPointOne(COLL_POLY* poly, VecFx32* point);
+    int coll_CheckPolyPoint(COLL_POLY* poly, VecFx32* point);
     int coll_CheckLinePoint(const VecFx32* posP, fx32 r, const VecFx32* posA, const VecFx32* posB, const VecFx32* nml, VecFx32* cross);
+    int coll_PreSearchWallPoly(COLL_HEADER* header, VecFx32* point0, VecFx32* point1);
+    int coll_CheckWallNo(COLL_HEADER* header, VecFx32* center, fx32 r, int start, VecFx32* ret);
+    int coll_GetCollLinePosL(COLL_LINE* line, int size, short val);
+    int coll_GetCollLinePosG(COLL_LINE* line, int size, short val);
+    int coll_PreSearchFloorPoly(COLL_HEADER* header, VecFx32* point);
     int coll_SearchFloorPoly(COLL_HEADER* header, VecFx32* point, fx32 height, VecFx32* ret);
     int coll_GetNextMove(COLL_HEADER* header, VecFx32* old_center, VecFx32* center, fx32 r, VecFx32* ret);
     int coll_GetObjId(COLL_HEADER* header, int poly_no);
     int coll_GetSurface(COLL_HEADER* header, int poly_no);
+    void coll_EraseObjId(COLL_HEADER* header, int obj_id);
+    void coll_ResetObjId(COLL_HEADER* header, int obj_id);
+    int coll_GetPolyNoBySurface(COLL_HEADER* header, int surface_id, int start);
     int coll_GetPolyNoByMapObj(COLL_HEADER* header, int obj_id, int start);
+    fx32 get_xz_len(VecFx32* a, VecFx32* b);
+    void coll_MovePolyPos(COLL_HEADER* header, int poly_no, COLL_POLY* new_poly);
+    void coll_AddPolyPos(COLL_HEADER* header, int poly_no, VecFx32* add_vec);
+    int coll_PreSearchPoly(COLL_HEADER* header, VecFx32* point0, VecFx32* point1);
     int coll_TriangleIntersect(VecFx32* pos, VecFx32* dir, COLL_POLY* poly, int flag, fx32* ret_t, fx32* ret_u, fx32* ret_v);
     int coll_CrossCheck(COLL_HEADER* header, VecFx32* pos, VecFx32* dir, fx32 len, int start, fx32* ret_len);
     int coll_SearchFloorPoly2(COLL_HEADER* header, VecFx32* point, fx32 height, int start, fx32 judgeLen, VecFx32* ret);
+    int collCheckA(VecFx32* bboxA, VecFx32* bboxB, VecFx32* point);
+    COLL_ADD_RESULT_TYPE coll_AddCollPoly2(int extraNo, int polyNo, COLL_HEADER* header, COLL_POLY* new_poly, NNSFndAllocator* allocator, int& allocFlag);
+
     int coll_GetNextMoveBox(COLL_HEADER* header, VecFx32* old_center, VecFx32* center, fx32 r, VecFx32* ret);
-    int   func_0203f368(COLL_HEADER* coll, NNSFndAllocator* allocator);    // coll_init
-    void  func_020409f0(COLL_HEADER* coll, int obj);
-    void  func_02040a8c(COLL_HEADER* coll, int obj);
-    int   func_02040b28(COLL_HEADER* coll, int surface, int index);
-    void  func_02041108(COLL_HEADER* coll, int poly, VecFx32* add);        // coll_AddPolyPos
-    int   func_02041afc(int id, int face, COLL_HEADER* coll, COLL_POLY* poly, void* work, int flag);
-    int   func_02053abc(COLL_HEADER* coll, int obj, int wall);
+    int func_02053abc(COLL_HEADER* coll, int obj, int wall);
 }

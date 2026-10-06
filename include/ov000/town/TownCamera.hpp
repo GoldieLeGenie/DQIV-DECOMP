@@ -5,7 +5,6 @@
 #include "main/cmn/MoveBase.hpp"
 
 extern int data_020f22c0;
-extern short cameraParam[4];
 
 struct TownCamera {
     dss::DualCamera camera_;                         // 0x000

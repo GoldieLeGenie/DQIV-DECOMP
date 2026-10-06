@@ -18,7 +18,7 @@ struct TownMenu_PARTY_TALK : menu::MenuBase
     void setLeaderMacro(int sortIndex);
 };
 
-extern TownMenu_PARTY_TALK data_ov016_02187b28;
+extern TownMenu_PARTY_TALK gTownMenu_PARTY_TALK;
 
 extern "C" {
 }

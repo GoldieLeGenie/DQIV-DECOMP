@@ -5,6 +5,7 @@
 extern "C" {
     void func_02065604(unsigned int fovySin, unsigned int fovyCos, fx32 aspect, fx32 n, fx32 f, fx32 scaleW, int load, MtxFx44* mtx);    // G3i_PerspectiveW_
     void func_02065a98(const VecFx32* camPos, const VecFx32* camUp, const VecFx32* target, int load, MtxFx43* mtx);                       // G3i_LookAt_
+    void func_020657d4(fx32 t, fx32 b, fx32 l, fx32 r, fx32 n, fx32 f, fx32 scaleW, int load, MtxFx44* mtx);                           // G3i_OrthoW_
     void func_02065c9c(fx32 s, fx32 c);                                                                                                  // G3_RotZ
     void func_02065c24(fx32 s, fx32 c);                                                                                                  // G3_RotX
     void func_02065c60(fx32 s, fx32 c);                                                                                                  // G3_RotY
@@ -29,6 +30,12 @@ typedef struct {
     fx16 depth;
 } GXBoxTestParam;
 
+inline void G3_Viewport(int x1, int y1, int x2, int y2) {
+    REG_GFX_FIFO_VIEWPORT = x1 | (y1 << 8) | (x2 << 16) | (y2 << 24);
+}
+inline void G3_StoreMtx(int num) {
+    REG_GFX_FIFO_MATRIX_STORE = num;
+}
 inline void G3_MtxMode(int mode) {
     REG_GFX_FIFO_MATRIX_MODE = mode;
 }
@@ -56,6 +63,9 @@ inline void G3_MaterialColorDiffAmb(unsigned int diffuse, unsigned int ambient, 
 }
 inline void G3_MaterialColorSpecEmi(unsigned int specular, unsigned int emission, int isShininess) {
     REG_GFX_FIFO_MATERIAL_SPECULAR_EMISSION = specular | (emission << 16) | (isShininess ? 0x8000 : 0);
+}
+inline void G3_TexImageParam(int texFmt, int texGen, int sSize, int tSize, int repeat, int flip, int pltt0, unsigned int addr) {
+    REG_GFX_FIFO_TEXTURE_PARAM = (addr >> 3) | (texFmt << 26) | (texGen << 30) | (sSize << 20) | (tSize << 23) | (pltt0 << 29) | (repeat << 16) | (flip << 18);
 }
 inline void G3_Begin(int primitive) {
     REG_GFX_FIFO_POLYGONS_BEGIN = primitive;

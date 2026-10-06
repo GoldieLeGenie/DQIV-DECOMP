@@ -29,10 +29,30 @@ struct RenderObject3D : RenderObject, Position {
 
 struct BillboardVertex {
     dss::Vector2<dss::Fix16> v[4];
+
+    BillboardVertex() {}
+    BillboardVertex(const dss::Vector2<dss::Fix16>& v0, const dss::Vector2<dss::Fix16>& v1,
+                    const dss::Vector2<dss::Fix16>& v2, const dss::Vector2<dss::Fix16>& v3)
+    {
+        v[0] = v0;
+        v[1] = v1;
+        v[2] = v2;
+        v[3] = v3;
+    }
 };
 
 struct BillboardTexCoord {
     dss::Vector2<dss::Fix32> v[4];
+
+    BillboardTexCoord() {}
+    BillboardTexCoord(const dss::Vector2<dss::Fix32>& v0, const dss::Vector2<dss::Fix32>& v1,
+                      const dss::Vector2<dss::Fix32>& v2, const dss::Vector2<dss::Fix32>& v3)
+    {
+        v[0] = v0;
+        v[1] = v1;
+        v[2] = v2;
+        v[3] = v3;
+    }
 };
 
 /* vtable 0x020c4404 */
@@ -51,7 +71,10 @@ struct Billboard : RenderObject3D {
     ~Billboard() {}
 };
 
+/* vtable 0x020c1c44 */
 struct UnkTextureBillboard : Billboard {
+    virtual void draw();                        // never defined: key function so the main vtable is not re-emitted
+
     void* texture_;                             // 0xB4
 
     void unkfunc_02058680(const BillboardVertex* vertex, const BillboardTexCoord* texCoord, void* texture);

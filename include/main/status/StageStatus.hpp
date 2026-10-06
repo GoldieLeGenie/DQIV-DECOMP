@@ -147,7 +147,7 @@ namespace status{
         void pushCameraAngle(dss::Vector3short pos);
         dss::Vector3short * popCameraAngle();
         void setMapVeil(int flag);
-        void getMapVeil(int x, int y);
+        void setMapVeil(int x, int y, int flag);
         int isMapVeil(int x, int y);
         void setSymbolFlag(int index);
         int getSymbolFlag(int index);

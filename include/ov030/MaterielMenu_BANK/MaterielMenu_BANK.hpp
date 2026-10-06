@@ -60,12 +60,8 @@ struct MaterielMenu_BANK_DRAW : menu::MenuBase
     void cancelDrawfrom();
 };
 
-extern MaterielMenu_BANK_PUTIN data_ov016_021863c0;     /* gMaterielMenu_BANK_PUTIN */
-extern MaterielMenu_BANK_DRAW data_ov016_02186500;      /* gMaterielMenu_BANK_DRAW */
+extern MaterielMenu_BANK_PUTIN gMaterielMenu_BANK_PUTIN;
+extern MaterielMenu_BANK_DRAW gMaterielMenu_BANK_DRAW;
 
-extern "C" {
-    void func_ov016_0216fd00(int a, int b, int money);
-    void func_ov016_0216fcf0(void);
-}
 
-extern MaterielMenu_BANK_ROOT data_ov016_02186150;          /* gMaterielMenu_BANK_ROOT */
+extern MaterielMenu_BANK_ROOT gMaterielMenu_BANK_ROOT;

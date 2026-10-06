@@ -31,7 +31,7 @@ THUMB void CommonMenu_YESNO::menuSetup()
 
 THUMB void CommonMenu_YESNO::menuExecute()
 {
-    func_02051a60(&menuItem_, yesNoItemData, 1, 2, 2);
+    menuItem_.setMenuItem(yesNoItemData, 1, 2, 2);
 }
 
 THUMB void CommonMenu_YESNO::menuDraw()
@@ -66,7 +66,7 @@ THUMB void CommonMenu_YESNO::menuUpdate()
         case 4:
             if (superCancel_ != 0) {
                 if (MenuAPI::isTownMenuRoot()) {
-                    data_ov016_02187c60.stat_ = MENUBASE_STAT_CANCEL;
+                    gTownMenu_ROOT.stat_ = MENUBASE_STAT_CANCEL;
                     MenuAPI::clearMenuAll();
                 }
                 stat_ = MENUBASE_STAT_CANCEL;

@@ -30,8 +30,8 @@ THUMB void BattleMenu_ARRAY_ALL::menuExecute()
         count++;
     }
     navigator_.setup(5, 2, count);
-    func_ov015_0216c6c0(&menuItem_, menuItem_.active_, count);
-    func_ov015_0216c5c4(&cancelItem_);
+    MenuTemplate_battle::BATTLE_ARRAYALL_5x2(&menuItem_, menuItem_.active_, count);
+    MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
 }
 
 THUMB void BattleMenu_ARRAY_ALL::menuDraw()
@@ -65,7 +65,7 @@ THUMB void BattleMenu_ARRAY_ALL::menuDraw()
         list[num] = -1;
         num++;
     }
-    func_ov015_0216bec8(list, num, unk_1c, unk_2c);
+    unkfunc_0216bec8(list, num, unk_1c, unk_2c);
     menuItem_.drawActive();
     cancelItem_.drawActive();
     int actionCount;
@@ -82,7 +82,7 @@ THUMB void BattleMenu_ARRAY_ALL::menuDraw()
                 actionNum++;
             }
         }
-        func_ov015_0216c524(actions, actionNum, chara);
+        unkfunc_0216c524(actions, actionNum, chara);
     }
 }
 

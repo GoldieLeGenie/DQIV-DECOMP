@@ -615,7 +615,7 @@ THUMB void btl::BattleActorAnimation::gattaiSlimeStart(status::CharacterStatus* 
                 mgr = btl::BattleMonsterDraw2::getSingleton();
                 mgr->monsters_[ctrlId].setPosition(pos);
                 SoundManager::playSe(705, 0);
-                func_0204d0c4(107);
+                GameMonster::setupTexture(107);
             } else {
                 btl::BattleMonsterDraw2::getSingleton()->monsters_[ctrlId].disappearGattaiSlime();
                 actor->haveStatusInfo_.setMonsterChange(true);
@@ -664,7 +664,7 @@ THUMB void btl::BattleActorAnimation::gattaiSlime(status::CharacterStatus* actor
 
     actor->haveStatusInfo_.drawCtrlId_ = ctrlId;
     actor->haveStatusInfo_.drawCtrlId_ = ctrlId;
-    func_0204d0dc(107);
+    GameMonster::cleanupTexture(107);
 }
 
 THUMB void btl::BattleActorAnimation::setMonsterChangeSetup(status::CharacterStatus* actor)
@@ -673,7 +673,7 @@ THUMB void btl::BattleActorAnimation::setMonsterChangeSetup(status::CharacterSta
 
     if (actor->haveStatusInfo_.isMonsterChange()) {
         if (!actor->haveStatusInfo_.isDisableTextureCache()) {
-            func_0204d0c4(actor->haveBattleStatus_.index_);
+            GameMonster::setupTexture(actor->haveBattleStatus_.index_);
         }
         monsterChangeCount = 1;
     }
@@ -718,7 +718,7 @@ THUMB void btl::BattleActorAnimation::setMonsterChange(status::CharacterStatus* 
 
     int index = actor->haveBattleStatus_.index_;
     if (!actor->haveStatusInfo_.isDisableTextureCache()) {
-        func_0204d0dc(index);
+        GameMonster::cleanupTexture(index);
     }
     actor->haveStatusInfo_.setDisableTextureCache(false);
 

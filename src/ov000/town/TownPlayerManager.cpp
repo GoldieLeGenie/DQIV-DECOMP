@@ -329,12 +329,12 @@ ARM void TownPlayerManager::normalExec()
 {
     if (!cmn::PlayerManager::isLock()) {
         checkCommandEnd();
-        g_cmnPartyInfo.ctrlID_ = 1;
+        g_cmnPartyInfo.partyTalk = 1;
         if (g_Global.partChangeFlag_ == 0 && encount::Encount::getSingleton()->isEncounted() == 0 && remoteFlag_ == 0) {
             if (dss::g_Pad.edge() & 1) {
                 setPlayerCommand(PUSH_BENRI_BUTTON);
                 TownCharacterManager::getSingleton()->search_ = 1;
-                g_cmnPartyInfo.ctrlID_ = 0;
+                g_cmnPartyInfo.partyTalk = 0;
             }
         }
         player_.execute();
@@ -1124,15 +1124,15 @@ ARM void TownPlayerManager::setMessage()
 {
     if (TownWindowSystem::getSingleton()->town_message_ == 1) {
         TownWindowSystem::getSingleton()->town_message_ = 0;
-        g_cmnPartyInfo.ctrlID_ = 0;
+        g_cmnPartyInfo.partyTalk = 0;
         return;
     }
     if (TownWindowSystem::getSingleton()->isOpen() == 1) {
-        g_cmnPartyInfo.ctrlID_ = 0;
+        g_cmnPartyInfo.partyTalk = 0;
         return;
     }
     if (encount::Encount::getSingleton()->isEncounted() == 1) {
-        g_cmnPartyInfo.ctrlID_ = 0;
+        g_cmnPartyInfo.partyTalk = 0;
         return;
     }
     switch (searchAction_) {

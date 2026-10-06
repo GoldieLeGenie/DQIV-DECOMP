@@ -37,5 +37,5 @@ extern const RuraMapEntry storyFlagCompare[42];   // 0x020b5fbc
 
 extern char* p_tatop;
 extern int   unusedRuraData;
-extern char  tatop[16];
+extern char  tatop[8];
 extern int   unusedRuraBss;

@@ -23,14 +23,14 @@ THUMB void BattleMenu_ARRAYMENU::menuSetup()
 
 THUMB void BattleMenu_ARRAYMENU::menuExecute()
 {
-    func_ov015_0216c650(&menuItem_, unk_1c);
-    func_ov015_0216c5c4(&cancelItem_);
+    MenuTemplate_battle::BATTLE_ARRAYMENU_2x1(&menuItem_, unk_1c);
+    MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
 }
 
 THUMB void BattleMenu_ARRAYMENU::menuDraw()
 {
     if (!data_020ed1bc.isOpen()) {
-        func_ov015_0216bd94();
+        unkfunc_0216bd94();
         menuItem_.drawActive();
     }
 }

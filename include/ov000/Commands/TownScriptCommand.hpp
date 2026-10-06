@@ -550,6 +550,24 @@ struct __cmd_player_move2_jump : ScriptCommand {
     virtual int isEnd();
 };
 
+/* vtable 0x021489c0, object 0x0215fc4c */
+struct __cmd_party_move_overlap : ScriptCommand {
+    virtual void initialize(char* scriptParam);
+    virtual void execute() {}
+    virtual void terminate() {}
+    virtual int isEnd();
+};
+
+/* vtable 0x02148900, object 0x0215fcf0 */
+struct __cmd_player_rot : ScriptCommand {
+    int endFlag_;                   // 0x04
+
+    virtual void initialize(char* scriptParam);
+    virtual void execute() {}
+    virtual void terminate() {}
+    virtual int isEnd();
+};
+
 /* vtable 0x02148858, object 0x0215fba4 */
 struct __cmd_character_move : ScriptCommand {
     virtual void initialize(char* scriptParam);
@@ -694,6 +712,22 @@ struct __cmd_character_action_gaze : ScriptCommand {
     virtual int isEnd();
 };
 
+/* vtable 0x02148f18, object 0x0215fc34 */
+struct __cmd_character_action_jump : ScriptCommand {
+    virtual void initialize(char* scriptParam);
+    virtual void execute() {}
+    virtual void terminate() {}
+    virtual int isEnd();
+};
+
+/* vtable 0x02148eb8, object 0x0215fbd4 */
+struct __cmd_character_normal_jump : ScriptCommand {
+    virtual void initialize(char* scriptParam);
+    virtual void execute() {}
+    virtual void terminate() {}
+    virtual int isEnd();
+};
+
 /* vtable 0x02148e70, object 0x0215fc68 */
 struct __cmd_furniture_move : ScriptCommand {
     int m_index;                     // 0x04
@@ -709,6 +743,18 @@ struct __cmd_furniture_move2 : ScriptCommand {
 
     virtual void initialize(char* scriptParam);
     virtual void terminate() {}
+    virtual int isEnd();
+};
+
+/* vtable 0x02148db0, object 0x02160150 */
+struct __cmd_map_texture_scale : ScriptCommand {
+    int frame_;                      // 0x04
+    int counter_;                    // 0x08
+    fx32 scaleX_;                    // 0x0C
+    fx32 scaleY_;                    // 0x10
+
+    virtual void initialize(char* scriptParam);
+    virtual void execute();
     virtual int isEnd();
 };
 
@@ -762,18 +808,6 @@ struct __cmd_map_blend_color : ScriptCommand {
     virtual int isEnd();
 };
 
-/* vtable 0x02148db0, object 0x02160150 */
-struct __cmd_map_texture_scale : ScriptCommand {
-    int frame_;                      // 0x04
-    int counter_;                    // 0x08
-    fx32 scaleX_;                    // 0x0C
-    fx32 scaleY_;                    // 0x10
-
-    virtual void initialize(char* scriptParam);
-    virtual void execute();
-    virtual int isEnd();
-};
-
 /* vtable 0x02148b88, object 0x021601bc */
 struct __cmd_map_blend_init : ScriptCommand {
     dss::Fix32Vector3 rate_;         // 0x04
@@ -783,6 +817,15 @@ struct __cmd_map_blend_init : ScriptCommand {
     virtual void initialize(char* scriptParam);
     virtual void execute();
     virtual void terminate() {}
+    virtual int isEnd();
+};
+
+/* vtable 0x02148b10, object 0x0215fca0 */
+struct __cmd_riseup_move : ScriptCommand {
+    int m_index;                     // 0x04
+
+    virtual void initialize(char* scriptParam);
+    virtual void execute() {}
     virtual int isEnd();
 };
 
@@ -826,6 +869,38 @@ struct __cmd_map_camera_gaze : ScriptCommand {
     virtual int isEnd();
 };
 
+/* vtable 0x021489f0, object 0x0215fb88 */
+struct __cmd_camera_change_distance : ScriptCommand {
+    virtual void initialize(char* scriptParam);
+    virtual void execute() {}
+    virtual void terminate() {}
+    virtual int isEnd();
+};
+
+/* vtable 0x021489d8, object 0x0215fbfc */
+struct __cmd_camera_move_pov : ScriptCommand {
+    virtual void initialize(char* scriptParam);
+    virtual void execute() {}
+    virtual void terminate() {}
+    virtual int isEnd();
+};
+
+/* vtable 0x02148990, object 0x0215fc24 */
+struct __cmd_camera_reset_distance : ScriptCommand {
+    virtual void initialize(char* scriptParam);
+    virtual void execute() {}
+    virtual void terminate() {}
+    virtual int isEnd();
+};
+
+/* vtable 0x02148978, object 0x0215fb9c */
+struct __cmd_camera_move_to_player : ScriptCommand {
+    virtual void initialize(char* scriptParam);
+    virtual void execute() {}
+    virtual void terminate() {}
+    virtual int isEnd();
+};
+
 /* vtable 0x02148948, object 0x0215fd10 */
 struct __cmd_map_event_camera : ScriptCommand {
     int count_;                      // 0x04
@@ -834,15 +909,6 @@ struct __cmd_map_event_camera : ScriptCommand {
     virtual void initialize(char* scriptParam);
     virtual void execute();
     virtual void terminate() {}
-    virtual int isEnd();
-};
-
-/* vtable 0x02148b10, object 0x0215fca0 */
-struct __cmd_riseup_move : ScriptCommand {
-    int m_index;                     // 0x04
-
-    virtual void initialize(char* scriptParam);
-    virtual void execute() {}
     virtual int isEnd();
 };
 
@@ -885,22 +951,17 @@ struct __cmd_map_restore_back_color : ScriptCommand {
     virtual int isEnd();
 };
 
-/* vtable 0x021489c0, object 0x0215fc4c */
-struct __cmd_party_move_overlap : ScriptCommand {
+/* vtable 0x02148888, object 0x0215fbbc */
+struct __cmd_charcter_3d_motion : ScriptCommand {
     virtual void initialize(char* scriptParam);
     virtual void execute() {}
-    virtual void terminate() {}
     virtual int isEnd();
 };
 
-/* vtable 0x02148810, object 0x021600f4 */
-struct __cmd_furniture_open : ScriptCommand {
-    int unk_04;                      // 0x04
-    int uid_;                        // 0x08
-
+/* vtable 0x02148870, object 0x0215fbec */
+struct __cmd_charcter_motion : ScriptCommand {
     virtual void initialize(char* scriptParam);
     virtual void execute() {}
-    virtual void terminate() {}
     virtual int isEnd();
 };
 
@@ -914,58 +975,11 @@ struct __cmd_set_party_order : ScriptCommand {
     virtual int isEnd();
 };
 
-/* vtable 0x02148f18, object 0x0215fc34 */
-struct __cmd_character_action_jump : ScriptCommand {
-    virtual void initialize(char* scriptParam);
-    virtual void execute() {}
-    virtual void terminate() {}
-    virtual int isEnd();
-};
+/* vtable 0x02148810, object 0x021600f4 */
+struct __cmd_furniture_open : ScriptCommand {
+    int unk_04;                      // 0x04
+    int uid_;                        // 0x08
 
-/* vtable 0x02148eb8, object 0x0215fbd4 */
-struct __cmd_character_normal_jump : ScriptCommand {
-    virtual void initialize(char* scriptParam);
-    virtual void execute() {}
-    virtual void terminate() {}
-    virtual int isEnd();
-};
-
-/* vtable 0x021489f0, object 0x0215fb88 */
-struct __cmd_camera_change_distance : ScriptCommand {
-    virtual void initialize(char* scriptParam);
-    virtual void execute() {}
-    virtual void terminate() {}
-    virtual int isEnd();
-};
-
-/* vtable 0x02148900, object 0x0215fcf0 */
-struct __cmd_player_rot : ScriptCommand {
-    int endFlag_;                   // 0x04
-
-    virtual void initialize(char* scriptParam);
-    virtual void execute() {}
-    virtual void terminate() {}
-    virtual int isEnd();
-};
-
-/* vtable 0x02148990, object 0x0215fc24 */
-struct __cmd_camera_reset_distance : ScriptCommand {
-    virtual void initialize(char* scriptParam);
-    virtual void execute() {}
-    virtual void terminate() {}
-    virtual int isEnd();
-};
-
-/* vtable 0x021489d8, object 0x0215fbfc */
-struct __cmd_camera_move_pov : ScriptCommand {
-    virtual void initialize(char* scriptParam);
-    virtual void execute() {}
-    virtual void terminate() {}
-    virtual int isEnd();
-};
-
-/* vtable 0x02148978, object 0x0215fb9c */
-struct __cmd_camera_move_to_player : ScriptCommand {
     virtual void initialize(char* scriptParam);
     virtual void execute() {}
     virtual void terminate() {}
@@ -985,20 +999,6 @@ struct __cmd_fadeout_character : ScriptCommand {
     virtual void initialize(char* scriptParam);
     virtual void execute() {}
     virtual void terminate() {}
-    virtual int isEnd();
-};
-
-/* vtable 0x02148888, object 0x0215fbbc */
-struct __cmd_charcter_3d_motion : ScriptCommand {
-    virtual void initialize(char* scriptParam);
-    virtual void execute() {}
-    virtual int isEnd();
-};
-
-/* vtable 0x02148870, object 0x0215fbec */
-struct __cmd_charcter_motion : ScriptCommand {
-    virtual void initialize(char* scriptParam);
-    virtual void execute() {}
     virtual int isEnd();
 };
 
@@ -1227,87 +1227,87 @@ struct __cmd_the_end : ScriptCommand {
     virtual int isEnd();
 };
 
-extern __cmd_camera_change_distance data_ov000_0215fb88;
-extern __cmd_player_move2 data_ov000_0215fb8c;
-extern __cmd_character_move2 data_ov000_0215fb90;
-extern __cmd_character_move2_to data_ov000_0215fb94;
-extern __cmd_door_action data_ov000_0215fb98;
-extern __cmd_camera_move_to_player data_ov000_0215fb9c;
-extern __cmd_character_move2_party data_ov000_0215fba0;
-extern __cmd_character_move data_ov000_0215fba4;
-extern __cmd_set_camera_angle_abs data_ov000_0215fba8;
-extern __cmd_ikada_move_player_get_on data_ov000_0215fbac;
-extern __cmd_player_move2_to data_ov000_0215fbb0;
-extern __cmd_character_action_gaze data_ov000_0215fbb4;
-extern __cmd_character_effect_mark data_ov000_0215fbb8;
-extern __cmd_charcter_3d_motion data_ov000_0215fbbc;
-extern __cmd_player_move_jump data_ov000_0215fbc0;
-extern __cmd_player_move_to data_ov000_0215fbc4;
-extern __cmd_player_move data_ov000_0215fbc8;
-extern __cmd_map_camera_position data_ov000_0215fbcc;
-extern __cmd_character_move_to data_ov000_0215fbd0;
-extern __cmd_character_normal_jump data_ov000_0215fbd4;
-extern __cmd_character_move2_z data_ov000_0215fbd8;
-extern __cmd_set_end_roll data_ov000_0215fbdc;
-extern __cmd_party_move2_formation data_ov000_0215fbe0;
-extern __cmd_character_move2_relative data_ov000_0215fbe4;
-extern __cmd_character_move2_player data_ov000_0215fbe8;
-extern __cmd_charcter_motion data_ov000_0215fbec;
-extern __cmd_character_move_party data_ov000_0215fbf0;
-extern __cmd_player_move2_jump data_ov000_0215fbf4;
-extern __cmd_character_wait data_ov000_0215fbf8;
-extern __cmd_camera_move_pov data_ov000_0215fbfc;
-extern __cmd_fadein_character data_ov000_0215fc00;
-extern __cmd_fadeout_character data_ov000_0215fc04;
-extern __cmd_character_move2_x data_ov000_0215fc08;
-extern __cmd_character_move_player data_ov000_0215fc0c;
-extern __cmd_ikada_move2_player_get_on data_ov000_0215fc10;
-extern __cmd_player_line_move2 data_ov000_0215fc14;
-extern __cmd_party_move_to_first2 data_ov000_0215fc18;
-extern __cmd_character_move_x data_ov000_0215fc1c;
-extern __cmd_camera_reset_distance data_ov000_0215fc24;
-extern __cmd_map_camera_move data_ov000_0215fc28;
-extern __cmd_set_chara_rot data_ov000_0215fc2c;
-extern __cmd_character_move_relative data_ov000_0215fc30;
-extern __cmd_character_action_jump data_ov000_0215fc34;
-extern __cmd_camera_move_abs data_ov000_0215fc38;
-extern __cmd_the_end data_ov000_0215fc3c;
-extern __cmd_character_action_turn data_ov000_0215fc40;
-extern __cmd_map_camera_gaze data_ov000_0215fc44;
-extern __cmd_map_camera_angle data_ov000_0215fc48;
-extern __cmd_party_move_overlap data_ov000_0215fc4c;
-extern __cmd_player_line_move data_ov000_0215fc50;
-extern __cmd_character_move_z data_ov000_0215fc54;
-extern __cmd_furniture_move2 data_ov000_0215fc58;
-extern __cmd_chara_move_line_to_player data_ov000_0215fc60;
-extern __cmd_furniture_move data_ov000_0215fc68;
-extern __cmd_effect_wait data_ov000_0215fc70;
-extern __cmd_effect_fade data_ov000_0215fc78;
-extern __cmd_set_wait_enable_lock data_ov000_0215fc80;
-extern __cmd_effect_move data_ov000_0215fc88;
-extern __cmd_character_rgb_anim2 data_ov000_0215fc90;
-extern __cmd_surechigai_message data_ov000_0215fc98;
-extern __cmd_riseup_move data_ov000_0215fca0;
-extern __cmd_surechigai_mapname data_ov000_0215fca8;
-extern __cmd_set_camera_target_chara_frame data_ov000_0215fcb0;
-extern __cmd_menu_extra_shop data_ov000_0215fcb8;
-extern __cmd_menu_present_exp data_ov000_0215fcc0;
-extern __cmd_menu_colosseum data_ov000_0215fcc8;
-extern __cmd_menu_hostage data_ov000_0215fcd0;
-extern __cmd_menu_nene data_ov000_0215fcd8;
-extern __cmd_set_party_order data_ov000_0215fce0;
-extern __cmd_make_surechigai_taishi data_ov000_0215fce8;
-extern __cmd_player_rot data_ov000_0215fcf0;
-extern __cmd_map_event_camera data_ov000_0215fd10;
-extern __cmd_map_flash data_ov000_0215fda0;
-extern __cmd_menu_shop data_ov000_02160070;
-extern __cmd_furniture_open data_ov000_021600f4;
-extern __cmd_player_wait data_ov000_0216010c;
-extern __cmd_surechigai_save data_ov000_02160130;
-extern __cmd_menu_event_imuru data_ov000_02160140;
-extern __cmd_map_texture_scale data_ov000_02160150;
-extern __cmd_map_set_back_color data_ov000_02160164;
-extern __cmd_map_restore_back_color data_ov000_02160178;
-extern __cmd_surechigai_root data_ov000_0216018c;
-extern __cmd_map_blend_color data_ov000_021601a4;
-extern __cmd_map_blend_init data_ov000_021601bc;
+extern __cmd_camera_change_distance g_cmd_camera_change_distance;
+extern __cmd_player_move2 g_cmd_player_move2;
+extern __cmd_character_move2 g_cmd_character_move2;
+extern __cmd_character_move2_to g_cmd_character_move2_to;
+extern __cmd_door_action g_cmd_door_action;
+extern __cmd_camera_move_to_player g_cmd_camera_move_to_player;
+extern __cmd_character_move2_party g_cmd_character_move2_party;
+extern __cmd_character_move g_cmd_character_move;
+extern __cmd_set_camera_angle_abs g_cmd_set_camera_angle_abs;
+extern __cmd_ikada_move_player_get_on g_cmd_ikada_move_player_get_on;
+extern __cmd_player_move2_to g_cmd_player_move2_to;
+extern __cmd_character_action_gaze g_cmd_character_action_gaze;
+extern __cmd_character_effect_mark g_cmd_character_effect_mark;
+extern __cmd_charcter_3d_motion g_cmd_charcter_3d_motion;
+extern __cmd_player_move_jump g_cmd_player_move_jump;
+extern __cmd_player_move_to g_cmd_player_move_to;
+extern __cmd_player_move g_cmd_player_move;
+extern __cmd_map_camera_position g_cmd_map_camera_position;
+extern __cmd_character_move_to g_cmd_character_move_to;
+extern __cmd_character_normal_jump g_cmd_character_normal_jump;
+extern __cmd_character_move2_z g_cmd_character_move2_z;
+extern __cmd_set_end_roll g_cmd_set_end_roll;
+extern __cmd_party_move2_formation g_cmd_party_move2_formation;
+extern __cmd_character_move2_relative g_cmd_character_move2_relative;
+extern __cmd_character_move2_player g_cmd_character_move2_player;
+extern __cmd_charcter_motion g_cmd_charcter_motion;
+extern __cmd_character_move_party g_cmd_character_move_party;
+extern __cmd_player_move2_jump g_cmd_player_move2_jump;
+extern __cmd_character_wait g_cmd_character_wait;
+extern __cmd_camera_move_pov g_cmd_camera_move_pov;
+extern __cmd_fadein_character g_cmd_fadein_character;
+extern __cmd_fadeout_character g_cmd_fadeout_character;
+extern __cmd_character_move2_x g_cmd_character_move2_x;
+extern __cmd_character_move_player g_cmd_character_move_player;
+extern __cmd_ikada_move2_player_get_on g_cmd_ikada_move2_player_get_on;
+extern __cmd_player_line_move2 g_cmd_player_line_move2;
+extern __cmd_party_move_to_first2 g_cmd_party_move_to_first2;
+extern __cmd_character_move_x g_cmd_character_move_x;
+extern __cmd_camera_reset_distance g_cmd_camera_reset_distance;
+extern __cmd_map_camera_move g_cmd_map_camera_move;
+extern __cmd_set_chara_rot g_cmd_set_chara_rot;
+extern __cmd_character_move_relative g_cmd_character_move_relative;
+extern __cmd_character_action_jump g_cmd_character_action_jump;
+extern __cmd_camera_move_abs g_cmd_camera_move_abs;
+extern __cmd_the_end g_cmd_the_end;
+extern __cmd_character_action_turn g_cmd_character_action_turn;
+extern __cmd_map_camera_gaze g_cmd_map_camera_gaze;
+extern __cmd_map_camera_angle g_cmd_map_camera_angle;
+extern __cmd_party_move_overlap g_cmd_party_move_overlap;
+extern __cmd_player_line_move g_cmd_player_line_move;
+extern __cmd_character_move_z g_cmd_character_move_z;
+extern __cmd_furniture_move2 g_cmd_furniture_move2;
+extern __cmd_chara_move_line_to_player g_cmd_chara_move_line_to_player;
+extern __cmd_furniture_move g_cmd_furniture_move;
+extern __cmd_effect_wait g_cmd_effect_wait;
+extern __cmd_effect_fade g_cmd_effect_fade;
+extern __cmd_set_wait_enable_lock g_cmd_set_wait_enable_lock;
+extern __cmd_effect_move g_cmd_effect_move;
+extern __cmd_character_rgb_anim2 g_cmd_character_rgb_anim2;
+extern __cmd_surechigai_message g_cmd_surechigai_message;
+extern __cmd_riseup_move g_cmd_riseup_move;
+extern __cmd_surechigai_mapname g_cmd_surechigai_mapname;
+extern __cmd_set_camera_target_chara_frame g_cmd_set_camera_target_chara_frame;
+extern __cmd_menu_extra_shop g_cmd_menu_extra_shop;
+extern __cmd_menu_present_exp g_cmd_menu_present_exp;
+extern __cmd_menu_colosseum g_cmd_menu_colosseum;
+extern __cmd_menu_hostage g_cmd_menu_hostage;
+extern __cmd_menu_nene g_cmd_menu_nene;
+extern __cmd_set_party_order g_cmd_set_party_order;
+extern __cmd_make_surechigai_taishi g_cmd_make_surechigai_taishi;
+extern __cmd_player_rot g_cmd_player_rot;
+extern __cmd_map_event_camera g_cmd_map_event_camera;
+extern __cmd_map_flash g_cmd_map_flash;
+extern __cmd_menu_shop g_cmd_menu_shop;
+extern __cmd_furniture_open g_cmd_furniture_open;
+extern __cmd_player_wait g_cmd_player_wait;
+extern __cmd_surechigai_save g_cmd_surechigai_save;
+extern __cmd_menu_event_imuru g_cmd_menu_event_imuru;
+extern __cmd_map_texture_scale g_cmd_map_texture_scale;
+extern __cmd_map_set_back_color g_cmd_map_set_back_color;
+extern __cmd_map_restore_back_color g_cmd_map_restore_back_color;
+extern __cmd_surechigai_root g_cmd_surechigai_root;
+extern __cmd_map_blend_color g_cmd_map_blend_color;
+extern __cmd_map_blend_init g_cmd_map_blend_init;

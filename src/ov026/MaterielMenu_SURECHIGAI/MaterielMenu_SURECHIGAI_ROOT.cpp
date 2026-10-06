@@ -3,6 +3,8 @@
 #include "main/menu/MaterielMenuWindowManager.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/profile/Profile.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_SURECHIGAI_ROOT::menuSetup()
 {
@@ -17,13 +19,13 @@ THUMB void MaterielMenu_SURECHIGAI_ROOT::menuSetup()
 
 THUMB void MaterielMenu_SURECHIGAI_ROOT::menuExecute()
 {
-    func_ov016_02177b04(&menuItem_, menuItem_.active_);
+    MenuTemplate_materiel::surechigaiRoot(&menuItem_, menuItem_.active_);
 }
 
 THUMB void MaterielMenu_SURECHIGAI_ROOT::menuDraw()
 {
     if (data_020ed1bc.isMessageWAITPROG()) {
-        func_ov016_0216fe58();
+        unkfunc_0216fe58();
         menuItem_.drawActive();
     }
 }
@@ -58,8 +60,8 @@ THUMB void MaterielMenu_SURECHIGAI_ROOT::menuUpdate()
             data_020ed1bc.close();
             if (mode_ == 1) {
                 close();
-                data_ov016_02185e58.open();
-                data_ov016_02185e58.changeTaishi_ = 1;
+                gMaterielMenu_SURECHIGAI_SELECT_OBJECT.open();
+                gMaterielMenu_SURECHIGAI_SELECT_OBJECT.changeTaishi_ = 1;
                 return;
             }
             if (mode_ == 0) {
@@ -76,7 +78,7 @@ THUMB void MaterielMenu_SURECHIGAI_ROOT::menuUpdate()
                     firstFlag_ = 1;
                 } else {
                     close();
-                    data_ov016_02185d30.open();
+                    gUnkMaterielMenu_02189360.open();
                 }
                 mode_ = 5;
                 return;
@@ -124,8 +126,8 @@ THUMB void MaterielMenu_SURECHIGAI_ROOT::selectCommand()
         close();
         stat_ = menu::MenuBase::MENUBASE_STAT_OK;
         MaterielMenu_WINDOW_MANAGER::getSingleton()->type_ = 3;
-        data_ov016_02186728.open();
-        data_ov016_02186728.saveType_ = MaterielMenu_SAVE::TYPE_SURECHIGAI;
+        gMaterielMenu_SAVE.open();
+        gMaterielMenu_SAVE.saveType_ = MaterielMenu_SAVE::TYPE_SURECHIGAI;
         break;
     case 1:
         mode_ = 1;
@@ -137,7 +139,7 @@ THUMB void MaterielMenu_SURECHIGAI_ROOT::selectCommand()
     case 2:
         mode_ = 2;
         close();
-        data_ov016_02185ca0.open();
+        gUnkMaterielMenu_02189630.open();
         break;
     case 3:
         mode_ = 3;

@@ -26,7 +26,7 @@ ARM void BookPart::initialize()
     func_02087590((int)&OVERLAY_6_ID);
     BookSystem::unkfunc_021219ac();
     func_02087590((int)&OVERLAY_16_ID);
-    func_ov016_0217ad90();
+    ov016_entry();
     BookSystem::getSingleton()->initialize();
     func_0206dd70(1);
     OS_Wait();

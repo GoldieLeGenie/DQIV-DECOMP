@@ -4,6 +4,8 @@
 #include "main/status/ExcelParam.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/profile/Profile.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_SURECHIGAI_MAKE_TAISHI::menuSetup()
 {
@@ -38,18 +40,18 @@ THUMB void MaterielMenu_SURECHIGAI_MAKE_TAISHI::menuExecute()
     if (navigator_.getPageNo() == 4) {
         count = 2;
     }
-    func_ov016_02177b3c(&menuItem_, menuItem_.active_, count);
+    MenuTemplate_materiel::surechigaiSelectObject(&menuItem_, menuItem_.active_, count);
 }
 
 THUMB void MaterielMenu_SURECHIGAI_MAKE_TAISHI::menuDraw()
 {
     if (data_020ed1bc.isMessageWAITPROG()) {
         int active = menuItem_.active_;
-        func_ov016_0216fe9c(mode_, active, navigator_.getPageNo(), navigator_.getPageMaxCount());
+        unkfunc_0216fe9c(mode_, active, navigator_.getPageNo(), navigator_.getPageMaxCount());
         menuItem_.drawActive();
     }
     if (mode_ == 1) {
-        func_ov016_0216fe9c(mode_, func_0203a5ec(&data_020f0078), navigator_.getPageNo(), navigator_.getPageMaxCount());
+        unkfunc_0216fe9c(mode_, func_0203a5ec(&data_020f0078), navigator_.getPageNo(), navigator_.getPageMaxCount());
     }
 }
 
@@ -91,19 +93,19 @@ THUMB void MaterielMenu_SURECHIGAI_MAKE_TAISHI::menuUpdate()
             data_020ed1bc.close();
             if (mode_ == 2) {
                 close();
-                data_ov016_02185dc4.open();
+                gMaterielMenu_SURECHIGAI_ROOT.open();
                 func_0203aa58(&data_020f0078);
                 func_0203aaac(&data_020f0078);
                 return;
             }
             if (firstFlag_ == 0) {
                 close();
-                data_ov016_021865a4.open();
-                data_ov016_021865a4.returnMenu_ = MaterielMenu_NameEdit::RETURN_MENU_SURECHIGAI;
-                func_0203b6cc(&data_ov016_021865a4);
-                func_0203afd0(&data_ov016_021865a4);
+                gMaterielMenu_NameEdit.open();
+                gMaterielMenu_NameEdit.returnMenu_ = MaterielMenu_NameEdit::RETURN_MENU_SURECHIGAI;
+                gMaterielMenu_NameEdit.clearName();
+                gMaterielMenu_NameEdit.setNameEditMode();
                 if (changeTaishi_ == 1) {
-                    data_ov016_021865a4.unk_98 = 1;
+                    gMaterielMenu_NameEdit.unk_98 = 1;
                 }
             }
         }

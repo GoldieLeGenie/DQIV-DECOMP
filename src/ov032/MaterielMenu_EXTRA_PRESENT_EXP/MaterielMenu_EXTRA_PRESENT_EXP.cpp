@@ -5,6 +5,8 @@
 #include "main/sound/SoundManager.hpp"
 #include "main/sound/MenuSoundManager.hpp"
 #include "main/task/ExecTask.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_EXTRA_PRESENT_EXP::menuSetup()
 {
@@ -12,8 +14,8 @@ THUMB void MaterielMenu_EXTRA_PRESENT_EXP::menuSetup()
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     navigator_.setupBase();
     navigator_.setup(1, 1, 1);
-    activeChara_ = func_ov016_0216ff2c()->activeChara_;
-    extraExp_ = func_ov016_0216ff2c()->extraExp_;
+    activeChara_ = MaterielMenuPlayerControl::getSingleton()->activeChara_;
+    extraExp_ = MaterielMenuPlayerControl::getSingleton()->extraExp_;
     subExp_ = extraExp_ <= 10000 ? 60 : 300;
     levelUpMode_ = 0;
     bgm_ = 0;
@@ -22,13 +24,13 @@ THUMB void MaterielMenu_EXTRA_PRESENT_EXP::menuSetup()
 
 THUMB void MaterielMenu_EXTRA_PRESENT_EXP::menuExecute()
 {
-    func_ov016_02177ae8(&menuItem_, menuItem_.active_);
+    MenuTemplate_materiel::shopSellQuantity(&menuItem_, menuItem_.active_);
 }
 
 THUMB void MaterielMenu_EXTRA_PRESENT_EXP::menuDraw()
 {
     if (extraExp_ > 0) {
-        func_ov016_0216fdb0(activeChara_, extraExp_);
+        unkfunc_0216fdb0(activeChara_, extraExp_);
     }
 }
 

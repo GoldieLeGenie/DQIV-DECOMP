@@ -23,8 +23,4 @@ struct MaterielMenu_INN_ROOT : menu::MenuBase
     void showMessage(int mes);
 };
 
-extern "C" {
-    void func_0201e350(int x, int y, int flag);     /* money window draw */
-}
-
-extern MaterielMenu_INN_ROOT data_ov016_02185b28;           /* gMaterielMenu_INN_ROOT */
+extern MaterielMenu_INN_ROOT gMaterielMenu_INN_ROOT;

@@ -27,7 +27,7 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuExecute()
     if (unk_1c == 0) {
         unk_1b8.setup(4, 1, status::g_Party.getCarriageOutCount());
         int chara = btl::BattleMenuPlayerControl::getSingleton()->activeChara_;
-        func_ov015_0216c688(&menuItem_, chara, status::g_Party.getCarriageOutCount());
+        MenuTemplate_battle::BATTLE_ARRAYCHANGE_5x2(&menuItem_, chara, status::g_Party.getCarriageOutCount());
     } else {
         int count = status::g_Party.getCount() - status::g_Party.getCarriageOutCount();
         unk_1c4.setup(4, 1, count);
@@ -38,18 +38,18 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuExecute()
         if (page != last) {
             num = unk_1c4.getMaxCountInPage();
         }
-        func_ov015_0216c6a4(&unk_8c, unk_24, num);
+        MenuTemplate_battle::BATTLE_ARRAYCHANGE_TO_5x2(&unk_8c, unk_24, num);
         int max = unk_1c4.getPageMaxCount() - 1;
         func_0201e684(&unk_f0, unk_f0.active_, max, 0xc4, 0x88);
     }
-    func_ov015_0216c5c4(&cancelItem_);
+    MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
 }
 
 THUMB void BattleMenu_ARRAY_CHANGE::menuDraw()
 {
     status::g_Party.setMemberShiftMode();
     if (unk_1c == 0) {
-        func_ov015_0216bdd4();
+        unkfunc_0216bdd4();
     } else {
         int list[10];
         dss::memset(list, -1, sizeof(list));
@@ -61,7 +61,7 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuDraw()
         }
         int target = out + unk_1c4.getIndex(unk_24);
         btl::BattleMenuPlayerControl::getSingleton()->targetChara_ = target;
-        func_ov015_0216be58(list, num, unk_1c4.getPageNo());
+        unkfunc_0216be58(list, num, unk_1c4.getPageNo());
     }
     int chara = btl::BattleMenuPlayerControl::getSingleton()->activeChara_;
     if (unk_1c != 0) {
@@ -78,7 +78,7 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuDraw()
             num++;
         }
     }
-    func_ov015_0216c524(actions, num, chara);
+    unkfunc_0216c524(actions, num, chara);
     menuItem_.drawActive();
     unk_8c.drawActive();
 }

@@ -38,7 +38,6 @@ struct MaterielMenuExtraChangeHostage : menu::MenuBase
 
 extern "C" {
 
-    void func_ov016_0216fdb8(void);       
 }
 
-extern MaterielMenuExtraChangeHostage data_ov016_02186020;  /* gMaterielMenuExtra_ChangeHostage */
+extern MaterielMenuExtraChangeHostage gMaterielMenuExtra_ChangeHostage;

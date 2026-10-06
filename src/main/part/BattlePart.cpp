@@ -29,7 +29,7 @@ ARM void BattlePart::initialize()
     ov003_entry();
     if (encount::Encount::getSingleton()->battleMode_ == encount::Encount::Normal) {
         func_02087590((int)&OVERLAY_15_ID);
-        func_ov015_0216fd7c();
+        ov015_entry();
     } else {
         func_02087590((int)&OVERLAY_16_ID);
     }

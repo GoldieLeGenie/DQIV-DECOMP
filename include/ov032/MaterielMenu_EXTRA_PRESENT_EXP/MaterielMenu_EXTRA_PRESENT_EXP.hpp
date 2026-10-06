@@ -20,8 +20,5 @@ struct MaterielMenu_EXTRA_PRESENT_EXP : menu::MenuBase
     virtual void menuUpdate();
 };
 
-extern "C" {
-    void func_ov016_0216fdb0(int activeChara, int extraExp);
-}
 
-extern MaterielMenu_EXTRA_PRESENT_EXP data_ov016_02186460;  /* gMaterielMenu_EXTRA_PRESENT_EXP */
+extern MaterielMenu_EXTRA_PRESENT_EXP gMaterielMenu_EXTRA_PRESENT_EXP;

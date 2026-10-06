@@ -2,6 +2,8 @@
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/UseItem.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_SHOP_SELL_SACK::menuSetup()
 {
@@ -12,8 +14,8 @@ THUMB void MaterielMenu_SHOP_SELL_SACK::menuSetup()
     navigator_.setupBase();
     itemIndex_ = 0;
     pageStart_ = 0;
-    func_ov016_0216ff2c()->activeItem_ = 0;
-    func_ov016_0216ff2c()->activeItemPage_ = 0;
+    MaterielMenuPlayerControl::getSingleton()->activeItem_ = 0;
+    MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = 0;
     if (status::g_Party.haveItemSack_.getCount() > 6) {
         itemCount_ = 6;
     } else {
@@ -24,19 +26,19 @@ THUMB void MaterielMenu_SHOP_SELL_SACK::menuSetup()
 THUMB void MaterielMenu_SHOP_SELL_SACK::menuExecute()
 {
     if (status::g_Party.haveItemSack_.getCount() > 6) {
-        func_ov016_02177acc(&menuItem3_, menuItem3_.active_);
+        MenuTemplate_materiel::shopSackArrow(&menuItem3_, menuItem3_.active_);
     }
     func_0201e6c4(&menuItem_, itemCount_, itemIndex_);
-    func_ov016_02177a98(&menuItem2_);
+    MenuTemplate_materiel::MATERIEL_CANCEL(&menuItem2_);
 }
 
 THUMB void MaterielMenu_SHOP_SELL_SACK::menuDraw()
 {
     if (data_020ed1bc.isOpen()) {
-        func_ov016_0216fc58();
+        unkfunc_0216fc58();
         return;
     }
-    func_ov016_0216fbf4();
+    unkfunc_0216fbf4();
     menuItem_.drawActive();
 }
 
@@ -50,7 +52,7 @@ THUMB void MaterielMenu_SHOP_SELL_SACK::menuUpdate()
     }
     if (MenuUpdate_Assist::isCancel(menuItem2_)) {
         close();
-        data_ov016_02186d28.open();
+        gMaterielMenu_SHOP_WHO_SELL.open();
     }
     navigator_.setup(2, 3, status::g_Party.haveItemSack_.getCount());
     int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
@@ -61,9 +63,9 @@ THUMB void MaterielMenu_SHOP_SELL_SACK::menuUpdate()
         pageStart_ = navigator_.getPageNo();
         int itemIndex = menuItem_.active_;
         itemIndex_ = itemIndex;
-        func_ov016_0216ff2c()->activeItem_ = itemIndex;
+        MaterielMenuPlayerControl::getSingleton()->activeItem_ = itemIndex;
         int pageStart = pageStart_;
-        func_ov016_0216ff2c()->activeItemPage_ = pageStart;
+        MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = pageStart;
         changeItem();
         redraw_ = 1;
     }
@@ -72,9 +74,9 @@ THUMB void MaterielMenu_SHOP_SELL_SACK::menuUpdate()
         itemIndex_ = menuItem_.active_ = active;
         pageStart_ = navigator_.getPageNo();
         int itemIndex = itemIndex_;
-        func_ov016_0216ff2c()->activeItem_ = itemIndex;
+        MaterielMenuPlayerControl::getSingleton()->activeItem_ = itemIndex;
         int pageStart = pageStart_;
-        func_ov016_0216ff2c()->activeItemPage_ = pageStart;
+        MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = pageStart;
         changeItem();
         redraw_ = 1;
     }
@@ -85,17 +87,17 @@ THUMB void MaterielMenu_SHOP_SELL_SACK::selectItem()
     int itemID = status::g_Party.haveItemSack_.getItem(itemIndex_ + pageStart_ * 6);
     close();
     if (status::UseItem::getSellType(itemID) == 1) {
-        data_ov016_02185968.sellType_ = 1;
-        data_ov016_02185968.open();
+        gMaterielMenu_SHOP_VALUE.sellType_ = 1;
+        gMaterielMenu_SHOP_VALUE.open();
         return;
     }
     if (status::g_Party.haveItemSack_.getItemCount(itemIndex_ + pageStart_ * 6) == 1) {
         MaterielMenu_SHOP_MANAGER::getSingleton()->setSellQuantity(1);
-        data_ov016_02185968.sellType_ = status::UseItem::getSellType(itemID);
-        data_ov016_02185968.open();
+        gMaterielMenu_SHOP_VALUE.sellType_ = status::UseItem::getSellType(itemID);
+        gMaterielMenu_SHOP_VALUE.open();
         return;
     }
-    data_ov016_02185f88.open();
+    gMaterielMenu_SHOP_SELL_QUANTITY.open();
 }
 
 THUMB void MaterielMenu_SHOP_SELL_SACK::changeItem()

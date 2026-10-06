@@ -1,6 +1,8 @@
 #pragma once
 #include "main/menu/CursorMoveGridLoop.hpp"
 
+struct MENUITEM_DATA;
+
 namespace menu {
 
 struct MenuBase {
@@ -48,6 +50,17 @@ struct MenuItem {
         CURSORTYPE_INACTIVE,
         CURSORTYPE_WIRELESS,
     };
+    enum MENUITEM_RESULT {
+        MENUITEM_RESULT_NONE,
+        MENUITEM_RESULT_CHANGE,
+        MENUITEM_RESULT_OK,
+        MENUITEM_RESULT_CANCEL,
+        MENUITEM_RESULT_SUPERCANCEL,
+        MENUITEM_RESULT_UP,
+        MENUITEM_RESULT_DOWN,
+        MENUITEM_RESULT_LEFT,
+        MENUITEM_RESULT_RIGHT,
+    };
 
     int unk_00[6];
     int flagTouch_;
@@ -72,10 +85,23 @@ struct MenuItem {
 
     void setup(MENUITEM_TYPE type, CURSORTYPE cursor);
     void drawActive();
+    void setMenuItem(MENUITEM_DATA* menu, int w, int h, int num);
     int getActive() { return active_; }
 };
 
 }  // namespace menu
+
+// DS menu parts draw list entry (list terminated by type_ 0xff)
+struct UnkMenuParts {
+    unsigned char type_;    /* 0x0 */
+    unsigned char unk_1;    /* 0x1 */
+    short unk_2;            /* 0x2 */
+    short unk_4;            /* 0x4 */
+    short x_;               /* 0x6 */
+    short y_;               /* 0x8 */
+    short unk_a;            /* 0xA */
+    short unk_c;            /* 0xC */
+};
 
 struct MENUITEM_DATA {
     char code;      /* 0x0 */
@@ -87,36 +113,25 @@ struct MENUITEM_DATA {
 };
 
 extern "C" {
-    void func_02051a60(menu::MenuItem* menuItem, MENUITEM_DATA* data, int min, int max, int active);
+    void func_020518f8(MENUITEM_DATA* data, int x, int y);     /* sets data->x/y */
     void func_0201e6c4(menu::MenuItem* menuItem, int count, int active);
-    void func_02051a7c(menu::MenuItem*);
+    int func_02051a7c(menu::MenuItem*);
     void func_0201e684(menu::MenuItem* menuItem, int active, int max, int x, int y);
     void func_0201e194(int x, int y, int w, int h, int arg);
-    // ov016 MenuItem setup helpers shared by the materiel menus
-    void func_ov016_02173a40(menu::MenuItem* menuItem);
-    void func_ov016_02173af4(menu::MenuItem* menuItem, int active);
-    void func_ov016_02177318(menu::MenuItem* menuItem, int active);
-    void func_ov016_02177334(menu::MenuItem* menuItem, int count, int active);
-    void func_ov016_02177350(menu::MenuItem* menuItem, int active, int count);
-    void func_ov016_0217736c(menu::MenuItem* menuItem, int active, int count, int x, int y);
-    void func_ov016_0217742c(menu::MenuItem* menuItem, int active, int count);
-    void func_ov016_02177470(menu::MenuItem* menuItem);
-    void func_ov016_02177484(menu::MenuItem* menuItem, int count);
-    void func_ov016_021774f4(menu::MenuItem* menuItem);
-    void func_ov016_0217752c(menu::MenuItem* menuItem);
-    void func_ov016_021779b4(menu::MenuItem* menuItem);
-    void func_ov016_021779ec(menu::MenuItem* menuItem, int active, int count);
-    void func_ov016_02177a08(menu::MenuItem* menuItem, int active, int count);
-    void func_ov016_02177a24(menu::MenuItem* menuItem, int active, int count);
-    void func_ov016_02177a40(menu::MenuItem* menuItem, int active, int count);
-    void func_ov016_02177a5c(menu::MenuItem* menuItem, int active, int count);
-    void func_ov016_02177a78(menu::MenuItem* menuItem);
-    void func_ov016_02177a98(menu::MenuItem* menuItem);
-    void func_ov016_02177aac(menu::MenuItem* menuItem);
-    void func_ov016_02177acc(menu::MenuItem* menuItem, int active);
-    void func_ov016_02177ae8(menu::MenuItem* menuItem, int active);
-    void func_ov016_02177b04(menu::MenuItem* menuItem, int active);
-    void func_ov016_02177b3c(menu::MenuItem* menuItem, int active, int count);
+    void func_0201e1c4(int x, int y, int w);
+    int func_02050e20(int index, const char* text);    /* width of a text */
+    void func_02050e44(int index, int x, int y, int priority, int flag);  /* draws a monster name plate */
+    void func_02050ea8(UnkMenuParts* parts, int* param);   /* draws a parts list, param = per-part values (text/msg ids) */
+    void func_02050ebc(UnkMenuParts* parts, int* param, int x, int y);
+    void func_02050ed0(UnkMenuParts* parts, int* param, int flag);
+    void func_02050ee0(UnkMenuParts* parts, int* param, int x, int y, int flag);
+    void func_02050f1c(UnkMenuParts* part, int* param, int x, int y);       /* draws a single part at x/y */
+    extern int data_020be244[];      /* draw flags passed as the last argument of func_02050ee0 */
+    void func_0201e234(void);
+    void func_0201e260(void);
+    void func_0201e3f4(int chara, int flag);
+    int func_0201e674(int action);                  /* action name message */
+    void func_0201e350(int x, int y, int flag);     /* money window draw */
 }
 
 #include "main/menu/MenuUpdateAssist.hpp"

@@ -166,7 +166,7 @@ ARM void FldStage::repop(int uid)
     for (int i = 0; i < pool_counter; i++) {
         m_fld.SetMapObjOnOff(list[i], 0);
         m_fld.SetCommonAnimation(list[i], 0);
-        func_02040a8c(m_fld.m_coll, list[i]);
+        coll_ResetObjId(m_fld.m_coll, list[i]);
     }
 }
 
@@ -191,10 +191,10 @@ ARM void FldStage::setAnimLocation(int obj, int frame)
 {
     if (m_fld.IsCommonAnimationEnd(obj) == 1) {
         m_fld.SetCommonAnimation(obj, 0);
-        func_02040a8c(m_fld.m_coll, obj);
+        coll_ResetObjId(m_fld.m_coll, obj);
     }
     if (frame == 0) {
-        func_020409f0(m_fld.m_coll, obj);
+        coll_EraseObjId(m_fld.m_coll, obj);
         m_fld.SetMapObjOnOff(obj, 1);
         return;
     }
@@ -460,23 +460,23 @@ ARM int unkfunc_020484ec(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecFx32* bo
     return result;
 }
 
-ARM int FldStage::addBoxCollistion(dss::Fix32Vector3& pos, dss::Fix32Vector3& size, int* id, int flag)
+ARM COLL_ADD_RESULT_TYPE FldStage::addBoxCollistion(dss::Fix32Vector3& center, dss::Fix32Vector3& vec, int& extraId, int& allocFlag)
 {
     if (extraObjectNum_ == 0) {
         extraObjectNum_ = m_fld.m_map->uid_num + 100;
     }
     short objId;
-    if (*id == -1) {
+    if (extraId == -1) {
         objId = extraObjectNum_;
     } else {
-        objId = *id;
+        objId = extraId;
     }
 
     dss::Fix32Vector3 p[4];
     dss::Fix32Vector3 normal;
     dss::Fix32Vector3 work;
     COLL_POLY poly;
-    int result;
+    COLL_ADD_RESULT_TYPE ret;
 
     poly.obj_id = objId;
     poly.type = poly.type | 0x101;
@@ -484,87 +484,87 @@ ARM int FldStage::addBoxCollistion(dss::Fix32Vector3& pos, dss::Fix32Vector3& si
     poly.flag = 0;
 
     // face 0
-    p[0].vy = p[3].vy = size.vy * -1;
-    p[2].vy = p[1].vy = size.vy;
+    p[0].vy = p[3].vy = vec.vy * -1;
+    p[2].vy = p[1].vy = vec.vy;
     for (int i = 0; i < 4; i++) {
-        p[i].vx = size.vx * -1;
-        p[i].vz = size.vz;
+        p[i].vx = vec.vx * -1;
+        p[i].vz = vec.vz;
     }
     p[3].vz *= -1;
     p[2].vz *= -1;
     normal.set(-FX32_ONE, 0, 0);
     poly.normal = getVecFx32(normal);
     for (int i = 0; i < 4; i++) {
-        work = pos + p[i];
+        work = center + p[i];
         poly.vertex[i] = getVecFx32(work);
     }
-    result = func_02041afc(*id, 0, m_fld.m_coll, &poly, &m_fld.m_allocator, flag);
-    if (result != 3) {
-        return result;
+    ret = coll_AddCollPoly2(extraId, 0, m_fld.m_coll, &poly, &m_fld.m_allocator, allocFlag);
+    if (ret != RESULT_OK) {
+        return ret;
     }
 
     // face 1
     for (int i = 0; i < 4; i++) {
-        p[i].vx = size.vx;
-        p[i].vz = size.vz * -1;
+        p[i].vx = vec.vx;
+        p[i].vz = vec.vz * -1;
     }
     p[0].vx *= -1;
     p[1].vx *= -1;
     normal.set(0, 0, -FX32_ONE);
     poly.normal = getVecFx32(normal);
     for (int i = 0; i < 4; i++) {
-        work = pos + p[i];
+        work = center + p[i];
         poly.vertex[i] = getVecFx32(work);
     }
-    result = func_02041afc(*id, 1, m_fld.m_coll, &poly, &m_fld.m_allocator, flag);
-    if (result != 3) {
-        return result;
+    ret = coll_AddCollPoly2(extraId, 1, m_fld.m_coll, &poly, &m_fld.m_allocator, allocFlag);
+    if (ret != RESULT_OK) {
+        return ret;
     }
 
     // face 2
     for (int i = 0; i < 4; i++) {
-        p[i].vx = size.vx;
-        p[i].vz = size.vz;
+        p[i].vx = vec.vx;
+        p[i].vz = vec.vz;
     }
     p[0].vz *= -1;
     p[1].vz *= -1;
     normal.set(FX32_ONE, 0, 0);
     poly.normal = getVecFx32(normal);
     for (int i = 0; i < 4; i++) {
-        work = pos + p[i];
+        work = center + p[i];
         poly.vertex[i] = getVecFx32(work);
     }
-    result = func_02041afc(*id, 2, m_fld.m_coll, &poly, &m_fld.m_allocator, flag);
-    if (result != 3) {
-        return result;
+    ret = coll_AddCollPoly2(extraId, 2, m_fld.m_coll, &poly, &m_fld.m_allocator, allocFlag);
+    if (ret != RESULT_OK) {
+        return ret;
     }
 
     // face 3
     for (int i = 0; i < 4; i++) {
-        p[i].vx = size.vx;
-        p[i].vz = size.vz;
+        p[i].vx = vec.vx;
+        p[i].vz = vec.vz;
     }
     p[3].vx *= -1;
     p[2].vx *= -1;
     normal.set(0, 0, FX32_ONE);
     poly.normal = getVecFx32(normal);
     for (int i = 0; i < 4; i++) {
-        work = pos + p[i];
+        work = center + p[i];
         poly.vertex[i] = getVecFx32(work);
     }
-    result = func_02041afc(*id, 3, m_fld.m_coll, &poly, &m_fld.m_allocator, flag);
-    if (result != 3) {
-        return result;
+    ret = coll_AddCollPoly2(extraId, 3, m_fld.m_coll, &poly, &m_fld.m_allocator, allocFlag);
+    if (ret != RESULT_OK) {
+        return ret;
     }
 
     extraObjectNum_++;
-    *id = objId;
-    return 3;
+    extraId = objId;
+    return RESULT_OK;
 }
 
 ARM int FldStage::getPolyNoBySurfaceId(int surface, int index)
 {
-    return func_02040b28(m_fld.m_coll, surface, index);
+    return coll_GetPolyNoBySurface(m_fld.m_coll, surface, index);
 }
 
 ARM void FldStage::addMovePosByObjNo(int obj, dss::Fix32Vector3& move)

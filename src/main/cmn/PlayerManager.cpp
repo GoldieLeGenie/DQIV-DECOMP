@@ -4,6 +4,16 @@ PLAYER_COMMAND cmn::PlayerManager::command_;
 PLAYER_COMMAND cmn::PlayerManager::checkCommand_;
 int cmn::PlayerManager::locked_;
 
+ARM cmn::PlayerManager::PlayerManager()
+{
+    flagMapLink_ = 0;
+    charaColl_ = 1;
+}
+
+ARM cmn::PlayerManager::~PlayerManager()
+{
+}
+
 ARM void cmn::PlayerManager::initLock() {
     locked_ = 0;
 }

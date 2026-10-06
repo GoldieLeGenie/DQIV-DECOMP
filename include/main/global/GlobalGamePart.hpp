@@ -71,9 +71,10 @@ struct GlobalGamePartManager {
 extern GlobalGamePartManager data_0210bc18;
 
 extern "C" {
-    void ov003_entry(void);                     // called by the parts right after loading the overlay
-    void func_ov015_0216fd7c(void);             // idem ov015
-    void func_ov016_0217ad90(void);             // idem ov016
+    void ov001_entry(void);                     // called by the parts right after loading the overlay
+    void ov003_entry(void);                     // idem ov003
+    void ov015_entry(void);                     // idem ov015
+    void ov016_entry(void);             // idem ov016
     void func_0202c25c(void);                   // end of the part initialize
     void func_0202c284(void);                   // part onDebugPart
 }

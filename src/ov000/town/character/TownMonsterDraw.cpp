@@ -13,7 +13,7 @@ ARM TownMonsterDraw::~TownMonsterDraw()
 ARM void TownMonsterDraw::setup(TOWN_CHARACTER& data)
 {
     TownCharacterBase::setup(data);
-    func_0204d04c(&monster_, data_.charaIndex);
+    monster_.setup(data_.charaIndex);
     monster_.setPosition(data_.position);
     monster_.setCameraType(DSSAObjectWithCamera::Standard);
     display_ = 1;
@@ -25,7 +25,7 @@ ARM void TownMonsterDraw::cleanup()
 {
     if (data_.enable) {
         data_.enable = 0;
-        func_0204d084(&monster_);
+        monster_.cleanup();
     }
 }
 
@@ -115,9 +115,9 @@ ARM int TownMonsterDraw::getDir()
 
 ARM void TownMonsterDraw::changePose(int pose)
 {
-    func_0204d084(&monster_);
+    monster_.cleanup();
     data_.charaIndex = pose;
-    func_0204d04c(&monster_, pose);
+    monster_.setup(pose);
     monster_.setPosition(data_.position);
     monster_.setCameraType(DSSAObjectWithCamera::Standard);
     display_ = 1;
@@ -126,9 +126,9 @@ ARM void TownMonsterDraw::changePose(int pose)
 
 ARM void TownMonsterDraw::restorePose()
 {
-    func_0204d084(&monster_);
+    monster_.cleanup();
     data_.charaIndex = defaultIndex_;
-    func_0204d04c(&monster_, data_.charaIndex);
+    monster_.setup(data_.charaIndex);
     monster_.setPosition(data_.position);
     monster_.setCameraType(DSSAObjectWithCamera::Standard);
     display_ = 1;
@@ -138,8 +138,8 @@ ARM void TownMonsterDraw::restorePose()
 ARM void TownMonsterDraw::requestReload()
 {
     int anim = monster_.currentAnimationIndex_;
-    func_0204d084(&monster_);
-    func_0204d04c(&monster_, data_.charaIndex);
+    monster_.cleanup();
+    monster_.setup(data_.charaIndex);
     monster_.setPosition(data_.position);
     monster_.setCameraType(DSSAObjectWithCamera::Standard);
     monster_.pause(0);

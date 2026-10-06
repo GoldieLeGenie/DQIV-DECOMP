@@ -10,6 +10,7 @@ namespace cmn
     struct WorldLocation
     {
         param::CLUTCode *pCLUTCode_;
+        static WorldLocation* getSingleton();
         void initialize();
         void terminate();
         static void calcWorldPos(fx32* x, fx32* y);

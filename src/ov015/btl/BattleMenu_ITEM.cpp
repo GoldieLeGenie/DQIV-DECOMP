@@ -53,7 +53,7 @@ THUMB void BattleMenu_ITEM::menuExecute()
         num = 6;
     }
     func_0201e6c4(&menuItem_, num, menuItem_.active_);
-    func_ov015_0216c5c4(&cancelItem_);
+    MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
     int max = navigator_.getPageMaxCount() - 1;
     func_0201e684(&unk_ec, unk_ec.active_, max, 0xd8, 0x78);
 }
@@ -68,7 +68,7 @@ THUMB void BattleMenu_ITEM::menuDraw()
         for (int i = 0; i < count; i++) {
             items[i] = info->haveItem_.getItem(i);
         }
-        func_ov015_0216ba60(items, count, navigator_.getPageNo());
+        unkfunc_0216ba60(items, count, navigator_.getPageNo());
         menuItem_.drawActive();
     }
 }
@@ -92,7 +92,7 @@ THUMB void BattleMenu_ITEM::menuUpdate()
         if (result == 2) {
             if (isSelectEquipEnable()) {
                 close();
-                data_ov015_02179c10.open();
+                gUnkBattleMenu_0216cf44.open();
             } else {
                 selectUseItem();
             }
@@ -150,8 +150,8 @@ THUMB void BattleMenu_ITEM::selectUseItem()
                 BattleMenuJudge::getSingleton()->setItemEnemy(index, group);
                 BattleMenuJudge::getSingleton()->setNextPlayer();
             } else {
-                func_ov015_0216aa34(func_ov015_0216aa2c());
-                func_ov015_0216aa54(func_ov015_0216aa2c());
+                BattleMonsterNamePlate::getSingleton().init();
+                BattleMonsterNamePlate::getSingleton().setMonster();
                 int target = BattleMenuJudge::getSingleton()->getLiveMonsterID();
                 btl::BattleMenuPlayerControl::getSingleton()->targetChara_ = target;
                 gBattleMenu_ITEMUSE2ENEMY.open();

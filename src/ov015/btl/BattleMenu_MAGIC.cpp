@@ -43,8 +43,8 @@ THUMB void BattleMenu_MAGIC::setActiveMagicPos(int pos)
 THUMB void BattleMenu_MAGIC::menuExecute()
 {
     navigator_.setup(2, 3, count_);
-    func_ov015_0216c60c(&menuItem_, navigator_.getCountInPage());
-    func_ov015_0216c5c4(&cancelItem_);
+    MenuTemplate_battle::BATTLE_MAGIC_2x3(&menuItem_, navigator_.getCountInPage());
+    MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
     int max = navigator_.getPageMaxCount() - 1;
     func_0201e684(&unk_e4, navigator_.getIndex(unk_e4.active_), max, 0xd8, 0x78);
 }
@@ -52,7 +52,7 @@ THUMB void BattleMenu_MAGIC::menuExecute()
 THUMB void BattleMenu_MAGIC::menuDraw()
 {
     if (!data_020ed1bc.isOpen()) {
-        func_ov015_0216bb00(haveAction_, count_, navigator_.getPageNo());
+        unkfunc_0216bb00(haveAction_, count_, navigator_.getPageNo());
         menuItem_.drawActive();
         cancelItem_.drawActive();
     }
@@ -107,8 +107,8 @@ THUMB void BattleMenu_MAGIC::menuUpdate()
                             int target = BattleMenuJudge::getSingleton()->getLiveMonsterID();
                             btl::BattleMenuPlayerControl::getSingleton()->targetChara_ = target;
                             close();
-                            func_ov015_0216aa34(func_ov015_0216aa2c());
-                            func_ov015_0216aa54(func_ov015_0216aa2c());
+                            BattleMonsterNamePlate::getSingleton().init();
+                            BattleMonsterNamePlate::getSingleton().setMonster();
                             btl::BattleMenuPlayerControl::getSingleton()->activeMagic_ = magic;
                             gBattleMenu_MAGIC2ENEMY.open();
                             gBattleMenu_MAGIC2ENEMY.activeMagicPos_ = navigator_.getIndex(menuItem_.active_);

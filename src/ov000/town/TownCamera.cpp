@@ -13,13 +13,13 @@
 #include "ov000/Commands/TownCommand.hpp"
 
 inline bool isEven() { return (func_02081254() & 1) == 0; }
-inline const long& limitLockL() { return -1L; }
 static const float TOWN_CAMERA_DISTANCE = 39.55f;
 static const dss::Fix32Vector3 position(0, 0, 0);
-inline const long& limitFreeR() { return 0L; }
-inline const long& limitLockR() { return -1L; }
-static dss::Vector3<short> default_angle(cameraParam[0], cameraParam[2], cameraParam[6]);
+static dss::Vector3<short> default_angle(-8556, 0, 0);
 static dss::Fix32 distance(TOWN_CAMERA_DISTANCE);
+static dss::Fix32 offset(2L);
+static short cameraDirOffset = 1456;
+static short cameraFov = 10;
 
 ARM TownCamera::TownCamera()
 {
@@ -35,8 +35,6 @@ ARM TownCamera* TownCamera::getSingleton()
     return &m_singleton;
 }
 
-static dss::Fix32 offset(2L);
-
 ARM void TownCamera::initialize()
 {
     camera_.unk_004.setup();
@@ -45,11 +43,11 @@ ARM void TownCamera::initialize()
     camera_.setDistance(distance);
     camera_.setRotXYZ(default_angle);
     camera_.setOffset(offset);
-    camera_.m_dirOffset = cameraParam[5];
+    camera_.m_dirOffset = cameraDirOffset;
     camera_.m_cameraNo = 1;
     camera_.unk_d0 = 0;
     camera_.unk_d4 = 0;
-    short fov = cameraParam[3];
+    short fov = cameraFov;
     camera_.unk_004.setFOV2(fov);
     camera_.unk_068.setFOV2(fov);
     dss::Fix32 scaleW;
@@ -257,7 +255,7 @@ ARM void TownCamera::rotateL()
     angle.vy = now->vy;
     angle.vz = now->vz;
     angle.vy += 0x100;
-    if (limitL == dss::Fix32(limitLockL())) {
+    if (limitL == dss::Fix32(-1L)) {
         angle.vy = 0;
     } else if (limitL != dss::Fix32(0L)) {
         angle.vy = dss::clamp<int>(angle.vy, -func_02080d94(limitR), func_02080d94(limitL));
@@ -278,9 +276,9 @@ ARM void TownCamera::rotateR()
     angle.vy = now->vy;
     angle.vz = now->vz;
     angle.vy -= 0x100;
-    if (limitR == dss::Fix32(limitLockR())) {
+    if (limitR == dss::Fix32(-1L)) {
         angle.vy = 0;
-    } else if (limitR != dss::Fix32(limitFreeR())) {
+    } else if (limitR != dss::Fix32(0L)) {
         angle.vy = dss::clamp<int>(angle.vy, -func_02080d94(limitR), func_02080d94(limitL));
     }
     if (angle.vy == 0) {
@@ -400,6 +398,7 @@ ARM void TownCamera::resetCameraMove(int frame)
     }
     dss::Vector3<short>& now = camera_.unk_004.getAngle();
     dss::Vector3<short> angleNow(now.vx, now.vy, now.vz);
+    dss::Vector3<short> angle(0, 0, 0);    // unused, like on mobile (its literal temps stay in .data)
     if (changeDefaultAngleFlag_ == 0) {
         cameraMove_.setActionRot(angleNow, default_angle);
         cameraMove_.setRotFrame(frame, 0);

@@ -1,6 +1,6 @@
 #include "ov016/casino/MaterielMenuPoker/MaterielMenuPokerSelectcard.hpp"
 #include "ov016/casino/MaterielMenuPoker/MaterielMenuPokerBetcoin.hpp"
-#include "ov016/MenuTemplate_materiel.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
 #include "ov016/MaterielMenu_WINDOW_MANAGER/MaterielMenu_WINDOW_MANAGER.hpp"
 #include "ov009/casino/PokerManager.hpp"
 #include "ov009/casino/CasinoPokerDraw.hpp"
@@ -11,6 +11,7 @@
 #include "main/text/TextAPI.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/dss/Pad.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_02177bac.hpp"
 
 THUMB void MaterielMenuPokerSelectcard::menuSetup()
 {
@@ -165,7 +166,7 @@ THUMB void MaterielMenuPokerSelectcard::statusUpdate()
     switch (gameMode_) {
     case 8:
         close();
-        data_ov016_02186324.open();
+        gMaterielMenu_POKER_BETCOIN.open();
         break;
     case 1: {
         cursor_.setup(4, 1, 4);
@@ -348,7 +349,7 @@ THUMB void MaterielMenuPokerSelectcard::pokerReverseCard()
         if (index_ > 4) {
             if (gameMode_ == 3) {
                 close();
-                data_ov016_02186324.open();
+                gMaterielMenu_POKER_BETCOIN.open();
                 return;
             }
             index_ = 0;

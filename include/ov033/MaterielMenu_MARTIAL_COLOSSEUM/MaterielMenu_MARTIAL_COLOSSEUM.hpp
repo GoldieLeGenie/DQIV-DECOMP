@@ -26,8 +26,5 @@ struct MaterielMenu_MARTIAL_COLOSSEUM : menu::MenuBase
 
 
 
-extern "C" {
-    void func_ov016_0216fdc4(void);                         /* gMI_Chapter2Status.drawActive() */
-}
 
-extern MaterielMenu_MARTIAL_COLOSSEUM data_ov016_02185a34;  /* gMaterielMenu_MARTIAL_COLOSSEUM */
+extern MaterielMenu_MARTIAL_COLOSSEUM gMaterielMenu_MARTIAL_COLOSSEUM;

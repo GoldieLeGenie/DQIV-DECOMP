@@ -1,7 +1,6 @@
 #pragma once
 #include "main/cmn/ActionBase.hpp"
 #include "main/text/TextAPI.hpp"
-struct TownPartyDraw;
 #include "main/cmn/CommonCalculate.hpp"
 #include "main/script/ScriptBaseCommand.hpp"
 #include "main/window/CommandWindow.hpp"
@@ -16,7 +15,9 @@ struct TownPartyDraw;
 #include "main/menu/MenuManager.hpp"
 #include "main/cmn/CommonEffectLocation.hpp"
 #include "ov016/casino/MaterielMenu_SLOT/MaterielMenu_SLOT.hpp"
+#include "main/profile/Profile.hpp"
 
+struct TownPartyDraw;
 struct TownFurnitureManager;
 struct TownStageManager;
 struct TownPlayerManager;
@@ -168,6 +169,7 @@ int cmd_player_action_wriggle(int* param);
 int cmd_set_character_collision(int* param);
 int cmd_is_trigger(int* param);
 int cmd_is_trigger2(int* param);
+int cmd_is_trigger3(int* param);
 int cmd_character_action_pursue(int* param);
 int cmd_character_move_roam(int* param);
 int cmd_is_trigger_character(int* param);
@@ -175,43 +177,15 @@ int cmd_is_trigger2_character(int* param);
 int cmd_party_join(int* param);
 int cmd_party_quit(int* param);
 
-struct EventItemInfo;
-extern "C" EventItemInfo* func_ov016_0216ba40(void);
-
-struct EventItemInfo {
-    char item_;
-    int enable_;
-
-    static void setItem(int item) { func_ov016_0216ba40()->item_ = item; }
-};
-
-struct Data021487a8 {
-    long unk_0;
-    int unk_4;
-    int unk_8;
-    int unk_c;
-    int unk_10;
-    int unk_14;
-};
-
-extern Data021487a8 data_ov000_021487a8;
-extern long data_ov000_021487ac;
-extern dss::Fix32 data_ov000_021487b0;
-
 extern "C" {
-    int func_ov000_02141424(int* param);
-
     void func_02037db0(void* obj, int a, int b);
     void func_02037e20(void* obj, int a, int b, int count, int* values);
     int  func_02037ef4(void* obj, int id, int value);
     int  func_02037f40(void* obj, int id, int value);
-    void func_ov016_0216fa48(char* a, char* b, char* c, int value);
     void* func_020835d8(void);
     void func_02085d88(void);
     int func_02037f84(void* obj, int type);
     void func_0208a114(char* dst, int size, int id);
-    void func_0203a7a8(void* mgr, char* name);
-    int func_0203a388(void* mgr);
     void func_02037f98(void* obj);
     void func_020857c8(void* obj, dss::Fix32Vector3 pos);
 }

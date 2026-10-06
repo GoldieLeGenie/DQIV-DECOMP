@@ -16,6 +16,7 @@ extern "C" {
     void  func_0208532c(FldStage* stage, Render* render);
     void  func_02085348(FldStage* stage);
     void  func_020857a8(int index, dss::Fix32Vector3 scale);
+    void  func_02085840(void* palette, int size, dss::Fix32Vector3& rate);   /* applies an rgb rate to a palette */
     void  func_02084c78(int r, int g, int b);
     void  func_0208336c(UnkModelMember* self);
     int*  func_0207f88c(void* heap);
@@ -82,7 +83,7 @@ struct FldStage {
     VecFx32 getUidPos(int uid);
     int* GetMapUidObj(int uid);
     bool IsCommonAnimationEnd(int uid);
-    int addBoxCollistion(dss::Fix32Vector3& pos, dss::Fix32Vector3& size, int* id, int flag);
+    COLL_ADD_RESULT_TYPE addBoxCollistion(dss::Fix32Vector3& center, dss::Fix32Vector3& vec, int& extraId, int& allocFlag);
     int getPolyNoBySurfaceId(int surface, int index);
     void addMovePosByObjNo(int obj, dss::Fix32Vector3& move);
     int getCrossPolygonOtherSurface(dss::Fix32Vector3& start, dss::Fix32Vector3& end, short* surface, int count, int* poly, dss::Fix32* dist, int all);

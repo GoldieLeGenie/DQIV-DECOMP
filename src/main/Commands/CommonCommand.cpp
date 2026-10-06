@@ -313,7 +313,7 @@ THUMB void __cmd_menu_save::initialize(char* scriptParam)
         MaterielMenu_WINDOW_MANAGER::getSingleton()->openMaterielWindow(MaterielMenu_WINDOW_MANAGER::MENU_SAVE);
     }
     MaterielMenu_WINDOW_MANAGER::getSingleton()->setSaveMenuType(param->type);
-    g_cmnPartyInfo.partyTalk = ctrl;
+    g_cmnPartyInfo.ctrlID_ = ctrl;
     type_ = param->type;
     if (param->type == 2) {
         status::g_Party.clear();
@@ -361,7 +361,7 @@ THUMB int cmd_encount(int* param)
     }
     ScriptSystem::getSingleton()->executeEnable_ = 0;
     if (data_0210bb94.unkfunc_02058114(0xe) == 1) {
-        func_ov001_0212a620(FieldPlayerManager::getSingleton(), 1);
+        FieldPlayerManager::getSingleton()->setLockByEventEncount(1);
     } else {
         TownPlayerManager::getSingleton()->setLockByEventEncount(1);
     }
@@ -377,7 +377,7 @@ THUMB int cmd_encount_set_flag(int* param)
         encount::Encount::getSingleton()->forceEventBrew(param[1]);
     }
     if (data_0210bb94.unkfunc_02058114(0xe) == 1) {
-        func_ov001_0212a620(FieldPlayerManager::getSingleton(), 1);
+        FieldPlayerManager::getSingleton()->setLockByEventEncount(1);
     } else {
         TownPlayerManager::getSingleton()->setLockByEventEncount(1);
     }
@@ -401,7 +401,7 @@ THUMB int cmd_encount_first_strike(int* param)
         encount::Encount::getSingleton()->forceEventBrew(param[1]);
     }
     if (data_0210bb94.unkfunc_02058114(0xe) == 1) {
-        func_ov001_0212a620(FieldPlayerManager::getSingleton(), 1);
+        FieldPlayerManager::getSingleton()->setLockByEventEncount(1);
     } else {
         TownPlayerManager::getSingleton()->setLockByEventEncount(1);
     }
@@ -1005,7 +1005,7 @@ THUMB int cmd_battle_end_flag_set(int* param)
         encount::Encount::getSingleton()->forceEventBrew(param[1]);
     }
     if (data_0210bb94.unkfunc_02058114(0xe) == 1) {
-        func_ov001_0212a620(FieldPlayerManager::getSingleton(), 1);
+        FieldPlayerManager::getSingleton()->setLockByEventEncount(1);
     } else {
         TownPlayerManager::getSingleton()->setLockByEventEncount(1);
     }

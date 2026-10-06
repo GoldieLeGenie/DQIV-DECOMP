@@ -17,6 +17,9 @@
 #include "ov000/town/TownSystem.hpp"
 #include "ov026/MaterielMenu_SURECHIGAI/MaterielMenu_SURECHIGAI.hpp"
 #include "main/menu/UiMsg.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_02177bac.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_SAVE::menuSetup()
 {
@@ -32,14 +35,14 @@ THUMB void MaterielMenu_SAVE::menuSetup()
 
 THUMB void MaterielMenu_SAVE::menuExecute()
 {
-    func_ov016_021774f4(&menuItem_);
+    MenuTemplate_materiel::MATERIEL_DIARY_SELECT(&menuItem_);
 }
 
 THUMB void MaterielMenu_SAVE::menuDraw()
 {
     if (status_ != MENU_SELECT || messageCounter_ == 0) {
         if (saveType_ == TYPE_CHURCH) {
-            func_ov016_0216ff18();
+            unkfunc_0216ff18();
         }
         return;
     }
@@ -47,14 +50,14 @@ THUMB void MaterielMenu_SAVE::menuDraw()
         int savetype = diary_[i].savetype_;
         char* name = diary_[i].name_;
         if (savetype == 4) {
-            func_ov016_0217800c(i, name, -1, -1, -1, diary_[i].time_, 0x5a, name != 0);
+            unkfunc_0217800c(i, name, -1, -1, -1, diary_[i].time_, 0x5a, name != 0);
         } else {
-            func_ov016_0217800c(i, name, diary_[i].chapter_, diary_[i].level_, diary_[i].town_, diary_[i].time_, 0x22, name != 0);
+            unkfunc_0217800c(i, name, diary_[i].chapter_, diary_[i].level_, diary_[i].town_, diary_[i].time_, 0x22, name != 0);
         }
     }
-    func_ov016_02177c00(0, 0x10, 0x100, 0x68, 0);
+    unkfunc_02177c00(0, 0x10, 0x100, 0x68, 0);
     if (saveType_ == TYPE_CHURCH) {
-        func_ov016_0216ff18();
+        unkfunc_0216ff18();
     }
     menuItem_.drawActive();
 }
@@ -529,7 +532,7 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
         switch (saveType_) {
         case TYPE_SURECHIGAI:
             if (startSurechigai_ == 0) {
-                data_ov016_02185dc4.open();
+                gMaterielMenu_SURECHIGAI_ROOT.open();
                 return;
             }
             break;

@@ -25,6 +25,9 @@ struct TownMenu_ROOT : menu::MenuBase
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
+    void unkfunc_021788d8(int active);
+    void unkfunc_021789cc();
 };
 
-extern TownMenu_ROOT data_ov016_02187c60;              /* gTownMenu_ROOT */
+extern TownMenu_ROOT gTownMenu_ROOT;
+

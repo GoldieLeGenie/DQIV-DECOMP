@@ -17,6 +17,8 @@ namespace status{
         short walkCountLifeRing_;
         PlayerStatus();
         ~PlayerStatus();
+        int getCharaIndex() { return haveStatusInfo_.haveStatus_.charaIndex_; }
+        bool isAlive() { return !getHaveStatusInfo().isDeath(); }
         void setup(int index);
         void levelup(int level);
         void setBestCondition();

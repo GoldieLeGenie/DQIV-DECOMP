@@ -3,6 +3,8 @@
 #include "main/text/TextAPI.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_BANK_PUTIN::menuSetup()
 {
@@ -18,16 +20,16 @@ THUMB void MaterielMenu_BANK_PUTIN::menuSetup()
 
 THUMB void MaterielMenu_BANK_PUTIN::menuExecute()
 {
-    func_ov016_02177a24(&menuItem_, oldActive_, 3);
+    MenuTemplate_materiel::MATERIEL_MONEY_SELECT(&menuItem_, oldActive_, 3);
 }
 
 THUMB void MaterielMenu_BANK_PUTIN::menuDraw()
 {
     if (first_ == 0) {
         if (data_020ed1bc.isOpen()) {
-            func_ov016_0216fd00(1, 1, putinMoney_);
+            unkfunc_0216fd00(1, 1, putinMoney_);
         } else {
-            func_ov016_0216fd00(0, 1, putinMoney_);
+            unkfunc_0216fd00(0, 1, putinMoney_);
             menuItem_.drawActive();
         }
     }

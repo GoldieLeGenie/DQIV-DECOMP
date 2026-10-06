@@ -215,7 +215,7 @@ THUMB status::ItemData * status::BaseHaveItem::getItemData(int index)
   return &this->item_[index];
 }
 
-THUMB unsigned short status::BaseHaveItem::getItemCount(int index)
+THUMB int status::BaseHaveItem::getItemCount(int index)
 {
   return this->item_[index].count_;
 }

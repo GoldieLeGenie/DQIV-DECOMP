@@ -96,10 +96,7 @@ struct MaterielMenu_EXTRA_SIDEJOB_SELL : menu::MenuBase
     void addPay();
 };
 
-extern MaterielMenu_EXTRA_SIDEJOB_ROOT data_ov016_02185948;
-extern MaterielMenu_EXTRA_SIDEJOB_BUY data_ov016_02185990;
-extern MaterielMenu_EXTRA_SIDEJOB_SELL data_ov016_02185a08;
+extern MaterielMenu_EXTRA_SIDEJOB_ROOT gMaterielMenu_EXTRA_SIDEJOB_ROOT;
+extern MaterielMenu_EXTRA_SIDEJOB_BUY gMaterielMenu_EXTRA_SIDEJOB_BUY;
+extern MaterielMenu_EXTRA_SIDEJOB_SELL gMaterielMenu_EXTRA_SIDEJOB_SELL;
 
-extern "C" {
-    void func_ov016_0216ff10(void);
-}

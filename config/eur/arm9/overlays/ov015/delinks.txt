@@ -31,6 +31,56 @@ src/ov015/btl/BattleMenu_NGMESSAGE.cpp:
     .text start:0x0216a980 end:0x0216aa2c
     .data start:0x02176760 end:0x0217677c
 
+src/ov015/btl/BattleMonsterNamePlate.cpp:
+    complete
+    .text start:0x0216aa2c end:0x0216afc0
+    .bss start:0x02179660 end:0x021796ac
+
+src/ov015/btl/UnkBattleMenuDraw_0216afc0.cpp:
+    complete
+    .text start:0x0216afc0 end:0x0216ba54
+    .rodata start:0x021763d4 end:0x02176480
+    .data start:0x0217677c end:0x02176e8c
+
+src/ov015/btl/UnkBattleMenuDraw_0216ba54.cpp:
+    complete
+    .text start:0x0216ba54 end:0x0216c5c4
+    .rodata start:0x02176480 end:0x021764cc
+    .data start:0x02176e8c end:0x02177238
+    .bss start:0x021796ac end:0x021796b4
+
+src/ov015/btl/MenuTemplate_battle.cpp:
+    complete
+    .text start:0x0216c5c4 end:0x0216c760
+    .data start:0x02177238 end:0x02177578
+
+src/ov015/btl/BattleMenu.cpp:
+    complete
+    .init start:0x02176554 end:0x0217674c
+    .ctor start:0x0217674c end:0x02176750
+    .data start:0x02177594 end:0x021775ac
+    .bss start:0x0217973c end:0x0217ac54
+
+src/ov015/btl/BattleMenu_StadiumAbort.cpp:
+    complete
+    .text start:0x0216cf10 end:0x0216cf44
+    .data start:0x021775ac end:0x021775c8
+
+src/ov015/btl/UnkBattleMenu_0216cf44.cpp:
+    complete
+    .text start:0x0216cf44 end:0x0216d4c8
+    .data start:0x021775c8 end:0x02177604
+
+src/ov015/btl/UnkBattleMenu_0216e270.cpp:
+    complete
+    .text start:0x0216e270 end:0x0216e2f0
+    .data start:0x02177690 end:0x021777bc
+    .bss start:0x0217ac54 end:0x0217acd4
+
+src/ov015/ov015_entry.cpp:
+    complete
+    .text start:0x0216fd7c end:0x0216fd80
+
 src/ov015/btl/BattleMenu_ITEMUSE2PARTY.cpp:
     complete
     .text start:0x0216d4c8 end:0x0216d600

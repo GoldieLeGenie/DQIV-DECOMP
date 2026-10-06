@@ -142,7 +142,7 @@ namespace status{
         unsigned char getChangeLuck(unsigned int itemIndex);
         short getChangeAttack(unsigned int itemIndex);
         short getChangeDefence(unsigned int itemIndex);
-        bool setNearDeath();
+        int setNearDeath();
         bool isDeath();
         void setDeath();
         void rebirth();

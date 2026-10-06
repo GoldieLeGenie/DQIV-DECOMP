@@ -40,7 +40,7 @@ ARM int TownDoorAction::setup()
     TownActionCalculate::getDirByIdx(dirIdx, dir);
     dss::Fix32Vector3 end = pos - dir * len;
     int exitIndex = StageLink::getTownExitIndex();
-    func_02040b28(TownStageManager::getSingleton()->stage_.m_fld.m_coll, exitIndex, 0);
+    coll_GetPolyNoBySurface(TownStageManager::getSingleton()->stage_.m_fld.m_coll, exitIndex, 0);
     int poly;
     short surface[2] = { 0x1000, 0x7000 };
     if (g_Stage.idoLink_.data_.link_.encount_ == 1) {

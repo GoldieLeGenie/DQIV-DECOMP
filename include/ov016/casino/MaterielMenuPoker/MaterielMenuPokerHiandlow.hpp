@@ -22,4 +22,4 @@ struct MaterielMenuPokerHiandlow : menu::MenuBase {
     void judgementHiAndLow();
 };
 
-extern MaterielMenuPokerHiandlow data_ov016_0218665c;      /* gMaterielMenu_POKER_HI_AND_LOW */
+extern MaterielMenuPokerHiandlow gMaterielMenu_POKER_HIANDLOW;

@@ -71,7 +71,7 @@ THUMB void MaterielMenu_INN_ROOT::menuUpdate()
         return;
     }
     if (g_Global.bookingFlag_ == Global::BOOKING_INN) {
-        int ctrlID = g_cmnPartyInfo.partyTalk;
+        int ctrlID = g_cmnPartyInfo.ctrlID_;
         cmn::g_CommonCounterInfo.setChangeDay();
         cmn::g_CommonCounterInfo.freeCounter_[0]++;
         ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(ctrlID));

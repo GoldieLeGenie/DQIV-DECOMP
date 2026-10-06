@@ -1,6 +1,8 @@
 #include "ov028/MaterielMenu_SHOP/MaterielMenu_SHOP.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/status/PartyStatus.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_SHOP_ROOT::menuSetup()
 {
@@ -8,23 +10,23 @@ THUMB void MaterielMenu_SHOP_ROOT::menuSetup()
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = MaterielMenu_SHOP_MANAGER::getSingleton()->getShopAction();
     navigator_.setupBase();
-    func_ov016_0216ff34(func_ov016_0216ff2c());
+    MaterielMenuPlayerControl::getSingleton()->allClear();
     MaterielMenu_SHOP_MANAGER::getSingleton()->resetItemQuantity();
     mode_ = 0;
 }
 
 THUMB void MaterielMenu_SHOP_ROOT::menuExecute()
 {
-    func_ov016_02177318(&menuItem_, menuItem_.active_);
+    MenuTemplate_materiel::MATERIEL_SHOP_ROOT(&menuItem_, menuItem_.active_);
 }
 
 THUMB void MaterielMenu_SHOP_ROOT::menuDraw()
 {
     if (data_020ed1bc.isMessageWAITPROG()) {
-        func_ov016_0216fb14();
+        unkfunc_0216fb14();
         menuItem_.drawActive();
     } else if (data_020ed1bc.isOpen() && mode_ != 1) {
-        func_ov016_0216fc58();
+        unkfunc_0216fc58();
     }
 }
 
@@ -92,9 +94,9 @@ THUMB void MaterielMenu_SHOP_ROOT::execConduct()
     case 2:
         close();
         if (menuItem_.active_ == 0) {
-            data_ov016_02186f40.open();
+            gMaterielMenu_SHOP_BUYMENU.open();
         } else {
-            data_ov016_02186d28.open();
+            gMaterielMenu_SHOP_WHO_SELL.open();
         }
         break;
     case 3:

@@ -17,6 +17,7 @@ namespace status{
         void setPlayTime(unsigned int Playtime);
         void setUniqueID(unsigned int id);
         void addPlayTime(unsigned int time);
+        Language unkfunc_0216e3f0() { return language; }
     };
     extern GameStatus g_Game; //data_020d0bc0
 }

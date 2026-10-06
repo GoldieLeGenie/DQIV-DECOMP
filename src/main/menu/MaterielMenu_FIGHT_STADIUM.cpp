@@ -7,6 +7,7 @@
 #include "main/sound/SoundManager.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/cmn/CommonCounterInfo.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_02177bac.hpp"
 
 const int MaterielMenu_FIGHT_STADIUM::DOUBLEUP_COIN_MAX = 10000;
 const int MaterielMenu_FIGHT_STADIUM::BET_COIN_MAX = 50;
@@ -33,18 +34,18 @@ THUMB void MaterielMenu_FIGHT_STADIUM::menuSetup()
 
 THUMB void MaterielMenu_FIGHT_STADIUM::menuExecute()
 {
-    func_ov016_0217742c(&monsterItem_, monsterItem_.active_, FightStadiumManager::getSingleton()->cardCount_);
-    func_ov016_0217736c(&betItem_, betItem_.active_, BET_FIGURE_MAX, BET_CURSOR_X, BET_CURSOR_Y);
+    MenuTemplate_materiel::MATERIEL_MONSTER_LIST(&monsterItem_, monsterItem_.active_, FightStadiumManager::getSingleton()->cardCount_);
+    MenuTemplate_materiel::MATERIEL_BET_COIN(&betItem_, betItem_.active_, BET_FIGURE_MAX, BET_CURSOR_X, BET_CURSOR_Y);
 }
 
 THUMB void MaterielMenu_FIGHT_STADIUM::menuDraw()
 {
     int flag = 0;
-    func_ov016_02177f54(haveCoin_, 0, 0, 0);
+    unkfunc_02177f54(haveCoin_, 0, 0, 0);
     if (status_ == FIGHT_STADIUM_BET || status_ == FIGHT_STADIUM_RESULT || (status_ == FIGHT_STADIUM_RETRY && messageCount_ != 0)) {
         flag = 1;
-        func_ov016_02177f54(g_Global.betCoin_, 0, 0x20, flag);
-        func_ov016_02177c78(status_ == FIGHT_STADIUM_BET);
+        unkfunc_02177f54(g_Global.betCoin_, 0, 0x20, flag);
+        unkfunc_02177c78(status_ == FIGHT_STADIUM_BET);
         if (status_ == FIGHT_STADIUM_BET) {
             if (blink_ != 0) {
                 if (blinkCount_ > 15) {
@@ -75,13 +76,13 @@ THUMB void MaterielMenu_FIGHT_STADIUM::menuDraw()
         for (int i = 0; i < count; i++) {
             int monsterID = FightStadiumManager::getSingleton()->getMonsterID(i);
             int diameter = FightStadiumManager::getSingleton()->getDiameter(i);
-            func_ov016_02177eb8(monsterID, diameter, i, FightStadiumManager::getSingleton()->getOrderCount(i));
+            unkfunc_02177eb8(monsterID, diameter, i, FightStadiumManager::getSingleton()->getOrderCount(i));
         }
         unkfunc_02177bac(0, 0, 0xb8, count * 16 + 0x30, -1);
-        func_ov016_02177c54(flag);
+        unkfunc_02177c54(flag);
     }
     if (status_ == FIGHT_STADIUM_BET) {
-        func_ov016_02177f38(g_Global.betOnIndex_);
+        unkfunc_02177f38(g_Global.betOnIndex_);
     }
 }
 

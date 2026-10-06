@@ -4,6 +4,7 @@
 #include "main/dss/Random.hpp"
 #include "main/status/ShopList.hpp"
 #include "main/status/UseItem.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_EXTRA_SIDEJOB_SELL::menuSetup()
 {
@@ -21,7 +22,7 @@ THUMB void MaterielMenu_EXTRA_SIDEJOB_SELL::menuExecute()
 THUMB void MaterielMenu_EXTRA_SIDEJOB_SELL::menuDraw()
 {
     if (mode_ >= SELL_WAIT) {
-        func_ov016_0216ff10();
+        unkfunc_0216ff10();
     }
 }
 

@@ -105,6 +105,14 @@ src/main/script/ScriptSystem.cpp:
     .data start:0x020bdf64 end:0x020bdf78
     .bss start:0x020d2bac end:0x020ec59c
 
+src/main/object/GameMonster.cpp:
+    complete
+    .text start:0x0204d010 end:0x0204d0f4
+    .init start:0x0208c080 end:0x0208c0ac
+    .ctor start:0x020bb448 end:0x020bb44c
+    .data start:0x020c1e08 end:0x020c1e24
+    .bss start:0x020f4eb4 end:0x020f530c
+
 src/main/object/DSSACharacter.cpp:
     complete
     .text start:0x0205a8b8 end:0x0205b3d0
@@ -411,6 +419,11 @@ src/main/status/UseActionMessage.cpp:
     complete
     .text start:0x02033690 end:0x020336d8
 
+src/main/window/GlobalMap.cpp:
+    complete
+    .text start:0x020336d8 end:0x02033d14
+    .data start:0x020bed00 end:0x020bed84
+
 src/main/status/UseActionParam.cpp:
     complete
     .text start:0x0202742c end:0x020274c4
@@ -499,6 +512,11 @@ src/main/sound/MenuSoundManager.cpp:
     complete
     .text start:0x02035180 end:0x02035348
     .bss start:0x020ef858 end:0x020ef880
+
+src/main/btl/MonsterData.cpp:
+    complete
+    .text start:0x02035348 end:0x02035364
+    .data start:0x020bf3c8 end:0x020c04f4
 
 src/main/text/TextHook.cpp:
     complete
@@ -590,6 +608,11 @@ src/main/menu/UnkMenuArrowDisplay.cpp:
     complete
     .text start:0x02052488 end:0x020526a0
     .data start:0x020c23ec end:0x020c2454
+
+src/main/window/UnkMapBase_020381d0.cpp:
+    complete
+    .text start:0x020381d0 end:0x0203831c
+    .data start:0x020c1354 end:0x020c137c
 
 src/main/menu/MaterielMenu_SlotEnter.cpp:
     complete
@@ -721,7 +744,7 @@ src/main/cmn/CommonRuraData.cpp:
     complete
     .text start:0x020332cc end:0x02033690
     .rodata start:0x020b5fbc end:0x020b610c
-    .data start:0x020becf0 end:0x020bed08
+    .data start:0x020becf0 end:0x020bed00
     .bss start:0x020ef794 end:0x020ef7ac
 
 src/main/cmn/ResourceStorage.cpp:
@@ -744,9 +767,17 @@ src/main/cmn/WorldLocation.cpp:
     complete
     .text start:0x0203ab9c end:0x0203af8c
 
+src/main/menu/MaterielMenu_NameEdit.cpp:
+    complete
+    .text start:0x0203af8c end:0x0203b8a4
+    .rodata start:0x020b6164 end:0x020b61b8
+    .data start:0x020c1428 end:0x020c1448
+    .bss start:0x020f17bc end:0x020f1d78
+
 src/main/cmn/PlayerManager.cpp:
     complete
-    .text start:0x02030fcc end:0x020310d0
+    .text start:0x02030fa8 end:0x020310d0
+    .data start:0x020becb0 end:0x020becc8
     .bss start:0x020eed20 end:0x020eed2c
 
 src/main/cmn/PlayerAction.cpp:
@@ -874,6 +905,18 @@ src/main/object/DisplayCharacter.cpp:
     .ctor start:0x020bb440 end:0x020bb444
     .data start:0x020c1d48 end:0x020c1da8
     .bss start:0x020f4e14 end:0x020f4e84
+
+src/main/object/SpriteCharacter.cpp:
+    complete
+    .text start:0x0204b180 end:0x0204b81c
+    .init start:0x0208c040 end:0x0208c080
+    .ctor start:0x020bb444 end:0x020bb448
+    .data start:0x020c1da8 end:0x020c1e00
+    .bss start:0x020f4e84 end:0x020f4ea8
+
+src/main/fld/Coll.cpp:
+    complete
+    .text start:0x0203f368 end:0x020421bc
 
 src/main/fld/FLDObject.cpp:
     complete

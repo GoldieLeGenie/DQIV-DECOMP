@@ -4,6 +4,8 @@
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/UseItem.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_SHOP_WHOSE::menuSetup()
 {
@@ -15,8 +17,8 @@ THUMB void MaterielMenu_SHOP_WHOSE::menuSetup()
     yesno_ = 0;
     endMessage_ = 0;
     maxCharaCount_ = status::g_Party.getCount();
-    activeChara_ = func_ov016_0216ff2c()->activeChara_;
-    activeItem_ = func_ov016_0216ff2c()->activeItem_;
+    activeChara_ = MaterielMenuPlayerControl::getSingleton()->activeChara_;
+    activeItem_ = MaterielMenuPlayerControl::getSingleton()->activeItem_;
     if (status::g_Party.fukuro_ != 0) {
         maxCharaCount_++;
     }
@@ -25,18 +27,18 @@ THUMB void MaterielMenu_SHOP_WHOSE::menuSetup()
 
 THUMB void MaterielMenu_SHOP_WHOSE::menuExecute()
 {
-    func_ov016_02177a08(&menuItem_, activeChara_, maxCharaCount_);
-    func_ov016_02177a98(&menuItem2_);
+    MenuTemplate_materiel::MATERIEL_ICON32_5x2(&menuItem_, activeChara_, maxCharaCount_);
+    MenuTemplate_materiel::MATERIEL_CANCEL(&menuItem2_);
 }
 
 THUMB void MaterielMenu_SHOP_WHOSE::menuDraw()
 {
     if (data_020ed1bc.isOpen() && yesno_ == 0) {
-        func_ov016_0216fc58();
+        unkfunc_0216fc58();
         return;
     }
     if (yesno_ == 0) {
-        func_ov016_0216fb6c(0);
+        unkfunc_0216fb6c(0);
         menuItem_.drawActive();
         menuItem2_.drawActive();
     }
@@ -49,8 +51,8 @@ THUMB void MaterielMenu_SHOP_WHOSE::menuUpdate()
         if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
             if (endMessage_ == 1) {
                 close();
-                data_ov016_02186f40.open();
-                data_ov016_02186f40.message_ = 1;
+                gMaterielMenu_SHOP_BUYMENU.open();
+                gMaterielMenu_SHOP_BUYMENU.message_ = 1;
                 return;
             }
             yesno_ = 0;
@@ -68,8 +70,8 @@ THUMB void MaterielMenu_SHOP_WHOSE::menuUpdate()
         data_020ed1bc.openMessageForTALK();
         data_020ed1bc.addMessageNOWAIT(MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->cancel());
         data_020ed1bc.addMessageWAITKEY();
-        data_ov016_02185c10.open();
-        data_ov016_02185c10.mode_ = 1;
+        gMaterielMenu_SHOP_ROOT.open();
+        gMaterielMenu_SHOP_ROOT.mode_ = 1;
         return;
     }
     navigator_.setup(5, 2, maxCharaCount_);
@@ -77,7 +79,7 @@ THUMB void MaterielMenu_SHOP_WHOSE::menuUpdate()
     if (result != 0) {
         activeChara_ = menuItem_.active_;
         int activeChara = activeChara_;
-        func_ov016_0216ff2c()->activeChara_ = activeChara;
+        MaterielMenuPlayerControl::getSingleton()->activeChara_ = activeChara;
         if (result == 2) {
             haveMaxCheck();
         }
@@ -139,8 +141,8 @@ THUMB void MaterielMenu_SHOP_WHOSE::selectNo()
         data_020ed1bc.openMessageForTALK();
         data_020ed1bc.addMessageNOWAIT(MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->cancel());
         data_020ed1bc.addMessageWAITKEY();
-        data_ov016_02185c10.open();
-        data_ov016_02185c10.mode_ = 1;
+        gMaterielMenu_SHOP_ROOT.open();
+        gMaterielMenu_SHOP_ROOT.mode_ = 1;
         mode_ = -1;
         break;
     case 2:
@@ -172,8 +174,8 @@ THUMB void MaterielMenu_SHOP_WHOSE::yesSort()
     if (status::UseItem::getItemType(MaterielMenu_SHOP_MANAGER::getSingleton()->getItem(activeItem_)) <= 4) {
         close();
         int activeItem = activeItem_;
-        func_ov016_0216ff2c()->activeItem_ = activeItem;
-        data_ov016_02185af4.open();
+        MaterielMenuPlayerControl::getSingleton()->activeItem_ = activeItem;
+        gMaterielMenu_SHOP_EQUIPCHECK.open();
     } else {
         giveBuyItem();
     }
@@ -194,8 +196,8 @@ THUMB void MaterielMenu_SHOP_WHOSE::haveMaxCheck()
             data_020ed1bc.addMessage(mes[0]);
             data_020ed1bc.addMessageNOWAIT(mes[1]);
             data_020ed1bc.addMessageWAITKEY();
-            data_ov016_02185c10.open();
-            data_ov016_02185c10.mode_ = 1;
+            gMaterielMenu_SHOP_ROOT.open();
+            gMaterielMenu_SHOP_ROOT.mode_ = 1;
             return;
         }
         MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->buyToSack(true, mes);
@@ -219,8 +221,8 @@ THUMB void MaterielMenu_SHOP_WHOSE::haveMaxCheck()
     if (status::UseItem::getItemType(MaterielMenu_SHOP_MANAGER::getSingleton()->getItem(activeItem_)) <= 4) {
         close();
         int activeItem = activeItem_;
-        func_ov016_0216ff2c()->activeItem_ = activeItem;
-        data_ov016_02185af4.open();
+        MaterielMenuPlayerControl::getSingleton()->activeItem_ = activeItem;
+        gMaterielMenu_SHOP_EQUIPCHECK.open();
         mode_ = -1;
     } else {
         giveBuyItem();
@@ -249,8 +251,8 @@ THUMB void MaterielMenu_SHOP_WHOSE::checkMoney()
         }
         data_020ed1bc.addMessageWAITKEY();
         close();
-        data_ov016_02185c10.open();
-        data_ov016_02185c10.mode_ = 1;
+        gMaterielMenu_SHOP_ROOT.open();
+        gMaterielMenu_SHOP_ROOT.mode_ = 1;
         return;
     }
     for (int i = 0; mes[i] != -1; i++) {
@@ -261,8 +263,8 @@ THUMB void MaterielMenu_SHOP_WHOSE::checkMoney()
         MaterielMenu_SHOP_MANAGER::getSingleton()->setItemQuantity(i, 1);
     }
     close();
-    data_ov016_02186f40.open();
-    data_ov016_02186f40.message_ = 1;
+    gMaterielMenu_SHOP_BUYMENU.open();
+    gMaterielMenu_SHOP_BUYMENU.message_ = 1;
 }
 
 THUMB void MaterielMenu_SHOP_WHOSE::giveBuyItem()

@@ -31,8 +31,8 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::menuExecute()
 {
     BattleMonsterMask::getSingleton()->execute();
     unk_150 = BattleMenuJudge::getSingleton()->getMonsterTouchRect(unk_160);
-    func_ov015_0216c6dc(&menuItem_, menuItem_.active_, unk_160, unk_150);
-    func_ov015_0216c5c4(&cancelItem_);
+    MenuTemplate_battle::BATTLE_ICON_ENEMY(&menuItem_, menuItem_.active_, unk_160, unk_150);
+    MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
     if (unk_15c == 1) {
         BattleMonsterMask::getSingleton()->select(unk_160[menuItem_.active_].group);
     } else {
@@ -42,7 +42,7 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::menuExecute()
 
 THUMB void BattleMenu_ITEMUSE2ENEMY::menuDraw()
 {
-    func_ov015_0216baf4(unk_160[menuItem_.active_].group);
+    unkfunc_0216baf4(unk_160[menuItem_.active_].group);
 }
 
 THUMB void BattleMenu_ITEMUSE2ENEMY::menuUpdate()
@@ -133,7 +133,7 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::unkfunc_0216ce00()
         unkfunc_0216cd80(0);
         break;
     }
-    func_ov015_0216ad40(func_ov015_0216aa2c(), unk_160[menuItem_.active_].group);
+    BattleMonsterNamePlate::getSingleton().maxPriority(unk_160[menuItem_.active_].group);
     int target = unk_160[menuItem_.active_].group;
     btl::BattleMenuPlayerControl::getSingleton()->targetChara_ = target;
     btl::BattleMenuPlayerControl::getSingleton()->setTargetGroup(unk_160[menuItem_.active_].group);

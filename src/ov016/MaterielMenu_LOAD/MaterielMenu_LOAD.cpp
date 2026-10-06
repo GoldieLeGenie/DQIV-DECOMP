@@ -4,6 +4,7 @@
 #include "main/status/Status.hpp"
 #include "main/status/GameStatus.hpp"
 #include "main/status/StoryStatus.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_02177bac.hpp"
 
 const int MaterielMenu_LOAD::ROOT_RESUME_COUNT = 4;
 const int MaterielMenu_LOAD::ROOT_COUNT = 3;
@@ -32,24 +33,24 @@ THUMB void MaterielMenu_LOAD::menuSetup()
 THUMB void MaterielMenu_LOAD::menuExecute()
 {
     if (resume_ != 0) {
-        func_ov016_02177484(&rootItem_, ROOT_RESUME_COUNT);
+        MenuTemplate_materiel::MATERIEL_DIARY_MENU(&rootItem_, ROOT_RESUME_COUNT);
     } else {
-        func_ov016_02177484(&rootItem_, ROOT_COUNT);
+        MenuTemplate_materiel::MATERIEL_DIARY_MENU(&rootItem_, ROOT_COUNT);
     }
-    func_ov016_0217752c(&dataItem_);
-    func_ov016_021779b4(&sexualityItem_);
+    MenuTemplate_materiel::MATERIEL_DIARY_LOAD(&dataItem_);
+    MenuTemplate_materiel::MATERIEL_SEXUALITY(&sexualityItem_);
 }
 
 inline void MaterielMenu_LOAD::sexualityDraw()
 {
     int message;
     int sexualityMessage[2] = { 0xa0000005, 0xa0000006 };
-    func_ov016_021781c4(country_, data_020f1878, data_020f17c0, data_020f17bc, 2, 1);
-    func_ov016_02177c00(0x30, 0x10, 0xa0, 0x28, -1);
+    unkfunc_021781c4(country_, data_020f1878, data_020f17c0, data_020f17bc, 2, 1);
+    unkfunc_02177c00(0x30, 0x10, 0xa0, 0x28, -1);
     message = 0x800001a1;
-    func_ov016_02177fe0(&message, 0x30, 0x38, 0xa0, 0x50);
-    func_ov016_02177c9c(sexualityMessage, 2, 0x70, 0x5a);
-    func_ov016_02177c00(0x30, 0x38, 0xa0, 0x48, 0x50);
+    unkfunc_02177fe0(&message, 0x30, 0x38, 0xa0, 0x50);
+    unkfunc_02177c9c(sexualityMessage, 2, 0x70, 0x5a);
+    unkfunc_02177c00(0x30, 0x38, 0xa0, 0x48, 0x50);
     sexualityItem_.drawActive();
 }
 
@@ -59,11 +60,11 @@ THUMB void MaterielMenu_LOAD::menuDraw()
     int rootResumeMessage[4] = { 0x80000196, 0x8000019f, 0x80000197, 0x80000198 };
     if (status_ == LOAD_MODESELECT) {
         if (resume_ == 1) {
-            func_ov016_02177ce0(rootResumeMessage, ROOT_RESUME_COUNT, 0x18, 0x10);
+            unkfunc_02177ce0(rootResumeMessage, ROOT_RESUME_COUNT, 0x18, 0x10);
             unkfunc_02177bac(8, 8, 0xa0, 0x48, -1);
             rootItem_.drawActive();
         } else {
-            func_ov016_02177ce0(rootMessage, ROOT_COUNT, 0x18, 0x10);
+            unkfunc_02177ce0(rootMessage, ROOT_COUNT, 0x18, 0x10);
             unkfunc_02177bac(8, 8, 0xa0, 0x38, -1);
             rootItem_.drawActive();
         }
@@ -77,15 +78,15 @@ THUMB void MaterielMenu_LOAD::menuDraw()
         } else if (menuMode_ == 2) {
             message = rootMessage[2];
         }
-        func_ov016_02177fe0(&message, 8, 0x38, 0xf0, 0x50);
+        unkfunc_02177fe0(&message, 8, 0x38, 0xf0, 0x50);
         for (int i = 0; i < 3; i++) {
             if (diary_[i].savetype_ == 4) {
-                func_ov016_0217800c(i, diary_[i].name_, -1, -1, -1, diary_[i].time_, 0x5a, flag);
+                unkfunc_0217800c(i, diary_[i].name_, -1, -1, -1, diary_[i].time_, 0x5a, flag);
             } else {
-                func_ov016_0217800c(i, diary_[i].name_, diary_[i].chapter_, diary_[i].level_, diary_[i].town_, diary_[i].time_, 0x5a, flag);
+                unkfunc_0217800c(i, diary_[i].name_, diary_[i].chapter_, diary_[i].level_, diary_[i].town_, diary_[i].time_, 0x5a, flag);
             }
         }
-        func_ov016_02177c00(8, 0x38, 0xf0, 0x78, 0x50);
+        unkfunc_02177c00(8, 0x38, 0xf0, 0x78, 0x50);
         dataItem_.drawActive();
     }
     if (status_ == LOAD_SEXUALITY) {
@@ -465,7 +466,7 @@ THUMB bool MaterielMenu_LOAD::makeDiary()
     status::g_Game.setPlayTime(0);
     status::g_Game.resetUniqueID();
     g_Global.startFirstTown();
-    status::g_Story.setHeroName(func_0203b708(&data_ov016_021865a4));
+    status::g_Story.setHeroName(gMaterielMenu_NameEdit.getNameUTF8());
     return func_0202b8b8(activeDiaryNo_, 4);
 }
 
@@ -473,10 +474,10 @@ THUMB void MaterielMenu_LOAD::changeStatus(LOAD_STATUS status)
 {
     if (status == LOAD_NAMEEDIT) {
         close();
-        data_ov016_021865a4.open();
-        data_ov016_021865a4.returnMenu_ = MaterielMenu_NameEdit::RETURN_MENU_LOAD;
+        gMaterielMenu_NameEdit.open();
+        gMaterielMenu_NameEdit.returnMenu_ = MaterielMenu_NameEdit::RETURN_MENU_LOAD;
         if (status_ != LOAD_SEXUALITY) {
-            func_0203b6cc(&data_ov016_021865a4);
+            gMaterielMenu_NameEdit.clearName();
         }
     }
     status_ = status;

@@ -31,12 +31,12 @@ THUMB void MaterielMenu_EXTRA_SIDEJOB_ROOT::menuUpdate()
                 data_020ed1bc.openMessageForTALK();
                 data_020ed1bc.addMessage(0x63c2);
                 close();
-                data_ov016_02185a08.open();
+                gMaterielMenu_EXTRA_SIDEJOB_SELL.open();
             } else if (mode_ == SIDEJOB_BUY) {
                 data_020ed1bc.openMessageForTALK();
                 data_020ed1bc.addMessage(0x63ed);
                 close();
-                data_ov016_02185990.open();
+                gMaterielMenu_EXTRA_SIDEJOB_BUY.open();
             } else {
                 MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
                 return;

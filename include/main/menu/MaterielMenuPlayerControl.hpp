@@ -1,4 +1,5 @@
 #pragma once
+#include "globaldefs.h"
 
 struct MaterielMenuPlayerControl {
     int activeChara_;               /* 0x00 */
@@ -15,11 +16,11 @@ struct MaterielMenuPlayerControl {
     int activeChiausSkill_;         /* 0x2C */
     int activeChiausSkillPage_;     /* 0x30 */
     int nameCount_;                 /* 0x34 */
+
+    static MaterielMenuPlayerControl* getSingleton();
+    void allClear();
+    void setActiveItem(int item) { activeItem_ = item; }
+    void setActiveItemPage(int page) { activeItemPage_ = page; }
     void setExtraExp(int exp) { extraExp_ = exp; }
     void setWins(int wins) { wins_ = wins; }
 };
-
-extern "C" {
-    MaterielMenuPlayerControl* func_ov016_0216ff2c(void);           /* MaterielMenuPlayerControl::getSingleton */
-    void func_ov016_0216ff34(MaterielMenuPlayerControl* self);         /* MaterielMenuPlayerControl::allClear */
-}

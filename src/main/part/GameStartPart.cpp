@@ -22,7 +22,7 @@ ARM void GameStartPart::initialize()
     if (cardcheck_ == 0) {
         return;
     }
-    MenuAPI::openMenu(&data_ov016_02187918);
+    MenuAPI::openMenu(&gMaterielMenu_LOAD);
     active = 1;
     SoundManager::play(4, 15);
 }
@@ -46,13 +46,13 @@ ARM void GameStartPart::onExecutePart()
     if (active == 0) {
         return;
     }
-    if (data_ov016_02187918.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
-        data_ov016_02187918.close();
+    if (gMaterielMenu_LOAD.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
+        gMaterielMenu_LOAD.close();
         cardcheck_ = 0;
         active = 0;
     }
-    if (data_ov016_02187918.stat_ == menu::MenuBase::MENUBASE_STAT_CANCEL) {
-        data_ov016_02187918.close();
+    if (gMaterielMenu_LOAD.stat_ == menu::MenuBase::MENUBASE_STAT_CANCEL) {
+        gMaterielMenu_LOAD.close();
         g_Global.startDebugTown();
         active = 0;
     }

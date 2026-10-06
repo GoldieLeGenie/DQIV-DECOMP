@@ -1,5 +1,8 @@
 #include "ov000/town/UnkImageMap.hpp"
 #include "ov000/town/TownSystem.hpp"
+#include "main/dss/Camera.hpp"
+
+static dss::Camera camera;
 
 ARM UnkImageMap_02141f6c::UnkImageMap_02141f6c()
 {
@@ -14,14 +17,14 @@ ARM UnkImageMap_02141f6c::~UnkImageMap_02141f6c()
 
 ARM void UnkImageMap_02141f6c::setup(TownSystem* system)
 {
-    window_.unkfunc_02033768(system);
-    window_.unkfunc_02033c3c();
+    window_.setup(&system->render_);
+    window_.load();
 }
 
 ARM void UnkImageMap_02141f6c::cleanup()
 {
     if (isEnable_) {
-        window_.unkfunc_02033788();
+        window_.cleanup();
     }
 }
 
@@ -50,13 +53,13 @@ ARM void UnkImageMap_02141f6c::execute()
         }
         break;
     }
-    window_.unkfunc_02033cd4(frame_);
+    window_.setAlpha(frame_);
 }
 
 ARM void UnkImageMap_02141f6c::draw()
 {
     if (isEnable_) {
-        window_.unkfunc_02033928();
+        window_.draw();
     }
 }
 

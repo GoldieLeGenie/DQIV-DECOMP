@@ -21,7 +21,7 @@ namespace status{
         int getItem(int index);
         int getItemSortIndex(int itemIndex);
         status::ItemData* getItemData(int index);
-        unsigned short getItemCount(int index);
+        int getItemCount(int index);
         int isItem(int itemIndex);
         int getItemMax();
     };

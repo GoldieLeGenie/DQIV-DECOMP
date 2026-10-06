@@ -7,6 +7,202 @@
 
 
 
+src/ov016/TownMenu_OPERATION/TownMenu_OPERATION_SHIFT_PARTY.cpp:
+    complete
+    .text start:0x0216ca78 end:0x0216ce4c
+    .data start:0x02180e68 end:0x02180e84
+
+src/ov016/TownMenu_OPERATION/TownMenu_OPERATION_EQUIP.cpp:
+    complete
+    .text start:0x0216be88 end:0x0216c724
+    .data start:0x02180e30 end:0x02180e4c
+
+src/ov016/TownMenu_OPERATION/TownMenu_OPERATION_TACTICS.cpp:
+    complete
+    .text start:0x0216c724 end:0x0216ca78
+    .rodata start:0x0217ebb8 end:0x0217ebd0
+    .data start:0x02180e4c end:0x02180e68
+
+src/ov016/TownMenu_ROOT/TownMenu_ROOT.cpp:
+    complete
+    .text start:0x021787ec end:0x02178a58
+    .data start:0x02184904 end:0x02184920
+
+src/ov016/TownMenu_MAGIC/TownMenu_MAGIC_CHARSELECT.cpp:
+    complete
+    .text start:0x02178ac4 end:0x0217901c
+    .data start:0x0218497c end:0x02184998
+
+src/ov016/TownMenu_MAGIC/TownMenu_MAGIC_MOVE.cpp:
+    complete
+    .text start:0x0217901c end:0x02179424
+    .data start:0x02184998 end:0x021849b4
+
+src/ov016/TownMenu_MAGIC/TownMenu_MAGIC_ROOT.cpp:
+    complete
+    .text start:0x02179424 end:0x02179c4c
+    .data start:0x021849b4 end:0x021849d0
+
+src/ov016/TownMenu_ITEM/TownMenu_ITEM_MOVE.cpp:
+    complete
+    .text start:0x02171794 end:0x02171bbc
+    .data start:0x02182078 end:0x02182094
+
+src/ov016/TownMenu_ITEM/TownMenu_ITEM_USE.cpp:
+    complete
+    .text start:0x02171bbc end:0x021723b4
+    .rodata start:0x0217ece4 end:0x0217ed04
+    .data start:0x02182094 end:0x021820b0
+
+src/ov016/TownMenu_ITEM/TownMenu_ITEM_CHECKTARGET.cpp:
+    complete
+    .text start:0x021723b4 end:0x02172c44
+    .data start:0x021820b0 end:0x021820cc
+
+src/ov016/TownMenu_ITEM/TownMenu_ITEM_EQUIPCHECK.cpp:
+    complete
+    .text start:0x02172c44 end:0x02172f7c
+    .data start:0x021820cc end:0x021820e8
+
+src/ov016/TownMenu_ITEM/TownMenuItemSelectTargetChara.cpp:
+    complete
+    .text start:0x02172f7c end:0x0217319c
+    .data start:0x021820e8 end:0x02182104
+
+src/ov016/TownMenu_ITEM/TownMenuItemSelectTargetItem.cpp:
+    complete
+    .text start:0x0217319c end:0x02173530
+    .data start:0x02182104 end:0x02182120
+
+src/ov016/TownMenu_ITEM/TownMenuItemMessage.cpp:
+    complete
+    .text start:0x02173530 end:0x02173a40
+    .data start:0x02182120 end:0x0218213c
+
+src/ov016/TownMenu_ITEM/TownMenuItemSelectChara.cpp:
+    complete
+    .text start:0x02175db0 end:0x0217600c
+    .data start:0x021829d4 end:0x021829f0
+
+src/ov016/TownMenu_ITEM/TownMenuItemSelectCommand.cpp:
+    complete
+    .text start:0x0217600c end:0x02176fa0
+    .rodata start:0x0217edb8 end:0x0217edcc
+    .data start:0x021829f0 end:0x02182a78
+
+src/ov016/TownMenu_ITEM/TownMenuItemUseManager.cpp:
+    complete
+    .text start:0x0216ba40 end:0x0216ba54
+    .bss start:0x021858b0 end:0x021858bc
+
+src/ov016/TownMenu_ITEM/TownMenuItemTarotMessage.cpp:
+    complete
+    .text start:0x0216ba54 end:0x0216be88
+
+src/ov016/MenuTemplate/MenuTemplate_town.cpp:
+    complete
+    .text start:0x02173a40 end:0x02173d7c
+    .data start:0x0218213c end:0x02182704
+
+src/ov016/UnkTownMenu_02176fa0/UnkTownMenu_02176fa0.cpp:
+    complete
+    .text start:0x02176fa0 end:0x02177210
+    .data start:0x02182a78 end:0x02182a94
+
+src/ov016/TownShopMenu/TownShopMenu.cpp:
+    complete
+    .text start:0x02177210 end:0x02177318
+    .data start:0x02182a94 end:0x02182ab0
+
+src/ov016/UnkTownMenu_02178a58/UnkTownMenu_02178a58.cpp:
+    complete
+    .text start:0x02178a58 end:0x02178ac4
+    .data start:0x02184920 end:0x0218497c
+
+src/ov016/MaterielMenuPlayerControl/MaterielMenuPlayerControl.cpp:
+    complete
+    .text start:0x0216ff2c end:0x0216ff44
+    .bss start:0x021858bc end:0x021858f4
+
+src/ov016/UnkMaterielMenu_0216b304/UnkMaterielMenu_0216b304.cpp:
+    complete
+    .text start:0x0216b304 end:0x0216b7a4
+    .data start:0x02180ad0 end:0x02180aec
+
+src/ov016/UnkTownMenuDraw/UnkTownMenuDraw_02173d7c.cpp:
+    complete
+    .text start:0x02173d7c end:0x02174204
+    .rodata start:0x0217ed04 end:0x0217ed8c
+    .data start:0x02182704 end:0x02182960
+
+src/ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_02177bac.cpp:
+    complete
+    .text start:0x02177bac end:0x0217830c
+    .rodata start:0x0217edcc end:0x0217eeb4
+    .data start:0x0218385c end:0x021848d0
+
+src/ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216ce4c.cpp:
+    complete
+    .text start:0x0216ce4c end:0x0216fb14
+    .rodata start:0x0217ebd0 end:0x0217ecd0
+    .data start:0x02180e84 end:0x02181fd0
+
+src/ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.cpp:
+    complete
+    .text start:0x0216fb14 end:0x0216ff2c
+    .rodata start:0x0217ecd0 end:0x0217ece4
+    .data start:0x02181fd0 end:0x02182008
+
+src/ov016/ov016_entry.cpp:
+    complete
+    .text start:0x0217ad90 end:0x0217ad94
+
+src/ov016/UnkTownMenuDraw/UnkTownMenuDraw_0217ad94.cpp:
+    complete
+    .text start:0x0217ad94 end:0x0217d560
+    .rodata start:0x0217eec8 end:0x0217ef9c
+    .data start:0x02184a6c end:0x02185860
+
+src/ov016/UnkTownMenuDraw/UnkTownMenuDraw_0217d560.cpp:
+    complete
+    .text start:0x0217d560 end:0x0217ebb8
+    .rodata start:0x0217ef9c end:0x0217efe4
+
+src/ov016/UnkNameEditKeyboard/UnkNameEditKeyboard_0216a980.cpp:
+    complete
+    .text start:0x0216a980 end:0x0216aca4
+    .data start:0x0217f840 end:0x02180ad0
+
+src/ov016/MenuInstances/MaterielMenuInstances.cpp:
+    complete
+    .init start:0x0217efe4 end:0x0217f554
+    .ctor start:0x0217f81c end:0x0217f820
+    .data start:0x021848ec end:0x02184904
+    .bss start:0x02185928 end:0x02187adc
+
+src/ov016/MenuInstances/TownMenuInstances.cpp:
+    complete
+    .init start:0x0217f554 end:0x0217f81c
+    .ctor start:0x0217f820 end:0x0217f824
+    .bss start:0x02187adc end:0x02189340
+
+src/ov016/MenuTemplate/MenuTemplate_materiel.cpp:
+    complete
+    .text start:0x02177318 end:0x02177bac
+    .data start:0x02182ab0 end:0x0218385c
+    .bss start:0x02185920 end:0x02185928
+
+src/ov016/TownMenu_STATUS/TownMenu_STATUS.cpp:
+    complete
+    .text start:0x0217ab0c end:0x0217ad90
+    .data start:0x02184a50 end:0x02184a6c
+
+src/ov016/TownMenu_OPERATION/TownMenu_OPERATION_SETTING.cpp:
+    complete
+    .text start:0x0217a70c end:0x0217ab0c
+    .rodata start:0x0217eebc end:0x0217eec8
+    .data start:0x021849ec end:0x02184a50
+
 src/ov016/TownMenu_OPERATION/TownMenu_OPERATION_ROOT.cpp:
     complete
     .text start:0x02179c4c end:0x0217a70c
@@ -18,7 +214,7 @@ src/ov016/TownMenu_OPERATION/TownMenu_OPERATION_CAREER.cpp:
     .text start:0x02175324 end:0x021755a0
     .data start:0x021829b8 end:0x021829d4
 
-src/ov016/TownMenuPlayerControl.cpp:
+src/ov016/TownMenuPlayerControl/TownMenuPlayerControl.cpp:
     complete
     .text start:0x021755a0 end:0x021758f8
     .bss start:0x021858f8 end:0x02185920

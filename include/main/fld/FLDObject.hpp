@@ -4,6 +4,7 @@
 #include "nnsys/fnd.hpp"
 #include "nnsys/g3d.hpp"
 #include "main/fld/Coll.hpp"
+#include "nitro/os.hpp"
 
 struct COLL_HEADER;
 struct COLL_POLY;
@@ -388,8 +389,6 @@ struct FLDObject
 }  // namespace fld
 
 extern "C" {
-    void DC_CleanAll(void);
-    void DC_CleanRange(const void* addr, unsigned int count);
     void func_02066e34(void* head, unsigned int num, unsigned int width, int (*compare)(void*, void*), void* stack);   // MATH_QSort
 }
 
@@ -405,5 +404,3 @@ inline int MATH_ILog2(unsigned int x)
 }
 
 #define MATH_QSORT_STACK_SIZE(num) ((MATH_ILog2(num) <= 0) ? sizeof(int) : ((MATH_ILog2(num) + 1) * sizeof(int) * 2))
-#define MATH_MIN(a, b) (((a) <= (b)) ? (a) : (b))
-#define MATH_MAX(a, b) (((a) >= (b)) ? (a) : (b))

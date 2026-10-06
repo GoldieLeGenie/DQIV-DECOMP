@@ -3,6 +3,8 @@
 #include "main/text/TextAPI.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/UseItem.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_SHOP_SELL_QUANTITY::menuSetup()
 {
@@ -10,7 +12,7 @@ THUMB void MaterielMenu_SHOP_SELL_QUANTITY::menuSetup()
     menuItem_.active_ = 0;
     navigator_.setupBase();
     quantity_ = 1;
-    MaterielMenuPlayerControl* control = func_ov016_0216ff2c();
+    MaterielMenuPlayerControl* control = MaterielMenuPlayerControl::getSingleton();
     itemIndex_ = control->activeItem_ + control->activeItemPage_ * 6;
     unk_24 = 0;
     TextAPI::setMACRO0(0xa, 0x40000000, status::g_Party.haveItemSack_.getItem(itemIndex_));
@@ -21,16 +23,16 @@ THUMB void MaterielMenu_SHOP_SELL_QUANTITY::menuSetup()
 
 THUMB void MaterielMenu_SHOP_SELL_QUANTITY::menuExecute()
 {
-    func_ov016_02177ae8(&menuItem_, menuItem_.active_);
+    MenuTemplate_materiel::shopSellQuantity(&menuItem_, menuItem_.active_);
 }
 
 THUMB void MaterielMenu_SHOP_SELL_QUANTITY::menuDraw()
 {
     if (data_020ed1bc.isMessageWAITPROG()) {
-        func_ov016_0216fc2c(quantity_);
+        unkfunc_0216fc2c(quantity_);
         menuItem_.drawActive();
     } else if (data_020ed1bc.isOpen()) {
-        func_ov016_0216fc58();
+        unkfunc_0216fc58();
     }
 }
 
@@ -47,8 +49,8 @@ THUMB void MaterielMenu_SHOP_SELL_QUANTITY::menuUpdate()
             data_020ed1bc.clearMessageWAITPROG();
             MaterielMenu_SHOP_MANAGER::getSingleton()->setSellQuantity(quantity_);
             close();
-            data_ov016_02185968.sellType_ = status::UseItem::getSellType(status::g_Party.haveItemSack_.getItem(itemIndex_));
-            data_ov016_02185968.open();
+            gMaterielMenu_SHOP_VALUE.sellType_ = status::UseItem::getSellType(status::g_Party.haveItemSack_.getItem(itemIndex_));
+            gMaterielMenu_SHOP_VALUE.open();
         }
         if (result == 7) {
             changeQuantity(true);
@@ -64,7 +66,7 @@ THUMB void MaterielMenu_SHOP_SELL_QUANTITY::menuUpdate()
             data_020ed1bc.openMessageForTALK();
             data_020ed1bc.addMessage(mes[0], mes[1]);
             data_020ed1bc.setMessageLastCursor(true);
-            data_ov016_021874e0.open();
+            gMaterielMenu_SHOP_SELL_SACK.open();
         }
         redraw_ = 1;
     }

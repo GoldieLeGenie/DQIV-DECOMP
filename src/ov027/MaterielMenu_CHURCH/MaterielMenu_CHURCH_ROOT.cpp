@@ -11,13 +11,16 @@
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/cmn/TalkSoundManager.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_town.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_CHURCH_ROOT::menuSetup()
 {
     status::g_Party.setBattleMode();
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem2_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
-    func_ov016_0216ff34(func_ov016_0216ff2c());
+    MaterielMenuPlayerControl::getSingleton()->allClear();
     activeCommand_ = -1;
     expMessageCount_ = -1;
     firstFlag_ = 1;
@@ -67,15 +70,15 @@ THUMB void MaterielMenu_CHURCH_ROOT::menuExecute()
 {
     commandNum_ = churchType_ == 1 ? 6 : 5;
     int commandNum = commandNum_;
-    func_ov016_0216ff2c()->churchCommandNum_ = commandNum;
-    func_ov016_02177334(&menuItem_, commandNum_, menuItem_.active_);
-    func_ov016_02173a40(&menuItem2_);
+    MaterielMenuPlayerControl::getSingleton()->churchCommandNum_ = commandNum;
+    MenuTemplate_materiel::MATERIEL_CHURCH_ROOT(&menuItem_, commandNum_, menuItem_.active_);
+    MenuTemplate_town::TOWN_CANCEL(&menuItem2_);
 }
 
 THUMB void MaterielMenu_CHURCH_ROOT::menuDraw()
 {
     if (activeCommand_ != 7) {
-        func_ov016_0216fc94(activeCommand_, firstFlag_);
+        unkfunc_0216fc94(activeCommand_, firstFlag_);
         if (activeCommand_ == -1 && firstFlag_ == 0 && data_020ed1bc.isMessageWAITPROG()) {
             menuItem_.drawActive();
         }
@@ -152,8 +155,8 @@ THUMB bool MaterielMenu_CHURCH_ROOT::commandUpdate()
                 case 0:
                     close();
                     data_020ed1bc.close();
-                    data_ov016_02186728.open();
-                    data_ov016_02186728.saveType_ = MaterielMenu_SAVE::TYPE_CHURCH;
+                    gMaterielMenu_SAVE.open();
+                    gMaterielMenu_SAVE.saveType_ = MaterielMenu_SAVE::TYPE_CHURCH;
                     redraw_ = 1;
                     break;
                 case 1:
@@ -164,27 +167,27 @@ THUMB bool MaterielMenu_CHURCH_ROOT::commandUpdate()
                     data_020ed1bc.addMessage(sexType_ + 0xc6fcd);
                     data_020ed1bc.addMessageWAITKEY();
                     close();
-                    data_ov016_02187050.open();
-                    data_ov016_02187050.menuItem_.active_ = 0;
-                    data_ov016_02187050.miracle_ = MIRACLE_ORDER_REVIVAL;
+                    gMaterielMenu_CHURCH_MIRACLE.open();
+                    gMaterielMenu_CHURCH_MIRACLE.menuItem_.active_ = 0;
+                    gMaterielMenu_CHURCH_MIRACLE.miracle_ = MIRACLE_ORDER_REVIVAL;
                     break;
                 case 3:
                     data_020ed1bc.openMessageForTALK();
                     data_020ed1bc.addMessage(sexType_ + 0xc6fe2);
                     data_020ed1bc.addMessageWAITKEY();
                     close();
-                    data_ov016_02187050.open();
-                    data_ov016_02187050.menuItem_.active_ = 0;
-                    data_ov016_02187050.miracle_ = MIRACLE_ORDER_ANTIDOTE;
+                    gMaterielMenu_CHURCH_MIRACLE.open();
+                    gMaterielMenu_CHURCH_MIRACLE.menuItem_.active_ = 0;
+                    gMaterielMenu_CHURCH_MIRACLE.miracle_ = MIRACLE_ORDER_ANTIDOTE;
                     break;
                 case 4:
                     data_020ed1bc.openMessageForTALK();
                     data_020ed1bc.addMessage(sexType_ + 0xc6ff5);
                     data_020ed1bc.addMessageWAITKEY();
                     close();
-                    data_ov016_02187050.open();
-                    data_ov016_02187050.menuItem_.active_ = 0;
-                    data_ov016_02187050.miracle_ = MIRACLE_ORDER_ANTICURSE;
+                    gMaterielMenu_CHURCH_MIRACLE.open();
+                    gMaterielMenu_CHURCH_MIRACLE.menuItem_.active_ = 0;
+                    gMaterielMenu_CHURCH_MIRACLE.miracle_ = MIRACLE_ORDER_ANTICURSE;
                     break;
                 case 5:
                     redraw_ = 1;

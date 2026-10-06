@@ -35,7 +35,7 @@ ARM void TownPart::initialize()
     func_02087590((int)&OVERLAY_0_ID);
     TownSystem::unkfunc_02132210();
     func_02087590((int)&OVERLAY_16_ID);
-    func_ov016_0217ad90();
+    ov016_entry();
     func_0207e7e8();
     TownSystem::getSingleton()->initialize();
     TownWindowSystem::getSingleton()->initialize();

@@ -2003,7 +2003,7 @@ ARM void BookMonsterDraw::setup(int index)
     dss::Fix32Vector3 position;
     position.vx = 0L;
     position.vz += 0x5000;
-    func_0204d04c(&character_, index);
+    character_.setup(index);
     character_.setPosition(position);
     character_.setCameraType(DSSAObjectWithCamera::Near);
     if (index == 0x6b || index == 0x7c || index == 0x8c) {
@@ -2033,7 +2033,7 @@ ARM void BookMonsterDraw::cleanup()
     if (effect_.isEnable()) {
         cleanupEffect();
     }
-    func_0204d084(&character_);
+    character_.cleanup();
 }
 
 ARM void BookMonsterDraw::execute()

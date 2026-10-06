@@ -30,7 +30,7 @@ THUMB void MaterielMenu_SHOP_MANAGER::allClear()
 THUMB void MaterielMenu_SHOP_MANAGER::openShopMenu(int type)
 {
     setShopType(type);
-    data_ov016_02185c10.open();
+    gMaterielMenu_SHOP_ROOT.open();
 }
 
 THUMB void MaterielMenu_SHOP_MANAGER::initializeShopItem()

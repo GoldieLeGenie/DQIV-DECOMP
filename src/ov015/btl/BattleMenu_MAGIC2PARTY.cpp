@@ -15,13 +15,13 @@ THUMB void BattleMenu_MAGIC2PARTY::menuSetup()
 THUMB void BattleMenu_MAGIC2PARTY::menuExecute()
 {
     navigator_.setup(2, 2, partyMax_);
-    func_ov015_0216c63c(&menuItem_, partyMax_);
-    func_ov015_0216c5c4(&cancelItem_);
+    MenuTemplate_battle::BATTLE_PARTY_2x2(&menuItem_, partyMax_);
+    MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
 }
 
 THUMB void BattleMenu_MAGIC2PARTY::menuDraw()
 {
-    func_ov015_0216bbd0();
+    unkfunc_0216bbd0();
     menuItem_.drawActive();
 }
 

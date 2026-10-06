@@ -3,11 +3,12 @@
 #include "main/text/TextAPI.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_CHANGEGIFT_ROOT::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_ov016_0216ff34(func_ov016_0216ff2c());
+    MaterielMenuPlayerControl::getSingleton()->allClear();
     mode_ = 0;
     int leadpc = 0;
     while (status::g_Party.getPlayerStatus(leadpc)->haveStatusInfo_.isDeath()) {
@@ -17,12 +18,12 @@ THUMB void MaterielMenu_CHANGEGIFT_ROOT::menuSetup()
             break;
         }
     }
-    func_ov016_0216ff2c()->leadpc_ = leadpc;
+    MaterielMenuPlayerControl::getSingleton()->leadpc_ = leadpc;
 }
 
 THUMB void MaterielMenu_CHANGEGIFT_ROOT::menuDraw()
 {
-    func_ov016_0216fce8();
+    unkfunc_0216fce8();
 }
 
 THUMB void MaterielMenu_CHANGEGIFT_ROOT::menuUpdate()
@@ -57,7 +58,7 @@ THUMB void MaterielMenu_CHANGEGIFT_ROOT::selectYes()
         break;
     case 4:
         close();
-        data_ov016_02187164.open();
+        gMaterielMenu_CHANGEGIFT_SELECTGIFT.open();
         break;
     case 5:
         MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
@@ -77,7 +78,7 @@ THUMB void MaterielMenu_CHANGEGIFT_ROOT::selectNo()
 
 THUMB void MaterielMenu_CHANGEGIFT_ROOT::checkCoin()
 {
-    int leadpc = func_ov016_0216ff2c()->leadpc_;
+    int leadpc = MaterielMenuPlayerControl::getSingleton()->leadpc_;
     data_020ed1bc.openMessageForTALK();
     TextAPI::setMACRO0(0xb, 0x50000000, status::g_Party.getPlayerIndex(leadpc));
     if (status::g_Party.casinoCoin_ == 0) {

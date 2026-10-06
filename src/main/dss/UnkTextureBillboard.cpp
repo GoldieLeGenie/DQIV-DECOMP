@@ -17,5 +17,5 @@ ARM void UnkTextureBillboard::unkfunc_020586c4()
 
 ARM void UnkTextureBillboard::unkfunc_020586d4(int a)
 {
-    func_020869ec(texture_, a, 0);
+    func_020869ec(texture_, (void*)a, 0);
 }

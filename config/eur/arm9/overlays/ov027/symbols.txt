@@ -30,6 +30,6 @@ _ZN24MaterielMenu_CHURCH_ROOT10oneMessageEi kind:function(thumb,size=0x20) addr:
 _ZTV27MaterielMenu_CHURCH_MIRACLE kind:data(byte[28]) addr:0x0218a400
 miracleMessage kind:data(byte[84]) addr:0x0218a41c local
 _ZTV24MaterielMenu_CHURCH_ROOT kind:data(byte[28]) addr:0x0218a470
-@2767 kind:data(byte[3]) addr:0x0218a48c local
-@2768 kind:data(byte[3]) addr:0x0218a490 local
-@2769 kind:data(byte[4]) addr:0x0218a494 local
+@2760 kind:data(byte[3]) addr:0x0218a48c local
+@2761 kind:data(byte[3]) addr:0x0218a490 local
+@2762 kind:data(byte[4]) addr:0x0218a494 local

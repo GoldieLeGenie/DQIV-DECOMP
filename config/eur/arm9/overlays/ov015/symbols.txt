@@ -2,82 +2,82 @@ _ZN20BattleMenu_NGMESSAGE9menuSetupEv kind:function(thumb,size=0x8) addr:0x0216a
 _ZN20BattleMenu_NGMESSAGE11menuExecuteEv kind:function(thumb,size=0x2) addr:0x0216a988
 _ZN20BattleMenu_NGMESSAGE8menuDrawEv kind:function(thumb,size=0x2) addr:0x0216a98c
 _ZN20BattleMenu_NGMESSAGE10menuUpdateEv kind:function(thumb,size=0x9c) addr:0x0216a990
-func_ov015_0216aa2c kind:function(thumb,size=0x8) addr:0x0216aa2c
-func_ov015_0216aa34 kind:function(thumb,size=0x1e) addr:0x0216aa34
-func_ov015_0216aa54 kind:function(thumb,size=0x114) addr:0x0216aa54
-func_ov015_0216ab68 kind:function(thumb,size=0x4c) addr:0x0216ab68
-func_ov015_0216abb4 kind:function(thumb,size=0x12c) addr:0x0216abb4
-func_ov015_0216ace0 kind:function(thumb,size=0x60) addr:0x0216ace0
-func_ov015_0216ad40 kind:function(thumb,size=0x2a) addr:0x0216ad40
-func_ov015_0216ad6c kind:function(thumb,size=0x92) addr:0x0216ad6c
-func_ov015_0216ae00 kind:function(thumb,size=0x90) addr:0x0216ae00
-func_ov015_0216ae90 kind:function(thumb,size=0x9e) addr:0x0216ae90
-func_ov015_0216af30 kind:function(thumb,size=0x54) addr:0x0216af30
-func_ov015_0216af84 kind:function(thumb,size=0x3a) addr:0x0216af84
-func_ov015_0216afc0 kind:function(thumb,size=0x38) addr:0x0216afc0
-func_ov015_0216aff8 kind:function(thumb,size=0x84) addr:0x0216aff8
-func_ov015_0216b07c kind:function(thumb,size=0x22) addr:0x0216b07c
-func_ov015_0216b0a0 kind:function(thumb,size=0x94) addr:0x0216b0a0
-func_ov015_0216b134 kind:function(thumb,size=0x120) addr:0x0216b134
-func_ov015_0216b254 kind:function(thumb,size=0x28) addr:0x0216b254
-func_ov015_0216b27c kind:function(thumb,size=0x48) addr:0x0216b27c
-func_ov015_0216b2c4 kind:function(thumb,size=0x50) addr:0x0216b2c4
-func_ov015_0216b314 kind:function(thumb,size=0x30) addr:0x0216b314
-func_ov015_0216b344 kind:function(thumb,size=0x11c) addr:0x0216b344
-func_ov015_0216b460 kind:function(thumb,size=0x130) addr:0x0216b460
-func_ov015_0216b590 kind:function(thumb,size=0xa8) addr:0x0216b590
-func_ov015_0216b638 kind:function(thumb,size=0x94) addr:0x0216b638
-func_ov015_0216b6cc kind:function(thumb,size=0x14) addr:0x0216b6cc
-func_ov015_0216b6e0 kind:function(thumb,size=0xf4) addr:0x0216b6e0
-func_ov015_0216b7d4 kind:function(thumb,size=0x84) addr:0x0216b7d4
-func_ov015_0216b858 kind:function(thumb,size=0x78) addr:0x0216b858
-func_ov015_0216b8d0 kind:function(thumb,size=0x4c) addr:0x0216b8d0
-func_ov015_0216b91c kind:function(thumb,size=0x1c) addr:0x0216b91c
-func_ov015_0216b938 kind:function(thumb,size=0x48) addr:0x0216b938
-func_ov015_0216b980 kind:function(thumb,size=0x28) addr:0x0216b980
-func_ov015_0216b9a8 kind:function(thumb,size=0x1e) addr:0x0216b9a8
-func_ov015_0216b9c8 kind:function(thumb,size=0x1e) addr:0x0216b9c8
-func_ov015_0216b9e8 kind:function(thumb,size=0x6c) addr:0x0216b9e8
-func_ov015_0216ba54 kind:function(thumb,size=0xc) addr:0x0216ba54
-func_ov015_0216ba60 kind:function(thumb,size=0x18) addr:0x0216ba60
-func_ov015_0216ba78 kind:function(thumb,size=0x70) addr:0x0216ba78
-func_ov015_0216bae8 kind:function(thumb,size=0xc) addr:0x0216bae8
-func_ov015_0216baf4 kind:function(thumb,size=0xc) addr:0x0216baf4
-func_ov015_0216bb00 kind:function(thumb,size=0xc0) addr:0x0216bb00
-func_ov015_0216bbc0 kind:function(thumb,size=0x10) addr:0x0216bbc0
-func_ov015_0216bbd0 kind:function(thumb,size=0xc) addr:0x0216bbd0
-func_ov015_0216bbdc kind:function(thumb,size=0xa8) addr:0x0216bbdc
-func_ov015_0216bc84 kind:function(thumb,size=0x110) addr:0x0216bc84
-func_ov015_0216bd94 kind:function(thumb,size=0x40) addr:0x0216bd94
-func_ov015_0216bdd4 kind:function(thumb,size=0x84) addr:0x0216bdd4
-func_ov015_0216be58 kind:function(thumb,size=0x70) addr:0x0216be58
-func_ov015_0216bec8 kind:function(thumb,size=0x178) addr:0x0216bec8
-func_ov015_0216c040 kind:function(thumb,size=0x4c) addr:0x0216c040
-func_ov015_0216c08c kind:function(thumb,size=0x3c) addr:0x0216c08c
-func_ov015_0216c0c8 kind:function(thumb,size=0x44) addr:0x0216c0c8
-func_ov015_0216c10c kind:function(thumb,size=0xc8) addr:0x0216c10c
-func_ov015_0216c1d4 kind:function(thumb,size=0x10) addr:0x0216c1d4
-func_ov015_0216c1e4 kind:function(thumb,size=0x80) addr:0x0216c1e4
-func_ov015_0216c264 kind:function(thumb,size=0x3c) addr:0x0216c264
-func_ov015_0216c2a0 kind:function(thumb,size=0x10) addr:0x0216c2a0
-func_ov015_0216c2b0 kind:function(thumb,size=0x10) addr:0x0216c2b0
-func_ov015_0216c2c0 kind:function(thumb,size=0x90) addr:0x0216c2c0
-func_ov015_0216c350 kind:function(thumb,size=0x54) addr:0x0216c350
-func_ov015_0216c3a4 kind:function(thumb,size=0xc4) addr:0x0216c3a4
-func_ov015_0216c468 kind:function(thumb,size=0xbc) addr:0x0216c468
-func_ov015_0216c524 kind:function(thumb,size=0xa0) addr:0x0216c524
-func_ov015_0216c5c4 kind:function(thumb,size=0x14) addr:0x0216c5c4
-func_ov015_0216c5d8 kind:function(thumb,size=0x34) addr:0x0216c5d8
-func_ov015_0216c60c kind:function(thumb,size=0x14) addr:0x0216c60c
-func_ov015_0216c620 kind:function(thumb,size=0x1c) addr:0x0216c620
-func_ov015_0216c63c kind:function(thumb,size=0x14) addr:0x0216c63c
-func_ov015_0216c650 kind:function(thumb,size=0x1c) addr:0x0216c650
-func_ov015_0216c66c kind:function(thumb,size=0x1c) addr:0x0216c66c
-func_ov015_0216c688 kind:function(thumb,size=0x1c) addr:0x0216c688
-func_ov015_0216c6a4 kind:function(thumb,size=0x1c) addr:0x0216c6a4
-func_ov015_0216c6c0 kind:function(thumb,size=0x1c) addr:0x0216c6c0
-func_ov015_0216c6dc kind:function(thumb,size=0x58) addr:0x0216c6dc
-func_ov015_0216c734 kind:function(thumb,size=0x2c) addr:0x0216c734
+_ZN22BattleMonsterNamePlate12getSingletonEv kind:function(thumb,size=0x8) addr:0x0216aa2c
+_ZN22BattleMonsterNamePlate4initEv kind:function(thumb,size=0x1e) addr:0x0216aa34
+_ZN22BattleMonsterNamePlate10setMonsterEv kind:function(thumb,size=0x114) addr:0x0216aa54
+_ZN22BattleMonsterNamePlate11seekMonsterEi kind:function(thumb,size=0x4c) addr:0x0216ab68
+_ZN22BattleMonsterNamePlate19setMonsterParameterEii kind:function(thumb,size=0x12c) addr:0x0216abb4
+_ZN22BattleMonsterNamePlate14getGroupCenterEi kind:function(thumb,size=0x60) addr:0x0216ace0
+_ZN22BattleMonsterNamePlate11maxPriorityEi kind:function(thumb,size=0x2a) addr:0x0216ad40
+_ZN22BattleMonsterNamePlate12sortPositionEv kind:function(thumb,size=0x92) addr:0x0216ad6c
+_ZN22BattleMonsterNamePlate12makeSortListEv kind:function(thumb,size=0x90) addr:0x0216ae00
+_ZN22BattleMonsterNamePlate12changeHeightERNS_12Monster_DATAES1_ kind:function(thumb,size=0x9e) addr:0x0216ae90
+_ZN22BattleMonsterNamePlate17adjustPlateCenterERNS_12Monster_DATAEb kind:function(thumb,size=0x54) addr:0x0216af30
+_ZN22BattleMonsterNamePlate14adjustPositionEi kind:function(thumb,size=0x3a) addr:0x0216af84
+_Z16unkfunc_0216afc0iiii kind:function(thumb,size=0x38) addr:0x0216afc0
+_Z16unkfunc_0216aff8iiiPN6status14HaveStatusInfoE kind:function(thumb,size=0x84) addr:0x0216aff8
+_Z16unkfunc_0216b07cPN6status14HaveStatusInfoEii kind:function(thumb,size=0x22) addr:0x0216b07c
+_Z16unkfunc_0216b0a0i kind:function(thumb,size=0x94) addr:0x0216b0a0
+_Z16unkfunc_0216b134iiii kind:function(thumb,size=0x120) addr:0x0216b134
+_Z16unkfunc_0216b254iii kind:function(thumb,size=0x28) addr:0x0216b254
+_Z16unkfunc_0216b27ciiii kind:function(thumb,size=0x48) addr:0x0216b27c
+_Z16unkfunc_0216b2c4iiii kind:function(thumb,size=0x50) addr:0x0216b2c4
+_Z16unkfunc_0216b314iii kind:function(thumb,size=0x30) addr:0x0216b314
+_Z16unkfunc_0216b344PN6status14HaveStatusInfoEi kind:function(thumb,size=0x11c) addr:0x0216b344
+_Z16unkfunc_0216b460iiPN6status14HaveStatusInfoE kind:function(thumb,size=0x130) addr:0x0216b460
+_Z16unkfunc_0216b590Piii kind:function(thumb,size=0xa8) addr:0x0216b590
+_Z16unkfunc_0216b638PN6status14HaveStatusInfoEii kind:function(thumb,size=0x94) addr:0x0216b638
+_Z16unkfunc_0216b6ccv kind:function(thumb,size=0x14) addr:0x0216b6cc
+_Z16unkfunc_0216b6e0PN6status14HaveStatusInfoEiiii kind:function(thumb,size=0xf4) addr:0x0216b6e0
+_Z16unkfunc_0216b7d4iiii kind:function(thumb,size=0x84) addr:0x0216b7d4
+_Z16unkfunc_0216b858iiii kind:function(thumb,size=0x78) addr:0x0216b858
+_Z16unkfunc_0216b8d0ii kind:function(thumb,size=0x4c) addr:0x0216b8d0
+_Z16unkfunc_0216b91ciii kind:function(thumb,size=0x1c) addr:0x0216b91c
+_Z16unkfunc_0216b938iiPN6status14HaveStatusInfoEi kind:function(thumb,size=0x48) addr:0x0216b938
+_Z16unkfunc_0216b980PN6status14HaveStatusInfoE kind:function(thumb,size=0x28) addr:0x0216b980
+_Z16unkfunc_0216b9a8PN6status14HaveStatusInfoEi kind:function(thumb,size=0x1e) addr:0x0216b9a8
+_Z16unkfunc_0216b9c8i kind:function(thumb,size=0x1e) addr:0x0216b9c8
+_Z16unkfunc_0216b9e8i kind:function(thumb,size=0x6c) addr:0x0216b9e8
+_Z16unkfunc_0216ba54i kind:function(thumb,size=0xc) addr:0x0216ba54
+_Z16unkfunc_0216ba60Piii kind:function(thumb,size=0x18) addr:0x0216ba60
+_Z16unkfunc_0216ba78Piii kind:function(thumb,size=0x70) addr:0x0216ba78
+_Z16unkfunc_0216bae8v kind:function(thumb,size=0xc) addr:0x0216bae8
+_Z16unkfunc_0216baf4i kind:function(thumb,size=0xc) addr:0x0216baf4
+_Z16unkfunc_0216bb00Piii kind:function(thumb,size=0xc0) addr:0x0216bb00
+_Z16unkfunc_0216bbc0i kind:function(thumb,size=0x10) addr:0x0216bbc0
+_Z16unkfunc_0216bbd0v kind:function(thumb,size=0xc) addr:0x0216bbd0
+_Z16unkfunc_0216bbdcv kind:function(thumb,size=0xa8) addr:0x0216bbdc
+_Z16unkfunc_0216bc84v kind:function(thumb,size=0x110) addr:0x0216bc84
+_Z16unkfunc_0216bd94v kind:function(thumb,size=0x40) addr:0x0216bd94
+_Z16unkfunc_0216bdd4v kind:function(thumb,size=0x84) addr:0x0216bdd4
+_Z16unkfunc_0216be58Piii kind:function(thumb,size=0x70) addr:0x0216be58
+_Z16unkfunc_0216bec8PiiS_i kind:function(thumb,size=0x178) addr:0x0216bec8
+_Z16unkfunc_0216c040v kind:function(thumb,size=0x4c) addr:0x0216c040
+_Z16unkfunc_0216c08ci kind:function(thumb,size=0x3c) addr:0x0216c08c
+_Z16unkfunc_0216c0c8v kind:function(thumb,size=0x44) addr:0x0216c0c8
+_Z16unkfunc_0216c10cPiii kind:function(thumb,size=0xc8) addr:0x0216c10c
+_Z16unkfunc_0216c1d4v kind:function(thumb,size=0x10) addr:0x0216c1d4
+_Z16unkfunc_0216c1e4v kind:function(thumb,size=0x80) addr:0x0216c1e4
+_Z16unkfunc_0216c264v kind:function(thumb,size=0x3c) addr:0x0216c264
+_Z16unkfunc_0216c2a0v kind:function(thumb,size=0x10) addr:0x0216c2a0
+_Z16unkfunc_0216c2b0v kind:function(thumb,size=0x10) addr:0x0216c2b0
+_Z16unkfunc_0216c2c0Pii kind:function(thumb,size=0x90) addr:0x0216c2c0
+_Z16unkfunc_0216c350i kind:function(thumb,size=0x54) addr:0x0216c350
+_Z16unkfunc_0216c3a4iii kind:function(thumb,size=0xc4) addr:0x0216c3a4
+_Z16unkfunc_0216c468i kind:function(thumb,size=0xbc) addr:0x0216c468
+_Z16unkfunc_0216c524Piii kind:function(thumb,size=0xa0) addr:0x0216c524
+_ZN19MenuTemplate_battle13BATTLE_CANCELEPN4menu8MenuItemE kind:function(thumb,size=0x14) addr:0x0216c5c4
+_ZN19MenuTemplate_battle18BATTLE_MENUICON2x2EPN4menu8MenuItemEii kind:function(thumb,size=0x34) addr:0x0216c5d8
+_ZN19MenuTemplate_battle16BATTLE_MAGIC_2x3EPN4menu8MenuItemEi kind:function(thumb,size=0x14) addr:0x0216c60c
+_ZN19MenuTemplate_battle18BATTLE_TACTICS_2x3EPN4menu8MenuItemEi kind:function(thumb,size=0x1c) addr:0x0216c620
+_ZN19MenuTemplate_battle16BATTLE_PARTY_2x2EPN4menu8MenuItemEi kind:function(thumb,size=0x14) addr:0x0216c63c
+_ZN19MenuTemplate_battle20BATTLE_ARRAYMENU_2x1EPN4menu8MenuItemEi kind:function(thumb,size=0x1c) addr:0x0216c650
+_ZN19MenuTemplate_battle24BATTLE_TACTICSCHANGE_5x1EPN4menu8MenuItemEii kind:function(thumb,size=0x1c) addr:0x0216c66c
+_ZN19MenuTemplate_battle22BATTLE_ARRAYCHANGE_5x2EPN4menu8MenuItemEii kind:function(thumb,size=0x1c) addr:0x0216c688
+_ZN19MenuTemplate_battle25BATTLE_ARRAYCHANGE_TO_5x2EPN4menu8MenuItemEii kind:function(thumb,size=0x1c) addr:0x0216c6a4
+_ZN19MenuTemplate_battle19BATTLE_ARRAYALL_5x2EPN4menu8MenuItemEii kind:function(thumb,size=0x1c) addr:0x0216c6c0
+_ZN19MenuTemplate_battle17BATTLE_ICON_ENEMYEPN4menu8MenuItemEiP9TOUCHRECTi kind:function(thumb,size=0x58) addr:0x0216c6dc
+_ZN19MenuTemplate_battle17BATTLE_RECT_ENEMYEPN4menu8MenuItemE kind:function(thumb,size=0x2c) addr:0x0216c734
 _ZN15BattleMenuJudge9baseSetupEv kind:function(thumb,size=0xc) addr:0x0216c760
 _ZN15BattleMenuJudge9turnSetupEv kind:function(thumb,size=0x44) addr:0x0216c76c
 _ZN15BattleMenuJudge12getSingletonEv kind:function(thumb,size=0x8) addr:0x0216c7b0
@@ -106,20 +106,20 @@ _ZN24BattleMenu_ITEMUSE2ENEMY16unkfunc_0216cd80Ei kind:function(thumb,size=0x40)
 _ZN24BattleMenu_ITEMUSE2ENEMY16unkfunc_0216cdc0Ei kind:function(thumb,size=0x40) addr:0x0216cdc0
 _ZN24BattleMenu_ITEMUSE2ENEMY16unkfunc_0216ce00Ev kind:function(thumb,size=0xde) addr:0x0216ce00
 _ZN24BattleMenu_ITEMUSE2ENEMY16unkfunc_0216cee0Ev kind:function(thumb,size=0x30) addr:0x0216cee0
-func_ov015_0216cf10 kind:function(arm,size=0x14) addr:0x0216cf10
-func_ov015_0216cf24 kind:function(arm,size=0x4) addr:0x0216cf24
-func_ov015_0216cf28 kind:function(arm,size=0x18) addr:0x0216cf28
-func_ov015_0216cf40 kind:function(arm,size=0x4) addr:0x0216cf40
-func_ov015_0216cf44 kind:function(thumb,size=0x5c) addr:0x0216cf44
-func_ov015_0216cfa0 kind:function(thumb,size=0x48) addr:0x0216cfa0
-func_ov015_0216cfe8 kind:function(thumb,size=0x7c) addr:0x0216cfe8
-func_ov015_0216d064 kind:function(thumb,size=0x5c) addr:0x0216d064
-func_ov015_0216d0c0 kind:function(thumb,size=0x2c) addr:0x0216d0c0
-func_ov015_0216d0ec kind:function(thumb,size=0x2) addr:0x0216d0ec
-func_ov015_0216d0f0 kind:function(thumb,size=0xa8) addr:0x0216d0f0
-func_ov015_0216d198 kind:function(thumb,size=0x1ac) addr:0x0216d198
-func_ov015_0216d344 kind:function(thumb,size=0x144) addr:0x0216d344
-func_ov015_0216d488 kind:function(thumb,size=0x40) addr:0x0216d488
+_ZN23BattleMenu_StadiumAbort9menuSetupEv kind:function(arm,size=0x14) addr:0x0216cf10
+_ZN23BattleMenu_StadiumAbort11menuExecuteEv kind:function(arm,size=0x4) addr:0x0216cf24
+_ZN23BattleMenu_StadiumAbort8menuDrawEv kind:function(arm,size=0x18) addr:0x0216cf28
+_ZN23BattleMenu_StadiumAbort10menuUpdateEv kind:function(arm,size=0x4) addr:0x0216cf40
+_ZN22UnkBattleMenu_0216cf449menuSetupEv kind:function(thumb,size=0x5c) addr:0x0216cf44
+_ZN22UnkBattleMenu_0216cf4411menuExecuteEv kind:function(thumb,size=0x48) addr:0x0216cfa0
+_ZN22UnkBattleMenu_0216cf448menuDrawEv kind:function(thumb,size=0x7c) addr:0x0216cfe8
+_ZN22UnkBattleMenu_0216cf4410menuUpdateEv kind:function(thumb,size=0x5c) addr:0x0216d064
+_ZN22UnkBattleMenu_0216cf4416unkfunc_0216d0c0Ev kind:function(thumb,size=0x2c) addr:0x0216d0c0
+_ZN22UnkBattleMenu_0216cf4416unkfunc_0216d0ecEv kind:function(thumb,size=0x2) addr:0x0216d0ec
+_ZN22UnkBattleMenu_0216cf4416unkfunc_0216d0f0Ev kind:function(thumb,size=0xa8) addr:0x0216d0f0
+_ZN22UnkBattleMenu_0216cf4413selectUseItemEv kind:function(thumb,size=0x1ac) addr:0x0216d198
+_ZN22UnkBattleMenu_0216cf4411selectEquipEv kind:function(thumb,size=0x144) addr:0x0216d344
+_ZN22UnkBattleMenu_0216cf4416unkfunc_0216d488Ev kind:function(thumb,size=0x40) addr:0x0216d488
 _ZN24BattleMenu_ITEMUSE2PARTY9menuSetupEv kind:function(thumb,size=0x38) addr:0x0216d4c8
 _ZN24BattleMenu_ITEMUSE2PARTY11menuExecuteEv kind:function(thumb,size=0x2c) addr:0x0216d500
 _ZN24BattleMenu_ITEMUSE2PARTY8menuDrawEv kind:function(thumb,size=0x12) addr:0x0216d52c
@@ -143,10 +143,10 @@ _ZN15BattleMenu_ROOT9menuSetupEv kind:function(thumb,size=0xac) addr:0x0216df88
 _ZN15BattleMenu_ROOT11menuExecuteEv kind:function(thumb,size=0x68) addr:0x0216e034
 _ZN15BattleMenu_ROOT8menuDrawEv kind:function(thumb,size=0x20) addr:0x0216e09c
 _ZN15BattleMenu_ROOT10menuUpdateEv kind:function(thumb,size=0x1b4) addr:0x0216e0bc
-func_ov015_0216e270 kind:function(thumb,size=0x10) addr:0x0216e270
-func_ov015_0216e280 kind:function(thumb,size=0x28) addr:0x0216e280
-func_ov015_0216e2a8 kind:function(thumb,size=0x3c) addr:0x0216e2a8
-func_ov015_0216e2e4 kind:function(thumb,size=0xc) addr:0x0216e2e4
+_ZN22UnkBattleMenu_0216e2709menuSetupEv kind:function(thumb,size=0x10) addr:0x0216e270
+_ZN22UnkBattleMenu_0216e27011menuExecuteEv kind:function(thumb,size=0x28) addr:0x0216e280
+_ZN22UnkBattleMenu_0216e2708menuDrawEv kind:function(thumb,size=0x3c) addr:0x0216e2a8
+_ZN22UnkBattleMenu_0216e27010menuUpdateEv kind:function(thumb,size=0xc) addr:0x0216e2e4
 _ZN21BattleMenu_ACTIONMENU9menuSetupEv kind:function(thumb,size=0x80) addr:0x0216e2f0
 _ZN21BattleMenu_ACTIONMENU11menuExecuteEv kind:function(thumb,size=0x36) addr:0x0216e370
 _ZN21BattleMenu_ACTIONMENU8menuDrawEv kind:function(thumb,size=0x14) addr:0x0216e3a8
@@ -196,7 +196,7 @@ _ZN22BattleMenu_TACTICSMENU16unkfunc_0216fbdcEv kind:function(thumb,size=0x70) a
 _ZN22BattleMenu_TACTICSMENU16unkfunc_0216fc4cEv kind:function(thumb,size=0x4c) addr:0x0216fc4c
 _ZN22BattleMenu_TACTICSMENU16unkfunc_0216fc98Ev kind:function(thumb,size=0x54) addr:0x0216fc98
 _ZN22BattleMenu_TACTICSMENU16unkfunc_0216fcecEv kind:function(thumb,size=0x90) addr:0x0216fcec
-func_ov015_0216fd7c kind:function(arm,size=0x4) addr:0x0216fd7c
+ov015_entry kind:function(arm,size=0x4) addr:0x0216fd7c
 _ZN3btl23BattleMenuPlayerControl12getSingletonEv kind:function(thumb,size=0x8) addr:0x0216fd80
 _ZN3btl23BattleMenuPlayerControl15getPlayerItemIdEv kind:function(thumb,size=0x1c) addr:0x0216fd88
 _ZN3btl23BattleMenuPlayerControl5clearEv kind:function(thumb,size=0x108) addr:0x0216fda4
@@ -309,18 +309,20 @@ _ZN3btl17BattleSecondCheck21personalCheckMegazaruEPNS_23BattleSelectTargetParamE
 _ZN3btl17BattleSecondCheck20personalCheckOtakebiEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x94) addr:0x02176208
 _ZN3btl17BattleSecondCheck18personalCheckHadouEPNS_23BattleSelectTargetParamE kind:function(thumb,size=0x110) addr:0x0217629c
 _ZN3btl17BattleSecondCheck17personalCheckFreeEv kind:function(thumb,size=0x28) addr:0x021763ac
-data_ov015_021763d4 kind:data(any) addr:0x021763d4
-data_ov015_021763e4 kind:data(any) addr:0x021763e4
-data_ov015_021763f0 kind:data(any) addr:0x021763f0
-data_ov015_021763fc kind:data(any) addr:0x021763fc
-data_ov015_02176408 kind:data(any) addr:0x02176408
-data_ov015_02176418 kind:data(any) addr:0x02176418
-data_ov015_02176428 kind:data(any) addr:0x02176428
-data_ov015_0217645c kind:data(any) addr:0x0217645c
-data_ov015_02176480 kind:data(any) addr:0x02176480
-data_ov015_02176488 kind:data(any) addr:0x02176488
-data_ov015_02176498 kind:data(any) addr:0x02176498
-data_ov015_021764b0 kind:data(any) addr:0x021764b0
+@3120 kind:data(byte[8]) addr:0x021763d4 local
+@3196 kind:data(byte[8]) addr:0x021763dc local
+@3233 kind:data(byte[12]) addr:0x021763e4 local
+@3274 kind:data(byte[12]) addr:0x021763f0 local
+@3162 kind:data(byte[12]) addr:0x021763fc local
+@3296 kind:data(byte[16]) addr:0x02176408 local
+@3152 kind:data(byte[16]) addr:0x02176418 local
+@3200 kind:data(byte[20]) addr:0x02176428 local
+@3358 kind:data(byte[32]) addr:0x0217643c local
+@3198 kind:data(byte[36]) addr:0x0217645c local
+@3302 kind:data(byte[8]) addr:0x02176480 local
+@3347 kind:data(byte[16]) addr:0x02176488 local
+tactics$3258 kind:data(byte[24]) addr:0x02176498 local
+@3307 kind:data(byte[28]) addr:0x021764b0 local
 @1842 kind:data(any) addr:0x021764cc local
 CONDITION_STATUS_TABLE kind:data(any) addr:0x021764e4 local
 AUTO_COMMAND_NAME_TABLE kind:data(any) addr:0x021764fc local
@@ -328,106 +330,106 @@ CONDITION_MESSAGE_TABLE kind:data(any) addr:0x02176514 local
 specialPlayerRate2 kind:data(byte[8]) addr:0x02176530 local
 specialPlayerRate3 kind:data(byte[12]) addr:0x02176538 local
 specialPlayerRate4 kind:data(byte[16]) addr:0x02176544 local
-__sinit_ov015_02176554 kind:function(thumb,size=0x1f8) addr:0x02176554
-.p__sinit_ov015_02176554 kind:data(word) addr:0x0217674c
+__sinit_BattleMenu.cpp kind:function(thumb,size=0x1f8) addr:0x02176554 local
+.p__sinit_BattleMenu.cpp kind:data(word) addr:0x0217674c local
 _ZTV20BattleMenu_NGMESSAGE kind:data(byte[28]) addr:0x02176760
-data_ov015_0217677c kind:data(any) addr:0x0217677c
-data_ov015_02176780 kind:data(any) addr:0x02176780
-data_ov015_02176784 kind:data(any) addr:0x02176784
-data_ov015_0217678c kind:data(any) addr:0x0217678c
-data_ov015_02176794 kind:data(any) addr:0x02176794
-data_ov015_0217679c kind:data(any) addr:0x0217679c
-data_ov015_021767b8 kind:data(any) addr:0x021767b8
-data_ov015_021767d4 kind:data(any) addr:0x021767d4
-data_ov015_021767f0 kind:data(any) addr:0x021767f0
-data_ov015_0217680c kind:data(any) addr:0x0217680c
-data_ov015_02176828 kind:data(any) addr:0x02176828
-data_ov015_02176844 kind:data(any) addr:0x02176844
-data_ov015_02176860 kind:data(any) addr:0x02176860
-data_ov015_0217687c kind:data(any) addr:0x0217687c
-data_ov015_02176898 kind:data(any) addr:0x02176898
-data_ov015_021768b4 kind:data(any) addr:0x021768b4
-data_ov015_021768d0 kind:data(any) addr:0x021768d0
-data_ov015_021768ec kind:data(any) addr:0x021768ec
-data_ov015_02176908 kind:data(any) addr:0x02176908
-data_ov015_02176932 kind:data(any) addr:0x02176932
-data_ov015_0217695c kind:data(any) addr:0x0217695c
-data_ov015_02176986 kind:data(any) addr:0x02176986
-data_ov015_021769b0 kind:data(any) addr:0x021769b0
-data_ov015_021769da kind:data(any) addr:0x021769da
-data_ov015_02176a04 kind:data(any) addr:0x02176a04
-data_ov015_02176a2e kind:data(any) addr:0x02176a2e
-data_ov015_02176a58 kind:data(any) addr:0x02176a58
-data_ov015_02176a82 kind:data(any) addr:0x02176a82
-data_ov015_02176aac kind:data(any) addr:0x02176aac
-data_ov015_02176ad6 kind:data(any) addr:0x02176ad6
-data_ov015_02176b0e kind:data(any) addr:0x02176b0e
-data_ov015_02176b46 kind:data(any) addr:0x02176b46
-data_ov015_02176b8c kind:data(any) addr:0x02176b8c
-data_ov015_02176bd2 kind:data(any) addr:0x02176bd2
-data_ov015_02176c18 kind:data(any) addr:0x02176c18
-data_ov015_02176c5e kind:data(any) addr:0x02176c5e
-data_ov015_02176cc0 kind:data(any) addr:0x02176cc0
-data_ov015_02176d22 kind:data(any) addr:0x02176d22
-data_ov015_02176dbc kind:data(any) addr:0x02176dbc
-data_ov015_02176e80 kind:data(any) addr:0x02176e80
-data_ov015_02176e88 kind:data(any) addr:0x02176e88
-data_ov015_02176e8c kind:data(any) addr:0x02176e8c
-data_ov015_02176e90 kind:data(any) addr:0x02176e90
-data_ov015_02176eac kind:data(any) addr:0x02176eac
-data_ov015_02176ec8 kind:data(any) addr:0x02176ec8
-data_ov015_02176ee4 kind:data(any) addr:0x02176ee4
-data_ov015_02176f00 kind:data(any) addr:0x02176f00
-data_ov015_02176f1c kind:data(any) addr:0x02176f1c
-data_ov015_02176f38 kind:data(any) addr:0x02176f38
-data_ov015_02176f54 kind:data(any) addr:0x02176f54
-data_ov015_02176f70 kind:data(any) addr:0x02176f70
-data_ov015_02176f8c kind:data(any) addr:0x02176f8c
-data_ov015_02176fb6 kind:data(any) addr:0x02176fb6
-data_ov015_02176fe0 kind:data(any) addr:0x02176fe0
-data_ov015_0217700a kind:data(any) addr:0x0217700a
-data_ov015_02177034 kind:data(any) addr:0x02177034
-data_ov015_0217705e kind:data(any) addr:0x0217705e
-data_ov015_02177088 kind:data(any) addr:0x02177088
-data_ov015_021770b2 kind:data(any) addr:0x021770b2
-data_ov015_021770dc kind:data(any) addr:0x021770dc
-data_ov015_02177106 kind:data(any) addr:0x02177106
-data_ov015_02177130 kind:data(any) addr:0x02177130
-data_ov015_0217715a kind:data(any) addr:0x0217715a
-data_ov015_02177184 kind:data(any) addr:0x02177184
-data_ov015_021771bc kind:data(any) addr:0x021771bc
-data_ov015_021771f4 kind:data(any) addr:0x021771f4
-data_ov015_0217722c kind:data(any) addr:0x0217722c
-data_ov015_02177230 kind:data(any) addr:0x02177230
-data_ov015_02177238 kind:data(any) addr:0x02177238
-data_ov015_0217724c kind:data(any) addr:0x0217724c
-data_ov015_02177274 kind:data(any) addr:0x02177274
-data_ov015_02177292 kind:data(any) addr:0x02177292
-data_ov015_021772b0 kind:data(any) addr:0x021772b0
-data_ov015_021772e2 kind:data(any) addr:0x021772e2
-data_ov015_02177301 kind:data(any) addr:0x02177301 ambiguous
-data_ov015_02177314 kind:data(any) addr:0x02177314
-data_ov015_02177346 kind:data(any) addr:0x02177346
-data_ov015_02177378 kind:data(any) addr:0x02177378
-data_ov015_021773fa kind:data(any) addr:0x021773fa
-data_ov015_02177440 kind:data(any) addr:0x02177440
-data_ov015_02177486 kind:data(any) addr:0x02177486
-data_ov015_021774f4 kind:data(any) addr:0x021774f4
-data_ov015_021774f5 kind:data(any) addr:0x021774f5 ambiguous
+@3195 kind:data(byte[2]) addr:0x0217677c local
+@3232 kind:data(byte[2]) addr:0x02176780 local
+@3273 kind:data(byte[5]) addr:0x02176784 local
+@3161 kind:data(byte[5]) addr:0x0217678c local
+@3151 kind:data(byte[5]) addr:0x02176794 local
+s_parts_0217679c kind:data(byte[28]) addr:0x0217679c local
+s_parts_021767b8 kind:data(byte[28]) addr:0x021767b8 local
+s_parts_021767d4 kind:data(byte[28]) addr:0x021767d4 local
+s_parts_021767f0 kind:data(byte[28]) addr:0x021767f0 local
+s_parts_0217680c kind:data(byte[28]) addr:0x0217680c local
+s_parts_02176828 kind:data(byte[28]) addr:0x02176828 local
+s_parts_02176844 kind:data(byte[28]) addr:0x02176844 local
+s_parts_02176860 kind:data(byte[28]) addr:0x02176860 local
+s_parts_0217687c kind:data(byte[28]) addr:0x0217687c local
+s_parts_02176898 kind:data(byte[28]) addr:0x02176898 local
+s_parts_021768b4 kind:data(byte[28]) addr:0x021768b4 local
+s_parts_021768d0 kind:data(byte[28]) addr:0x021768d0 local
+s_parts_021768ec kind:data(byte[28]) addr:0x021768ec local
+s_parts_02176908 kind:data(byte[42]) addr:0x02176908 local
+s_parts_02176932 kind:data(byte[42]) addr:0x02176932 local
+s_parts_0217695c kind:data(byte[42]) addr:0x0217695c local
+s_parts_02176986 kind:data(byte[42]) addr:0x02176986 local
+s_parts_021769b0 kind:data(byte[42]) addr:0x021769b0 local
+s_parts_021769da kind:data(byte[42]) addr:0x021769da local
+s_parts_02176a04 kind:data(byte[42]) addr:0x02176a04 local
+s_parts_02176a2e kind:data(byte[42]) addr:0x02176a2e local
+s_parts_02176a58 kind:data(byte[42]) addr:0x02176a58 local
+s_parts_02176a82 kind:data(byte[42]) addr:0x02176a82 local
+s_parts_02176aac kind:data(byte[42]) addr:0x02176aac local
+s_parts_02176ad6 kind:data(byte[56]) addr:0x02176ad6 local
+s_parts_02176b0e kind:data(byte[56]) addr:0x02176b0e local
+s_parts_02176b46 kind:data(byte[70]) addr:0x02176b46 local
+s_parts_02176b8c kind:data(byte[70]) addr:0x02176b8c local
+s_parts_02176bd2 kind:data(byte[70]) addr:0x02176bd2 local
+s_parts_02176c18 kind:data(byte[70]) addr:0x02176c18 local
+s_parts_02176c5e kind:data(byte[98]) addr:0x02176c5e local
+s_parts_02176cc0 kind:data(byte[98]) addr:0x02176cc0 local
+s_parts_02176d22 kind:data(byte[154]) addr:0x02176d22 local
+s_parts_02176dbc kind:data(byte[196]) addr:0x02176dbc local
+@3508 kind:data(byte[5]) addr:0x02176e80 local
+@3509 kind:data(byte[2]) addr:0x02176e88 local
+@3346 kind:data(byte[2]) addr:0x02176e8c local
+s_parts_02176e90 kind:data(byte[28]) addr:0x02176e90 local
+s_parts_02176eac kind:data(byte[28]) addr:0x02176eac local
+s_parts_02176ec8 kind:data(byte[28]) addr:0x02176ec8 local
+s_parts_02176ee4 kind:data(byte[28]) addr:0x02176ee4 local
+s_parts_02176f00 kind:data(byte[28]) addr:0x02176f00 local
+s_parts_02176f1c kind:data(byte[28]) addr:0x02176f1c local
+s_parts_02176f38 kind:data(byte[28]) addr:0x02176f38 local
+s_parts_02176f54 kind:data(byte[28]) addr:0x02176f54 local
+s_parts_02176f70 kind:data(byte[28]) addr:0x02176f70 local
+s_parts_02176f8c kind:data(byte[42]) addr:0x02176f8c local
+s_parts_02176fb6 kind:data(byte[42]) addr:0x02176fb6 local
+s_parts_02176fe0 kind:data(byte[42]) addr:0x02176fe0 local
+s_parts_0217700a kind:data(byte[42]) addr:0x0217700a local
+s_parts_02177034 kind:data(byte[42]) addr:0x02177034 local
+s_parts_0217705e kind:data(byte[42]) addr:0x0217705e local
+s_parts_02177088 kind:data(byte[42]) addr:0x02177088 local
+s_parts_021770b2 kind:data(byte[42]) addr:0x021770b2 local
+s_parts_021770dc kind:data(byte[42]) addr:0x021770dc local
+s_parts_02177106 kind:data(byte[42]) addr:0x02177106 local
+s_parts_02177130 kind:data(byte[42]) addr:0x02177130 local
+s_parts_0217715a kind:data(byte[42]) addr:0x0217715a local
+s_parts_02177184 kind:data(byte[56]) addr:0x02177184 local
+s_parts_021771bc kind:data(byte[56]) addr:0x021771bc local
+s_parts_021771f4 kind:data(byte[56]) addr:0x021771f4 local
+@3692 kind:data(byte[2]) addr:0x0217722c local
+@3693 kind:data(byte[5]) addr:0x02177230 local
+menu_array$3080 kind:data(byte[20]) addr:0x02177238 local
+menu$2991 kind:data(byte[20]) addr:0x0217724c local
+menu$2996 kind:data(byte[20]) addr:0x02177260 local
+menu_array$3031 kind:data(byte[30]) addr:0x02177274 local
+menuB$3004 kind:data(byte[30]) addr:0x02177292 local
+menu$3025 kind:data(byte[50]) addr:0x021772b0 local
+menu_array$3045 kind:data(byte[50]) addr:0x021772e2 local
+menu_array$3052 kind:data(byte[50]) addr:0x02177314 local
+menuA$3003 kind:data(byte[50]) addr:0x02177346 local
+menu_array$3038 kind:data(byte[60]) addr:0x02177378 local
+menu$3099 kind:data(byte[70]) addr:0x021773b4 local
+menu$3013 kind:data(byte[70]) addr:0x021773fa local
+menu_tc$3019 kind:data(byte[70]) addr:0x02177440 local
+menu_array$3059 kind:data(byte[110]) addr:0x02177486 local
+menu_array$3067 kind:data(byte[130]) addr:0x021774f4 local
 _ZTV24BattleMenu_ITEMUSE2ENEMY kind:data(byte[28]) addr:0x02177578
-data_ov015_0217759c kind:data(any) addr:0x0217759c
-data_ov015_021775b4 kind:data(any) addr:0x021775b4
-data_ov015_021775d0 kind:data(any) addr:0x021775d0
-data_ov015_021775e4 kind:data(any) addr:0x021775e4
+_ZTV20CursorMoveBase_ov015 kind:data(byte[24]) addr:0x02177594
+_ZTV23BattleMenu_StadiumAbort kind:data(byte[28]) addr:0x021775ac
+_ZTV22UnkBattleMenu_0216cf44 kind:data(byte[28]) addr:0x021775c8
+menu$3949 kind:data(byte[30]) addr:0x021775e4 local
 _ZTV24BattleMenu_ITEMUSE2PARTY kind:data(byte[28]) addr:0x02177604
 _ZTV22BattleMenu_MAGIC2ENEMY kind:data(byte[28]) addr:0x02177620
 _ZTV22BattleMenu_MAGIC2PARTY kind:data(byte[28]) addr:0x0217763c
 _ZTV16BattleMenu_MAGIC kind:data(byte[28]) addr:0x02177658
 _ZTV15BattleMenu_ROOT kind:data(byte[28]) addr:0x02177674
-data_ov015_02177698 kind:data(any) addr:0x02177698
-data_ov015_021776ac kind:data(any) addr:0x021776ac
-data_ov015_021776de kind:data(any) addr:0x021776de
-data_ov015_021777b0 kind:data(any) addr:0x021777b0
+_ZTV22UnkBattleMenu_0216e270 kind:data(byte[28]) addr:0x02177690
+menu$2968 kind:data(byte[50]) addr:0x021776ac local
+s_parts kind:data(byte[210]) addr:0x021776de local
+@2986 kind:data(byte[12]) addr:0x021777b0 local
 _ZTV21BattleMenu_ACTIONMENU kind:data(byte[28]) addr:0x021777bc
 _ZTV17BattleMenu_ATTACK kind:data(byte[28]) addr:0x021777d8
 _ZTV15BattleMenu_ITEM kind:data(byte[28]) addr:0x021777f4
@@ -526,43 +528,27 @@ _ZTV22BattleMenu_TACTICSMENU kind:data(byte[28]) addr:0x02177880
 @5366 kind:data(any) addr:0x02179580 local
 @5429 kind:data(byte[78]) addr:0x021795d0 local
 @5434 kind:data(byte[48]) addr:0x02179620 local
-data_ov015_02179660 kind:bss addr:0x02179660
-data_ov015_021796ac kind:bss addr:0x021796ac
+gBattleMonsterNamePlate kind:bss addr:0x02179660
+s_param kind:bss addr:0x021796ac local
 gBattleMenuJudge kind:bss addr:0x021796b4
-data_ov015_0217973c kind:bss addr:0x0217973c
+gBattleMenu_StadiumAbort kind:bss addr:0x0217973c
 gBattleMenu_NGMESSAGE kind:bss addr:0x02179758
 gBattleMenuSub_HISTORY kind:bss addr:0x02179780
-data_ov015_021797b0 kind:bss addr:0x021797b0
-data_ov015_021797bc kind:bss addr:0x021797bc
+gUnkBattleMenu_0216e270 kind:bss addr:0x021797b0
 gBattleMenu_ARRAYMENU kind:bss addr:0x02179830
-data_ov015_021798bc kind:bss addr:0x021798bc
 gBattleMenu_ITEMUSE2PARTY kind:bss addr:0x02179918
-data_ov015_021799bc kind:bss addr:0x021799bc
 gBattleMenu_ROOT kind:bss addr:0x02179a14
-data_ov015_02179abc kind:bss addr:0x02179abc
 gBattleMenu_MAGIC2PARTY kind:bss addr:0x02179b10
-data_ov015_02179bbc kind:bss addr:0x02179bbc
-data_ov015_02179c10 kind:bss addr:0x02179c10
-data_ov015_02179d3c kind:bss addr:0x02179d3c
+gUnkBattleMenu_0216cf44 kind:bss addr:0x02179c10
 gBattleMenu_ITEM kind:bss addr:0x02179d68
-data_ov015_02179e3c kind:bss addr:0x02179e3c
-data_ov015_02179ebc kind:bss addr:0x02179ebc
 gBattleMenu_ACTIONMENU kind:bss addr:0x02179ec4
-data_ov015_02179fbc kind:bss addr:0x02179fbc
 gBattleMenu_ARRAY_ALL kind:bss addr:0x0217a020
-data_ov015_0217a13c kind:bss addr:0x0217a13c
 gBattleMenu_ATTACK kind:bss addr:0x0217a188
-data_ov015_0217a2bc kind:bss addr:0x0217a2bc
 gBattleMenu_MAGIC2ENEMY kind:bss addr:0x0217a2f0
-data_ov015_0217a43c kind:bss addr:0x0217a43c
 gBattleMenu_ARRAY_CHANGE kind:bss addr:0x0217a464
-data_ov015_0217a5bc kind:bss addr:0x0217a5bc
 gBattleMenu_ITEMUSE2ENEMY kind:bss addr:0x0217a634
-data_ov015_0217a7bc kind:bss addr:0x0217a7bc
 gBattleMenu_TACTICSMENU kind:bss addr:0x0217a80c
-data_ov015_0217a9bc kind:bss addr:0x0217a9bc
 gBattleMenu_MAGIC kind:bss addr:0x0217aa0c
-data_ov015_0217ab3c kind:bss addr:0x0217ab3c
-data_ov015_0217ac54 kind:bss addr:0x0217ac54
+s_param kind:bss addr:0x0217ac54 local
 gBattleMenuPlayerControl kind:bss addr:0x0217acd4
 _ZN3btl18BattleSelectTarget14specialTarget_E kind:bss(size=0x3c) addr:0x0217ad84

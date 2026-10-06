@@ -35,7 +35,7 @@ ARM void BookSystem::initialize()
     BookMonsterDraw::getSingleton()->initialize();
     monsterNo_ = 0;
     BookMonsterDraw::getSingleton()->setup(0);
-    data_ov016_0218727c.open();
+    gMaterielMenu_PICTUREBOOK_ROOT.open();
     scl.value = 0x120;
     DSSAObject::setDefaultScale(scl);
     DSSAObject::setPriority(1);
@@ -56,7 +56,7 @@ ARM void BookSystem::terminate()
 
 ARM void BookSystem::execute()
 {
-    if (data_ov016_02186288.isOpen_) {
+    if (gMaterielMenu_PICTUREBOOK_DETAIL.isOpen_) {
         BookMonsterDraw::getSingleton()->execute();
     }
 }
@@ -65,7 +65,7 @@ ARM void BookSystem::draw()
 {
     BookCamera::getSingleton()->draw();
     render_.unkfunc_02084fa4();
-    if (data_ov016_02186288.isOpen_) {
+    if (gMaterielMenu_PICTUREBOOK_DETAIL.isOpen_) {
         BookMonsterDraw::getSingleton()->draw();
     }
     unkfunc_020847e8();

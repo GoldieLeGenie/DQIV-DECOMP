@@ -1332,7 +1332,7 @@ ARM int CommandFunction(CommandParameter *arg0) {
         break;
     case 0xDC:
         if (checkCommandType(arg0) != 0) {
-            var_r4 = func_ov000_02141424(arg0->param_);
+            var_r4 = cmd_is_trigger3(arg0->param_);
         }
         break;
     case 0x135:
@@ -1664,49 +1664,49 @@ ARM int CommandFunction(CommandParameter *arg0) {
         var_r4 = g_cmd_count.exec(arg0);
         break;
     case 0x4B:
-        var_r4 = data_ov000_0215fba4.exec(arg0);
+        var_r4 = g_cmd_character_move.exec(arg0);
         break;
     case 0x4C:
-        var_r4 = data_ov000_0215fb90.exec(arg0);
+        var_r4 = g_cmd_character_move2.exec(arg0);
         break;
     case 0x4F:
-        var_r4 = data_ov000_0215fbf8.exec(arg0);
+        var_r4 = g_cmd_character_wait.exec(arg0);
         break;
     case 0x94:
-        var_r4 = data_ov000_0215fbc8.exec(arg0);
+        var_r4 = g_cmd_player_move.exec(arg0);
         break;
     case 0x95:
-        var_r4 = data_ov000_0215fb8c.exec(arg0);
+        var_r4 = g_cmd_player_move2.exec(arg0);
         break;
     case 0x96:
-        var_r4 = data_ov000_0216010c.exec(arg0);
+        var_r4 = g_cmd_player_wait.exec(arg0);
         break;
     case 0x9:
         var_r4 = g_cmd_wait.exec(arg0);
         break;
     case 0x51:
-        var_r4 = data_ov000_0215fbb8.exec(arg0);
+        var_r4 = g_cmd_character_effect_mark.exec(arg0);
         break;
     case 0x1C:
         var_r4 = g_cmd_map_animation_b.exec(arg0);
         break;
     case 0x98:
-        var_r4 = data_ov000_02160070.exec(arg0);
+        var_r4 = g_cmd_menu_shop.exec(arg0);
         break;
     case 0x3C:
-        var_r4 = data_ov000_0215fcb8.exec(arg0);
+        var_r4 = g_cmd_menu_extra_shop.exec(arg0);
         break;
     case 0x8A:
-        var_r4 = data_ov000_0215fcc0.exec(arg0);
+        var_r4 = g_cmd_menu_present_exp.exec(arg0);
         break;
     case 0x3D:
-        var_r4 = data_ov000_0215fcc8.exec(arg0);
+        var_r4 = g_cmd_menu_colosseum.exec(arg0);
         break;
     case 0x8B:
-        var_r4 = data_ov000_0215fcd0.exec(arg0);
+        var_r4 = g_cmd_menu_hostage.exec(arg0);
         break;
     case 0x8C:
-        var_r4 = data_ov000_0215fcd8.exec(arg0);
+        var_r4 = g_cmd_menu_nene.exec(arg0);
         break;
     case 0x56:
         var_r4 = g_cmd_character_action_tremble.exec(arg0);
@@ -1730,148 +1730,148 @@ ARM int CommandFunction(CommandParameter *arg0) {
         var_r4 = g_cmd_fade_out2.exec(arg0);
         break;
     case 0x68:
-        var_r4 = data_ov000_0215fc68.exec(arg0);
+        var_r4 = g_cmd_furniture_move.exec(arg0);
         break;
     case 0x69:
-        var_r4 = data_ov000_0215fc58.exec(arg0);
+        var_r4 = g_cmd_furniture_move2.exec(arg0);
         break;
     case 0x11C:
-        var_r4 = data_ov000_021600f4.exec(arg0);
+        var_r4 = g_cmd_furniture_open.exec(arg0);
         break;
     case 0xAB:
-        var_r4 = data_ov000_0215fc70.exec(arg0);
+        var_r4 = g_cmd_effect_wait.exec(arg0);
         break;
     case 0xAD:
-        var_r4 = data_ov000_0215fc88.exec(arg0);
+        var_r4 = g_cmd_effect_move.exec(arg0);
         break;
     case 0xAE:
-        var_r4 = data_ov000_0215fc78.exec(arg0);
+        var_r4 = g_cmd_effect_fade.exec(arg0);
         break;
     case 0xA8:
-        var_r4 = data_ov000_0215fda0.exec(arg0);
+        var_r4 = g_cmd_map_flash.exec(arg0);
         break;
     case 0xA9:
-        var_r4 = data_ov000_021601a4.exec(arg0);
+        var_r4 = g_cmd_map_blend_color.exec(arg0);
         break;
     case 0xAA:
-        var_r4 = data_ov000_021601bc.exec(arg0);
+        var_r4 = g_cmd_map_blend_init.exec(arg0);
         break;
     case 0xB3:
         var_r4 = g_cmd_event_chapter_title.exec(arg0);
         break;
     case 0xA3:
-        var_r4 = data_ov000_0215fce0.exec(arg0);
+        var_r4 = g_cmd_set_party_order.exec(arg0);
         break;
     case 0x5C:
-        var_r4 = data_ov000_0215fbd0.exec(arg0);
+        var_r4 = g_cmd_character_move_to.exec(arg0);
         break;
     case 0x5D:
-        var_r4 = data_ov000_0215fb94.exec(arg0);
+        var_r4 = g_cmd_character_move2_to.exec(arg0);
         break;
     case 0x7E:
-        var_r4 = data_ov000_0215fbc4.exec(arg0);
+        var_r4 = g_cmd_player_move_to.exec(arg0);
         break;
     case 0x7F:
-        var_r4 = data_ov000_0215fbb0.exec(arg0);
+        var_r4 = g_cmd_player_move2_to.exec(arg0);
         break;
     case 0xA6:
-        var_r4 = data_ov000_0215fc4c.exec(arg0);
+        var_r4 = g_cmd_party_move_overlap.exec(arg0);
         break;
     case 0x166:
-        var_r4 = data_ov000_0215fc18.exec(arg0);
+        var_r4 = g_cmd_party_move_to_first2.exec(arg0);
         break;
     case 0x5E:
-        var_r4 = data_ov000_0215fbf0.exec(arg0);
+        var_r4 = g_cmd_character_move_party.exec(arg0);
         break;
     case 0x5F:
-        var_r4 = data_ov000_0215fba0.exec(arg0);
+        var_r4 = g_cmd_character_move2_party.exec(arg0);
         break;
     case 0x60:
-        var_r4 = data_ov000_0215fc0c.exec(arg0);
+        var_r4 = g_cmd_character_move_player.exec(arg0);
         break;
     case 0x61:
-        var_r4 = data_ov000_0215fbe8.exec(arg0);
+        var_r4 = g_cmd_character_move2_player.exec(arg0);
         break;
     case 0x2E:
-        var_r4 = data_ov000_0215fc30.exec(arg0);
+        var_r4 = g_cmd_character_move_relative.exec(arg0);
         break;
     case 0x2F:
-        var_r4 = data_ov000_0215fbe4.exec(arg0);
+        var_r4 = g_cmd_character_move2_relative.exec(arg0);
         break;
     case 0x30:
-        var_r4 = data_ov000_0215fc1c.exec(arg0);
+        var_r4 = g_cmd_character_move_x.exec(arg0);
         break;
     case 0x31:
-        var_r4 = data_ov000_0215fc08.exec(arg0);
+        var_r4 = g_cmd_character_move2_x.exec(arg0);
         break;
     case 0x32:
-        var_r4 = data_ov000_0215fc54.exec(arg0);
+        var_r4 = g_cmd_character_move_z.exec(arg0);
         break;
     case 0x33:
-        var_r4 = data_ov000_0215fbd8.exec(arg0);
+        var_r4 = g_cmd_character_move2_z.exec(arg0);
         break;
     case 0x91:
-        var_r4 = data_ov000_0215fbe0.exec(arg0);
+        var_r4 = g_cmd_party_move2_formation.exec(arg0);
         break;
     case 0x21:
-        var_r4 = data_ov000_0215fc28.exec(arg0);
+        var_r4 = g_cmd_map_camera_move.exec(arg0);
         break;
     case 0x22:
-        var_r4 = data_ov000_0215fbcc.exec(arg0);
+        var_r4 = g_cmd_map_camera_position.exec(arg0);
         break;
     case 0xB6:
-        var_r4 = data_ov000_0215fc38.exec(arg0);
+        var_r4 = g_cmd_camera_move_abs.exec(arg0);
         break;
     case 0x23:
-        var_r4 = data_ov000_0215fc48.exec(arg0);
+        var_r4 = g_cmd_map_camera_angle.exec(arg0);
         break;
     case 0x24:
-        var_r4 = data_ov000_0215fc44.exec(arg0);
+        var_r4 = g_cmd_map_camera_gaze.exec(arg0);
         break;
     case 0x15:
         var_r4 = g_cmd_message1_self_closing.exec(arg0);
         break;
     case 0x2C:
-        var_r4 = data_ov000_0215fc40.exec(arg0);
+        var_r4 = g_cmd_character_action_turn.exec(arg0);
         break;
     case 0x2D:
-        var_r4 = data_ov000_0215fbb4.exec(arg0);
+        var_r4 = g_cmd_character_action_gaze.exec(arg0);
         break;
     case 0x92:
-        var_r4 = data_ov000_0215fbc0.exec(arg0);
+        var_r4 = g_cmd_player_move_jump.exec(arg0);
         break;
     case 0x93:
-        var_r4 = data_ov000_0215fbf4.exec(arg0);
+        var_r4 = g_cmd_player_move2_jump.exec(arg0);
         break;
     case 0xA4:
-        var_r4 = data_ov000_0215fd10.exec(arg0);
+        var_r4 = g_cmd_map_event_camera.exec(arg0);
         break;
     case 0xB4:
-        var_r4 = data_ov000_0215fb88.exec(arg0);
+        var_r4 = g_cmd_camera_change_distance.exec(arg0);
         break;
     case 0xC6:
-        var_r4 = data_ov000_0215fc24.exec(arg0);
+        var_r4 = g_cmd_camera_reset_distance.exec(arg0);
         break;
     case 0xBA:
-        var_r4 = data_ov000_0215fcf0.exec(arg0);
+        var_r4 = g_cmd_player_rot.exec(arg0);
         break;
     case 0xC5:
-        var_r4 = data_ov000_02160140.exec(arg0);
+        var_r4 = g_cmd_menu_event_imuru.exec(arg0);
         break;
     case 0xCC:
-        var_r4 = data_ov000_02160164.exec(arg0);
+        var_r4 = g_cmd_map_set_back_color.exec(arg0);
         break;
     case 0x171:
-        var_r4 = data_ov000_0215fc90.exec(arg0);
+        var_r4 = g_cmd_character_rgb_anim2.exec(arg0);
         break;
     case 0xCD:
-        var_r4 = data_ov000_02160178.exec(arg0);
+        var_r4 = g_cmd_map_restore_back_color.exec(arg0);
         break;
     case 0xC3:
-        var_r4 = data_ov000_0215fbfc.exec(arg0);
+        var_r4 = g_cmd_camera_move_pov.exec(arg0);
         break;
     case 0xB9:
-        var_r4 = data_ov000_0215fb9c.exec(arg0);
+        var_r4 = g_cmd_camera_move_to_player.exec(arg0);
         break;
     case 0xC0:
         var_r4 = g_cmd_field_player_move_to.exec(arg0);
@@ -1889,13 +1889,13 @@ ARM int CommandFunction(CommandParameter *arg0) {
         var_r4 = g_cmd_speak_to_player_self_closing.exec(arg0);
         break;
     case 0xDD:
-        var_r4 = data_ov000_0215fca0.exec(arg0);
+        var_r4 = g_cmd_riseup_move.exec(arg0);
         break;
     case 0xE7:
-        var_r4 = data_ov000_0215fbbc.exec(arg0);
+        var_r4 = g_cmd_charcter_3d_motion.exec(arg0);
         break;
     case 0x14A:
-        var_r4 = data_ov000_0215fbec.exec(arg0);
+        var_r4 = g_cmd_charcter_motion.exec(arg0);
         break;
     case 0xE8:
         var_r4 = g_cmd_character_palette.exec(arg0);
@@ -1904,85 +1904,85 @@ ARM int CommandFunction(CommandParameter *arg0) {
         var_r4 = g_cmd_music_volume.exec(arg0);
         break;
     case 0xF4:
-        var_r4 = data_ov000_02160150.exec(arg0);
+        var_r4 = g_cmd_map_texture_scale.exec(arg0);
         break;
     case 0x82:
-        var_r4 = data_ov000_0215fc34.exec(arg0);
+        var_r4 = g_cmd_character_action_jump.exec(arg0);
         break;
     case 0xF9:
-        var_r4 = data_ov000_0215fbd4.exec(arg0);
+        var_r4 = g_cmd_character_normal_jump.exec(arg0);
         break;
     case 0x83:
-        var_r4 = data_ov000_0215fc00.exec(arg0);
+        var_r4 = g_cmd_fadein_character.exec(arg0);
         break;
     case 0x84:
-        var_r4 = data_ov000_0215fc04.exec(arg0);
+        var_r4 = g_cmd_fadeout_character.exec(arg0);
         break;
     case 0xED:
         var_r4 = g_cmd_player_effect_mark.exec(arg0);
         break;
     case 0x109:
-        var_r4 = data_ov000_0215fc50.exec(arg0);
+        var_r4 = g_cmd_player_line_move.exec(arg0);
         break;
     case 0x10A:
-        var_r4 = data_ov000_0215fc14.exec(arg0);
+        var_r4 = g_cmd_player_line_move2.exec(arg0);
         break;
     case 0x116:
-        var_r4 = data_ov000_0215fc10.exec(arg0);
+        var_r4 = g_cmd_ikada_move2_player_get_on.exec(arg0);
         break;
     case 0x117:
-        var_r4 = data_ov000_0215fbac.exec(arg0);
+        var_r4 = g_cmd_ikada_move_player_get_on.exec(arg0);
         break;
     case 0x121:
-        var_r4 = data_ov000_0215fcb0.exec(arg0);
+        var_r4 = g_cmd_set_camera_target_chara_frame.exec(arg0);
         break;
     case 0x122:
-        var_r4 = data_ov000_0215fba8.exec(arg0);
+        var_r4 = g_cmd_set_camera_angle_abs.exec(arg0);
         break;
     case 0x11D:
-        var_r4 = data_ov000_0215fb98.exec(arg0);
+        var_r4 = g_cmd_door_action.exec(arg0);
         break;
     case 0x130:
-        var_r4 = data_ov000_0215fca8.exec(arg0);
+        var_r4 = g_cmd_surechigai_mapname.exec(arg0);
         break;
     case 0x12B:
-        var_r4 = data_ov000_0215fce8.exec(arg0);
+        var_r4 = g_cmd_make_surechigai_taishi.exec(arg0);
         break;
     case 0x12C:
-        var_r4 = data_ov000_02160130.exec(arg0);
+        var_r4 = g_cmd_surechigai_save.exec(arg0);
         break;
     case 0x12D:
-        var_r4 = data_ov000_0216018c.exec(arg0);
+        var_r4 = g_cmd_surechigai_root.exec(arg0);
         break;
     case 0x133:
-        var_r4 = data_ov000_0215fc98.exec(arg0);
+        var_r4 = g_cmd_surechigai_message.exec(arg0);
         break;
     case 0x11E:
         var_r4 = g_cmd_key_wait_type_b.exec(arg0);
         break;
     case 0x172:
-        var_r4 = data_ov000_0215fc3c.exec(arg0);
+        var_r4 = g_cmd_the_end.exec(arg0);
         break;
     case 0x13A:
         var_r4 = g_cmd_play_music.exec(arg0);
         break;
     case 0x13F:
-        var_r4 = data_ov000_0215fc80.exec(arg0);
+        var_r4 = g_cmd_set_wait_enable_lock.exec(arg0);
         break;
     case 0x142:
         var_r4 = g_cmd_message_with_sound.exec(arg0);
         break;
     case 0x148:
-        var_r4 = data_ov000_0215fc60.exec(arg0);
+        var_r4 = g_cmd_chara_move_line_to_player.exec(arg0);
         break;
     case 0x15D:
         var_r4 = g_cmd_field_move_line.exec(arg0);
         break;
     case 0x151:
-        var_r4 = data_ov000_0215fc2c.exec(arg0);
+        var_r4 = g_cmd_set_chara_rot.exec(arg0);
         break;
     case 0x168:
-        var_r4 = data_ov000_0215fbdc.exec(arg0);
+        var_r4 = g_cmd_set_end_roll.exec(arg0);
         break;
     case 0x90:
         if (checkCommandType(arg0) != 0) {

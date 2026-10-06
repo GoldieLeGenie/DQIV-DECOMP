@@ -43,12 +43,12 @@ THUMB int menu::MenuDataCommon::getAbilityKind(int index)
     return table.v[index];
 }
 
-THUMB int menu::MenuDataCommon::getStatus(int index, status::HaveStatusInfo* statusInfo)
+THUMB int menu::MenuDataCommon::getStatus(int index, status::HaveStatusInfo statusInfo)
 {
-    bool isBattleNpc = statusInfo->haveStatus_.isBattleNpc_;
+    bool isBattleNpc = statusInfo.haveStatus_.isBattleNpc_;
     if (isBattleNpc == true)
     {
-        unsigned short playerIndex = statusInfo->haveStatus_.playerIndex_;
+        unsigned short playerIndex = statusInfo.haveStatus_.playerIndex_;
         if (index == 0) return status::excelParam.getCharaInitData()[playerIndex].attack;
         if (index == 1) return status::excelParam.getCharaInitData()[playerIndex].defence;
         if (index == 2) return status::excelParam.getCharaInitData()[playerIndex].strength;
@@ -61,15 +61,15 @@ THUMB int menu::MenuDataCommon::getStatus(int index, status::HaveStatusInfo* sta
     }
     else
     {
-        if (index == 0) return statusInfo->getAttack(0);
-        if (index == 1) return statusInfo->getDefence(0);
-        if (index == 2) return statusInfo->getStrength(0);
-        if (index == 3) return statusInfo->getAgility(0);
-        if (index == 4) return statusInfo->getProtection(0);
-        if (index == 5) return statusInfo->getWisdom(0);
-        if (index == 6) return statusInfo->getLuck(0);
-        if (index == 7) return statusInfo->getHpMax();
-        if (index == 8) return statusInfo->getMpMax();
+        if (index == 0) return statusInfo.getAttack(0);
+        if (index == 1) return statusInfo.getDefence(0);
+        if (index == 2) return statusInfo.getStrength(0);
+        if (index == 3) return statusInfo.getAgility(0);
+        if (index == 4) return statusInfo.getProtection(0);
+        if (index == 5) return statusInfo.getWisdom(0);
+        if (index == 6) return statusInfo.getLuck(0);
+        if (index == 7) return statusInfo.getHpMax();
+        if (index == 8) return statusInfo.getMpMax();
     }
     return 0;
 }
@@ -135,7 +135,7 @@ THUMB void menu::MenuDataCommon::getShopCommand(int* command, bool bank)
 
 
 
-THUMB void menu::MenuDataCommon::getHighAndLowCommand(int* command, bool win) 
+THUMB void menu::MenuDataCommon::getHighAndLowCommand(int* command, int win) 
 {
     if (win) {
         int base = 0xA0000064;

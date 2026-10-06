@@ -9,16 +9,18 @@
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/Random.hpp"
 #include "main/cmn/CommonCounterInfo.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_EXTRA_NENE::menuSetup()
 {
     status::g_Party.setPlayerMode();
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     navigator_.setupBase();
-    func_ov016_0216ff34(func_ov016_0216ff2c());
+    MaterielMenuPlayerControl::getSingleton()->allClear();
     activeChara_ = 0;
     proceeds_ = 0;
-    func_ov016_0216ff2c()->activeChara_ = 0;
+    MaterielMenuPlayerControl::getSingleton()->activeChara_ = 0;
     mode_ = 0;
     drawMode_ = 0;
     neneItemCount_ = status::g_Shop.haveItemNene_.getCount();
@@ -28,11 +30,11 @@ THUMB void MaterielMenu_EXTRA_NENE::menuExecute()
 {
     switch (drawMode_) {
     case 0:
-        func_ov016_02177a08(&menuItem_, menuItem_.active_, 2);
+        MenuTemplate_materiel::MATERIEL_ICON32_5x2(&menuItem_, menuItem_.active_, 2);
         break;
     case 1: {
         int count;
-        if (func_ov016_0216ff2c()->activeChara_ == 1) {
+        if (MaterielMenuPlayerControl::getSingleton()->activeChara_ == 1) {
             count = status::g_Party.haveItemSack_.getCount();
         } else {
             count = status::g_Party.getPlayerStatus(activeChara_)->haveStatusInfo_.haveItem_.getCount();
@@ -75,14 +77,14 @@ THUMB void MaterielMenu_EXTRA_NENE::menuDraw()
     if (data_020ed1bc.isOpen() == false && mode_ != 0) {
         switch (drawMode_) {
         case 0:
-            func_ov016_0216fb98();
+            unkfunc_0216fb98();
             break;
         case 1:
-            func_ov016_0216fdcc();
+            unkfunc_0216fdcc();
             break;
         case 2: {
             int lastPage = navigator_.getPageMaxCount() - 1;
-            func_ov016_0216fe10(neneItemCount_, navigator_.getPageNo(), lastPage);
+            unkfunc_0216fe10(neneItemCount_, navigator_.getPageNo(), lastPage);
             break;
         }
         }
@@ -113,7 +115,7 @@ THUMB void MaterielMenu_EXTRA_NENE::menuUpdate()
         count = 2;
         break;
     case 1:
-        if (func_ov016_0216ff2c()->activeChara_ == 1) {
+        if (MaterielMenuPlayerControl::getSingleton()->activeChara_ == 1) {
             count = status::g_Party.haveItemSack_.getCount();
         } else {
             count = status::g_Party.getPlayerStatus(activeChara_)->haveStatusInfo_.haveItem_.getCount();
@@ -130,7 +132,7 @@ THUMB void MaterielMenu_EXTRA_NENE::menuUpdate()
     }
     if (drawMode_ == 0) {
         int active = menuItem_.active_;
-        func_ov016_0216ff2c()->activeChara_ = active;
+        MaterielMenuPlayerControl::getSingleton()->activeChara_ = active;
     }
     if (result == 2) {
         switch (drawMode_) {
@@ -165,7 +167,7 @@ THUMB void MaterielMenu_EXTRA_NENE::menuUpdate()
             break;
         case 1:
             drawMode_ = 0;
-            menuItem_.active_ = func_ov016_0216ff2c()->activeChara_;
+            menuItem_.active_ = MaterielMenuPlayerControl::getSingleton()->activeChara_;
             break;
         case 2:
             showMessage(0x9490, -1, -1);
@@ -174,9 +176,9 @@ THUMB void MaterielMenu_EXTRA_NENE::menuUpdate()
         }
     }
     int cursor = menuItem_.active_;
-    func_ov016_0216ff2c()->activeItem_ = cursor;
+    MaterielMenuPlayerControl::getSingleton()->activeItem_ = cursor;
     int page = navigator_.getPageNo();
-    func_ov016_0216ff2c()->activeItemPage_ = page;
+    MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = page;
     redraw_ = 1;
 }
 
@@ -218,12 +220,12 @@ THUMB void MaterielMenu_EXTRA_NENE::selectYes()
         int index = navigator_.getIndex(menuItem_.active_);
         int item;
         int count;
-        if (func_ov016_0216ff2c()->activeChara_ == 1) {
+        if (MaterielMenuPlayerControl::getSingleton()->activeChara_ == 1) {
             item = status::g_Party.haveItemSack_.getItem(index);
             status::g_Party.haveItemSack_.execThrow(index);
             if (checkHaveItem(true) == false) {
                 drawMode_ = 0;
-                func_ov016_0216ff2c()->activeChara_ = 0;
+                MaterielMenuPlayerControl::getSingleton()->activeChara_ = 0;
             }
             count = status::g_Party.haveItemSack_.getCount();
         } else {
@@ -238,8 +240,8 @@ THUMB void MaterielMenu_EXTRA_NENE::selectYes()
         if (navigator_.getIndex(menuItem_.active_) >= count) {
             menuItem_.active_ = 0;
             navigator_.setPageNo(0);
-            func_ov016_0216ff2c()->activeItem_ = 0;
-            func_ov016_0216ff2c()->activeItemPage_ = 0;
+            MaterielMenuPlayerControl::getSingleton()->activeItem_ = 0;
+            MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = 0;
         }
         redraw_ = 1;
         status::HaveItemSack& neneItemSack = status::g_Shop.haveItemNene_;
@@ -261,8 +263,8 @@ THUMB void MaterielMenu_EXTRA_NENE::selectYes()
         navigator_.setup(2, 3, neneItemCount_);
         navigator_.setPageNo(0);
         drawMode_ = 2;
-        func_ov016_0216ff2c()->activeItem_ = 0;
-        func_ov016_0216ff2c()->activeItemPage_ = 0;
+        MaterielMenuPlayerControl::getSingleton()->activeItem_ = 0;
+        MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = 0;
         redraw_ = 1;
         break;
     case 5:
@@ -300,7 +302,7 @@ THUMB void MaterielMenu_EXTRA_NENE::checkSellItem()
 {
     int index = navigator_.getIndex(menuItem_.active_);
     int itemID;
-    switch (func_ov016_0216ff2c()->activeChara_) {
+    switch (MaterielMenuPlayerControl::getSingleton()->activeChara_) {
     case 1:
         itemID = status::g_Party.haveItemSack_.getItem(index);
         break;

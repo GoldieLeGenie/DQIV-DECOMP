@@ -246,26 +246,17 @@ struct MaterielMenu_SHOP_SELL_QUANTITY : menu::MenuBase
     void changeQuantity(bool add);
 };
 
-extern MaterielMenu_SHOP_VALUE data_ov016_02185968;         /* gMaterielMenu_SHOP_VALUE */
-extern MaterielMenu_SHOP_EQUIPCHECK data_ov016_02185af4;    /* gMaterielMenu_SHOP_EQUIPCHECK */
-extern MaterielMenu_SHOP_ROOT data_ov016_02185c10;          /* gMaterielMenu_SHOP_ROOT */
-extern MaterielMenu_SHOP_WHOSE data_ov016_02186c1c;         /* gMaterielMenu_SHOP_WHOSE */
-extern MaterielMenu_SHOP_WHO_SELL data_ov016_02186d28;      /* gMaterielMenu_SHOP_WHO_SELL */
-extern menu::MenuBase data_ov016_02186b14;                  /* ov016 menu opened by the extra shop */
-extern MaterielMenu_SHOP_SELL_SACK data_ov016_021874e0;
-extern MaterielMenu_SHOP_SELL_ITEM data_ov016_02187640;
-extern MaterielMenu_SHOP_SELL_QUANTITY data_ov016_02185f88;
-extern MaterielMenu_SHOP_BUYMENU data_ov016_02186f40;       /* gMaterielMenu_SHOP_BUYMENU */
+extern MaterielMenu_SHOP_VALUE gMaterielMenu_SHOP_VALUE;
+extern MaterielMenu_SHOP_EQUIPCHECK gMaterielMenu_SHOP_EQUIPCHECK;
+extern MaterielMenu_SHOP_ROOT gMaterielMenu_SHOP_ROOT;
+extern MaterielMenu_SHOP_WHOSE gMaterielMenu_SHOP_WHOSE;
+extern MaterielMenu_SHOP_WHO_SELL gMaterielMenu_SHOP_WHO_SELL;
+extern MaterielMenu_SHOP_SELL_SACK gMaterielMenu_SHOP_SELL_SACK;
+extern MaterielMenu_SHOP_SELL_ITEM gMaterielMenu_SHOP_SELL_ITEM;
+extern MaterielMenu_SHOP_SELL_QUANTITY gMaterielMenu_SHOP_SELL_QUANTITY;
+extern MaterielMenu_SHOP_BUYMENU gMaterielMenu_SHOP_BUYMENU;
 
 extern "C" {
     void func_02080e64(int, int);
     void func_02080e78(void);
-    void func_ov016_0216fb14(void);
-    void func_ov016_0216fb24(int* fukuroItemCount, int flag);
-    void func_ov016_0216fb98(void);
-    void func_ov016_0216fbbc(void);
-    void func_ov016_0216fbf4(void);
-    void func_ov016_0216fc2c(int quantity);
-    void func_ov016_0216fb6c(int flag);
-    void func_ov016_0216fc58(void);
 }

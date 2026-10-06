@@ -12,11 +12,11 @@ struct MenuDataCommon{
     static int getRootMenuName(int index);
     static int getEquipKind(int index);
     static int getAbilityKind(int index);
-    static int getStatus(int index, status::HaveStatusInfo *statusInfo);
+    static int getStatus(int index, status::HaveStatusInfo statusInfo);
     static int getItemUseCommand(int index);
     static int getRuraName(int index);
     static void getShopCommand(int* command, bool bank);
-    static void getHighAndLowCommand(int* command, bool win);
+    static void getHighAndLowCommand(int* command, int win);
     static void getChurchCommand(int* command, bool extra);
     static int getOpponent(int index);
     static int getSuretigaiRootMenu(int index);

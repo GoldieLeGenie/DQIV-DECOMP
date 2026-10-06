@@ -137,7 +137,6 @@ int cmd_set_ship_pos(int* param);
 int cmd_set_title_part(int* param);
 
 extern "C" {
-    void func_ov001_0212a620(FieldPlayerManager* mgr, int lock);
     int func_02037d6c(void* obj, int type);
 }
 

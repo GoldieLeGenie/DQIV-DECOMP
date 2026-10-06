@@ -6,17 +6,17 @@
 
 THUMB int cmd_field_erase_symbol(int* param)
 {
-    func_ov001_0212c300(fld::FieldStage::getSingleton(), param[0]);
+    fld::FieldStage::getSingleton()->eraseSymbol(param[0]);
     return 1;
 }
 
 THUMB int cmd_field_player_set_ship(int* param)
 {
     dss::Fix32Vector3 pos = FieldPlayerManager::getSingleton()->getPosition();
-    func_ov001_02125eac(&FieldPlayerManager::getSingleton()->player_, 3);
+    FieldPlayerManager::getSingleton()->player_.setMoveType(FieldPlayer::MOVE_SHIP);
     FieldPlayerManager* mgr = FieldPlayerManager::getSingleton();
-    func_ov001_02122b28(&mgr->shipDraw_, pos);
-    func_ov001_0212b7e0(&FieldPlayerManager::getSingleton()->partyDraw_);
+    mgr->shipDraw_.setPosition(pos);
+    FieldPlayerManager::getSingleton()->partyDraw_.setDrawNone();
     FieldPlayerManager::getSingleton()->shipDraw_.ride_ = 1;
     g_cmnPartyInfo.rideOnType_ = cmn::RIDE_ON_SHIP_IKADA;
     return 1;
@@ -33,16 +33,16 @@ THUMB void __cmd_field_player_set_ballon::initialize(char* scriptParam)
 {
     PARAM_FIELD_PLAYER_SET_BALLON* param = (PARAM_FIELD_PLAYER_SET_BALLON*)scriptParam;
     dss::Fix32Vector3 pos = FieldPlayerManager::getSingleton()->getPosition();
-    func_ov001_02129fa8(FieldPlayerManager::getSingleton(), param->flag);
+    FieldPlayerManager::getSingleton()->setScriptBalloon(param->flag);
     FieldPlayerManager* mgr = FieldPlayerManager::getSingleton();
-    func_ov001_02122b28(&mgr->balloonDraw_, pos);
-    func_ov001_0212b7e0(&FieldPlayerManager::getSingleton()->partyDraw_);
+    mgr->balloonDraw_.setPosition(pos);
+    FieldPlayerManager::getSingleton()->partyDraw_.setDrawNone();
     g_cmnPartyInfo.rideOnType_ = cmn::RIDE_ON_TOWN_BALLOON;
 }
 
 THUMB int __cmd_field_player_set_ballon::isEnd()
 {
-    if (func_ov001_02125eb4(&FieldPlayerManager::getSingleton()->player_) == 6) {
+    if (FieldPlayerManager::getSingleton()->player_.getMoveType() == FieldPlayer::MOVE_BALLOON) {
         return true;
     }
     return false;
@@ -57,7 +57,7 @@ THUMB void __cmd_field_player_move_to::initialize(char* scriptParam)
     target.vz.value = param->endZ;
     dss::Fix32 rate;
     rate.value = param->rate;
-    func_ov001_0212a080(FieldPlayerManager::getSingleton(), target, rate, param->absFlag);
+    FieldPlayerManager::getSingleton()->setSimpleMove(target, rate, param->absFlag);
 }
 
 THUMB int __cmd_field_player_move_to::isEnd()
@@ -73,7 +73,7 @@ THUMB void __cmd_field_move_line::initialize(char* scriptParam)
     PARAM_FIELD_MOVE_LINE* param = (PARAM_FIELD_MOVE_LINE*)scriptParam;
     dss::Fix32 target;
     target.value = param->target;
-    func_ov001_0212a108(FieldPlayerManager::getSingleton(), target, param->line);
+    FieldPlayerManager::getSingleton()->setDirectionMove(target, param->line);
 }
 
 THUMB int __cmd_field_move_line::isEnd()
@@ -87,17 +87,17 @@ THUMB int __cmd_field_move_line::isEnd()
 THUMB void __cmd_field_get_down_ship::initialize(char* scriptParam)
 {
     PARAM_FIELD_GET_DOWN_SHIP* param = (PARAM_FIELD_GET_DOWN_SHIP*)scriptParam;
-    func_ov001_0212a18c(FieldPlayerManager::getSingleton(), param->direction);
+    FieldPlayerManager::getSingleton()->setScriptGetDownShip(param->direction);
 }
 
 THUMB int __cmd_field_get_down_ship::isEnd()
 {
-    return func_ov001_0212a2a4(FieldPlayerManager::getSingleton());
+    return FieldPlayerManager::getSingleton()->isEndScriptGetDownShip();
 }
 
 THUMB int cmd_field_symbol_disp(int* param)
 {
-    fld::FieldStage::getSingleton()->fieldData.setDispSymbol(param[0], param[1]);
+    fld::FieldStage::getSingleton()->setDispSymbol(param[0], param[1]);
     return 1;
 }
 

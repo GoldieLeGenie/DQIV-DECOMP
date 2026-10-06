@@ -20,7 +20,7 @@ namespace status {
         static int isBattleMode();
         static void setTownMode();
         static int isTownMode();
-        ActionMode getActionMode();
+        static ActionMode getActionMode();
         static void setActionMode(ActionMode md);
         void setup(int index);
         void clear();

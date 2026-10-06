@@ -14,7 +14,7 @@ THUMB void MaterielMenu_SHOP_EQUIPCHECK::menuSetup()
     status::g_Party.setPlayerMode();
     mode_ = 0;
     haveItemOver_ = 0;
-    ctrlID_ = g_cmnPartyInfo.partyTalk;
+    ctrlID_ = g_cmnPartyInfo.ctrlID_;
     MenuSoundManager::getSingleton()->initialize();
 }
 
@@ -45,8 +45,8 @@ THUMB void MaterielMenu_SHOP_EQUIPCHECK::menuUpdate()
         return;
     }
     if (MenuSoundManager::getSingleton()->isPlaySound() == false) {
-        int activeItem = func_ov016_0216ff2c()->activeItem_;
-        int activeChara = func_ov016_0216ff2c()->activeChara_;
+        int activeItem = MaterielMenuPlayerControl::getSingleton()->activeItem_;
+        int activeChara = MaterielMenuPlayerControl::getSingleton()->activeChara_;
         ItemType equipType = status::UseItem::getItemType(MaterielMenu_SHOP_MANAGER::getSingleton()->getItem(activeItem));
         int eqID = status::g_Party.getPlayerStatus(activeChara)->haveStatusInfo_.haveEquipment_.getEquipment(equipType);
         TextAPI::setMACRO0(7, 0x40000000, eqID);
@@ -60,8 +60,8 @@ THUMB void MaterielMenu_SHOP_EQUIPCHECK::yesAdmin()
 {
     int mes[3] = {-1, -1, -1};
     bool haveNoMoney = false;
-    int activeItem = func_ov016_0216ff2c()->activeItem_;
-    int activeChara = func_ov016_0216ff2c()->activeChara_;
+    int activeItem = MaterielMenuPlayerControl::getSingleton()->activeItem_;
+    int activeChara = MaterielMenuPlayerControl::getSingleton()->activeChara_;
     ItemType equipType = status::UseItem::getItemType(MaterielMenu_SHOP_MANAGER::getSingleton()->getItem(activeItem));
     int eqID = status::g_Party.getPlayerStatus(activeChara)->haveStatusInfo_.haveEquipment_.getEquipment(equipType);
     switch (mode_) {
@@ -119,7 +119,7 @@ THUMB void MaterielMenu_SHOP_EQUIPCHECK::yesAdmin()
         } else {
             close();
             data_020ed1bc.setMessageLastCursor(true);
-            data_ov016_02186f40.open();
+            gMaterielMenu_SHOP_BUYMENU.open();
         }
         break;
     }
@@ -127,8 +127,8 @@ THUMB void MaterielMenu_SHOP_EQUIPCHECK::yesAdmin()
 
 THUMB void MaterielMenu_SHOP_EQUIPCHECK::noAdmin()
 {
-    int activeChara = func_ov016_0216ff2c()->activeChara_;
-    int activeItem = func_ov016_0216ff2c()->activeItem_;
+    int activeChara = MaterielMenuPlayerControl::getSingleton()->activeChara_;
+    int activeItem = MaterielMenuPlayerControl::getSingleton()->activeItem_;
     int mes[3] = {-1, -1, -1};
     switch (mode_) {
     case 0:
@@ -167,8 +167,8 @@ THUMB void MaterielMenu_SHOP_EQUIPCHECK::noAdmin()
         TextAPI::setMACRO0(0xa, 0x40000000, itemID);
         showMessage(MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->equipItem());
         close();
-        data_ov016_02186c1c.open();
-        data_ov016_02186c1c.mode_ = 4;
+        gMaterielMenu_SHOP_WHOSE.open();
+        gMaterielMenu_SHOP_WHOSE.mode_ = 4;
         break;
     }
     case 6:
@@ -176,15 +176,15 @@ THUMB void MaterielMenu_SHOP_EQUIPCHECK::noAdmin()
             MaterielMenu_SHOP_MANAGER::getSingleton()->setItemQuantity(i, 1);
         }
         close();
-        data_ov016_02186f40.open();
+        gMaterielMenu_SHOP_BUYMENU.open();
         break;
     }
 }
 
 THUMB void MaterielMenu_SHOP_EQUIPCHECK::giveItem()
 {
-    int activeChara = func_ov016_0216ff2c()->activeChara_;
-    int activeItem = func_ov016_0216ff2c()->activeItem_;
+    int activeChara = MaterielMenuPlayerControl::getSingleton()->activeChara_;
+    int activeItem = MaterielMenuPlayerControl::getSingleton()->activeItem_;
     int playerIndex = status::g_Party.getPlayerStatus(activeChara)->haveStatusInfo_.haveStatus_.playerIndex_;
     data_020ed1bc.close();
     if (MaterielMenu_SHOP_MANAGER::getSingleton()->buyItem(activeItem, activeChara) == false) {
@@ -204,8 +204,8 @@ THUMB void MaterielMenu_SHOP_EQUIPCHECK::giveItem()
 
 THUMB void MaterielMenu_SHOP_EQUIPCHECK::messageSetup()
 {
-    int activeChara = func_ov016_0216ff2c()->activeChara_;
-    MaterielMenuPlayerControl* control = func_ov016_0216ff2c();
+    int activeChara = MaterielMenuPlayerControl::getSingleton()->activeChara_;
+    MaterielMenuPlayerControl* control = MaterielMenuPlayerControl::getSingleton();
     int itemID = MaterielMenu_SHOP_MANAGER::getSingleton()->getItem(control->activeItem_);
     int playerIndex = status::g_Party.getPlayerStatus(activeChara)->haveStatusInfo_.haveStatus_.playerIndex_;
     bool equip = status::g_Party.getPlayerStatus(activeChara)->haveStatusInfo_.isEquipEnable(itemID);
@@ -225,8 +225,8 @@ THUMB void MaterielMenu_SHOP_EQUIPCHECK::rerurnRoot()
 {
     data_020ed1bc.addMessageWAITKEY();
     close();
-    data_ov016_02185c10.open();
-    data_ov016_02185c10.mode_ = 1;
+    gMaterielMenu_SHOP_ROOT.open();
+    gMaterielMenu_SHOP_ROOT.mode_ = 1;
 }
 
 THUMB void MaterielMenu_SHOP_EQUIPCHECK::checkMoneyMessage(int* mes, int mesCount, bool haveNoMoney)

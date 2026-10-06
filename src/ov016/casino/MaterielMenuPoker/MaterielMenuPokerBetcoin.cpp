@@ -1,5 +1,5 @@
 #include "ov016/casino/MaterielMenuPoker/MaterielMenuPokerBetcoin.hpp"
-#include "ov016/MenuTemplate_materiel.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
 #include "ov016/MaterielMenu_WINDOW_MANAGER/MaterielMenu_WINDOW_MANAGER.hpp"
 #include "ov009/casino/PokerManager.hpp"
 #include "ov009/casino/CasinoPokerDraw.hpp"
@@ -8,6 +8,7 @@
 #include "main/sound/MenuSoundManager.hpp"
 #include "main/sound/SoundManager.hpp"
 #include "main/status/PartyStatus.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_02177bac.hpp"
 
 THUMB void MaterielMenuPokerBetcoin::menuSetup()
 {
@@ -123,7 +124,7 @@ THUMB bool MaterielMenuPokerBetcoin::unkfunc_021700f0()
                 data_020ed1bc.close();
                 data_020ed1bc.clearMessageWAITPROG();
                 close();
-                data_ov016_0218739c.open();
+                gMaterielMenu_POKER_CHANGECARD.open();
             } else {
                 SoundManager::playSe(0x15e, 0);
             }
@@ -150,7 +151,7 @@ THUMB bool MaterielMenuPokerBetcoin::unkfunc_021700f0()
             data_020ed1bc.close();
             data_020ed1bc.clearMessageWAITPROG();
             close();
-            data_ov016_0218739c.open();
+            gMaterielMenu_POKER_CHANGECARD.open();
         }
         if (result == 3) {
             showMessage(0xc92f9);

@@ -1,7 +1,11 @@
 #include "ov016/TownMenu_OPERATION/TownMenu_OPERATION_ROOT.hpp"
 #include "ov016/TownMenu_OPERATION/TownMenu_OPERATION_CAREER.hpp"
+#include "ov016/TownMenu_OPERATION/TownMenu_OPERATION_EQUIP.hpp"
+#include "ov016/TownMenu_OPERATION/TownMenu_OPERATION_SETTING.hpp"
+#include "ov016/TownMenu_OPERATION/TownMenu_OPERATION_TACTICS.hpp"
+#include "ov016/TownMenu_OPERATION/TownMenu_OPERATION_SHIFT_PARTY.hpp"
 #include "ov016/TownMenu_ROOT/TownMenu_ROOT.hpp"
-#include "ov016/TownMenuPlayerControl.hpp"
+#include "ov016/TownMenuPlayerControl/TownMenuPlayerControl.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/menu/CatalogView.hpp"
 #include "main/sound/SoundManager.hpp"
@@ -13,6 +17,8 @@
 #include "main/status/GameFlag.hpp"
 #include "main/status/UseAction.hpp"
 #include "main/text/TextAPI.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_town.hpp"
+#include "ov016/UnkTownMenuDraw/UnkTownMenuDraw_0217d560.hpp"
 
 THUMB void TownMenu_OPERATION_ROOT::menuSetup()
 {
@@ -40,27 +46,27 @@ THUMB void TownMenu_OPERATION_ROOT::menuExecute()
     if (data_020ed1bc.isOpen()) {
         return;
     }
-    func_ov016_02173a40(&cancelItem_);
+    MenuTemplate_town::TOWN_CANCEL(&cancelItem_);
     if (mode_ == 1) {
-        func_ov016_02173d04(&sortItem_, sortItem_.active_);
+        MenuTemplate_town::townMenuTacticsBoxUp(&sortItem_, sortItem_.active_);
         return;
     }
     if (mode_ == 2) {
         if (status::g_Party.getCount() < 5) {
-            func_ov016_02173cb0(&charaItem_, status::g_Party.getCount() + 1, charaItem_.active_);
+            MenuTemplate_town::townMenuItemSelectHalfChara(&charaItem_, status::g_Party.getCount() + 1, charaItem_.active_);
         } else {
-            func_ov016_02173bf4(&charaItem_, status::g_Party.getCount() + 1, charaItem_.active_, -1, -1);
+            MenuTemplate_town::townMenuTacticsSelectChara(&charaItem_, status::g_Party.getCount() + 1, charaItem_.active_, -1, -1);
         }
     }
-    func_ov016_02173a54(&menuItem_, menuItem_.active_, commandCount_);
+    MenuTemplate_town::TOWN_OPERATION(&menuItem_, menuItem_.active_, commandCount_);
 }
 
 THUMB void TownMenu_OPERATION_ROOT::menuDraw()
 {
     if (charaItem_.getActive() == status::g_Party.getCount()) {
-        func_ov016_0217dcb0(mode_, command_, commandCount_, -2);
+        unkfunc_0217dcb0(mode_, command_, commandCount_, -2);
     } else {
-        func_ov016_0217dcb0(mode_, command_, commandCount_, charaItem_.getActive());
+        unkfunc_0217dcb0(mode_, command_, commandCount_, charaItem_.getActive());
     }
     if (data_020ed1bc.isOpen()) {
         return;
@@ -169,8 +175,8 @@ THUMB void TownMenu_OPERATION_ROOT::menuUpdate()
             return;
         }
         close();
-        data_ov016_02187c60.open();
-        data_ov016_02187c60.menuItem_.active_ = TownMenu_ROOT::ROOT_OPERATION;
+        gTownMenu_ROOT.open();
+        gTownMenu_ROOT.menuItem_.active_ = TownMenu_ROOT::ROOT_OPERATION;
         return;
     }
     navigator_.setup(2, 5, commandCount_);
@@ -210,7 +216,7 @@ THUMB void TownMenu_OPERATION_ROOT::menuUpdate()
             break;
         case 1:
             close();
-            data_ov016_02188f30.open();
+            gTownMenu_OPERATION_EQUIP.open();
             break;
         case 2:
             unkfunc_0217a3e0();
@@ -220,7 +226,7 @@ THUMB void TownMenu_OPERATION_ROOT::menuUpdate()
                 (int)status::g_Party.getPlayerStatus(0)->haveStatusInfo_.haveStatus_.playerIndex_ > 2 ||
                 (int)status::g_Party.getPlayerStatus(1)->haveStatusInfo_.haveStatus_.playerIndex_ > 2) {
                 close();
-                data_ov016_02188734.open();
+                gTownMenu_OPERATION_TACTICS.open();
             }
             break;
         case 4:
@@ -231,11 +237,11 @@ THUMB void TownMenu_OPERATION_ROOT::menuUpdate()
             break;
         case 6:
             close();
-            data_ov016_02187bc4.open();
+            gTownMenu_OPERATION_CAREER.open();
             break;
         case 7:
             close();
-            data_ov016_0218912c.open();
+            gTownMenu_OPERATION_SETTING.open();
             break;
         case 8:
             mode_ = 8;
@@ -324,7 +330,7 @@ THUMB void TownMenu_OPERATION_ROOT::unkfunc_0217a3e0()
         return;
     }
     close();
-    data_ov016_02188140.open();
+    gTownMenu_OPERATION_SHIFT_PARTY.open();
 }
 
 THUMB void TownMenu_OPERATION_ROOT::unkfunc_0217a438()

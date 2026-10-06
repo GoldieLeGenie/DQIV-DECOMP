@@ -20,7 +20,7 @@ THUMB void btl::BattleMonster::setup(int monsterGroup, int monsterIndex)
 {
     monsterGroup_ = monsterGroup;
     monsterIndex_ = monsterIndex;
-    func_0204d04c(&monsterDraw_, monsterIndex_);
+    monsterDraw_.setup(monsterIndex_);
     monsterDraw_.setCurrentFrame(0, dssrand::rand(30));
     screenPosition_ = 0;
     screenWidth_ = 0;
@@ -37,7 +37,7 @@ THUMB void btl::BattleMonster::cleanup()
         paletteData_.cleanup();
     }
     monsterIndex_ = -1;
-    func_0204d084(&monsterDraw_);
+    monsterDraw_.cleanup();
     screenPosition_ = 0;
     screenWidth_ = 0;
 }
@@ -49,12 +49,12 @@ THUMB bool btl::BattleMonster::isEnable()
 
 THUMB dss::Fix32 btl::BattleMonster::getWidth()
 {
-    return func_0204d0ac(&monsterDraw_);
+    return monsterDraw_.getWidth();
 }
 
 THUMB int btl::BattleMonster::getWidthInt()
 {
-    return func_0204d0b8(&monsterDraw_);
+    return monsterDraw_.getWidthInt();
 }
 
 THUMB void btl::BattleMonster::setPosition(const dss::Fix32Vector3& pos)

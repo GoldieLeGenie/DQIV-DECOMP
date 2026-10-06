@@ -27,9 +27,9 @@ ARM void FieldPart::initialize()
     func_02080e90(data_0211c4f0);
     func_02084dd4(0);
     func_02087590((int)&OVERLAY_1_ID);
-    FieldSystem::unkfunc_02122e80();
+    ov001_entry();
     func_02087590((int)&OVERLAY_16_ID);
-    func_ov016_0217ad90();
+    ov016_entry();
     FieldSystem::getSingleton()->initialize();
     FieldWindowSystem::getSingleton()->initialize();
     g_Global.fadeIn(30);

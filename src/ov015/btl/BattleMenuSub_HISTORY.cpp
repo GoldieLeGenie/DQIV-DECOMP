@@ -20,7 +20,7 @@ THUMB void BattleMenuSub_HISTORY::menuDraw()
 {
     if (history_ != 0) {
         status::g_Party.setBattleMode();
-        func_ov015_0216c468(commandChara_);
+        unkfunc_0216c468(commandChara_);
     }
 }
 

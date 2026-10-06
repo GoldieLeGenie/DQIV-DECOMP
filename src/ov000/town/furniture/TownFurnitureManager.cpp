@@ -425,7 +425,7 @@ THUMB void TownFurnitureManager::bootSlot(int uid)
 {
     int index = getFurnitureIndex(uid);
     TownWindowSystem::getSingleton()->changeShopMenuPhase(0x1b);
-    data_ov016_021859b8.setSlotType((char)((list_[index].byte_1 & 0x1e) >> 1));
+    gMaterielMenu_SlotEnter.setSlotType((char)((list_[index].byte_1 & 0x1e) >> 1));
 }
 
 THUMB void TownFurnitureManager::mirrorTalk(int uid)

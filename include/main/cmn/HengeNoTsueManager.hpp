@@ -13,6 +13,8 @@ namespace cmn
         int locked_;
         int endLess_;
         int nextAction_;
+        int getCharNo() { return charNo_; }
+        int isChange() { return change_; }
         int getChangeCharaNo();
         void execute();
         int isEnd();

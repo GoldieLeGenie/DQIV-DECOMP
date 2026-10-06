@@ -41,11 +41,11 @@ ARM int TownKaidanAction2::setup()
         if (id == -1) {
             return -1;
         }
-        id = func_02040b28(TownStageManager::getSingleton()->stage_.m_fld.m_coll, id, 0);
+        id = coll_GetPolyNoBySurface(TownStageManager::getSingleton()->stage_.m_fld.m_coll, id, 0);
         if (id == -1) {
             return -1;
         }
-        func_020409f0(TownStageManager::getSingleton()->stage_.m_fld.m_coll, objectNo);
+        coll_EraseObjId(TownStageManager::getSingleton()->stage_.m_fld.m_coll, objectNo);
         setKaidanArea(id);
         TownStageManager::getSingleton()->getObjectPos(objectNo, polyNo, &pos);
         setKaidanByObject(downKaidan_, objectNo, pos);

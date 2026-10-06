@@ -138,6 +138,8 @@ struct DSSAObject : Position {
 };
 
 struct UnkDSSAObject : DSSAObject {
+    UnkDSSAObject() {}
+    ~UnkDSSAObject() {}
     virtual void setupDraw();
     virtual void setupRoot();
     virtual void setupTRS(DSSAParts* parts);
@@ -210,6 +212,8 @@ extern "C" {
     void func_020843d4(void);
     void func_0206ae30(VecFx32* scale);                         /* NNS_G3dGlbSetBaseScale */
     void func_0206ae08(dss::Fix32Vector3* trans);                /* NNS_G3dGlbSetBaseTrans */
+    void func_0206ae58(int light, int x, int y, int z);            /* NNS_G3dGlbLightVector */
+    void func_0206ae94(int light, int color);                    /* NNS_G3dGlbLightColor */
     void func_0206adcc(void);
     void func_0206dcf0(void);
     void func_02086abc(void* texture);

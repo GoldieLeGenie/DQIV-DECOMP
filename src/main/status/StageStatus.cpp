@@ -962,7 +962,7 @@ THUMB void status::StageStatus::setMapVeil(int flag)
     return;
 }
 
-THUMB void status::StageStatus::getMapVeil(int x, int y)
+THUMB void status::StageStatus::setMapVeil(int x, int y, int flag)
 {
     int xBit = (x << 4) / 256;
     int yIndex = (y << 4) / 256;

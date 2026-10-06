@@ -7,21 +7,23 @@
 #include "main/status/BattleResult.hpp"
 #include "main/status/StoryStatus.hpp"
 #include "main/status/StageStatus.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuSetup()
 {
     status::g_Party.setPlayerMode();
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     m_bookData = status::excelParam.bookData_;
-    m_activeMonster = func_ov016_0216ff2c()->activeItem_;
-    m_nowPage = func_ov016_0216ff2c()->activeItemPage_;
+    m_activeMonster = MaterielMenuPlayerControl::getSingleton()->activeItem_;
+    m_nowPage = MaterielMenuPlayerControl::getSingleton()->activeItemPage_;
     unk_98 = 1;
     m_state = 0;
     menuItem_.active_ = m_activeMonster;
     navigator_.setupBase();
     navigator_.setup(2, 8, MaterielMenu_PICTUREBOOK_DETAIL::MAX_MONSTER_NO + 1);
     int find = 0;
-    data_ov016_02186288.isOpen_ = 0;
+    gMaterielMenu_PICTUREBOOK_DETAIL.isOpen_ = 0;
     if (m_activeMonster == 0 && m_nowPage == 0) {
         for (int i = 0; i < MaterielMenu_PICTUREBOOK_DETAIL::MAX_MONSTER_NO + 1; i++) {
             for (int j = 0; j < 309; j++) {
@@ -42,24 +44,24 @@ THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuSetup()
     navigator_.setPageNo(m_nowPage);
     getMonsterFlag();
     int activeItem = m_activeMonster;
-    func_ov016_0216ff2c()->activeItem_ = activeItem;
+    MaterielMenuPlayerControl::getSingleton()->activeItem_ = activeItem;
     int activeItemPage = m_nowPage;
-    func_ov016_0216ff2c()->activeItemPage_ = activeItemPage;
+    MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = activeItemPage;
 }
 
 THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuExecute()
 {
     if (m_nowPage == 13) {
-        func_ov016_02177a5c(&menuItem_, m_activeMonster, 2);
+        MenuTemplate_materiel::MATERIEL_PICTUREBOOK_SELECT(&menuItem_, m_activeMonster, 2);
     } else {
-        func_ov016_02177a5c(&menuItem_, m_activeMonster, 16);
+        MenuTemplate_materiel::MATERIEL_PICTUREBOOK_SELECT(&menuItem_, m_activeMonster, 16);
     }
 }
 
 THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuDraw()
 {
     if (status::g_BattleResult.getEncountCount() != 0) {
-        func_ov016_0216fda0(monsterName_, monsterFlag_);
+        unkfunc_0216fda0(monsterName_, monsterFlag_);
         if (m_state == 0 && !data_020ed1bc.isOpen()) {
             menuItem_.drawActive();
         }
@@ -90,20 +92,20 @@ THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuUpdate()
     if (result != 0) {
         m_activeMonster = menuItem_.active_;
         int activeItem = m_activeMonster;
-        func_ov016_0216ff2c()->activeItem_ = activeItem;
+        MaterielMenuPlayerControl::getSingleton()->activeItem_ = activeItem;
         if (m_nowPage != navigator_.getPageNo()) {
             m_nowPage = navigator_.getPageNo();
             int activeItemPage = m_nowPage;
-            func_ov016_0216ff2c()->activeItemPage_ = activeItemPage;
+            MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = activeItemPage;
             getMonsterFlag();
         }
         if (result == 2 && monsterFlag_[m_activeMonster] == 1) {
             close();
-            data_ov016_02186288.isOpen_ = 1;
-            data_ov016_02186288.open();
+            gMaterielMenu_PICTUREBOOK_DETAIL.isOpen_ = 1;
+            gMaterielMenu_PICTUREBOOK_DETAIL.open();
         }
         if (result == 3 && !checkCompletePictureBook()) {
-            func_ov016_0216ff34(func_ov016_0216ff2c());
+            MaterielMenuPlayerControl::getSingleton()->allClear();
             close();
             cmn::g_extraMapLink.setMonstarBookLink();
             g_Stage.returnBookFlag_ = 1;
@@ -120,9 +122,9 @@ THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuUpdate()
                 getMonsterFlag();
             }
             int activeItem = m_activeMonster;
-            func_ov016_0216ff2c()->activeItem_ = activeItem;
+            MaterielMenuPlayerControl::getSingleton()->activeItem_ = activeItem;
             int activeItemPage = m_nowPage;
-            func_ov016_0216ff2c()->activeItemPage_ = activeItemPage;
+            MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = activeItemPage;
         }
         if (result == 6) {
             if (status::g_BattleResult.getEncountCount() == 0) {
@@ -136,9 +138,9 @@ THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuUpdate()
                 getMonsterFlag();
             }
             int activeItem = m_activeMonster;
-            func_ov016_0216ff2c()->activeItem_ = activeItem;
+            MaterielMenuPlayerControl::getSingleton()->activeItem_ = activeItem;
             int activeItemPage = m_nowPage;
-            func_ov016_0216ff2c()->activeItemPage_ = activeItemPage;
+            MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = activeItemPage;
         }
         redraw_ = 1;
     }

@@ -180,7 +180,7 @@ ARM void cmn::NonBattleActionManager::execute()
                     } else {
                         func_0202adc4()->unk_cc = 1;
                     }
-                    func_ov001_02129bfc(FieldPlayerManager::getSingleton());
+                    FieldPlayerManager::getSingleton()->savePartyDrawInfo();
                 }
                 break;
             case ACTION_RIREMITO:

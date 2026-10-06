@@ -19,4 +19,4 @@ struct MaterielMenu_SlotEnter : menu::MenuBase
     void enableUpdate();
 };
 
-extern MaterielMenu_SlotEnter data_ov016_021859b8;          /* gMaterielMenu_SlotEnter */
+extern MaterielMenu_SlotEnter gMaterielMenu_SlotEnter;

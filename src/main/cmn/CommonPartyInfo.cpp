@@ -191,7 +191,7 @@ ARM void cmn::CommonPartyInfo::callCarriage()
 ARM int cmn::CommonPartyInfo::isBarronArea(dss::Fix32Vector3* pos)
 {
     if (data_0210bb94.unkfunc_02058114(0xE) != 0) {
-        return func_ov001_0212a460(FieldPlayerManager::getSingleton(), pos);
+        return FieldPlayerManager::getSingleton()->checkBarronArea(*pos);
     }
     if (dss::strcmp(s_srout_map, g_Global.getMapName()) == 0) {
         return 1;

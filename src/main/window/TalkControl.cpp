@@ -26,7 +26,7 @@ ARM void window::TalkControl::setup()
 
 ARM void window::TalkControl::execute()
 {
-    if (data_ov016_02187b28.isOpen()) {
+    if (gTownMenu_PARTY_TALK.isOpen()) {
         return;
     }
     if (data_0210bb94.unkfunc_02058114(0xc)) {
@@ -40,7 +40,7 @@ ARM void window::TalkControl::execute()
 
 ARM void window::TalkControl::openTalk()
 {
-    data_ov016_02187b28.open();
+    gTownMenu_PARTY_TALK.open();
 }
 
 ARM int window::TalkControl::getPhase()

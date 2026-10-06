@@ -389,7 +389,7 @@ ARM int FLDObject::Setup(void* mdl, void* data, void* coll, int heap)
     }
 
     m_coll = (COLL_HEADER*)coll;
-    if (!func_0203f368((COLL_HEADER*)coll, &m_allocator)) {
+    if (!coll_init((COLL_HEADER*)coll, &m_allocator)) {
         Final();
         return 0;
     }
@@ -1755,7 +1755,7 @@ ARM void FLDObject::CollAddPolyPosByMapUid(int uid, VecFx32* pos)
     do {
         i = CollGetPolyNoByMapUid(uid, start);
         if (i != -1) {
-            func_02041108(m_coll, i, pos);
+            coll_AddPolyPos(m_coll, i, pos);
         }
         start = i + 1;
     } while (i >= 0);
@@ -1771,7 +1771,7 @@ ARM void FLDObject::CollAddPolyPosByMapObj(int obj, VecFx32* pos)
     do {
         i = coll_GetPolyNoByMapObj(m_coll, obj, start);
         if (i != -1) {
-            func_02041108(m_coll, i, pos);
+            coll_AddPolyPos(m_coll, i, pos);
         }
         start = i + 1;
     } while (i >= 0);

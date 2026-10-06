@@ -801,7 +801,7 @@ THUMB void btl::BattleExecEvent02::setup()
     status_ = 0;
     int index = g_monster.getMonsterStatus(0)->haveBattleStatus_.index_;
     if ((unsigned int)(index - 0x134) > 1) {
-        func_0204d0c4(btl::BattleTransform::getDummyFromMonster(index));
+        GameMonster::setupTexture(btl::BattleTransform::getDummyFromMonster(index));
     }
 }
 
@@ -839,7 +839,7 @@ THUMB void btl::BattleExecEvent02::execChange()
     case 1:
         btl::BattleTransform::getSingleton()->setup(index);
     case 2: {
-        func_0204d0dc(btl::BattleTransform::getDummyFromTrans());
+        GameMonster::cleanupTexture(btl::BattleTransform::getDummyFromTrans());
         int ctrlId = g_monster.getCtrlId(0);
         btl::BattleMonsterDraw2::getSingleton()->cleanup(ctrlId);
         status_ = 3;
@@ -849,7 +849,7 @@ THUMB void btl::BattleExecEvent02::execChange()
     case 3:
         btl::BattleTransform::getSingleton()->draw();
         if (btl::BattleTransform::getSingleton()->isEnd()) {
-            func_0204d0c4(btl::BattleTransform::getDummyFromTrans() + 1);
+            GameMonster::setupTexture(btl::BattleTransform::getDummyFromTrans() + 1);
             btl::BattleTransform::getSingleton()->cleanup();
             status_ = 4;
         }
@@ -884,7 +884,7 @@ THUMB void btl::BattleExecEvent03::cleanup()
 {
     if (enable_) {
         g_monster.getMonsterStatus(0);
-        func_0204d0dc(btl::BattleTransform::getDummyFromTrans() + 1);
+        GameMonster::cleanupTexture(btl::BattleTransform::getDummyFromTrans() + 1);
     }
 }
 
@@ -967,7 +967,7 @@ THUMB void btl::BattleExecEvent12::setup()
     status_ = 0;
     int index = g_monster.getMonsterStatus(0)->haveBattleStatus_.index_;
     if ((unsigned int)(index - 0x134) > 1) {
-        func_0204d0c4(btl::BattleTransform::getDummyFromMonster(index));
+        GameMonster::setupTexture(btl::BattleTransform::getDummyFromMonster(index));
     }
 }
 
@@ -1005,7 +1005,7 @@ THUMB void btl::BattleExecEvent12::execChange()
     case 1:
         btl::BattleTransform::getSingleton()->setup(index);
     case 2: {
-        func_0204d0dc(btl::BattleTransform::getDummyFromTrans());
+        GameMonster::cleanupTexture(btl::BattleTransform::getDummyFromTrans());
         int ctrlId = g_monster.getCtrlId(0);
         btl::BattleMonsterDraw2::getSingleton()->cleanup(ctrlId);
         status_ = 3;
@@ -1015,7 +1015,7 @@ THUMB void btl::BattleExecEvent12::execChange()
     case 3:
         btl::BattleTransform::getSingleton()->draw();
         if (btl::BattleTransform::getSingleton()->isEnd()) {
-            func_0204d0c4(btl::BattleTransform::getDummyFromTrans() + 1);
+            GameMonster::setupTexture(btl::BattleTransform::getDummyFromTrans() + 1);
             btl::BattleTransform::getSingleton()->cleanup();
             status_ = 4;
         }
@@ -1050,7 +1050,7 @@ THUMB void btl::BattleExecEvent13::cleanup()
 {
     if (enable_) {
         g_monster.getMonsterStatus(0);
-        func_0204d0dc(btl::BattleTransform::getDummyFromTrans() + 1);
+        GameMonster::cleanupTexture(btl::BattleTransform::getDummyFromTrans() + 1);
     }
 }
 

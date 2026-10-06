@@ -2,6 +2,7 @@
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/text/TextAPI.hpp"
 #include "main/status/PartyStatus.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_COINSALEROOM_BUY::menuSetup()
 {
@@ -14,7 +15,7 @@ THUMB void MaterielMenu_COINSALEROOM_BUY::menuExecute()
 
 THUMB void MaterielMenu_COINSALEROOM_BUY::menuDraw()
 {
-    func_ov016_0216fd34(coin_, 0);
+    unkfunc_0216fd34(coin_, 0);
 }
 
 THUMB void MaterielMenu_COINSALEROOM_BUY::menuUpdate()
@@ -64,8 +65,8 @@ THUMB void MaterielMenu_COINSALEROOM_BUY::yesMessage()
     switch (mode_) {
     case 0:
         close();
-        data_ov016_021861ec.open();
-        data_ov016_021861ec.mode_ = 1;
+        gMaterielMenu_COINSALEROOM_ROOT.open();
+        gMaterielMenu_COINSALEROOM_ROOT.mode_ = 1;
         break;
     case 1: {
         int maxToken = 999999 - status::g_Party.casinoCoin_;
@@ -90,8 +91,8 @@ THUMB void MaterielMenu_COINSALEROOM_BUY::noMessage()
 {
     data_020ed1bc.close();
     close();
-    data_ov016_021861ec.open();
-    data_ov016_021861ec.mode_ = 1;
+    gMaterielMenu_COINSALEROOM_ROOT.open();
+    gMaterielMenu_COINSALEROOM_ROOT.mode_ = 1;
 }
 
 THUMB void MaterielMenu_COINSALEROOM_BUY::getCasinoCoin()

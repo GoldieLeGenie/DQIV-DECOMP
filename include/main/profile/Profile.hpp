@@ -225,6 +225,7 @@ extern int data_020f0078;     // manager SELECTTAISHI
 extern "C" unsigned char func_0203ab30(void* mgr, int index);               // getter SELECTTAISHI
 extern "C" int func_0203a358(void* mgr, int index);   // isEnable(i)
 extern "C" int func_0203a354(void* mgr);              // isEnable slot final
+extern "C" int func_0203a388(void* mgr);              // getCount
 extern "C" void func_0203a34c(void* mgr, int index);  // select
 extern "C" unsigned int func_0203a5a4(void* mgr);     // getUnique
 extern "C" char func_0203a5ec(void* mgr);             // getType
@@ -235,6 +236,9 @@ extern "C" unsigned char* func_0203a65c(void* mgr);   // getName ptr
 extern "C" unsigned char* func_0203a6d8(void* mgr);   // getHeroName ptr
 extern "C" unsigned char* func_0203a820(void* mgr);   // getTownName ptr
 extern "C" unsigned char* func_0203a938(void* mgr);   // getComment ptr
+extern "C" void func_0203a604(void* mgr, char* name);             // setName
+extern "C" void func_0203a7a8(void* mgr, char* name);             // setTownName
+extern "C" void func_0203a83c(void* mgr, char* comment);          // setComment
 extern "C" void func_0203a574(void* mgr, int enable);             // setEnable
 extern "C" void func_0203a58c(void* mgr, unsigned int unique);    // setUnique
 extern "C" void func_0203a5bc(void* mgr, int type);               // setType

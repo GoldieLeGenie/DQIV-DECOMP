@@ -6,6 +6,8 @@
 #include "main/cmn/PlayerManager.hpp"
 #include "main/global/Global.hpp"
 #include "main/cmn/ExtraMapLink.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenuExtraChangeHostage::menuSetup()
 {
@@ -36,14 +38,14 @@ THUMB void MaterielMenuExtraChangeHostage::menuExecute()
     if (hostageStatus_ == HOSTAGE_SELECT) {
         status::g_Party.setNormalMode();
         int active = menuItem_.active_;
-        func_ov016_02177350(&menuItem_, active, status::g_Party.getCount());
+        MenuTemplate_materiel::MATERIEL_ICON32_5x2_CHURCH(&menuItem_, active, status::g_Party.getCount());
     }
 }
 
 THUMB void MaterielMenuExtraChangeHostage::menuDraw()
 {
     if (hostageStatus_ == HOSTAGE_SELECT) {
-        func_ov016_0216fdb8();
+        unkfunc_0216fdb8();
         menuItem_.drawActive();
     }
 }

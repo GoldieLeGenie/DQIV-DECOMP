@@ -119,6 +119,7 @@ struct GlobalFade : UnkGlobalPart {
     int isFadeOutBlack();
     int isFadeInBlack();
     int isFadeOutWhite();
+    inline void flashWhite(int frames, int r, int g, int b);
 };
 
 extern Global g_Global; // 0x020c768c
@@ -134,6 +135,17 @@ extern char za1f1[8]; //za1f1 data_0208c9f4
 extern char s_mapEv01[];                            // "ev01"
 
 extern "C" void func_02084e8c(void* screen, int r, int g, int b);   // sets RGB555 color at 0x34
+
+inline void GlobalFade::flashWhite(int frames, int r, int g, int b)
+{
+    state_ = FADE_IN_WHITE;
+    count_ = 0;
+    frames_ = frames;
+    func_02084e8c(data_020f220c, r, g, b);
+    func_02084e8c(data_020f2244, r, g, b);
+    data_0210bc18.unkfunc_02058294(this);
+}
+
 extern "C" {
     void func_0207ed24(int brightness);
     void func_0207ed3c(int brightness);

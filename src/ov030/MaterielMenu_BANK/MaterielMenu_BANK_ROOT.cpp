@@ -4,6 +4,8 @@
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/StoryStatus.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_BANK_ROOT::menuSetup()
 {
@@ -26,13 +28,13 @@ THUMB void MaterielMenu_BANK_ROOT::menuSetup()
 
 THUMB void MaterielMenu_BANK_ROOT::menuExecute()
 {
-    func_ov016_02177318(&menuItem_, oldActive_);
+    MenuTemplate_materiel::MATERIEL_SHOP_ROOT(&menuItem_, oldActive_);
 }
 
 THUMB void MaterielMenu_BANK_ROOT::menuDraw()
 {
     if (data_020ed1bc.isMessageWAITPROG()) {
-        func_ov016_0216fcf0();
+        unkfunc_0216fcf0();
         menuItem_.drawActive();
     }
 }
@@ -55,13 +57,13 @@ THUMB void MaterielMenu_BANK_ROOT::menuUpdate()
                 data_020ed1bc.close();
                 switch (menuItem_.active_) {
                 case 0:
-                    data_ov016_021863c0.open();
-                    data_ov016_021863c0.unk_90 = 0;
+                    gMaterielMenu_BANK_PUTIN.open();
+                    gMaterielMenu_BANK_PUTIN.unk_90 = 0;
                     close();
                     break;
                 case 1:
-                    data_ov016_02186500.open();
-                    data_ov016_02186500.unk_90 = 1;
+                    gMaterielMenu_BANK_DRAW.open();
+                    gMaterielMenu_BANK_DRAW.unk_90 = 1;
                     close();
                     break;
                 case 2:

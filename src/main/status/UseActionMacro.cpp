@@ -1,5 +1,5 @@
 #include "main/status/UseActionMacro.hpp"
-#include "ov016/TownMenuPlayerControl.hpp"
+#include "ov016/TownMenuPlayerControl/TownMenuPlayerControl.hpp"
 #include "main/global/GlobalDQ4.hpp"
 #include "main/status/UseAction.hpp"
 #include "main/status/ActionExec.hpp"

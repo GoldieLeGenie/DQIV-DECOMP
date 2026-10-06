@@ -3,7 +3,10 @@
 #include "main/object/DisplayCharacter.hpp"
 #include "main/global/GlobalDQ4.hpp"
 #include "main/menu/MenuAPI.hpp"
+#include "ov016/UnkTownMenu_02176fa0/UnkTownMenu_02176fa0.hpp"
 #include "main/menu/TownMenu_PARTY_TALK.hpp"
+#include "ov016/TownMenu_MAGIC/TownMenu_MAGIC_ROOT.hpp"
+#include "ov016/TownMenu_ITEM/TownMenuItemSelectChara.hpp"
 #include "main/sound/SoundManager.hpp"
 #include "main/cmn/NonBattleActionManager.hpp"
 #include "ov000/town/TownStageManager.hpp"
@@ -88,16 +91,16 @@ ARM void window::MenuControl::openMenu()
     int open = 0;
     MenuAPI::openTownMenu();
     if (menu_ == OPEN_MENU_MAGIC) {
-        data_ov016_02187c60.close();
-        data_ov016_02188ba8.open();
+        gTownMenu_ROOT.close();
+        gTownMenu_MAGIC_ROOT.open();
         open = 1;
     } else if (menu_ == OPEN_MENU_ITEM) {
-        data_ov016_02187c60.close();
-        data_ov016_02188040.open();
+        gTownMenu_ROOT.close();
+        gUnkTownMenu_02176fa0.open();
         open = 1;
     } else if (menu_ == OPEN_MENU_ITEM_CHARA) {
-        data_ov016_02187c60.close();
-        data_ov016_02187d50.open();
+        gTownMenu_ROOT.close();
+        gTownMenuItemSelectChara.open();
         open = 1;
     } else if (data_0210bb94.unkfunc_02058114(0xc) || data_0210bb94.unkfunc_02058114(0xe)) {
         SoundManager::playSe(0x12c, 0);

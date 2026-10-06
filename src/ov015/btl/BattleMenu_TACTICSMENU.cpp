@@ -34,19 +34,19 @@ THUMB void BattleMenu_TACTICSMENU::menuExecute()
     unk_1f4.setup(3, 2, 6);
     unk_1e8.setup(5, 1, unk_54);
     if (unk_1c == 0) {
-        func_ov015_0216c66c(&menuItem_, unk_24, unk_54);
+        MenuTemplate_battle::BATTLE_TACTICSCHANGE_5x1(&menuItem_, unk_24, unk_54);
     } else {
-        func_ov015_0216c620(&unk_120, unk_28);
+        MenuTemplate_battle::BATTLE_TACTICS_2x3(&unk_120, unk_28);
     }
-    func_ov015_0216c5c4(&cancelItem_);
+    MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
 }
 
 THUMB void BattleMenu_TACTICSMENU::menuDraw()
 {
     if (unk_1c == 0) {
-        func_ov015_0216bbdc();
+        unkfunc_0216bbdc();
     } else {
-        func_ov015_0216bc84();
+        unkfunc_0216bc84();
     }
     menuItem_.drawActive();
     unk_120.drawActive();

@@ -23,6 +23,7 @@ namespace status{
         int battleExp_;
         int battleGold_;
         BasePartyStatus();
+        int isBasha() { return basha_; }
         ~BasePartyStatus() {}
         bool isCarriageEnter();
         void setGold(int gold);

@@ -13,6 +13,8 @@
 #include "main/cmn/GameManager.hpp"
 #include "main/cmn/TalkSoundManager.hpp"
 #include "main/cmn/NonBattleActionManager.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 static int miracleMessage[3][7] = {
     {0xc6fd0, 0xc6fd8, 0xc6fd9, 0xc6fdc, 0xc6fdf},
@@ -69,18 +71,18 @@ THUMB void MaterielMenu_CHURCH_MIRACLE::menuSetup()
 THUMB void MaterielMenu_CHURCH_MIRACLE::menuExecute()
 {
     status::g_Party.setBattleMode();
-    func_ov016_02177350(&menuItem_, menuItem_.active_, status::g_Party.getCount());
+    MenuTemplate_materiel::MATERIEL_ICON32_5x2_CHURCH(&menuItem_, menuItem_.active_, status::g_Party.getCount());
 }
 
 THUMB void MaterielMenu_CHURCH_MIRACLE::menuDraw()
 {
     if (data_020ed1bc.isMessageWAITPROG() && miracleStatus_ != MIRACLE_ISEND && miracleStatus_ != MIRACLE_SOUND && miracleStatus_ != MIRACLE_SOUNDEND) {
         status::g_Party.setBattleMode();
-        func_ov016_0216fcbc(status::g_Party.getCount());
+        unkfunc_0216fcbc(status::g_Party.getCount());
         menuItem_.drawActive();
         return;
     }
-    func_ov016_0216fc94(0, 0);
+    unkfunc_0216fc94(0, 0);
 }
 
 THUMB void MaterielMenu_CHURCH_MIRACLE::menuUpdate()
@@ -228,7 +230,7 @@ THUMB bool MaterielMenu_CHURCH_MIRACLE::listUpdate()
             }
             activeChara_ = menuItem_.active_;
             int activeChara = activeChara_;
-            func_ov016_0216ff2c()->activeChara_ = activeChara;
+            MaterielMenuPlayerControl::getSingleton()->activeChara_ = activeChara;
             redraw_ = 1;
             return true;
         }
@@ -373,7 +375,7 @@ THUMB void MaterielMenu_CHURCH_MIRACLE::payOutMiracle()
 THUMB void MaterielMenu_CHURCH_MIRACLE::openRootMenu()
 {
     close();
-    data_ov016_021877a4.open();
-    data_ov016_021877a4.menuItem_.active_ = 0;
-    data_ov016_021877a4.firstFlag_ = 0;
+    gMaterielMenu_CHURCH_ROOT.open();
+    gMaterielMenu_CHURCH_ROOT.menuItem_.active_ = 0;
+    gMaterielMenu_CHURCH_ROOT.firstFlag_ = 0;
 }

@@ -73,11 +73,8 @@ struct MaterielMenu_CHANGEGIFT_SELECTGIFT : menu::MenuBase
     void cancelChange();
 };
 
-extern MaterielMenu_CHANGEGIFT_ROOT data_ov016_02185928;            /* gMaterielMenu_CHANGEGIFT_ROOT */
-extern MaterielMenu_CHANGEGIFT_EQUIPCHECK data_ov016_02185ac0;      /* gMaterielMenu_CHANGEGIFT_EQUIPCHECK */
-extern MaterielMenu_CHANGEGIFT_SELECTCHARA data_ov016_0218681c;     /* gMaterielMenu_CHANGEGIFT_SELECTCHARA */
-extern MaterielMenu_CHANGEGIFT_SELECTGIFT data_ov016_02187164;      /* gMaterielMenu_CHANGEGIFT_SELECTGIFT */
+extern MaterielMenu_CHANGEGIFT_ROOT gMaterielMenu_CHANGEGIFT_ROOT;
+extern MaterielMenu_CHANGEGIFT_EQUIPCHECK gMaterielMenu_CHANGEGIFT_EQUIPCHECK;
+extern MaterielMenu_CHANGEGIFT_SELECTCHARA gMaterielMenu_CHANGEGIFT_SELECTCHARA;
+extern MaterielMenu_CHANGEGIFT_SELECTGIFT gMaterielMenu_CHANGEGIFT_SELECTGIFT;
 
-extern "C" {
-    void func_ov016_0216fce8(void);
-}

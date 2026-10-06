@@ -27,10 +27,5 @@ struct MaterielMenu_EXTRA_NENE : menu::MenuBase
     void showMessage(int messageID1, int messageID2, int messageID3);
 };
 
-extern "C" {
-    void func_ov016_0216fb98(void);
-    void func_ov016_0216fdcc(void);
-    void func_ov016_0216fe10(int count, int page, int pageMax);
-}
 
-extern MaterielMenu_EXTRA_NENE data_ov016_021860b8;         /* gMaterielMenu_EXTRA_NENE */
+extern MaterielMenu_EXTRA_NENE gMaterielMenu_EXTRA_NENE;

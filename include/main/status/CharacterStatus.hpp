@@ -37,7 +37,9 @@ namespace status{
         dss::BitFlaguint type_;
         CharacterStatus();
         ~CharacterStatus();
+        HaveStatusInfo& getHaveStatusInfo() { return haveStatusInfo_; }
         int isActionEnable();
+        void setCommandType(CommandType type) { haveStatusInfo_.battleCommand_ = type; }
         void setup(CharacterType type, int group, int index);
         void setMenuStatusFlag(status::HaveStatusInfo::DiffStatus status);
         bool isMenuStatusFlag(status::HaveStatusInfo::DiffStatus status);

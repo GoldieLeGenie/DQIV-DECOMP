@@ -2,6 +2,8 @@
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/text/TextAPI.hpp"
 #include "main/status/PartyStatus.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::menuSetup()
 {
@@ -28,17 +30,17 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::menuSetup()
 
 THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::menuExecute()
 {
-    func_ov016_021779ec(&menuItem_, activeItem_, itemCount_);
-    func_ov016_02177a98(&menuItem2_);
+    MenuTemplate_materiel::MATERIEL_CELECT_BUY(&menuItem_, activeItem_, itemCount_);
+    MenuTemplate_materiel::MATERIEL_CANCEL(&menuItem2_);
 }
 
 THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::menuDraw()
 {
     if (data_020ed1bc.isOpen()) {
-        func_ov016_0216fce8();
+        unkfunc_0216fce8();
         return;
     }
-    func_ov016_0216fb24(fukuroItemCount_, 1);
+    unkfunc_0216fb24(fukuroItemCount_, 1);
     menuItem_.drawActive();
 }
 
@@ -52,7 +54,7 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::menuUpdate()
             }
             if (selectChara_) {
                 close();
-                data_ov016_0218681c.open();
+                gMaterielMenu_CHANGEGIFT_SELECTCHARA.open();
                 func_02080e78();
             }
         }
@@ -67,7 +69,7 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::menuUpdate()
     if (result != 0) {
         activeItem_ = menuItem_.active_;
         int activeItem = activeItem_;
-        func_ov016_0216ff2c()->activeItem_ = activeItem;
+        MaterielMenuPlayerControl::getSingleton()->activeItem_ = activeItem;
         if (result == 2) {
             checkAmount();
         }
@@ -93,10 +95,10 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::checkAmount()
 
 THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::cancelChange()
 {
-    int leadpc = func_ov016_0216ff2c()->leadpc_;
+    int leadpc = MaterielMenuPlayerControl::getSingleton()->leadpc_;
     close();
-    data_ov016_02185928.open();
-    data_ov016_02185928.mode_ = 3;
+    gMaterielMenu_CHANGEGIFT_ROOT.open();
+    gMaterielMenu_CHANGEGIFT_ROOT.mode_ = 3;
     data_020ed1bc.openMessageForTALK();
     TextAPI::setMACRO0(0xb, 0x50000000, status::g_Party.getPlayerIndex(leadpc));
     TextAPI::setMACRO0(0x2a, 0xf0000000, status::g_Party.casinoCoin_);

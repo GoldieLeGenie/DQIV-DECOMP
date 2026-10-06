@@ -240,6 +240,8 @@ extern "C" {
     void func_020875ec(Utf8Iterator* it, char* text);
     int  func_0208771c(Utf8Iterator* it);                                                   /* current char */
     void func_020877b8(Utf8Iterator* it);                                                   /* next */
+    void func_02087634(Utf8Iterator* it, char* buf, int size);                              /* set write buffer */
+    void func_02087734(Utf8Iterator* it, int c);                                            /* put char */
     void* func_0207f77c(void* heap, int size, int align);                                   /* heap alloc */
     void func_02080038(int font);
     void func_0207f9b8(int a, int b, int c, int d, const char* text, int f);

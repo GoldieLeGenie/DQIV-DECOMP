@@ -59,8 +59,8 @@ namespace cmn
         int prevFrameBattle_;               // 0x968
         dss::Fix32Vector3 collVec_;          // 0x96C
         int collFlag_;                      // 0x978
-        int partyTalk;                      // 0x97C
-        int ctrlID_;                        // 0x980
+        int ctrlID_;                        // 0x97C
+        int partyTalk;                      // 0x980
         dss::Fix32Vector3 tempBalloonPos_;   // 0x984 
         int tempBalloonFieldType_;          // 0x990   
         dss::Fix32Vector3 tempShipPos_;      // 0x994 
@@ -103,6 +103,5 @@ namespace cmn
 extern cmn::CommonPartyInfo g_cmnPartyInfo; //data_020ef650
 
 struct TownPlayerManager;
-extern "C" int func_ov001_0212a460(void*, dss::Fix32Vector3*);             // FieldPlayerManager::checkBarronArea
 
 extern char s_srout_map[8];                                        // map baron (rodata)

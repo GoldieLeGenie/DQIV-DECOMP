@@ -6,6 +6,9 @@
 extern "C" fx32 FX_Divide(fx32 numer, fx32 denom);
 extern "C" fx32 FX_Sqrt(fx32 value);
 
+#define MATH_MIN(a, b) (((a) <= (b)) ? (a) : (b))
+#define MATH_MAX(a, b) (((a) >= (b)) ? (a) : (b))
+
 #pragma always_inline on
 namespace dss{
     
@@ -81,6 +84,7 @@ namespace dss{
     {
         unsigned char flag_;
         BitFlag() { flag_ = 0; }
+        BitFlag(unsigned int flag) { flag_ |= flag; }
         void clear() { flag_ = 0; }
     };
 
@@ -119,7 +123,31 @@ namespace dss{
         T vy;
         inline Vector2();     // defined in DssVectorDefault.hpp
         Vector2(long x, long y) { vx = x; vy = y; }
+        Vector2(T x, T y) { vx = x; vy = y; }
         void operator=(const Vector2& o) { vx = o.vx; vy = o.vy; }
+        Vector2 operator-(const Vector2& o) const
+        {
+            Vector2 r;
+            r.vx = vx - o.vx;
+            r.vy = vy - o.vy;
+            return r;
+        }
+        T operator*(const Vector2& o) const
+        {
+            T r;
+            r = vx * o.vx + vy * o.vy;
+            return r;
+        }
+        void normalize()
+        {
+            T tmp;
+            tmp = vx * vx + vy * vy;
+            tmp = tmp.sqrt();
+            if (tmp.value != 0) {
+                vx /= tmp;
+                vy /= tmp;
+            }
+        }
     };
     template <typename T>
     struct Vector3 {
@@ -132,6 +160,14 @@ namespace dss{
     };
     template <>
     inline Vector2<int>::Vector2() { vx = 0; vy = 0; }
+    template <>
+    struct Vector2<Fix16> {
+        Fix16 vx;
+        Fix16 vy;
+        Vector2() { vx = 0L; vy = 0L; }
+        Vector2(float x, float y) { vx = x; vy = y; }
+        void operator=(const Vector2& o) { vx = o.vx; vy = o.vy; }
+    };
 
     template <>
     struct Vector3<short> : Vector3short {
@@ -221,6 +257,7 @@ extern "C" {
     char* func_0207c2d0(const char* str, const char* sub);                             // strstr
     void MI_CpuSet(void* dest, unsigned char value, unsigned int count);
     void MI_CpuCopyU8(const void* src, void* dest, unsigned int count);
+    void CpuFastSet(const void* src, void* dest, unsigned int mode);
     int func_0208a104(void);                                                          // language
     int func_02080d94(dss::Fix32 value);
     void func_020885f8(MtxFx43* m);

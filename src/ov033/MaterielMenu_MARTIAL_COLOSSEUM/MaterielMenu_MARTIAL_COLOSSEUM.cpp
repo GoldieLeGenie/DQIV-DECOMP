@@ -6,23 +6,24 @@
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/UseActionParam.hpp"
 #include "main/status/UseItem.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_MARTIAL_COLOSSEUM::menuSetup()
 {
     status::g_Party.setPlayerMode();
     activeChara_ = status::g_Party.getSortIndex(4);
     int sortIndex = status::g_Party.getSortIndex(4);
-    func_ov016_0216ff2c()->activeChara_ = sortIndex;
+    MaterielMenuPlayerControl::getSingleton()->activeChara_ = sortIndex;
     itemIndex_ = 0;
     mode_ = 0;
-    wins_ = func_ov016_0216ff2c()->wins_;
+    wins_ = MaterielMenuPlayerControl::getSingleton()->wins_;
     showMessage(0x4296, -1);
     data_020ed1bc.setYesNo();
 }
 
 THUMB void MaterielMenu_MARTIAL_COLOSSEUM::menuDraw()
 {
-    func_ov016_0216fdc4();
+    unkfunc_0216fdc4();
 }
 
 THUMB void MaterielMenu_MARTIAL_COLOSSEUM::menuUpdate()

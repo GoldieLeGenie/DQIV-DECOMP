@@ -449,6 +449,8 @@ namespace param {
         unsigned char color;
         unsigned char dmmy0;
         unsigned char dmmy1;
+
+        unsigned char getWorld() { return world; }
     };
 
     struct EncountSeaTile {

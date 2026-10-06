@@ -5,6 +5,7 @@
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/UseItem.hpp"
 #include "main/sound/MenuSoundManager.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::menuSetup()
 {
@@ -13,18 +14,18 @@ THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::menuSetup()
     yesnoFlag_ = 0;
     fukuro_ = 0;
     playSound_ = 0;
-    activeChara_ = func_ov016_0216ff2c()->activeChara_;
+    activeChara_ = MaterielMenuPlayerControl::getSingleton()->activeChara_;
     if (activeChara_ == status::g_Party.getCount()) {
         fukuro_ = 1;
     }
-    MaterielMenuPlayerControl* control = func_ov016_0216ff2c();
+    MaterielMenuPlayerControl* control = MaterielMenuPlayerControl::getSingleton();
     itemID_ = MaterielMenu_SHOP_MANAGER::getSingleton()->getItem(control->activeItem_);
     MenuSoundManager::getSingleton()->initialize();
 }
 
 THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::menuDraw()
 {
-    func_ov016_0216fce8();
+    unkfunc_0216fce8();
 }
 
 THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::menuUpdate()
@@ -73,8 +74,8 @@ THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::equipCheck()
         TextAPI::setMACRO0(0xa, 0x40000000, itemID_);
         data_020ed1bc.addMessage(0xc8b06);
         close();
-        data_ov016_02185928.open();
-        data_ov016_02185928.mode_ = 1;
+        gMaterielMenu_CHANGEGIFT_ROOT.open();
+        gMaterielMenu_CHANGEGIFT_ROOT.mode_ = 1;
         return;
     }
     if (statusInfo.haveItem_.getCount() == 12) {
@@ -130,7 +131,7 @@ THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::equipYesMessage()
         data_020ed1bc.openMessageForTALK();
         data_020ed1bc.addMessage(0xc8b03);
         close();
-        data_ov016_0218681c.open();
+        gMaterielMenu_CHANGEGIFT_SELECTCHARA.open();
         break;
     case 2:
         if (equipItem != 0 && status::UseItem::isCurse(equipItem) && statusInfo.haveStatus_.playerIndex_ != 0x19) {
@@ -145,8 +146,8 @@ THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::equipYesMessage()
         TextAPI::setMACRO0(0xa, 0x40000000, itemID_);
         data_020ed1bc.addMessage(0xc8b12);
         close();
-        data_ov016_02185928.open();
-        data_ov016_02185928.mode_ = 1;
+        gMaterielMenu_CHANGEGIFT_ROOT.open();
+        gMaterielMenu_CHANGEGIFT_ROOT.mode_ = 1;
         break;
     case 3:
     case 4:
@@ -157,15 +158,15 @@ THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::equipYesMessage()
 
 THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::equipNoMessage()
 {
-    status::PlayerStatus* player = status::g_Party.getPlayerStatus(func_ov016_0216ff2c()->leadpc_);
+    status::PlayerStatus* player = status::g_Party.getPlayerStatus(MaterielMenuPlayerControl::getSingleton()->leadpc_);
     data_020ed1bc.openMessageForTALK();
     TextAPI::setMACRO0(0xb, 0x50000000, player->haveStatusInfo_.haveStatus_.playerIndex_);
     TextAPI::setMACRO0(0x2a, 0xf0000000, status::g_Party.casinoCoin_);
     data_020ed1bc.addMessage(0xc8afa);
     data_020ed1bc.setYesNo();
     close();
-    data_ov016_02185928.open();
-    data_ov016_02185928.mode_ = 3;
+    gMaterielMenu_CHANGEGIFT_ROOT.open();
+    gMaterielMenu_CHANGEGIFT_ROOT.mode_ = 3;
 }
 
 THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::aliveCheck()
@@ -180,13 +181,13 @@ THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::aliveCheck()
         data_020ed1bc.addMessage(0xc8b1e);
     }
     close();
-    data_ov016_02185928.open();
-    data_ov016_02185928.mode_ = 1;
+    gMaterielMenu_CHANGEGIFT_ROOT.open();
+    gMaterielMenu_CHANGEGIFT_ROOT.mode_ = 1;
 }
 
 THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::getGift()
 {
-    MaterielMenuPlayerControl* control = func_ov016_0216ff2c();
+    MaterielMenuPlayerControl* control = MaterielMenuPlayerControl::getSingleton();
     int itemPrice = MaterielMenu_SHOP_MANAGER::getSingleton()->getItemPrice(control->activeItem_);
     if (fukuro_) {
         status::g_Party.haveItemSack_.add(itemID_);

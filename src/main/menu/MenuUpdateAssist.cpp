@@ -35,7 +35,7 @@ THUMB int MenuUpdate_Assist::isCancel(menu::MenuItem& item)
     func_02051a7c(&item);
     if (item.result_ == 4) {
         if (MenuAPI::isTownMenuRoot()) {
-            data_ov016_02187c60.stat_ = menu::MenuBase::MENUBASE_STAT_CANCEL;
+            gTownMenu_ROOT.stat_ = menu::MenuBase::MENUBASE_STAT_CANCEL;
             MenuAPI::clearMenuAll();
         }
         item.result_ = 0;
@@ -73,7 +73,7 @@ THUMB int MenuUpdate_Assist::menuSelect(menu::MenuItem& item, CursorMoveBase& cu
             break;
         case 4:
             if (MenuAPI::isTownMenuRoot()) {
-                data_ov016_02187c60.stat_ = menu::MenuBase::MENUBASE_STAT_CANCEL;
+                gTownMenu_ROOT.stat_ = menu::MenuBase::MENUBASE_STAT_CANCEL;
                 MenuAPI::clearMenuAll();
             }
             item.result_ = 0;

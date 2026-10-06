@@ -24,14 +24,14 @@ THUMB void BattleMenu_ACTIONMENU::menuSetup()
 THUMB void BattleMenu_ACTIONMENU::menuExecute()
 {
     navigator_.setup(2, 2, 4);
-    func_ov015_0216c734(&menuItem_);
-    func_ov015_0216c5d8(&pageItem_, 4, pageItem_.active_);
-    func_ov015_0216c5c4(&cancelItem_);
+    MenuTemplate_battle::BATTLE_RECT_ENEMY(&menuItem_);
+    MenuTemplate_battle::BATTLE_MENUICON2x2(&pageItem_, 4, pageItem_.active_);
+    MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
 }
 
 THUMB void BattleMenu_ACTIONMENU::menuDraw()
 {
-    func_ov015_0216b9e8(0xf0);
+    unkfunc_0216b9e8(0xf0);
     pageItem_.drawActive();
 }
 

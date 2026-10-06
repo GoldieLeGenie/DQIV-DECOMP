@@ -69,8 +69,8 @@ THUMB bool BattleMenuJudge::judgeNextChara()
 
 THUMB void BattleMenuJudge::backActionMenu(int page)
 {
-    func_ov015_0216aa34(func_ov015_0216aa2c());
-    func_ov015_0216aa54(func_ov015_0216aa2c());
+    BattleMonsterNamePlate::getSingleton().init();
+    BattleMonsterNamePlate::getSingleton().setMonster();
     gBattleMenu_ACTIONMENU.open();
     gBattleMenu_ACTIONMENU.pageItem_.active_ = page;
 }

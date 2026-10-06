@@ -8,6 +8,7 @@
 #include "main/sound/MenuSoundManager.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/cmn/CommonCounterInfo.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_SLOT::menuSetup()
 {
@@ -30,7 +31,7 @@ THUMB void MaterielMenu_SLOT::setSlotType(int type)
 
 THUMB void MaterielMenu_SLOT::menuExecute()
 {
-    func_ov016_02177470(&menuItem_);
+    MenuTemplate_materiel::MATERIEL_GET_UPDOWN(&menuItem_);
 }
 
 THUMB void MaterielMenu_SLOT::menuDraw()

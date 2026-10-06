@@ -1,5 +1,5 @@
 #include "main/status/BaseActionMessage.hpp"
-#include "ov016/TownMenuPlayerControl.hpp"
+#include "ov016/TownMenuPlayerControl/TownMenuPlayerControl.hpp"
 #include "main/global/GlobalDQ4.hpp"
 #include "main/status/ActionExec.hpp"
 #include "main/status/BaseAction.hpp"

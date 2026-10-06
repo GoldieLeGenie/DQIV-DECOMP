@@ -39,5 +39,3 @@ namespace btl {
 extern short data_020c04f4[310][5]; //MonsterTaiData
 extern int monsterChangeCount;
 extern "C" void func_02050e88(int a, int b, int c, int d);
-extern "C" void func_0204d0c4(int);
-extern "C" void func_0204d0dc(int);

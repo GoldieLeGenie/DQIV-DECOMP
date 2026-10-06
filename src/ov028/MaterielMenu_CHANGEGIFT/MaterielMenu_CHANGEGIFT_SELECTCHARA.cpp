@@ -3,6 +3,8 @@
 #include "main/text/TextAPI.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuSetup()
 {
@@ -19,13 +21,13 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuSetup()
 
 THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuExecute()
 {
-    func_ov016_02177a08(&menuItem_, activeChara_, maxCharaCount_);
-    func_ov016_02177a98(&menuItem2_);
+    MenuTemplate_materiel::MATERIEL_ICON32_5x2(&menuItem_, activeChara_, maxCharaCount_);
+    MenuTemplate_materiel::MATERIEL_CANCEL(&menuItem2_);
 }
 
 THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuDraw()
 {
-    func_ov016_0216fb6c(1);
+    unkfunc_0216fb6c(1);
     menuItem_.drawActive();
     menuItem2_.drawActive();
 }
@@ -47,10 +49,10 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuUpdate()
     if (result != 0) {
         activeChara_ = menuItem_.active_;
         int activeChara = activeChara_;
-        func_ov016_0216ff2c()->activeChara_ = activeChara;
+        MaterielMenuPlayerControl::getSingleton()->activeChara_ = activeChara;
         if (result == 2) {
             close();
-            data_ov016_02185ac0.open();
+            gMaterielMenu_CHANGEGIFT_EQUIPCHECK.open();
         }
         redraw_ = 1;
     }
@@ -58,13 +60,13 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuUpdate()
 
 THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::cancelChange()
 {
-    int leadpc = func_ov016_0216ff2c()->leadpc_;
+    int leadpc = MaterielMenuPlayerControl::getSingleton()->leadpc_;
     data_020ed1bc.openMessageForTALK();
     TextAPI::setMACRO0(0xb, 0x50000000, status::g_Party.getPlayerStatus(leadpc)->haveStatusInfo_.haveStatus_.playerIndex_);
     TextAPI::setMACRO0(0x2a, 0xf0000000, status::g_Party.casinoCoin_);
     data_020ed1bc.addMessage(0xc8afa);
     data_020ed1bc.setYesNo();
     close();
-    data_ov016_02185928.open();
-    data_ov016_02185928.mode_ = 3;
+    gMaterielMenu_CHANGEGIFT_ROOT.open();
+    gMaterielMenu_CHANGEGIFT_ROOT.mode_ = 3;
 }

@@ -2,7 +2,7 @@
 #include "globaldefs.h"
 #include "main/menu/MenuBase.hpp"
 #include "main/menu/MaterielMenu_SlotEnter.hpp"
-#include "ov016/MenuTemplate_materiel.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
 
 struct MaterielMenu_SLOT : menu::MenuBase
 {
@@ -40,4 +40,4 @@ struct MaterielMenu_SLOT : menu::MenuBase
     void closeMessage();
 };
 
-extern MaterielMenu_SLOT data_ov016_02186a14;               /* gMaterielMenu_SLOT */
+extern MaterielMenu_SLOT gMaterielMenu_SLOT;

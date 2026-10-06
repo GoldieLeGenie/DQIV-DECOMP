@@ -21,6 +21,7 @@ struct MaterielMenuPokerSelectcard : menu::MenuBase {
     dss::Fix32 distance_;                       // 0x8C
     menu::MenuItem menuItem_;                   // 0x90 
     CursorMoveGridLoop cursor_;                 // 0xF4 
+    CursorMoveGridLoop cursor2_;                // 0x100
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -37,4 +38,4 @@ struct MaterielMenuPokerSelectcard : menu::MenuBase {
     void setSoundNo();
 };
 
-extern MaterielMenuPokerSelectcard data_ov016_02186e34;    /* gMaterielMenu_POKER_SELECT_CARD */
+extern MaterielMenuPokerSelectcard gMaterielMenu_POKER_SELECTCARD;

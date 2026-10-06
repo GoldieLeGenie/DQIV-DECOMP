@@ -1012,7 +1012,7 @@ THUMB short status::HaveStatusInfo::getChangeDefence(unsigned int itemIndex)
     return result;
 }
 
-THUMB bool status::HaveStatusInfo::setNearDeath()
+THUMB int status::HaveStatusInfo::setNearDeath()
 {
     int hp = this->getHp();
     if (hp == 0)

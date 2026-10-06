@@ -26,7 +26,7 @@ THUMB void TownMenu_MESSAGE::menuSetup()
 THUMB void TownMenu_MESSAGE::menuExecute()
 {
     if (ynExec_ == 0) {
-        func_02051a60(&yesNoItem_, yesNoItemData, 1, 1, 1);
+        yesNoItem_.setMenuItem(yesNoItemData, 1, 1, 1);
     }
     if (noClose_ != 0) {
         Data020f6340* const busy = &data_020f6340;

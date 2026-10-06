@@ -5,6 +5,47 @@
 #include "main/menu/MaterielMenuPlayerControl.hpp"
 #include "main/menu/MaterielMenu_SAVE.hpp"
 #include "main/menu/MaterielMenu_NameEdit.hpp"
+#include "main/profile/Profile.hpp"
+
+// surechigai menus whose code (ov026) is not decompiled yet, named after their menuSetup address
+struct UnkMaterielMenu_02189360 : menu::MenuBase
+{
+    int unk_1c;                         /* 0x1C */
+    int unk_20;                         /* 0x20 */
+    menu::MenuItem menuItem_;           /* 0x24 */
+    CursorMoveGridLoop navigator_;     /* 0x88 */
+
+    virtual void menuSetup();
+    virtual void menuExecute();
+    virtual void menuDraw();
+    virtual void menuUpdate();
+};
+
+struct UnkMaterielMenu_02189630 : menu::MenuBase
+{
+    int unk_1c;                         /* 0x1C */
+    menu::MenuItem menuItem_;           /* 0x20 */
+    CursorMoveGridLoop navigator_;     /* 0x84 */
+
+    virtual void menuSetup();
+    virtual void menuExecute();
+    virtual void menuDraw();
+    virtual void menuUpdate();
+};
+
+struct UnkMaterielMenu_02189a80 : menu::MenuBase
+{
+    int unk_1c;                         /* 0x1C */
+    int unk_20;                         /* 0x20 */
+    int unk_24;                         /* 0x24 */
+    menu::MenuItem menuItem_;           /* 0x28 */
+    CursorMoveGridLoop navigator_;     /* 0x8C */
+
+    virtual void menuSetup();
+    virtual void menuExecute();
+    virtual void menuDraw();
+    virtual void menuUpdate();
+};
 
 struct MaterielMenu_SURECHIGAI_MAKE_TAISHI : menu::MenuBase
 {
@@ -34,18 +75,16 @@ struct MaterielMenu_SURECHIGAI_ROOT : menu::MenuBase
     void selectCommand();
 };
 
-extern menu::MenuBase data_ov016_02185ca0;                          /* surechigai list menu, not decompiled yet */
-extern menu::MenuBase data_ov016_02185d30;                          /* surechigai list menu, not decompiled yet */
-extern MaterielMenu_SURECHIGAI_ROOT data_ov016_02185dc4;
-extern MaterielMenu_SURECHIGAI_MAKE_TAISHI data_ov016_02185e58;
+extern UnkMaterielMenu_02189630 gUnkMaterielMenu_02189630;                /* surechigai list menu */
+extern UnkMaterielMenu_02189360 gUnkMaterielMenu_02189360;                /* surechigai list menu */
+extern MaterielMenu_SURECHIGAI_ROOT gMaterielMenu_SURECHIGAI_ROOT;
+extern MaterielMenu_SURECHIGAI_MAKE_TAISHI gMaterielMenu_SURECHIGAI_SELECT_OBJECT;
+extern UnkMaterielMenu_02189a80 gUnkMaterielMenu_02189a80;                /* surechigai menu opened by MAKE_TAISHI */
 
 extern "C" {
     int func_02038140(void* obj);
     int func_0203a364(void* mgr);
-    int func_0203a388(void* mgr);
     void func_0203aa00(void* mgr);
     void func_0203aa58(void* mgr);
     void func_0203aaac(void* mgr);
-    void func_ov016_0216fe58(void);
-    void func_ov016_0216fe9c(int mode, int active, int page, int value);
 }

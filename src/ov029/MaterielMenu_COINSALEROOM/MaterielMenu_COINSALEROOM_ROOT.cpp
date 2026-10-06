@@ -3,6 +3,8 @@
 #include "main/text/TextAPI.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/status/StoryStatus.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenu_COINSALEROOM_ROOT::menuSetup()
 {
@@ -27,13 +29,13 @@ THUMB void MaterielMenu_COINSALEROOM_ROOT::menuSetup()
 
 THUMB void MaterielMenu_COINSALEROOM_ROOT::menuExecute()
 {
-    func_ov016_02177a40(&menuItem_, oldActive_, 6);
+    MenuTemplate_materiel::MATERIEL_COIN_SELECT(&menuItem_, oldActive_, 6);
 }
 
 THUMB void MaterielMenu_COINSALEROOM_ROOT::menuDraw()
 {
     if (data_020ed1bc.isMessageWAITPROG()) {
-        func_ov016_0216fd34(coin_, 1);
+        unkfunc_0216fd34(coin_, 1);
         if (blink_ != 0) {
             if (blinkCount_ > 15) {
                 menuItem_.drawActive();
@@ -137,9 +139,9 @@ THUMB void MaterielMenu_COINSALEROOM_ROOT::buyCoinUpdata()
                 }
                 closeMessage();
                 close();
-                data_ov016_021859e0.coin_ = coin_;
-                data_ov016_021859e0.coinPrice_ = coinPrice_;
-                data_ov016_021859e0.open();
+                gMaterielMenu_COINSALEROOM_BUY.coin_ = coin_;
+                gMaterielMenu_COINSALEROOM_BUY.coinPrice_ = coinPrice_;
+                gMaterielMenu_COINSALEROOM_BUY.open();
             }
             if (result == 3) {
                 cancelBuyCoin();

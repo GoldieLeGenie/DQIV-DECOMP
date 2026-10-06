@@ -300,10 +300,10 @@ ARM void TownStageManager::setEffect(TownMapEffect::EFFECT_TYPE type)
 
 ARM bool TownStageManager::addBoxCollision(dss::Fix32Vector3& center, dss::Fix32Vector3& vec, int& extraId)
 {
-    switch (stage_.addBoxCollistion(center, vec, &extraId, (int)&allocFlag_)) {
-    case 0:
-    case 1:
-    case 2:
+    switch (stage_.addBoxCollistion(center, vec, extraId, allocFlag_)) {
+    case MEMORY_ALLOC_ERROR:
+    case ALLOC_MAX_OVER_ERROR:
+    case NUM_MAX_OVER_ERROR:
         return false;
     }
     return true;
@@ -325,7 +325,7 @@ ARM dss::Fix32Vector3 TownStageManager::getSurfaceDir(int surface)
 {
     dss::Fix32Vector3 ret;
     COLL_POLY poly;
-    stage_.collGetPoly(func_02040b28((COLL_HEADER*)stage_.m_fld.m_coll, surface, 0), &poly);
+    stage_.collGetPoly(coll_GetPolyNoBySurface((COLL_HEADER*)stage_.m_fld.m_coll, surface, 0), &poly);
     ret = FldStage::getFx32Vector3(poly.normal);
     return ret;
 }

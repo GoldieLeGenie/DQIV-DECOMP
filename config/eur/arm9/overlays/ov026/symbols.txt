@@ -20,8 +20,8 @@ _ZN28MaterielMenu_SURECHIGAI_ROOT11menuExecuteEv kind:function(thumb,size=0x10) 
 _ZN28MaterielMenu_SURECHIGAI_ROOT8menuDrawEv kind:function(thumb,size=0x20) addr:0x02189ee4
 _ZN28MaterielMenu_SURECHIGAI_ROOT10menuUpdateEv kind:function(thumb,size=0x184) addr:0x02189f04
 _ZN28MaterielMenu_SURECHIGAI_ROOT13selectCommandEv kind:function(thumb,size=0xf8) addr:0x0218a088
-data_ov026_0218a1a8 kind:data(any) addr:0x0218a1a8
-data_ov026_0218a1c4 kind:data(any) addr:0x0218a1c4
+_ZTV24UnkMaterielMenu_02189360 kind:data(byte[28]) addr:0x0218a1a0
+_ZTV24UnkMaterielMenu_02189630 kind:data(byte[28]) addr:0x0218a1bc
 _ZTV35MaterielMenu_SURECHIGAI_MAKE_TAISHI kind:data(byte[28]) addr:0x0218a1d8
-data_ov026_0218a1fc kind:data(any) addr:0x0218a1fc
+_ZTV24UnkMaterielMenu_02189a80 kind:data(byte[28]) addr:0x0218a1f4
 _ZTV28MaterielMenu_SURECHIGAI_ROOT kind:data(byte[28]) addr:0x0218a210

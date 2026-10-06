@@ -63,10 +63,5 @@ struct MaterielMenu_SAVE : menu::MenuBase
     void setTalkYesNoMessage2(int messageID1, int messageID2, bool yes);
 };
 
-extern MaterielMenu_SAVE data_ov016_02186728;               /* gMaterielMenu_SAVE */
+extern MaterielMenu_SAVE gMaterielMenu_SAVE;
 
-extern "C" {
-    void func_ov016_0216ff18(void);
-    void func_ov016_02177c00(int x, int y, int w, int h, int color);
-    void func_ov016_0217800c(int index, char* name, int chapter, int level, int town, int time, int y, int flag);
-}

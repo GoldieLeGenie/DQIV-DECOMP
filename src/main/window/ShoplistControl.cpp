@@ -45,7 +45,7 @@ ARM void window::ShoplistControl::execute()
             break;
         case TOWMMAP_WAIT_CLOSE:
             if (imageMap_->isClose()) {
-                data_ov016_02187b08.unkfunc_02178aa8(0);
+                gUnkTownMenu_02178a58.unkfunc_02178aa8(0);
                 state_ = TOWMMAP_CLOSE;
             }
             break;
@@ -76,15 +76,15 @@ ARM void window::ShoplistControl::execute()
 
 ARM void window::ShoplistControl::openList()
 {
-    data_ov016_02187b08.unkfunc_02178aa8(2);
+    gUnkTownMenu_02178a58.unkfunc_02178aa8(2);
     for (int i = 0; i < 6; i++) {
-        if (data_ov016_02187b48.unkfunc_02177250(i)) {
+        if (gTownShopMenu.unkfunc_02177250(i)) {
             if (prev_ == PHASE_MAP) {
                 imageMap_->openBlack();
             } else {
                 imageMap_->open();
             }
-            data_ov016_02187b48.open();
+            gTownShopMenu.open();
             return;
         }
     }
@@ -93,13 +93,13 @@ ARM void window::ShoplistControl::openList()
 ARM void window::ShoplistControl::closeList()
 {
     imageMap_->close();
-    data_ov016_02187b48.close();
+    gTownShopMenu.close();
     setupIcon();
 }
 
 ARM int window::ShoplistControl::unkfunc_0202a2d8()
 {
-    return data_ov016_02187b48.unkfunc_02177300();
+    return gTownShopMenu.unkfunc_02177300();
 }
 
 ARM void window::ShoplistControl::closeListMessage()

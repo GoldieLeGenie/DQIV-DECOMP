@@ -4,6 +4,7 @@
 #include "main/status/StoryStatus.hpp"
 #include "main/global/Global.hpp"
 #include "main/dss/UnkSprite2D.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 
 THUMB void MaterielMenuExtraChapterTitle::menuSetup()
@@ -31,10 +32,10 @@ THUMB void MaterielMenuExtraChapterTitle::menuDraw()
 {
     if (m_mode != 0) {
         if (m_chapter == 0 && m_chapter_end == 1) {
-            func_ov016_0216fe50(m_chapter, m_chapter_end);
+            unkfunc_0216fe50(m_chapter, m_chapter_end);
         } else {
             unkfunc_020848a8();
-            func_ov016_0216fe50(m_chapter, m_chapter_end);
+            unkfunc_0216fe50(m_chapter, m_chapter_end);
         }
 
         switch (m_fade) {

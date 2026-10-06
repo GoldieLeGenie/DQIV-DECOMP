@@ -9,9 +9,9 @@
 THUMB void MaterielMenu_SHOP_VALUE::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    MaterielMenuPlayerControl* control = func_ov016_0216ff2c();
+    MaterielMenuPlayerControl* control = MaterielMenuPlayerControl::getSingleton();
     activeItem_ = control->activeItem_ + control->activeItemPage_ * 6;
-    activeChara_ = func_ov016_0216ff2c()->activeChara_;
+    activeChara_ = MaterielMenuPlayerControl::getSingleton()->activeChara_;
     MenuSoundManager::getSingleton()->initialize();
     int iname;
     if (activeChara_ == status::g_Party.getCount()) {
@@ -47,14 +47,14 @@ THUMB void MaterielMenu_SHOP_VALUE::menuSetup()
             }
             data_020ed1bc.addMessageWAITKEY();
             close();
-            data_ov016_02185c10.open();
-            data_ov016_02185c10.mode_ = 1;
+            gMaterielMenu_SHOP_ROOT.open();
+            gMaterielMenu_SHOP_ROOT.mode_ = 1;
         } else {
             MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->sellNG(false, mes);
             showMessage(mes[0], mes[1], mes[2]);
             data_020ed1bc.setMessageLastCursor(true);
             close();
-            data_ov016_02186d28.open();
+            gMaterielMenu_SHOP_WHO_SELL.open();
         }
         break;
     }
@@ -93,14 +93,14 @@ THUMB void MaterielMenu_SHOP_VALUE::menuUpdate()
             data_020ed1bc.addMessageNOWAIT(mes[1]);
             data_020ed1bc.addMessageWAITKEY();
             close();
-            data_ov016_02185c10.open();
-            data_ov016_02185c10.mode_ = 1;
+            gMaterielMenu_SHOP_ROOT.open();
+            gMaterielMenu_SHOP_ROOT.mode_ = 1;
         } else {
             MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->sellCurse(false, mes);
             showMessage(mes[0], mes[1], -1);
             close();
-            data_ov016_02186d28.open();
-            data_ov016_02186d28.messageCurse_ = 1;
+            gMaterielMenu_SHOP_WHO_SELL.open();
+            gMaterielMenu_SHOP_WHO_SELL.messageCurse_ = 1;
         }
     }
 }
@@ -139,16 +139,16 @@ THUMB void MaterielMenu_SHOP_VALUE::selectNo()
             MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->celectNo(true, mes);
             showMessage(mes[0], -1, -1);
             data_020ed1bc.addMessageNOWAIT(mes[1]);
-            data_ov016_02185c10.open();
-            data_ov016_02185c10.mode_ = 1;
+            gMaterielMenu_SHOP_ROOT.open();
+            gMaterielMenu_SHOP_ROOT.mode_ = 1;
             data_020ed1bc.addMessageWAITKEY();
         } else {
             MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->celectNo(false, mes);
             showMessage(mes[0], mes[1], -1);
             data_020ed1bc.setMessageLastCursor(true);
             close();
-            data_ov016_02186d28.open();
-            data_ov016_02186d28.return_ = 1;
+            gMaterielMenu_SHOP_WHO_SELL.open();
+            gMaterielMenu_SHOP_WHO_SELL.return_ = 1;
         }
         break;
     case 1:
@@ -157,8 +157,8 @@ THUMB void MaterielMenu_SHOP_VALUE::selectNo()
         close();
         data_020ed1bc.openMessageForTALK();
         data_020ed1bc.addMessageNOWAIT(MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->cancel());
-        data_ov016_02185c10.open();
-        data_ov016_02185c10.mode_ = 1;
+        gMaterielMenu_SHOP_ROOT.open();
+        gMaterielMenu_SHOP_ROOT.mode_ = 1;
         data_020ed1bc.addMessageWAITKEY();
         break;
     }
@@ -182,15 +182,15 @@ THUMB void MaterielMenu_SHOP_VALUE::checkHaveMoney()
             showMessage(mes[0], -1, -1);
             data_020ed1bc.addMessageNOWAIT(mes[1]);
             close();
-            data_ov016_02185c10.open();
-            data_ov016_02185c10.mode_ = 1;
+            gMaterielMenu_SHOP_ROOT.open();
+            gMaterielMenu_SHOP_ROOT.mode_ = 1;
             data_020ed1bc.addMessageWAITKEY();
         } else {
             MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->sellEnd(false, mes);
             showMessage(mes[0], mes[1], -1);
             data_020ed1bc.setMessageLastCursor(true);
             close();
-            data_ov016_02186d28.open();
+            gMaterielMenu_SHOP_WHO_SELL.open();
         }
         return;
     }
@@ -215,8 +215,8 @@ THUMB void MaterielMenu_SHOP_VALUE::checkHaveMoney()
     data_020ed1bc.addMessageNOWAIT(mes[2]);
     data_020ed1bc.addMessageWAITKEY();
     close();
-    data_ov016_02185c10.open();
-    data_ov016_02185c10.mode_ = 1;
+    gMaterielMenu_SHOP_ROOT.open();
+    gMaterielMenu_SHOP_ROOT.mode_ = 1;
 }
 
 THUMB bool MaterielMenu_SHOP_VALUE::checkItemMoney()

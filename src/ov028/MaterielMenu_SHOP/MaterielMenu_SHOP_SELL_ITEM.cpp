@@ -3,6 +3,8 @@
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/UseItem.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 static inline int getItem(status::HaveItem* haveItem, int index)
 {
@@ -15,7 +17,7 @@ THUMB void MaterielMenu_SHOP_SELL_ITEM::menuSetup()
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem3_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH, menu::MenuItem::CURSORTYPE_NONE);
     menuItem2_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
-    activeChara_ = func_ov016_0216ff2c()->activeChara_;
+    activeChara_ = MaterielMenuPlayerControl::getSingleton()->activeChara_;
     pageStart_ = 0;
     int i = 0;
     status::HaveItem& haveItem = status::g_Party.getPlayerStatus(activeChara_)->haveStatusInfo_.haveItem_;
@@ -30,8 +32,8 @@ THUMB void MaterielMenu_SHOP_SELL_ITEM::menuSetup()
         itemIndex_ = 0;
     }
     int itemIndex = itemIndex_;
-    func_ov016_0216ff2c()->activeItem_ = itemIndex;
-    func_ov016_0216ff2c()->activeItemPage_ = 0;
+    MaterielMenuPlayerControl::getSingleton()->activeItem_ = itemIndex;
+    MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = 0;
     navigator_.setupBase();
 }
 
@@ -47,19 +49,19 @@ THUMB void MaterielMenu_SHOP_SELL_ITEM::menuExecute()
         itemCount = haveItem.getCount();
     }
     func_0201e6c4(&menuItem_, itemCount, itemIndex_);
-    func_ov016_02177a98(&menuItem2_);
+    MenuTemplate_materiel::MATERIEL_CANCEL(&menuItem2_);
     if (haveItem.getCount() > 6) {
-        func_ov016_02177aac(&menuItem3_);
+        MenuTemplate_materiel::shopPlayerArrow(&menuItem3_);
     }
 }
 
 THUMB void MaterielMenu_SHOP_SELL_ITEM::menuDraw()
 {
     if (data_020ed1bc.isOpen()) {
-        func_ov016_0216fc58();
+        unkfunc_0216fc58();
         return;
     }
-    func_ov016_0216fbbc();
+    unkfunc_0216fbbc();
     menuItem3_.drawActive();
     menuItem_.drawActive();
 }
@@ -74,7 +76,7 @@ THUMB void MaterielMenu_SHOP_SELL_ITEM::menuUpdate()
     }
     if (MenuUpdate_Assist::isCancel(menuItem2_)) {
         close();
-        data_ov016_02186d28.open();
+        gMaterielMenu_SHOP_WHO_SELL.open();
     }
     navigator_.setup(2, 3, status::g_Party.getPlayerStatus(activeChara_)->haveStatusInfo_.haveItem_.getCount());
     int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
@@ -83,16 +85,16 @@ THUMB void MaterielMenu_SHOP_SELL_ITEM::menuUpdate()
             int itemID = getItem(&status::g_Party.getPlayerStatus(activeChara_)->haveStatusInfo_.haveItem_, itemIndex_ + pageStart_ * 6);
             MaterielMenu_SHOP_MANAGER::getSingleton()->setSellQuantity(1);
             close();
-            data_ov016_02185968.sellType_ = status::UseItem::getSellType(itemID);
-            data_ov016_02185968.open();
+            gMaterielMenu_SHOP_VALUE.sellType_ = status::UseItem::getSellType(itemID);
+            gMaterielMenu_SHOP_VALUE.open();
             return;
         }
         itemIndex_ = menuItem_.active_;
         pageStart_ = navigator_.getPageNo();
         int itemIndex = itemIndex_;
-        func_ov016_0216ff2c()->activeItem_ = itemIndex;
+        MaterielMenuPlayerControl::getSingleton()->activeItem_ = itemIndex;
         int pageStart = pageStart_;
-        func_ov016_0216ff2c()->activeItemPage_ = pageStart;
+        MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = pageStart;
         redraw_ = 1;
         return;
     }
@@ -101,9 +103,9 @@ THUMB void MaterielMenu_SHOP_SELL_ITEM::menuUpdate()
         itemIndex_ = menuItem_.active_ = active;
         pageStart_ = navigator_.getPageNo();
         int itemIndex = itemIndex_;
-        func_ov016_0216ff2c()->activeItem_ = itemIndex;
+        MaterielMenuPlayerControl::getSingleton()->activeItem_ = itemIndex;
         int pageStart = pageStart_;
-        func_ov016_0216ff2c()->activeItemPage_ = pageStart;
+        MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = pageStart;
         redraw_ = 1;
     }
 }

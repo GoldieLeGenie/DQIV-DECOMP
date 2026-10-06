@@ -51,11 +51,15 @@ extern "C" {
     UnkManager_0202adc4* func_0202adc4(void);                                 
     void func_0202aea4(UnkManager_0202adc4* self);
     void func_0202aec4(UnkManager_0202adc4* self, int type);
+    void func_0202ace4(UnkManager_0202adc4* self);
+    void func_0202adb4(UnkManager_0202adc4* self);
+    void func_0202ad28(UnkManager_0202adc4* self);
+    void func_0202ad98(UnkManager_0202adc4* self);
+    int  func_0202af54(UnkManager_0202adc4* self);
     void func_0208214c(void* obj, int a, int b);
     void func_02082144(void* obj, int a);
     void func_02030278(void* obj, int a);
     void func_02049b94(void);
-    void func_ov001_02129bfc(FieldPlayerManager* self);
 }
 extern char data_020c1328[8];
 extern char data_0211c4f0[];

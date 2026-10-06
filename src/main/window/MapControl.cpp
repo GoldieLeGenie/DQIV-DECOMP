@@ -83,13 +83,13 @@ ARM void window::MapControl::registImageMap(ImageMap* imageMap)
 ARM void window::MapControl::openMap()
 {
     imageMap_->open();
-    data_ov016_02187b08.unkfunc_02178aa8(1);
+    gUnkTownMenu_02178a58.unkfunc_02178aa8(1);
 }
 
 ARM void window::MapControl::closeMap()
 {
     imageMap_->close();
-    data_ov016_02187b08.unkfunc_02178aa8(0);
+    gUnkTownMenu_02178a58.unkfunc_02178aa8(0);
     setupIcon();
 }
 
@@ -102,7 +102,7 @@ ARM void window::MapControl::showMapMessage()
 
 ARM void window::MapControl::closeMapMessage()
 {
-    data_ov016_02187b08.unkfunc_02178aa8(1);
+    gUnkTownMenu_02178a58.unkfunc_02178aa8(1);
 }
 
 ARM int window::MapControl::getPhase()

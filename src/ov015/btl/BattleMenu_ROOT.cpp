@@ -45,14 +45,14 @@ THUMB void BattleMenu_ROOT::menuExecute()
     }
     int count = unk_f8 ? 2 : 4;
     navigator_.setup(2, 2, count);
-    func_ov015_0216c5d8(&menuItem_, count, menuItem_.active_);
-    func_ov015_0216c734(&cancelItem_);
+    MenuTemplate_battle::BATTLE_MENUICON2x2(&menuItem_, count, menuItem_.active_);
+    MenuTemplate_battle::BATTLE_RECT_ENEMY(&cancelItem_);
 }
 
 THUMB void BattleMenu_ROOT::menuDraw()
 {
     if (unk_f4 == 0) {
-        func_ov015_0216b9c8(unk_f8);
+        unkfunc_0216b9c8(unk_f8);
         menuItem_.drawActive();
     }
 }

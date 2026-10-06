@@ -3,6 +3,7 @@
 #include "main/object/GameMonster.hpp"
 #include "main/object/PaletteAnimationObject.hpp"
 #include "main/data/DataObject.hpp"
+#include "main/btl/MonsterData.hpp"
 
 
 namespace btl {
@@ -70,4 +71,3 @@ namespace btl {
     };
 }
 
-int getMonsterWidthInt(int monsterIndex);

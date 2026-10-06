@@ -2,9 +2,10 @@
 #include "globaldefs.h"
 #include "main/menu/MenuBase.hpp"
 #include "ov015/btl/BattleMenuPlayerControl.hpp"
-
-
-struct BattleMonsterNamePlate;
+#include "ov015/btl/BattleMonsterNamePlate.hpp"
+#include "ov015/btl/MenuTemplate_battle.hpp"
+#include "ov015/btl/UnkBattleMenuDraw_0216afc0.hpp"
+#include "ov015/btl/UnkBattleMenuDraw_0216ba54.hpp"
 
 struct BattleMenu_NGMESSAGE : menu::MenuBase
 {
@@ -317,6 +318,48 @@ struct BattleMenu_MAGIC : menu::MenuBase
     void unkfunc_0216ded8();
 };
 
+struct BattleMenu_StadiumAbort : menu::MenuBase
+{
+    virtual void menuSetup();
+    virtual void menuExecute();
+    virtual void menuDraw();
+    virtual void menuUpdate();
+};
+
+// use / equip choice for an equipment item, opened from the item menu
+struct UnkBattleMenu_0216cf44 : menu::MenuBase
+{
+    menu::MenuItem menuItem_;           /* 0x1C */
+    menu::MenuItem cancelItem_;         /* 0x80 */
+    menu::MenuItem unk_e4;              /* 0xE4 */
+    int unk_148;                        /* 0x148 */
+    int unk_14c;                        /* 0x14C */
+    int unk_150;                        /* 0x150 */
+    int unk_154;                        /* 0x154 */
+
+    virtual void menuSetup();
+    virtual void menuExecute();
+    virtual void menuDraw();
+    virtual void menuUpdate();
+    int unkfunc_0216d0c0();
+    void unkfunc_0216d0ec();
+    void unkfunc_0216d0f0();
+    void selectUseItem();
+    void selectEquip();
+    void unkfunc_0216d488();
+};
+
+// test menu with one item
+struct UnkBattleMenu_0216e270 : menu::MenuBase
+{
+    menu::MenuItem menuItem_;           /* 0x1C */
+
+    virtual void menuSetup();
+    virtual void menuExecute();
+    virtual void menuDraw();
+    virtual void menuUpdate();
+};
+
 void ChangeParty(BattleMenu_ARRAY_ALL* self);
 
 extern BattleMenu_NGMESSAGE gBattleMenu_NGMESSAGE;          /* 0x02179758 */
@@ -334,46 +377,8 @@ extern BattleMenu_ARRAY_CHANGE gBattleMenu_ARRAY_CHANGE;    /* 0x0217a464 */
 extern BattleMenu_TACTICSMENU gBattleMenu_TACTICSMENU;      /* 0x0217a80c */
 extern BattleMenu_MAGIC gBattleMenu_MAGIC;                  /* 0x0217aa0c */
 extern BattleMenuJudge gBattleMenuJudge;                    /* 0x021796b4 */
-extern menu::MenuBase data_ov015_02179c10;                  /* item menu (not identified yet ?) */
 extern BattleMenu_ITEM gBattleMenu_ITEM;                    /* 0x02179d68 */
+extern BattleMenu_StadiumAbort gBattleMenu_StadiumAbort;    /* 0x0217973c */
+extern UnkBattleMenu_0216cf44 gUnkBattleMenu_0216cf44;      /* 0x02179c10 */
+extern UnkBattleMenu_0216e270 gUnkBattleMenu_0216e270;      /* 0x021797b0 */
 
-extern "C" {
-    /* battle_monster_nameplate.cpp */
-    BattleMonsterNamePlate* func_ov015_0216aa2c(void);
-    void func_ov015_0216aa34(BattleMonsterNamePlate* self);
-    void func_ov015_0216aa54(BattleMonsterNamePlate* self);
-    void func_ov015_0216ad40(BattleMonsterNamePlate* self, int group);
-
-    /* menutemplate_battle.cpp */
-    void func_ov015_0216c468(int chara);
-    void func_ov015_0216c5c4(menu::MenuItem* menuItem);
-    void func_ov015_0216c5d8(menu::MenuItem* menuItem, int count, int active);
-    void func_ov015_0216c63c(menu::MenuItem* menuItem, int count);
-    void func_ov015_0216c524(int* actions, int count, int chara);
-    void func_ov015_0216c60c(menu::MenuItem* menuItem, int count);
-    void func_ov015_0216c620(menu::MenuItem* menuItem, int active);
-    void func_ov015_0216c650(menu::MenuItem* menuItem, int active);
-    void func_ov015_0216c66c(menu::MenuItem* menuItem, int active, int count);
-    void func_ov015_0216c688(menu::MenuItem* menuItem, int active, int count);
-    void func_ov015_0216c6a4(menu::MenuItem* menuItem, int active, int count);
-    void func_ov015_0216c6c0(menu::MenuItem* menuItem, int active, int count);
-    void func_ov015_0216c6dc(menu::MenuItem* menuItem, int active, TOUCHRECT* rect, int count);
-    void func_ov015_0216c734(menu::MenuItem* menuItem);
-
-    /* draw helpers */
-    void func_ov015_0216b9c8(int flag);
-    void func_ov015_0216b9e8(int flag);
-    void func_ov015_0216ba54(int group);
-    void func_ov015_0216ba60(int* items, int count, int page);
-    void func_ov015_0216baf4(int group);
-    void func_ov015_0216bbc0(int group);
-    void func_ov015_0216bbdc(void);
-    void func_ov015_0216bc84(void);
-    void func_ov015_0216bae8(void);
-    void func_ov015_0216bb00(int* actions, int count, int page);
-    void func_ov015_0216bbd0(void);
-    void func_ov015_0216bd94(void);
-    void func_ov015_0216bdd4(void);
-    void func_ov015_0216be58(int* list, int count, int page);
-    void func_ov015_0216bec8(int* list, int count, int* order, int orderCount);
-}

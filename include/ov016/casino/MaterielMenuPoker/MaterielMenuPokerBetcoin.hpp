@@ -19,4 +19,4 @@ struct MaterielMenuPokerBetcoin : menu::MenuBase {
     void showMessage(int mes);
 };
 
-extern MaterielMenuPokerBetcoin data_ov016_02186324;       /* gMaterielMenu_POKER_BETCOIN */
+extern MaterielMenuPokerBetcoin gMaterielMenu_POKER_BETCOIN;

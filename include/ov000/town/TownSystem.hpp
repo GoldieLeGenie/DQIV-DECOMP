@@ -4,6 +4,7 @@
 #include "main/global/StageLink.hpp"
 #include "main/dss/Render.hpp"
 #include "main/status/ExcelParam.hpp"
+#include "main/cmn/NonBattleActionManager.hpp"
 
 struct TownSystem;
 struct TownStageManager;
@@ -13,22 +14,8 @@ struct UnkManager_0202adc4;
 namespace encount { struct Encount; }
 
 extern "C" {
-    void func_ov000_02142858(status::ExcelParam* param);                   // ExcelParam::setupTown
-    void func_ov000_021428b4(status::ExcelParam* param);                   // ExcelParam::setupTownInitialize
-    void func_ov000_021428b8(status::ExcelParam* param);                   // ExcelParam::cleanupTownInitialize
-    void func_ov000_02142898(status::ExcelParam* param);                   // ExcelParam::cleanupTown
-    void* func_ov000_02143030(void);                                       // TownOpeningManager::getSingleton
-    void func_ov000_02143084(void* self);                                  // TownOpeningManager::setup
-    void func_ov000_02143600(void* self);                                  // TownOpeningManager::cleanup
-    void func_ov000_02143978(void* self);                                  // TownOpeningManager::execute
-    void func_ov000_021436b0(void* self);                                  // TownOpeningManager::draw
     void func_02049ba4(void);
     void func_02049eb4(void);
-    void func_0202ace4(UnkManager_0202adc4* self);
-    void func_0202adb4(UnkManager_0202adc4* self);
-    void func_0202ad28(UnkManager_0202adc4* self);
-    void func_0202ad98(UnkManager_0202adc4* self);
-    int  func_0202af54(UnkManager_0202adc4* self);
 }
 
 struct TownSystem {

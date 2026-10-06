@@ -26,7 +26,7 @@ ARM void CasinoPart::initialize()
     func_02087590((int)&OVERLAY_9_ID);
     CasinoSystem::unkfunc_021227cc();
     func_02087590((int)&OVERLAY_16_ID);
-    func_ov016_0217ad90();
+    ov016_entry();
     CasinoSystem::getSingleton()->initialize();
     func_0206dd70(1);
     OS_Wait();

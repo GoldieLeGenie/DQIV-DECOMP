@@ -44,12 +44,7 @@ namespace MenuAPI {
 }
 
 extern menu::MenuBase data_020ed068;            /* gCommonMenu_APITEST */
-extern menu::MenuBase data_ov016_02188ba8;      /* gTownMenu_MAGIC_ROOT */
-extern menu::MenuBase data_ov016_02188040;      /* town ITEM menu (DS-only split of gTownMenuItemSelectChara) */
-extern menu::MenuBase data_ov016_02187d50;      /* gTownMenuItemSelectChara */
-extern menu::MenuBase data_ov015_0217973c;      /* BattleMenu_StadiumAbort */
 
 extern "C" {
     void func_02081264(unsigned short backDrop);
-    void func_ov015_0216cf10(menu::MenuBase* menu);
 }

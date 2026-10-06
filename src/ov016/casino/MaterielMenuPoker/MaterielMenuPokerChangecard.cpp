@@ -2,7 +2,7 @@
 #include "ov016/casino/MaterielMenuPoker/MaterielMenuPokerBetcoin.hpp"
 #include "ov016/casino/MaterielMenuPoker/MaterielMenuPokerHiandlow.hpp"
 #include "ov016/casino/MaterielMenuPoker/MaterielMenuPokerSelectcard.hpp"
-#include "ov016/MenuTemplate_materiel.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
 #include "ov016/MaterielMenu_WINDOW_MANAGER/MaterielMenu_WINDOW_MANAGER.hpp"
 #include "ov009/casino/PokerManager.hpp"
 #include "ov009/casino/CasinoPokerDraw.hpp"
@@ -13,6 +13,7 @@
 #include "main/text/TextAPI.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "main/dss/Pad.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_02177bac.hpp"
 
 THUMB void MaterielMenuPokerChangecard::menuSetup()
 {
@@ -386,14 +387,14 @@ THUMB void MaterielMenuPokerChangecard::pokerReverseCard(bool doubleupNext)
             if (doubleupNext) {
                 close();
                 if (PokerManager::getSingleton()->groundSlum_) {
-                    data_ov016_0218665c.open();
+                    gMaterielMenu_POKER_HIANDLOW.open();
                 } else {
-                    data_ov016_02186e34.open();
+                    gMaterielMenu_POKER_SELECTCARD.open();
                 }
                 return;
             }
             close();
-            data_ov016_02186324.open();
+            gMaterielMenu_POKER_BETCOIN.open();
         }
     }
 }

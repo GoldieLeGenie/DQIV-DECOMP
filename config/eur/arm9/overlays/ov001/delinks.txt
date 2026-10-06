@@ -17,6 +17,54 @@ src/ov001/fld/FieldActionCalculate.cpp:
     .data start:0x021606d4 end:0x02160758
     .bss start:0x02160e78 end:0x02160e84
 
+src/ov001/fld/FieldCarrierDraw.cpp:
+    complete
+    .text start:0x02122b00 end:0x02122e80
+    .data start:0x02160758 end:0x021607dc
+
+src/ov001/ov001_entry.cpp:
+    complete
+    .text start:0x02122e80 end:0x02122e84
+
+src/ov001/fld/FieldData.cpp:
+    complete
+    .text start:0x02122e84 end:0x02124618
+    .rodata start:0x0212db84 end:0x0214e0a4
+    .data start:0x021607dc end:0x021608e8
+    .bss start:0x02160e84 end:0x02160e88
+
+src/ov001/fld/WorldMap.cpp:
+    complete
+    .text start:0x02124618 end:0x021248f0
+
+src/ov001/fld/FieldPlayer.cpp:
+    complete
+    .text start:0x021248f0 end:0x0212697c
+    .init start:0x0216037c end:0x0216041c
+    .ctor start:0x021606a8 end:0x021606ac
+    .data start:0x021608e8 end:0x02160a08
+    .bss start:0x02160e88 end:0x02160e90
+
+src/ov001/fld/FieldParty.cpp:
+    complete
+    .text start:0x0212697c end:0x02127444
+    .data start:0x02160a08 end:0x02160a10
+    .bss start:0x02160e90 end:0x02160e98
+
+src/ov001/fld/FieldSystem.cpp:
+    complete
+    .text start:0x02127444 end:0x02127a68
+    .data start:0x02160a10 end:0x02160a20
+    .bss start:0x02160e98 end:0x021614b8
+
+src/ov001/fld/FieldPlayerManager.cpp:
+    complete
+    .text start:0x02127a68 end:0x0212a6e8
+    .init start:0x0216041c end:0x02160494
+    .ctor start:0x021606ac end:0x021606b0
+    .data start:0x02160a20 end:0x02160a64
+    .bss start:0x021614b8 end:0x02162084
+
 src/ov001/Commands/FieldCommand.cpp:
     complete
     .text start:0x0212d954 end:0x0212db84
@@ -25,6 +73,11 @@ src/ov001/Commands/FieldCommand.cpp:
     .data start:0x02160de4 end:0x02160e4c
     .bss start:0x02164a20 end:0x02164a60
 
+src/ov001/window/FieldImageMap.cpp:
+    complete
+    .text start:0x0212a6e8 end:0x0212aa98
+    .data start:0x02160a64 end:0x02160a8c
+
 src/ov001/window/FieldWindowSystem.cpp:
     complete
     .text start:0x0212aa98 end:0x0212abdc
@@ -32,3 +85,62 @@ src/ov001/window/FieldWindowSystem.cpp:
     .ctor start:0x021606b0 end:0x021606b4
     .bss start:0x02162084 end:0x02162614
 
+src/ov001/fld/FieldPartyDraw.cpp:
+    complete
+    .text start:0x0212abdc end:0x0212b920
+    .rodata start:0x0214e0a4 end:0x0214e0a8
+    .data start:0x02160a8c end:0x02160aa0
+
+src/ov001/fld/FieldStage.cpp:
+    complete
+    .text start:0x0212b920 end:0x0212c33c
+    .data start:0x02160aa0 end:0x02160abc
+    .bss start:0x02162614 end:0x02164810
+
+src/ov001/fld/SpriteShipCharacter.cpp:
+    complete
+    .text start:0x0212c33c end:0x0212c500
+    .data start:0x02160abc end:0x02160ae0
+
+src/ov001/fld/FieldSymbolManager.cpp:
+    complete
+    .text start:0x0212c500 end:0x0212c878
+    .bss start:0x02164810 end:0x0216498c
+
+src/ov001/fld/FieldRectCollManager.cpp:
+    complete
+    .text start:0x0212d6c4 end:0x0212d954
+    .bss start:0x0216498c end:0x02164a20
+
+src/ov001/status/ExcelParamField.cpp:
+    complete
+    .text start:0x0212d1c8 end:0x0212d214
+    .rodata start:0x0215e318 end:0x0216037c
+
+src/ov001/window/UnkFieldMapSprite_0212c884.cpp:
+    complete
+    .text start:0x0212c878 end:0x0212cff8
+    .rodata start:0x0214e0a8 end:0x0215e318
+    .init start:0x021604c0 end:0x02160620
+    .ctor start:0x021606b4 end:0x021606b8
+    .data start:0x02160ae0 end:0x02160cc0
+
+src/ov001/window/UnkFieldMap_0212cff8.cpp:
+    complete
+    .text start:0x0212cff8 end:0x0212d1c8
+    .data start:0x02160cc0 end:0x02160d04
+
+src/ov001/window/UnkFieldMap_0212d214.cpp:
+    complete
+    .text start:0x0212d214 end:0x0212d3ec
+    .data start:0x02160d04 end:0x02160d2c
+
+src/ov001/window/UnkFieldMap_0212d3ec.cpp:
+    complete
+    .text start:0x0212d3ec end:0x0212d558
+    .data start:0x02160d2c end:0x02160d88
+
+src/ov001/window/UnkFieldMap_0212d558.cpp:
+    complete
+    .text start:0x0212d558 end:0x0212d6c4
+    .data start:0x02160d88 end:0x02160de4

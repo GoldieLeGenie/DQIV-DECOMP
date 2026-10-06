@@ -1,11 +1,12 @@
 #include "ov016/casino/MaterielMenuPoker/MaterielMenuPokerHiandlow.hpp"
-#include "ov016/MenuTemplate_materiel.hpp"
+#include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
 #include "ov016/MaterielMenu_WINDOW_MANAGER/MaterielMenu_WINDOW_MANAGER.hpp"
 #include "ov009/casino/PokerManager.hpp"
 #include "main/menu/MenuUpdateAssist.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/text/TextAPI.hpp"
 #include "main/status/PartyStatus.hpp"
+#include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
 
 THUMB void MaterielMenuPokerHiandlow::menuSetup()
 {
@@ -87,7 +88,7 @@ THUMB void MaterielMenuPokerHiandlow::statusUpdate()
             break;
         case 3:
             if (menu_command_.active_ == 0) {
-                data_ov016_02186324.open();
+                gMaterielMenu_POKER_BETCOIN.open();
             } else {
                 MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
             }

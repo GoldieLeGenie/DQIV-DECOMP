@@ -80,6 +80,14 @@ namespace status {
         param::AppriseItem* getAppriseItem();
         param::AlterMessage* getAlterMessage();
         param::CharaVoice* getCharaVoice();
+        void setupTown();
+        void cleanupTown();
+        void setupTownInitialize();
+        void cleanupTownInitialize();
+        void setupField();
+        void cleanupField();
+        void setupFieldInitialize();
+        void cleanupFieldInitialize();
 
     };
 

@@ -25,4 +25,4 @@ struct MaterielMenu_MEDAL_KING : menu::MenuBase
     bool judgeReward();
 };
 
-extern MaterielMenu_MEDAL_KING data_ov016_02185a60;         /* gMaterielMenu_MEDAL_KING */
+extern MaterielMenu_MEDAL_KING gMaterielMenu_MEDAL_KING;

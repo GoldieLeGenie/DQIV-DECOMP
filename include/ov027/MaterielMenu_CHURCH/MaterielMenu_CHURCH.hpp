@@ -83,10 +83,6 @@ struct MaterielMenu_CHURCH_ROOT : menu::MenuBase
     void oneMessage(int mess);
 };
 
-extern MaterielMenu_CHURCH_MIRACLE data_ov016_02187050;     /* gMaterielMenu_CHURCH_MIRACLE */
-extern MaterielMenu_CHURCH_ROOT data_ov016_021877a4;        /* gMaterielMenu_CHURCH_ROOT */
+extern MaterielMenu_CHURCH_MIRACLE gMaterielMenu_CHURCH_MIRACLE;
+extern MaterielMenu_CHURCH_ROOT gMaterielMenu_CHURCH_ROOT;
 
-extern "C" {
-    void func_ov016_0216fc94(int activeCommand, int firstFlag);
-    void func_ov016_0216fcbc(int count);
-}
