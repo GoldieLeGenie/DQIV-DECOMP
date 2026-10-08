@@ -7,6 +7,8 @@
 #include "globaldefs.h"
 #include "GameInfo.hpp"
 #include "main/dss/DssUtils.hpp"
+#include "main/dss/UnkLanguage.hpp"
+#include "main/dss/UnkModelMember.hpp"
 #include "main/global/StageLink.hpp"
 #include "ov000/town/TownCharacterManager.hpp"
 #include "ov000/town/TownCamera.hpp"
@@ -16,6 +18,7 @@
 #include "main/cmn/CommonEffectLocation.hpp"
 #include "ov016/casino/MaterielMenu_SLOT/MaterielMenu_SLOT.hpp"
 #include "main/profile/Profile.hpp"
+#include "main/dss/UnkPaletteEffect.hpp"
 
 struct TownPartyDraw;
 struct TownFurnitureManager;
@@ -178,14 +181,4 @@ int cmd_party_join(int* param);
 int cmd_party_quit(int* param);
 
 extern "C" {
-    void func_02037db0(void* obj, int a, int b);
-    void func_02037e20(void* obj, int a, int b, int count, int* values);
-    int  func_02037ef4(void* obj, int id, int value);
-    int  func_02037f40(void* obj, int id, int value);
-    void* func_020835d8(void);
-    void func_02085d88(void);
-    int func_02037f84(void* obj, int type);
-    void func_0208a114(char* dst, int size, int id);
-    void func_02037f98(void* obj);
-    void func_020857c8(void* obj, dss::Fix32Vector3 pos);
 }

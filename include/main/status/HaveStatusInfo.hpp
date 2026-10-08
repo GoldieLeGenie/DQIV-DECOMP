@@ -75,7 +75,7 @@ namespace status{
         dss::BitFlaguint flag_;
         dss::BitFlaguint flag2_;
         dss::BitFlaguint battleFlag_;
-        static int globalFlag_;//data_020d06b0
+        static dss::Flag globalFlag_;
         HaveStatusInfo();
         ~HaveStatusInfo();
         void setup(int index, int flag);

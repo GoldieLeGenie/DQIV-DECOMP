@@ -33,3 +33,5 @@ _ZTV24MaterielMenu_CHURCH_ROOT kind:data(byte[28]) addr:0x0218a470
 @2760 kind:data(byte[3]) addr:0x0218a48c local
 @2761 kind:data(byte[3]) addr:0x0218a490 local
 @2762 kind:data(byte[4]) addr:0x0218a494 local
+module_padding_ov027_ctor_0218a3fc kind:data(byte[4]) addr:0x0218a3fc
+module_padding_ov027_data_0218a498 kind:data(byte[8]) addr:0x0218a498

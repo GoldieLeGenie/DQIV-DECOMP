@@ -4,12 +4,32 @@
     .bss        start:0x0218a240 end:0x0218a240 kind:bss align:32
 
 
+src/ov026/MaterielMenu_SURECHIGAI/UnkMaterielMenu_02189360.cpp:
+    complete
+    .text start:0x02189360 end:0x02189630
+    .data start:0x0218a1a0 end:0x0218a1bc
+
+src/ov026/MaterielMenu_SURECHIGAI/UnkMaterielMenu_02189630.cpp:
+    complete
+    .text start:0x02189630 end:0x021897dc
+    .data start:0x0218a1bc end:0x0218a1d8
+
 src/ov026/MaterielMenu_SURECHIGAI/MaterielMenu_SURECHIGAI_MAKE_TAISHI.cpp:
     complete
     .text start:0x021897dc end:0x02189a80
     .data start:0x0218a1d8 end:0x0218a1f4
 
+src/ov026/MaterielMenu_SURECHIGAI/UnkMaterielMenu_02189a80.cpp:
+    complete
+    .text start:0x02189a80 end:0x02189e9c
+    .data start:0x0218a1f4 end:0x0218a210
+
 src/ov026/MaterielMenu_SURECHIGAI/MaterielMenu_SURECHIGAI_ROOT.cpp:
     complete
     .text start:0x02189e9c end:0x0218a180
     .data start:0x0218a210 end:0x0218a22c
+
+src/ov026/ModulePadding_ov026.cpp:
+    complete
+    .ctor start:0x0218a180 end:0x0218a184
+    .data start:0x0218a22c end:0x0218a240

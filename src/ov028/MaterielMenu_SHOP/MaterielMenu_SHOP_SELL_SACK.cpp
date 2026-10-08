@@ -4,6 +4,7 @@
 #include "main/status/UseItem.hpp"
 #include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
 #include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
+#include "main/menu/MenuTemplate_Common.hpp"
 
 THUMB void MaterielMenu_SHOP_SELL_SACK::menuSetup()
 {
@@ -28,7 +29,7 @@ THUMB void MaterielMenu_SHOP_SELL_SACK::menuExecute()
     if (status::g_Party.haveItemSack_.getCount() > 6) {
         MenuTemplate_materiel::shopSackArrow(&menuItem3_, menuItem3_.active_);
     }
-    func_0201e6c4(&menuItem_, itemCount_, itemIndex_);
+    MenuTemplate_Common::COMMON_ITEM_ICON32_2x3(&menuItem_, itemCount_, itemIndex_);
     MenuTemplate_materiel::MATERIEL_CANCEL(&menuItem2_);
 }
 

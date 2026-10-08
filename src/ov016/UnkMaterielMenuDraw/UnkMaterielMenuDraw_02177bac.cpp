@@ -2,6 +2,7 @@
 #include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_02177bac.hpp"
 #include "main/menu/MenuBase.hpp"
 #include "main/menu/MenuManager.hpp"
+#include "main/menu/UnkMenuPartsDraw.hpp"
 
 // parts lists (their definition order sets the .data layout)
 static UnkMenuParts s_parts_02183a2c[] = {
@@ -441,16 +442,16 @@ static UnkMenuParts s_parts_021843b8[] = {
 THUMB void unkfunc_unused_1(int index)
 {
     int message[4] = { 0x8000012c, 0x8000012d, 0x8000012c, 0x8000012d };
-    func_02050ed0(s_parts_02183a2c, &message[index], 1);
+    unkfunc_02050ed0(s_parts_02183a2c, &message[index], 1);
 }
 
 THUMB void unkfunc_02177bac(int x, int y, int w, int h, int lineY)
 {
     s_parts_02183bd0[0].x_ = x;
     s_parts_02183bd0[0].y_ = y;
-    s_parts_02183bd0[0].unk_a = w;
-    s_parts_02183bd0[0].unk_c = h;
-    func_02050ea8(s_parts_02183bd0, 0);
+    s_parts_02183bd0[0].w_ = w;
+    s_parts_02183bd0[0].h_ = h;
+    unkfunc_02050ea8(s_parts_02183bd0, 0);
     if (lineY >= 1) {
         UnkMenuParts line[] = {
             { 0x16, 0x00, (short)0xf000, 0, 0, 0, 0, 0 },
@@ -458,8 +459,8 @@ THUMB void unkfunc_02177bac(int x, int y, int w, int h, int lineY)
         };
         line[0].x_ = x;
         line[0].y_ = lineY;
-        line[0].unk_a = w;
-        func_02050ea8(line, 0);
+        line[0].w_ = w;
+        unkfunc_02050ea8(line, 0);
     }
 }
 
@@ -467,9 +468,9 @@ THUMB void unkfunc_02177c00(int x, int y, int w, int h, int lineY)
 {
     s_parts_02183bb4[0].x_ = x;
     s_parts_02183bb4[0].y_ = y;
-    s_parts_02183bb4[0].unk_a = w;
-    s_parts_02183bb4[0].unk_c = h;
-    func_02050ea8(s_parts_02183bb4, 0);
+    s_parts_02183bb4[0].w_ = w;
+    s_parts_02183bb4[0].h_ = h;
+    unkfunc_02050ea8(s_parts_02183bb4, 0);
     if (lineY >= 1) {
         UnkMenuParts line[] = {
             { 0x16, 0x00, (short)0xf000, 0, 0, 0, 0, 0 },
@@ -477,26 +478,26 @@ THUMB void unkfunc_02177c00(int x, int y, int w, int h, int lineY)
         };
         line[0].x_ = x;
         line[0].y_ = lineY;
-        line[0].unk_a = w;
-        func_02050ea8(line, 0);
+        line[0].w_ = w;
+        unkfunc_02050ea8(line, 0);
     }
 }
 
 THUMB void unkfunc_02177c54(int flag)
 {
     if (flag) {
-        func_02050ea8(s_parts_02183eda, 0);
+        unkfunc_02050ea8(s_parts_02183eda, 0);
     } else {
-        func_02050ea8(s_parts_021841ea, 0);
+        unkfunc_02050ea8(s_parts_021841ea, 0);
     }
 }
 
 THUMB void unkfunc_02177c78(bool flag)
 {
     if (flag) {
-        func_02050ea8(s_parts_02183984, 0);
+        unkfunc_02050ea8(s_parts_02183984, 0);
     } else {
-        func_02050ea8(s_parts_02183af0, 0);
+        unkfunc_02050ea8(s_parts_02183af0, 0);
     }
 }
 
@@ -507,7 +508,7 @@ THUMB void unkfunc_02177c9c(int* message, int count, int x, int y)
     s_parts_02183b98[0].y_ = y;
     for (int i = 0; i < count; i++) {
         param = message[i];
-        func_02050ee0(s_parts_02183b98, &param, 0, i * 16, 1);
+        unkfunc_02050ee0(s_parts_02183b98, &param, 0, i * 16, 1);
     }
 }
 
@@ -518,7 +519,7 @@ THUMB void unkfunc_02177ce0(int* message, int count, int x, int y)
     s_parts_02183b0c[0].y_ = y;
     for (int i = 0; i < count; i++) {
         param = message[i];
-        func_02050ee0(s_parts_02183b0c, &param, 0, i * 14, 1);
+        unkfunc_02050ee0(s_parts_02183b0c, &param, 0, i * 14, 1);
     }
 }
 
@@ -526,7 +527,7 @@ THUMB void unkfunc_02177ce0(int* message, int count, int x, int y)
 THUMB void unkfunc_unused_2(int index)
 {
     int message[4] = { 0x800000cf, 0x800000c8, 0x800000c9, 0x800000cf };
-    func_02050ed0(s_parts_021839bc, &message[index], 1);
+    unkfunc_02050ed0(s_parts_021839bc, &message[index], 1);
 }
 
 THUMB void unkfunc_02177d24(int coin, int bet, int a, int b)
@@ -534,7 +535,7 @@ THUMB void unkfunc_02177d24(int coin, int bet, int a, int b)
     int param[2] = { 0xa0000138, 0 };
     param[1] = coin;
     int flag = 1;
-    func_02050ee0(s_parts_02183dde, param, 0, 8, flag);
+    unkfunc_02050ee0(s_parts_02183dde, param, 0, 8, flag);
     param[1] = bet;
     if (a) {
         param[0] = 0xa000013a;
@@ -545,9 +546,9 @@ THUMB void unkfunc_02177d24(int coin, int bet, int a, int b)
         flag = 5;
     }
     if (bet == 0xffff) {
-        func_02050ee0(s_parts_02183b7c, param, 0, 0x1a, flag);
+        unkfunc_02050ee0(s_parts_02183b7c, param, 0, 0x1a, flag);
     } else {
-        func_02050ee0(s_parts_02183dde, param, 0, 0x1a, flag);
+        unkfunc_02050ee0(s_parts_02183dde, param, 0, 0x1a, flag);
     }
 }
 
@@ -556,7 +557,7 @@ THUMB void unkfunc_unused_3(int coin)
 {
     int param[2] = { 0, 0xa000003c };
     param[0] = coin;
-    func_02050ed0(s_parts_02183f12, param, 1);
+    unkfunc_02050ed0(s_parts_02183f12, param, 1);
 }
 
 // not in the ROM (dead-stripped), its local array initializer and strings are still in .rodata/.data
@@ -569,7 +570,7 @@ THUMB void unkfunc_unused_4(int rank, int time)
     param[0] = (int)name[rank];
     param[1] = (int)"\xff\xfe\xa9\x24";
     param[2] = (int)":";
-    func_02050ed0(s_parts_02183f82, param, time);
+    unkfunc_02050ed0(s_parts_02183f82, param, time);
 }
 
 THUMB void unkfunc_02177da0(int* cards, int a)
@@ -585,18 +586,18 @@ THUMB void unkfunc_02177da0(int* cards, int a)
             param = 0x80000190;
         }
         if (a != 1 || i != 0) {
-            func_02050ee0(s_parts_02183e08, &param, x[i] + 0xb, 0x7a, 1);
+            unkfunc_02050ee0(s_parts_02183e08, &param, x[i] + 0xb, 0x7a, 1);
         }
     }
     if (a != 1) {
         param = 0x80000192;
-        func_02050ee0(s_parts_02183e32, &param, 0x6f, 0x8c, 1);
+        unkfunc_02050ee0(s_parts_02183e32, &param, 0x6f, 0x8c, 1);
     }
 }
 
 THUMB void unkfunc_02177e34(int coin, int a, int b)
 {
-    func_02050698(0, 0);
+    unkfunc_02050698(0, 0);
     int param[2] = { 0, 0 };
     if (coin == 0) {
         coin = 1;
@@ -606,10 +607,10 @@ THUMB void unkfunc_02177e34(int coin, int a, int b)
         param[1] = s_int_02183c40[i] * coin;
         if (a == i) {
             if (b) {
-                func_02050ee0(s_parts_02183e5c, param, 0, 0xa4 - i * 16, 5);
+                unkfunc_02050ee0(s_parts_02183e5c, param, 0, 0xa4 - i * 16, 5);
             }
         } else {
-            func_02050ee0(s_parts_02183e5c, param, 0, 0xa4 - i * 16, 1);
+            unkfunc_02050ee0(s_parts_02183e5c, param, 0, 0xa4 - i * 16, 1);
         }
     }
 }
@@ -628,28 +629,28 @@ THUMB void unkfunc_02177eb8(int monsterID, int diameter, int index, int orderCou
     param[4] = diameter % 10;
     param[5] = 0xa000013c;
     param[6] = (int)order[orderCount + 1];
-    func_02050ee0(s_parts_02184682, param, 0, index * 0x18 + 0x10, 1);
+    unkfunc_02050ee0(s_parts_02184682, param, 0, index * 0x18 + 0x10, 1);
 }
 
 THUMB void unkfunc_02177f38(int index)
 {
-    func_02050ebc(s_parts_02183b28, 0, 0xc, index * 0x18 + 0x16);
+    unkfunc_02050ebc(s_parts_02183b28, 0, 0xc, index * 0x18 + 0x16);
 }
 
 THUMB void unkfunc_02177f54(int coin, int x, int y, int flag)
 {
     if (flag == 1) {
         int digit = coin / 10;
-        func_02050ee0(s_parts_02183b60, &digit, x + 0xb2, y + 0xa, 1);
+        unkfunc_02050ee0(s_parts_02183b60, &digit, x + 0xb2, y + 0xa, 1);
         digit = coin % 10;
-        func_02050ee0(s_parts_02183b60, &digit, x + 0xb8, y + 0xa, 1);
+        unkfunc_02050ee0(s_parts_02183b60, &digit, x + 0xb8, y + 0xa, 1);
         return;
     }
     int param = coin;
-    func_02050ee0(s_parts_02183b60, &param, x + 0xb8, y + 0xa, 1);
+    unkfunc_02050ee0(s_parts_02183b60, &param, x + 0xb8, y + 0xa, 1);
     if (flag != 0 && coin < 10) {
         param = 0;
-        func_02050ee0(s_parts_02183b60, &param, x + 0xb0, y + 0xa, 1);
+        unkfunc_02050ee0(s_parts_02183b60, &param, x + 0xb0, y + 0xa, 1);
     }
 }
 
@@ -657,9 +658,9 @@ THUMB void unkfunc_02177fe0(int* message, int x, int y, int w, int h)
 {
     s_parts_02183a48[0].x_ = x;
     s_parts_02183a48[0].y_ = y + ((h - y) >> 1);
-    s_parts_02183a48[0].unk_a = w;
-    s_parts_02183a48[0].unk_c = 10;
-    func_02050ed0(s_parts_02183a48, message, 1);
+    s_parts_02183a48[0].w_ = w;
+    s_parts_02183a48[0].h_ = 10;
+    unkfunc_02050ed0(s_parts_02183a48, message, 1);
 }
 
 THUMB void unkfunc_0217800c(int index, char* name, int chapter, int level, int town, int time, int y, int flag)
@@ -724,9 +725,9 @@ THUMB void unkfunc_0217800c(int index, char* name, int chapter, int level, int t
             mode = 1;
         }
     }
-    func_02050ee0(draw, param, 0x10, y + index * 0x1a, mode);
+    unkfunc_02050ee0(draw, param, 0x10, y + index * 0x1a, mode);
     if (chapter >= 5) {
-        func_02050ee0(s_parts_021841b2, param, 0x10, y + index * 0x1a, mode);
+        unkfunc_02050ee0(s_parts_021841b2, param, 0x10, y + index * 0x1a, mode);
     }
 }
 
@@ -741,7 +742,7 @@ THUMB void unkfunc_02178180(int* name, int type)
         for (int j = 0; j < 11; j++) {
             param[j] = *name++;
         }
-        func_02050ee0(s_parts_0218480a, param, 0x18, i * 12 + 0x44 + y, 1);
+        unkfunc_02050ee0(s_parts_0218480a, param, 0x18, i * 12 + 0x44 + y, 1);
     }
 }
 
@@ -765,9 +766,9 @@ THUMB void unkfunc_021781c4(int country, int* name, int count, int max, int mode
             param = name[i];
         }
         if (count != i) {
-            func_02050ee0(s_parts_02183bec, &param, x + i * 12, y, 1);
+            unkfunc_02050ee0(s_parts_02183bec, &param, x + i * 12, y, 1);
         } else if (mode == 0) {
-            func_02050ee0(s_parts_02183c08, 0, x + i * 12 + 6, 0x28, 1);
+            unkfunc_02050ee0(s_parts_02183c08, 0, x + i * 12 + 6, 0x28, 1);
         }
     }
 }
@@ -782,9 +783,9 @@ THUMB void unkfunc_02178278(int* name, int count)
             x = 2;
         }
         if (count != i) {
-            func_02050ee0(s_parts_02183914, &param, x + i % 15 * 14, i / 15 * 16 + 0xe, 1);
+            unkfunc_02050ee0(s_parts_02183914, &param, x + i % 15 * 14, i / 15 * 16 + 0xe, 1);
         } else {
-            func_02050ee0(s_parts_02183930, 0, i % 15 * 14 + 0x1e, i / 15 * 16 + 0x1c, 1);
+            unkfunc_02050ee0(s_parts_02183930, 0, i % 15 * 14 + 0x1e, i / 15 * 16 + 0x1c, 1);
         }
     }
 }
@@ -799,57 +800,57 @@ THUMB void unkfunc_unused_5(int* param)
     const int unk4 = 0x10;
     const int unk5 = 0x10;
     const int unk6 = 0xe;
-    func_02050ea8(s_parts_02183a2c, param);
-    func_02050ea8(s_parts_021839bc, param);
-    func_02050ea8(s_parts_02183f12, param);
-    func_02050ea8(s_parts_02183f82, param);
-    func_02050ea8(s_parts_02183fba, param);
-    func_02050ea8(s_parts_02183ce2, param);
-    func_02050ea8(s_parts_02183ff2, param);
-    func_02050ea8(s_parts_02184612, param);
-    func_02050ea8(s_parts_02183ab8, param);
-    func_02050ea8(s_parts_02183a9c, param);
-    func_02050ea8(s_parts_0218409a, param);
-    func_02050ea8(s_parts_02183d36, param);
-    func_02050ea8(s_parts_021843fe, param);
-    func_02050ea8(s_parts_021839d8, param);
-    func_02050ea8(s_parts_02183d60, param);
-    func_02050ea8(s_parts_02183d8a, param);
-    func_02050ea8(s_parts_02183db4, param);
-    func_02050ea8(s_parts_021842a0, param);
-    func_02050ea8(s_parts_0218394c, param);
-    func_02050ea8(s_parts_021842e6, param);
-    func_02050ea8(s_parts_02184452, param);
-    func_02050ea8(s_parts_021839f4, param);
-    func_02050ea8(s_parts_021840d2, param);
-    func_02050ea8(s_parts_0218410a, param);
-    func_02050ea8(s_parts_02183a80, param);
-    func_02050ea8((UnkMenuParts*)s_int_021838e4, param);
-    func_02050ea8(s_parts_02184142, param);
-    func_02050ea8(s_parts_0218417a, param);
-    func_02050ea8(s_parts_0218432c, param);
-    func_02050ea8(s_parts_02183b44, param);
-    func_02050ea8(s_parts_021844fa, param);
-    func_02050ea8((UnkMenuParts*)s_int_021838fc, param);
-    func_02050ea8(s_parts_02183e86, param);
-    func_02050ea8(s_parts_02183a10, param);
-    func_02050ea8(s_parts_02183c24, param);
-    func_02050ea8(s_parts_02183eb0, param);
-    func_02050ea8(s_parts_0218425a, param);
-    func_02050ea8(s_parts_0218454e, param);
-    func_02050ea8(s_parts_021845b0, param);
-    func_02050ea8(s_parts_02183f4a, param);
-    func_02050ea8(s_parts_021839a0, param);
-    func_02050ea8(s_parts_02183cb8, param);
-    func_02050ea8(s_parts_0218402a, param);
-    func_02050ea8(s_parts_02184062, param);
-    func_02050ea8(s_parts_02183d0c, param);
-    func_02050ea8(s_parts_02183968, param);
-    func_02050ea8(s_parts_02183a64, param);
-    func_02050ea8(s_parts_021846f2, param);
-    func_02050ea8(s_parts_02183ad4, param);
-    func_02050ea8((UnkMenuParts*)s_int_02183c90, param);
-    func_02050ea8(s_parts_021844a6, param);
-    func_02050ea8(s_parts_02184372, param);
-    func_02050ea8(s_parts_021843b8, param);
+    unkfunc_02050ea8(s_parts_02183a2c, param);
+    unkfunc_02050ea8(s_parts_021839bc, param);
+    unkfunc_02050ea8(s_parts_02183f12, param);
+    unkfunc_02050ea8(s_parts_02183f82, param);
+    unkfunc_02050ea8(s_parts_02183fba, param);
+    unkfunc_02050ea8(s_parts_02183ce2, param);
+    unkfunc_02050ea8(s_parts_02183ff2, param);
+    unkfunc_02050ea8(s_parts_02184612, param);
+    unkfunc_02050ea8(s_parts_02183ab8, param);
+    unkfunc_02050ea8(s_parts_02183a9c, param);
+    unkfunc_02050ea8(s_parts_0218409a, param);
+    unkfunc_02050ea8(s_parts_02183d36, param);
+    unkfunc_02050ea8(s_parts_021843fe, param);
+    unkfunc_02050ea8(s_parts_021839d8, param);
+    unkfunc_02050ea8(s_parts_02183d60, param);
+    unkfunc_02050ea8(s_parts_02183d8a, param);
+    unkfunc_02050ea8(s_parts_02183db4, param);
+    unkfunc_02050ea8(s_parts_021842a0, param);
+    unkfunc_02050ea8(s_parts_0218394c, param);
+    unkfunc_02050ea8(s_parts_021842e6, param);
+    unkfunc_02050ea8(s_parts_02184452, param);
+    unkfunc_02050ea8(s_parts_021839f4, param);
+    unkfunc_02050ea8(s_parts_021840d2, param);
+    unkfunc_02050ea8(s_parts_0218410a, param);
+    unkfunc_02050ea8(s_parts_02183a80, param);
+    unkfunc_02050ea8((UnkMenuParts*)s_int_021838e4, param);
+    unkfunc_02050ea8(s_parts_02184142, param);
+    unkfunc_02050ea8(s_parts_0218417a, param);
+    unkfunc_02050ea8(s_parts_0218432c, param);
+    unkfunc_02050ea8(s_parts_02183b44, param);
+    unkfunc_02050ea8(s_parts_021844fa, param);
+    unkfunc_02050ea8((UnkMenuParts*)s_int_021838fc, param);
+    unkfunc_02050ea8(s_parts_02183e86, param);
+    unkfunc_02050ea8(s_parts_02183a10, param);
+    unkfunc_02050ea8(s_parts_02183c24, param);
+    unkfunc_02050ea8(s_parts_02183eb0, param);
+    unkfunc_02050ea8(s_parts_0218425a, param);
+    unkfunc_02050ea8(s_parts_0218454e, param);
+    unkfunc_02050ea8(s_parts_021845b0, param);
+    unkfunc_02050ea8(s_parts_02183f4a, param);
+    unkfunc_02050ea8(s_parts_021839a0, param);
+    unkfunc_02050ea8(s_parts_02183cb8, param);
+    unkfunc_02050ea8(s_parts_0218402a, param);
+    unkfunc_02050ea8(s_parts_02184062, param);
+    unkfunc_02050ea8(s_parts_02183d0c, param);
+    unkfunc_02050ea8(s_parts_02183968, param);
+    unkfunc_02050ea8(s_parts_02183a64, param);
+    unkfunc_02050ea8(s_parts_021846f2, param);
+    unkfunc_02050ea8(s_parts_02183ad4, param);
+    unkfunc_02050ea8((UnkMenuParts*)s_int_02183c90, param);
+    unkfunc_02050ea8(s_parts_021844a6, param);
+    unkfunc_02050ea8(s_parts_02184372, param);
+    unkfunc_02050ea8(s_parts_021843b8, param);
 }

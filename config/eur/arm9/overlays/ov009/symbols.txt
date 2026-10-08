@@ -246,3 +246,6 @@ cameraFov kind:data(byte[2]) addr:0x02125258 local
 cameraAngleZ kind:data(byte[2]) addr:0x0212525a local
 cameraDirOffset kind:data(byte[2]) addr:0x0212525c local
 _ZTV16PokerCardPolygon kind:data(byte[60]) addr:0x02125154
+module_padding_ov009_ctor_0212512c kind:data(byte[4]) addr:0x0212512c
+module_padding_ov009_data_02125658 kind:data(byte[8]) addr:0x02125658
+module_padding_ov009_bss_021276dc kind:bss(size=0x4) addr:0x021276dc

@@ -86,3 +86,5 @@ THUMB int param::BattleMap::getBattleMap(param::BattleMap *data, char *name)
 char btl_[8] = "btl_";
 char btldougu[12] = "btldougu";
 char btlyado[8] = "btlyado";
+
+DataObject param::BattleMap::data_;

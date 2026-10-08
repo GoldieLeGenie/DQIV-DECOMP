@@ -43,7 +43,7 @@ s32 FX_Divide(s32 numer, s32 denom);
  * @param denom Denominator value (32-bit).
  * @return The raw 64-bit division result.
  */
-s64 FX_Divide64(s32 numer, s32 denom);
+s64 FX_Divide64(s32 denom);
 
 /**
  * @brief Calculates the multiplicative inverse of a fixed-point value.

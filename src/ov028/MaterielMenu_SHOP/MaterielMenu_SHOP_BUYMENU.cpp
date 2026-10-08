@@ -1,4 +1,5 @@
 #include "ov028/MaterielMenu_SHOP/MaterielMenu_SHOP.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/text/TextAPI.hpp"
 #include "main/status/PartyStatus.hpp"
@@ -9,7 +10,7 @@
 THUMB void MaterielMenu_SHOP_BUYMENU::menuSetup()
 {
     status::g_Party.setPlayerMode();
-    func_02080e64(-4, 0);
+    unkfunc_02080e64(-4, 0);
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem2_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     navigator_.setupBase();

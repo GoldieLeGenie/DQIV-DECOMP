@@ -1,6 +1,9 @@
 #include "ov000/town/TownEndrollManager.hpp"
+#include "main/dss/RenderObject.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/cmn/CommonEffectData.hpp"
 #include "main/dss/Camera.hpp"
+#include "main/dss/UnkLanguage.hpp"
 #include "main/profile/Profile.hpp"
 
 THUMB TownEndrollManager::TownEndrollManager()
@@ -28,7 +31,7 @@ THUMB void TownEndrollManager::setup()
     for (int i = 0; i < STAFF_MAX; i++) {
         staffPos_[i] = -(i * 0xc0);
         staffIndex_[i] = i;
-        if (func_0208a104() == 2) {
+        if (unkfunc_0208a104() == 2) {
             dss::sprintf_s(filename, 0x80, "data/endroll_na/endroll%02d.tex", i);
             staffCount_ = 0x40;
         } else {
@@ -59,7 +62,7 @@ THUMB void TownEndrollManager::cleanup()
             }
         }
         theEndData_.cleanup();
-        func_02086868(texture_);
+        ((TextureObject*)texture_)->unkfunc_02086868();
         textureData_.cleanup();
         enable_ = 0;
     }
@@ -68,15 +71,15 @@ THUMB void TownEndrollManager::cleanup()
 THUMB void TownEndrollManager::animTheEnd()
 {
     char filename[0x80];
-    if (enableTheEnd_ && (func_02081254() & 1)) {
+    if (enableTheEnd_ && (unkfunc_02081254() & 1)) {
         if (theEndData_.getAddr()) {
             theEndData_.cleanup();
         }
         dss::sprintf_s(filename, 0x80, "data/fin/fin_%03d.tex", theEndFrame_);
         theEndData_.setup(filename, 0, 0);
         theEndTexture_ = theEndData_.getAddr();
-        dss::memcpy((void*)func_02086a9c(texture_), (char*)theEndTexture_ + func_02086a9c(theEndTexture_), 0x1800);
-        func_02086968(texture_, 0);
+        dss::memcpy((void*)((TextureObject*)texture_)->unkfunc_02086a9c(), (char*)theEndTexture_ + ((TextureObject*)theEndTexture_)->unkfunc_02086a9c(), 0x1800);
+        ((TextureObject*)texture_)->unkfunc_02086968(0);
         theEndFrame_++;
         if (theEndFrame_ == 0xb5) {
             enableTheEnd_ = 0;
@@ -94,7 +97,7 @@ THUMB void TownEndrollManager::drawStaffRoll()
         if (!staff_[i].unkfunc_02057e74()) {
             continue;
         }
-        if (func_02081254() & 1) {
+        if (unkfunc_02081254() & 1) {
             staff_[i].unkfunc_02057e88(0, 0xc0 - staffPos_[i]);
         } else {
             staff_[i].unkfunc_02057e88(0, 0x180 - staffPos_[i]);
@@ -120,7 +123,7 @@ THUMB void TownEndrollManager::drawStaffRoll()
             staffIndex_[i] = staffIndex_[i] + 3;
             staff_[i].unkfunc_02057e34();
             if (staffIndex_[i] < staffCount_) {
-                if (func_0208a104() == 2) {
+                if (unkfunc_0208a104() == 2) {
                     dss::sprintf_s(filename, 0x80, "data/endroll_na/endroll%02d.tex", staffIndex_[i]);
                 } else {
                     dss::sprintf_s(filename, 0x80, "data/endroll_eu/endroll%02d.tex", staffIndex_[i]);
@@ -142,7 +145,7 @@ THUMB void TownEndrollManager::startTheEnd()
     dss::sprintf_s(filename, 0x80, "data/fin/fin_000.tex");
     textureData_.setup(filename, 0, 0);
     texture_ = textureData_.getAddr();
-    func_02086798(texture_, 1);
+    ((TextureObject*)texture_)->unkfunc_02086798(1);
     theEnd_.texture_ = texture_;
     theEnd_.unkfunc_02084534(0x48, 0x20);
     theEnd_.unkfunc_02084578(0, 0, 0x80, 0x60);

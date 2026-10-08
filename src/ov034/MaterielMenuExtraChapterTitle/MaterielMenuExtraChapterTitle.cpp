@@ -1,4 +1,5 @@
 #include "ov034/MaterielMenuExtraChapterTitle/MaterielMenuExtraChapterTitle.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "ov001/window/FieldWindowSystem.hpp"
 #include "main/cmn/PartyTalk.hpp"
 #include "main/status/StoryStatus.hpp"

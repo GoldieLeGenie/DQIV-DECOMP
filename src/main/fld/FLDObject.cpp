@@ -1239,7 +1239,7 @@ ARM static void unkfunc_020453fc(NNSG3dResMdl* mdl, int alpha, unsigned char* ba
     if (!(m_flag & 4)) {                                                                                     \
         unkfunc_020447fc(obj);                                                                               \
     }                                                                                                        \
-    func_0206de34(0x17, &data_0210cf74, 12);                                                                 \
+    func_0206de34(0x17, &data_0210cf28.cameraMtx, 12);                                                                 \
     func_0206de34(0x1c, &obj->render->trans, 3);                                                             \
     if (m_simple_bby == 1 && (flag & 4)) {                                                                   \
         func_0206de34(0x1a, &rot, 9);                                                                        \
@@ -1276,7 +1276,7 @@ ARM static void unkfunc_020453fc(NNSG3dResMdl* mdl, int alpha, unsigned char* ba
     if (!(m_flag & 4)) {                                                                                     \
         unkfunc_020447fc(obj);                                                                               \
     }                                                                                                        \
-    func_0206de34(0x17, &data_0210cf74, 12);                                                                 \
+    func_0206de34(0x17, &data_0210cf28.cameraMtx, 12);                                                                 \
     func_0206de34(0x1c, &obj->render->trans, 3);                                                             \
     if (m_simple_bby == 1 && (flag & 4)) {                                                                   \
         func_0206de34(0x1a, &rot, 9);                                                                        \
@@ -1306,7 +1306,7 @@ ARM void FLDObject::unkfunc_0204545c()
     if (!(m_flag & 1)) {
         return;
     }
-    cam = &data_0210cf74;
+    cam = &data_0210cf28.cameraMtx;
     end = map->order + map->obj_num;
     saved = *cam;
     func_02061fb4(&saved, cam, m_scale.x, m_scale.y, m_scale.z);
@@ -1323,7 +1323,7 @@ ARM void FLDObject::unkfunc_0204545c()
         MtxFx33 baseRot;
         func_02061b88(&baseRot);
         func_0206ae30(&scale);
-        func_02067940(&baseRot, &data_0210cfe4);
+        func_02067940(&baseRot, &data_0210cf28.prmBaseRot);
         data_0210cf28.flag &= ~0xa4;
         func_0206ae08((dss::Fix32Vector3*)&trans);
         func_0206adcc();

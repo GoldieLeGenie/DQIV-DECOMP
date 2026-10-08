@@ -10,6 +10,7 @@
 #include "main/status/UseItem.hpp"
 #include "main/text/TextAPI.hpp"
 #include "main/dss/DssUtils.hpp"
+#include "main/menu/UnkMenuPartsDraw.hpp"
 
 // parts lists (their definition order sets the .data layout)
 static UnkMenuParts s_parts_02176f38[] = {
@@ -142,13 +143,13 @@ THUMB void unkfunc_0216ba60(int* items, int count, int page)
 
 THUMB void unkfunc_0216ba78(int* items, int count, int page)
 {
-    func_02050ea8(s_parts_02176f54, 0);
+    unkfunc_02050ea8(s_parts_02176f54, 0);
     int chara = btl::BattleMenuPlayerControl::getSingleton()->activeChara_;
     status::PlayerStatus* player = status::g_Party.getPlayerStatus(chara);
     unkfunc_0216b07c(&player->haveStatusInfo_, btl::BattleMenuPlayerControl::getSingleton()->memberHP_[chara], 0);
     s_param[0] = 0x80000069;
     s_param[1] = 0x8000006b;
-    func_02050ed0(s_parts_0217715a, s_param, 1);
+    unkfunc_02050ed0(s_parts_0217715a, s_param, 1);
     unkfunc_0216c10c(items, count, page);
 }
 
@@ -169,7 +170,7 @@ THUMB void unkfunc_0216bb00(int* actions, int count, int page)
     int pageMax;
     status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(btl::BattleMenuPlayerControl::getSingleton()->activeChara_)->haveStatusInfo_;
     unkfunc_0216c1e4();
-    func_02050ea8(s_parts_0217700a, 0);
+    unkfunc_02050ea8(s_parts_0217700a, 0);
     pageMax = (count - 1) / 6;
     int num = (count - 1) % 6 + 1;
     if (pageMax > page) {
@@ -202,7 +203,7 @@ THUMB void unkfunc_0216bbd0()
 
 THUMB void unkfunc_0216bbdc()
 {
-    func_02050ea8(s_parts_02176ee4, 0);
+    unkfunc_02050ea8(s_parts_02176ee4, 0);
     unkfunc_0216c2a0();
     int list[4];
     dss::memset(list, 0, sizeof(list));
@@ -218,7 +219,7 @@ THUMB void unkfunc_0216bbdc()
         }
     }
     int param = 0x17;
-    func_02050ebc(s_parts_0217705e, &param, 0x20, 0x70);
+    unkfunc_02050ebc(s_parts_0217705e, &param, 0x20, 0x70);
     unkfunc_0216c350(btl::BattleMenuPlayerControl::getSingleton()->activeChara_);
     unkfunc_0216b6cc();
 }
@@ -226,14 +227,14 @@ THUMB void unkfunc_0216bbdc()
 THUMB void unkfunc_0216bc84()
 {
     static const int tactics[6] = { 0x90000001, 0x90000002, 0x90000005, 0x90000003, 0x90000004, 0x90000006 };
-    func_02050ea8(s_parts_02176f70, 0);
+    unkfunc_02050ea8(s_parts_02176f70, 0);
     unkfunc_0216c2a0();
     const int* p = tactics;
     for (int j = 0; j < 2; j++) {
         for (int i = 0; i < 3; i++) {
             int param = *p;
             param += btl::BattleMenuPlayerControl::getSingleton()->tacticsSex_;
-            func_02050ee0(s_parts_02176f00, &param, i * 0x40 + 0x24, j * 0x1e + 0x60, 1);
+            unkfunc_02050ee0(s_parts_02176f00, &param, i * 0x40 + 0x24, j * 0x1e + 0x60, 1);
             p++;
         }
     }
@@ -263,9 +264,9 @@ THUMB void unkfunc_0216bc84()
 
 THUMB void unkfunc_0216bd94()
 {
-    func_02050ea8(s_parts_02176e90, 0);
+    unkfunc_02050ea8(s_parts_02176e90, 0);
     int param[2] = { (int)0x80000008, (int)0x80000009 };
-    func_02050ee0(s_parts_02177088, param, 0x18, 0x78, 1);
+    unkfunc_02050ee0(s_parts_02177088, param, 0x18, 0x78, 1);
     unkfunc_0216c2b0();
     unkfunc_0216b6cc();
 }
@@ -276,7 +277,7 @@ THUMB void unkfunc_0216bdd4()
         { 0x01, 0x00, (short)0xf000, 0, 0x20, 0x70, 0xc0, 0x30 },
         { 0xff, 0x00, 0, 0, 0, 0, 0, 0 },
     };
-    func_02050ea8(window, 0);
+    unkfunc_02050ea8(window, 0);
     for (int i = 0; i < status::g_Party.getCarriageOutCount(); i++) {
         int x = i * 0x28 + 0x30;
         int index = status::g_Party.getPlayerIndex(i);
@@ -306,7 +307,7 @@ THUMB void unkfunc_0216be58(int* list, int count, int page)
 THUMB void unkfunc_0216bec8(int* list, int count, int* order, int orderCount)
 {
     status::g_Party.setMemberShiftMode();
-    func_02050ea8(s_parts_02176eac, 0);
+    unkfunc_02050ea8(s_parts_02176eac, 0);
     for (int i = 0; i < 4; i++) {
         int x = (i % 2) * 0x48 + 8;
         int y = (i / 2) * 0x30 + 8;
@@ -323,13 +324,13 @@ THUMB void unkfunc_0216bec8(int* list, int count, int* order, int orderCount)
             param[3] = status::g_Party.getPlayerStatus(*order)->haveStatusInfo_.haveStatus_.level_;
             if (info->haveStatus_.isBattleNpc_) {
                 param[3] = 0xa0000073;
-                func_02050ee0(s_parts_02177034, param, x, y, data_020be244[color]);
+                unkfunc_02050ee0(s_parts_02177034, param, x, y, data_020be244[color]);
             } else {
-                func_02050ee0(s_parts_02176fb6, param, x, y, data_020be244[color]);
+                unkfunc_02050ee0(s_parts_02176fb6, param, x, y, data_020be244[color]);
             }
-            func_02050ee0(s_parts_02176f8c, param, x, y, data_020be244[color]);
+            unkfunc_02050ee0(s_parts_02176f8c, param, x, y, data_020be244[color]);
         }
-        func_02050ee0(s_parts_02177106, number, x, y, data_020be244[color]);
+        unkfunc_02050ee0(s_parts_02177106, number, x, y, data_020be244[color]);
         order++;
     }
     int target = btl::BattleMenuPlayerControl::getSingleton()->targetChara_;
@@ -360,7 +361,7 @@ THUMB void unkfunc_0216c08c(int group)
 
 THUMB void unkfunc_0216c0c8()
 {
-    func_02050ea8(s_parts_021771bc, 0);
+    unkfunc_02050ea8(s_parts_021771bc, 0);
     for (int i = 0; i < status::g_Party.getCarriageOutCount(); i++) {
         unkfunc_0216b344(&status::g_Party.getPlayerStatus(i)->haveStatusInfo_, i);
     }
@@ -377,7 +378,7 @@ THUMB void unkfunc_0216c10c(int* items, int count, int page)
     if (pageMax > page) {
         num = 6;
     }
-    func_02050ea8(s_parts_021770dc, 0);
+    unkfunc_02050ea8(s_parts_021770dc, 0);
     top = page * 6;
     for (int i = 0; i < num; i++) {
         int x = i % 2;
@@ -435,7 +436,7 @@ THUMB void unkfunc_0216c2b0()
 
 THUMB void unkfunc_0216c2c0(int* list, int count)
 {
-    func_02050ea8(s_parts_02176f38, 0);
+    unkfunc_02050ea8(s_parts_02176f38, 0);
     for (int i = 0; i < count; i++) {
         int x = (i % 5) * 0x28 + 0x10;
         int y = (i / 5) * 0x28 + 0x68;
@@ -453,7 +454,7 @@ THUMB void unkfunc_0216c350(int chara)
 {
     if (chara == -1) {
         int param = 0x8000006e;
-        func_02050ee0(s_parts_02176fe0, &param, 0x88, 0xa0, 1);
+        unkfunc_02050ee0(s_parts_02176fe0, &param, 0x88, 0xa0, 1);
         return;
     }
     status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(chara)->haveStatusInfo_;
@@ -479,14 +480,14 @@ THUMB void unkfunc_0216c3a4(int x, int y, int index)
     param[1] = found + 1;
     if (index == -1) {
         param[0] = 0x19;
-        func_02050ebc(s_parts_02177130, param, x, y);
+        unkfunc_02050ebc(s_parts_02177130, param, x, y);
         return;
     }
     if (inParty) {
-        func_02050ee0(s_parts_02177184, param, x, y, data_020be244[unkfunc_0216b980(info)]);
+        unkfunc_02050ee0(s_parts_02177184, param, x, y, data_020be244[unkfunc_0216b980(info)]);
         return;
     }
-    func_02050ebc(s_parts_021770b2, param, x, y);
+    unkfunc_02050ebc(s_parts_021770b2, param, x, y);
 }
 
 THUMB void unkfunc_0216c468(int chara)
@@ -503,18 +504,18 @@ THUMB void unkfunc_0216c468(int chara)
             unkfunc_0216b858(i * 0x40 + 8, 0x4a, info->haveStatus_.iconIndex_, i);
         }
     }
-    func_02050ea8(s_parts_02176f1c, 0);
+    unkfunc_02050ea8(s_parts_02176f1c, 0);
 }
 
 THUMB void unkfunc_0216c524(int* actions, int count, int chara)
 {
     status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(chara)->haveStatusInfo_;
-    func_02050698(0, 0);
+    unkfunc_02050698(0, 0);
     TextAPI::setMACRO0(1, 0x50000000, info->haveStatus_.playerIndex_);
     int message = 0xa0000023;
-    func_02050ed0(s_parts_021771f4, &message, data_020be244[0]);
+    unkfunc_02050ed0(s_parts_021771f4, &message, data_020be244[0]);
     for (int i = 0; i < count; i++) {
         int param = actions[i] + 0x70000000;
-        func_02050ee0(s_parts_02176ec8, &param, (i % 2) * 120 + 16, (i / 2) * 16 + 36, data_020be244[unkfunc_0216b980(info)]);
+        unkfunc_02050ee0(s_parts_02176ec8, &param, (i % 2) * 120 + 16, (i / 2) * 16 + 36, data_020be244[unkfunc_0216b980(info)]);
     }
 }

@@ -8,6 +8,12 @@
 #include "main/param/ShopDataSecond.hpp"
 #include "main/param/MonsterMap.hpp"
 namespace param {
+    template <typename T, int N>
+    struct ExcelFile {
+        unsigned int id;
+        T data[N];
+    };
+
     struct PartyTalk
     {
         unsigned int messageID;
@@ -51,11 +57,19 @@ namespace param {
         unsigned short obj;
         unsigned char dmmy0;
         unsigned char dmmy1;
+
+        static const unsigned int size_;
+        static const unsigned int ID_;
+        static DataObject data_;
     };
 
     struct CharaVoice {
         unsigned short index;
         unsigned short voice;
+
+        static const unsigned int size_;
+        static const unsigned int ID_;
+        static DataObject data_;
     };
     
     struct ActionParam {
@@ -213,6 +227,10 @@ namespace param {
         unsigned int southWest;
         unsigned int nothing;
         unsigned int special;
+
+        static const unsigned int size_;
+        static const unsigned int ID_;
+        static DataObject data_;
     };
 
     struct EncountData {
@@ -319,7 +337,11 @@ namespace param {
         char byte_1;
         char byte_2;
 
-        static const unsigned int size_;    // data_020b610c
+        static void getCameraFile(int camera, char* file);
+
+        static const unsigned int ID_;
+        static const unsigned int size_;
+        static DataObject data_;
     };
 
     struct EffectColorParam {
@@ -424,6 +446,7 @@ namespace param {
         unsigned char ListSize;                         // 0x16
         char byte_1;                                    // 0x17
 
+        static const unsigned int size_;
         static const unsigned int ID_;                  // data_0208ca60
         static DataObject data_;                        // data_020c7964
     };
@@ -455,32 +478,43 @@ namespace param {
 
     struct EncountSeaTile {
         unsigned char* tile_;
+        static const unsigned int ID_;
         static const unsigned int width_;
     };
 
     struct EncountTile1 {
         unsigned char* tile_;
+        static const unsigned int ID_;
         static const unsigned int width_;
+        static const unsigned int height_;
     };
 
     struct EncountTile2 {
         unsigned char* tile_;
+        static const unsigned int ID_;
         static const unsigned int width_;
+        static const unsigned int height_;
     };
 
     struct EncountTile3 {
         unsigned char* tile_;
+        static const unsigned int ID_;
         static const unsigned int width_;
+        static const unsigned int height_;
     };
 
     struct EncountGotTile {
         unsigned char* tile_;
+        static const unsigned int ID_;
         static const unsigned int width_;
+        static const unsigned int height_;
     };
 
     struct EncountYamiTile {
         unsigned char* tile_;
+        static const unsigned int ID_;
         static const unsigned int width_;
+        static const unsigned int height_;
     };
 
     
@@ -496,7 +530,9 @@ namespace param {
         char floor[8];
         char file[16];
 
-        static const unsigned int size_;                // data_020b5d98
+        static const unsigned int size_;
+        static const unsigned int ID_;
+        static DataObject data_;
     };
 
     struct VehicleData {
@@ -509,6 +545,9 @@ namespace param {
         char mapname[4];
         unsigned char dmmy0;
         unsigned char dmmy1;
+
+        static const unsigned int size_;                // data_0208ca54
+        static const unsigned int ID_;
     };
 
     struct MirrorMessage {
@@ -518,7 +557,9 @@ namespace param {
         unsigned char dmmy1;
         unsigned char dmmy2;
 
-        static const unsigned int size_;                // data_020b6154
+        static const unsigned int size_;
+        static const unsigned int ID_;
+        static DataObject data_;
     };
 
     struct MapChurch {
@@ -529,6 +570,10 @@ namespace param {
         char floor[8];
         char byte_1;
         unsigned char dmmy0;
+
+        static const unsigned int size_;
+        static const unsigned int ID_;
+        static DataObject data_;
     };
     struct SurechigaiTenant {
         unsigned char index;
@@ -539,6 +584,8 @@ namespace param {
         char byte_1;
         unsigned char dmmy0;
         unsigned char dmmy1;
+
+        char getLevel() { return (byte_1 & 0x1c) >> 2; }
     };
     struct CharInitData {
         unsigned short monsterID;
@@ -744,49 +791,49 @@ namespace param {
         char byte_2;
         char byte_3;
         unsigned char dmmy0;
+
+        static const unsigned int size_;
+        static const unsigned int ID_;
     };
 }
 
-extern const unsigned char charInitDataTable[0x521];  
-extern const unsigned char charInitDataTable2[0x42b];
-extern const unsigned char heroDataTable[0x964];
-extern const unsigned char warriorDataTable[0x964];
-extern const unsigned char princessDataTable[0x964];
-extern const unsigned char priestDataTable[];
-
-
-extern param::MageData data_020919dc;
-extern param::TraderData data_02092340;
-extern param::WarlockData data_02092ca4;
-extern param::DancerData data_02093608;
-extern param::PissaroData data_02093f6c;
-extern param::ItemData data_020978dc;
-extern param::CharaVoice data_0208d9b0;
-extern param::ActionParam data_020aa604;
-extern param::AbreactTurn data_0208e3ac;
-extern param::MonsterData data_020a02e8;
-extern param::BookData data_0208dd18;
-extern param::SplitMsg data_02098d20;
-
-extern param::EncountData data_0209dae4;
-extern param::EncountFormationID data_0208cdc8;
-extern param::EncountFormNum data_0208cab8;
-extern param::EncountSpecial data_02095c64;
-extern param::MonsterMap data_020948d0;
-extern param::ColorCorrect data_0209a44c;
-extern param::FloorFog data_0208ca8c;
-extern param::CLUTCode data_0208ccd4;
-extern param::FloorBackColor data_0208d2d8;
-extern param::FloorParam data_020a4cc0;
-extern param::ShopDataFirst data_02096968;
-extern param::ShopDataSecond data_0209bda0;
-extern param::VehicleData data_0208d6f4;
-extern const unsigned int data_0208ca54;                 // VehicleData::size_
-extern param::MapChurch data_0208d480;
-extern param::EffectColorParam data_02095240;
-
-extern "C" void func_02033d14(int camera, char* file);   // param::EffectParam::getCameraFile
-extern param::SurechigaiTenant data_0208cb4c;
-extern param::SurechigaiObjectData data_0208cc08;
-
-
+extern const param::ExcelFile<unsigned char, 9> data_0208ca64;                 // EncountYamiTile tiles (3x3)
+extern const param::ExcelFile<unsigned char, 16> data_0208ca74;                // EncountGotTile tiles (4x4)
+extern const param::ExcelFile<param::FloorFog, 2> data_0208ca88;
+extern const param::ExcelFile<param::EncountFormNum, 18> data_0208cab4;
+extern const param::ExcelFile<param::SurechigaiTenant, 23> data_0208cb48;
+extern const param::ExcelFile<param::SurechigaiObjectData, 50> data_0208cc04;
+extern const param::ExcelFile<param::CLUTCode, 15> data_0208ccd0;
+extern const param::ExcelFile<param::EncountFormationID, 9> data_0208cdc4;
+extern const param::ExcelFile<unsigned char, 256> data_0208cec4;               // EncountTile3 tiles (16x16)
+extern const param::ExcelFile<unsigned char, 256> data_0208cfc8;               // EncountTile1 tiles (16x16)
+extern const param::ExcelFile<unsigned char, 256> data_0208d0cc;               // EncountSeaTile tiles (16x16)
+extern const param::ExcelFile<unsigned char, 256> data_0208d1d0;               // EncountTile2 tiles (16x16)
+extern const param::ExcelFile<param::FloorBackColor, 15> data_0208d2d4;
+extern const param::ExcelFile<param::MapChurch, 26> data_0208d47c;
+extern const param::ExcelFile<param::VehicleData, 29> data_0208d6f0;
+extern const param::ExcelFile<param::CharaVoice, 217> data_0208d9ac;
+extern const param::ExcelFile<param::BookData, 210> data_0208dd14;
+extern const param::ExcelFile<param::AbreactTurn, 52> data_0208e3a8;
+extern const param::ExcelFile<param::CharInitData, 27> charInitDataTable;
+extern const param::ExcelFile<param::HeroData, 100> heroDataTable;
+extern const param::ExcelFile<param::WarriorData, 100> warriorDataTable;
+extern const param::ExcelFile<param::PrincessData, 100> princessDataTable;
+extern const param::ExcelFile<param::PriestData, 100> priestDataTable;
+extern const param::ExcelFile<param::MageData, 100> data_020919d8;
+extern const param::ExcelFile<param::TraderData, 100> data_0209233c;
+extern const param::ExcelFile<param::WarlockData, 100> data_02092ca0;
+extern const param::ExcelFile<param::DancerData, 100> data_02093604;
+extern const param::ExcelFile<param::PissaroData, 100> data_02093f68;
+extern const param::ExcelFile<param::MonsterMap, 201> data_020948cc;
+extern const param::ExcelFile<param::EffectColorParam, 162> data_0209523c;
+extern const param::ExcelFile<param::EncountSpecial, 104> data_02095c60;
+extern const param::ExcelFile<param::ShopDataFirst, 988> data_02096964;
+extern const param::ExcelFile<param::ItemData, 162> data_020978d8;
+extern const param::ExcelFile<param::SplitMsg, 39> data_02098d1c;
+extern const param::ExcelFile<param::ColorCorrect, 540> data_0209a448;
+extern const param::ExcelFile<param::ShopDataSecond, 1872> data_0209bd9c;
+extern const param::ExcelFile<param::EncountData, 256> data_0209dae0;
+extern const param::ExcelFile<param::MonsterData, 315> data_020a02e4;
+extern const param::ExcelFile<param::FloorParam, 544> data_020a4cbc;
+extern const param::ExcelFile<param::ActionParam, 595> data_020aa600;

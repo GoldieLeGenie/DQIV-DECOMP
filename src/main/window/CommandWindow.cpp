@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "main/window/CommandWindow.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/menu/MenuAPI.hpp"
 #include "main/status/StageStatus.hpp"

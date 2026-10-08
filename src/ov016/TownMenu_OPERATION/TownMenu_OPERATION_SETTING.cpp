@@ -9,6 +9,8 @@
 #include "ov016/UnkTownMenuDraw/UnkTownMenuDraw_02173d7c.hpp"
 #include "ov016/UnkTownMenuDraw/UnkTownMenuDraw_0217ad94.hpp"
 #include "ov016/UnkTownMenuDraw/UnkTownMenuDraw_0217d560.hpp"
+#include "main/menu/UnkMenuPartsDraw.hpp"
+#include "main/menu/UnkMenuCommonDraw_0201e194.hpp"
 
 static UnkMenuParts s_parts[] = {
     { 0x15, 0xb5, 0, 0, 0, 0x58, 0, 0 },
@@ -50,12 +52,12 @@ THUMB void TownMenu_OPERATION_SETTING::menuDraw()
         unkfunc_02173da4(0x68, y[i]);
     }
     unkfunc_0217cc8c();
-    func_0201e194(0, 0x20, 0x100, 0x80, 0x40);
+    unkfunc_0201e194(0, 0x20, 0x100, 0x80, 0x40);
     unkfunc_0217ad94(5, -1);
     unkfunc_0217eb5c(0x40, 0xa0, 0);
     unkfunc_0217aa8c();
-    func_0201e260();
-    func_0201e350(-1, -1, 0);
+    unkfunc_0201e260();
+    unkfunc_0201e350(-1, -1, 0);
     bgmItem_.drawActive();
     seItem_.drawActive();
     speedItem_.drawActive();
@@ -105,7 +107,7 @@ THUMB void TownMenu_OPERATION_SETTING::unkfunc_0217a8f8()
 
 THUMB void TownMenu_OPERATION_SETTING::unkfunc_0217a924()
 {
-    func_02051a7c(&bgmItem_);
+    bgmItem_.execInput();
     switch (bgmItem_.result_) {
     case menu::MenuItem::MENUITEM_RESULT_NONE:
         break;
@@ -140,7 +142,7 @@ THUMB void TownMenu_OPERATION_SETTING::unkfunc_0217a924()
 
 THUMB void TownMenu_OPERATION_SETTING::unkfunc_0217a994()
 {
-    func_02051a7c(&seItem_);
+    seItem_.execInput();
     switch (seItem_.result_) {
     case menu::MenuItem::MENUITEM_RESULT_NONE:
         break;
@@ -175,7 +177,7 @@ THUMB void TownMenu_OPERATION_SETTING::unkfunc_0217a994()
 
 THUMB void TownMenu_OPERATION_SETTING::unkfunc_0217aa14()
 {
-    func_02051a7c(&speedItem_);
+    speedItem_.execInput();
     switch (speedItem_.result_) {
     case menu::MenuItem::MENUITEM_RESULT_NONE:
         break;
@@ -215,12 +217,12 @@ THUMB void TownMenu_OPERATION_SETTING::unkfunc_0217aa8c()
     s_parts[2].x_ = speedItem_.active_ * 32 + 0x66;
     s_parts[3].x_ = 0xc;
     s_parts[3].y_ = (mode_ - 2) * 0x1c + 0x58;
-    func_02050ea8(s_parts, 0);
+    unkfunc_02050ea8(s_parts, 0);
 }
 
 THUMB int TownMenu_OPERATION_SETTING::unkfunc_0217aad4()
 {
-    func_02051a7c(&cancelItem_);
+    cancelItem_.execInput();
     if (cancelItem_.result_ == menu::MenuItem::MENUITEM_RESULT_CANCEL) {
         cancelItem_.result_ = menu::MenuItem::MENUITEM_RESULT_NONE;
         cancelItem_.lastresult_ = menu::MenuItem::MENUITEM_RESULT_NONE;

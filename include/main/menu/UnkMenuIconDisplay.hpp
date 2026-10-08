@@ -1,6 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/menu/UnkMenuDisplay.hpp"
+#include "main/menu/UnkMenuIconData.hpp"
 
 struct UnkHoppingDigit {
     int frame_;                                 // 0x00  -99: free, < 0: waiting
@@ -48,9 +49,3 @@ struct UnkMenuIconDisplay : UnkMenuDisplay {
     void unkfunc_02055ddc(int x, int y, void* src, int srcX, int srcY, int width);
 };
 
-extern "C" {
-    void* func_0205182c(int type, int id);                                  /* menu graphics data */
-    void* func_020813e0(int screen);
-    void  func_020826d8(void* dst, int x, int y, void* src, int size);
-    void  func_020827f0(int type, int dst, void* src, int size);            /* queue VRAM transfer */
-}

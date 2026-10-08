@@ -1,4 +1,6 @@
 #include "main/part/TownPart.hpp"
+#include "main/dss/UnkDisplay.hpp"
+#include "main/debug/UnkDebugDisplay.hpp"
 #include "main/global/Global.hpp"
 #include "main/data/DataObject.hpp"
 #include "main/dss/DssUtils.hpp"
@@ -12,6 +14,7 @@
 #include "nitro/fs.hpp"
 #include "ov000/town/TownSystem.hpp"
 #include "ov000/town/TownWindowSystem.hpp"
+#include "main/menu/UnkMenuOverlay.hpp"
 
 TownPart g_TownPart;
 static int s_reloadOverlay;
@@ -30,32 +33,32 @@ ARM void TownPart::initialize()
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
     data_0211e450.unkfunc_020861c4(0x40000, 0x4000);
-    func_02080e90(data_0211c4f0);
-    func_0207e7e8();
-    func_02087590((int)&OVERLAY_0_ID);
+    unkfunc_02080e90(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
+    unkfunc_0207e7e8();
+    unkfunc_02087590((int)&OVERLAY_0_ID);
     TownSystem::unkfunc_02132210();
-    func_02087590((int)&OVERLAY_16_ID);
+    unkfunc_02087590((int)&OVERLAY_16_ID);
     ov016_entry();
-    func_0207e7e8();
+    unkfunc_0207e7e8();
     TownSystem::getSingleton()->initialize();
     TownWindowSystem::getSingleton()->initialize();
     func_0206dd70(1);
     OS_Wait();
     g_Global.fadeIn(30);
-    if (func_0207f87c(&data_0211a60c) < s_minFreeSize) {
-        s_minFreeSize = func_0207f87c(&data_0211a60c);
+    if (unkfunc_0207f87c(&data_0211a60c) < s_minFreeSize) {
+        s_minFreeSize = unkfunc_0207f87c(&data_0211a60c);
     }
-    func_0202c25c();
+    unkfunc_0202c25c();
 }
 
 ARM void TownPart::terminate()
 {
     TownWindowSystem::getSingleton()->terminate();
     TownSystem::getSingleton()->terminate();
-    func_0207e7e8();
-    func_020875a4((int)&OVERLAY_0_ID);
-    func_020875a4((int)&OVERLAY_16_ID);
-    func_02087564(data_020efc58);
+    unkfunc_0207e7e8();
+    unkfunc_020875a4((int)&OVERLAY_0_ID);
+    unkfunc_020875a4((int)&OVERLAY_16_ID);
+    data_020efc58.unkfunc_02087564();
     data_0211e450.unkfunc_02086278();
 }
 
@@ -77,5 +80,5 @@ ARM void TownPart::onWindowPart()
 
 ARM void TownPart::onDebugPart()
 {
-    func_0202c284();
+    unkfunc_0202c284();
 }

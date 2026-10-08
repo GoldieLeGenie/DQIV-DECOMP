@@ -1,4 +1,5 @@
 #include "ov028/MaterielMenu_SHOP/MaterielMenu_SHOP.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/text/TextAPI.hpp"
 #include "main/status/PartyStatus.hpp"
@@ -47,7 +48,7 @@ THUMB void MaterielMenu_SHOP_WHOSE::menuDraw()
 THUMB void MaterielMenu_SHOP_WHOSE::menuUpdate()
 {
     if (data_020ed1bc.isOpen()) {
-        func_02080e78();
+        unkfunc_02080e78();
         if (data_020ed1bc.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
             if (endMessage_ == 1) {
                 close();

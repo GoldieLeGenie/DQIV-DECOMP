@@ -8,3 +8,8 @@ src/ov035/MaterielMenu_EXTRA_NENE/MaterielMenu_EXTRA_NENE.cpp:
     complete
     .text start:0x02189360 end:0x02189bb8
     .data start:0x02189bc0 end:0x02189bdc
+
+src/ov035/ModulePadding_ov035.cpp:
+    complete
+    .ctor start:0x02189bb8 end:0x02189bbc
+    .data start:0x02189bdc end:0x02189be0

@@ -9,6 +9,7 @@
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/UseAction.hpp"
 #include "main/status/UseItem.hpp"
+#include "main/menu/MenuTemplate_Common.hpp"
 
 THUMB void BattleMenu_ITEM::menuSetup()
 {
@@ -52,10 +53,10 @@ THUMB void BattleMenu_ITEM::menuExecute()
     if (page != last) {
         num = 6;
     }
-    func_0201e6c4(&menuItem_, num, menuItem_.active_);
+    MenuTemplate_Common::COMMON_ITEM_ICON32_2x3(&menuItem_, num, menuItem_.active_);
     MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
     int max = navigator_.getPageMaxCount() - 1;
-    func_0201e684(&unk_ec, unk_ec.active_, max, 0xd8, 0x78);
+    MenuTemplate_Common::TOWN_PAGE_1x1(&unk_ec, unk_ec.active_, max, 0xd8, 0x78);
 }
 
 THUMB void BattleMenu_ITEM::menuDraw()

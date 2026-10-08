@@ -94,10 +94,4 @@ namespace status {
     extern ExcelParam excelParam; //data_020c79b8
 
 }
-extern unsigned char data_0208cfcc;
-extern unsigned char data_0208d1d4;
-extern unsigned char data_0208cec8;
-extern unsigned char data_0208ca78;
-extern unsigned char data_0208d0d0[];
-extern unsigned char data_0208ca68[];
 

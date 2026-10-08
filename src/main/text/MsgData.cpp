@@ -11,7 +11,7 @@ THUMB MsgData::MsgData()
 
 THUMB void MsgData::msg_setup(int msg_base_id, int arg1, int size, int count)
 {
-    m_addr = (char*)func_0207f77c(&data_0211a60c, size, -4);
+    m_addr = (char*)unkfunc_0207f77c(&data_0211a60c, size, -4);
     m_size = size;
     m_msg_base_id = msg_base_id;
     if (arg1 == 0) {
@@ -26,7 +26,7 @@ THUMB void MsgData::msg_setup(int msg_base_id, int arg1, int size, int count)
 
 THUMB void MsgData::unkfunc_020554ec()
 {
-    func_0207f840(&data_0211a60c, m_addr);
+    unkfunc_0207f840(&data_0211a60c, m_addr);
     m_addr = 0;
     m_size = 0;
     m_msg_base_id = -1;
@@ -208,14 +208,14 @@ THUMB unsigned char* MsgMeta::unkfunc_02055740(int index)
 
 THUMB void MsgFile::unkfunc_020557cc()
 {
-    m_addr = (unsigned char*)func_0207f77c(&data_0211a60c, 0x404, -4);
+    m_addr = (unsigned char*)unkfunc_0207f77c(&data_0211a60c, 0x404, -4);
     m_size = 0x400;
     unk_80c = 0;
 }
 
 THUMB void MsgFile::unkfunc_020557f8()
 {
-    func_0207f840(&data_0211a60c, m_addr);
+    unkfunc_0207f840(&data_0211a60c, m_addr);
     m_addr = 0;
     m_size = 0;
 }
@@ -229,7 +229,7 @@ THUMB int MsgFile::unkfunc_02055810(unsigned int msg_id, int lang)
     if (data->unkfunc_02055524(msg_id, lang) == 0) {
         return 0;
     }
-    if (func_02088484(data->m_addr, msg_id) != 0) {
+    if (unkfunc_02088484(data->m_addr, msg_id) != 0) {
         return 1;
     }
     return 0;

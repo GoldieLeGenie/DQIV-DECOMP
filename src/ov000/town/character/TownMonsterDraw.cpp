@@ -1,6 +1,8 @@
 #include "ov000/town/TownCharacter.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "ov000/town/TownCamera.hpp"
 #include "main/object/DSSAObject.hpp"
+#include "main/dss/UnkPaletteEffect.hpp"
 
 ARM TownMonsterDraw::TownMonsterDraw()
 {
@@ -40,7 +42,7 @@ ARM void TownMonsterDraw::draw()
         return;
     }
     DSSAObject::calcType_ = 0;
-    bool even = (func_02081254() & 1) == 0;
+    bool even = (unkfunc_02081254() & 1) == 0;
     TownCamera* camera = TownCamera::getSingleton();
     unkfunc_0212ed58(!even ? &camera->camera_.unk_004 : &camera->camera_.unk_068);
     monster_.draw();
@@ -91,7 +93,7 @@ ARM void TownMonsterDraw::setPaletteRate(dss::Fix32 r, dss::Fix32 g, dss::Fix32 
     rate[0] = r;
     rate[1] = g;
     rate[2] = b;
-    func_02086034(palette, rate);
+    unkfunc_02086034((TextureObject*)palette, rate);
 }
 
 ARM void TownMonsterDraw::setMotion(int motion, int loop)

@@ -3,7 +3,7 @@
 #include "main/status/UseItem.hpp"
 
 
-int status::HaveStatusInfo::globalFlag_;
+dss::Flag status::HaveStatusInfo::globalFlag_;
 
 THUMB status::HaveStatusInfo::HaveStatusInfo()
 {
@@ -2090,28 +2090,28 @@ THUMB bool status::HaveStatusInfo::isAllKaishin()
 THUMB void status::HaveStatusInfo::setGlbMeganteRing(bool flag)
 {
     if (flag) {
-        globalFlag_ |= 1;
+        globalFlag_.flag_ |= 1;
     } else {
-        globalFlag_ &= ~1;
+        globalFlag_.flag_ &= ~1;
     }
 }
 
 THUMB bool status::HaveStatusInfo::isGlbMeganteRing() {
-    return (globalFlag_ & 1) != 0;
+    return (globalFlag_.flag_ & 1) != 0;
 }
 
 THUMB void status::HaveStatusInfo::setGlbMegazaruRing(bool flag)
 {
     if (flag) {
-        globalFlag_ |= 2;
+        globalFlag_.flag_ |= 2;
     } else {
-        globalFlag_ &= ~2;
+        globalFlag_.flag_ &= ~2;
     }
 }
 
 THUMB bool status::HaveStatusInfo::isGlbMegazaruRing()
 {
-    if (globalFlag_ & 2) {
+    if (globalFlag_.flag_ & 2) {
         return 1;
     }
     return 0;

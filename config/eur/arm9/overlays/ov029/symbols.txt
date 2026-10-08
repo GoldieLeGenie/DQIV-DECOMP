@@ -19,3 +19,5 @@ _ZN29MaterielMenu_COINSALEROOM_BUY13getCasinoCoinEv kind:function(thumb,size=0x6
 _ZN29MaterielMenu_COINSALEROOM_BUY11showMessageEi kind:function(thumb,size=0x18) addr:0x02189968
 _ZTV30MaterielMenu_COINSALEROOM_ROOT kind:data(byte[28]) addr:0x021899a0
 _ZTV29MaterielMenu_COINSALEROOM_BUY kind:data(byte[28]) addr:0x021899bc
+module_padding_ov029_ctor_02189980 kind:data(byte[4]) addr:0x02189980
+module_padding_ov029_data_021899d8 kind:data(byte[8]) addr:0x021899d8

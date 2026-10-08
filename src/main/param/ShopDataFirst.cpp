@@ -52,3 +52,5 @@ THUMB int param::ShopDataFirst::getIndex(char *name)
 
     return 0x34 * index;
 }
+
+DataObject param::ShopDataFirst::data_;

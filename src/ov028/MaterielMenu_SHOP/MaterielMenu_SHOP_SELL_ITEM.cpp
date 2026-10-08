@@ -5,6 +5,7 @@
 #include "main/status/UseItem.hpp"
 #include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
 #include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
+#include "main/menu/MenuTemplate_Common.hpp"
 
 static inline int getItem(status::HaveItem* haveItem, int index)
 {
@@ -48,7 +49,7 @@ THUMB void MaterielMenu_SHOP_SELL_ITEM::menuExecute()
     } else {
         itemCount = haveItem.getCount();
     }
-    func_0201e6c4(&menuItem_, itemCount, itemIndex_);
+    MenuTemplate_Common::COMMON_ITEM_ICON32_2x3(&menuItem_, itemCount, itemIndex_);
     MenuTemplate_materiel::MATERIEL_CANCEL(&menuItem2_);
     if (haveItem.getCount() > 6) {
         MenuTemplate_materiel::shopPlayerArrow(&menuItem3_);

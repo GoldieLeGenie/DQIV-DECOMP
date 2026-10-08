@@ -74,7 +74,7 @@ ARM void TownPlayerManager::initialize()
     scriptColl_ = 0;
     unsigned int i;
     param::MapChurch* church = status::excelParam.mapChurch_;
-    for (i = 0; i < data_020b615c.count_; i++) {
+    for (i = 0; i < param::MapChurch::size_; i++) {
         if (church[i].floor[0] == g_Global.getMapName()[0] && church[i].floor[1] == g_Global.getMapName()[1]) {
             church_ = (char)(church[i].byte_1 & 1);
             break;
@@ -94,7 +94,7 @@ ARM void TownPlayerManager::initialize()
         if (g_Global.getMapName()[0] == 'h' && g_Global.getMapName()[1] == 'h') {
             g_cmnPartyInfo.setIkadaInfo("hhout", &returnIkadaPos);
         }
-        for (unsigned int i = 0; i < data_0208ca54; i++) {
+        for (unsigned int i = 0; i < param::VehicleData::size_; i++) {
             char name0 = vehicle[i].mapname[0];
             char name1 = vehicle[i].mapname[1];
             if (name0 == 'c' && name1 == 'b') {
@@ -643,7 +643,7 @@ ARM void TownPlayerManager::setLock(int lock)
 ARM void TownPlayerManager::setCureFloor()
 {
     status::g_Party.allRecovery();
-    func_0202aec4(func_0202adc4(), 1);
+    UnkScreenEffectManager::getSingleton()->unkfunc_0202aec4(1);
 }
 
 ARM void TownPlayerManager::setCameraRotToNorth()
@@ -726,7 +726,7 @@ ARM void TownPlayerManager::setJumpMove(dss::Fix32Vector3& endPos, int frame)
     scriptMove_.setJumpMove(pos, endPos, frame);
     scriptType_ = 2;
     for (int i = 0; i < partyDraw_.countReal_; i++) {
-        func_02049880(&partyDraw_.partyCharacter_[i], 0);
+        partyDraw_.partyCharacter_[i].setShadowFlag(0);
     }
     setLock(1);
 }
@@ -807,25 +807,25 @@ ARM void TownPlayerManager::setShadow()
             dss::Fix32Vector3 pos = getSingleton()->party_.getMemberPosition(i);
             if (position.vx == pos.vx && position.vz == pos.vz) {
                 if (TownStageManager::getSingleton()->getHitSurfaceIdByType(0) == -1 || floorPoly == -1) {
-                    func_0204978c(&getSingleton()->partyDraw_.partyCharacter_[i], 0);
+                    getSingleton()->partyDraw_.partyCharacter_[i].setShadowAlpha(0);
                 } else {
                     floorPos.vx = pos.vx;
                     floorPos.vz = pos.vz;
-                    func_02049764(&getSingleton()->partyDraw_.partyCharacter_[i], &floorPos);
+                    getSingleton()->partyDraw_.partyCharacter_[i].setShadowPos(&floorPos);
                     dss::Fix32 vol = (shadowHeight - (pos.vy - floorPos.vy)) / shadowHeight * 12;
                     if (vol < dss::Fix32(0L)) {
                         vol = 0L;
                     }
                     int alpha = vol.value / 4096;
                     alpha = status::BaseStatus::getClampValue(0, (unsigned char)alpha, 12);
-                    func_0204978c(&getSingleton()->partyDraw_.partyCharacter_[i], alpha);
-                    func_020497fc(&getSingleton()->partyDraw_.partyCharacter_[i], 0);
+                    getSingleton()->partyDraw_.partyCharacter_[i].setShadowAlpha(alpha);
+                    getSingleton()->partyDraw_.partyCharacter_[i].setShadowStay(0);
                 }
             }
         }
     } else if (allShadowReset_ == 0) {
-        func_020497fc(&getSingleton()->partyDraw_.partyCharacter_[0], 1);
-        func_0204978c(&getSingleton()->partyDraw_.partyCharacter_[0], 12);
+        getSingleton()->partyDraw_.partyCharacter_[0].setShadowStay(1);
+        getSingleton()->partyDraw_.partyCharacter_[0].setShadowAlpha(12);
         int floorPoly = TownStageManager::getSingleton()->coll_.m_floorPolygonNo;
         dss::Fix32Vector3 floorPos;
         TownStageManager::getSingleton()->stage_.collGetPolygonPos(floorPoly, &floorPos);
@@ -835,8 +835,8 @@ ARM void TownPlayerManager::setShadow()
             dss::Fix32Vector3 pos = getSingleton()->party_.getMemberPosition(i);
             int value = pos.vy.value - floorPos.vy.value;
             if (value >= 0 && value < 0x3c) {
-                func_020497fc(&getSingleton()->partyDraw_.partyCharacter_[i], 1);
-                func_0204978c(&getSingleton()->partyDraw_.partyCharacter_[i], 12);
+                getSingleton()->partyDraw_.partyCharacter_[i].setShadowStay(1);
+                getSingleton()->partyDraw_.partyCharacter_[i].setShadowAlpha(12);
             } else {
                 allShadowReset_ = 0;
             }
@@ -959,7 +959,7 @@ ARM void TownPlayerManager::scriptExecute()
         party_.fixFlag_ = 0;
         switch (scriptType_) {
         case 2:
-            func_02049880(&partyDraw_.partyCharacter_[0], 1);
+            partyDraw_.partyCharacter_[0].setShadowFlag(1);
             party_.moveFirstFlag_ = 1;
             scriptType_ = 3;
             break;
@@ -968,7 +968,7 @@ ARM void TownPlayerManager::scriptExecute()
                 scriptType_ = 0;
                 setLock(0);
                 for (int i = 0; i < partyDraw_.countReal_; i++) {
-                    func_02049880(&partyDraw_.partyCharacter_[i], 1);
+                    partyDraw_.partyCharacter_[i].setShadowFlag(1);
                 }
             }
             break;

@@ -22,3 +22,5 @@ _ZN31MaterielMenu_EXTRA_SIDEJOB_SELL6addPayEv kind:function(thumb,size=0x38) add
 _ZTV30MaterielMenu_EXTRA_SIDEJOB_BUY kind:data(byte[28]) addr:0x02189a40
 _ZTV31MaterielMenu_EXTRA_SIDEJOB_ROOT kind:data(byte[28]) addr:0x02189a5c
 _ZTV31MaterielMenu_EXTRA_SIDEJOB_SELL kind:data(byte[28]) addr:0x02189a78
+module_padding_ov025_ctor_02189a30 kind:data(byte[4]) addr:0x02189a30
+module_padding_ov025_data_02189a94 kind:data(byte[12]) addr:0x02189a94

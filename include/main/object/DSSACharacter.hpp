@@ -3,19 +3,8 @@
 #include "main/dss/Position.hpp"
 #include "main/data/DataObject.hpp"
 #include "main/object/DSSAObject.hpp"
-
-struct UnkCharacterPalette {
-    unsigned char unk_000[0x404];               // 0x000
-    int unk_404;                                // 0x404
-    int unk_408;                                // 0x408
-    int unk_40c;                                // 0x40C
-    int enable_;                                // 0x410
-
-    UnkCharacterPalette();
-    ~UnkCharacterPalette();
-    void unkfunc_02086ccc(void* texture, int flag);
-    void unkfunc_02086d4c();
-};
+#include "main/dss/TextureObject.hpp"
+#include "main/dss/UnkCharacterPalette.hpp"
 
 struct DSSACharacterData {
     LZDataObject textureData_;                  // 0x00
@@ -67,8 +56,3 @@ struct DSSACharacter : Position {
     static void setCamera(dss::Camera* camera) { DSSAObjectWithCamera::setCamera(camera); }
     void pause(bool pause);
 };
-
-extern "C" {
-    void func_02086868(void* texture);                                      /* release texture */
-    void func_02086034(void* texture, dss::Fix32* rgb);                     /* DS-only palette rate */
-}

@@ -15,5 +15,3 @@ namespace status{
     };
 }
 
-extern const unsigned int data_0208c9fc;
-extern const int data_020b5d64;

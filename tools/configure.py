@@ -4,6 +4,10 @@ import os
 from pathlib import Path
 import argparse
 import sys
+import subprocess
+import shutil
+import tempfile
+import struct
 
 import ninja_syntax
 from get_platform import get_platform
@@ -15,6 +19,8 @@ parser.add_argument('-w', type=str, default=DEFAULT_WIBO_PATH, dest="wine", requ
 parser.add_argument("--compiler", type=Path, required=False, help="Path to compiler root directory")
 parser.add_argument("--no-extract", action="store_true", help="Skip extract step")
 parser.add_argument("--dsd", type=Path, required=False, help="Path to pre-installed dsd CLI")
+parser.add_argument("--generate-delinks", action="store_true", help="Generate reference objects with compiler-specific ARM mappings")
+parser.add_argument("--generate-lcf", action="store_true", help="Generate the linker command file only")
 parser.add_argument('version', help='Game version')
 args = parser.parse_args()
 
@@ -24,7 +30,7 @@ args = parser.parse_args()
 GAME = "dqiv"
 DSD_VERSION = 'v0.10.2'
 WIBO_VERSION = '0.6.16'
-OBJDIFF_VERSION = 'v2.7.1'
+OBJDIFF_VERSION = 'v3.8.2'
 MWCC_VERSION = "2.0/sp1p6"
 DECOMP_ME_COMPILER = "mwcc_30_133"
 CC_FLAGS = " ".join([
@@ -48,7 +54,7 @@ CC_FLAGS = " ".join([
 ])
 
 # Libraries (NitroSDK, MSL, runtime) are prebuilt SDK code, compiled with another compiler and flags
-LIBS_MWCC_VERSION = "2.0/sp1p5"
+LIBS_MWCC_VERSION = "2.0/sp1p2"
 LIBS_CC_FLAGS = " ".join([
     "-O4,p",
     "-enum int",
@@ -74,21 +80,12 @@ LIBS_CC_FLAGS = " ".join([
 LD_FLAGS = " ".join([
     "-proc arm946e",        # Target processor
     "-nostdlib",            # No C/C++ standard library
+    "-Cpp_exceptions off",  # The original ROM has no exception tables
     "-interworking",        # Enable ARM/Thumb interworking
     "-m Entry",             # Set entry function
     "-map closure,unused",  # Generate map file
     "-msgstyle gcc",        # Use GCC-like messages (some IDEs will make file names clickable)
     "-dead",                # Strip unused code
-    # mwldarm aborts silently when the -force_active list exceeds ~255 chars: keep it short
-    "-force_active _ZTV30MaterielMenuExtraChangeHostage"  # Keep ov036 (orphan overlay; the vtable keeps menuSetup)
-    # called only through relocs ambiguous between overlays (overlays(1,9))
-    ",_ZN12PokerManager15getSelectCardNoEii"
-    # unreferenced main .bss word between SoundManager and IshikuroTestPart (dsd gap object)
-    ",data_020ed280"
-    # unreferenced ov003 .rodata word between BattleExecVictory and ExcelParamBis (dsd gap object)
-    ",data_ov003_02130e98"
-    # unreferenced main .rodata (2x 0x1000) between BuildDate and DSSAObject (dsd gap object)
-    ",data_020b62c0",
 ])
 DSD_OBJDIFF_ARGS = " ".join([
     "--scratch",                        # Metadata for creating decomp.me scratches
@@ -135,7 +132,11 @@ DSD = str(args.dsd or os.path.join('.', str(root_path / f"dsd{EXE}")))
 OBJDIFF = os.path.join('.', str(root_path / f"objdiff-cli{EXE}"))
 CC = os.path.join('.', str(mwcc_path / "mwccarm.exe"))
 CC_LIBS = os.path.join('.', str(mwcc_root / LIBS_MWCC_VERSION / "mwccarm.exe"))
+MWASM_LIBS = os.path.join('.', str(mwcc_root / LIBS_MWCC_VERSION / "mwasmarm.exe"))
 LD = os.path.join('.', str(mwcc_path / "mwldarm.exe"))
+# Library sources built with another compiler version than LIBS_MWCC_VERSION
+LIBS_CC_OVERRIDES = {
+}
 PYTHON = sys.executable
 
 
@@ -183,7 +184,7 @@ class Project:
     def source_object_files(self) -> list[str]:
         return [
             str(self.game_build / source_file.with_suffix(".o"))
-            for source_file in get_c_cpp_files([src_path, libs_path])
+            for source_file in [*get_c_cpp_files([src_path, libs_path]), *get_asm_files([libs_path])]
         ]
 
     def arm9_lcf(self) -> Path:
@@ -205,8 +206,134 @@ class Project:
         return self.game_build / "report.json"
 
 
+def retained_input_sections() -> dict[Path, tuple[str, ...]]:
+    # Whole input sections whose unreferenced contents are present in the ROM.
+    # Module padding is ordinary source data, not a list of linker root symbols.
+    result = {
+        Path("libs/Runtime/src/MWException.cpp"): (".data",),
+        Path("libs/NitroSDK/src/math/math_sha1_block.c"): (".text",),
+        Path("libs/NitroSystem/src/g2d/g2d_softsprite.c"): (".bss",),
+        Path("libs/NitroSystem/src/snd/snd_nns_main.c"): (".bss",),
+        Path("src/main/object/UnkData_020b62c0.cpp"): (".rodata",),
+    }
+    result.update((source, (".data", ".bss"))
+                  for source in src_path.rglob("ModulePadding_*.cpp"))
+    return result
+
+
+def name_retained_reference_sections(path: Path, sections: tuple[str, ...]):
+    # DSD extracts the original output-section names. Match the explicit input
+    # section names used by the compiler for KEEP_SECTION. Only ELF section-name
+    # metadata changes: code/data bytes, symbols and relocations are untouched.
+    data = bytearray(path.read_bytes())
+    if data[:6] != b"\x7fELF\x01\x01":
+        raise ValueError(f"Expected little-endian ELF32: {path}")
+    table = struct.unpack_from("<I", data, 32)[0]
+    entry_size, count, names_index = struct.unpack_from("<HHH", data, 46)
+    names_header = table + entry_size * names_index
+    names_offset, names_size = struct.unpack_from("<II", data, names_header + 16)
+    names = bytearray(data[names_offset:names_offset + names_size])
+    changed = False
+    for index in range(count):
+        header = table + entry_size * index
+        offset = struct.unpack_from("<I", data, header)[0]
+        end = names.index(0, offset)
+        name = names[offset:end].decode("ascii")
+        if name in sections:
+            struct.pack_into("<I", data, header, len(names))
+            names.extend((name + ".keep").encode("ascii") + b"\0")
+            changed = True
+    if changed:
+        struct.pack_into("<II", data, names_header + 16, len(data), len(names))
+        data.extend(names)
+        path.write_bytes(data)
+
+
+def generate_delinks(project: Project):
+    # MWCC leaves inline jump tables in code mode; mwasm emits data mappings.
+    # Keep the ROM bytes/relocations unchanged and use the appropriate mapping
+    # style for each producer so objdiff decodes both sides consistently.
+    command = [DSD, "delink", "-c", str(project.arm9_config_yaml())]
+    subprocess.run(command + ["--all-mapping-symbols"], check=True)
+    with tempfile.TemporaryDirectory(dir=project.game_build) as directory:
+        saved = []
+        # This large Thumb function has a second literal pool that DSD's
+        # function analysis does not reach; its boundaries are in symbols.txt.
+        full_mapping_sources = list(get_asm_files([libs_path])) + [
+            Path("src/main/param/EffectParam.cpp"),
+        ]
+        for source in full_mapping_sources:
+            target = project.arm9_delinks() / source.with_suffix(".o")
+            if target.is_file():
+                copy = Path(directory) / f"{len(saved)}.o"
+                shutil.copyfile(target, copy)
+                saved.append((copy, target))
+        subprocess.run(command, check=True)
+        for copy, target in saved:
+            shutil.copyfile(copy, target)
+    for source, sections in retained_input_sections().items():
+        target = project.arm9_delinks() / source.with_suffix(".o")
+        if target.is_file():
+            name_retained_reference_sections(target, sections)
+
+
+def generate_lcf(project: Project):
+    subprocess.run([DSD, "lcf", "-c", str(project.arm9_config_yaml())], check=True)
+    # Define SDK arena/stack constants and preserve the original section layout.
+    if project.game_version == "eur":
+        absolute_symbols = {
+            "unk_IrqStackSize": 0x1000,
+            "unk_SysStackSize": 0,
+            "unk_DtcmArenaStart": 0x027e0080,
+            "unk_MainArenaStart": 0x0218d220,
+            "unk_ItcmArenaStart": 0x01ff8300,
+            # Code resumes here after inline switch data; expose analysis labels.
+            "UnkMonsterMapResume": 0x0200cb6c,
+            "UnkEffectParamResume": 0x020343ac,
+            "UnkEffectParamPool": 0x02034650,
+        }
+        lcf = project.arm9_lcf()
+        text = lcf.read_text()
+        sections = "SECTIONS {\n"
+        if sections not in text:
+            raise ValueError(f"Missing SECTIONS block in {lcf}")
+        definitions = "".join(
+            f"    {name} = 0x{value:08x};\n"
+            for name, value in absolute_symbols.items()
+        )
+        text = text.replace(sections, sections + definitions, 1)
+        # Preserve the original unreferenced SDK storage and linker padding by
+        # input section, without maintaining a list of forced symbol names.
+        text = text.replace("KEEP_SECTION {", "KEEP_SECTION {\n"
+                            "    .text.keep,\n    .rodata.keep,\n"
+                            "    .data.keep,\n    .bss.keep,", 1)
+        for source, sections_to_keep in retained_input_sections().items():
+            for section in sections_to_keep:
+                text = text.replace(f"{source.stem}.o({section})",
+                                    f"{source.stem}.o({section}.keep)")
+        text = text.replace("        TextExtractor.o(.text)",
+                            "        UnkTextMsgResume = . + 0x5ac;\n        TextExtractor.o(.text)", 1)
+        # Place autoload-boundary aliases in the main BSS section explicitly;
+        # absolute assignments may otherwise attach to overlapping overlays.
+        text = text.replace("        ARM9_BSS_START = .;",
+                            "        ARM9_BSS_START = .;\n"
+                            "        data_020c4d80 = . + 0x360;\n"
+                            "        data_020c4d98 = . + 0x378;", 1)
+        # The optional overlay digest table is empty: its begin/end labels
+        # share an address before the final 24 zero alignment bytes.
+        text = text.replace("        ModulePadding_main.o(.data.keep)",
+                            "        data_020c4a08_end = .;\n        ModulePadding_main.o(.data.keep)", 1)
+        lcf.write_text(text)
+
+
 def main():
     project = Project(args.version)
+    if args.generate_delinks:
+        generate_delinks(project)
+        return
+    if args.generate_lcf:
+        generate_lcf(project)
+        return
 
     with build_ninja_path.open("w") as file:
         n = ninja_syntax.Writer(file)
@@ -237,7 +364,7 @@ def main():
 
         n.rule(
             name="delink",
-            command=f"{DSD} delink --config-path $config_path"
+            command=f'$python tools/configure.py $version --generate-delinks --dsd "{DSD}"'
         )
         n.newline()
 
@@ -256,7 +383,7 @@ def main():
         )
         n.newline()
 
-        mwcc_libs_cmd = f'{WINE} "{CC_LIBS}" {LIBS_CC_FLAGS} {CC_INCLUDES} $cc_flags -MD -c $in -o $basedir'
+        mwcc_libs_cmd = f'{WINE} "$cc_libs" {LIBS_CC_FLAGS} {CC_INCLUDES} $cc_flags -MD -c $in -o $basedir'
         if platform.system != "windows":
             mwcc_libs_cmd += f" && $python {transform_dep} $basefile.d $basefile.d"
         n.rule(
@@ -266,9 +393,16 @@ def main():
         )
         n.newline()
 
+        # hand-written assembly (lib sources that are not compiled code)
+        n.rule(
+            name="mwasm",
+            command=f'{WINE} "$mwasm" -proc arm5TE $in -o $out',
+        )
+        n.newline()
+
         n.rule(
             name="lcf",
-            command=f"{DSD} lcf -c $config_path"
+            command=f'$python tools/configure.py $version --generate-lcf --dsd "{DSD}"'
         )
         n.newline()
 
@@ -298,7 +432,8 @@ def main():
 
         n.rule(
             name="objdiff_report",
-            command=f"{OBJDIFF} report generate -o $out"
+            # ARM mapping symbols must stay with their original code sections.
+            command=f"{OBJDIFF} report generate -c combine_text_sections=false -o $out"
         )
         n.newline()
 
@@ -469,9 +604,13 @@ def add_mwcc_builds(n: ninja_syntax.Writer, project: Project, mwcc_implicit: lis
         if is_cpp(source_file): cc_flags.append("-lang=c++")
         elif is_c(source_file): cc_flags.append("-lang=c")
         is_lib = libs_path in source_file.parents
+        cc_libs = CC_LIBS
+        override = LIBS_CC_OVERRIDES.get(source_file.relative_to(root_path).as_posix()) if is_lib else None
+        if override:
+            cc_libs = os.path.join('.', str(mwcc_root / override / "mwccarm.exe"))
         n.build(
             inputs=str(source_file),
-            implicit=mwcc_implicit + ([CC_LIBS] if is_lib else []),
+            implicit=mwcc_implicit + ([cc_libs] if is_lib else []),
             rule="mwcc_libs" if is_lib else "mwcc",
             outputs=str(src_obj_path.with_suffix(".o")),
             variables={
@@ -479,6 +618,7 @@ def add_mwcc_builds(n: ninja_syntax.Writer, project: Project, mwcc_implicit: lis
                 "cc_flags": " ".join(cc_flags),
                 "basedir": os.path.dirname(src_obj_path),
                 "basefile": str(src_obj_path.with_suffix("")),
+                "cc_libs": cc_libs,
             },
         )
         n.newline()
@@ -491,6 +631,25 @@ def add_mwcc_builds(n: ninja_syntax.Writer, project: Project, mwcc_implicit: lis
             outputs=ctx_file,
         )
         n.newline()
+
+
+    for source_file in get_asm_files([libs_path]):
+        n.build(
+            inputs=str(source_file),
+            implicit=[MWASM_LIBS],
+            rule="mwasm",
+            outputs=str((project.game_build / source_file).with_suffix(".o")),
+            variables={"mwasm": MWASM_LIBS},
+        )
+        n.newline()
+
+
+def get_asm_files(dirs: list[Path]):
+    for dir in dirs:
+        for root, _, files in os.walk(dir):
+            for file in files:
+                if Path(file).suffix == ".s":
+                    yield Path(root) / file
 
 
 def get_c_cpp_files(dirs: list[Path]):
@@ -516,11 +675,12 @@ def add_delink_and_lcf_builds(n: ninja_syntax.Writer, project: Project):
     delinks_path = project.arm9_delinks()
     n.build(
         inputs=project.dsd_configs() + [rom_config],
-        implicit=DSD,
+        implicit=[DSD, "tools/configure.py"],
         rule="delink",
         outputs=str(delinks_path / "delink.yaml"),
         variables={
             "config_path": project.arm9_config_yaml(),
+            "version": project.game_version,
         }
     )
     n.newline()
@@ -536,13 +696,14 @@ def add_delink_and_lcf_builds(n: ninja_syntax.Writer, project: Project):
     objects_file = project.arm9_objects_txt()
     n.build(
         inputs=project.delinks_files + [str(rom_config)],
-        implicit=DSD,
+        implicit=[DSD, "tools/configure.py"],
         rule="lcf",
         outputs=[str(lcf_file), str(objects_file)],
         variables={
             "config_path": project.arm9_config_yaml(),
             "lcf_file": lcf_file,
             "objects_file": objects_file,
+            "version": project.game_version,
         }
     )
     n.newline()
@@ -597,7 +758,7 @@ def add_objdiff_builds(n: ninja_syntax.Writer, project: Project):
 
     n.build(
         inputs=["objdiff.json"],
-                implicit=[OBJDIFF, "arm9", "check"] + project.source_object_files(),
+        implicit=[OBJDIFF, "arm9", "check"] + project.source_object_files(),
         rule="objdiff_report",
         outputs=str(project.objdiff_report()),
     )

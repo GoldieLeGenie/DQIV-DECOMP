@@ -48,7 +48,7 @@ struct DebugMenu : UnkGlobalPart {
     int unkfunc_02058380();
     virtual void update();
     virtual void draw();
-    virtual bool isEnd();
+    virtual int isEnd();
     void unkfunc_020583a8(int count);
     void print(int x, int y, const char* fmt, ...);
     static void unkfunc_02058430(const char* date);

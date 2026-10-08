@@ -23,6 +23,7 @@ struct UnkSoundHandle {
     void unkfunc_02086554(int fade);
     int unkfunc_02086578();
     void unkfunc_020865a4(int volume);
+    void unkfunc_020865b4();                    // apply the volume
 };
 
 struct UnkSoundMember {
@@ -71,8 +72,19 @@ struct UnkSoundPlayer {
     void unkfunc_0205caa0();                        // update
 };
 
-// DS-only sound system (g_SoundSystem)
+// sound system: sound heap + sound archive
 struct UnkSoundSystem {
+    void* unk_00;                               // 0x00 sound heap memory
+    void* unk_04;                               // 0x04 sound heap
+    unsigned char unk_08[0x90];                 // 0x08 sound archive
+    int unk_98;                                 // 0x98
+    void* unk_9c;                               // 0x9C sound archive file
+    int unk_a0;                                 // 0xA0
+
+    UnkSoundSystem();
+    ~UnkSoundSystem();
+    void unkfunc_020865f4(void* file, int flag);    // init
+    void unkfunc_02086634();                        // load the sound archive
     void unkfunc_020866d8();
     void unkfunc_020866e4(int bgm);
     void unkfunc_02086720(int a, int b);
@@ -80,3 +92,6 @@ struct UnkSoundSystem {
 
 extern UnkSoundPlayer data_0210bd4c;
 extern UnkSoundSystem data_0211fc7c;
+extern int data_020c4514;
+extern int data_020c4518;
+extern int data_0211fc68[2];

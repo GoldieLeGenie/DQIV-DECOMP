@@ -8,6 +8,10 @@
 #include "ov000/town/TownFurniture.hpp"
 
 
+THUMB void func_0202d014()
+{
+}
+
 status::BaseActionMessageData status::messageData_;
 
 
@@ -207,7 +211,7 @@ THUMB int status::BaseActionMessage::setSplitMessage(status::CharacterStatus* ac
         return message;
     }
     unsigned int i = 0;
-    if (i < splitMsgInfo_.count_) {
+    if (i < param::SplitMsg::size_) {
         param::SplitMsg* p = messageData_.splitMsg_;
         do {
             if (message == (int)p->branch) {
@@ -216,7 +220,7 @@ THUMB int status::BaseActionMessage::setSplitMessage(status::CharacterStatus* ac
             }
             i++;
             p++;
-        } while (i < splitMsgInfo_.count_);
+        } while (i < param::SplitMsg::size_);
     }
     if (index == -1) {
         return message;

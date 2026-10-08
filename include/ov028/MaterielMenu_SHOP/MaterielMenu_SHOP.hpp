@@ -1,6 +1,7 @@
 #pragma once
 #include "globaldefs.h"
 #include "main/menu/MenuBase.hpp"
+#include "main/dss/UnkBgBuffer.hpp"
 #include "main/menu/MaterielMenu_SlotEnter.hpp"
 #include "main/menu/MaterielMenuPlayerControl.hpp"
 
@@ -256,7 +257,3 @@ extern MaterielMenu_SHOP_SELL_ITEM gMaterielMenu_SHOP_SELL_ITEM;
 extern MaterielMenu_SHOP_SELL_QUANTITY gMaterielMenu_SHOP_SELL_QUANTITY;
 extern MaterielMenu_SHOP_BUYMENU gMaterielMenu_SHOP_BUYMENU;
 
-extern "C" {
-    void func_02080e64(int, int);
-    void func_02080e78(void);
-}

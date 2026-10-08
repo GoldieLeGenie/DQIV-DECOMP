@@ -7,6 +7,8 @@
 #include "main/status/UseItem.hpp"
 #include "main/status/ShopList.hpp"
 #include "ov028/MaterielMenu_SHOP/MaterielMenu_SHOP.hpp"
+#include "main/menu/UnkMenuPartsDraw.hpp"
+#include "main/menu/UnkMenuCommonDraw_0201e194.hpp"
 
 static UnkMenuParts s_parts_02181fd0[] = {
     { 0x01, 0x00, (short)0xf000, 0, 0xc0, 0, 0x40, 0x30 },
@@ -33,7 +35,7 @@ THUMB void unkfunc_0216fb24(int* fukuroItemCount, int flag)
 {
     unkfunc_0216d154(flag);
     unkfunc_0216d0d4();
-    func_0201e350(0x88, 0xa0, flag);
+    unkfunc_0201e350(0x88, 0xa0, flag);
     MaterielMenuPlayerControl* ctrl = MaterielMenuPlayerControl::getSingleton();
     int item = MaterielMenu_SHOP_MANAGER::getSingleton()->getItem(ctrl->activeItem_);
     unkfunc_0216d058(fukuroItemCount);
@@ -49,8 +51,8 @@ THUMB void unkfunc_0216fb6c(int flag)
     unkfunc_0216d398();
     unkfunc_0216d554(0, 1);
     unkfunc_0216e1c4(0);
-    func_0201e350(0x88, 0xa0, flag);
-    func_0201e234();
+    unkfunc_0201e350(0x88, 0xa0, flag);
+    unkfunc_0201e234();
     unkfunc_0216d26c();
 }
 
@@ -58,16 +60,16 @@ THUMB void unkfunc_0216fb98()
 {
     unkfunc_0216d554(0, 1);
     unkfunc_0216e1c4(0);
-    func_0201e350(0x88, 0xa0, 0);
-    func_0201e234();
+    unkfunc_0201e350(0x88, 0xa0, 0);
+    unkfunc_0201e234();
     unkfunc_0216d798();
 }
 
 THUMB void unkfunc_0216fbbc()
 {
     unkfunc_0216e1c4(0);
-    func_0201e350(0x88, 0xa0, 0);
-    func_0201e234();
+    unkfunc_0201e350(0x88, 0xa0, 0);
+    unkfunc_0201e234();
     unkfunc_0216da80(0);
     unkfunc_0216db94(0, -1, 0, 0);
     unkfunc_0216d8e4(0);
@@ -77,8 +79,8 @@ THUMB void unkfunc_0216fbbc()
 THUMB void unkfunc_0216fbf4()
 {
     unkfunc_0216e1c4(0);
-    func_0201e350(0x88, 0xa0, 0);
-    func_0201e234();
+    unkfunc_0201e350(0x88, 0xa0, 0);
+    unkfunc_0201e234();
     unkfunc_0216da80(1);
     unkfunc_0216db94(1, -1, 0, 0);
     unkfunc_0216d8e4(1);
@@ -91,7 +93,7 @@ THUMB void unkfunc_0216fc2c(int quantity)
     unkfunc_0216ce4c(false, 0);
     unkfunc_0216e2bc(0xa4, 0x28);
     unkfunc_0216dc54(-1);
-    func_0201e350(-1, -1, 0);
+    unkfunc_0201e350(-1, -1, 0);
 }
 
 THUMB void unkfunc_0216fc58()
@@ -123,13 +125,13 @@ THUMB void unkfunc_0216fcbc(int count)
     int chara = MaterielMenuPlayerControl::getSingleton()->activeChara_;
     unkfunc_0216d554(0x28, 0);
     unkfunc_0216e1c4(1);
-    func_0201e3f4(chara, 1);
-    func_0201e350(-1, -1, 0);
+    unkfunc_0201e3f4(chara, 1);
+    unkfunc_0201e350(-1, -1, 0);
 }
 
 THUMB void unkfunc_0216fce8()
 {
-    func_0201e260();
+    unkfunc_0201e260();
 }
 
 THUMB void unkfunc_0216fcf0()
@@ -178,7 +180,7 @@ THUMB void unkfunc_0216fd58(int coin, int flag)
     } else {
         s_parts_02181fd0[2].type_ = 0xf;
     }
-    func_02050ed0(s_parts_02181fd0, param, 1);
+    unkfunc_02050ed0(s_parts_02181fd0, param, 1);
 }
 
 THUMB void unkfunc_0216fda0(int* monsterName, int* monsterFlag)
@@ -213,7 +215,7 @@ THUMB void unkfunc_0216fdcc()
         flag = 1;
     }
     unkfunc_0216e1c4(0);
-    func_0201e350(0x88, 0xa0, 0);
+    unkfunc_0201e350(0x88, 0xa0, 0);
     unkfunc_0216da80(flag);
     unkfunc_0216db94(0, -1, 0, 0);
     unkfunc_0216d8e4(flag);
@@ -297,6 +299,6 @@ THUMB void unkfunc_0216ff10()
 
 THUMB void unkfunc_0216ff18()
 {
-    func_0201e350(-1, -1, 0);
-    func_0201e260();
+    unkfunc_0201e350(-1, -1, 0);
+    unkfunc_0201e260();
 }

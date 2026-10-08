@@ -1,5 +1,6 @@
 #pragma once
 #include "main/menu/CursorMoveGridLoop.hpp"
+#include "main/menu/MenuUpdateAssist.hpp"
 
 struct MENUITEM_DATA;
 
@@ -15,7 +16,7 @@ struct MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    virtual void menuClose();
+    virtual void menuClose() {}
     int redraw_;
     int frame_;
     MENUBASE_STAT stat_;
@@ -60,32 +61,63 @@ struct MenuItem {
         MENUITEM_RESULT_DOWN,
         MENUITEM_RESULT_LEFT,
         MENUITEM_RESULT_RIGHT,
+        MENUITEM_RESULT_DA,
+        MENUITEM_RESULT_DB,
+        MENUITEM_RESULT_DX,
+        MENUITEM_RESULT_DY,
+    };
+    enum MENUITEM_REASON {
+        MENUITEM_REASON_NONE,
+        MENUITEM_REASON_PAD,
+        MENUITEM_REASON_TOUCH,
     };
 
-    int unk_00[6];
-    int flagTouch_;
-    int enablePad_;
-    int enableCancel_;
-    int unk_24;
-    int enableSE_;
-    int unk_2C;
-    int enable_;
-    int unk_34;
-    int active_;
-    int unk_3C;
-    int unk_40;
-    int unk_44;
-    int unk_48;
-    int lastresult_;
-    int result_;
-    int reason_;
-    int mtype_;
-    int bActive_;
-    int navMode_;
+    int menuitem_temp_x_;           /* 0x00 */
+    int menuitem_temp_y_;           /* 0x04 */
+    int menuitem_width_;            /* 0x08 */
+    int menuitem_height_;           /* 0x0C */
+    int menuitem_min_;              /* 0x10 */
+    int menuitem_max_;              /* 0x14 */
+    int flagTouch_;                 /* 0x18 */
+    int enablePad_;                 /* 0x1C */
+    int enableCancel_;              /* 0x20 */
+    int enableDirectButton_;        /* 0x24 */
+    int enableSE_;                  /* 0x28 */
+    int enableLoopEdge_;            /* 0x2C */
+    MENUITEM_DATA* menuitem_data_;  /* 0x30 */
+    int unk_34;                     /* 0x34 */
+    int active_;                    /* 0x38 */
+    int unk_3C;                     /* 0x3C */
+    int unk_40;                     /* 0x40 */
+    int unk_44;                     /* 0x44 base x */
+    int unk_48;                     /* 0x48 base y */
+    int lastresult_;                /* 0x4C */
+    int result_;                    /* 0x50 */
+    int reason_;                    /* 0x54 */
+    int mtype_;                     /* 0x58 */
+    int ctype_;                     /* 0x5C */
+    int navMode_;                   /* 0x60 */
 
-    void setup(MENUITEM_TYPE type, CURSORTYPE cursor);
+    void setup(MENUITEM_TYPE mtype, CURSORTYPE ctype);
     void drawActive();
-    void setMenuItem(MENUITEM_DATA* menu, int w, int h, int num);
+    void setMenuItem(MENUITEM_DATA* data, int width, int height, int count);
+    void setBaseXY(int x, int y);
+    int execInput();
+    void unkfunc_02051b60();
+    int unkfunc_02051be0();
+    int unkfunc_02051be4();
+    int check11_PAD_DirectButton();
+    int check20_PAD_CancelButton();
+    int check30_PAD_Noactive();
+    int check40_PAD_OkButton();
+    int unkfunc_02051d40();
+    int unkfunc_02051dcc();
+    int unkfunc_02051e5c();
+    int unkfunc_02051ed0();
+    int check50_NEW_PAD_UP();
+    int check60_NEW_PAD_DOWN();
+    int check70_NEW_PAD_LEFT();
+    int check80_NEW_PAD_RIGHT();
     int getActive() { return active_; }
 };
 
@@ -93,45 +125,33 @@ struct MenuItem {
 
 // DS menu parts draw list entry (list terminated by type_ 0xff)
 struct UnkMenuParts {
-    unsigned char type_;    /* 0x0 */
-    unsigned char unk_1;    /* 0x1 */
-    short unk_2;            /* 0x2 */
-    short unk_4;            /* 0x4 */
+    unsigned char type_;    /* 0x0 */  // 0xff: end of list
+    unsigned char subType_; /* 0x1 */
+    short attr_;            /* 0x2 */  // palette << 12 | color << 8 | icon slot
+    short index_;           /* 0x4 */  // index in the value table
     short x_;               /* 0x6 */
     short y_;               /* 0x8 */
-    short unk_a;            /* 0xA */
-    short unk_c;            /* 0xC */
+    short w_;               /* 0xA */  // 0: 256
+    short h_;               /* 0xC */  // 0: 256
+
+    int unkfunc_02051708(int* param);           // value of the part
+    int unkfunc_0205171c();                     // palette
+    int unkfunc_02051728();                     // text color
+    int unkfunc_02051734();                     // icon slot
 };
 
 struct MENUITEM_DATA {
-    char code;      /* 0x0 */
-    char view;      /* 0x1 */
+    unsigned char code;     /* 0x0 */
+    unsigned char view;     /* 0x1 */
     short x;        /* 0x2 */
     short y;        /* 0x4 */
     short w;        /* 0x6 */
     short h;        /* 0x8 */
 };
 
+void unkfunc_020518f8(MENUITEM_DATA* data, int x, int y);     // sets data->x/y
+
 extern "C" {
-    void func_020518f8(MENUITEM_DATA* data, int x, int y);     /* sets data->x/y */
-    void func_0201e6c4(menu::MenuItem* menuItem, int count, int active);
-    int func_02051a7c(menu::MenuItem*);
-    void func_0201e684(menu::MenuItem* menuItem, int active, int max, int x, int y);
-    void func_0201e194(int x, int y, int w, int h, int arg);
-    void func_0201e1c4(int x, int y, int w);
-    int func_02050e20(int index, const char* text);    /* width of a text */
-    void func_02050e44(int index, int x, int y, int priority, int flag);  /* draws a monster name plate */
-    void func_02050ea8(UnkMenuParts* parts, int* param);   /* draws a parts list, param = per-part values (text/msg ids) */
-    void func_02050ebc(UnkMenuParts* parts, int* param, int x, int y);
-    void func_02050ed0(UnkMenuParts* parts, int* param, int flag);
-    void func_02050ee0(UnkMenuParts* parts, int* param, int x, int y, int flag);
-    void func_02050f1c(UnkMenuParts* part, int* param, int x, int y);       /* draws a single part at x/y */
-    extern int data_020be244[];      /* draw flags passed as the last argument of func_02050ee0 */
-    void func_0201e234(void);
-    void func_0201e260(void);
-    void func_0201e3f4(int chara, int flag);
-    int func_0201e674(int action);                  /* action name message */
-    void func_0201e350(int x, int y, int flag);     /* money window draw */
+    extern int data_020be244[];      /* draw flags passed as the last argument of unkfunc_02050ee0 */
 }
 
-#include "main/menu/MenuUpdateAssist.hpp"

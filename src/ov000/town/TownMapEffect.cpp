@@ -1,4 +1,5 @@
 #include "ov000/town/TownMapEffect.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/data/FileLoader.hpp"
 #include "main/script/ScriptSystem.hpp"
 

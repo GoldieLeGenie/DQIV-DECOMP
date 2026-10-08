@@ -55,7 +55,7 @@ int status::HaveBattleStatus::parupunteDebugIndex_;
 int status::HaveBattleStatus::confusionDebugIndex_;
 int status::HaveBattleStatus::torunekoDebugIndex_;
 int status::HaveBattleStatus::eventFlag_;
-int status::HaveBattleStatus::groupControl_[4];
+status::PlayerFlag status::HaveBattleStatus::groupControl_[4];
 int status::HaveBattleStatus::groupRoopIndex_[4];
 
 THUMB status::HaveBattleStatus::HaveBattleStatus()
@@ -121,7 +121,7 @@ THUMB void status::HaveBattleStatus::newBaseChangeMonster(int index)
 {
 
     this->multiCount2_ = 0;
-    groupControl_[this->groupIndex_] = 0;
+    groupControl_[this->groupIndex_].flag_ = 0;
 
     this->index_ = index;
 
@@ -737,7 +737,7 @@ THUMB void status::HaveBattleStatus::setRestOne() {
         if (this->disablePattern2nd_.flag_ & mask) {
             *p = 0;
         }
-        if (mask & groupControl_[this->groupIndex_]) {
+        if (mask & groupControl_[this->groupIndex_].flag_) {
             *p = 0;
         }
         i++;
@@ -773,7 +773,7 @@ THUMB int status::HaveBattleStatus::getRestNum() {
         if (this->disablePattern2nd_.flag_ & mask) {
             *p = 0;
         }
-        if (mask & groupControl_[this->groupIndex_]) {
+        if (mask & groupControl_[this->groupIndex_].flag_) {
             *p = 0;
         }
         i++;
@@ -848,7 +848,7 @@ THUMB bool status::HaveBattleStatus::checkRestMP_Mahoton()
 
 THUMB void status::HaveBattleStatus::clearGroupControl() {
     for (int i = 0; i < 4; i++) {
-        groupControl_[i] = 0;
+        groupControl_[i].flag_ = 0;
     }
 }
 
@@ -859,7 +859,7 @@ THUMB void status::HaveBattleStatus::checkGroupControl()
 
     patternIndex = this->patternIndex_;
     if (patternIndex <= 6 && this->group_[patternIndex] != 0) {
-        groupControl_[this->groupIndex_] |= (1 << patternIndex);
+        groupControl_[this->groupIndex_].flag_ |= (1 << patternIndex);
     }
 }
 
@@ -867,7 +867,7 @@ THUMB void status::HaveBattleStatus::checkGroupControl()
 THUMB int status::HaveBattleStatus::getGroupControl() {
     int idx = this->patternIndex_;
     if (this->group_[idx] != 0) {
-        int ctrl = groupControl_[this->groupIndex_];
+        int ctrl = groupControl_[this->groupIndex_].flag_;
         if (ctrl & (1 << idx)) {
             return 0;
         }

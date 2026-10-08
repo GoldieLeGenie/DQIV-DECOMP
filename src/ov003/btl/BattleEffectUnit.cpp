@@ -315,12 +315,12 @@ THUMB void btl::BattleEffectUnit::waitStart()
         }
 
         if (effect_->camera != 0 || effect_->camera2 != 0) {
-            func_02033d14(effect_->camera, file);
+            param::EffectParam::getCameraFile(effect_->camera, file);
             if (effect_->camera2 == 0) {
                 BattleCamera::getSingleton()->setFilename(file, 0);
             }
             else {
-                func_02033d14(effect_->camera2, name2);
+                param::EffectParam::getCameraFile(effect_->camera2, name2);
                 BattleCamera::getSingleton()->setFilename(file, name2);
                 BattleCamera::getSingleton()->setWait(effect_->wait);
             }

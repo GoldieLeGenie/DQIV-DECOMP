@@ -26,9 +26,3 @@ struct ScriptParam {
 
     static bool (*executeCommandFunction_)(void*);
 };
-
-extern "C" {
-    int func_0207f8c4(void* archive);                   // file count of an archive
-    int func_0207f8cc(void* archive, int index);        // file size in an archive
-    void* func_0207f8dc(void* archive, int index);      // file of an archive
-}

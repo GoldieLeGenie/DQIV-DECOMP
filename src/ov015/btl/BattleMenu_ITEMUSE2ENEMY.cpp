@@ -104,7 +104,7 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::unkfunc_0216cdc0(int index)
 
 THUMB void BattleMenu_ITEMUSE2ENEMY::unkfunc_0216ce00()
 {
-    func_02051a7c(&menuItem_);
+    menuItem_.execInput();
     switch (menuItem_.result_) {
     case 1:
         redraw_ = 1;

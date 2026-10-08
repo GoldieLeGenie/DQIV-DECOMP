@@ -11,6 +11,7 @@
 #include "main/status/UseAction.hpp"
 #include "main/status/UseItem.hpp"
 #include "main/text/TextAPI.hpp"
+#include "main/menu/MenuTemplate_Common.hpp"
 
 THUMB void UnkBattleMenu_0216cf44::menuSetup()
 {
@@ -31,7 +32,7 @@ THUMB void UnkBattleMenu_0216cf44::menuExecute()
         {1, 2, 0x90, 0xa8, 0x38, 0x10},
         {-1, -1, 0, 0, 0, 0},
     };
-    func_0201e6c4(&menuItem_, 6, (unk_14c - 1) % 6 + 1);
+    MenuTemplate_Common::COMMON_ITEM_ICON32_2x3(&menuItem_, 6, (unk_14c - 1) % 6 + 1);
     unkfunc_0216d488();
     unk_e4.setMenuItem(menu, 2, 1, 2);
     MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
@@ -93,7 +94,7 @@ THUMB void UnkBattleMenu_0216cf44::unkfunc_0216d0f0()
         }
         return;
     }
-    func_02051a7c(&unk_e4);
+    unk_e4.execInput();
     switch (unk_e4.result_) {
     case menu::MenuItem::MENUITEM_RESULT_CHANGE:
         redraw_ = 1;

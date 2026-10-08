@@ -16,7 +16,9 @@ namespace param {
         unsigned char dmmy0;                            // 0x0E
         unsigned char dmmy1;                            // 0x0F
 
-        static DataObject data_;                        // data_020edba0
+        static const unsigned int size_;
+        static const unsigned int ID_;
+        static DataObject data_;
         static const char* filename_[];                 // data_020be9a0
     };
 }

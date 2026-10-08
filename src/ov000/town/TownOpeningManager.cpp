@@ -1,9 +1,11 @@
 #pragma ipa file
 #include "ov000/town/TownOpeningManager.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "ov000/town/TownCharacterManager.hpp"
 #include "main/cmn/CommonEffectData.hpp"
 #include "main/cmn/CommonEffectLocation.hpp"
 #include "main/dss/Camera.hpp"
+#include "main/dss/UnkLanguage.hpp"
 #include "main/dss/Random.hpp"
 #include "main/global/Global.hpp"
 #include "main/sound/Sound.hpp"
@@ -33,7 +35,7 @@ ARM void TownOpeningManager::setup()
     dss::Fix32Vector3 pos;
     char area[8];
     char lang[8];
-    if (func_0208a104() == 2) {
+    if (unkfunc_0208a104() == 2) {
         dss::strcpy(area, "na");
         switch (status::g_Game.language) {
             case French:
@@ -71,11 +73,11 @@ ARM void TownOpeningManager::setup()
     dss::sprintf_s(filename, 0x80, "data/opening/staff.tex.lz");
     m_staff_tex_data.setup(filename, 0, 1);
     void* tex = m_tex_data.getAddr();
-    func_02086798(tex, 1);
+    ((TextureObject*)tex)->unkfunc_02086798(1);
     dss::memcpy(&m_tex, tex, sizeof(TextureObject));
     m_tex_data.cleanup();
     tex = m_staff_tex_data.getAddr();
-    func_02086798(tex, 1);
+    ((TextureObject*)tex)->unkfunc_02086798(1);
     dss::memcpy(&m_staff_tex, tex, sizeof(TextureObject));
     m_staff_tex_data.cleanup();
     dss::sprintf_s(filename, 0x80, "data/opening/%s/%s/logo1.dssa", area, lang);
@@ -141,8 +143,8 @@ ARM void TownOpeningManager::cleanup()
     m_dssa_data[1].cleanup();
     m_dssa_data[2].cleanup();
     m_dssa_data[3].cleanup();
-    func_02086868(&m_tex);
-    func_02086868(&m_staff_tex);
+    m_tex.unkfunc_02086868();
+    m_staff_tex.unkfunc_02086868();
     m_enable = 0;
 }
 
@@ -151,7 +153,7 @@ ARM void TownOpeningManager::draw()
     if (!m_enable) {
         return;
     }
-    if (!(func_02081254() & 1)) {
+    if (!(unkfunc_02081254() & 1)) {
         return;
     }
     if (m_counter == -45) {

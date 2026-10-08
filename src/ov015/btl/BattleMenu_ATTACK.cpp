@@ -52,7 +52,7 @@ THUMB void BattleMenu_ATTACK::menuUpdate()
         return;
     }
     int old = menuItem_.active_;
-    func_02051a7c(&menuItem_);
+    menuItem_.execInput();
     int i = menuItem_.active_;
     switch (menuItem_.result_) {
     case 1:

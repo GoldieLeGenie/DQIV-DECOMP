@@ -1,6 +1,8 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/dss/DssUtils.hpp"
+#include "main/dss/UnkMatrix43.hpp"
+#include "main/dss/UnkModelMember.hpp"
 #include "main/data/DataObject.hpp"
 #include "main/dss/Camera.hpp"
 
@@ -22,17 +24,20 @@ struct UnkModelObjectBase : UnkModelInterface {
     virtual void draw();                    // slot 2
     virtual void cleanup(int flag);         // slot 3
 
-    unsigned char unk_004[0xa8c];           /* 0x004 */
+    int unk_004;                            /* 0x004 */
+    NNSG3dRenderObj renderObj_[32];         /* 0x008 */
+    int count_;                             /* 0xA88 */
+    UnkModelMember* member_;                /* 0xA8C */
     dss::Fix32Vector3 m_scl;                 /* 0xA90 */
     dss::Fix32Vector3 m_pos;                 /* 0xA9C */
     dss::Fix32Vector3 m_rgb;                 /* 0xAA8 */
     dss::Vector3<short> m_rot;              /* 0xAB4 */
-    MtxFx43 m_matrix;                       /* 0xABC */
+    dss::UnkMatrix43 m_matrix;              /* 0xABC */
 
-    UnkModelObjectBase() { func_020885f8(&m_matrix); }
+    UnkModelObjectBase() {}
     dss::Fix32Vector3& getPosition() { return m_pos; }
     dss::Fix32Vector3& getScale() { return m_scl; }
-    void unkfunc_02085370(UnkModelMember* model);
+    void unkfunc_02085370(UnkModelMember* member);    // setup
     void unkfunc_0208569c(NNSG3dAnmObj* obj);               // add animation
     void unkfunc_020856ac(NNSG3dAnmObj* obj);               // remove animation
     void unkfunc_020856bc(dss::Fix32Vector3 scale);
@@ -40,28 +45,19 @@ struct UnkModelObjectBase : UnkModelInterface {
     void unkfunc_020856e0(dss::Vector3<short> rotation);
 };
 
-struct UnkModelMember {
-    void* unk_00;
-    void* unk_04;
-
-    UnkModelMember();                       // func_02083344
-    void unkfunc_02083354(void* data);
-    void unkfunc_02083360();
-    void* unkfunc_020835d0();
-};
-
 struct UnkModelAnimation {
     int flag_;                              /* 0x00  1: loop, 2: end */
     void* resource_;                        /* 0x04 */
     void* anm_;                             /* 0x08 */
     NNSG3dAnmObj* obj_;                     /* 0x0C */
-    unsigned char allocator_[0x10];         /* 0x10 */
+    NNSFndAllocator allocator_;             /* 0x10 */
 
     void unkfunc_02082b18(void* resource, void* model);
     void unkfunc_02082b7c();
     void unkfunc_02082b90(int loop);
     void unkfunc_02082bb4();
     int unkfunc_02082bfc();
+    bool checkFlag(int bit) const { return (flag_ & bit) ? true : false; }
 };
 
 /* vtable 0x020c3ad4 */
@@ -73,7 +69,6 @@ struct ModelObject : UnkModelObjectBase {
     DataObject modelData_;                  /* 0xAEC */
     DataObject animData_[6];                /* 0xAFC */
     UnkModelMember unk_b5c;                 /* 0xB5C */
-    void* unk_b64;                          /* 0xB64 palette */
     UnkModelAnimation animation_[6];        /* 0xB68 */
     int m_play_flag;                        /* 0xC28 */
     int m_pause_flag;                       /* 0xC2C */
@@ -121,8 +116,3 @@ struct ModelObjectWithCamera : ModelObject {
     void execNear2();
     void execFar();
 };
-
-extern "C" {
-    void func_02085798(void* palette);
-    void func_020860b8(void* palette, int r, int g, int b, dss::Fix32 rate);
-}

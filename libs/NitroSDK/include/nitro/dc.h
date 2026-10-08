@@ -14,6 +14,8 @@ void DC_FlushAll(void);
 void DC_FlushRange(void* ptr, u32 size);
 
 void DC_InvalidateRange(void* ptr, u32 size);
+void DC_PurgeRange(const void* ptr, u32 size);
+void DC_DrainWriteBuffer(void);
 
 void DC_func_0004(void*, int);
 void DC_func_0002();

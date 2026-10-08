@@ -9,6 +9,7 @@ namespace status
     struct HaveStatusInfo;
     struct PlayerStatus;
     struct PartyStatus;
+    struct PlayerFlag;
     struct HaveAction;
     struct HaveItem;
     struct BaseHaveItem;
@@ -37,7 +38,7 @@ namespace status
         static int confusionDebugIndex_;
         static int torunekoDebugIndex_;
         static int eventFlag_;
-        static int groupControl_[4];
+        static PlayerFlag groupControl_[4];
         static int groupRoopIndex_[4];
         int groupIndex_;
         int index_;

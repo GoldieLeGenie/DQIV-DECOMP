@@ -10,7 +10,7 @@ struct BuildDate {
     void unkfunc_02057000();
 };
 
-// contents of "data/date.dtd" (DS-only)
+// contents of "data/date.dtd"
 struct UnkConvertDate {
     char unk_00[2];                             // 0x00
     char date_[8];                              // 0x02

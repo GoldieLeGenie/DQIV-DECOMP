@@ -139,9 +139,9 @@ THUMB int CheckBadWord(char* name)
 
 THUMB int unkfunc_020549f0(char* name)
 {
-    func_02080038(10);
-    func_0207f9b8(0, 0, 0, 0, name, 0);
-    if (func_02080100() > 0x30) {
+    unkfunc_02080038(10);
+    unkfunc_0207f9b8(NULL, 0, 0, 0, name, 0);
+    if (unkfunc_02080100() > 0x30) {
         return 1;
     }
     return 0;

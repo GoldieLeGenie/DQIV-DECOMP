@@ -4,7 +4,7 @@
 #include "main/status/ExcelParam.hpp"
 
 namespace param {
-    extern const unsigned char EffectParam_array[4024];
+    extern const ExcelFile<unsigned char, 4020> EffectParam_array;
 }
 
 namespace status {

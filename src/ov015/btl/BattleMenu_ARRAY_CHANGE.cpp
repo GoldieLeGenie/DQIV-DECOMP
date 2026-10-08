@@ -5,6 +5,7 @@
 #include "main/status/PartyStatus.hpp"
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/UseAction.hpp"
+#include "main/menu/MenuTemplate_Common.hpp"
 
 THUMB void BattleMenu_ARRAY_CHANGE::menuSetup()
 {
@@ -40,7 +41,7 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuExecute()
         }
         MenuTemplate_battle::BATTLE_ARRAYCHANGE_TO_5x2(&unk_8c, unk_24, num);
         int max = unk_1c4.getPageMaxCount() - 1;
-        func_0201e684(&unk_f0, unk_f0.active_, max, 0xc4, 0x88);
+        MenuTemplate_Common::TOWN_PAGE_1x1(&unk_f0, unk_f0.active_, max, 0xc4, 0x88);
     }
     MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
 }

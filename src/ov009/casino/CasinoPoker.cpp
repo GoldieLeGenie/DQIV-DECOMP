@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "ov009/casino/CasinoPoker.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "ov009/casino/CasinoPokerDraw.hpp"
 #include "ov009/casino/PokerManager.hpp"
 #include "ov009/casino/CasinoSystem.hpp"

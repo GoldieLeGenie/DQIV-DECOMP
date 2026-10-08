@@ -3,3 +3,5 @@ _ZN30MaterielMenu_EXTRA_PRESENT_EXP11menuExecuteEv kind:function(thumb,size=0x10
 _ZN30MaterielMenu_EXTRA_PRESENT_EXP8menuDrawEv kind:function(thumb,size=0x10) addr:0x021893d8
 _ZN30MaterielMenu_EXTRA_PRESENT_EXP10menuUpdateEv kind:function(thumb,size=0xfc) addr:0x021893e8
 _ZTV30MaterielMenu_EXTRA_PRESENT_EXP kind:data(byte[28]) addr:0x02189500
+module_padding_ov032_ctor_021894e4 kind:data(byte[4]) addr:0x021894e4
+module_padding_ov032_data_0218951c kind:data(byte[4]) addr:0x0218951c

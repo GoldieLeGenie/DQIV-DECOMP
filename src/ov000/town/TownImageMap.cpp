@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "ov000/town/TownImageMap.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "ov000/town/TownCamera.hpp"
 #include "ov000/town/TownPlayerManager.hpp"

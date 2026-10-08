@@ -14,6 +14,7 @@
 #include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
 #include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_02177bac.hpp"
 #include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
+#include "main/cmn/UnkEnvoyManager.hpp"
 
 int data_020f17bc;
 int data_020f17c0;
@@ -27,7 +28,7 @@ char data_020f1c2c[0x14c];
 
 THUMB void MaterielMenu_NameEdit::menuSetup()
 {
-    data_020f0078 = 1;
+    data_020f0078.mode_ = 1;
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     keyboard_.unkfunc_0216a980();
     language_ = 0;
@@ -88,7 +89,7 @@ THUMB void MaterielMenu_NameEdit::menuDraw()
     menuItem_.drawActive();
     switch (returnMenu_) {
     case RETURN_MENU_SURECHIGAI:
-        unkfunc_0216feb8(-1, func_0203a5ec(&data_020f0078));
+        unkfunc_0216feb8(-1, data_020f0078.unkfunc_0203a5ec());
         break;
     case RETURN_MENU_SURECHIGAI_MESSAGE:
         break;
@@ -167,7 +168,7 @@ THUMB void MaterielMenu_NameEdit::menuUpdate()
         return;
     }
     int active = menuItem_.active_;
-    int result = func_02051a7c(&menuItem_);
+    int result = menuItem_.execInput();
     if (result != menu::MenuItem::MENUITEM_RESULT_NONE) {
         if (result == menu::MenuItem::MENUITEM_RESULT_OK) {
             menuItem_.result_ = 0;
@@ -321,14 +322,14 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0203b514(bool ok)
             gMaterielMenu_LOAD.changeStatus(MaterielMenu_LOAD::LOAD_SEXUALITY);
             break;
         case RETURN_MENU_SURECHIGAI:
-            func_0203a604(&data_020f0078, getNameUTF8());
+            data_020f0078.unkfunc_0203a604(getNameUTF8());
             gUnkMaterielMenu_02189a80.open();
             if (unk_98 == 1) {
                 gUnkMaterielMenu_02189a80.unk_24 = 1;
             }
             break;
         case RETURN_MENU_SURECHIGAI_MESSAGE:
-            func_0203a83c(&data_020f0078, getNameUTF8());
+            data_020f0078.unkfunc_0203a83c(getNameUTF8());
             data_020ed1bc.openMessageForMENU();
             if (MaterielMenu_WINDOW_MANAGER::getSingleton()->editMessageForScript_ == 1) {
                 data_020ed1bc.addMessage(0x92a93);
@@ -346,7 +347,7 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0203b514(bool ok)
             }
             break;
         case RETURN_MENU_SURECHIGAI_TOWNNAME:
-            func_0203a7a8(&data_020f0078, getNameUTF8());
+            data_020f0078.unkfunc_0203a7a8(getNameUTF8());
             bCloseEditTownName_ = 1;
             data_020ed1bc.openMessageForMENU();
             if (unkfunc_0203b7b8() == 1) {
@@ -400,7 +401,7 @@ THUMB char* MaterielMenu_NameEdit::getNameUTF8()
         pos += unkfunc_0203b798(data_020f17c4[i], &data_020f1ae8[pos]);
     }
     data_020f1ae8[pos] = 0;
-    func_02088078(data_020f1ae8);
+    unkfunc_02088078(data_020f1ae8);
     return data_020f1ae8;
 }
 
@@ -450,11 +451,11 @@ THUMB int MaterielMenu_NameEdit::unkfunc_0203b7b8()
     }
     dss::strcpy_s(townName, 0x2a, status::g_Story.heroName);
     dss::strcpy_s(landName, 0x2a, status::g_Story.heroName);
-    func_02087e08(townSuffix, 0x2a, town);
-    func_02087e08(landSuffix, 0x2a, land);
+    unkfunc_02087e08(townSuffix, 0x2a, town);
+    unkfunc_02087e08(landSuffix, 0x2a, land);
     dss::strcat_s(townName, 0x2a, townSuffix);
     dss::strcat_s(landName, 0x2a, landSuffix);
-    if (dss::strcmp((char*)func_0203a820(&data_020f0078), townName) == 0 || dss::strcmp((char*)func_0203a820(&data_020f0078), landName) == 0) {
+    if (dss::strcmp((char*)data_020f0078.unkfunc_0203a820(), townName) == 0 || dss::strcmp((char*)data_020f0078.unkfunc_0203a820(), landName) == 0) {
         return 1;
     }
     return 0;

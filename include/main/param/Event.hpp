@@ -1,5 +1,6 @@
 #pragma once
 #include <globaldefs.h>
+#include "main/data/DataObject.hpp"
 #include "main/data/ExcelBinaryData.hpp"
 
 
@@ -22,6 +23,7 @@ namespace param {
         char floor[8];
         char byte_1;
         static param::Event* getFileData(unsigned int id);
+        static DataObject data_;
     };
    
 }
@@ -29,4 +31,3 @@ namespace param {
 
 
 
-extern DataObject data_020c7830;

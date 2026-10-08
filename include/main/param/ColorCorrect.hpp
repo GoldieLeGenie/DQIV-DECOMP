@@ -1,5 +1,6 @@
 #pragma once
 #include <globaldefs.h>
+#include "main/data/DataObject.hpp"
 
 
 namespace param {
@@ -10,6 +11,7 @@ namespace param {
         char byte_2;
         unsigned char dmmy0;
         static int getCorrectIndex(param::ColorCorrect *data, char *name);
+        static DataObject data_;
     };   
 }
 

@@ -1,19 +1,39 @@
+#pragma ipa file
 #include "main/dss/Camera.hpp"
+#include "main/dss/UnkDisplay.hpp"
+#include "main/dss/UnkMatrix43.hpp"
+
+// camera constants shared with the UnkCamera TU (same block there), unused here
+static const dss::Fix32 s_unk0(0.0625f);
+static const dss::Fix32 s_unk1(150L);
+static const dss::Fix32 s_unk2(4L);
+static const dss::Fix32 s_unk3(4L);
+static const dss::Fix32 s_unk4(-4L);
+
+// default angles of the two cameras
+#pragma explicit_zero_data on
+static short data_020c39ce = 0x2000;
+static short data_020c39c8 = 0;
+static short data_020c39ca = 0;
+static short data_020c39cc = 0x2000;
+static short data_020c39c6 = 0;
+static short data_020c39c4 = 0;
+#pragma explicit_zero_data reset
 
 ARM dss::DualCameraBase::DualCameraBase()
 {
     unk_004.m_pos.setFix32(0, 0, 1);
     unk_004.m_up.setFix32(0, 1, 0);
-    unk_004.m_angle.vx = data_020c39c4[5];
-    unk_004.m_angle.vy = data_020c39c4[2];
-    unk_004.m_angle.vz = data_020c39c4[3];
+    unk_004.m_angle.vx = data_020c39ce;
+    unk_004.m_angle.vy = data_020c39c8;
+    unk_004.m_angle.vz = data_020c39ca;
     unk_004.m_distance = 8L;
     unk_004.m_fov2 = 5;
     unk_068.m_pos.setFix32(0, 0, 1);
     unk_068.m_up.setFix32(0, 1, 0);
-    unk_068.m_angle.vx = data_020c39c4[4];
-    unk_068.m_angle.vy = data_020c39c4[1];
-    unk_068.m_angle.vz = data_020c39c4[0];
+    unk_068.m_angle.vx = data_020c39cc;
+    unk_068.m_angle.vy = data_020c39c6;
+    unk_068.m_angle.vz = data_020c39c4;
     unk_068.m_distance = 8L;
     unk_068.m_fov2 = 5;
     m_cameraNo = 1;
@@ -21,7 +41,7 @@ ARM dss::DualCameraBase::DualCameraBase()
 
 ARM void dss::DualCameraBase::updateCameraNo()
 {
-    if (func_02081254() & 1) {
+    if (unkfunc_02081254() & 1) {
         m_cameraNo = 0;
     } else {
         m_cameraNo = 1;
@@ -35,10 +55,8 @@ ARM void dss::DualCameraBase::update()
 ARM void dss::DualCameraBase::calcPosition()
 {
     updateCameraNo();
-    MtxFx43 rotX;
-    func_020885f8(&rotX);
-    MtxFx43 rotY;
-    func_020885f8(&rotY);
+    dss::UnkMatrix43 rotX;
+    dss::UnkMatrix43 rotY;
     Camera* camera = &unk_004;
     camera->calcPosition();
 }
@@ -59,7 +77,7 @@ ARM void dss::DualCameraBase::applyG3d()
     Fix32Vector3 target = cam->m_target_pos;
     Fix32Vector3 up = cam->m_up;
     Fix32 scaleW = cam->m_scaleW;
-    func_02065604(perspective.m_fovySin, perspective.m_fovyCos, perspective.m_aspect, perspective.m_near, perspective.m_far, scaleW.value, 0, &data_0210cf30);
+    func_02065604(perspective.m_fovySin, perspective.m_fovyCos, perspective.m_aspect, perspective.m_near, perspective.m_far, scaleW.value, 0, &data_0210cf28.projMtx);
     data_0210cf28.flag &= ~0x50;
     data_0210cf28.camPos.x = pos.vx.value;
     data_0210cf28.camPos.y = pos.vy.value;
@@ -70,7 +88,7 @@ ARM void dss::DualCameraBase::applyG3d()
     data_0210cf28.camTarget.x = target.vx.value;
     data_0210cf28.camTarget.y = target.vy.value;
     data_0210cf28.camTarget.z = target.vz.value;
-    func_02065a98((VecFx32*)&pos, (VecFx32*)&up, (VecFx32*)&target, 0, &data_0210cf74);
+    func_02065a98((VecFx32*)&pos, (VecFx32*)&up, (VecFx32*)&target, 0, &data_0210cf28.cameraMtx);
     data_0210cf28.flag &= ~0xe8;
 }
 
@@ -122,27 +140,25 @@ ARM void dss::DualCamera::calcPosition()
         dir.normalize();
         unk_004.direction_ = dir;
     }
-    MtxFx43 rotX;
-    func_020885f8(&rotX);
-    MtxFx43 rotY;
-    func_020885f8(&rotY);
-    func_02088698(&rotX, unk_004.m_angle.vx);
-    func_020886d0(&rotY, unk_004.m_angle.vy);
+    dss::UnkMatrix43 rotX;
+    dss::UnkMatrix43 rotY;
+    rotX.unkfunc_02088698(unk_004.m_angle.vx);
+    rotY.unkfunc_020886d0(unk_004.m_angle.vy);
     Fix32Vector3 up(0, 1, 0);
     Fix32Vector3 offset;
-    up = func_02088670(&rotX, &up);
-    up = func_02088670(&rotY, &up);
+    up = rotX * up;
+    up = rotY * up;
     offset = up * m_offset;
     unk_068.setPosition(unk_004.getPosition() + offset);
     unk_068.setTarget(unk_004.getTarget() + offset);
     unk_068.setDistance(unk_004.getDistance());
     unk_068.setAngle(unk_004.getAngle());
     offset = unk_068.m_target_pos - unk_068.m_pos;
-    func_02088698(&rotX, m_dirOffset);
-    func_020886d0(&rotY, -unk_068.m_angle.vy);
-    offset = func_02088670(&rotY, &offset);
-    offset = func_02088670(&rotX, &offset);
-    func_020886d0(&rotY, unk_068.m_angle.vy);
-    offset = func_02088670(&rotY, &offset);
+    rotX.unkfunc_02088698(m_dirOffset);
+    rotY.unkfunc_020886d0(-unk_068.m_angle.vy);
+    offset = rotY * offset;
+    offset = rotX * offset;
+    rotY.unkfunc_020886d0(unk_068.m_angle.vy);
+    offset = rotY * offset;
     unk_068.m_target_pos = unk_068.m_pos + offset;
 }

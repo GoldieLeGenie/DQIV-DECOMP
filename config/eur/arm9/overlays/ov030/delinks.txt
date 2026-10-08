@@ -18,3 +18,8 @@ src/ov030/MaterielMenu_BANK/MaterielMenu_BANK_DRAW.cpp:
     complete
     .text start:0x021899a8 end:0x02189d34
     .data start:0x02189d78 end:0x02189d94
+
+src/ov030/ModulePadding_ov030.cpp:
+    complete
+    .ctor start:0x02189d34 end:0x02189d38
+    .data start:0x02189d94 end:0x02189da0

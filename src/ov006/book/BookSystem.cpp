@@ -1,4 +1,5 @@
 #include "ov006/BookSystem.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "ov006/BookCamera.hpp"
 #include "ov006/BookMonsterDraw.hpp"
 #include "ov016/MaterielMenu_PICTUREBOOK/MaterielMenu_PICTUREBOOK.hpp"

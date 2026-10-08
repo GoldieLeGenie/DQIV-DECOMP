@@ -2,7 +2,7 @@
 
 THUMB void MessageMacro::initialize(char* dst, int size, const char* src)
 {
-    func_02088078(src);
+    unkfunc_02088078(src);
     dst_ = dst;
     size_ = size;
     src_ = src;

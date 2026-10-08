@@ -6,7 +6,7 @@ CardCheckPart g_CardCheckPart;
 
 ARM void CardCheckPart::initialize()
 {
-    switch (func_0202c058()) {
+    switch (profile::SaveLoad::unkfunc_0202c058()) {
     case 1:
         data_0210bb94.unkfunc_020580fc(MENU_PART);
         break;

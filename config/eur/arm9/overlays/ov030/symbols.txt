@@ -22,3 +22,5 @@ _ZN22MaterielMenu_BANK_DRAW14cancelDrawfromEv kind:function(thumb,size=0x58) add
 _ZTV23MaterielMenu_BANK_PUTIN kind:data(byte[28]) addr:0x02189d40
 _ZTV22MaterielMenu_BANK_ROOT kind:data(byte[28]) addr:0x02189d5c
 _ZTV22MaterielMenu_BANK_DRAW kind:data(byte[28]) addr:0x02189d78
+module_padding_ov030_ctor_02189d34 kind:data(byte[4]) addr:0x02189d34
+module_padding_ov030_data_02189d94 kind:data(byte[12]) addr:0x02189d94

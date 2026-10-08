@@ -18,13 +18,26 @@ struct VecFx32 {
     fx32 z;
 };
 
+struct VecFx16 {
+    fx16 x;
+    fx16 y;
+    fx16 z;
+};
+
 extern "C" void func_020630ec(const VecFx32* src, VecFx32* dst);   // VEC_Normalize
 extern "C" void func_02062f98(const VecFx32* a, const VecFx32* b, VecFx32* ab);   // VEC_Subtract
 extern "C" fx32 func_0206338c(const VecFx32* a, const VecFx32* b);   // VEC_Distance
+extern "C" void func_02063204(const VecFx16* src, VecFx16* dst);   // VEC_Fx16Normalize
 
 struct MtxFx43 {
     fx32 m[4][3];
 };
+
+struct MtxFx22 {
+    fx32 m[2][2];
+};
+
+extern "C" void func_02061b70(MtxFx22* m);   // MTX_Identity22_
 
 struct MtxFx33 {
     fx32 m[3][3];
@@ -49,3 +62,11 @@ struct MtxFx44 {
 };
 
 extern "C" void func_02061fb4(const MtxFx43* src, MtxFx43* dst, fx32 x, fx32 y, fx32 z);   // MTX_ScaleApply43
+extern "C" {
+    void func_02061f58(MtxFx43* m);                                                     // MTX_Identity43_
+    void func_02061fe8(MtxFx43* m, fx32 sinVal, fx32 cosVal);                          // MTX_RotX43_
+    void func_02062008(MtxFx43* m, fx32 sinVal, fx32 cosVal);                          // MTX_RotY43_
+    void func_02062024(MtxFx43* m, fx32 sinVal, fx32 cosVal);                          // MTX_RotZ43_
+    void func_020623cc(const MtxFx43* a, const MtxFx43* b, MtxFx43* ab);               // MTX_Concat43
+    void func_020626a0(const VecFx32* vec, const MtxFx43* m, VecFx32* dst);            // MTX_MultVec43
+}

@@ -23,7 +23,7 @@ struct UnkMaterielMenu_02189360 : menu::MenuBase
 
 struct UnkMaterielMenu_02189630 : menu::MenuBase
 {
-    int unk_1c;                         /* 0x1C */
+    unsigned char unk_1c;               /* 0x1C */
     menu::MenuItem menuItem_;           /* 0x20 */
     CursorMoveGridLoop navigator_;     /* 0x84 */
 
@@ -45,6 +45,7 @@ struct UnkMaterielMenu_02189a80 : menu::MenuBase
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
+    void unkfunc_02189d70();
 };
 
 struct MaterielMenu_SURECHIGAI_MAKE_TAISHI : menu::MenuBase
@@ -81,10 +82,3 @@ extern MaterielMenu_SURECHIGAI_ROOT gMaterielMenu_SURECHIGAI_ROOT;
 extern MaterielMenu_SURECHIGAI_MAKE_TAISHI gMaterielMenu_SURECHIGAI_SELECT_OBJECT;
 extern UnkMaterielMenu_02189a80 gUnkMaterielMenu_02189a80;                /* surechigai menu opened by MAKE_TAISHI */
 
-extern "C" {
-    int func_02038140(void* obj);
-    int func_0203a364(void* mgr);
-    void func_0203aa00(void* mgr);
-    void func_0203aa58(void* mgr);
-    void func_0203aaac(void* mgr);
-}

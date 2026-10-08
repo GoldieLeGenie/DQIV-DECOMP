@@ -1,4 +1,5 @@
 #include "ov028/MaterielMenu_SHOP/MaterielMenu_SHOP.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
@@ -79,7 +80,7 @@ THUMB void MaterielMenu_SHOP_ROOT::menuUpdate()
         }
     }
     if (mode_ == 0) {
-        func_02080e78();
+        unkfunc_02080e78();
         data_020ed1bc.openMessageForTALK();
         data_020ed1bc.addMessageNOWAIT(MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->idle());
         data_020ed1bc.addMessageWAITKEY();
@@ -100,7 +101,7 @@ THUMB void MaterielMenu_SHOP_ROOT::execConduct()
         }
         break;
     case 3:
-        func_02080e78();
+        unkfunc_02080e78();
         MaterielMenu_SHOP_MANAGER::getSingleton()->allClear();
         MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
         break;

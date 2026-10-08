@@ -60,10 +60,10 @@ THUMB void TextEnv::add_msg_var(int def, int array_index_no, int type, int no, i
 THUMB void TextEnv::process_msg(char* dst, int size, const char* src)
 {
     MessageMacro macro;
-    char* tmp = (char*)func_0207f77c(&data_0211a60c, 0x802, 0x20);
+    char* tmp = (char*)unkfunc_0207f77c(&data_0211a60c, 0x802, 0x20);
     macro.processMessage(tmp, 0x800, src);
     unkfunc_02053e04(dst, size, (unsigned char*)tmp);
-    func_0207f840(&data_0211a60c, tmp);
+    unkfunc_0207f840(&data_0211a60c, tmp);
 }
 
 THUMB void TextEnv::unkfunc_02053e04(char* dst, int size, unsigned char* src)
@@ -173,15 +173,15 @@ THUMB char* TextEnv::unkfunc_02054010(char* dst, int size, unsigned char* src, i
     unsigned char tmp[0x200];
     switch (cap) {
         case 1:
-            func_02087fbc(data_020c45b0, data_020c4618, (char*)tmp, 0x200, (char*)src, 1);
+            unkfunc_02087fbc(data_020c45b0, data_020c4618, (char*)tmp, 0x200, (char*)src, 1);
             src = tmp;
             break;
         case 2:
-            func_02087f14(data_020c45b0, data_020c4618, (char*)tmp, 0x200, (char*)src);
+            unkfunc_02087f14(data_020c45b0, data_020c4618, (char*)tmp, 0x200, (char*)src);
             src = tmp;
             break;
         case 3:
-            func_02087f14(data_020c4618, data_020c45b0, (char*)tmp, 0x200, (char*)src);
+            unkfunc_02087f14(data_020c4618, data_020c45b0, (char*)tmp, 0x200, (char*)src);
             src = tmp;
             break;
     }
@@ -251,9 +251,8 @@ THUMB MACRO_STAT TextEnv::macro_checkVowel(char* text)
         return (MACRO_STAT)result;
     }
     Utf8Iterator it;
-    func_020876f4(&it);
-    func_020875ec(&it, text);
-    switch (func_0208771c(&it)) {
+    it.unkfunc_020875ec(text);
+    switch (it.unkfunc_0208771c()) {
         case 'A': case 'E': case 'I': case 'O': case 'U':
         case 'a': case 'e': case 'i': case 'o': case 'u':
         case 0xc0: case 0xc1: case 0xc2: case 0xc4: case 0xc8: case 0xc9: case 0xca: case 0xcb:
@@ -275,14 +274,13 @@ THUMB MACRO_STAT TextEnv::macro_checkLastS(char* text)
         return (MACRO_STAT)result;
     }
     Utf8Iterator it;
-    func_020876f4(&it);
-    func_020875ec(&it, text);
-    int c = func_0208771c(&it);
+    it.unkfunc_020875ec(text);
+    int c = it.unkfunc_0208771c();
     int last = 0;
     while (c != 0) {
         last = c;
-        c = func_0208771c(&it);
-        func_020877b8(&it);
+        c = it.unkfunc_0208771c();
+        it.unkfunc_020877b8();
     }
     switch (last) {
         case 'S': case 'X': case 'Z':

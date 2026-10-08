@@ -1,5 +1,6 @@
 #include "main/global/GlobalDQ4.hpp"
 #include "main/data/DataObject.hpp"
+#include "main/dss/UnkArrayWarning.hpp"
 
 GlobalDQ4 data_0210bb94;
 static UnkGameTaskHook s_hook;
@@ -21,14 +22,14 @@ ARM GlobalDQ4::~GlobalDQ4()
 ARM void GlobalDQ4::unkfunc_02058014(int partId)
 {
     part_id_ = partId;
-    func_0207f898(&data_0211a60c);
+    unkfunc_0207f898(&data_0211a60c);
     while (1) {
         int id = part_id_;
         if (id > 24) {
-            func_0208960c(id, 24);
+            unkfunc_0208960c(id, 24);
         }
         if (id < 0) {
-            func_0208960c(id, 24);
+            unkfunc_0208960c(id, 24);
         }
         currentTask_ = task_[id];
         unkfunc_02058148(currentTask_);
@@ -48,10 +49,10 @@ ARM void GlobalDQ4::unkfunc_02058014(int partId)
 ARM void GlobalDQ4::unkfunc_020580bc(int partId, UnkGameTask* task)
 {
     if (partId > 24) {
-        func_0208960c(partId, 24);
+        unkfunc_0208960c(partId, 24);
     }
     if (partId < 0) {
-        func_0208960c(partId, 24);
+        unkfunc_0208960c(partId, 24);
     }
     task_[partId] = task;
 }

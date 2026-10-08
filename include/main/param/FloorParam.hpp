@@ -1,6 +1,7 @@
 #pragma once
 #include "main/dss/DssUtils.hpp"
 #include <globaldefs.h>
+#include "main/data/DataObject.hpp"
 
 
 namespace param {
@@ -20,6 +21,7 @@ namespace param {
         unsigned char dmmy1;
         unsigned char dmmy2;
         static int getFloorIndex(param::FloorParam* data, char* name);
+        static DataObject data_;
     };
 }
 

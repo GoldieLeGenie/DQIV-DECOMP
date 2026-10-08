@@ -44,14 +44,14 @@ THUMB void BillboardItem::setup(const char* name, int icon)
     OS_Wait();
     unkfunc_02058680(&s_vertex, &s_texCoord, data_.getAddr());
     texture_ = data_.getAddr();
-    func_02086798(texture_, 0);
-    func_020868dc(texture_);
-    func_020840c8(this, &s_vertex);
-    func_0208413c(this, &s_texCoord);
+    ((TextureObject*)texture_)->unkfunc_02086798(0);
+    ((TextureObject*)texture_)->unkfunc_020868dc();
+    unkfunc_020840c8(&s_vertex);
+    unkfunc_0208413c(&s_texCoord);
     RenderObject::texture_ = texture_;
     setScale(s_scale);
-    unsigned char* dst = (unsigned char*)func_02086a9c(texture_);
-    void* src = func_0205182c(0xf0000000, icon);
+    unsigned char* dst = (unsigned char*)((TextureObject*)texture_)->unkfunc_02086a9c();
+    void* src = unkfunc_0205182c(0xf0000000, icon);
     switch (*(unsigned int*)src & 0xf0) {
     case 0x10:
         func_02067b88(src, buf);
@@ -76,9 +76,9 @@ THUMB void BillboardItem::setup(const char* name, int icon)
             }
         }
     }
-    void* palette = func_0205182c(0xf0000000, 9999);
-    dss::memcpy((void*)func_02086aac(texture_), palette, 0x100);
-    func_02086968(texture_, 1);
+    void* palette = unkfunc_0205182c(0xf0000000, 9999);
+    dss::memcpy((void*)((TextureObject*)texture_)->unkfunc_02086aac(), palette, 0x100);
+    ((TextureObject*)texture_)->unkfunc_02086968(1);
 }
 
 THUMB void BillboardItem::draw()

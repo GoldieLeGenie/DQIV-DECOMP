@@ -54,7 +54,3 @@ void unkfunc_0216f8f8(int* param, int chara, int index);
 void unkfunc_0216f9e8(unsigned char* name, int flag);
 void unkfunc_0216fa48(char* line1, char* line2, char* line3, char* comment);
 
-extern "C" {
-    int func_0201e2f4(status::HaveStatusInfo* info);     /* draw mode index for a character status */
-    int func_0201e318(status::HaveStatusInfo* info);     /* condition kind: 2 dead, 3 poison, 4 spell */
-}

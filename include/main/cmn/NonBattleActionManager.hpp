@@ -4,6 +4,8 @@
 #include "main/dss/DssUtils.hpp"
 #include "main/global/Global.hpp"
 #include "ov000/town/TownCharacterManager.hpp"
+#include "main/dss/UnkBgBuffer.hpp"
+#include "main/effect/UnkScreenEffectManager.hpp"
 
 struct TownStageManager;
 struct TownPlayerManager;
@@ -32,35 +34,4 @@ namespace cmn
 }
 
 
-struct UnkEffect_0202adc4 {
-    virtual void vf00();
-    virtual void vf04();
-    virtual int  vf08();      
-};
-struct UnkManager_0202adc4 {
-    char unk_000[0xc];
-    UnkEffect_0202adc4* unk_c;  // 0x0C
-    char unk_010[0xcc - 0x10];
-    int unk_cc;                 // 0xCC
-    char unk_0d0[0x130 - 0xd0];
-    char unk_130[0x20];         // 0x130
-    int unk_150;                // 0x150
-};
-
-extern "C" {
-    UnkManager_0202adc4* func_0202adc4(void);                                 
-    void func_0202aea4(UnkManager_0202adc4* self);
-    void func_0202aec4(UnkManager_0202adc4* self, int type);
-    void func_0202ace4(UnkManager_0202adc4* self);
-    void func_0202adb4(UnkManager_0202adc4* self);
-    void func_0202ad28(UnkManager_0202adc4* self);
-    void func_0202ad98(UnkManager_0202adc4* self);
-    int  func_0202af54(UnkManager_0202adc4* self);
-    void func_0208214c(void* obj, int a, int b);
-    void func_02082144(void* obj, int a);
-    void func_02030278(void* obj, int a);
-    void func_02049b94(void);
-}
 extern char data_020c1328[8];
-extern char data_0211c4f0[];
-extern int data_020edc40;

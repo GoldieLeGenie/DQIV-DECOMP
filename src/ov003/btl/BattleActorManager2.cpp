@@ -9,6 +9,7 @@
 #include "main/formation/FormationIdManager.hpp"
 #include "main/SpecialParty/SpecialParty.hpp"
 #include "main/CountDown/CountDown.hpp"
+#include "main/menu/UnkMenuOverlay.hpp"
 
 
 #pragma profile on
@@ -560,7 +561,7 @@ THUMB void btl::BattleActorManager2::execMonsterDeathForItem()
             if (h > 0) {
                 status::g_BattleHistory.regenesisChapterEscapeCount();
                 status::g_BattleHistory.regenesisChapterWipeoutCount();
-                func_02039460(14);
+                unkfunc_02039460(14);
                 cmn::PlayerTitle::setPlayerTitle(h);
             }
         }

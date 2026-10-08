@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "main/menu/UnkMenuIconDisplay.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "nitro/g2.hpp"
 
@@ -79,7 +80,7 @@ THUMB void UnkMenuIconDisplay::unkfunc_02055c48(int index, int value)
     posY_[index] = 0x80;
     value_[index] = value;
     flag_[index] = 0;
-    void* src = func_0205182c(0xf5000000, value);
+    void* src = unkfunc_0205182c(0xf5000000, value);
     unkfunc_02055ddc(index * 8, 7, src, 0, 0, 8);
     unkfunc_02055ddc(index * 8, 8, src, 0, 1, 8);
     unkfunc_02055ddc(index * 8, 9, src, 0, 2, 8);
@@ -92,7 +93,7 @@ THUMB void UnkMenuIconDisplay::unkfunc_02055c48(int index, int value)
     unkfunc_02055ddc(index * 8 + 4, 14, src, 8, 3, 4);
     unkfunc_02055ddc(index * 8, 15, src, 8, 4, 4);
     unkfunc_02055ddc(index * 8 + 4, 15, src, 8, 5, 4);
-    func_020826d8(func_020813e0(1), 0, 0, func_0205182c(0xf5000000, 9999), 0xa0);
+    unkfunc_020813e0(1)->unkfunc_020826d8(0, 0, unkfunc_0205182c(0xf5000000, 9999), 0xa0);
 }
 
 THUMB void UnkMenuIconDisplay::unkfunc_02055dc8(int index, int x, int y)
@@ -108,7 +109,7 @@ THUMB void UnkMenuIconDisplay::unkfunc_02055dd4(int index, int flag)
 
 THUMB void UnkMenuIconDisplay::unkfunc_02055ddc(int x, int y, void* src, int srcX, int srcY, int width)
 {
-    func_020827f0(0x23, (x + y * 32) * 32, (char*)src + (srcX + srcY * 12) * 32, width * 32);
+    unkfunc_020827f0(0x23, (x + y * 32) * 32, (char*)src + (srcX + srcY * 12) * 32, width * 32);
 }
 
 THUMB void UnkHoppingDigit::unkfunc_02055e00()

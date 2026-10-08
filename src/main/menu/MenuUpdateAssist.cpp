@@ -1,10 +1,11 @@
 #include "main/menu/MenuUpdateAssist.hpp"
+#include "main/menu/MenuAPI.hpp"
 #include "main/menu/TownMenu_PARTY_TALK.hpp"
 #include "globaldefs.h"
 
 THUMB int MenuUpdate_Assist::isPageFlip(menu::MenuItem& item, CursorMoveBase& cursor, int& active)
 {
-    func_02051a7c(&item);
+    item.execInput();
     if (item.result_ == 1 || item.result_ == 2) {
         if (item.active_ == 0) {
             active = cursor.pageBack(active);
@@ -20,7 +21,7 @@ THUMB int MenuUpdate_Assist::isPageFlip(menu::MenuItem& item, CursorMoveBase& cu
 
 THUMB int MenuUpdate_Assist::isPageFlipOne(menu::MenuItem& item, CursorMoveBase& cursor, int& active)
 {
-    func_02051a7c(&item);
+    item.execInput();
     if (item.result_ == 1 || item.result_ == 2) {
         active = cursor.pageNext(active);
         item.result_ = 0;
@@ -32,7 +33,7 @@ THUMB int MenuUpdate_Assist::isPageFlipOne(menu::MenuItem& item, CursorMoveBase&
 
 THUMB int MenuUpdate_Assist::isCancel(menu::MenuItem& item)
 {
-    func_02051a7c(&item);
+    item.execInput();
     if (item.result_ == 4) {
         if (MenuAPI::isTownMenuRoot()) {
             gTownMenu_ROOT.stat_ = menu::MenuBase::MENUBASE_STAT_CANCEL;
@@ -55,7 +56,7 @@ THUMB int MenuUpdate_Assist::isCancel(menu::MenuItem& item)
 THUMB int MenuUpdate_Assist::menuSelect(menu::MenuItem& item, CursorMoveBase& cursor)
 {
     int ret = 0;
-    func_02051a7c(&item);
+    item.execInput();
     int active = item.active_;
     switch (item.result_) {
         case 1:

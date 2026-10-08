@@ -1,4 +1,5 @@
 #include "main/menu/UnkMenuSystem.hpp"
+#include "main/menu/UnkMenuIconData.hpp"
 #include "main/menu/MenuManager.hpp"
 
 ARM void unkfunc_02052424()

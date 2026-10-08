@@ -1,4 +1,6 @@
 #include "main/part/BattlePart.hpp"
+#include "main/dss/UnkDisplay.hpp"
+#include "main/debug/UnkDebugDisplay.hpp"
 #include "main/global/Global.hpp"
 #include "main/data/DataObject.hpp"
 #include "main/dss/DssUtils.hpp"
@@ -12,6 +14,7 @@
 #include "main/encount/Encount.hpp"
 #include "ov003/btl/BattleSystem2.hpp"
 #include "ov003/btl/UnkBattleSystem.hpp"
+#include "main/menu/UnkMenuOverlay.hpp"
 
 BattlePart g_BattlePart;
 
@@ -24,22 +27,22 @@ ARM void BattlePart::initialize()
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_ABCD);
     data_0211e450.unkfunc_020861c4(0x80000, 0x4000);
-    func_02080e90(data_0211c4cc);
-    func_02087590((int)&OVERLAY_3_ID);
+    unkfunc_02080e90(&dss::g_DISPLAYPLUGIN_SINGLE3D);
+    unkfunc_02087590((int)&OVERLAY_3_ID);
     ov003_entry();
     if (encount::Encount::getSingleton()->battleMode_ == encount::Encount::Normal) {
-        func_02087590((int)&OVERLAY_15_ID);
+        unkfunc_02087590((int)&OVERLAY_15_ID);
         ov015_entry();
     } else {
-        func_02087590((int)&OVERLAY_16_ID);
+        unkfunc_02087590((int)&OVERLAY_16_ID);
     }
-    func_02087564(data_020efc58);
+    data_020efc58.unkfunc_02087564();
     btl::BattleSystem2::getSingleton()->initialize();
     UnkBattleSystem::getSingleton()->initialize();
     func_0206dd70(1);
     g_Global.fadeIn(30);
     dss::g_Pad.unkfunc_0207f2b4(0);
-    func_0202c25c();
+    unkfunc_0202c25c();
 }
 
 ARM void BattlePart::terminate()
@@ -47,11 +50,11 @@ ARM void BattlePart::terminate()
     dss::g_Pad.unkfunc_0207f2b4(0);
     UnkBattleSystem::getSingleton()->terminate();
     btl::BattleSystem2::getSingleton()->terminate();
-    func_020875a4((int)&OVERLAY_3_ID);
+    unkfunc_020875a4((int)&OVERLAY_3_ID);
     if (encount::Encount::getSingleton()->battleMode_ == encount::Encount::Normal) {
-        func_020875a4((int)&OVERLAY_15_ID);
+        unkfunc_020875a4((int)&OVERLAY_15_ID);
     } else {
-        func_020875a4((int)&OVERLAY_16_ID);
+        unkfunc_020875a4((int)&OVERLAY_16_ID);
     }
     encount::Encount::getSingleton()->battleMode_ = encount::Encount::Normal;
     data_0211e450.unkfunc_02086278();
@@ -75,5 +78,5 @@ ARM void BattlePart::onWindowPart()
 
 ARM void BattlePart::onDebugPart()
 {
-    func_0202c284();
+    unkfunc_0202c284();
 }

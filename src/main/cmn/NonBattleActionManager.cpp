@@ -1,4 +1,5 @@
 #include "main/cmn/NonBattleActionManager.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/global/GlobalDQ4.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/object/SpriteCharacter.hpp"
@@ -26,7 +27,7 @@ ARM void cmn::NonBattleActionManager::execute()
     if (startFlag_ != 0) {
         switch (status_) {
             case ACTION_RANARUTA:
-                if (!func_0202adc4()->unk_c->vf08()) {
+                if (!UnkScreenEffectManager::getSingleton()->current_->isEnd()) {
                     return;
                 }
                 if (data_0210bb94.unkfunc_02058114(12) == 1) {
@@ -62,7 +63,7 @@ ARM void cmn::NonBattleActionManager::execute()
                 g_Global.setRanarutaFlag(false);
                 return;
             case ACTION_RIREMITO:
-                if (!func_0202adc4()->unk_c->vf08()) {
+                if (!UnkScreenEffectManager::getSingleton()->current_->isEnd()) {
                     return;
                 }
                 if (data_0210bb94.unkfunc_02058114(12) == 1) {
@@ -82,7 +83,7 @@ ARM void cmn::NonBattleActionManager::execute()
                 g_Global.setRanarutaFlag(false);
                 return;
             case ACTION_BATTLE:
-                if (!func_0202adc4()->unk_c->vf08()) {
+                if (!UnkScreenEffectManager::getSingleton()->current_->isEnd()) {
                     return;
                 }
                 if (data_0210bb94.unkfunc_02058114(12) == 1) {
@@ -106,8 +107,8 @@ ARM void cmn::NonBattleActionManager::execute()
                     if (--waitTurn_ != 0) {
                         return;
                     }
-                    func_0208214c(data_0211c4f0, 0x10, 0);
-                    func_02082144(data_0211c4f0, 0);
+                    dss::g_DISPLAYPLUGIN_DOUBLE3D.SetBlur(0x10, 0);
+                    dss::g_DISPLAYPLUGIN_DOUBLE3D.ReqBlurMode(0);
                     g_Global.setRanarutaFlag(false);
                     if (data_0210bb94.unkfunc_02058114(12) == 1) {
                         TownPlayerManager::getSingleton()->setLock(0);
@@ -118,7 +119,7 @@ ARM void cmn::NonBattleActionManager::execute()
                     }
                     return;
                 }
-                if (!func_0202adc4()->unk_c->vf08()) {
+                if (!UnkScreenEffectManager::getSingleton()->current_->isEnd()) {
                     return;
                 }
                 if (data_0210bb94.unkfunc_02058114(12)) {
@@ -128,22 +129,22 @@ ARM void cmn::NonBattleActionManager::execute()
                     fld::FieldStage::getSingleton()->fieldData.pause_ = 0;
                     SpriteCharacter::setAllCharaAnim(1);
                 }
-                if (func_0202adc4()->unk_150 != 0) {
+                if (UnkScreenEffectManager::getSingleton()->effect3_.unk_20 != 0) {
                     TownPlayerManager::getSingleton()->flagMapLink_ = 1;
-                    func_0202aea4(func_0202adc4());
-                    func_02030278(func_0202adc4()->unk_130, 0);
+                    UnkScreenEffectManager::getSingleton()->unkfunc_0202aea4();
+                    UnkScreenEffectManager::getSingleton()->effect3_.unkfunc_02030278(0);
                     TownPlayerManager::getSingleton()->partyDraw_.requestCharacterReload();
                     TownCharacterManager::getSingleton()->requestCharacterReload();
-                    func_02049b94();
+                    CharacterShadow::unkfunc_02049b94();
                     TownStageManager::getSingleton()->stage_.execAnime();
                     TownSystem::getSingleton()->defaultSELock_ = 0;
-                    func_0208214c(data_0211c4f0, 0, 0x10);
+                    dss::g_DISPLAYPLUGIN_DOUBLE3D.SetBlur(0, 0x10);
                     waitTurn_ = 1;
                     return;
                 }
                 g_Global.fadeOutBlack(0x14);
-                func_0202adc4();
-                data_020edc40 = 1;
+                UnkScreenEffectManager::getSingleton();
+                UnkScreenEffectManager::unk_020edc40 = 1;
                 TownPlayerManager::getSingleton()->resetMapLink(RESET_EXIT_LOCK_TABI);
                 g_Global.setRanarutaFlag(false);
                 if (data_0210bb94.unkfunc_02058114(12) == 1) {
@@ -167,31 +168,31 @@ ARM void cmn::NonBattleActionManager::execute()
                 break;
             case ACTION_RANARUTA:
                 SoundManager::playSe(0x23d, 0);
-                func_0202aec4(func_0202adc4(), 5);
+                UnkScreenEffectManager::getSingleton()->unkfunc_0202aec4(5);
                 if (data_0210bb94.unkfunc_02058114(12)) {
                     if (g_Stage.getTimeZone() == TIME_ZONE_DAYTIME || g_Stage.getTimeZone() == TIME_ZONE_EVENING) {
-                        func_0202adc4()->unk_cc = 0;
+                        UnkScreenEffectManager::getSingleton()->effect5_.unk_68 = 0;
                     } else {
-                        func_0202adc4()->unk_cc = 1;
+                        UnkScreenEffectManager::getSingleton()->effect5_.unk_68 = 1;
                     }
                 } else if (data_0210bb94.unkfunc_02058114(14)) {
                     if (g_Stage.getWorldTime() < 0x840) {
-                        func_0202adc4()->unk_cc = 0;
+                        UnkScreenEffectManager::getSingleton()->effect5_.unk_68 = 0;
                     } else {
-                        func_0202adc4()->unk_cc = 1;
+                        UnkScreenEffectManager::getSingleton()->effect5_.unk_68 = 1;
                     }
                     FieldPlayerManager::getSingleton()->savePartyDrawInfo();
                 }
                 break;
             case ACTION_RIREMITO:
-                func_0202aec4(func_0202adc4(), 6);
+                UnkScreenEffectManager::getSingleton()->unkfunc_0202aec4(6);
                 break;
             case ACTION_BATTLE:
-                func_0202aec4(func_0202adc4(), 4);
+                UnkScreenEffectManager::getSingleton()->unkfunc_0202aec4(4);
                 break;
             case ACTION_TRAVELDOOR:
                 SoundManager::playSe(0x464, 0);
-                func_0202aec4(func_0202adc4(), 3);
+                UnkScreenEffectManager::getSingleton()->unkfunc_0202aec4(3);
                 TownSystem::getSingleton()->defaultSELock_ = 1;
                 break;
         }

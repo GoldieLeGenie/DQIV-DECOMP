@@ -7,16 +7,14 @@
 #include "main/status/CharacterStatus.hpp"
 #include "ov003/status/MonsterParty.hpp"
 
+extern "C" void func_0202d014();  // empty, called every frame by UnkGameApplication::vf08
+
 namespace status {
     struct BaseActionMessageData {
         param::SplitMsg* splitMsg_;
         param::ActionParam* actionParam_;   
         status::UseActionParam* useActionParam_;  
 
-    };
-    struct SplitMsgInfo {
-        unsigned int count_;     
-        unsigned int unk4_;
     };
     struct BaseActionMessage {
         unsigned int actionIndex_;     // 0x0
@@ -77,7 +75,6 @@ namespace status {
         int getMessageZero(int splitIndex);
     };
     extern BaseActionMessageData messageData_; //data_020eecc0
-    extern SplitMsgInfo splitMsgInfo_;   // data_020b5d6c
 
 }
 

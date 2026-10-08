@@ -6,7 +6,6 @@
 #include "main/object/PaletteAnimationObject.hpp"
 #include "main/object/ModelObject.hpp"
 
-extern "C" void func_0207f8ac(void* p);   /* heap free */
 
 namespace cmn {
     struct CommonEffectSimple {
@@ -26,7 +25,7 @@ namespace cmn {
         virtual void setDisplayType(int type) = 0;
         int isEnable();
 
-        static void operator delete(void* p) { func_0207f8ac(p); }
+        static void operator delete(void* p) { unkfunc_0207f8ac(p); }
     };
 
     struct CommonEffectFlat : CommonEffectSimple {

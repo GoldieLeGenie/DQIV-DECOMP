@@ -1,3 +1,4 @@
+#pragma ipa file
 #include "main/cmn/ActionBase.hpp"
 #include "main/cmn/MoveBase.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
@@ -7,11 +8,6 @@ dss::Fix32Vector3& cmn::ActionBase::position_ = g_cmnPartyInfo.position_;
 short& cmn::ActionBase::dirIdx_ = g_cmnPartyInfo.getDirIdx2();
 const dss::Fix32 cmn::MoveBase::grav(0x29);
 
-namespace cmn {
-    static dss::Fix32Vector3 shakeOffset;
-    static dss::Fix32 randomL(0x10a);
-    static dss::Fix32Vector3 moveOffset;
-}
 
 ARM void cmn::MoveBase::setup()
 {
@@ -237,6 +233,10 @@ ARM int cmn::MoveBase::simpleRotUpdata()
     return 0;
 }
 
+namespace cmn {
+    static dss::Fix32Vector3 shakeOffset;
+}
+
 ARM void cmn::MoveBase::setVibMotion(dss::Fix32Vector3& start, dss::Fix32Vector3& target, int amp, int damp, int frame)
 {
     endMoveFrame_ = frame;
@@ -284,6 +284,10 @@ ARM int cmn::MoveBase::updateVibMotion()
     }
     moveCounter_++;
     return 0;
+}
+
+namespace cmn {
+    static dss::Fix32 randomL(0x10a);
 }
 
 ARM void cmn::MoveBase::setRandomShake(dss::Fix32Vector3& start, dss::Fix32Vector3& target, int count)
@@ -336,13 +340,13 @@ ARM int cmn::MoveBase::updateShake()
 
 ARM dss::Fix32Vector3 cmn::MoveBase::getShakeVec(int index)
 {
-    static const int add0[6] = {1, -2, 1, 1, -2, 1};
-    static const int add1[6] = {1, 0, -1, -1, 0, 1};
     dss::Fix32Vector3 vec[2];
     vec[0] = (targetPos_ - startPos_);
     vec[0].normalize();
     vec[0] *= randomL;
     vec[1].set(dss::Fix32(0L), randomL, dss::Fix32(0L));
+    static const int add0[6] = {1, -2, 1, 1, -2, 1};
+    static const int add1[6] = {1, 0, -1, -1, 0, 1};
     return vec[0] * add0[index] + vec[1] * add1[index];
 }
 
@@ -376,6 +380,10 @@ ARM int cmn::MoveBase::updateJump()
     }
     moveCounter_++;
     return 0;
+}
+
+namespace cmn {
+    static dss::Fix32Vector3 moveOffset;
 }
 
 ARM void cmn::MoveBase::setAddMove(dss::Fix32Vector3& start, dss::Fix32Vector3& target, int frame)

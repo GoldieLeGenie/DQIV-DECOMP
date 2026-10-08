@@ -402,3 +402,7 @@ src/ov000/town/TownMapEffect.cpp:
     complete
     .text start:0x021422cc end:0x02142858
     .data start:0x02149010 end:0x02149058
+
+src/ov000/ModulePadding_ov000.cpp:
+    complete
+    .ctor start:0x02147848 end:0x0214784c

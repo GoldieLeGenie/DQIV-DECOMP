@@ -5,3 +5,13 @@ extern "C" {
     int func_020648b8(void);                    // reset the BG VRAM bank (GXState.bg)
     int func_020648cc(void);                    // reset the OBJ VRAM bank (GXState.obj)
 }
+
+inline void GX_SetOBJVRamModeBmp(int mode)
+{
+    *(volatile unsigned int*)0x04000000 = (*(volatile unsigned int*)0x04000000 & ~0x400060) | mode;
+}
+
+inline void GX_SetVisibleWnd(int window)
+{
+    *(volatile unsigned int*)0x04000000 = (*(volatile unsigned int*)0x04000000 & ~0xe000) | (window << 13);
+}

@@ -17,3 +17,8 @@ src/ov025/MaterielMenu_EXTRA_SIDEJOB/MaterielMenu_EXTRA_SIDEJOB_SELL.cpp:
     complete
     .text start:0x021895dc end:0x02189a30
     .data start:0x02189a78 end:0x02189a94
+
+src/ov025/ModulePadding_ov025.cpp:
+    complete
+    .ctor start:0x02189a30 end:0x02189a34
+    .data start:0x02189a94 end:0x02189aa0

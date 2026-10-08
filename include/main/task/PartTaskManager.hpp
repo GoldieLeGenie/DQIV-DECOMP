@@ -24,15 +24,9 @@ namespace task {
         void initialize();
     };
 
-    struct Data0211EC50 {
-        char pad[0x14];
-        int unk14;
-    };
-
 }  
 
 
-extern task::Data0211EC50 data_0211ec50;
 extern task::PartTaskManager partTaskManager;   // data_ov003_021492dc
 extern task::PartTaskManager g_PartTaskManager; // 0x020ef7e4
 extern task::Sample00Task g_Sample00Task;

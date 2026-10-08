@@ -11,6 +11,7 @@
 #include "main/cmn/CommonCounterInfo.hpp"
 #include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
 #include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
+#include "main/menu/MenuTemplate_Common.hpp"
 
 THUMB void MaterielMenu_EXTRA_NENE::menuSetup()
 {
@@ -44,7 +45,7 @@ THUMB void MaterielMenu_EXTRA_NENE::menuExecute()
         } else if (navigator_.getPageNo() == navigator_.getPageMaxCount() - 1) {
             count -= navigator_.getPageNo() * 6;
         }
-        func_0201e6c4(&menuItem_, count, menuItem_.active_);
+        MenuTemplate_Common::COMMON_ITEM_ICON32_2x3(&menuItem_, count, menuItem_.active_);
         break;
     }
     case 2: {
@@ -66,7 +67,7 @@ THUMB void MaterielMenu_EXTRA_NENE::menuExecute()
                 count = neneItemCount_;
             }
         }
-        func_0201e6c4(&menuItem_, count, menuItem_.active_);
+        MenuTemplate_Common::COMMON_ITEM_ICON32_2x3(&menuItem_, count, menuItem_.active_);
         break;
     }
     }

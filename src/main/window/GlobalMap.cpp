@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "main/window/GlobalMap.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/status/GameFlag.hpp"
 #include "main/status/StageStatus.hpp"
 #include "nitro/os.hpp"

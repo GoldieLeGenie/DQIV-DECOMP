@@ -1,4 +1,5 @@
 #include "main/part/CasinoPart.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/global/Global.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/Pad.hpp"
@@ -9,6 +10,7 @@
 #include "nitro/gx.hpp"
 #include "nitro/os.hpp"
 #include "nnsys/g3d.hpp"
+#include "main/dss/UnkOverlaySlot.hpp"
 
 CasinoPart g_CasinoPart;
 
@@ -21,11 +23,11 @@ ARM void CasinoPart::initialize()
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
     data_0211e450.unkfunc_020861c4(0x40000, 0x4000);
-    func_02080e90(data_0211c4f0);
-    func_0207e7e8();
-    func_02087590((int)&OVERLAY_9_ID);
+    unkfunc_02080e90(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
+    unkfunc_0207e7e8();
+    unkfunc_02087590((int)&OVERLAY_9_ID);
     CasinoSystem::unkfunc_021227cc();
-    func_02087590((int)&OVERLAY_16_ID);
+    unkfunc_02087590((int)&OVERLAY_16_ID);
     ov016_entry();
     CasinoSystem::getSingleton()->initialize();
     func_0206dd70(1);
@@ -37,8 +39,8 @@ ARM void CasinoPart::terminate()
 {
     dss::g_Pad.unkfunc_0207f2b4(0);
     CasinoSystem::getSingleton()->terminate();
-    func_020875a4((int)&OVERLAY_9_ID);
-    func_020875a4((int)&OVERLAY_16_ID);
+    unkfunc_020875a4((int)&OVERLAY_9_ID);
+    unkfunc_020875a4((int)&OVERLAY_16_ID);
     data_0211e450.unkfunc_02086278();
 }
 

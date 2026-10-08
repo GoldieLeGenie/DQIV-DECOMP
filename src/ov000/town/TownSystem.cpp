@@ -1,6 +1,7 @@
 #pragma ipa file
 #include "main/cmn/CommonChapterTitle.hpp"
 #include "main/dss/DssUtils.hpp"
+#include "main/object/BillboardCharacter.hpp"
 #include "ov000/town/TownSystem.hpp"
 #include "ov000/town/TownEndrollManager.hpp"
 #include "ov000/town/TownCamera.hpp"
@@ -53,7 +54,7 @@ ARM void TownSystem::initialize()
     BillboardCharacter::allAnimLock = 0;
     status::excelParam.setupTown();
     status::excelParam.setupTownInitialize();
-    func_02049ba4();
+    CharacterShadow::unkfunc_02049ba4();
     render_.unkfunc_02084efc();
     TownCamera::getSingleton()->initialize();
     TownStageManager::getSingleton()->initialize();
@@ -71,7 +72,7 @@ ARM void TownSystem::initialize()
     btl::BattleScriptManager::getSingleton()->checkScriptBattleResult();
     TownRiseupManager::getSingleton()->initialize();
     ScriptSystem::getSingleton()->initialize(status::g_Story.chapter_);
-    func_0202ace4(func_0202adc4());
+    UnkScreenEffectManager::getSingleton()->unkfunc_0202ace4();
     playExitSE_ = 0;
     defaultSELock_ = 0;
     scriptLock_ = 0;
@@ -143,8 +144,8 @@ ARM void TownSystem::terminate()
     TownStageManager::getSingleton()->terminate();
     TownCamera::getSingleton()->terminate();
     render_.unkfunc_02084f50();
-    func_02049eb4();
-    func_0202adb4(func_0202adc4());
+    CharacterShadow::unkfunc_02049eb4();
+    UnkScreenEffectManager::getSingleton()->unkfunc_0202adb4();
     status::Status::setFlagShopExec();
     status::excelParam.cleanupTown();
     g_Global.partChangeFlag_ = 0;
@@ -155,7 +156,7 @@ ARM void TownSystem::execute()
     TownOpeningManager::getSingleton()->execute();
     TownEndrollManager::getSingleton()->execute();
     if (g_Global.getRanarutaFlag()) {
-        func_0202ad28(func_0202adc4());
+        UnkScreenEffectManager::getSingleton()->unkfunc_0202ad28();
         cmn::NonBattleActionManager::getSingleton()->execute();
     }
     TownFurnitureManager::getSingleton()->execute();
@@ -187,8 +188,8 @@ ARM void TownSystem::execute()
 ARM void TownSystem::draw()
 {
     cmn::CommonChapterTitle::getSingleton()->draw();
-    func_0202ad98(func_0202adc4());
-    if (func_0202af54(func_0202adc4())) {
+    UnkScreenEffectManager::getSingleton()->unkfunc_0202ad98();
+    if (UnkScreenEffectManager::getSingleton()->unkfunc_0202af54()) {
         return;
     }
     TownCamera::getSingleton()->draw();

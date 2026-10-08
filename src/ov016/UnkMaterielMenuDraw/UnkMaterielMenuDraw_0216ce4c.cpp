@@ -17,6 +17,9 @@
 #include "main/status/GameStatus.hpp"
 #include "ov009/casino/PokerManager.hpp"
 #include "ov028/MaterielMenu_SHOP/MaterielMenu_SHOP.hpp"
+#include "main/menu/UnkMenuPartsDraw.hpp"
+#include "main/menu/UnkMenuCommonDraw_0201e194.hpp"
+#include "main/cmn/UnkEnvoyManager.hpp"
 
 static UnkMenuParts s_parts_02181b86[] = {
     { 0x0d, 0x08, (short)0xf000, 0, 8, 0xa, 0x80, 0x10 },
@@ -491,19 +494,19 @@ THUMB void unkfunc_0216ce4c(bool bank, int type)
     }
     menu::MenuDataCommon::getShopCommand(command, bank);
     for (int i = 0; i < 3; i++) {
-        func_02050ee0(s_parts_021811bc, &command[i], 0xa4, i * 16 + 8 + i * 8, data_020be244[mode]);
+        unkfunc_02050ee0(s_parts_021811bc, &command[i], 0xa4, i * 16 + 8 + i * 8, data_020be244[mode]);
     }
-    func_0201e194(0x98, 0, 0x68, 0x50, -1);
+    unkfunc_0201e194(0x98, 0, 0x68, 0x50, -1);
 }
 
 ARM void unkfunc_0216ceb4(UnkMenuParts* parts, int* param, int x, int y, int mode)
 {
-    func_02050ee0(parts, param, x, y, data_020be244[mode]);
+    unkfunc_02050ee0(parts, param, x, y, data_020be244[mode]);
 }
 
 THUMB void unkfunc_0216ced4()
 {
-    func_02050698(0, 0);
+    unkfunc_02050698(0, 0);
     UnkMenuParts* parts = 0;
     for (int i = 0; i < status::g_Party.getCount(); i++) {
         int param[4];
@@ -523,11 +526,11 @@ THUMB void unkfunc_0216ced4()
                 param[1] = 0;
                 break;
         }
-        func_02050ee0(parts, param, (i % 2) << 7, ((i / 2) << 4) + 0x28, data_020be244[0]);
+        unkfunc_02050ee0(parts, param, (i % 2) << 7, ((i / 2) << 4) + 0x28, data_020be244[0]);
     }
     unkfunc_0216f52c(-1);
-    func_0201e194(0, 0, 0x100, 0x90, 0x20);
-    func_0201e194(0, 0x90, 0x100, 0x30, -1);
+    unkfunc_0201e194(0, 0, 0x100, 0x90, 0x20);
+    unkfunc_0201e194(0, 0x90, 0x100, 0x30, -1);
 }
 
 ARM status::HaveStatusInfo* unkfunc_0216cfa4(status::PlayerStatus* player)
@@ -537,7 +540,7 @@ ARM status::HaveStatusInfo* unkfunc_0216cfa4(status::PlayerStatus* player)
 
 THUMB void unkfunc_0216cfac()
 {
-    func_02050698(0, 0);
+    unkfunc_02050698(0, 0);
     for (int i = 0; i < status::g_Party.getCount(); i++) {
         int param[3];
         UnkMenuParts* parts;
@@ -546,16 +549,16 @@ THUMB void unkfunc_0216cfac()
         } else {
             parts = s_parts_021813a6;
         }
-        func_02050ee0(parts, param, ((i % 2) << 7) - ((i % 2) << 2), ((i / 2) << 4) + 0x28, data_020be244[0]);
+        unkfunc_02050ee0(parts, param, ((i % 2) << 7) - ((i % 2) << 2), ((i / 2) << 4) + 0x28, data_020be244[0]);
     }
     unkfunc_0216f52c(-1);
-    func_0201e194(0, 0, 0x100, 0x90, 0x20);
-    func_0201e194(0, 0x90, 0x100, 0x30, -1);
+    unkfunc_0201e194(0, 0, 0x100, 0x90, 0x20);
+    unkfunc_0201e194(0, 0x90, 0x100, 0x30, -1);
 }
 
 THUMB void unkfunc_0216d058(int* count)
 {
-    func_02050698(0, 0);
+    unkfunc_02050698(0, 0);
     int item = MaterielMenuPlayerControl::getSingleton()->activeItem_;
     if (status::g_Party.fukuro_) {
         int param[3];
@@ -569,13 +572,13 @@ THUMB void unkfunc_0216d058(int* count)
             param[2] = count[item];
             parts = s_parts_02181582;
         }
-        func_02050ed0(parts, param, data_020be244[0]);
+        unkfunc_02050ed0(parts, param, data_020be244[0]);
     }
 }
 
 ARM void unkfunc_0216d0bc(UnkMenuParts* parts, int* param, int mode)
 {
-    func_02050ed0(parts, param, data_020be244[mode]);
+    unkfunc_02050ed0(parts, param, data_020be244[mode]);
 }
 
 THUMB void unkfunc_0216d0d4()
@@ -597,8 +600,8 @@ THUMB void unkfunc_0216d0d4()
     } else {
         param[1] = 0x80000065;
     }
-    func_02050ed0(s_parts_02181328, param, data_020be244[0]);
-    func_0201e194(0, 0xa0, 0x88, 0x20, -1);
+    unkfunc_02050ed0(s_parts_02181328, param, data_020be244[0]);
+    unkfunc_0201e194(0, 0xa0, 0x88, 0x20, -1);
 }
 
 THUMB void unkfunc_0216d154(int flag)
@@ -622,7 +625,7 @@ THUMB void unkfunc_0216d154(int flag)
         if (flag) {
             param[0] = MaterielMenu_SHOP_MANAGER::getSingleton()->getItem(i) + 0x40000000;
             param[1] = MaterielMenu_SHOP_MANAGER::getSingleton()->getItemPriceSum(i);
-            func_02050ee0(partsB, param, 0xc, i * 16 + 0xc + i * 8, data_020be244[0]);
+            unkfunc_02050ee0(partsB, param, 0xc, i * 16 + 0xc + i * 8, data_020be244[0]);
         } else {
             if (MaterielMenu_SHOP_MANAGER::getSingleton()->getExtraShop() == 1) {
                 if (i == 0) {
@@ -637,22 +640,22 @@ THUMB void unkfunc_0216d154(int flag)
             param[2] = MaterielMenu_SHOP_MANAGER::getSingleton()->getItemQuantity(i);
             param[3] = MaterielMenu_SHOP_MANAGER::getSingleton()->getItemPriceSum(i);
             param[4] = 0xa000003c;
-            func_02050ee0(partsA, param, 0xc, i * 16 + 0xc + i * 8, data_020be244[0]);
+            unkfunc_02050ee0(partsA, param, 0xc, i * 16 + 0xc + i * 8, data_020be244[0]);
         }
     }
-    func_0201e194(0, 0, 0x100, 0xa0, -1);
+    unkfunc_0201e194(0, 0, 0x100, 0xa0, -1);
 }
 
 // not in the ROM (dead-stripped), its local array initializer is still in .rodata
 THUMB void unkfunc_unused_6(int index)
 {
     int message[6] = { 0x800000ca, 0x800000cb, 0x800000cc, 0x800000cd, 0x800000ce, 0x800000cf };
-    func_02050ed0(s_parts_02181168, &message[index], 1);
+    unkfunc_02050ed0(s_parts_02181168, &message[index], 1);
 }
 
 THUMB void unkfunc_0216d26c()
 {
-    func_02050698(0, 0);
+    unkfunc_02050698(0, 0);
     UnkMenuParts parts[] = {
         { 0x0d, 0x08, (short)0xf000, 0, 0, 0, 8, 0x10 },
         { 0x0d, 0x08, (short)0xf000, 1, 0xc, 0, 0x68, 0x10 },
@@ -689,9 +692,9 @@ THUMB void unkfunc_0216d26c()
             }
         }
         param[1] = item + 0x40000000;
-        func_02050ee0(parts, param, x, y, data_020be244[0]);
+        unkfunc_02050ee0(parts, param, x, y, data_020be244[0]);
     }
-    func_0201e194(0, 0x50, 0x100, 0x70, -1);
+    unkfunc_0201e194(0, 0x50, 0x100, 0x70, -1);
 }
 
 THUMB void unkfunc_0216d398()
@@ -769,8 +772,8 @@ THUMB void unkfunc_0216d398()
             param[3] = 0xa0000077;
         }
     }
-    func_02050ed0(s_parts_02181b86, param, data_020be244[0]);
-    func_0201e194(0, 0, 0x100, 0x48, 0x28);
+    unkfunc_02050ed0(s_parts_02181b86, param, data_020be244[0]);
+    unkfunc_0201e194(0, 0, 0x100, 0x48, 0x28);
 }
 
 THUMB void unkfunc_0216d554(int y, int flag)
@@ -781,17 +784,17 @@ THUMB void unkfunc_0216d554(int y, int flag)
         int yy = (i / 5) * 0x28 + 0x48 - y;
         status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(i)->haveStatusInfo_;
         param = info->haveStatus_.iconIndex_;
-        func_02050ebc(s_parts_02181352, &param, x, yy);
+        unkfunc_02050ebc(s_parts_02181352, &param, x, yy);
         if (info->isSpell()) {
             param = 0xa0000044;
-            func_02050ee0(s_parts_02181088, &param, x - 6, yy + 0x14, data_020be244[func_0201e2f4(info)]);
+            unkfunc_02050ee0(s_parts_02181088, &param, x - 6, yy + 0x14, data_020be244[unkfunc_0201e2f4(info)]);
         }
         if (info->isDeath()) {
             param = 0xa0000042;
-            func_02050ee0(s_parts_02181088, &param, x - 6, yy + 8, data_020be244[func_0201e2f4(info)]);
+            unkfunc_02050ee0(s_parts_02181088, &param, x - 6, yy + 8, data_020be244[unkfunc_0201e2f4(info)]);
         } else if (info->isPoison()) {
             param = 0xa0000043;
-            func_02050ee0(s_parts_02181088, &param, x - 6, yy + 8, data_020be244[func_0201e2f4(info)]);
+            unkfunc_02050ee0(s_parts_02181088, &param, x - 6, yy + 8, data_020be244[unkfunc_0201e2f4(info)]);
         }
     }
     if (flag == 1) {
@@ -803,7 +806,7 @@ THUMB void unkfunc_0216d554(int y, int flag)
             bool player = status::g_Party.getPlayerStatus(i)->haveStatusInfo_.haveStatus_.isPlayer_;
             if (player == true) {
                 param = i + 1;
-                func_02050ee0(s_parts_02180fe0, &param, x, 0x50 - y, data_020be244[func_0201e2f4(info)]);
+                unkfunc_02050ee0(s_parts_02180fe0, &param, x, 0x50 - y, data_020be244[unkfunc_0201e2f4(info)]);
                 n++;
             }
         }
@@ -813,20 +816,20 @@ THUMB void unkfunc_0216d554(int y, int flag)
             int m = i % 5;
             status::HaveStatusInfo* info = &status::g_Party.getPlayerStatus(i)->haveStatusInfo_;
             param = i + 1;
-            func_02050ee0(s_parts_02180fe0, &param, (m << 5) + 0x10 + (m << 3), 0x50 - y, data_020be244[func_0201e2f4(info)]);
+            unkfunc_02050ee0(s_parts_02180fe0, &param, (m << 5) + 0x10 + (m << 3), 0x50 - y, data_020be244[unkfunc_0201e2f4(info)]);
         }
     }
     if (status::g_Party.fukuro_ && y == 0) {
         int count = status::g_Party.getCount();
         param = 0x18;
-        func_02050ebc(s_parts_02181352, &param, ((count % 5) << 5) + 0x14 + ((count % 5) << 3), (count / 5) * 0x28 + 0x48);
+        unkfunc_02050ebc(s_parts_02181352, &param, ((count % 5) << 5) + 0x14 + ((count % 5) << 3), (count / 5) * 0x28 + 0x48);
     }
-    func_0201e194(0, 0x48 - y, 0xe0, 0x58, -1);
+    unkfunc_0201e194(0, 0x48 - y, 0xe0, 0x58, -1);
 }
 
 THUMB void unkfunc_0216d798()
 {
-    func_02050698(0, 0);
+    unkfunc_02050698(0, 0);
     int chara = MaterielMenuPlayerControl::getSingleton()->activeChara_;
     int param[6];
     if (chara == status::g_Party.getCount()) {
@@ -845,7 +848,7 @@ THUMB void unkfunc_0216d798()
                 s_parts_02181ac2[4].type_ = 0xd;
             }
             unkfunc_0216f8f8(param, chara, i);
-            func_02050ee0(s_parts_02181ac2, param, 0, i * 14 + 0xc, data_020be244[0]);
+            unkfunc_02050ee0(s_parts_02181ac2, param, 0, i * 14 + 0xc, data_020be244[0]);
         }
     } else {
         status::HaveItem* haveItem = &status::g_Party.getPlayerStatus(chara)->haveStatusInfo_.haveItem_;
@@ -863,10 +866,10 @@ THUMB void unkfunc_0216d798()
                 s_parts_02181ac2[2].type_ = 0xf;
             }
             unkfunc_0216f8f8(param, chara, i);
-            func_02050ee0(s_parts_02181ac2, param, 0, i * 14 + 0xc, data_020be244[0]);
+            unkfunc_02050ee0(s_parts_02181ac2, param, 0, i * 14 + 0xc, data_020be244[0]);
         }
     }
-    func_0201e194(0, 0, 0x100, 0xc0, -1);
+    unkfunc_0201e194(0, 0, 0x100, 0xc0, -1);
 }
 
 THUMB void unkfunc_0216d8e4(int flag)
@@ -895,7 +898,7 @@ THUMB void unkfunc_0216d8e4(int flag)
                 }
                 s_parts_02181972[3].type_ = 0xf;
             }
-            func_02050ee0(s_parts_02181972, param, (n % 2) * 0x78 + 0x14, ((n / 2) << 5) + 4, data_020be244[0]);
+            unkfunc_02050ee0(s_parts_02181972, param, (n % 2) * 0x78 + 0x14, ((n / 2) << 5) + 4, data_020be244[0]);
             n++;
         }
     } else {
@@ -917,11 +920,11 @@ THUMB void unkfunc_0216d8e4(int flag)
                 param[3] = 0;
                 s_parts_02181972[4].type_ = 0;
             }
-            func_02050ee0(s_parts_02181972, param, (n % 2) * 0x78 + 0x14, ((n / 2) << 5) + 4, data_020be244[0]);
+            unkfunc_02050ee0(s_parts_02181972, param, (n % 2) * 0x78 + 0x14, ((n / 2) << 5) + 4, data_020be244[0]);
             n++;
         }
     }
-    func_0201e194(0, 0, 0x100, 0xa0, 0x70);
+    unkfunc_0201e194(0, 0, 0x100, 0xa0, 0x70);
 }
 
 THUMB void unkfunc_0216da80(int flag)
@@ -949,7 +952,7 @@ THUMB void unkfunc_0216da80(int flag)
             s_parts_021817a4[0].type_ = s_parts_021817a4[3].type_ = 0xf;
             s_parts_021817a4[2].type_ = 0xd;
         }
-        func_02050ed0(s_parts_021817a4, param, data_020be244[0]);
+        unkfunc_02050ed0(s_parts_021817a4, param, data_020be244[0]);
     } else {
         param[2] = param[3] = 0;
         s_parts_021817a4[2].type_ = s_parts_021817a4[3].type_ = 0;
@@ -963,7 +966,7 @@ THUMB void unkfunc_0216da80(int flag)
             param[1] = 0xa000003c;
             s_parts_021817a4[0].type_ = 0xf;
         }
-        func_02050ed0(s_parts_021817a4, param, data_020be244[0]);
+        unkfunc_02050ed0(s_parts_021817a4, param, data_020be244[0]);
     }
 }
 
@@ -1005,7 +1008,7 @@ THUMB void unkfunc_0216db94(int mode, int a, int b, int c)
             param[2] = 2;
         }
     }
-    func_02050ed0(parts, param, data_020be244[0]);
+    unkfunc_02050ed0(parts, param, data_020be244[0]);
 }
 
 THUMB void unkfunc_0216dc54(int item)
@@ -1017,7 +1020,7 @@ THUMB void unkfunc_0216dc54(int item)
     status::HaveStatusInfo* info;
     int start;
     int index;
-    func_02050698(0, 0);
+    unkfunc_02050698(0, 0);
     MaterielMenuPlayerControl* control = MaterielMenuPlayerControl::getSingleton();
     index = control->activeItem_;
     start = control->activeItemPage_ * 6;
@@ -1080,23 +1083,23 @@ THUMB void unkfunc_0216dc54(int item)
             }
         }
     }
-    func_02050ed0(parts, param, data_020be244[0]);
-    func_0201e194(0, 0x50, 0xb0, 0x70, 0x68);
-    func_0201e1c4(0, 0x90, 0xb0);
+    unkfunc_02050ed0(parts, param, data_020be244[0]);
+    unkfunc_0201e194(0, 0x50, 0xb0, 0x70, 0x68);
+    unkfunc_0201e1c4(0, 0x90, 0xb0);
 }
 
 THUMB void unkfunc_0216ddf4(int quantity)
 {
     int param[2] = { (int)"\xff\xfe\xa9\x24", quantity };
-    func_02050ed0(s_parts_021813d0, param, data_020be244[0]);
-    func_0201e194(0x98, 0x50, 0x68, 0x28, -1);
+    unkfunc_02050ed0(s_parts_021813d0, param, data_020be244[0]);
+    unkfunc_0201e194(0x98, 0x50, 0x68, 0x28, -1);
 }
 
 THUMB void unkfunc_0216de34(int coin, int flag)
 {
     int param[2] = { (int)0xa0000029, coin };
     int mode = 0;
-    func_02050ed0(s_parts_0218122c, param, data_020be244[0]);
+    unkfunc_02050ed0(s_parts_0218122c, param, data_020be244[0]);
     param[1] = PokerManager::getSingleton()->getCoin_;
     if (flag) {
         param[0] = 0xa000013a;
@@ -1104,15 +1107,15 @@ THUMB void unkfunc_0216de34(int coin, int flag)
     } else {
         param[0] = 0xa0000139;
     }
-    func_02050ed0(s_parts_02181256, param, data_020be244[mode]);
-    func_0201e194(0x78, 0, 0x88, 0x38, -1);
+    unkfunc_02050ed0(s_parts_02181256, param, data_020be244[mode]);
+    unkfunc_0201e194(0x78, 0, 0x88, 0x38, -1);
 }
 
 THUMB void unkfunc_0216dea8(int win)
 {
     int command[2];
     menu::MenuDataCommon::getHighAndLowCommand(command, win);
-    func_02050ed0(s_parts_021816d2, command, data_020be244[0]);
+    unkfunc_02050ed0(s_parts_021816d2, command, data_020be244[0]);
 }
 
 THUMB void unkfunc_0216decc(int* monsterName, int* monsterFlag)
@@ -1137,12 +1140,12 @@ THUMB void unkfunc_0216decc(int* monsterName, int* monsterFlag)
         } else {
             param[0] = 0xa0000259;
         }
-        func_02050ee0(s_parts_02180ec8, param, (i % 2) * 0x70 + 0x20, (i / 2) * 12 + (i / 2) * 4 + 0xd, data_020be244[4]);
+        unkfunc_02050ee0(s_parts_02180ec8, param, (i % 2) * 0x70 + 0x20, (i / 2) * 12 + (i / 2) * 4 + 0xd, data_020be244[4]);
     }
     param[0] = page + 1;
     param[1] = 0xa0000258;
     param[2] = (int)" ";
-    func_02050ed0(s_parts_02181432, param, data_020be244[4]);
+    unkfunc_02050ed0(s_parts_02181432, param, data_020be244[4]);
 }
 
 THUMB void unkfunc_0216df9c(int monsterNo, int monsterName)
@@ -1183,7 +1186,7 @@ THUMB void unkfunc_0216df9c(int monsterNo, int monsterName)
     } else {
         param[14] = 0xa0000259;
     }
-    func_02050ed0(s_parts_02181e96, param, data_020be244[4]);
+    unkfunc_02050ed0(s_parts_02181e96, param, data_020be244[4]);
 }
 
 THUMB void unkfunc_0216e0bc()
@@ -1196,9 +1199,9 @@ THUMB void unkfunc_0216e0bc()
     }
     menu::MenuDataCommon::getChurchCommand(command, extra);
     for (int i = 0; i < count; i++) {
-        func_02050ee0(s_parts_02180f8c, &command[i], (i % 2) * 0x60 + 0x44, (i / 2) * 0x18 + 0xc, data_020be244[0]);
+        unkfunc_02050ee0(s_parts_02180f8c, &command[i], (i % 2) * 0x60 + 0x44, (i / 2) * 0x18 + 0xc, data_020be244[0]);
     }
-    func_0201e194(0x30, 0, 0xd0, 0x58, -1);
+    unkfunc_0201e194(0x30, 0, 0xd0, 0x58, -1);
 }
 
 THUMB void unkfunc_0216e12c(int money, int flag)
@@ -1215,12 +1218,12 @@ THUMB void unkfunc_0216e12c(int money, int flag)
             money %= div;
             div /= 10;
         } else {
-            func_02050ee0(s_parts_02180ffc, &param, i * 10 + 5, y, data_020be244[0]);
+            unkfunc_02050ee0(s_parts_02180ffc, &param, i * 10 + 5, y, data_020be244[0]);
             money %= div;
             div /= 10;
         }
     }
-    func_0201e194(0xa8, y, 0x58, 0x20, -1);
+    unkfunc_0201e194(0xa8, y, 0x58, 0x20, -1);
 }
 
 THUMB void unkfunc_0216e1c4(int flag)
@@ -1230,8 +1233,8 @@ THUMB void unkfunc_0216e1c4(int flag)
     int param[2];
     if (chara == status::g_Party.getCount()) {
         param[0] = 0x5000005b;
-        func_0201e194(0x48, 0xa0, 0x40, 0x20, -1);
-        func_02050ed0(s_parts_0218106c, param, data_020be244[0]);
+        unkfunc_0201e194(0x48, 0xa0, 0x40, 0x20, -1);
+        unkfunc_02050ed0(s_parts_0218106c, param, data_020be244[0]);
         return;
     }
     param[0] = info->haveStatus_.playerIndex_ + 0x50000000;
@@ -1240,17 +1243,17 @@ THUMB void unkfunc_0216e1c4(int flag)
         param[1] = 1;
     }
     if (flag) {
-        func_0201e194(0, 0, 0x40, 0x20, -1);
-        func_02050ed0(s_parts_021814a2, param, data_020be244[func_0201e2f4(info)]);
+        unkfunc_0201e194(0, 0, 0x40, 0x20, -1);
+        unkfunc_02050ed0(s_parts_021814a2, param, data_020be244[unkfunc_0201e2f4(info)]);
     } else {
-        func_0201e194(0x48, 0xa0, 0x40, 0x20, -1);
-        func_02050ed0(s_parts_0218146a, param, data_020be244[func_0201e2f4(info)]);
+        unkfunc_0201e194(0x48, 0xa0, 0x40, 0x20, -1);
+        unkfunc_02050ed0(s_parts_0218146a, param, data_020be244[unkfunc_0201e2f4(info)]);
     }
 }
 
 THUMB void unkfunc_0216e2bc(int x, int y)
 {
-    func_02050ebc(s_parts_02180f54, 0, x, y);
+    unkfunc_02050ebc(s_parts_02180f54, 0, x, y);
 }
 
 #pragma dont_inline on
@@ -1278,7 +1281,7 @@ THUMB void unkfunc_0216e2d0(int chara)
     param[0] = 0xa0000010;
     param[2] = info->getExp();
     unkfunc_0216d0bc(s_parts_02181512, param, 0);
-    func_0201e194(0x90, 0x10, 0x68, 0xa0, -1);
+    unkfunc_0201e194(0x90, 0x10, 0x68, 0xa0, -1);
 }
 #pragma dont_inline reset
 
@@ -1299,17 +1302,17 @@ THUMB void unkfunc_0216e844()
     param[10] = (int)"@\x81\x5c";
     param[11] = (int)"@\x81\x5c";
     param[12] = info->getMpMax();
-    func_02050ed0(s_parts_02181cc8, param, data_020be244[func_0201e2f4(info)]);
-    if (func_0201e318(info) == 3) {
+    unkfunc_02050ed0(s_parts_02181cc8, param, data_020be244[unkfunc_0201e2f4(info)]);
+    if (unkfunc_0201e318(info) == 3) {
         param[0] = menu::MenuDataCommon::convMessage(info, 0xa0000018);
-        func_02050ed0(s_parts_021811d8, param, data_020be244[func_0201e2f4(info)]);
+        unkfunc_02050ed0(s_parts_021811d8, param, data_020be244[unkfunc_0201e2f4(info)]);
     } else {
         param[0] = 0xa000003f;
         param[1] = (int)":";
         param[2] = info->haveStatus_.level_;
-        func_02050ed0(s_parts_0218154a, param, data_020be244[func_0201e2f4(info)]);
+        unkfunc_02050ed0(s_parts_0218154a, param, data_020be244[unkfunc_0201e2f4(info)]);
     }
-    func_0201e194(0, 0, 0x40, 0x68, -1);
+    unkfunc_0201e194(0, 0, 0x40, 0x68, -1);
 }
 
 THUMB void unkfunc_0216e944(int count, int page, int pageMax)
@@ -1329,9 +1332,9 @@ THUMB void unkfunc_0216e944(int count, int page, int pageMax)
             param[2] = status::g_Shop.haveItemNene_.getItemCount(page * 6 + i);
             s_parts_0218175e[3].type_ = 0xf;
         }
-        func_02050ee0(s_parts_0218175e, param, (i % 2) * 0x78 + 0x14, (i / 2) * 32 + 4, data_020be244[0]);
+        unkfunc_02050ee0(s_parts_0218175e, param, (i % 2) * 0x78 + 0x14, (i / 2) * 32 + 4, data_020be244[0]);
     }
-    func_0201e194(0, 0, 0x100, 0xa0, 0x70);
+    unkfunc_0201e194(0, 0, 0x100, 0xa0, 0x70);
 }
 
 THUMB void unkfunc_0216e9fc(int chapter, int chapterEnd)
@@ -1339,9 +1342,9 @@ THUMB void unkfunc_0216e9fc(int chapter, int chapterEnd)
     int param = 0xa000032a;
     if (chapter == 0 && chapterEnd == 1) {
         param = 0x30db7;
-        func_02050ee0(s_parts_02181130, &param, 0, -16, data_020be244[0]);
+        unkfunc_02050ee0(s_parts_02181130, &param, 0, -16, data_020be244[0]);
     } else if (chapter == 0) {
-        func_02050ed0(s_parts_02181114, &s_int_02180e94[chapter], data_020be244[0]);
+        unkfunc_02050ed0(s_parts_02181114, &s_int_02180e94[chapter], data_020be244[0]);
     } else {
         int y = 0;
         if (chapterEnd == 0) {
@@ -1352,38 +1355,38 @@ THUMB void unkfunc_0216e9fc(int chapter, int chapterEnd)
             if (chapter == 5) y = 0x4a;
             if (chapter == 6) y = 0x4a;
         }
-        func_02050ee0(s_parts_0218114c, &s_int_02180e94[chapter], 0, y, data_020be244[0]);
+        unkfunc_02050ee0(s_parts_0218114c, &s_int_02180e94[chapter], 0, y, data_020be244[0]);
     }
     if (chapter != 0 && chapterEnd == 1) {
         param = 0xa000032a;
-        func_02050ed0(s_parts_02180eac, &param, data_020be244[0]);
+        unkfunc_02050ed0(s_parts_02180eac, &param, data_020be244[0]);
     }
 }
 
 THUMB void unkfunc_0216eac0()
 {
-    func_02050ea8(s_parts_02181018, 0);
+    unkfunc_02050ea8(s_parts_02181018, 0);
     for (int i = 0; i < 5; i++) {
         int param = menu::MenuDataCommon::getSuretigaiRootMenu(i);
-        func_02050ee0(s_parts_021811a0, &param, 0, i * 16 + 0xc + i * 4, data_020be244[0]);
+        unkfunc_02050ee0(s_parts_021811a0, &param, 0, i * 16 + 0xc + i * 4, data_020be244[0]);
     }
-    func_0201e194(0, 0, 0x88, 0x78, -1);
+    unkfunc_0201e194(0, 0, 0x88, 0x78, -1);
 }
 
 THUMB void unkfunc_0216eb18(int count, int page, int pageMax, int flag)
 {
     int param[5] = { 0, 0, 0, 0, 0 };
-    func_0203a388(&data_020f0078);
-    int num = func_0203a388(&data_020f0078) - page * 8;
+    data_020f0078.unkfunc_0203a388();
+    int num = data_020f0078.unkfunc_0203a388() - page * 8;
     if (num <= 0) {
-        int offset = 8 - func_0203a388(&data_020f0078) % 8;
+        int offset = 8 - data_020f0078.unkfunc_0203a388() % 8;
         if (offset == 8) {
             offset = 0;
         }
         num = dss::max(dss::min(count - page * 8, 8), 0);
         for (int i = 0; i < num; i++) {
-            int pages = (func_0203a388(&data_020f0078) - 1) / 8 + 1;
-            if (func_0203a388(&data_020f0078) == 0) {
+            int pages = (data_020f0078.unkfunc_0203a388() - 1) / 8 + 1;
+            if (data_020f0078.unkfunc_0203a388() == 0) {
                 pages = 0;
             }
             int index = offset + (i + (page - pages) * 8);
@@ -1400,16 +1403,16 @@ THUMB void unkfunc_0216eb18(int count, int page, int pageMax, int flag)
             }
             param[0] = menu::MenuDataCommon::getItemMessage(status::excelParam.surechigaiTenant_[index].name);
             param[1] = status::excelParam.surechigaiTenant_[index].icon + 0x37;
-            func_02050ee0(s_parts_0218162a, param, x, y, data_020be244[0]);
+            unkfunc_02050ee0(s_parts_0218162a, param, x, y, data_020be244[0]);
         }
     } else {
         num = dss::max(dss::min(num, 8), 0);
         int i;
         for (i = 0; i < num; i++) {
-            func_0203a34c(&data_020f0078, page * 8 + i);
-            param[0] = (int)func_0203a65c(&data_020f0078);
-            param[1] = func_0203a5ec(&data_020f0078) + 1;
-            func_02050ee0(s_parts_0218162a, param, (i % 2) * 0x78 + 0x14, (i / 2) * 32 + 0x20, data_020be244[0]);
+            data_020f0078.unkfunc_0203a34c(page * 8 + i);
+            param[0] = (int)data_020f0078.unkfunc_0203a65c();
+            param[1] = data_020f0078.unkfunc_0203a5ec() + 1;
+            unkfunc_02050ee0(s_parts_0218162a, param, (i % 2) * 0x78 + 0x14, (i / 2) * 32 + 0x20, data_020be244[0]);
         }
         if (num < 8 && flag == 1) {
             int end = count;
@@ -1431,7 +1434,7 @@ THUMB void unkfunc_0216eb18(int count, int page, int pageMax, int flag)
                 }
                 param[0] = menu::MenuDataCommon::getItemMessage(status::excelParam.surechigaiTenant_[index].name);
                 param[1] = status::excelParam.surechigaiTenant_[index].icon + 0x37;
-                func_02050ee0(s_parts_0218162a, param, x, y, data_020be244[0]);
+                unkfunc_02050ee0(s_parts_0218162a, param, x, y, data_020be244[0]);
             }
         }
     }
@@ -1442,22 +1445,22 @@ THUMB void unkfunc_0216eb18(int count, int page, int pageMax, int flag)
     }
     param[1] = (int)"\xff\xfe\xac\x24";
     param[2] = 0xa00002ce;
-    func_02050ed0(s_parts_0218169a, param, data_020be244[0]);
+    unkfunc_02050ed0(s_parts_0218169a, param, data_020be244[0]);
     if (count > 8) {
         param[0] = 0xe;
         param[1] = page + 1;
         param[2] = (int)"\xff\xfe\xa7\x24";
         param[3] = pageMax;
         param[4] = 0xf;
-        func_02050ed0(s_parts_02181876, param, data_020be244[0]);
+        unkfunc_02050ed0(s_parts_02181876, param, data_020be244[0]);
     }
-    func_0201e194(0, 0, 0x100, 0xc0, 0x20);
+    unkfunc_0201e194(0, 0, 0x100, 0xc0, 0x20);
 }
 
 THUMB void unkfunc_0216edf8(int index, int mode, int flag)
 {
-    func_02050698(0, 0);
-    if (mode == 0 && func_0203a388(&data_020f0078) == 0 && flag == 0) {
+    unkfunc_02050698(0, 0);
+    if (mode == 0 && data_020f0078.unkfunc_0203a388() == 0 && flag == 0) {
         return;
     }
     int param[14] = { 0 };
@@ -1487,32 +1490,32 @@ THUMB void unkfunc_0216edf8(int index, int mode, int flag)
         param[6] = (char)((status::excelParam.surechigaiTenant_[index].byte_1 & 0xe0) >> 5) + 0xa00002c1;
         param[9] = status::excelParam.surechigaiTenant_[index].tokugi + 0xe0000001;
         if (status::excelParam.surechigaiTenant_[index].from == 0x1d) {
-            data_020f0078 = 1;
-            param[12] = (int)func_0203a820(&data_020f0078);
+            data_020f0078.mode_ = 1;
+            param[12] = (int)data_020f0078.unkfunc_0203a820();
         } else {
             param[12] = menu::MenuDataCommon::getRuraName(status::excelParam.surechigaiTenant_[index].from);
         }
-        func_02050ed0(s_parts_02181c04, param, data_020be244[0]);
-        func_0201e194(0, 0x50, 0xb0, 0x70, 0x70);
+        unkfunc_02050ed0(s_parts_02181c04, param, data_020be244[0]);
+        unkfunc_0201e194(0, 0x50, 0xb0, 0x70, 0x70);
         return;
     }
     param[13] = 0;
     if (mode == 1) {
-        data_020f0078 = 1;
+        data_020f0078.mode_ = 1;
     } else {
-        func_0203a34c(&data_020f0078, index);
+        data_020f0078.unkfunc_0203a34c(index);
     }
-    param[0] = (int)func_0203a65c(&data_020f0078);
-    param[3] = menu::MenuDataCommon::getSuretigaiSex(func_0203a714(&data_020f0078));
-    param[6] = func_0203a750(&data_020f0078) + 0xa00002c1;
-    param[9] = func_0203a78c(&data_020f0078) + 0xe0000001;
-    param[12] = (int)func_0203a820(&data_020f0078);
-    func_02050ed0(s_parts_02181c04, param, data_020be244[0]);
+    param[0] = (int)data_020f0078.unkfunc_0203a65c();
+    param[3] = menu::MenuDataCommon::getSuretigaiSex(data_020f0078.unkfunc_0203a714());
+    param[6] = data_020f0078.unkfunc_0203a750() + 0xa00002c1;
+    param[9] = data_020f0078.unkfunc_0203a78c() + 0xe0000001;
+    param[12] = (int)data_020f0078.unkfunc_0203a820();
+    unkfunc_02050ed0(s_parts_02181c04, param, data_020be244[0]);
     param[0] = 0xa00002cb;
     param[1] = (int)":";
-    param[2] = (int)func_0203a6d8(&data_020f0078);
-    func_02050ed0(s_parts_021813fa, param, data_020be244[0]);
-    func_0201e194(0, 0x50, 0xb0, 0x70, 0x70);
+    param[2] = (int)data_020f0078.unkfunc_0203a6d8();
+    unkfunc_02050ed0(s_parts_021813fa, param, data_020be244[0]);
+    unkfunc_0201e194(0, 0x50, 0xb0, 0x70, 0x70);
 }
 
 THUMB void unkfunc_0216efdc(int index, int mode)
@@ -1532,19 +1535,19 @@ THUMB void unkfunc_0216efdc(int index, int mode)
     param[13] = 0xa00002cc;
     param[14] = (int)":";
     if (mode == 1) {
-        data_020f0078 = 1;
+        data_020f0078.mode_ = 1;
     } else {
-        func_0203a34c(&data_020f0078, index);
+        data_020f0078.unkfunc_0203a34c(index);
     }
-    param[0] = (int)func_0203a65c(&data_020f0078);
-    param[3] = menu::MenuDataCommon::getSuretigaiSex(func_0203a714(&data_020f0078));
-    param[6] = func_0203a750(&data_020f0078) + 0xa00002c1;
-    param[9] = func_0203a78c(&data_020f0078) + 0xe0000001;
-    param[12] = (int)func_0203a6d8(&data_020f0078);
-    param[15] = (int)func_0203a820(&data_020f0078);
-    param[16] = func_0203a5ec(&data_020f0078) + 1;
-    func_02050ed0(s_parts_02181d8c, param, data_020be244[0]);
-    func_0201e194(0, 8, 0xc0, 0x70, 0x28);
+    param[0] = (int)data_020f0078.unkfunc_0203a65c();
+    param[3] = menu::MenuDataCommon::getSuretigaiSex(data_020f0078.unkfunc_0203a714());
+    param[6] = data_020f0078.unkfunc_0203a750() + 0xa00002c1;
+    param[9] = data_020f0078.unkfunc_0203a78c() + 0xe0000001;
+    param[12] = (int)data_020f0078.unkfunc_0203a6d8();
+    param[15] = (int)data_020f0078.unkfunc_0203a820();
+    param[16] = data_020f0078.unkfunc_0203a5ec() + 1;
+    unkfunc_02050ed0(s_parts_02181d8c, param, data_020be244[0]);
+    unkfunc_0201e194(0, 8, 0xc0, 0x70, 0x28);
 }
 
 THUMB void unkfunc_0216f0c0(int page, int value)
@@ -1557,79 +1560,79 @@ THUMB void unkfunc_0216f0c0(int page, int value)
         int param = page * 12 + i + 1;
         int x = (i % 6) * 0x28 + 0xc;
         int y = (i / 6) * 0x28 + 0x20;
-        if (func_0203ab30(&data_020f0078, page * 12 + i) == 1) {
-            func_02050ee0(s_parts_02181034, &param, x, y, data_020be244[0]);
+        if (data_020f0078.unkfunc_0203ab30(page * 12 + i) == 1) {
+            unkfunc_02050ee0(s_parts_02181034, &param, x, y, data_020be244[0]);
         }
-        func_02050ee0(s_parts_021810a4, 0, x, y, data_020be244[0]);
+        unkfunc_02050ee0(s_parts_021810a4, 0, x, y, data_020be244[0]);
     }
     int msg = 0xa00002bc;
-    func_02050ed0(s_parts_02180f70, &msg, data_020be244[0]);
+    unkfunc_02050ed0(s_parts_02180f70, &msg, data_020be244[0]);
     int param2[5] = { 0xe, page + 1, (int)"\xff\xfe\xa7\x24", value, 0xf };
-    func_02050ed0(s_parts_021818ca, param2, data_020be244[0]);
-    func_0201e194(0, 0, 0x100, 0x78, 0x20);
+    unkfunc_02050ed0(s_parts_021818ca, param2, data_020be244[0]);
+    unkfunc_0201e194(0, 0, 0x100, 0x78, 0x20);
 }
 
 THUMB void unkfunc_0216f1b0(int active, int y)
 {
     int param = active + 1;
-    func_02050ebc(s_parts_021812fe, &param, 0xc, y);
-    func_0201e194(0, y, 0x38, 0x30, -1);
+    unkfunc_02050ebc(s_parts_021812fe, &param, 0xc, y);
+    unkfunc_0201e194(0, y, 0x38, 0x30, -1);
 }
 
 THUMB void unkfunc_0216f1e0()
 {
-    data_020f0078 = 1;
-    unkfunc_0216f9e8(func_0203a65c(&data_020f0078), 1);
+    data_020f0078.mode_ = 1;
+    unkfunc_0216f9e8(data_020f0078.unkfunc_0203a65c(), 1);
     for (int i = 0; i < 3; i++) {
         int param = menu::MenuDataCommon::getSuretigaiSex(i);
-        func_02050ee0(s_parts_021810f8, &param, i * 0x48 + 0x18, 0x54, data_020be244[0]);
+        unkfunc_02050ee0(s_parts_021810f8, &param, i * 0x48 + 0x18, 0x54, data_020be244[0]);
     }
     int msg = 0xa00002bd;
-    func_02050ed0(s_parts_021810dc, &msg, data_020be244[0]);
-    func_0201e194(0, 0x30, 0x100, 0x40, 0x48);
+    unkfunc_02050ed0(s_parts_021810dc, &msg, data_020be244[0]);
+    unkfunc_0201e194(0, 0x30, 0x100, 0x40, 0x48);
 }
 
 THUMB void unkfunc_0216f258()
 {
-    data_020f0078 = 1;
-    unkfunc_0216f9e8(func_0203a65c(&data_020f0078), 0);
-    int param = menu::MenuDataCommon::getSuretigaiSex(func_0203a714(&data_020f0078));
-    func_02050ed0(s_parts_02181050, &param, data_020be244[0]);
-    func_0201e194(0x80, 0x10, 0x40, 0x20, -1);
+    data_020f0078.mode_ = 1;
+    unkfunc_0216f9e8(data_020f0078.unkfunc_0203a65c(), 0);
+    int param = menu::MenuDataCommon::getSuretigaiSex(data_020f0078.unkfunc_0203a714());
+    unkfunc_02050ed0(s_parts_02181050, &param, data_020be244[0]);
+    unkfunc_0201e194(0x80, 0x10, 0x40, 0x20, -1);
     for (int i = 0; i < 8; i++) {
         int aetas = i + 0xa00002c1;
-        func_02050ee0(s_parts_02180f38, &aetas, (i % 4) * 0x38 + 0x14, (i / 4) * 0x18 + 0x54, data_020be244[0]);
+        unkfunc_02050ee0(s_parts_02180f38, &aetas, (i % 4) * 0x38 + 0x14, (i / 4) * 0x18 + 0x54, data_020be244[0]);
     }
     param = 0xa00002be;
-    func_02050ed0(s_parts_02180ee4, &param, data_020be244[0]);
-    func_0201e194(0, 0x30, 0x100, 0x58, 0x48);
+    unkfunc_02050ed0(s_parts_02180ee4, &param, data_020be244[0]);
+    unkfunc_0201e194(0, 0x30, 0x100, 0x58, 0x48);
 }
 
 THUMB void unkfunc_0216f318()
 {
-    data_020f0078 = 1;
+    data_020f0078.mode_ = 1;
     int param[5] = { 0 };
-    unkfunc_0216f9e8(func_0203a65c(&data_020f0078), 0);
-    param[0] = menu::MenuDataCommon::getSuretigaiSex(func_0203a714(&data_020f0078));
-    func_02050ee0(s_parts_02181184, param, 0x80, 0, data_020be244[0]);
-    func_0201e194(0x80, 0x10, 0x40, 0x20, -1);
-    param[0] = func_0203a750(&data_020f0078) + 0xa00002c1;
-    func_02050ee0(s_parts_02181184, param, 0xc0, 0, data_020be244[0]);
-    func_0201e194(0xc0, 0x10, 0x40, 0x20, -1);
+    unkfunc_0216f9e8(data_020f0078.unkfunc_0203a65c(), 0);
+    param[0] = menu::MenuDataCommon::getSuretigaiSex(data_020f0078.unkfunc_0203a714());
+    unkfunc_02050ee0(s_parts_02181184, param, 0x80, 0, data_020be244[0]);
+    unkfunc_0201e194(0x80, 0x10, 0x40, 0x20, -1);
+    param[0] = data_020f0078.unkfunc_0203a750() + 0xa00002c1;
+    unkfunc_02050ee0(s_parts_02181184, param, 0xc0, 0, data_020be244[0]);
+    unkfunc_0201e194(0xc0, 0x10, 0x40, 0x20, -1);
     int page = MaterielMenuPlayerControl::getSingleton()->activeChiausSkillPage_;
     for (int i = 0; i < 8; i++) {
         int skill = page * 8 + i + 0xe0000001;
-        func_02050ee0(s_parts_021811f4, &skill, (i % 2) * 0x78 + 0x10, (i / 2) * 0x18 + 0x5c, data_020be244[0]);
+        unkfunc_02050ee0(s_parts_021811f4, &skill, (i % 2) * 0x78 + 0x10, (i / 2) * 0x18 + 0x5c, data_020be244[0]);
     }
     param[0] = 0xc;
     param[1] = page + 1;
     param[2] = (int)"\xff\xfe\xa7\x24";
     param[3] = 8;
     param[4] = 0xd;
-    func_02050ed0(s_parts_0218191e, param, data_020be244[0]);
+    unkfunc_02050ed0(s_parts_0218191e, param, data_020be244[0]);
     param[0] = 0xa00002bf;
-    func_02050ed0(s_parts_02180fc4, param, data_020be244[0]);
-    func_0201e194(0, 0x30, 0x100, 0x90, 0x50);
+    unkfunc_02050ed0(s_parts_02180fc4, param, data_020be244[0]);
+    unkfunc_0201e194(0, 0x30, 0x100, 0x90, 0x50);
 }
 
 THUMB void unkfunc_0216f450()
@@ -1638,15 +1641,15 @@ THUMB void unkfunc_0216f450()
     char line1[0x40];
     char line2[0x40];
     char line3[0x40];
-    data_020f0078 = 1;
-    unkfunc_0216fa48(line1, line2, line3, (char*)func_0203a938(&data_020f0078));
+    data_020f0078.mode_ = 1;
+    unkfunc_0216fa48(line1, line2, line3, (char*)data_020f0078.unkfunc_0203a938());
     param[0] = (int)line1;
     param[1] = (int)line2;
     param[2] = (int)line3;
-    func_02050ed0(s_parts_021815f2, param, data_020be244[0]);
+    unkfunc_02050ed0(s_parts_021815f2, param, data_020be244[0]);
     param[0] = 0xa00002d9;
-    func_02050ed0(s_parts_02180f00, param, data_020be244[0]);
-    func_0201e194(0, 8, 0xc0, 0x70, 0x20);
+    unkfunc_02050ed0(s_parts_02180f00, param, data_020be244[0]);
+    unkfunc_0201e194(0, 8, 0xc0, 0x70, 0x20);
 }
 
 THUMB void unkfunc_0216f4bc()
@@ -1658,16 +1661,16 @@ THUMB void unkfunc_0216f4bc()
             int param[2];
             param[0] = status::g_Shop.getShopItem(2, i) + 0x40000000;
             param[1] = status::g_Shop.getShopPrice(2, i);
-            func_02050ee0(s_parts_02181280, param, 0, y, data_020be244[0]);
+            unkfunc_02050ee0(s_parts_02181280, param, 0, y, data_020be244[0]);
             y += 0x10;
         }
     }
-    func_0201e194(0, 0, 0xb8, 0x70, -1);
+    unkfunc_0201e194(0, 0, 0xb8, 0x70, -1);
 }
 
 THUMB void unkfunc_0216f52c(int item)
 {
-    func_02050698(0, 0);
+    unkfunc_02050698(0, 0);
     int active = MaterielMenuPlayerControl::getSingleton()->activeItem_;
     if (item == -1) {
         item = MaterielMenu_SHOP_MANAGER::getSingleton()->getItem(active);
@@ -1685,7 +1688,7 @@ THUMB void unkfunc_0216f52c(int item)
         param[0] = 0xa0000082;
     }
     param[1] = 0;
-    func_02050ed0(s_parts_021812d4, param, data_020be244[0]);
+    unkfunc_02050ed0(s_parts_021812d4, param, data_020be244[0]);
     s_parts_021812d4[0].type_ = 0;
     s_parts_021812d4[1].type_ = 0xd;
     param[0] = 0;
@@ -1698,7 +1701,7 @@ THUMB void unkfunc_0216f52c(int item)
     } else {
         param[1] = item + 0x20000000;
     }
-    func_02050ed0(s_parts_021812d4, param, data_020be244[0]);
+    unkfunc_02050ed0(s_parts_021812d4, param, data_020be244[0]);
 }
 
 THUMB int unkfunc_0216f5f8(status::HaveStatusInfo* status, int* param, int item)
@@ -1862,57 +1865,53 @@ THUMB void unkfunc_0216f9e8(unsigned char* name, int flag)
     int param[1] = { 0 };
     param[0] = (int)name;
     if (flag == 1) {
-        func_02050ed0(s_parts_021810c0, param, data_020be244[0]);
-        func_0201e194(0x38, 0x10, 0xa0, 0x20, -1);
+        unkfunc_02050ed0(s_parts_021810c0, param, data_020be244[0]);
+        unkfunc_0201e194(0x38, 0x10, 0xa0, 0x20, -1);
     } else {
-        func_02050ed0(s_parts_02180f1c, param, data_020be244[0]);
-        func_0201e194(0x38, 0x10, 0x48, 0x20, -1);
+        unkfunc_02050ed0(s_parts_02180f1c, param, data_020be244[0]);
+        unkfunc_0201e194(0x38, 0x10, 0x48, 0x20, -1);
     }
 }
 
 THUMB void unkfunc_0216fa48(char* line1, char* line2, char* line3, char* comment)
 {
     Utf8Iterator src;
+    src.unkfunc_020875ec(comment);
     Utf8Iterator dst1;
+    dst1.unkfunc_02087634(line1, 0x400);
     Utf8Iterator dst2;
+    dst2.unkfunc_02087634(line2, 0x400);
     Utf8Iterator dst3;
-    func_020876f4(&src);
-    func_020875ec(&src, comment);
-    func_020876f4(&dst1);
-    func_02087634(&dst1, line1, 0x400);
-    func_020876f4(&dst2);
-    func_02087634(&dst2, line2, 0x400);
-    func_020876f4(&dst3);
-    func_02087634(&dst3, line3, 0x400);
+    dst3.unkfunc_02087634(line3, 0x400);
     for (int i = 0; ; i++) {
-        int c = func_0208771c(&src);
-        func_020877b8(&src);
+        int c = src.unkfunc_0208771c();
+        src.unkfunc_020877b8();
         if (c == 0) {
             break;
         }
-        func_02087734(&dst1, c);
+        dst1.unkfunc_02087734(c);
         if (i == 0xe) {
             break;
         }
     }
     for (int i = 0; ; i++) {
-        int c = func_0208771c(&src);
-        func_020877b8(&src);
+        int c = src.unkfunc_0208771c();
+        src.unkfunc_020877b8();
         if (c == 0) {
             break;
         }
-        func_02087734(&dst2, c);
+        dst2.unkfunc_02087734(c);
         if (i == 0xe) {
             break;
         }
     }
     for (int i = 0; ; i++) {
-        int c = func_0208771c(&src);
-        func_020877b8(&src);
+        int c = src.unkfunc_0208771c();
+        src.unkfunc_020877b8();
         if (c == 0) {
             break;
         }
-        func_02087734(&dst3, c);
+        dst3.unkfunc_02087734(c);
         if (i == 0xe) {
             break;
         }
@@ -1923,7 +1922,7 @@ THUMB void unkfunc_0216fa48(char* line1, char* line2, char* line3, char* comment
 THUMB void unkfunc_unused_7(int index)
 {
     int message[5] = { 0x800000cb, 0x800000cc, 0x800000cd, 0x800000ce, 0x800000cf };
-    func_02050ed0(s_parts_02181210, &message[index], 1);
+    unkfunc_02050ed0(s_parts_02181210, &message[index], 1);
 }
 
 // not in the ROM (dead-stripped), keeps the unused parts lists of this file and its const locals
@@ -1931,7 +1930,7 @@ THUMB void unkfunc_unused_8(int* param)
 {
     const int unk0 = 1;
     const int unk1 = 0;
-    func_02050ea8(s_parts_02180fa8, param);
-    func_02050ea8(s_parts_021817ea, param);
-    func_02050ea8(s_parts_021819c6, param);
+    unkfunc_02050ea8(s_parts_02180fa8, param);
+    unkfunc_02050ea8(s_parts_021817ea, param);
+    unkfunc_02050ea8(s_parts_021819c6, param);
 }

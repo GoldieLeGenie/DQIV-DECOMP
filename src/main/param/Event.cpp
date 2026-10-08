@@ -19,7 +19,7 @@ THUMB param::Event* param::Event::getFileData(unsigned int id) {
     }
 
     param::Event* result = (param::Event*)ExcelBinaryData::checkSum(
-        ExcelBinaryData::readFileData(&data_020c7830, filename),
+        ExcelBinaryData::readFileData(&param::Event::data_, filename),
         0xEA9C
     );
 
@@ -32,3 +32,5 @@ THUMB param::Event* param::Event::getFileData(unsigned int id) {
 
     return result;
 }
+
+DataObject param::Event::data_;

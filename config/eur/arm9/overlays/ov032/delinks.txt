@@ -8,3 +8,8 @@ src/ov032/MaterielMenu_EXTRA_PRESENT_EXP/MaterielMenu_EXTRA_PRESENT_EXP.cpp:
     complete
     .text start:0x02189360 end:0x021894e4
     .data start:0x02189500 end:0x0218951c
+
+src/ov032/ModulePadding_ov032.cpp:
+    complete
+    .ctor start:0x021894e4 end:0x021894e8
+    .data start:0x0218951c end:0x02189520

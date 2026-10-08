@@ -48,13 +48,15 @@ struct GlobalGamePart : UnkGameTask {
     virtual void onWindowPart();
     virtual void onDebugPart();
     virtual void onSwapBuffersPart();
+
+    int unkfunc_0203f210();                     // execute the part (no debug/extra menu)
 };
 
 // DS-only: parts run every frame on top of the current game part (fade, wait, debug menu...)
 struct UnkGlobalPart {
     virtual void update();
     virtual void draw();
-    virtual bool isEnd();
+    virtual int isEnd();
 };
 
 struct GlobalGamePartManager {
@@ -69,12 +71,13 @@ struct GlobalGamePartManager {
 };
 
 extern GlobalGamePartManager data_0210bc18;
+extern int data_020c1b7c;
+
+void unkfunc_0203f268(void (*callback)());       // set the per-frame callback
 
 extern "C" {
     void ov001_entry(void);                     // called by the parts right after loading the overlay
     void ov003_entry(void);                     // idem ov003
     void ov015_entry(void);                     // idem ov015
     void ov016_entry(void);             // idem ov016
-    void func_0202c25c(void);                   // end of the part initialize
-    void func_0202c284(void);                   // part onDebugPart
 }

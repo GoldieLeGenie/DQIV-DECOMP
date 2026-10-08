@@ -229,7 +229,7 @@ THUMB void MaterielMenu_FIGHT_STADIUM::monsterListUpdate()
         monsterItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
         monsterItem_.active_ = active;
     }
-    func_02051a7c(&monsterItem_);
+    monsterItem_.execInput();
     switch (monsterItem_.result_) {
     case 3:
         data_020ed1bc.close();
@@ -311,7 +311,7 @@ THUMB void MaterielMenu_FIGHT_STADIUM::coinUpdate()
             if (oldWaitProg == 0 && waitProg_ != 0) {
                 blink_ = 1;
             }
-            func_02051a7c(&betItem_);
+            betItem_.execInput();
             int result = betItem_.result_;
             if (result != 0) {
                 blink_ = 0;

@@ -48,7 +48,7 @@ THUMB void BattleMenu_ACTIONMENU::menuUpdate()
         BattleMenuJudge::getSingleton()->setPrevPlayer();
         return;
     }
-    func_02051a7c(&menuItem_);
+    menuItem_.execInput();
     if (menuItem_.result_ == 2) {
         selectAttack();
         if (unk_14c == -1) {

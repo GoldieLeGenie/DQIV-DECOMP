@@ -1,3 +1,4 @@
+#pragma ipa file
 #include "main/cmn/ExtraMapLink.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "ov000/town/TownActionCalculate.hpp"
@@ -14,6 +15,7 @@
 
 
 
+char s_dpb8b[8] = "dpb8b";   // 0x020be960
 char s_mpout2[8] = "mpout2";  // 0x020be958
 char s_ev02[8] = "ev02";    // 0x020be950
 char s_dkf1a[8] = "dkf1a";   // 0x020be948
@@ -37,7 +39,8 @@ char s_cif1[8] = "cif1";    // 0x020be8c0
 char s_fk01[8] = "fk01";    // 0x020be8b8
 char s_ckout[8] = "ckout";   // 0x020be8b0
 char s_cccf1b[8] = "cccf1b";  // 0x020be8a8
-char s_dpb8b[8] = "dpb8b";   // 0x020be960
+
+cmn::ExtraMapLink cmn::g_extraMapLink;
 
 ARM void cmn::ExtraMapLink::setup()
 {
@@ -323,11 +326,11 @@ ARM void cmn::ExtraMapLink::setLinkData(int nowId, int nextId, LINK_TYPE type, c
     }
     for (int i = 0; i < mapLinkDataCount_; i++) {
         if (mapLinkData_[i].nowId == nowId) {
-            func_020290cc(this, i, nowId, nextId, type, nowMapName, nextMapName, &offset);
+            setData(i, nowId, nextId, type, nowMapName, nextMapName, offset);
             return;
         }
     }
-    func_020290cc(this, mapLinkDataCount_, nowId, nextId, type, nowMapName, nextMapName, &offset);
+    setData(mapLinkDataCount_, nowId, nextId, type, nowMapName, nextMapName, offset);
     mapLinkDataCount_++;
 }
 
@@ -340,11 +343,11 @@ ARM void cmn::ExtraMapLink::setLinkData(int nowId, int nextId, LINK_TYPE type, c
     }
     for (int i = 0; i < mapLinkDataCount_; i++) {
         if (mapLinkData_[i].nowId == nowId) {
-            func_020290cc(this, i, nowId, nextId, type, nowMapName, nextMapName, &offset);
+            setData(i, nowId, nextId, type, nowMapName, nextMapName, offset);
             return;
         }
     }
-    func_020290cc(this, mapLinkDataCount_, nowId, nextId, type, nowMapName, nextMapName, &offset);
+    setData(mapLinkDataCount_, nowId, nextId, type, nowMapName, nextMapName, offset);
     mapLinkDataCount_++;
 }
 
@@ -601,5 +604,28 @@ ARM void cmn::ExtraMapLink::setRanaLink()
         g_cmnPartyInfo.prevLocation_ = 1;
         dss::Fix32Vector3 pos = FieldPlayerManager::getSingleton()->getPosition();
         setExtraLinkFieldAbsPos(g_Global.getFieldType(), pos, 4);
+    }
+}
+
+inline dss::Fix32Vector3 FieldPlayerManager::getPosition()
+{
+    return position_;
+}
+
+ARM void cmn::ExtraMapLink::setData(int index, int nowId, int nextId, LINK_TYPE type, const char* nowMapName, const char* nextMapName,
+                                     dss::Fix32Vector3& offset)
+{
+    mapLinkData_[index].nowId = nowId;
+    mapLinkData_[index].nextId = nextId;
+    mapLinkData_[index].type = type;
+    mapLinkData_[index].offsetData = offset;
+    if (nowMapName != NULL) {
+        dss::strcpy_s(mapLinkData_[index].nowMapName, sizeof(mapLinkData_[index].nowMapName), nowMapName);
+    }
+    if (nextMapName != NULL) {
+        dss::strcpy_s(mapLinkData_[index].nextMapName, sizeof(mapLinkData_[index].nextMapName), nextMapName);
+    }
+    if (data_0210bb94.unkfunc_02058114(12)) {
+        eraseSurface(nowId, type, nowMapName);
     }
 }

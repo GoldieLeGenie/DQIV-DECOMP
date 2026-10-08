@@ -1,4 +1,5 @@
 #include "ov000/town/TownDataManager.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/status/ExcelParam.hpp"
 #include "main/status/StageStatus.hpp"
 
@@ -21,7 +22,7 @@ ARM void TownDataManager::initialize()
 
 ARM void TownDataManager::terminate()
 {
-    func_020832b0(0);
+    unkfunc_020832b0(0);
 }
 
 ARM void TownDataManager::loadStage(char* filename)
@@ -62,16 +63,16 @@ ARM void TownDataManager::loadStage(char* filename)
 ARM void TownDataManager::setFloorfog(int index)
 {
     if ((char)((pCorrect_[index].byte_1 & 0x1c) >> 2) != 0) {
-        func_020832b0(1);
+        unkfunc_020832b0(1);
         param::FloorFog* fog = &pFloorFog_[(char)((pCorrect_[index].byte_1 & 0x1c) >> 2) - 1];
-        func_0208328c(fog->side00_R, fog->side00_G, fog->side00_B);
-        func_0208328c(fog->side01_R, fog->side01_G, fog->side01_B);
-        func_020831e8(0, dss::Fix32(fog->side00_rate));
-        func_020831e8(1, dss::Fix32(fog->side01_rate));
-        func_020831d8(0, fog->side00_offset);
-        func_020831d8(1, fog->side01_offset);
+        unkfunc_0208328c(fog->side00_R, fog->side00_G, fog->side00_B);
+        unkfunc_0208328c(fog->side01_R, fog->side01_G, fog->side01_B);
+        unkfunc_020831e8(0, dss::Fix32(fog->side00_rate));
+        unkfunc_020831e8(1, dss::Fix32(fog->side01_rate));
+        unkfunc_020831d8(0, fog->side00_offset);
+        unkfunc_020831d8(1, fog->side01_offset);
     } else {
-        func_020832b0(0);
+        unkfunc_020832b0(0);
     }
 }
 
@@ -128,7 +129,7 @@ ARM void TownDataManager::setBackcolor(int index)
     bottomDownRight[0] = back->bottomDownRightR;
     bottomDownRight[1] = back->bottomDownRightG;
     bottomDownRight[2] = back->bottomDownRightB;
-    func_02084cec(bottomUpLeft, bottomUpRight, bottomDownLeft, bottomDownRight, topUpLeft, topUpRight, topDownLeft, topDownRight);
+    unkfunc_02084cec(bottomUpLeft, bottomUpRight, bottomDownLeft, bottomDownRight, topUpLeft, topUpRight, topDownLeft, topDownRight);
 }
 
 ARM int TownDataManager::getCurrentBackColor()

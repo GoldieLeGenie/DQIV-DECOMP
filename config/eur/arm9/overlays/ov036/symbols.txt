@@ -6,3 +6,5 @@ _ZN30MaterielMenuExtraChangeHostage12memberUpdateEv kind:function(thumb,size=0xf
 _ZN30MaterielMenuExtraChangeHostage12memberChangeEv kind:function(thumb,size=0xb0) addr:0x02189638
 _ZN30MaterielMenuExtraChangeHostage9isHostageEv kind:function(thumb,size=0x74) addr:0x021896e8
 _ZTV30MaterielMenuExtraChangeHostage kind:data(byte[28]) addr:0x02189760
+module_padding_ov036_ctor_0218975c kind:data(byte[4]) addr:0x0218975c
+module_padding_ov036_data_0218977c kind:data(byte[4]) addr:0x0218977c

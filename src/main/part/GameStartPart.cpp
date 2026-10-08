@@ -1,4 +1,5 @@
 #include "main/part/GameStartPart.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/global/Global.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/menu/MenuAPI.hpp"
@@ -7,18 +8,19 @@
 #include "main/sound/Sound.hpp"
 #include "main/sound/SoundManager.hpp"
 #include "ov016/MaterielMenu_LOAD/MaterielMenu_LOAD.hpp"
+#include "main/dss/UnkOverlaySlot.hpp"
 
 GameStartPart g_GameStartPart;
 static int active;
 
 ARM void GameStartPart::initialize()
 {
-    func_02080e90(data_0211c4cc);
+    unkfunc_02080e90(&dss::g_DISPLAYPLUGIN_SINGLE3D);
     Sound::unkfunc_02055998(0);
     SoundManager::stop(0);
     g_Global.fadeIn(30);
-    func_02087590((int)&OVERLAY_16_ID);
-    cardcheck_ = func_0202c040();
+    unkfunc_02087590((int)&OVERLAY_16_ID);
+    cardcheck_ = profile::SaveLoad::isCardOK();
     if (cardcheck_ == 0) {
         return;
     }
@@ -30,7 +32,7 @@ ARM void GameStartPart::initialize()
 ARM void GameStartPart::terminate()
 {
     SoundManager::stop(0);
-    func_020875a4((int)&OVERLAY_16_ID);
+    unkfunc_020875a4((int)&OVERLAY_16_ID);
 }
 
 ARM void GameStartPart::onExecutePart()

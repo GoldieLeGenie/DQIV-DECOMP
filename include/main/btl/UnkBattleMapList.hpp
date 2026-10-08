@@ -2,13 +2,15 @@
 #include <globaldefs.h>
 #include "main/dss/CsvData.hpp"
 
-// Group/map list of "data/btlmap/_list.txt" used by the battle menu debug part (DS-only, TU 0x02048e10 not decompiled)
+// Group/map list of "data/btlmap/_list.txt" used by the battle menu debug part
 struct UnkBattleMapList : CsvData {
     int group_;                                 // 0x20  first row of the current group
     int map_;                                   // 0x24  row in the group
     int unk_28;                                 // 0x28
     int loaded_;                                // 0x2C
 
+    UnkBattleMapList();
+    ~UnkBattleMapList();
     void unkfunc_02048e34(const char* filename);    // load
     int unkfunc_02048e4c();                         // loaded_
     char* unkfunc_02048e50();                       // group name

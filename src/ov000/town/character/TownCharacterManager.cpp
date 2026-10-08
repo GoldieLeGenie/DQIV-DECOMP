@@ -1,4 +1,5 @@
 #include "ov000/town/TownCharacterManager.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/object/DisplayCharacter.hpp"
 #include "ov000/town/TownCamera.hpp"
 #include "ov000/town/TownSystem.hpp"
@@ -86,7 +87,7 @@ ARM void TownCharacterManager::terminate()
 
 ARM void TownCharacterManager::execute()
 {
-    int even = (func_02081254() & 1) == 0;
+    int even = (unkfunc_02081254() & 1) == 0;
     for (int i = 0; i < TOWN_CHARACTER_MAX; i++) {
         if (character_[i]) {
             character_[i]->execute();

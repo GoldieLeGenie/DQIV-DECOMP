@@ -133,14 +133,14 @@ ARM void DataCache::unkfunc_020566d8(int index)
 ARM void TextureDataCache::unkfunc_020566a8(int index)
 {
     void* addr = data_[index].getAddr();
-    func_02086798(addr, 1);
+    ((TextureObject*)addr)->unkfunc_02086798(1);
     dss::memcpy(&texture_[index_], addr, sizeof(TextureObject));
     data_[index_].cleanup();
 }
 
 ARM void TextureDataCache::unkfunc_020566d8(int index)
 {
-    func_02086868(&texture_[index]);
+    texture_[index].unkfunc_02086868();
 }
 
 ARM void* TextureDataCache::getAddr()

@@ -1,5 +1,6 @@
 #pragma once
 #include <globaldefs.h>
+#include "main/dss/DssCore.hpp"
 #include "GameInfo.hpp"
 #include "ov003/btl/BattleRootTask.hpp"
 #include "ov003/btl/BattleRound.hpp"
@@ -54,4 +55,3 @@ namespace btl {
 
 extern btl::BattleRound battleRound_;
 
-extern "C" void func_0207e7e4(void);

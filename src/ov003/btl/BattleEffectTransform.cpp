@@ -30,7 +30,7 @@ THUMB void btl::BattleEffectTransform::setup(int index, int nearDist, int rev)
     dss::sprintf_s(buf, sizeof(buf), "data/trans/m%03d.tex", index_);
     dataObject_.setup(buf, 1, 0);
     texture_ = dataObject_.getAddr();
-    func_02086798(texture_, 0);
+    ((TextureObject*)texture_)->unkfunc_02086798(0);
 
     sprintf(buf, "data/pam/m%03d_tai.pam", index);
     if (dss::g_File.isExist(buf)) {
@@ -88,7 +88,7 @@ THUMB void btl::BattleEffectTransform::draw()
 THUMB void btl::BattleEffectTransform::cleanup()
 {
     if (texture_) {
-        func_02086868(texture_);
+        ((TextureObject*)texture_)->unkfunc_02086868();
         dataObject_.cleanup();
         texture_ = 0;
         paletteAnim_.unkfunc_0205b648();

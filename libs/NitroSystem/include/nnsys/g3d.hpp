@@ -3,7 +3,13 @@
 #include "nnsys/fnd.hpp"
 
 struct NNSG3dGlb {
-    char unk_000[0xfc];
+    char unk_000[0x8];
+    MtxFx44 projMtx;                            // 0x008
+    int unk_048;                                // 0x048
+    MtxFx43 cameraMtx;                          // 0x04C
+    char unk_07c[0xbc - 0x7c];
+    MtxFx33 prmBaseRot;                         // 0x0BC
+    char unk_0e0[0xfc - 0xe0];
     unsigned int flag;                          // 0x0FC
     char unk_100[0x240 - 0x100];
     VecFx32 camPos;                             // 0x240
@@ -118,6 +124,7 @@ struct NNSG3dResTex {
 struct NNSG3dRenderObj {
     unsigned int flag;                          // 0x00
     NNSG3dResMdl* resMdl;                       // 0x04
+    unsigned char unk_08[0x4c];                 // 0x08
 };
 
 struct NNSG3dRS {
@@ -227,13 +234,31 @@ extern "C" {
     void func_0206b294(int* x1, int* y1, int* x2, int* y2);                    // NNS_G3dGlbGetViewPort
     void func_0206e154(int x, int y, VecFx32* near, VecFx32* far);             // NNS_G3dScrPosToWorldLine
     void func_0206dd70(int flag);
+    void func_02067940(const void* src, void* dst);                             // MI_Copy36B
     void G3d_SBCRender_007(NNSG3dRS* rs, unsigned int opt);
+    unsigned int func_0206a600(const NNSG3dResTex* tex);                         // NNS_G3dTexGetRequiredSize
+    unsigned int func_0206a60c(const NNSG3dResTex* tex);                         // NNS_G3dTex4x4GetRequiredSize
+    void func_0206a618(NNSG3dResTex* tex, unsigned int texKey, unsigned int tex4x4Key);  // NNS_G3dTexSetTexKey
+    void func_0206a62c(NNSG3dResTex* tex, int exec);                            // NNS_G3dTexLoad
+    void func_0206a6e4(NNSG3dResTex* tex, int* texKey, int* tex4x4Key);         // NNS_G3dTexReleaseTexKey
+    unsigned int func_0206a71c(const NNSG3dResTex* tex);                         // NNS_G3dPlttGetRequiredSize
+    void func_0206a728(NNSG3dResTex* tex, unsigned int plttKey);                // NNS_G3dPlttSetPlttKey
+    void func_0206a730(NNSG3dResTex* tex, int exec);                            // NNS_G3dPlttLoad
+    int func_0206a780(NNSG3dResTex* tex);                                       // NNS_G3dPlttReleasePlttKey
+    int func_0206abb4(NNSG3dResMdlSet* mdlSet, NNSG3dResTex* tex);              // NNS_G3dBindMdlSet
+    void func_0206ac24(NNSG3dResMdlSet* mdlSet);                                // NNS_G3dReleaseMdlSet
+    void func_0206aea8(int light, int polyMode, int cullMode, int polygonID, int alpha, int misc);   // NNS_G3dGlbPolygonAttr
+    void func_0206e484(NNSG3dResMdl* mdl, int enable, unsigned int flag);       // polygon attr flag of all the materials
+    void func_0206e424(NNSG3dResMdl* mdl, int enable, unsigned int flag);       // light flag of all the materials
+    void func_0206a4c0(NNSG3dRenderObj* obj, NNSG3dAnmObj* anm);                // NNS_G3dRenderObjAddAnmObj
+    void func_0206a5ac(NNSG3dRenderObj* obj, NNSG3dAnmObj* anm);                // NNS_G3dRenderObjRemoveAnmObj
     void G3d_SBCRender_008(NNSG3dRS* rs, unsigned int opt);
+    void* func_0206e910(void* res, int idx);                                    // NNS_G3dGetAnmByIdx
+    NNSG3dAnmObj* func_0206e3f4(NNSFndAllocator* allocator, void* anm, void* mdl);  // NNS_G3dAllocAnmObj
+    void func_0206a2bc(NNSG3dAnmObj* obj, void* anm, void* mdl, void* tex);     // NNS_G3dAnmObjInit
+    void func_0206e418(NNSFndAllocator* allocator, NNSG3dAnmObj* obj);          // NNS_G3dFreeAnmObj
 }
 
 extern NNSG3dFuncSbc data_020c3f5c[];           // NNS_G3dFuncSbcTable
 
 extern NNSG3dGlb data_0210cf28;                 // NNS_G3dGlb
-extern MtxFx44 data_0210cf30;                   // NNS_G3dGlb.projMtx
-extern MtxFx43 data_0210cf74;                   // NNS_G3dGlb.cameraMtx
-extern MtxFx33 data_0210cfe4;                   // NNS_G3dGlb.prmBaseRot

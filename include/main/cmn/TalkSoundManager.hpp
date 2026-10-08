@@ -36,9 +36,3 @@ namespace cmn
     extern TalkSoundManager g_talkSound;    // data_020efcc0
 }
 
-struct CharaVoiceCount {
-    int count;
-    int unk;
-};
-
-extern const CharaVoiceCount charaVoiceCount_; //data_020b614c

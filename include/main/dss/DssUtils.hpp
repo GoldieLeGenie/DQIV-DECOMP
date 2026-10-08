@@ -85,6 +85,7 @@ namespace dss{
         unsigned char flag_;
         BitFlag() { flag_ = 0; }
         BitFlag(unsigned int flag) { flag_ |= flag; }
+        bool check(unsigned char flag) const { return (flag_ & flag) ? true : false; }
         void clear() { flag_ = 0; }
     };
 
@@ -124,6 +125,7 @@ namespace dss{
         inline Vector2();     // defined in DssVectorDefault.hpp
         Vector2(long x, long y) { vx = x; vy = y; }
         Vector2(T x, T y) { vx = x; vy = y; }
+        void set(T x, T y) { vx = x; vy = y; }
         void operator=(const Vector2& o) { vx = o.vx; vy = o.vy; }
         Vector2 operator-(const Vector2& o) const
         {
@@ -176,6 +178,15 @@ namespace dss{
         void set(const short& x, const short& y, const short& z) { vx = x; vy = y; vz = z; }
         void operator=(const Vector3<short>& o) { vx = o.vx; vy = o.vy; vz = o.vz; }
     };
+    template <>
+    struct Vector3<unsigned short> {
+        unsigned short vx;
+        unsigned short vy;
+        unsigned short vz;
+        Vector3() { vx = 0; vy = 0; vz = 0; }
+        void set(const unsigned short& x, const unsigned short& y, const unsigned short& z) { vx = x; vy = y; vz = z; }
+        void operator=(const Vector3<unsigned short>& o) { vx = o.vx; vy = o.vy; vz = o.vz; }
+    };
     struct Vector3int {
         int vx;
         int vy;
@@ -183,6 +194,14 @@ namespace dss{
     };
     template <>
     struct Vector3<int> : Vector3int {
+        Vector3() { vx = 0; vy = 0; vz = 0; }
+        Vector3(const int& x, const int& y, const int& z) { vx = x; vy = y; vz = z; }
+    };
+    template <>
+    struct Vector3<char> {
+        char vx;
+        char vy;
+        char vz;
         Vector3() { vx = 0; vy = 0; vz = 0; }
     };
     struct Fix32Vector3
@@ -257,26 +276,34 @@ extern "C" {
     char* func_0207c2d0(const char* str, const char* sub);                             // strstr
     void MI_CpuSet(void* dest, unsigned char value, unsigned int count);
     void MI_CpuCopyU8(const void* src, void* dest, unsigned int count);
+    void MI_CpuCopyU16(const void* src, void* dest, unsigned int count);
+    void MI_CpuCopyU32(const void* src, void* dest, unsigned int count);
+    void MI_CpuFill(unsigned int value, void* dest, unsigned int count);
+    void MI_CpuFillU16(unsigned short value, void* dest, unsigned int count);
     void CpuFastSet(const void* src, void* dest, unsigned int mode);
-    int func_0208a104(void);                                                          // language
-    int func_02080d94(dss::Fix32 value);
-    void func_020885f8(MtxFx43* m);
-    void func_02088698(MtxFx43* m, short angle);
-    void func_020886d0(MtxFx43* m, short angle);
-    dss::Fix32Vector3 func_02088670(MtxFx43* m, dss::Fix32Vector3* v);
-    void func_02087590(int id);                                               // FS_LoadOverlay(arm9, id)
-    void func_020875a4(int id);                                               // FS_UnloadOverlay(arm9, id)
-    void func_02087564(void* slot);                                           // unload the overlay held by the slot
-    void func_02084dd4(int value);
+    void MI_CpuFillFromSrc(const void* src, volatile void* dest, unsigned int count);     // MI_CpuSend32
 }
-
-extern char data_020efc58[];                    // overlay slot (loaded flag, id)
 
 // overlay ids: OVERLAY_<n>_ID are defined by the linker script, the address is the id
 extern unsigned int OVERLAY_0_ID;
 extern unsigned int OVERLAY_1_ID;
+extern unsigned int OVERLAY_2_ID;
 extern unsigned int OVERLAY_3_ID;
 extern unsigned int OVERLAY_6_ID;
 extern unsigned int OVERLAY_9_ID;
 extern unsigned int OVERLAY_15_ID;
 extern unsigned int OVERLAY_16_ID;
+extern unsigned int OVERLAY_24_ID;
+extern unsigned int OVERLAY_25_ID;
+extern unsigned int OVERLAY_26_ID;
+extern unsigned int OVERLAY_27_ID;
+extern unsigned int OVERLAY_28_ID;
+extern unsigned int OVERLAY_29_ID;
+extern unsigned int OVERLAY_30_ID;
+extern unsigned int OVERLAY_31_ID;
+extern unsigned int OVERLAY_32_ID;
+extern unsigned int OVERLAY_33_ID;
+extern unsigned int OVERLAY_34_ID;
+extern unsigned int OVERLAY_35_ID;
+extern unsigned int OVERLAY_36_ID;
+extern unsigned int OVERLAY_37_ID;

@@ -9,3 +9,5 @@ _ZN30MaterielMenu_MARTIAL_COLOSSEUM10useYakusouEv kind:function(thumb,size=0xac)
 _ZN30MaterielMenu_MARTIAL_COLOSSEUM11showMessageEii kind:function(thumb,size=0x2c) addr:0x021895a0
 _ZN30MaterielMenu_MARTIAL_COLOSSEUM11menuExecuteEv kind:function(arm,size=0x4) addr:0x021895cc
 _ZTV30MaterielMenu_MARTIAL_COLOSSEUM kind:data(byte[28]) addr:0x021895e0
+module_padding_ov033_ctor_021895d0 kind:data(byte[4]) addr:0x021895d0
+module_padding_ov033_data_021895fc kind:data(byte[4]) addr:0x021895fc

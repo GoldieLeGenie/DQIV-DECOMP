@@ -5,8 +5,6 @@
 #include "main/status/ExcelParam.hpp"
 #include "main/menu/UiMsg.hpp"
 
-const CharaVoiceCount charaVoiceCount_ = { 0xd9, 0x1a };  // 0x020b614c
-
 cmn::TalkSoundManager cmn::g_talkSound;
 
 
@@ -81,7 +79,7 @@ ARM cmn::TalkSoundManager::MESSAGESOUND cmn::TalkSoundManager::getDefaultMessage
 {
     MESSAGESOUND sound = MESSAGESOUND_NONE;
     param::CharaVoice* voice = status::excelParam.getCharaVoice();
-    int count = charaVoiceCount_.count;
+    int count = param::CharaVoice::size_;
 
     for (int i = 0; i < count; i++)
     {

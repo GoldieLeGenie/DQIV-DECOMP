@@ -9,6 +9,7 @@
 #include "main/menu/MenuUpdateAssist.hpp"
 #include "main/status/PartyStatus.hpp"
 #include "ov016/UnkTownMenuDraw/UnkTownMenuDraw_0217d560.hpp"
+#include "main/menu/MenuTemplate_Common.hpp"
 
 THUMB void UnkTownMenu_02176fa0::menuSetup()
 {
@@ -42,7 +43,7 @@ THUMB void UnkTownMenu_02176fa0::menuExecute()
             count = 6;
         }
     }
-    func_0201e6c4(&menuItem_, count, menuItem_.active_);
+    MenuTemplate_Common::COMMON_ITEM_ICON32_2x3(&menuItem_, count, menuItem_.active_);
     MenuTemplate_town::TOWN_CANCEL(&cancelItem_);
 }
 

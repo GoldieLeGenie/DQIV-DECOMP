@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "ov000/town/TownShopListMap.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/status/StageStatus.hpp"
 
 ARM TownShopListMap::TownShopListMap()

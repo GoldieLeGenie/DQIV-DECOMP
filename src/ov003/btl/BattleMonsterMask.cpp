@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "ov003/btl/BattleMonsterMask.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "ov003/btl/BattleActorAnimation.hpp"
 #include "ov003/status/MonsterPartyWithDraw.hpp"
 #include "main/status/HaveEquipment.hpp"
@@ -32,7 +33,7 @@ THUMB void BattleMonsterMask::initialize()
     sprite_.unkfunc_02084534(0, 0);
     sprite_.unkfunc_0208456c(0x80, 0x80);
     sprite_.enable_ = 0;
-    func_02084e8c(&sprite_, 0, 0, 0);
+    sprite_.setColor(0, 0, 0);
     mask_[0].unkfunc_02057d60("data/mask/en02.tex", 0);
     mask_[0].unkfunc_02057f00(1);
     mask_[1].unkfunc_02057d60("data/mask/en01.tex", 0);
@@ -119,7 +120,7 @@ THUMB dss::Vector2<int> BattleMonsterMask::getTargetPos(int actorindex)
 {
     dss::Vector2<int> screen;
     int monster = g_monster.getMonsterIndex(actorindex);
-    short* rect = data_020c04f4[monster];
+    short* rect = MonsterTaiData[monster];
     int maskScaleX = status::HaveEquipment::getAbsoluteValue(rect[1] - rect[3]);
     int maskScaleY = ((scale_ * status::HaveEquipment::getAbsoluteValue(rect[2] - rect[4])).value / 4096);
     maskScaleX = (scale_ * maskScaleX).value / 4096;
@@ -136,7 +137,7 @@ THUMB dss::Vector2<int> BattleMonsterMask::getTargetPos(int actorindex)
 THUMB int* BattleMonsterMask::getMonsterTouchRect(int actorindex)
 {
     int monster = g_monster.getMonsterIndex(actorindex);
-    short* rect = data_020c04f4[monster];
+    short* rect = MonsterTaiData[monster];
     int w = status::HaveEquipment::getAbsoluteValue(rect[2] - rect[4]);
     int h = status::HaveEquipment::getAbsoluteValue(rect[1] - rect[3]);
     dss::Vector2<int> screen = *unkfunc_02057128(actorindex);

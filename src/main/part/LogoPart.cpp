@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "main/part/LogoPart.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/global/Global.hpp"
 #include "main/data/FileLoader.hpp"
 #include "main/dss/Camera.hpp"
@@ -87,7 +88,7 @@ ARM void LogoPart::initialize()
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
     data_0211e450.unkfunc_020861c4(0x40000, 0x4000);
-    func_02080e90(data_0211c4f0);
+    unkfunc_02080e90(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     s_render.unkfunc_02084efc();
     s_stage.setRender(&s_render);
     s_stage.setPath(s_mapPath);

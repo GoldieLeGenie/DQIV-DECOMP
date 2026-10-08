@@ -8,6 +8,7 @@
 #include "main/status/PartyStatus.hpp"
 #include "ov016/MenuTemplate/MenuTemplate_town.hpp"
 #include "ov016/UnkTownMenuDraw/UnkTownMenuDraw_0217d560.hpp"
+#include "main/menu/MenuTemplate_Common.hpp"
 
 THUMB void TownMenuItemSelectTargetItem::menuSetup()
 {
@@ -53,7 +54,7 @@ THUMB void TownMenuItemSelectTargetItem::menuExecute()
     } else {
         count = status::PlayerItemInfo::getItemMaxCount(targetChara) + 1;
     }
-    func_0201e6c4(&menuItem_, count, menuItem_.active_);
+    MenuTemplate_Common::COMMON_ITEM_ICON32_2x3(&menuItem_, count, menuItem_.active_);
     MenuTemplate_town::TOWN_CANCEL(&cancelItem_);
 }
 

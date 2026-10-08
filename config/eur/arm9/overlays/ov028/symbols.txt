@@ -167,3 +167,5 @@ _ZTV23MaterielMenu_SHOP_VALUE kind:data(byte[28]) addr:0x0218d180
 _ZTV31MaterielMenu_SHOP_SELL_QUANTITY kind:data(byte[28]) addr:0x0218d19c
 shopMessage$192 kind:bss(size=0x4) addr:0x0218d1c0 local
 shopManager$1794 kind:bss(size=0x5c) addr:0x0218d1c4 local
+module_padding_ov028_ctor_0218d03c kind:data(byte[4]) addr:0x0218d03c
+module_padding_ov028_data_0218d1b8 kind:data(byte[8]) addr:0x0218d1b8

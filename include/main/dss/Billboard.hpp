@@ -3,10 +3,11 @@
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/Position.hpp"
 #include "main/dss/Render.hpp"
+#include "main/dss/TextureObject.hpp"
 
 /* vtable 0x020c43c4 */
 struct RenderObject {
-    virtual void draw() {}                      // slot 0, 0x0204a044
+    virtual void draw() {}                      // slot 0, 0x0204a044 (weak copy kept from the BillboardCharacter TU)
     virtual void setPolygonID(int id);          // slot 1
     virtual void setAlpha(int alpha);           // slot 2
     virtual void setRender(Render* render);     // slot 3
@@ -19,12 +20,17 @@ struct RenderObject {
     unsigned char alpha_;                       // 0x0D
     int enable_;                                // 0x10
 
-    RenderObject();                             // C2 func_02083658
+    RenderObject();                             // C2 0x02083658
+    void unkfunc_02083680();                    // polygon attributes
+    void unkfunc_020836a8();                    // shadow mask polygon attributes
+    void unkfunc_020836c0();                    // shadow polygon attributes
 };
 
 /* vtable 0x020c1c88 */
 struct RenderObject3D : RenderObject, Position {
-    virtual void draw();                        // never defined: key function so the main vtable is not re-emitted (Multiply-defined)
+#if !defined(BILLBOARD_CHARACTER_TU) && !defined(RENDER_OBJECT_TU)
+    virtual void draw();                        // never defined: key function so the vtable is only emitted by BillboardCharacter.cpp
+#endif
 };
 
 struct BillboardVertex {
@@ -57,39 +63,27 @@ struct BillboardTexCoord {
 
 /* vtable 0x020c4404 */
 struct Billboard : RenderObject3D {
-    virtual void draw();                        // func_020842c0
+    virtual void draw();                        // 0x020842c0
 
     BillboardVertex vertex_;                    // 0x48
     BillboardTexCoord texCoord_;                // 0x58
     BillboardVertex drawVertex_;                // 0x78
     BillboardTexCoord drawTexCoord_;            // 0x88
-    dss::Fix32 offsetX_;                        // 0xA8
-    dss::Fix32 offsetY_;                        // 0xAC
+    dss::Vector2<dss::Fix32> unk_a8;            // 0xA8 texture coordinate offset
     unsigned short color_;                      // 0xB0
 
-    Billboard();                                // C2 func_02083da8
+    Billboard();                                // C2 0x02083da8
     ~Billboard() {}
+    void unkfunc_020840c8(const BillboardVertex* vertex);       // setVertex
+    BillboardVertex* unkfunc_02084134();                        // getVertex
+    void unkfunc_0208413c(const BillboardTexCoord* texCoord);   // setTexCoord
+    BillboardTexCoord* unkfunc_020841a8();                      // getTexCoord
+    void unkfunc_020841b0(const dss::Vector2<dss::Fix32>* offset);  // setTexCoordOffset
+    void unkfunc_020841d4();                                    // calc the draw vertex/texcoord
+    void unkfunc_020842b8(int color);                           // setColor
 };
 
-/* vtable 0x020c1c44 */
-struct UnkTextureBillboard : Billboard {
-    virtual void draw();                        // never defined: key function so the main vtable is not re-emitted
 
-    void* texture_;                             // 0xB4
-
-    void unkfunc_02058680(const BillboardVertex* vertex, const BillboardTexCoord* texCoord, void* texture);
-    void unkfunc_020586c4();
-    void unkfunc_020586d4(int a);
-};
-
-extern "C" {
-    void func_02083680(RenderObject* self);                                     /* set polygon attr */
-    BillboardVertex* func_02084134(Billboard* self);                            /* getVertex */
-    BillboardTexCoord* func_020841a8(Billboard* self);                          /* getTexCoord */
-    void func_020840c8(Billboard* self, const BillboardVertex* vertex);         /* setVertex */
-    void func_0208413c(Billboard* self, const BillboardTexCoord* texCoord);     /* setTexCoord */
-    void func_020841b0(Billboard* self, const dss::Vector2<dss::Fix32>* offset); /* setTexCoordOffset */
-    void func_020841d4(Billboard* self);                                        /* calc draw vertex/texcoord */
-    void func_020842b8(Billboard* self, int color);                             /* setColor */
-    void func_02086b28(void);                                                   /* no texture */
-}
+#ifndef BILLBOARD_CHARACTER_TU
+#include "main/dss/UnkTextureBillboard.hpp"
+#endif

@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "ov001/fld/FieldData.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/cmn/CommonEffectData.hpp"
 #include "main/cmn/ExtraMapLink.hpp"
 #include "main/dss/Camera.hpp"
@@ -8346,10 +8347,10 @@ ARM void fld::FieldData::setupBlock(int map)
     m_cell_map.setup(dataObject_.getAddr());
     unk_1cc4.setup_symbol(m_cell_map.m_symbol_chunk);
     void* texture = unk_1c24.getAddr();
-    func_02086798(texture, 1);
+    ((TextureObject*)texture)->unkfunc_02086798(1);
     dss::memcpy(&unk_1c38, texture, sizeof(TextureObject));
     unk_1c34 = &unk_1c38;
-    dss::memcpy(unk_1ed4, (void*)func_02086aac(unk_1c34), unk_1c34->unkfunc_02086ab4());
+    dss::memcpy(unk_1ed4, (void*)unk_1c34->unkfunc_02086aac(), unk_1c34->unkfunc_02086ab4());
     unk_1c24.cleanup();
     switch (map) {
     case 0:
@@ -8366,8 +8367,8 @@ ARM void fld::FieldData::setupBlock(int map)
         unk_0010.setup(path, 0, 0);
         break;
     }
-    unk_1ccc = data_0211e450.unkfunc_0208627c(func_0207f8cc(unk_0000.getAddr(), 0));
-    unk_1cd0 = data_0211e450.unkfunc_0208627c(func_0207f8cc(unk_0010.getAddr(), 0));
+    unk_1ccc = data_0211e450.unkfunc_0208627c(unkfunc_0207f8cc(unk_0000.getAddr(), 0));
+    unk_1cd0 = data_0211e450.unkfunc_0208627c(unkfunc_0207f8cc(unk_0010.getAddr(), 0));
 }
 
 ARM void fld::FieldData::setupSymbol()
@@ -8376,8 +8377,8 @@ ARM void fld::FieldData::setupSymbol()
     dss::sprintf_s(path, sizeof(path), "data/field/symbol/symbol.pack");
     unk_0020.setup(path, 0, 0);
     for (int i = 0; i < SYMBOL_TEXTURE_NUM; i++) {
-        unk_0030[i] = (TextureObject*)func_0207f8dc(unk_0020.getAddr(), i);
-        func_02086798(unk_0030[i], 1);
+        unk_0030[i] = (TextureObject*)unkfunc_0207f8dc(unk_0020.getAddr(), i);
+        unk_0030[i]->unkfunc_02086798(1);
     }
     for (int i = 0; i < SYMBOL_NUM_MAX; i++) {
         if (i < unk_1cc4.m_symbol_num) {
@@ -8405,10 +8406,10 @@ ARM void fld::FieldData::cleanup()
     unk_0000.cleanup();
     unk_0010.cleanup();
     for (int i = 0; i < SYMBOL_TEXTURE_NUM; i++) {
-        func_02086868(unk_0030[i]);
+        unk_0030[i]->unkfunc_02086868();
     }
     unk_0020.cleanup();
-    func_02086868(&unk_1c38);
+    unk_1c38.unkfunc_02086868();
     dataObject_.cleanup();
 }
 
@@ -8455,8 +8456,8 @@ ARM void fld::FieldData::drawBlock()
     unsigned short Edgex = m_cell_map.m_size[2] * m_cell_map.m_size[0];
     unsigned short Edgey = m_cell_map.m_size[3] * m_cell_map.m_size[1];
     G3_PushMtx();
-    func_02086abc(unk_1c34);
-    func_02086b3c(unk_1c34);
+    unk_1c34->unkfunc_02086abc();
+    unk_1c34->unkfunc_02086b3c();
     int address = 0;
     int x = baseBlock_.vx - 4;
     int y = baseBlock_.vy - 4;
@@ -8543,11 +8544,11 @@ ARM void fld::FieldData::drawSymbol()
 
 ARM void fld::FieldData::nextAnimation()
 {
-    void* data = func_0207f8dc(unk_0000.getAddr(), unk_20d4);
+    void* data = unkfunc_0207f8dc(unk_0000.getAddr(), unk_20d4);
     if (data != NULL) {
         data_0211e450.unkfunc_02086378(0, data, data_0211e450.unkfunc_020862bc(unk_1ccc), data_0211e450.unkfunc_020862c8(unk_1ccc), 0);
     }
-    data = func_0207f8dc(unk_0010.getAddr(), unk_20d8);
+    data = unkfunc_0207f8dc(unk_0010.getAddr(), unk_20d8);
     if (data != NULL) {
         data_0211e450.unkfunc_02086378(0, data, data_0211e450.unkfunc_020862bc(unk_1cd0), data_0211e450.unkfunc_020862c8(unk_1cd0), 0);
     }
@@ -8563,7 +8564,7 @@ ARM void fld::FieldData::nextAnimation()
 
 ARM void fld::FieldData::draw()
 {
-    if (func_02081254() & 1) {
+    if (unkfunc_02081254() & 1) {
         setFieldCamera();
         drawSymbol();
         drawBlock();
@@ -8712,13 +8713,13 @@ ARM void fld::FieldData::setKekaiSymbol(int index, int x, int y, int w, int h)
 ARM void fld::FieldData::setPaletteRate(dss::Fix32Vector3& rate)
 {
     dss::memcpy(unk_1cd4, unk_1ed4, unk_1c34->unkfunc_02086ab4());
-    func_020857a8(2, rate);
-    func_02085840(unk_1cd4, unk_1c34->unkfunc_02086ab4(), rate);
+    unkfunc_020857a8(2, rate);
+    unkfunc_02085840(unk_1cd4, unk_1c34->unkfunc_02086ab4(), rate);
     data_0211e450.unkfunc_02086378(1, unk_1cd4, unk_1c34->unkfunc_02086aa4(), unk_1c34->unkfunc_02086ab4(), 0);
     for (int i = 0; i < SYMBOL_TEXTURE_NUM; i++) {
-        MI_CpuCopyU8((void*)func_02086aac(unk_0030[i]), unk_1974[i], unk_0030[i]->unkfunc_02086ab4());
-        func_020857a8(2, rate);
-        func_02085840(unk_1974[i], unk_0030[i]->unkfunc_02086ab4(), rate);
+        MI_CpuCopyU8((void*)unk_0030[i]->unkfunc_02086aac(), unk_1974[i], unk_0030[i]->unkfunc_02086ab4());
+        unkfunc_020857a8(2, rate);
+        unkfunc_02085840(unk_1974[i], unk_0030[i]->unkfunc_02086ab4(), rate);
         data_0211e450.unkfunc_02086378(1, unk_1974[i], unk_0030[i]->unkfunc_02086aa4(), unk_0030[i]->unkfunc_02086ab4(), 0);
     }
 }

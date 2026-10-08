@@ -184,11 +184,5 @@ struct FieldPlayerManager;
 
 extern "C" {
     FieldPlayerManager* FieldPlayerManager::getSingleton();
-    void func_02037d28();
 }
 
-struct MapChurchInfo {
-    unsigned int count_;    // 0x020b615c
-    unsigned int unk4_;     // 0x020b6160
-};
-extern const MapChurchInfo data_020b615c; // MapChurchInfo

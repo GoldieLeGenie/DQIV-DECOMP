@@ -9,6 +9,7 @@
 #include "main/status/PlayerStatus.hpp"
 #include "main/status/UseAction.hpp"
 #include "main/text/TextAPI.hpp"
+#include "main/menu/MenuTemplate_Common.hpp"
 
 THUMB void BattleMenu_MAGIC::menuSetup()
 {
@@ -46,7 +47,7 @@ THUMB void BattleMenu_MAGIC::menuExecute()
     MenuTemplate_battle::BATTLE_MAGIC_2x3(&menuItem_, navigator_.getCountInPage());
     MenuTemplate_battle::BATTLE_CANCEL(&cancelItem_);
     int max = navigator_.getPageMaxCount() - 1;
-    func_0201e684(&unk_e4, navigator_.getIndex(unk_e4.active_), max, 0xd8, 0x78);
+    MenuTemplate_Common::TOWN_PAGE_1x1(&unk_e4, navigator_.getIndex(unk_e4.active_), max, 0xd8, 0x78);
 }
 
 THUMB void BattleMenu_MAGIC::menuDraw()

@@ -7,6 +7,7 @@
 #include "main/cmn/CommonRuraData.hpp"
 #include "main/status/ExcelParam.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
+#include "main/cmn/UnkImmigrantTown.hpp"
 
 extern char map_caf1[8];
 extern char map_btl_pl_d[12];
@@ -132,8 +133,7 @@ THUMB void status::StageStatus::setup(char *mapname)
         dss::strcmp(g_Global.getMapName(), map_casino) != 0 &&
         dss::strcmp(g_Global.getPrevMapName(), map_casino) != 0)
     {
-        func_02037da4();
-        func_02037d28();
+        UnkImmigrantTown::getSingleton()->unkfunc_02037d28();
     }
 
     g_Stage.setTimeZoneEnable((entry->byte_1 & 0x1E) << 0x17 >> 0x18);
@@ -1225,7 +1225,7 @@ THUMB int status::StageStatus::restartChurch()
     dss::Fix32Vector3 pos;
 
     param::MapChurch* tbl = status::excelParam.mapChurch_;
-    for (unsigned int i = 0; i < data_020b615c.count_; i++) {
+    for (unsigned int i = 0; i < param::MapChurch::size_; i++) {
         if (this->churchMap_[0] == tbl[i].floor[0] && this->churchMap_[1] == tbl[i].floor[1]) {
             if (tbl[i].direction != 0xFFFF) {
                 found = i;

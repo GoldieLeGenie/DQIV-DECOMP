@@ -1,7 +1,9 @@
 #pragma once
-#include "main/menu/MenuAPI.hpp"
-#include "main/menu/MenuBase.hpp"
 #include "main/menu/CursorMoveGridLoop.hpp"
+
+namespace menu {
+    struct MenuItem;
+}
 
 namespace MenuUpdate_Assist {
     int isPageFlip(menu::MenuItem& item, CursorMoveBase& cursor, int& active);

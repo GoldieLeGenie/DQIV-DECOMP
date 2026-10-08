@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "main/part/MessageDebugPart.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/global/Global.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/Pad.hpp"
@@ -10,12 +11,13 @@
 #include "main/menu/UnkMenuIconDisplay.hpp"
 #include "main/status/GameStatus.hpp"
 #include "nitro/os.hpp"
+#include "main/menu/UnkMenuPartsDraw.hpp"
 
 MessageDebugPart g_MessageDebugPart;
 
 THUMB void MessageDebugPart::initialize()
 {
-    func_02080e90(data_0211c4f0);
+    unkfunc_02080e90(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     unk_20 = 0;
     snapState_ = 0;
     isDisp_ = 0;
@@ -50,7 +52,7 @@ THUMB void MessageDebugPart::initialize()
 
 THUMB void MessageDebugPart::terminate()
 {
-    func_02080e90(data_0211c4c0);
+    unkfunc_02080e90(&dss::g_DISPLAYPLUGIN_STOP);
     data_0211e450.unkfunc_02086278();
 }
 
@@ -68,7 +70,7 @@ THUMB void MessageDebugPart::onExecutePart()
     if (unkfunc_0200a644(4)) {
         MenuManager::setMenuEnable(1);
         isDisp_ = (isDisp_ == 0) ? 1 : 0;
-        func_0207e810(data_02116ce0);
+        data_02116ce0.unkfunc_0207e810();
     }
     if (unkfunc_0200a644(0)) {
         step_ = 1;
@@ -192,11 +194,11 @@ THUMB void MessageDebugPart::onExecutePart()
         break;
     }
     case 3:
-        func_020827f0(0x23, 0, (unsigned char*)snap_.getAddr() + 0x14, 0x18000);
+        unkfunc_020827f0(0x23, 0, (unsigned char*)snap_.getAddr() + 0x14, 0x18000);
         snapState_++;
         break;
     case 4:
-        func_020827f0(10, 0, (unsigned char*)snap_.getAddr() + 0x18014, 0x18000);
+        unkfunc_020827f0(10, 0, (unsigned char*)snap_.getAddr() + 0x18014, 0x18000);
         snapState_++;
         break;
     case 5:
@@ -223,18 +225,18 @@ THUMB void MessageDebugPart::onDebugPart()
     const char* lang[] = { "Japanese  ", "English   ", "French    ", "German    ", "Italian   ", "Spanish   " };
     const char* font[] = { "Default   ", "10L       ", "10L b     ", "10S       " };
     const char* back[] = { "------    ", "MAP 1     ", "MAP 2     ", "BATTLE    " };
-    func_0205077c(0, 0, 0x100, 0x78);
-    func_0207e88c(data_02116ce0, 1, 1, "Size(X)       %-10s", type[messageType_]);
-    func_0207e88c(data_02116ce0, 1, 2, "Lang(Y)       %-10s", lang[language_]);
-    func_0207e88c(data_02116ce0, 1, 3, "BACK(UP/DOWN) %-10s", back[back_]);
-    func_0207e88c(data_02116ce0, 1, 6, "Message %8d", messageNo_);
-    func_0207e88c(data_02116ce0, 1, 7, "*PAD Left/Right  +-%d      ", step_);
-    func_0207e88c(data_02116ce0, 1, 8, "  <PAD>           ... 1");
-    func_0207e88c(data_02116ce0, 1, 9, "  <PAD>  + B      ... 10");
-    func_0207e88c(data_02116ce0, 1, 10, "  <PAD>  + R      ... 100");
-    func_0207e88c(data_02116ce0, 1, 11, "  <PAD>  + B + R  ... 1000");
-    func_0207e88c(data_02116ce0, 1, 12, "  <PAD>  + L      ... 10000");
-    func_0207e88c(data_02116ce0, 1, 13, "  <PAD>  + B + L  ... 100000");
+    unkfunc_0205077c(0, 0, 0x100, 0x78);
+    data_02116ce0.unkfunc_0207e88c(1, 1, "Size(X)       %-10s", type[messageType_]);
+    data_02116ce0.unkfunc_0207e88c(1, 2, "Lang(Y)       %-10s", lang[language_]);
+    data_02116ce0.unkfunc_0207e88c(1, 3, "BACK(UP/DOWN) %-10s", back[back_]);
+    data_02116ce0.unkfunc_0207e88c(1, 6, "Message %8d", messageNo_);
+    data_02116ce0.unkfunc_0207e88c(1, 7, "*PAD Left/Right  +-%d      ", step_);
+    data_02116ce0.unkfunc_0207e88c(1, 8, "  <PAD>           ... 1");
+    data_02116ce0.unkfunc_0207e88c(1, 9, "  <PAD>  + B      ... 10");
+    data_02116ce0.unkfunc_0207e88c(1, 10, "  <PAD>  + R      ... 100");
+    data_02116ce0.unkfunc_0207e88c(1, 11, "  <PAD>  + B + R  ... 1000");
+    data_02116ce0.unkfunc_0207e88c(1, 12, "  <PAD>  + L      ... 10000");
+    data_02116ce0.unkfunc_0207e88c(1, 13, "  <PAD>  + B + L  ... 100000");
 }
 
 THUMB int MessageDebugPart::unkfunc_0200a644(int key)

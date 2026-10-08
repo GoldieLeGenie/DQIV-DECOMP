@@ -10,6 +10,29 @@ const s16 AtanTable[129] = {
     6660, 6712, 6764, 6815, 6867, 6917, 6968, 7018, 7068, 7117, 7166, 7214, 7262, 7310, 7358, 7405, 7451, 7498, 7544,
     7589, 7635, 7679, 7724, 7768, 7812, 7856, 7899, 7942, 7984, 8026, 8068, 8110, 8151, 8192};
 
+u16 FX_AtanIdx(s32 x) {
+    if (x >= 0) {
+        if (x > 0x1000) {
+            x = FX_Inverse(x);
+            return (u16)(0x4000 - AtanTable[x >> 5]);
+        } else if (x < 0x1000) {
+            return (u16)AtanTable[x >> 5];
+        } else {
+            return 0x2000;
+        }
+    } else {
+        if (x < -0x1000) {
+            x = FX_Inverse(-x);
+            return (u16)(AtanTable[x >> 5] - 0x4000);
+        } else if (x > -0x1000) {
+            x = -x;
+            return (u16)-AtanTable[x >> 5];
+        } else {
+            return 0xe000;
+        }
+    }
+}
+
 u16 FX_Atan2Idx(s32 y, s32 x) {
     s32  a, b, c;
     BOOL positive;

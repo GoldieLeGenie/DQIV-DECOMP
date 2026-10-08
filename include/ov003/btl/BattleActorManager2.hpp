@@ -69,4 +69,3 @@ namespace btl {
 }
 extern status::PlayerStatus dummyPlayer_;
 
-extern "C" void func_02039460(int index);

@@ -1,4 +1,5 @@
 #include "ov001/window/UnkFieldMap.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "ov001/fld/FieldPlayerManager.hpp"
 #include "main/dss/DssUtils.hpp"
 

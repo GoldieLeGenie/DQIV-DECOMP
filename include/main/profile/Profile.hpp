@@ -13,6 +13,8 @@ namespace status {
 
 class profile {
 public:
+    struct CatalogView;
+    struct SaveLoad;
      struct PROFILE_SYSTEM {
         unsigned int MAGIC;
         unsigned int VER;
@@ -198,7 +200,7 @@ public:
         PROFILE_HISTORY *pHISTORY;
         PROFILE_ENVOY *pENVOY;
         PROFILE_RECORD profiledata_;
-        unsigned char profiledummy_[1440];
+        unsigned char profiledummy_[0x900];
         void presetMember();
         void collectGameFlag(unsigned char *flagBuf, status::GameFlag *gameFlag);
         void deliverGameFlag(status::GameFlag *gameFlag, unsigned char *flagBuf);
@@ -210,7 +212,7 @@ public:
         void collectDATA_PLAYER();
         void collectDATA_MONSTER();
         void collectDATA_ENVOY();
-        int deliverDATA();
+        int deliverDATA(int);
         void deliverDATA_CHAPTER();
         void deliverDATA_PLAYER();
         void deliverDATA_MONSTER();
@@ -221,30 +223,3 @@ public:
     };  
 };
 
-extern int data_020f0078;     // manager SELECTTAISHI
-extern "C" unsigned char func_0203ab30(void* mgr, int index);               // getter SELECTTAISHI
-extern "C" int func_0203a358(void* mgr, int index);   // isEnable(i)
-extern "C" int func_0203a354(void* mgr);              // isEnable slot final
-extern "C" int func_0203a388(void* mgr);              // getCount
-extern "C" void func_0203a34c(void* mgr, int index);  // select
-extern "C" unsigned int func_0203a5a4(void* mgr);     // getUnique
-extern "C" char func_0203a5ec(void* mgr);             // getType
-extern "C" unsigned char func_0203a714(void* mgr);    // getSex
-extern "C" unsigned char func_0203a750(void* mgr);    // getAge
-extern "C" unsigned char func_0203a78c(void* mgr);    // getSkill
-extern "C" unsigned char* func_0203a65c(void* mgr);   // getName ptr
-extern "C" unsigned char* func_0203a6d8(void* mgr);   // getHeroName ptr
-extern "C" unsigned char* func_0203a820(void* mgr);   // getTownName ptr
-extern "C" unsigned char* func_0203a938(void* mgr);   // getComment ptr
-extern "C" void func_0203a604(void* mgr, char* name);             // setName
-extern "C" void func_0203a7a8(void* mgr, char* name);             // setTownName
-extern "C" void func_0203a83c(void* mgr, char* comment);          // setComment
-extern "C" void func_0203a574(void* mgr, int enable);             // setEnable
-extern "C" void func_0203a58c(void* mgr, unsigned int unique);    // setUnique
-extern "C" void func_0203a5bc(void* mgr, int type);               // setType
-extern "C" void func_0203a6f4(void* mgr, unsigned char sex);      // setSex
-extern "C" void func_0203a730(void* mgr, unsigned char age);      // setAge
-extern "C" void func_0203a76c(void* mgr, unsigned char skill);    // setSkill            
-extern "C" void* func_02037da4(void);                            //
-extern "C" void func_02037ca4(void);                              //
-extern "C" void func_0203ab20(void *mgr, int index, unsigned char value); // 

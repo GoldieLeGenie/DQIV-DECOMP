@@ -415,8 +415,8 @@ inline void GX_SetPower(u32 value) {
     REG_POWER_CNT = (REG_POWER_CNT & 0xFFFFFDF1) | (value);
 }
 
-inline void GX_SetDispSelect(u32 value) {
-    REG_POWER_CNT = (REG_POWER_CNT & ~0x8000) | value;
+inline void GX_SetDispSelect(int sel) {
+    *(vu16*)0x04000304 = (u16)((*(vu16*)0x04000304 & ~0x8000) | (sel << 15));
 }
 
 inline void GX_SetOBJVRamModeChar(u32 value) {
@@ -427,37 +427,28 @@ inline void GXS_SetOBJVRamModeChar(u32 value) {
     REG_DISPCNT_SUB = (REG_DISPCNT_SUB & 0xFFCFFFEF) | (value);
 }
 
-inline u16 GX_GetVCount(void) {
+inline s32 GX_GetVCount(void) {
     return REG_VCOUNT;
 }
 
-inline void GX_SetVisiblePlane(s32 plane) {
-    REG_DISPCNT = (REG_DISPCNT & ~0x1f00) | (plane << 8);
+inline void GX_SetVisiblePlane(int plane) {
+    *(vu32*)0x04000000 = (*(vu32*)0x04000000 & ~0x1f00) | (plane << 8);
 }
 
-inline void GXS_SetVisiblePlane(s32 plane) {
-    REG_DISPCNT_SUB = (REG_DISPCNT_SUB & ~0x1f00) | (plane << 8);
+inline void GXS_SetVisiblePlane(int plane) {
+    *(vu32*)0x04001000 = (*(vu32*)0x04001000 & ~0x1f00) | (plane << 8);
 }
 
-inline void GX_SetBGCharOffset(u32 offset) {
-    REG_DISPCNT = (REG_DISPCNT & ~0x7000000) | offset;
+inline void GX_SetBGCharOffset(int offset) {
+    *(vu32*)0x04000000 = (*(vu32*)0x04000000 & ~0x7000000) | offset;
 }
 
-inline void GX_SetBGScrOffset(u32 offset) {
-    REG_DISPCNT = (REG_DISPCNT & ~0x38000000) | offset;
+inline void GX_SetBGScrOffset(int offset) {
+    *(vu32*)0x04000000 = (*(vu32*)0x04000000 & ~0x38000000) | offset;
 }
 
-inline void GX_SetCapture(u32 size, u32 mode, u32 srcA, GXCaptureSrcB srcB, u32 dest, u32 param6, u32 param7) {
-    // Unclear how to combine the arguments
-    //   size = GX_CAPTURE_SIZE_256x192,
-    //   mode = GX_CAPTURE_MODE_A,
-    //   srcA = GX_CAPTURE_SRCA_2D3D,
-    //   srcB = 0,
-    //   dest = GX_CAPTURE_DEST_VRAM_C_0x00000,
-    //   param6 = 16,
-    //   param7 = 0,
-    //     => 0x80320010
-    REG_DISPCAPCNT = 0x80300010 | (dest << 0x10);
+inline void GX_SetCapture(u32 size, u32 mode, u32 srcA, GXCaptureSrcB srcB, u32 dest, u32 eva, u32 evb) {
+    *(vu32*)0x04000064 = 0x80000000 | (mode << 29) | (srcB << 25) | (srcA << 24) | (size << 20) | (dest << 16) | (evb << 8) | eva;
 }
 
 inline void GXS_SetOBJVRamModeBmp(u32 mode) {

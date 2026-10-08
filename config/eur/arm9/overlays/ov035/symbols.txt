@@ -9,3 +9,5 @@ _ZN23MaterielMenu_EXTRA_NENE12calcProceedsEv kind:function(thumb,size=0xa8) addr
 _ZN23MaterielMenu_EXTRA_NENE13checkHaveItemEb kind:function(thumb,size=0x38) addr:0x02189b44
 _ZN23MaterielMenu_EXTRA_NENE11showMessageEiii kind:function(thumb,size=0x3c) addr:0x02189b7c
 _ZTV23MaterielMenu_EXTRA_NENE kind:data(byte[28]) addr:0x02189bc0
+module_padding_ov035_ctor_02189bb8 kind:data(byte[4]) addr:0x02189bb8
+module_padding_ov035_data_02189bdc kind:data(byte[4]) addr:0x02189bdc

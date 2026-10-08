@@ -10,6 +10,7 @@
 #include "main/sound/SoundManager.hpp"
 #include "main/status/BaseStatus.hpp"
 #include "nitro/os.hpp"
+#include "main/dss/UnkPaletteEffect.hpp"
 
 static const dss::Fix32 bigRockSpeed(0x133);
 static const dss::Fix32 collLine(0x1733);
@@ -167,9 +168,9 @@ ARM dss::Fix32Vector3 TownModelDraw::getPosition()
 
 ARM void TownModelDraw::setPaletteRate(dss::Fix32 r, dss::Fix32 g, dss::Fix32 b)
 {
-    func_02085798(model_.unk_b64);
+    unkfunc_02085798(model_.unk_b5c.unk_08);
     dss::Fix32Vector3 rate(r, g, b);
-    func_020857c8(model_.unk_b64, rate);
+    unkfunc_020857c8(model_.unk_b5c.unk_08, rate);
 }
 
 ARM void TownModelDraw::setPaletteRate(unsigned char r, unsigned char g, unsigned char b, dss::Fix32 rate)
@@ -178,7 +179,7 @@ ARM void TownModelDraw::setPaletteRate(unsigned char r, unsigned char g, unsigne
     int gg = status::BaseStatus::getClampValue(0, g, 0x1f);
     int bb = status::BaseStatus::getClampValue(0, b, 0x1f);
     rate.value = dss::clamp<int>(0, rate.value, basePalletRate_.value);
-    func_020860b8(model_.unk_b64, rr, gg, bb, rate);
+    unkfunc_020860b8(model_.unk_b5c.unk_08, rr, gg, bb, rate);
 }
 
 ARM void TownModelDraw::setMotion(int motion, int loop)

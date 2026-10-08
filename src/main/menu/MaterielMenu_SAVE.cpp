@@ -223,7 +223,7 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
     switch (status_) {
     case MENU_IS_SAVE:
         if (messageCounter_ == 0) {
-            if (!func_0202c040()) {
+            if (!profile::SaveLoad::isCardOK()) {
                 setMode(MENU_BLANK);
                 switch (saveType_) {
                 case TYPE_CHURCH:
@@ -248,7 +248,7 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
                 sex = 0;
                 mother_ = 0;
                 unsigned int i = 0;
-                unsigned int count = data_020b615c.count_;
+                unsigned int count = param::MapChurch::size_;
                 for (; i < count; i++) {
                     if (church[i].floor[0] == g_Global.getMapName()[0] &&
                         church[i].floor[1] == g_Global.getMapName()[1] &&
@@ -340,7 +340,7 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
         }
         break;
     case MENU_IS_OVERWRITE:
-        func_0202bc10(&catalogview_[menuItem_.active_]);
+        profile::SaveLoad::setCatalogMacro(&catalogview_[menuItem_.active_]);
         switch (saveType_) {
         case TYPE_CHURCH:
             setTalkYesNoMessage(0xc6faa, true);
@@ -395,7 +395,7 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
             switch (saveType_) {
             case TYPE_CHURCH:
                 g_Stage.setChurchMapName(g_Stage.getMapName());
-                func_0202b928(menuItem_.active_, 1);
+                profile::SaveLoad::savebankAsync(menuItem_.active_, profile::SAVETYPE_CHURCH);
                 break;
             case TYPE_CLEAR:
                 g_Stage.lastFldSurface_ = -1;
@@ -408,7 +408,7 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
                 pos.vz = dss::Fix32(0.65f);
                 g_Stage.overviewPosition_ = pos;
                 g_Stage.overviewTempPosition_ = pos;
-                func_0202b928(menuItem_.active_, 1);
+                profile::SaveLoad::savebankAsync(menuItem_.active_, profile::SAVETYPE_CHURCH);
                 g_cmnPartyInfo.resetBalloonPosByExtraSave();
                 break;
             case TYPE_SURECHIGAI:
@@ -418,20 +418,20 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
                 pos.vz = dss::Fix32(1.18f);
                 g_Stage.overviewPosition_ = pos;
                 g_Stage.overviewTempPosition_ = pos;
-                func_0202b928(menuItem_.active_, 1);
+                profile::SaveLoad::savebankAsync(menuItem_.active_, profile::SAVETYPE_CHURCH);
                 break;
             case TYPE_CHAPTER:
                 g_Stage.lastFldSurface_ = -1;
                 g_Stage.setRanaMapName("");
-                func_0202b928(menuItem_.active_, 2);
+                profile::SaveLoad::savebankAsync(menuItem_.active_, profile::SAVETYPE_INTERVAL);
                 break;
             }
             setMode(MENU_WRITINGWAIT);
         }
         break;
     case MENU_WRITINGWAIT:
-        if (func_0202b990()) {
-            saveResult_ = func_0202b9a8();
+        if (profile::SaveLoad::savebankAsyncWait()) {
+            saveResult_ = profile::SaveLoad::savebankAsyncResult();
             setMode(MENU_SOUNDWAIT);
         }
         break;
@@ -507,8 +507,8 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
             data_020f21f8.state_ = GlobalFade::FADE_NONE;
             data_020f21f8.count_ = 0;
             data_020f21f8.frames_ = 120;
-            func_02084e8c(data_020f220c, 0, 0, 0);
-            func_02084e8c(data_020f2244, 0, 0, 0);
+            data_020f21f8.sprite_[0].setColor(0, 0, 0);
+            data_020f21f8.sprite_[1].setColor(0, 0, 0);
             data_0210bc18.unkfunc_02058294(&data_020f21f8);
             messageCounter_++;
             TownSystem::getSingleton()->fadeCount_ = 0;
@@ -549,11 +549,11 @@ THUMB void MaterielMenu_SAVE::commandUpdate()
 
 THUMB bool MaterielMenu_SAVE::getSaveData()
 {
-    if (!func_0202c040()) {
+    if (!profile::SaveLoad::isCardOK()) {
         return false;
     }
-    catalogview_ = func_0202b6d8();
-    CatalogView* view = catalogview_;
+    catalogview_ = profile::SaveLoad::getCatalogView();
+    profile::CatalogView* view = catalogview_;
     DiaryInfo* diary = diary_;
     for (int i = 0; i < 3; i++, view++, diary++) {
         if (view->useFlag_ != 0) {
@@ -581,7 +581,7 @@ THUMB void MaterielMenu_SAVE::setMode(SAVEMENU_MODE mode)
 
 THUMB void MaterielMenu_SAVE::dataSelectUpdate()
 {
-    func_02051a7c(&menuItem_);
+    menuItem_.execInput();
     switch (menuItem_.result_) {
     case 2:
         menuItem_.result_ = 0;

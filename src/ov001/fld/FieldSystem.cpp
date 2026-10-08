@@ -70,7 +70,7 @@ ARM void FieldSystem::initialize()
         status::g_Party.balloon_ = 0;
     }
     SoundManager::fieldPlay();
-    func_0202ace4(func_0202adc4());
+    UnkScreenEffectManager::getSingleton()->unkfunc_0202ace4();
     int id;
     if (g_Stage.ruraFlag_ != 0) {
         id = -1;
@@ -110,7 +110,7 @@ ARM void FieldSystem::terminate()
         g_Stage.playerLockCount_ = FieldPlayerManager::getSingleton()->getLockCount();
     }
     FieldSymbolManager::getSingleton()->terminate();
-    func_0202adb4(func_0202adc4());
+    UnkScreenEffectManager::getSingleton()->unkfunc_0202adb4();
     FieldPlayerManager::getSingleton()->cleanup();
     cmn::GameManager::getSingleton()->terminate();
     FieldPlayerManager::getSingleton()->terminate();
@@ -125,7 +125,7 @@ ARM void FieldSystem::terminate()
 ARM void FieldSystem::execute()
 {
     if (g_Global.getRanarutaFlag()) {
-        func_0202ad28(func_0202adc4());
+        UnkScreenEffectManager::getSingleton()->unkfunc_0202ad28();
         cmn::NonBattleActionManager::getSingleton()->execute();
     }
     if (FieldWindowSystem::getSingleton()->isOpen()) {
@@ -150,8 +150,8 @@ ARM void FieldSystem::execute()
 ARM void FieldSystem::draw()
 {
     cmn::CommonChapterTitle::getSingleton()->draw();
-    func_0202ad98(func_0202adc4());
-    if (func_0202af54(func_0202adc4())) {
+    UnkScreenEffectManager::getSingleton()->unkfunc_0202ad98();
+    if (UnkScreenEffectManager::getSingleton()->unkfunc_0202af54()) {
         return;
     }
     fld::FieldStage::getSingleton()->draw();

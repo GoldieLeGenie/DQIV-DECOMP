@@ -49,7 +49,3 @@ struct GlobalDQ4 {
 };
 
 extern GlobalDQ4 data_0210bb94;
-
-extern "C" {
-    void func_0208960c(int index, int size);   /* "ARRAY ERROR %d/%d %08x !!!!" */
-}

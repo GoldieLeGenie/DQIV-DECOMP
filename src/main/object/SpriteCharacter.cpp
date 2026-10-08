@@ -24,12 +24,12 @@ ARM void SpriteCharacter::setup(const char* name)
 
 ARM void SpriteCharacter::unkfunc_0204b25c()
 {
-    textureNum_ = func_0207f8c4(data_.getAddr());
+    textureNum_ = unkfunc_0207f8c4(data_.getAddr());
     for (int i = 0; i < textureNum_; i++) {
-        unk_78[i] = func_0207f8dc(data_.getAddr(), i);
+        unk_78[i] = unkfunc_0207f8dc(data_.getAddr(), i);
     }
     unk_58 = unk_78[0];
-    func_02086798(unk_58, 1);
+    ((TextureObject*)unk_58)->unkfunc_02086798(1);
     texture_ = unk_58;
     unkfunc_02084534(0, 0);
     anmIndex_ = 0;
@@ -44,7 +44,7 @@ ARM void SpriteCharacter::unkfunc_0204b25c()
 
 ARM void SpriteCharacter::cleanup()
 {
-    func_02086868(unk_58);
+    ((TextureObject*)unk_58)->unkfunc_02086868();
     data_.cleanup();
     shadow_.unkfunc_0204b7e4();
 }
@@ -68,7 +68,7 @@ ARM void SpriteCharacter::draw()
         return;
     }
     execute();
-    unkfunc_02084590();
+    UnkSprite2D::draw();
     if (flag_.check(FLAG_SHADOW)) {
         shadow_.draw();
     }
@@ -106,7 +106,7 @@ ARM void SpriteCharacter::reload(int dir)
     if (dispDirection_ == dir) {
         return;
     }
-    func_020869ec(unk_58, unk_78[dir], 0);
+    ((TextureObject*)unk_58)->unkfunc_020869ec((TextureObject*)unk_78[dir], 0);
     dispDirection_ = dir;
 }
 
@@ -194,12 +194,12 @@ ARM void SpriteCharacter::unkfunc_0204b704()
 {
     s_commonTex.setup("data/common.tex", 0, 0);
     s_shadowTexture = s_commonTex.getAddr();
-    func_02086798(s_shadowTexture, 1);
+    ((TextureObject*)s_shadowTexture)->unkfunc_02086798(1);
 }
 
 ARM void SpriteCharacter::unkfunc_0204b744()
 {
-    func_02086868(s_shadowTexture);
+    ((TextureObject*)s_shadowTexture)->unkfunc_02086868();
     s_commonTex.cleanup();
 }
 
@@ -221,7 +221,7 @@ ARM void SpriteShadow::unkfunc_0204b7e4()
 ARM void SpriteShadow::draw()
 {
     if (s_shadowDraw) {
-        unkfunc_02084590();
+        UnkSprite2D::draw();
     }
 }
 

@@ -28,6 +28,7 @@ extern "C" {
 
 #define WM_SIZE_BSSID 6
 #define WM_SIZE_SSID  32
+#define WM_SIZE_CHILD_SSID 24
 
 #define WM_ATTR_FLAG_ENTRY 0x1
 #define WM_ATTR_FLAG_MB    0x2
@@ -66,10 +67,16 @@ typedef struct WMScanParam {
 } WMScanParam;
 
 typedef struct WMGameInfo {
-    /* 00 */ u32 ggid;
-    /* 04 */ u8  unk_04[0x07 - 0x04];
-    /* 07 */ u8  attribute;
-    /* 08 */ u8  unk_08[0x78];
+    /* 00 */ u16 magicNumber;
+    /* 02 */ u8  ver;
+    /* 03 */ u8  platform;
+    /* 04 */ u32 ggid;
+    /* 08 */ u16 tgid;
+    /* 0a */ u8  userGameInfoLength;
+    /* 0b */ u8  gameNameCount_attribute;
+    /* 0c */ u16 parentMaxSize;
+    /* 0e */ u16 childMaxSize;
+    /* 10 */ u8  userGameInfo[0x70];
     /* 80 */
 } WMGameInfo;
 
@@ -129,6 +136,7 @@ typedef struct WMStartConnectCallback {
     /* 02 */ WMErrCode   errcode;
     /* 04 */ u8          unk_04[0x08 - 0x04];
     /* 08 */ WMStateCode state;
+    /* 0a */ u16         aid;
 } WMStartConnectCallback;
 
 typedef struct WMStartScanCallback {
@@ -136,8 +144,13 @@ typedef struct WMStartScanCallback {
     /* 02 */ WMErrCode   errcode;
     /* 04 */ u8          unk_04[0x08 - 0x04];
     /* 08 */ WMStateCode state;
-    /* 0a */ u8          unk_0a[0x3c - 0x0a];
-    /* 3c */ WMGameInfo  gameInfo;
+    /* 0a */ u8          macAddress[WM_SIZE_BSSID];
+    /* 10 */ u16         channel;
+    /* 12 */ u16         linkLevel;
+    /* 14 */ u16         ssidLength;
+    /* 16 */ u16         ssid[WM_SIZE_SSID / 2];
+    /* 36 */ u16         gameInfoLength;
+    /* 38 */ WMGameInfo  gameInfo;
 } WMStartScanCallback;
 
 typedef struct WMPortSendCallback {
@@ -159,6 +172,21 @@ typedef struct WMMeasureChannelCallback {
     /* 08 */ u16       channel;
     /* 0a */ u16       ccaBusyRatio;
 } WMMeasureChannelCallback;
+
+typedef struct WMDataSet {
+    /* 000 */ u16 data[0x100];
+    /* 200 */
+} WMDataSet;
+
+typedef struct WMDataSharingInfo {
+    /* 000 */ u8 unk_000[0x820];
+    /* 820 */
+} WMDataSharingInfo;
+
+typedef struct WMKeySetBuf {
+    /* 000 */ u8 unk_000[0x820];
+    /* 820 */
+} WMKeySetBuf;
 
 typedef struct WMStatus {
     WMStateCode state;

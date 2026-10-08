@@ -67,7 +67,7 @@ THUMB void BattleMenu_ROOT::menuUpdate()
                 return;
             }
         } else {
-            func_02051a7c(&cancelItem_);
+            cancelItem_.execInput();
             if (cancelItem_.result_ == 3) {
                 cancelItem_.result_ = 0;
                 cancelItem_.lastresult_ = 0;

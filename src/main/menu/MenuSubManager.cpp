@@ -1,4 +1,5 @@
 #include "main/menu/MenuManager.hpp"
+#include "main/menu/UnkMenuPartsDraw.hpp"
 
 THUMB void MenuSubManager::setup()
 {
@@ -27,7 +28,7 @@ THUMB void MenuSubManager::draw(int x, int y)
     for (int i = 0; i < 8; i++) {
         menu::MenuBase* menu = m_menu[i];
         if (menu) {
-            func_02050698(x, y);
+            unkfunc_02050698(x, y);
             menu->menuBaseDraw();
         }
     }

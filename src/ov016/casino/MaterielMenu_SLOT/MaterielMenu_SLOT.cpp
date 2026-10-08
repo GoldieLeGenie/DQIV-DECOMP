@@ -138,7 +138,7 @@ THUMB void MaterielMenu_SLOT::statusUpdate()
 
 THUMB void MaterielMenu_SLOT::inputUpdate()
 {
-    func_02051a7c(&menuItem_);
+    menuItem_.execInput();
     switch (menuItem_.result_) {
     case 3:
         menuItem_.result_ = 0;

@@ -1508,7 +1508,7 @@ THUMB int status::PartyStatus::isMegazaruRingEnable()
 }
         
 
-THUMB void status::PartyStatus::setNoDamageEnable(bool enable)
+THUMB void status::PartyStatus::setNoDamageEnable(int enable)
 {
     noDamageEnable_ = enable;
 }

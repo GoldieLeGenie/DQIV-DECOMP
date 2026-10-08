@@ -4302,7 +4302,7 @@ ARM void UnkFieldMapSprite_0212c884::unkfunc_0212cd58(int x, int y)
     void* buffer[8];
     char* dst = (char*)unk_54.unkfunc_02057d50();
     for (int i = 0; i < 8; i++) {
-        buffer[i] = func_0207f834(&data_0211a60c, 0x400, 0x20);
+        buffer[i] = unkfunc_0207f834(&data_0211a60c, 0x400, 0x20);
     }
     for (int j = 0; j < 6; j++) {
         int bx;
@@ -4339,7 +4339,7 @@ ARM void UnkFieldMapSprite_0212c884::unkfunc_0212cd58(int x, int y)
     }
     DC_CleanAll();
     for (int i = 0; i < 8; i++) {
-        func_0207f840(&data_0211a60c, buffer[i]);
+        unkfunc_0207f840(&data_0211a60c, buffer[i]);
     }
 }
 

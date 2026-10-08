@@ -1,6 +1,7 @@
 #pragma ipa file
 #include "main/fld/FldStage.hpp"
 #include "main/fld/FldCollision.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/cmn/MoveBase.hpp"
 #include "main/data/FileLoader.hpp"
 #include "main/text/TextAPI.hpp"
@@ -13,6 +14,7 @@
 #include "nnsys/g3d.hpp"
 
 static int drawTick;
+static int data_020f22ac;
 
 ARM FldStage::FldStage()
 {
@@ -40,23 +42,23 @@ ARM void FldStage::terminate()
 
 ARM void FldStage::setup()
 {
-    func_0208532c(this, m_render);
+    unkfunc_0208532c(m_render);
     m_anim.unkfunc_02083354(m_model.getAddr());
     void* model = m_model.getAddr();
     void* texture = m_texture.getAddr();
     void* coll = m_coll.getAddr();
-    m_fld.Setup(model, texture, coll, *func_0207f88c(&data_0211a60c));
+    m_fld.Setup(model, texture, coll, (int)*unkfunc_0207f88c(&data_0211a60c));
     dss::Fix32Vector3 scale(1, 1, 1);
-    func_020857a8(0, scale);
+    unkfunc_020857a8(0, scale);
     int color = m_fld.m_scene->backColor;
-    func_02084c78((color & 0xff) >> 3, ((color >> 8) & 0xff) >> 3, ((color >> 16) & 0xff) >> 3);
+    unkfunc_02084c78((color & 0xff) >> 3, ((color >> 8) & 0xff) >> 3, ((color >> 16) & 0xff) >> 3);
     extraObjectNum_ = 0;
 }
 
 ARM void FldStage::cleanup()
 {
-    func_02084c78(0, 0, 0);
-    func_02085348(this);
+    unkfunc_02084c78(0, 0, 0);
+    unkfunc_02085348();
     m_fld.Final();
     m_model.cleanup();
     m_texture.cleanup();
@@ -82,10 +84,10 @@ ARM void FldStage::load(char* name)
     char buf[0x80];
     dss::sprintf_s(buf, sizeof(buf), "%s/%s.lz", path_, name);
     m_data.setup(buf, 1, 1);
-    m_model.setup(func_0207f8dc(m_data.getAddr(), 0));
-    m_texture.setup(func_0207f8dc(m_data.getAddr(), 1));
-    if (func_0207f8cc(m_data.getAddr(), 2)) {
-        m_coll.setup(func_0207f8dc(m_data.getAddr(), 2));
+    m_model.setup(unkfunc_0207f8dc(m_data.getAddr(), 0));
+    m_texture.setup(unkfunc_0207f8dc(m_data.getAddr(), 1));
+    if (unkfunc_0207f8cc(m_data.getAddr(), 2)) {
+        m_coll.setup(unkfunc_0207f8dc(m_data.getAddr(), 2));
     }
     if (m_coll.getAddr()) {
         collisionFlag_ = 1;
@@ -96,7 +98,7 @@ static void resetGlbMatrix();
 
 ARM void FldStage::draw()
 {
-    drawTick = func_0207e7e8();
+    drawTick = unkfunc_0207e7e8();
     resetGlbMatrix();
     m_fld.unkfunc_02045004();
     resetGlbMatrix();
@@ -105,12 +107,12 @@ ARM void FldStage::draw()
         m_fld.unkfunc_0204545c();
     }
     resetGlbMatrix();
-    drawTick = func_0207e7e8() - drawTick;
+    drawTick = unkfunc_0207e7e8() - drawTick;
 }
 
 ARM void FldStage::execAnime()
 {
-    func_0208336c(&m_anim);
+    m_anim.unkfunc_0208336c();
 }
 
 static void resetGlbMatrix()
@@ -120,7 +122,7 @@ static void resetGlbMatrix()
     MtxFx33 rot;
     func_02061b88(&rot);
     func_0206ae30(&scale);
-    func_02067940(&rot, &data_0210cfe4);
+    func_02067940(&rot, &data_0210cf28.prmBaseRot);
     data_0210cf28.flag &= ~0xa4;
     func_0206ae08((dss::Fix32Vector3*)&trans);
     func_0206adcc();
@@ -369,7 +371,7 @@ ARM int FldStage::getObjWallNo(int obj, int wall)
     if (obj != coll_GetObjId(m_fld.m_coll, wall)) {
         return -1;
     }
-    return func_02053abc(m_fld.m_coll, obj, wall);
+    return coll_GetObjWallNo(m_fld.m_coll, obj, wall);
 }
 
 ARM int FldStage::getObjWallPolyNo(int obj, int wall)
@@ -613,4 +615,10 @@ ARM int FldStage::getCrossPolygonOtherSurface(dss::Fix32Vector3& start, dss::Fix
         dist->value = min;
     }
     return found;
+}
+
+// Unreferenced storage before the BillboardCharacter globals.
+ARM void unkfunc_unused_30()
+{
+    data_020f22ac = 0;
 }

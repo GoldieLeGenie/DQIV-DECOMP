@@ -40,7 +40,7 @@ ARM void CasinoPokerDraw::initialize()
     unk_4c[5].setup("data/minigame/poker/hikari.tex", 0, 0);
     for (int i = 0; i < 6; i++) {
         unk_ac[i] = unk_4c[i].getAddr();
-        func_02086798(unk_ac[i], 1);
+        ((TextureObject*)unk_ac[i])->unkfunc_02086798(1);
     }
     s_vertex.v[0] = s_vertexLeftTop;
     s_vertex.v[1] = s_vertexRightTop;
@@ -81,7 +81,7 @@ ARM void CasinoPokerDraw::setPoolPosition()
 ARM void CasinoPokerDraw::terminate()
 {
     for (int i = 0; i < 6; i++) {
-        func_02086868(unk_ac[i]);
+        ((TextureObject*)unk_ac[i])->unkfunc_02086868();
         unk_4c[i].cleanup();
     }
 }
@@ -216,12 +216,12 @@ ARM void PokerCardPolygon::draw()
     G3_MaterialColorDiffAmb(0x7fff, 0x4210, 1);
     G3_MaterialColorSpecEmi(0x4210, 0, 0);
     if (texture_) {
-        func_02086abc(texture_);
-        func_02086b3c(texture_);
+        ((TextureObject*)texture_)->unkfunc_02086abc();
+        ((TextureObject*)texture_)->unkfunc_02086b3c();
     } else {
-        func_02086b28();
+        unkfunc_02086b28();
     }
-    func_02083680(this);
+    unkfunc_02083680();
     G3_Begin(1);
     for (int i = 0; i < 4; i++) {
         G3_Color(0x7fff);

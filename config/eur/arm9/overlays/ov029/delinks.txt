@@ -13,3 +13,8 @@ src/ov029/MaterielMenu_COINSALEROOM/MaterielMenu_COINSALEROOM_BUY.cpp:
     complete
     .text start:0x02189750 end:0x02189980
     .data start:0x021899bc end:0x021899d8
+
+src/ov029/ModulePadding_ov029.cpp:
+    complete
+    .ctor start:0x02189980 end:0x02189984
+    .data start:0x021899d8 end:0x021899e0

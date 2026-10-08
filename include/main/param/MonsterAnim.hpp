@@ -1,6 +1,7 @@
 #pragma once
 #include "main/dss/DssUtils.hpp"
 #include <globaldefs.h>
+#include "main/data/DataObject.hpp"
 
 
 namespace param{
@@ -25,5 +26,6 @@ namespace param{
 
         static unsigned short getDataIndex(unsigned int index);
         static int getAnimData(MonsterAnim* anim, unsigned int monsterId, unsigned short actionId, unsigned short animId);
+        static DataObject data_;
     };
 }

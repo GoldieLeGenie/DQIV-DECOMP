@@ -5,7 +5,6 @@
 #include "main/status/ExcelParam.hpp"
 #include "main/param/Param.hpp"
 
-const AlterMessageCount data_020b6144 = { 0x5b, 0x198 };
 cmn::HengeNoTsueManager g_HengeNoTsue; // data_020efc6c
 
 
@@ -73,7 +72,7 @@ ARM void cmn::HengeNoTsueManager::setCounter() {
 ARM int cmn::HengeNoTsueManager::getMessage(int charaNo)
 {
     param::AlterMessage* msg = status::excelParam.getAlterMessage();
-    int count = data_020b6144.count;
+    int count = param::AlterMessage::size_;
     for (int i = 0; i < count; i++)
     {
         if (charaNo == msg[i].obj)

@@ -1110,3 +1110,4 @@ gTownMenu_MAGIC_ROOT kind:bss addr:0x02188ba8
 gTownMenu_OPERATION_ROOT kind:bss addr:0x02188d3c
 gTownMenu_OPERATION_EQUIP kind:bss addr:0x02188f30
 gTownMenu_OPERATION_SETTING kind:bss addr:0x0218912c
+module_padding_ov016_ctor_0217f824 kind:data(byte[4]) addr:0x0217f824

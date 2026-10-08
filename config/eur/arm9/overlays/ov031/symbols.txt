@@ -10,3 +10,5 @@ _ZN23MaterielMenu_MEDAL_KING11menuExecuteEv kind:function(arm,size=0x4) addr:0x0
 _ZTV23MaterielMenu_MEDAL_KING kind:data(byte[28]) addr:0x02189740
 _ZN23MaterielMenu_MEDAL_KING12rewardCount_E kind:data(byte[44]) addr:0x0218975c
 _ZN23MaterielMenu_MEDAL_KING11rewardItem_E kind:data(byte[44]) addr:0x02189788
+module_padding_ov031_ctor_02189728 kind:data(byte[4]) addr:0x02189728
+module_padding_ov031_data_021897b4 kind:data(byte[12]) addr:0x021897b4

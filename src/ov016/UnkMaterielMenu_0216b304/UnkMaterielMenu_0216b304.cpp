@@ -12,6 +12,7 @@
 #include "main/dss/Random.hpp"
 #include "ov016/MenuTemplate/MenuTemplate_materiel.hpp"
 #include "ov016/UnkMaterielMenuDraw/UnkMaterielMenuDraw_0216fb14.hpp"
+#include "main/menu/MenuTemplate_Common.hpp"
 
 THUMB void UnkMaterielMenu_0216b304::menuSetup()
 {
@@ -43,7 +44,7 @@ THUMB void UnkMaterielMenu_0216b304::menuExecute()
     } else {
         count = haveItem->getCount();
     }
-    func_0201e6c4(&menuItem_, count, activeItem_);
+    MenuTemplate_Common::COMMON_ITEM_ICON32_2x3(&menuItem_, count, activeItem_);
     MenuTemplate_materiel::MATERIEL_CANCEL(&cancelItem_);
 }
 

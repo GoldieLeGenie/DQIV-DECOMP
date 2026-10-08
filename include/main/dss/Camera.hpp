@@ -60,13 +60,8 @@ struct UnkCamera : dss::Camera {
 
 extern short data_020c4158[4];
 
-extern "C" {
-    int func_02081254(void);
-    void func_02049984(dss::Camera* camera);
-}
 
-extern int data_020c4160[][2];
-extern short data_020c39c4[6];
+extern int data_020c4160[40][2];
 
 namespace dss {
     struct DualCameraBase {

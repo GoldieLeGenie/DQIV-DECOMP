@@ -20,10 +20,10 @@ ARM void ScriptParam::setup(void* addr)
 
 ARM void ScriptParam::setup()
 {
-    tree_ = (char*)func_0207f8dc(dataObject_.getAddr(), 0);
-    offset_ = (int*)func_0207f8dc(dataObject_.getAddr(), 1);
-    command_ = (unsigned char*)func_0207f8dc(dataObject_.getAddr(), 2);
-    count_ = func_0207f8cc(dataObject_.getAddr(), 0);
+    tree_ = (char*)unkfunc_0207f8dc(dataObject_.getAddr(), 0);
+    offset_ = (int*)unkfunc_0207f8dc(dataObject_.getAddr(), 1);
+    command_ = (unsigned char*)unkfunc_0207f8dc(dataObject_.getAddr(), 2);
+    count_ = unkfunc_0207f8cc(dataObject_.getAddr(), 0);
     char level = -1;
     scriptTree_.clear();
     scriptTree_.setRoot(level);

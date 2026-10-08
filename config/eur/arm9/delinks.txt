@@ -71,7 +71,7 @@ src/main/sound/SoundManager.cpp:
     complete
     .text start:0x0202692c end:0x02026d38
     .data start:0x020be6f4 end:0x020be6f8
-    .bss start:0x020ed268 end:0x020ed280
+    .bss start:0x020ed268 end:0x020ed284
 
 src/main/encount/Encount.cpp:
     complete
@@ -79,6 +79,14 @@ src/main/encount/Encount.cpp:
     .rodata start:0x0208c9cc end:0x0208c9ec
     .data start:0x020bc194 end:0x020bc19c
     .bss start:0x020c74a8 end:0x020c7658
+
+src/main/global/UnkGlobalData_0208c9ec.cpp:
+    complete
+    .rodata start:0x0208c9ec end:0x0208c9fc
+
+src/main/param/ItemDataHeader.cpp:
+    complete
+    .rodata start:0x0208c9fc end:0x0208ca04
 
 src/main/encount/EncountParam.cpp:
     complete
@@ -94,9 +102,71 @@ src/main/dss/Random.cpp:
     .text start:0x02080cec end:0x02080d80
     .bss start:0x0211a7c4 end:0x0211a7d0
 
+src/main/dss/UnkOverlaySlot.cpp:
+    complete
+    .text start:0x02087528 end:0x020875b8
+
+src/main/dss/Utf8Iterator.cpp:
+    complete
+    .text start:0x020875b8 end:0x02087bd0
+    .data start:0x020c451c end:0x020c455c
+
+src/main/dss/UnkTextConvert.cpp:
+    complete
+    .text start:0x02087bd0 end:0x02088258
+    .data start:0x020c455c end:0x020c4974
+    .bss start:0x0211fd34 end:0x02120544
+
+src/main/dss/UnkMessageFind.cpp:
+    complete
+    .text start:0x02088484 end:0x02088544
+    .data start:0x020c4974 end:0x020c497c
+    .bss start:0x02120544 end:0x02120548
+
+src/main/dss/UnkFont.cpp:
+    complete
+    .text start:0x02088544 end:0x020885f8
+
+src/main/dss/UnkMatrix43.cpp:
+    complete
+    .text start:0x020885f8 end:0x02088740
+
+src/main/dss/UnkHeapLog.cpp:
+    complete
+    .text start:0x02089214 end:0x02089414
+    .data start:0x020c4988 end:0x020c499c
+    .bss start:0x02120548 end:0x02120f90
+
+src/main/dss/UnkSleep.cpp:
+    complete
+    .text start:0x02089414 end:0x02089580
+    .bss start:0x02120f90 end:0x02120fb4
+
+src/main/dss/UnkArrayWarning.cpp:
+    complete
+    .text start:0x02089580 end:0x02089678
+    .data start:0x020c499c end:0x020c49bc
+    .bss start:0x02120fb4 end:0x02121078
+
+src/main/debug/UnkBattleTest.cpp:
+    complete
+    .text start:0x02089ae4 end:0x02089ff4
+    .init start:0x0208c81c end:0x0208c830
+    .ctor start:0x020bb4c8 end:0x020bb4cc
+    .data start:0x020c49c0 end:0x020c49f0
+    .bss start:0x02121094 end:0x021210dc
+
+src/main/dss/UnkDssMath.cpp:
+    complete
+    .text start:0x02080d80 end:0x02080dd8
+    .init start:0x0208c59c end:0x0208c61c
+    .ctor start:0x020bb4a4 end:0x020bb4a8
+    .data start:0x020c40d8 end:0x020c40f4
+
 src/main/cmn/CommonCalculate.cpp:
     complete
     .text start:0x02031fc0 end:0x02032588
+    .rodata start:0x020b5fa8 end:0x020b5fbc
     .data start:0x020becd8 end:0x020bece8
 
 src/main/script/ScriptSystem.cpp:
@@ -172,6 +242,10 @@ src/main/dss/ScreenPosition.cpp:
     .ctor start:0x020bb45c end:0x020bb460
     .bss start:0x0210b3f8 end:0x0210baf8
 
+src/main/dss/UnkConvertDate.cpp:
+    complete
+    .bss start:0x0210baf8 end:0x0210bb10
+
 src/main/dss/CsvData.cpp:
     complete
     .text start:0x020571c4 end:0x020573c4
@@ -232,6 +306,10 @@ src/main/data/DataObject.cpp:
     .data start:0x020c39a4 end:0x020c39c4
     .bss start:0x0210bb10 end:0x0210bb14
 
+src/main/object/UnkData_020b62c0.cpp:
+    complete
+    .rodata start:0x020b62c0 end:0x020b62c8
+
 src/main/object/DSSAObject.cpp:
     complete
     .text start:0x02058c44 end:0x0205a02c
@@ -260,12 +338,22 @@ src/main/object/ModelObjectWithCamera.cpp:
 src/main/dss/DualCamera.cpp:
     complete
     .text start:0x02057578 end:0x02057b88
-    .data start:0x020c39f8 end:0x020c3a18
+    .init start:0x0208c2a0 end:0x0208c30c
+    .ctor start:0x020bb460 end:0x020bb464
+    .data start:0x020c39c4 end:0x020c3a18
+
+src/main/dss/UnkCamera.cpp:
+    complete
+    .text start:0x02057b88 end:0x02057cdc
+    .init start:0x0208c30c end:0x0208c384
+    .ctor start:0x020bb464 end:0x020bb468
+    .data start:0x020c3a18 end:0x020c3a5c
+    .bss start:0x0210bb14 end:0x0210bb78
 
 src/main/dss/Camera.cpp:
     complete
     .text start:0x02082c10 end:0x0208313c
-    .data start:0x020c42a0 end:0x020c42b0
+    .data start:0x020c4158 end:0x020c42b0
 
 src/main/menu/MenuAPI.cpp:
     complete
@@ -295,7 +383,7 @@ src/main/status/ExcelParam.cpp:
     .init start:0x0208a838 end:0x0208a858
     .ctor start:0x020bb384 end:0x020bb388
     .text start:0x0200d218 end:0x0200d3c8
-    .bss  start:0x020c79ac end:0x020c7a7c
+    .bss start:0x020c79ac end:0x020c7a7c
 
 src/main/status/GameFlag.cpp:
     complete
@@ -327,7 +415,7 @@ src/main/status/BattleHistory.cpp:
     .init start:0x0208ad08 end:0x0208ad28
     .ctor start:0x020bb3c4 end:0x020bb3c8
     .text start:0x02022db0 end:0x020231c8
-    .bss  start:0x020ecd30 end:0x020ecdb4
+    .bss start:0x020ecd30 end:0x020ecdb4
 
 src/main/status/BasePartyStatus.cpp:
     complete
@@ -376,6 +464,8 @@ src/main/status/Action.cpp:
 src/main/status/HaveStatusInfo.cpp:
     complete
     .text start:0x02011a9c end:0x02013d00
+    .init start:0x0208a914 end:0x0208a920
+    .ctor start:0x020bb394 end:0x020bb398
     .bss start:0x020d06b0 end:0x020d06b4
 
 src/main/status/StatusChange.cpp:
@@ -398,7 +488,7 @@ src/main/status/StoryStatus.cpp:
 
 src/main/status/BaseActionMessage.cpp:
     complete
-    .text start:0x0202d018 end:0x0202e0c4
+    .text start:0x0202d014 end:0x0202e0c4
     .bss start:0x020eecc0 end:0x020eeccc
 
 src/main/status/base_action.cpp:
@@ -424,6 +514,15 @@ src/main/window/GlobalMap.cpp:
     .text start:0x020336d8 end:0x02033d14
     .data start:0x020bed00 end:0x020bed84
 
+src/main/param/EffectParam.cpp:
+    complete
+    .text start:0x02033d14 end:0x0203475c
+    .init start:0x0208b33c end:0x0208b35c
+    .rodata start:0x020b610c end:0x020b6114
+    .ctor start:0x020bb404 end:0x020bb408
+    .data start:0x020bed84 end:0x020bf360
+    .bss start:0x020ef7ac end:0x020ef7c8
+
 src/main/status/UseActionParam.cpp:
     complete
     .text start:0x0202742c end:0x020274c4
@@ -439,14 +538,16 @@ src/main/status/StageStatus.cpp:
     .ctor start:0x020bb3a4 end:0x020bb3a8
     .text start:0x0201c294 end:0x0201d460
     .data start:0x020bdb80 end:0x020bdc70
-    .bss  start:0x020d08d0 end:0x020d0bb4
+    .bss start:0x020d08d0 end:0x020d0bb4
 
 src/main/status/HaveBattleStatus.cpp:
     complete
     .text start:0x0201ad3c end:0x0201c294
+    .init start:0x0208a970 end:0x0208a98c
+    .ctor start:0x020bb3a0 end:0x020bb3a4
     .rodata start:0x020b4d68 end:0x020b4f8c
     .data start:0x020bdb08 end:0x020bdb80
-    .bss  start:0x020d0894 end:0x020d08d0
+    .bss start:0x020d0894 end:0x020d08d0
 
 src/main/global/Global.cpp:
     complete
@@ -455,6 +556,10 @@ src/main/global/Global.cpp:
     .text start:0x0200b82c end:0x0200bf98
     .data start:0x020bc258 end:0x020bc2c0
     .bss start:0x020c7658 end:0x020c7768
+
+src/main/global/UnkGlobalData_020bc2c0.cpp:
+    complete
+    .data start:0x020bc2c0 end:0x020bc2c8
 
 src/main/status/ActionDefence.cpp:
     complete
@@ -473,7 +578,9 @@ src/main/status/DQ4HaveEquipment.cpp:
 src/main/status/ShopList.cpp:
     complete
     .text start:0x0201d4dc end:0x0201d844
-    .bss  start:0x020d0bcc end:0x020d0bd8
+    .init start:0x0208a9cc end:0x0208a9ec
+    .ctor start:0x020bb3ac end:0x020bb3b0
+    .bss start:0x020d0bcc end:0x020d0e98
     .data start:0x020bdc70 end:0x020bdc8c
 
 src/main/status/OptionStatus.cpp:
@@ -481,7 +588,7 @@ src/main/status/OptionStatus.cpp:
     .init start:0x0208a920 end:0x0208a940
     .ctor start:0x020bb398 end:0x020bb39c
     .text start:0x02013d00 end:0x02013d9c
-    .bss  start:0x020d06b4 end:0x020d06c8
+    .bss start:0x020d06b4 end:0x020d06c8
 
 src/main/status/CharacterStatus.cpp:
     complete 
@@ -503,6 +610,87 @@ src/main/profile/Profile.cpp:
     complete
     .text start:0x02030da8 end:0x02030f24
 
+src/main/menu/UnkMenuSpriteDisplay.cpp:
+    complete
+    .text start:0x0204d0f4 end:0x0204d174
+    .data start:0x020c1e24 end:0x020c1e3c
+
+src/main/menu/MessageWindow.cpp:
+    complete
+    .text start:0x0204d174 end:0x0204e070
+    .data start:0x020c1e3c end:0x020c2154
+
+src/main/menu/UnkMenuTextDisplay.cpp:
+    complete
+    .text start:0x0204e070 end:0x0204e6e4
+    .data start:0x020c2154 end:0x020c216c
+
+src/main/menu/UnkMenuDisplayManager.cpp:
+    complete
+    .text start:0x0204e6e4 end:0x0204ecc0
+    .init start:0x0208c0ac end:0x0208c138
+    .ctor start:0x020bb44c end:0x020bb450
+    .bss start:0x020f530c end:0x020facb8
+
+src/main/menu/UnkMenuFrameDisplay.cpp:
+    complete
+    .text start:0x0204ecc0 end:0x0204ee30
+    .data start:0x020c216c end:0x020c2184
+
+src/main/menu/UnkMenuFrameQueue.cpp:
+    complete
+    .text start:0x0204ee30 end:0x0204f198
+
+src/main/menu/UnkMenuDisplay.cpp:
+    complete
+    .text start:0x0204f198 end:0x0204f294
+    .data start:0x020c2184 end:0x020c219c
+
+src/main/menu/UnkMenuDummyDisplay.cpp:
+    complete
+    .text start:0x0204f294 end:0x0204f2c8
+    .data start:0x020c219c end:0x020c21b4
+
+src/main/menu/UnkMenuFaceDisplay.cpp:
+    complete
+    .text start:0x0204f2c8 end:0x0204f5fc
+    .data start:0x020c21b4 end:0x020c2238
+
+src/main/menu/UnkMenuWindowFrame.cpp:
+    complete
+    .text start:0x0204f5fc end:0x0204fe2c
+    .data start:0x020c2238 end:0x020c2250
+
+src/main/menu/UnkMenuBg.cpp:
+    complete
+    .text start:0x0204fe2c end:0x02050614
+    .init start:0x0208c138 end:0x0208c148
+    .ctor start:0x020bb450 end:0x020bb454
+    .bss start:0x020facb8 end:0x021098a4
+
+src/main/menu/UnkMenuBgDraw.cpp:
+    complete
+    .text start:0x02050614 end:0x02050e20
+    .data start:0x020c2250 end:0x020c22e4
+    .bss start:0x021098a4 end:0x021098bc
+
+src/main/menu/UnkMenuPartsDraw.cpp:
+    complete
+    .text start:0x02050e20 end:0x02051740
+    .bss start:0x021098bc end:0x021098c8
+
+src/main/menu/UnkMenuIconData.cpp:
+    complete
+    .text start:0x02051740 end:0x020518f8
+    .init start:0x0208c148 end:0x0208c1f8
+    .ctor start:0x020bb454 end:0x020bb458
+    .data start:0x020c22e4 end:0x020c23d0
+    .bss start:0x021098c8 end:0x02109990
+
+src/main/menu/MenuItem.cpp:
+    complete
+    .text start:0x020518f8 end:0x02052130
+
 src/main/menu/MenuManager.cpp:
     complete
     .text start:0x02052130 end:0x02052380
@@ -517,6 +705,10 @@ src/main/btl/MonsterData.cpp:
     complete
     .text start:0x02035348 end:0x02035364
     .data start:0x020bf3c8 end:0x020c04f4
+
+src/main/btl/MonsterTaiData.cpp:
+    complete
+    .data start:0x020c04f4 end:0x020c1110
 
 src/main/text/TextHook.cpp:
     complete
@@ -595,6 +787,11 @@ src/main/menu/MenuSubManager.cpp:
     complete
     .text start:0x020526a0 end:0x020527f0
 
+src/main/menu/UnkMenuYesNoDisplay.cpp:
+    complete
+    .text start:0x020527f0 end:0x02052aac
+    .data start:0x020c2454 end:0x020c2470
+
 src/main/menu/MenuBase.cpp:
     complete
     .text start:0x02052380 end:0x02052424
@@ -631,42 +828,127 @@ src/main/profile/ProfileDeliver.cpp:
     .data start:0x020c13a0 end:0x020c13a8
 
 src/main/param/Param.cpp:
-    .rodata start:0x0208eb00 end:0x020919dc
+    complete
+    .rodata start:0x0208ca10 end:0x020b4d5c
 
 src/main/param/MonsterMap.cpp:
     complete
     .text start:0x0200c8b0 end:0x0200cbfc
+    .init start:0x0208a638 end:0x0208a658
+    .ctor start:0x020bb344 end:0x020bb348
+    .bss start:0x020c77ec end:0x020c7808
+
+src/main/param/UnkParam_020c7814.cpp:
+    complete
+    .init start:0x0208a658 end:0x0208a678
+    .ctor start:0x020bb348 end:0x020bb34c
+    .bss start:0x020c7808 end:0x020c7824
 
 src/main/param/Event.cpp:
     complete
     .text start:0x0200cbfc end:0x0200cc64
     .data start:0x020bc584 end:0x020bc614
+    .init start:0x0208a678 end:0x0208a698
+    .ctor start:0x020bb34c end:0x020bb350
+    .bss start:0x020c7824 end:0x020c7840
 
 src/main/param/ShopDataFirst.cpp:
     complete
     .text start:0x0200cc64 end:0x0200ce20
+    .init start:0x0208a698 end:0x0208a6b8
+    .ctor start:0x020bb350 end:0x020bb354
+    .bss start:0x020c7840 end:0x020c785c
 
 src/main/param/ShopDataSecond.cpp:
     complete
     .text start:0x0200ce20 end:0x0200cf24
+    .init start:0x0208a6b8 end:0x0208a6d8
+    .ctor start:0x020bb354 end:0x020bb358
+    .bss start:0x020c785c end:0x020c7878
+
+src/main/param/UnkParam_020c7884.cpp:
+    complete
+    .init start:0x0208a6d8 end:0x0208a6f8
+    .ctor start:0x020bb358 end:0x020bb35c
+    .bss start:0x020c7878 end:0x020c7894
+
+src/main/param/UnkParam_020c78a0.cpp:
+    complete
+    .init start:0x0208a6f8 end:0x0208a718
+    .ctor start:0x020bb35c end:0x020bb360
+    .bss start:0x020c7894 end:0x020c78b0
+
+src/main/param/UnkParam_020c78bc.cpp:
+    complete
+    .init start:0x0208a718 end:0x0208a738
+    .ctor start:0x020bb360 end:0x020bb364
+    .bss start:0x020c78b0 end:0x020c78cc
+
+src/main/param/UnkParam_020c78d8.cpp:
+    complete
+    .init start:0x0208a738 end:0x0208a758
+    .ctor start:0x020bb364 end:0x020bb368
+    .bss start:0x020c78cc end:0x020c78e8
+
+src/main/param/UnkParam_020c78f4.cpp:
+    complete
+    .init start:0x0208a758 end:0x0208a778
+    .ctor start:0x020bb368 end:0x020bb36c
+    .bss start:0x020c78e8 end:0x020c7904
+
+src/main/param/UnkParam_020c7910.cpp:
+    complete
+    .init start:0x0208a778 end:0x0208a798
+    .ctor start:0x020bb36c end:0x020bb370
+    .bss start:0x020c7904 end:0x020c7920
+
+src/main/param/UnkParam_020c792c.cpp:
+    complete
+    .init start:0x0208a798 end:0x0208a7b8
+    .ctor start:0x020bb370 end:0x020bb374
+    .bss start:0x020c7920 end:0x020c793c
+
+src/main/param/UnkParam_020c7948.cpp:
+    complete
+    .init start:0x0208a7b8 end:0x0208a7d8
+    .ctor start:0x020bb374 end:0x020bb378
+    .bss start:0x020c793c end:0x020c7958
+
+src/main/param/CommonList.cpp:
+    complete
+    .init start:0x0208a7d8 end:0x0208a7f8
+    .ctor start:0x020bb378 end:0x020bb37c
+    .bss start:0x020c7958 end:0x020c7974
 
 src/main/param/ColorCorrect.cpp:
     complete
     .text start:0x0200c5d8 end:0x0200c8b0
+    .init start:0x0208a618 end:0x0208a638
+    .ctor start:0x020bb340 end:0x020bb344
+    .bss start:0x020c77d0 end:0x020c77ec
 
 src/main/param/Fukuro.cpp:
     complete
     .text start:0x0200cf24 end:0x0200cf60
     .data start:0x020bc614 end:0x020bc638
+    .init start:0x0208a7f8 end:0x0208a818
+    .ctor start:0x020bb37c end:0x020bb380
+    .bss start:0x020c7974 end:0x020c7990
 
 src/main/param/BattleMap.cpp:
     complete
     .text start:0x0200cf60 end:0x0200d218
     .data start:0x020bc638 end:0x020bc654
+    .init start:0x0208a818 end:0x0208a838
+    .ctor start:0x020bb380 end:0x020bb384
+    .bss start:0x020c7990 end:0x020c79ac
 
 src/main/param/FloorParam.cpp:
     complete
     .text start:0x0200c0a4 end:0x0200c5d8
+    .init start:0x0208a5f8 end:0x0208a618
+    .ctor start:0x020bb33c end:0x020bb340
+    .bss start:0x020c77b4 end:0x020c77d0
 
 src/main/global/StageLink.cpp:
     complete
@@ -680,6 +962,9 @@ src/main/param/MonsterAnim.cpp:
     complete
     .text start:0x0200c044 end:0x0200c0a4
     .data start:0x020bc2f0 end:0x020bc584
+    .init start:0x0208a5d8 end:0x0208a5f8
+    .ctor start:0x020bb338 end:0x020bb33c
+    .bss start:0x020c7798 end:0x020c77b4
 
 src/main/cmn/CommonEffectData.cpp:
     complete
@@ -693,8 +978,11 @@ src/main/cmn/CommonCounterInfo.cpp:
 
 src/main/cmn/ExtraMapLink.cpp:
     complete
-    .text start:0x020274c4 end:0x02029094
+    .text start:0x020274c4 end:0x0202916c
+    .init start:0x0208af58 end:0x0208afe0
+    .ctor start:0x020bb3d4 end:0x020bb3d8
     .data start:0x020be8a8 end:0x020be968
+    .bss start:0x020ed28c end:0x020edb84
 
 src/main/cmn/CommonWalkDamage.cpp:
     complete
@@ -718,7 +1006,7 @@ src/main/cmn/CommonPartyInfo.cpp:
     .init start:0x0208b328 end:0x0208b33c
     .ctor start:0x020bb400 end:0x020bb404
     .text start:0x02032588 end:0x02032cec
-    .bss  start:0x020eed50 end:0x020ef6f4
+    .bss start:0x020eed50 end:0x020ef6f4
     .data start:0x020bece8 end:0x020becf0
 
 src/main/cmn/NonBattleActionManager.cpp:
@@ -727,10 +1015,16 @@ src/main/cmn/NonBattleActionManager.cpp:
     .data start:0x020c1328 end:0x020c1330
     .bss start:0x020ef9c8 end:0x020ef9d4
 
+src/main/menu/UnkMenuOverlay.cpp:
+    complete
+    .text start:0x02039460 end:0x020395c8
+    .init start:0x0208b460 end:0x0208b48c
+    .ctor start:0x020bb414 end:0x020bb418
+    .bss start:0x020efc58 end:0x020efc6c
+
 src/main/cmn/HengeNoTsueManager.cpp:
     complete
     .text start:0x020395c8 end:0x0203972c
-    .rodata start:0x020b6144 end:0x020b614c
     .data start:0x020c13a8 end:0x020c13c0
     .bss start:0x020efc6c end:0x020efc88
 
@@ -757,15 +1051,58 @@ src/main/status/UseActionMacro.cpp:
     complete
     .text start:0x02034974 end:0x02035098
 
+src/main/param/AlterMessage.cpp:
+    complete
+    .init start:0x0208b48c end:0x0208b4ac
+    .ctor start:0x020bb418 end:0x020bb41c
+    .rodata start:0x020b6144 end:0x020b614c
+    .bss start:0x020efc88 end:0x020efca4
+
+src/main/param/CharaVoice.cpp:
+    complete
+    .init start:0x0208b4ac end:0x0208b4cc
+    .ctor start:0x020bb41c end:0x020bb420
+    .rodata start:0x020b614c end:0x020b6154
+    .bss start:0x020efca4 end:0x020efcc0
+
 src/main/cmn/TalkSoundManager.cpp:
     complete
     .text start:0x02039750 end:0x02039b70
-    .rodata start:0x020b614c end:0x020b6154
     .bss start:0x020efcc0 end:0x020efd50
+
+src/main/param/MirrorMessage.cpp:
+    complete
+    .init start:0x0208b4cc end:0x0208b4ec
+    .rodata start:0x020b6154 end:0x020b615c
+    .ctor start:0x020bb420 end:0x020bb424
+    .bss start:0x020efd50 end:0x020efd6c
+
+src/main/param/MapChurch.cpp:
+    complete
+    .init start:0x0208b4ec end:0x0208b50c
+    .rodata start:0x020b615c end:0x020b6164
+    .ctor start:0x020bb424 end:0x020bb428
+    .bss start:0x020efd6c end:0x020efd88
+
+src/main/part/MPExchangePart.cpp:
+    complete
+    .text start:0x02039b70 end:0x0203a344
+    .init start:0x0208b50c end:0x0208b520
+    .ctor start:0x020bb428 end:0x020bb42c
+    .data start:0x020c13e8 end:0x020c1428
+    .bss start:0x020efd88 end:0x020f006c
+
+src/main/cmn/UnkEnvoyManager.cpp:
+    complete
+    .text start:0x0203a344 end:0x0203ab40
+    .init start:0x0208b520 end:0x0208b540
+    .ctor start:0x020bb42c end:0x020bb430
+    .bss start:0x020f006c end:0x020f17a8
 
 src/main/cmn/WorldLocation.cpp:
     complete
-    .text start:0x0203ab9c end:0x0203af8c
+    .text start:0x0203ab40 end:0x0203af8c
+    .bss start:0x020f17a8 end:0x020f17bc
 
 src/main/menu/MaterielMenu_NameEdit.cpp:
     complete
@@ -779,6 +1116,15 @@ src/main/cmn/PlayerManager.cpp:
     .text start:0x02030fa8 end:0x020310d0
     .data start:0x020becb0 end:0x020becc8
     .bss start:0x020eed20 end:0x020eed2c
+
+src/main/cmn/ActionBase.cpp:
+    complete
+    .text start:0x020310d0 end:0x02031fc0
+    .rodata start:0x020b5f78 end:0x020b5fa8
+    .init start:0x0208b2c4 end:0x0208b328
+    .ctor start:0x020bb3fc end:0x020bb400
+    .data start:0x020becc8 end:0x020becd8
+    .bss start:0x020eed2c end:0x020eed50
 
 src/main/cmn/PlayerAction.cpp:
     complete
@@ -827,10 +1173,319 @@ src/main/window/TalkControl.cpp:
     .text start:0x02089ff4 end:0x0208a104
     .data start:0x020c49f0 end:0x020c4a04
 
+src/main/dss/UnkLanguage.cpp:
+    complete
+    .text start:0x0208a104 end:0x0208a1a8
+    .data start:0x020c4a04 end:0x020c4a08
+
+src/main/dss/UnkMemory.cpp:
+    complete
+    .text start:0x0207f4a4 end:0x0207f900
+    .init start:0x0208c550 end:0x0208c564
+    .ctor start:0x020bb49c end:0x020bb4a0
+    .data start:0x020c40ac end:0x020c40d8
+    .bss start:0x0211a5d4 end:0x0211a664
+
+src/main/dss/UnkBgText.cpp:
+    complete
+    .text start:0x0207f900 end:0x02080110
+    .init start:0x0208c564 end:0x0208c59c
+    .ctor start:0x020bb4a0 end:0x020bb4a4
+    .bss start:0x0211a664 end:0x0211a7c4
+
+src/main/dss/UnkBgBuffer.cpp:
+    complete
+    .text start:0x02080110 end:0x02080cec
+
+libs/NitroSDK/src/os/os_profile.c:
+    complete
+    .text start:0x02079d94 end:0x02079d9c
+
+libs/NitroSDK/src/os/os_reset.c:
+    complete
+    .text start:0x02079d9c end:0x02079e24
+    .bss start:0x02114500 end:0x02114504
+
+libs/NitroSDK/src/os/os_ownerinfo.c:
+    complete
+    .text start:0x02079e24 end:0x02079ec4
+
+libs/NitroSDK/src/os/os_vramexclusive.c:
+    complete
+    .text start:0x02079ec4 end:0x02079f88
+    .bss start:0x02114504 end:0x0211451c
+
+libs/NitroSDK/src/os/os_entropy.c:
+    complete
+    .text start:0x02079f88 end:0x0207a058
+
+libs/NitroSDK/src/os/os_terminate.c:
+    complete
+    .text start:0x0207a058 end:0x0207a074
+
+libs/NitroSDK/src/pxi/pxi_init.c:
+    complete
+    .text start:0x0207a074 end:0x0207a080
+
+libs/NitroSDK/src/pxi/pxi_fifo.c:
+    complete
+    .text start:0x0207a080 end:0x0207a390
+    .bss start:0x0211451c end:0x021145a0
+
+libs/NitroSDK/src/snd/snd_interface.c:
+    complete
+    .text start:0x0207a390 end:0x0207a6e4
+
+libs/NitroSDK/src/snd/snd_main.c:
+    complete
+    .text start:0x0207a6e4 end:0x0207a744
+    .bss start:0x021145a0 end:0x021145bc
+
+libs/NitroSDK/src/snd/snd_command.c:
+    complete
+    .text start:0x0207a744 end:0x0207ae54
+    .bss start:0x021145c0 end:0x021160a0
+
+libs/NitroSDK/src/snd/snd_alarm.c:
+    complete
+    .text start:0x0207ae54 end:0x0207af18
+    .bss start:0x021160a0 end:0x02116100
+
+libs/NitroSDK/src/snd/snd_work.c:
+    complete
+    .text start:0x0207af18 end:0x0207b024
+    .bss start:0x02116100 end:0x02116104
+
+libs/NitroSDK/src/snd/snd_util.c:
+    complete
+    .text start:0x0207b024 end:0x0207b094
+    .rodata start:0x020ba7ac end:0x020bb280
+
+libs/NitroSDK/src/snd/snd_bank.c:
+    complete
+    .text start:0x0207b094 end:0x0207b488
+
+libs/NitroSDK/src/spi/tp.c:
+    complete
+    .text start:0x0207b488 end:0x0207b780
+    .bss start:0x02116104 end:0x02116140
+
+libs/NitroSDK/src/spi/pm.c:
+    complete
+    .text start:0x0207b780 end:0x0207c23c
+    .bss start:0x02116140 end:0x021161c0
+
+libs/NitroSDK/src/std/std_string.c:
+    complete
+    .text start:0x0207c23c end:0x0207c3f0
+
+libs/NitroSDK/src/wm/wm_system.c:
+    complete
+    .text start:0x0207c3f0 end:0x0207d194
+    .bss start:0x021161c0 end:0x02116c60
+
+libs/NitroSDK/src/wm/wm_init.c:
+    complete
+    .text start:0x0207d194 end:0x0207d268
+
+libs/NitroSDK/src/wm/wm_ap.c:
+    complete
+    .text start:0x0207d268 end:0x0207d440
+
+libs/NitroSDK/src/wm/wm_sta.c:
+    complete
+    .text start:0x0207d440 end:0x0207d720
+
+libs/NitroSDK/src/wm/wm_mp.c:
+    complete
+    .text start:0x0207d720 end:0x0207da94
+
+libs/NitroSDK/src/wm/wm_ds.c:
+    complete
+    .text start:0x0207da94 end:0x0207e63c
+
+libs/NitroSDK/src/wm/wm_wep.c:
+    complete
+    .text start:0x0207e63c end:0x0207e6b0
+
+libs/NitroSDK/src/wm/wm_etc.c:
+    complete
+    .text start:0x0207e6b0 end:0x0207e7e0
+    .bss start:0x02116c60 end:0x02116ce0
+
+src/main/dss/DssCore.cpp:
+    complete
+    .text start:0x0207e7e0 end:0x0207ed54
+    .init start:0x0208c528 end:0x0208c53c
+    .ctor start:0x020bb494 end:0x020bb498
+    .bss start:0x02116ce0 end:0x02116d40
+
+src/main/dss/UnkVramRequest.cpp:
+    complete
+    .text start:0x02082644 end:0x02082b18
+    .init start:0x0208c678 end:0x0208c68c
+    .ctor start:0x020bb4b0 end:0x020bb4b4
+    .bss start:0x0211c508 end:0x0211d310
+
+src/main/object/UnkModelAnimation.cpp:
+    complete
+    .text start:0x02082b18 end:0x02082c10
+
+src/main/dss/UnkDisplay.cpp:
+    complete
+    .text start:0x02080dd8 end:0x020819a8
+    .init start:0x0208c61c end:0x0208c630
+    .ctor start:0x020bb4a8 end:0x020bb4ac
+    .bss start:0x0211a7d0 end:0x0211c4c0
+
+src/main/dss/DisplayPlugin.cpp:
+    complete
+    .text start:0x020819a8 end:0x02082644
+    .init start:0x0208c630 end:0x0208c678
+    .ctor start:0x020bb4ac end:0x020bb4b0
+    .data start:0x020c40f4 end:0x020c4158
+    .bss start:0x0211c4c0 end:0x0211c508
+
+src/main/dss/Pad.cpp:
+    complete
+    .text start:0x0207ed54 end:0x0207f4a4
+    .init start:0x0208c53c end:0x0208c550
+    .ctor start:0x020bb498 end:0x020bb49c
+    .data start:0x020c4060 end:0x020c40ac
+    .bss start:0x02116d40 end:0x0211a5d4
+
+src/main/dss/UnkFog.cpp:
+    complete
+    .text start:0x0208313c end:0x02083344
+    .init start:0x0208c68c end:0x0208c6b8
+    .ctor start:0x020bb4b4 end:0x020bb4b8
+    .bss start:0x0211d310 end:0x0211d364
+
+src/main/dss/UnkModelMember.cpp:
+    complete
+    .text start:0x02083344 end:0x020835e8
+    .bss start:0x0211d364 end:0x0211d368
+
+src/main/dss/RenderObject.cpp:
+    complete
+    .text start:0x020835e8 end:0x02084ef0
+    .init start:0x0208c6b8 end:0x0208c7a4
+    .ctor start:0x020bb4b8 end:0x020bb4bc
+    .rodata start:0x020bb280 end:0x020bb2e0
+    .data start:0x020c42b0 end:0x020c44b4
+    .bss start:0x0211d368 end:0x0211d3e0
+
+src/main/dss/Render.cpp:
+    complete
+    .text start:0x02084ef0 end:0x02085370
+    .rodata start:0x020bb2e0 end:0x020bb2ec
+    .bss start:0x0211d3e0 end:0x0211d430
+
+src/main/object/UnkModelObjectBase.cpp:
+    complete
+    .text start:0x02085370 end:0x02085798
+    .data start:0x020c44b4 end:0x020c44cc
+
+src/main/dss/UnkPaletteEffect.cpp:
+    complete
+    .text start:0x02085798 end:0x02086194
+    .init start:0x0208c7a4 end:0x0208c7c4
+    .ctor start:0x020bb4bc end:0x020bb4c0
+    .data start:0x020c44cc end:0x020c4514
+    .bss start:0x0211d430 end:0x0211e444
+
+src/main/dss/UnkVramTransfer.cpp:
+    complete
+    .text start:0x02086194 end:0x0208646c
+    .init start:0x0208c7c4 end:0x0208c7f0
+    .ctor start:0x020bb4c0 end:0x020bb4c4
+    .bss start:0x0211e444 end:0x0211fc68
+
+src/main/sound/UnkSoundSystem.cpp:
+    complete
+    .text start:0x0208646c end:0x02086790
+    .init start:0x0208c7f0 end:0x0208c81c
+    .ctor start:0x020bb4c4 end:0x020bb4c8
+    .data start:0x020c4514 end:0x020c451c
+    .bss start:0x0211fc68 end:0x0211fd20
+
+src/main/dss/TextureObject.cpp:
+    complete
+    .text start:0x02086790 end:0x02086cb0
+
+src/main/dss/UnkCharacterPalette.cpp:
+    complete
+    .text start:0x02086cb0 end:0x02086de4
+
+src/main/dss/UnkSystemText.cpp:
+    complete
+    .text start:0x02086de4 end:0x020870fc
+    .rodata start:0x020bb2ec end:0x020bb30c
+    .bss start:0x0211fd20 end:0x0211fd34
+
 src/main/window/CommandWindow.cpp:
     complete
     .text start:0x0202a4b4 end:0x0202ac4c
     .data start:0x020bea5c end:0x020bea94
+
+src/main/effect/UnkEffectCamera.cpp:
+    complete
+    .text start:0x0202ac4c end:0x0202ace4
+    .rodata start:0x020b5d68 end:0x020b5d6c
+    .init start:0x0208b018 end:0x0208b06c
+    .ctor start:0x020bb3e0 end:0x020bb3e4
+    .data start:0x020bea94 end:0x020beaac
+    .bss start:0x020edbbc end:0x020edc40
+
+src/main/param/SplitMsg.cpp:
+    complete
+    .rodata start:0x020b5d6c end:0x020b5d74
+    .init start:0x0208b260 end:0x0208b280
+    .ctor start:0x020bb3ec end:0x020bb3f0
+    .bss start:0x020eec88 end:0x020eeca4
+
+src/main/effect/UnkScreenEffectManager.cpp:
+    complete
+    .text start:0x0202ace4 end:0x0202b038
+    .bss start:0x020edc40 end:0x020eddec
+
+src/main/effect/UnkScreenEffect.cpp:
+    complete
+    .text start:0x0202b038 end:0x0202b684
+    .init start:0x0208b06c end:0x0208b240
+    .ctor start:0x020bb3e4 end:0x020bb3e8
+    .data start:0x020beaac end:0x020bead4
+    .bss start:0x020eddec end:0x020ede60
+
+src/main/profile/SaveLoad.cpp:
+    complete
+    .text start:0x0202b684 end:0x0202c17c
+    .data start:0x020bead4 end:0x020beb5c
+    .bss start:0x020ede60 end:0x020ee188
+
+src/main/debug/UnkDebugDisplay.cpp:
+    complete
+    .text start:0x0202c17c end:0x0202c37c
+    .bss start:0x020ee188 end:0x020ee1c0
+
+src/main/effect/UnkScreenEffect_0202c678.cpp:
+    complete
+    .text start:0x0202c678 end:0x0202d014
+    .rodata start:0x020b5d74 end:0x020b5d98
+    .data start:0x020beb5c end:0x020beb98
+
+src/main/param/MapCamera.cpp:
+    complete
+    .rodata start:0x020b5d98 end:0x020b5da0
+    .init start:0x0208b280 end:0x0208b2a0
+    .ctor start:0x020bb3f0 end:0x020bb3f4
+    .bss start:0x020eeca4 end:0x020eecc0
+
+src/main/effect/UnkScreenEffect_0202ff7c.cpp:
+    complete
+    .text start:0x0202ff7c end:0x02030580
+    .rodata start:0x020b5da0 end:0x020b5dbc
+    .data start:0x020bebb0 end:0x020bebd8
 
 src/main/window/ImageMap.cpp:
     complete
@@ -847,6 +1502,24 @@ src/main/CameraControl/CameraControl.cpp:
     .text start:0x0201d974 end:0x0201e0b0
     .data start:0x020bdc8c end:0x020bdca8
     .bss start:0x020d103c end:0x020d1044
+
+src/main/global/UnkGlobalObjects_0201e0b0.cpp:
+    complete
+    .text start:0x0201e0b0 end:0x0201e194
+    .init start:0x0208aa3c end:0x0208ab88
+    .ctor start:0x020bb3b4 end:0x020bb3b8
+    .bss start:0x020d1044 end:0x020d2b90
+
+src/main/menu/UnkMenuCommonDraw_0201e194.cpp:
+    complete
+    .text start:0x0201e194 end:0x0201e684
+    .rodata start:0x020b4f8c end:0x020b4fd4
+    .data start:0x020bdca8 end:0x020bdf08
+
+src/main/menu/MenuTemplate_Common.cpp:
+    complete
+    .text start:0x0201e684 end:0x0201e6e0
+    .data start:0x020bdf08 end:0x020bdf64
 
 src/main/task/ExecTask.cpp:
     complete
@@ -887,20 +1560,51 @@ src/main/menu/TownMenu_PARTY_TALK.cpp:
     .rodata start:0x020b6114 end:0x020b6144
     .data start:0x020c1338 end:0x020c1354
 
+src/main/cmn/UnkImmigrantTown.cpp:
+    complete
+    .text start:0x02037ca4 end:0x020381d0
+    .bss start:0x020efba0 end:0x020efc54
+
 src/main/menu/TownMenu_MESSAGE.cpp:
     complete
-    .text start:0x02025754 end:0x02025bf4
-    .data start:0x020be258 end:0x020be288
+    .text start:0x02025754 end:0x02025bf8
+    .data start:0x020be244 end:0x020be288
+
+src/main/menu/UnkMenuInstance.cpp:
+    complete
+    .init start:0x0208aee4 end:0x0208af44
+    .ctor start:0x020bb3cc end:0x020bb3d0
+    .bss start:0x020ed068 end:0x020ed260
+
+src/main/menu/CommonMenu_APITEST.cpp:
+    complete
+    .text start:0x02025bf8 end:0x020267d4
+    .rodata start:0x020b5000 end:0x020b5d60
+    .data start:0x020be288 end:0x020be6b8
+    .bss start:0x020ed260 end:0x020ed268
 
 src/main/fld/FldStage.cpp:
     complete
     .text start:0x02047658 end:0x02048e10
     .rodata start:0x020b61e8 end:0x020b61f4
     .data start:0x020c1bd0 end:0x020c1bf4
-    .bss start:0x020f22a8 end:0x020f22ac
+    .bss start:0x020f22a8 end:0x020f22b0
+
+src/main/btl/UnkBattleMapList.cpp:
+    complete
+    .text start:0x02048e10 end:0x02049048
+
+src/main/object/BillboardCharacter.cpp:
+    complete
+    .text start:0x02049048 end:0x0204a1e4
+    .init start:0x0208b6d4 end:0x0208bf28
+    .ctor start:0x020bb43c end:0x020bb440
+    .data start:0x020c1bf4 end:0x020c1d48
+    .bss start:0x020f22b0 end:0x020f4e14
 
 src/main/object/DisplayCharacter.cpp:
-    .text start:0x0204a1e4 end:0x0204b160
+    complete
+    .text start:0x0204a1e4 end:0x0204b180
     .init start:0x0208bf28 end:0x0208c040
     .ctor start:0x020bb440 end:0x020bb444
     .data start:0x020c1d48 end:0x020c1da8
@@ -914,9 +1618,21 @@ src/main/object/SpriteCharacter.cpp:
     .data start:0x020c1da8 end:0x020c1e00
     .bss start:0x020f4e84 end:0x020f4ea8
 
+src/main/global/GlobalGamePart.cpp:
+    complete
+    .text start:0x0203ed64 end:0x0203f368
+    .init start:0x0208b598 end:0x0208b6d4
+    .ctor start:0x020bb438 end:0x020bb43c
+    .data start:0x020c1b7c end:0x020c1bcc
+    .bss start:0x020f20c4 end:0x020f227c
+
 src/main/fld/Coll.cpp:
     complete
     .text start:0x0203f368 end:0x020421bc
+
+src/main/fld/Coll2.cpp:
+    complete
+    .text start:0x02052aac end:0x02053afc
 
 src/main/fld/FLDObject.cpp:
     complete
@@ -1001,6 +1717,14 @@ src/main/part/GameStartPart.cpp:
     .data start:0x020be968 end:0x020be9a0
     .bss start:0x020edb84 end:0x020edb94
 
+src/main/param/EventFlag.cpp:
+    complete
+    .init start:0x0208aff8 end:0x0208b018
+    .rodata start:0x020b5d60 end:0x020b5d68
+    .ctor start:0x020bb3dc end:0x020bb3e0
+    .data start:0x020be9a0 end:0x020be9c8
+    .bss start:0x020edb94 end:0x020edbb0
+
 src/main/part/GameEndPart.cpp:
     complete
     .text start:0x0205d174 end:0x0205d308
@@ -1024,6 +1748,11 @@ src/main/part/IshikuroTestPart.cpp:
     .ctor start:0x020bb3d0 end:0x020bb3d4
     .data start:0x020be714 end:0x020be768
     .bss start:0x020ed284 end:0x020ed28c
+
+src/main/menu/TownMenu_TOWN.cpp:
+    complete
+    .text start:0x020270fc end:0x0202742c
+    .data start:0x020be768 end:0x020be8a8
 
 src/main/part/MenuPart.cpp:
     complete
@@ -1069,6 +1798,32 @@ src/main/btl/BattleScriptManager.cpp:
     .bss start:0x020eed00 end:0x020eed14
     .data start:0x020bebe8 end:0x020bec60
 
+libs/NitroSDK/src/init/secure_area.s:
+    complete
+    .text start:0x02000000 end:0x02000800
+
+libs/NitroSDK/src/init/crt0.c:
+    complete
+    .text start:0x02000800 end:0x02000ba0
+
+src/main/global/UnkGameApplication.cpp:
+    complete
+    .text start:0x02007ef0 end:0x02008878
+    .init start:0x0208a1a8 end:0x0208a2a0
+    .ctor start:0x020bb30c end:0x020bb310
+    .rodata start:0x0208c930 end:0x0208c960
+    .data start:0x020bb8fc end:0x020bbacc
+    .bss start:0x020c4f70 end:0x020c5098
+
+src/main/main.cpp:
+    complete
+    .text start:0x02000ba0 end:0x02000bc0
+
+libs/MSL/src/printf.c:
+    complete
+    .text start:0x02001160 end:0x02003294
+    .data start:0x020bb7e0 end:0x020bb820
+
 libs/MSL/src/buffer_io.c:
     complete
     .text start:0x02000dcc end:0x02000e88
@@ -1097,6 +1852,27 @@ libs/MSL/src/math/s_ldexp.c:
     complete
     .text start:0x020037b0 end:0x020039fc
 
+libs/MSL/src/ansi_fp.c:
+    complete
+    .text start:0x020039fc end:0x02004424
+    .data start:0x020bb820 end:0x020bb8f4
+
+libs/MSL/src/math_api.c:
+    complete
+    .text start:0x02004424 end:0x020044a8
+
+libs/Runtime/src/fp_emu.s:
+    complete
+    .text start:0x020044a8 end:0x02005e24
+
+libs/Runtime/src/ll_div.s:
+    complete
+    .text start:0x02005e24 end:0x0200641c
+
+libs/Runtime/src/runtime_init.c:
+    complete
+    .text start:0x0200641c end:0x02006420
+
 libs/Runtime/src/console_io.c:
     complete
     .text start:0x02006420 end:0x020064e4
@@ -1110,10 +1886,57 @@ libs/MSL/src/abort_exit_arm_eabi.c:
     .text start:0x02000bc0 end:0x02000d58
     .bss start:0x020c4a20 end:0x020c4b30
 
+libs/MSL/src/critical_regions.c:
+    complete
+    .bss start:0x020c4b30 end:0x020c4c50
+
+libs/MSL/src/ansi_files.c:
+    complete
+    .text start:0x02000d58 end:0x02000dc0
+    .data start:0x020bb4e0 end:0x020bb5c4
+    .bss start:0x020c4c50 end:0x020c4f50
+
+libs/MSL/src/arith.c:
+    complete
+    .text start:0x02000dc0 end:0x02000dcc
+
+libs/MSL/src/ctype.c:
+    complete
+    .rodata start:0x0208c830 end:0x0208c930
+
+libs/MSL/src/locale.c:
+    complete
+    .data start:0x020bb5c4 end:0x020bb7e0
+
 libs/MSL/src/signal.c:
     complete
     .text start:0x02003294 end:0x020033c4
     .bss start:0x020c4f50 end:0x020c4f6c
+
+libs/Runtime/src/ExceptionHandler.cpp:
+    complete
+    .text start:0x020065fc end:0x02007940
+
+libs/Runtime/src/cxxabi_alloc.cpp:
+    complete
+    .text start:0x020079b0 end:0x02007b18
+
+libs/Runtime/src/MWException.cpp:
+    complete
+    .text start:0x02007b18 end:0x02007b48
+    .data start:0x020bb8f4 end:0x020bb8fc
+
+libs/Runtime/src/ExceptionHandlerTS.cpp:
+    complete
+    .text start:0x02007b68 end:0x02007ee0
+
+libs/Runtime/src/__arm_eabi_init.c:
+    complete
+    .text start:0x02007ee0 end:0x02007eec
+
+libs/Runtime/src/startup_hook.c:
+    complete
+    .text start:0x02007eec end:0x02007ef0
 
 libs/Runtime/src/StaticInitializers.cpp:
     complete
@@ -1128,9 +1951,408 @@ libs/NitroSDK/src/os/init.c:
     complete
     .text start:0x02079230 end:0x02079298
 
+libs/NitroSDK/src/mi/mi_uncomp.c:
+    complete
+    .text start:0x02067b88 end:0x02067d60
+
+libs/NitroSDK/src/mi/mi_card_dma.c:
+    complete
+    .text start:0x02067d60 end:0x02067dd4
+
+libs/NitroSDK/src/mi/mi_init.c:
+    complete
+    .text start:0x02067dd4 end:0x02067dec
+
+libs/NitroSystem/src/fnd/fnd_list.c:
+    complete
+    .text start:0x02067dec end:0x02067fc4
+
+libs/NitroSystem/src/fnd/fnd_heapcommon.c:
+    complete
+    .text start:0x02067fc4 end:0x020680e8
+    .bss start:0x0210ced4 end:0x0210cee4
+
+libs/NitroSystem/src/fnd/fnd_expheap.c:
+    complete
+    .text start:0x020680e8 end:0x02068730
+
+libs/NitroSystem/src/fnd/fnd_frameheap.c:
+    complete
+    .text start:0x02068730 end:0x02068910
+
+libs/NitroSystem/src/fnd/fnd_unitheap.c:
+    complete
+    .text start:0x02068910 end:0x02068978
+
+libs/NitroSystem/src/fnd/fnd_allocator.c:
+    complete
+    .text start:0x02068978 end:0x02068a5c
+    .rodata start:0x020ba500 end:0x020ba520
+
+libs/NitroSystem/src/bin/bin_block.c:
+    complete
+    .text start:0x02068a5c end:0x02068aa4
+
+libs/NitroSystem/src/g2d/g2d_softsprite.c:
+    complete
+    .text start:0x02068aa4 end:0x02068f68
+    .bss start:0x0210cee4 end:0x0210cf28
+
+libs/NitroSystem/src/g2d/g2d_font.c:
+    complete
+    .text start:0x02068f68 end:0x020690f4
+    .rodata start:0x020ba520 end:0x020ba530
+
+libs/NitroSystem/src/g2d/g2d_charcanvas.c:
+    complete
+    .text start:0x020690f4 end:0x02069ee4
+    .rodata start:0x020ba530 end:0x020ba5c0
+
+libs/NitroSystem/src/g2d/g2d_fontres.c:
+    complete
+    .text start:0x02069ee4 end:0x0206a114
+
+libs/NitroSystem/src/g2d/g2d_bitreader.c:
+    complete
+    .text start:0x0206a114 end:0x0206a174
+
+libs/NitroSystem/src/g2d/g2d_splitchar.c:
+    complete
+    .text start:0x0206a174 end:0x0206a26c
+
+libs/NitroSystem/src/g3d/g3d_kernel.c:
+    complete
+    .text start:0x0206a26c end:0x0206a600
+
+libs/NitroSystem/src/g3d/g3d_binres.c:
+    complete
+    .text start:0x0206a600 end:0x0206ac78
+
+libs/NitroSystem/src/g3d/g3d_glbstate.c:
+    complete
+    .text start:0x0206ac78 end:0x0206b308
+    .bss start:0x0210cf28 end:0x0210d18c
+
+libs/NitroSystem/src/g3d/g3d_anmblend.c:
+    complete
+    .text start:0x0206b308 end:0x0206b720
+    .data start:0x020c3dc0 end:0x020c3e34
+
+libs/NitroSystem/src/g3d/g3d_render.c:
+    complete
+    .text start:0x0206b720 end:0x0206ba28
+    .data start:0x020c3e34 end:0x020c3e5c
+    .bss start:0x0210d18c end:0x0210fe90
+
+libs/NitroSystem/src/g3d/g3d_sbc.c:
+    complete
+    .text start:0x0206ba28 end:0x0206dcb0
+    .rodata start:0x020ba5c0 end:0x020ba604
+    .data start:0x020c3e5c end:0x020c3fdc
+
+libs/NitroSystem/src/g3d/g3d_gecom.c:
+    complete
+    .text start:0x0206dcb0 end:0x0206dfa4
+    .bss start:0x0210fe90 end:0x0210fe9c
+
+libs/NitroSystem/src/g3d/g3d_util.c:
+    complete
+    .text start:0x0206dfa4 end:0x0206e424
+
+libs/NitroSystem/src/g3d/g3d_mdl.c:
+    complete
+    .text start:0x0206e424 end:0x0206e664
+
+libs/NitroSystem/src/g3d/g3d_res_struct.c:
+    complete
+    .text start:0x0206e664 end:0x0206e9f8
+
+libs/NitroSystem/src/g3d/g3d_anm_jnt.c:
+    complete
+    .text start:0x0206e9f8 end:0x0206f6c4
+    .rodata start:0x020ba604 end:0x020ba628
+
+libs/NitroSystem/src/g3d/g3d_anm_jnt_rot.c:
+    complete
+    .text start:0x0206f6c4 end:0x0206ff6c
+
+libs/NitroSystem/src/g3d/g3d_anm_mat.c:
+    complete
+    .text start:0x0206ff6c end:0x02070324
+
+libs/NitroSystem/src/g3d/g3d_anm_texsrt.c:
+    complete
+    .text start:0x02070324 end:0x020706f0
+
+libs/NitroSystem/src/g3d/g3d_anm_texpat.c:
+    complete
+    .text start:0x020706f0 end:0x0207091c
+
+libs/NitroSystem/src/g3d/g3d_anm_vis.c:
+    complete
+    .text start:0x0207091c end:0x020709a0
+
+libs/NitroSystem/src/g3d/g3d_basic.c:
+    complete
+    .text start:0x020709a0 end:0x02070a5c
+
+libs/NitroSystem/src/g3d/g3d_maya.c:
+    complete
+    .text start:0x02070a5c end:0x02071254
+    .data start:0x020c3fdc end:0x020c3ffc
+
+libs/NitroSystem/src/g3d/g3d_si3d.c:
+    complete
+    .text start:0x02071254 end:0x02071768
+
+libs/NitroSystem/src/g3d/g3d_3dsmax.c:
+    complete
+    .text start:0x02071768 end:0x02071dac
+    .data start:0x020c3ffc end:0x020c401c
+
+libs/NitroSystem/src/g3d/g3d_xsi.c:
+    complete
+    .text start:0x02071dac end:0x02072414
+    .data start:0x020c401c end:0x020c403c
+
+libs/NitroSystem/src/gfd/gfd_default.c:
+    complete
+    .text start:0x02072414 end:0x02072434
+    .data start:0x020c403c end:0x020c404c
+
+libs/NitroSystem/src/gfd/gfd_vramtransfer.c:
+    complete
+    .text start:0x02072434 end:0x020728fc
+    .bss start:0x0210fe9c end:0x0210feb0
+    .rodata start:0x020ba628 end:0x020ba6b8
+
+libs/NitroSystem/src/gfd/gfd_lnkvram.c:
+    complete
+    .text start:0x020728fc end:0x02072c54
+
+libs/NitroSystem/src/gfd/gfd_lnktex.c:
+    complete
+    .text start:0x02072c54 end:0x02072fa0
+    .bss start:0x0210feb0 end:0x0210fecc
+    .rodata start:0x020ba6b8 end:0x020ba6e8
+
+libs/NitroSystem/src/gfd/gfd_lnkpltt.c:
+    complete
+    .text start:0x02072fa0 end:0x0207315c
+    .bss start:0x0210fecc end:0x0210fee0
+
+libs/NitroSystem/src/snd/snd_nns_main.c:
+    complete
+    .text start:0x0207315c end:0x02073258
+    .bss start:0x0210fee0 end:0x021122e0
+
+libs/NitroSystem/src/snd/snd_resource.c:
+    complete
+    .text start:0x02073258 end:0x02073370
+    .bss start:0x021122e0 end:0x021122ec
+
+libs/NitroSystem/src/snd/snd_player_init.c:
+    complete
+    .text start:0x02073370 end:0x020737b0
+    .bss start:0x021122ec end:0x02112bc4
+
+libs/NitroSystem/src/snd/snd_player.c:
+    complete
+    .text start:0x020737b0 end:0x02073c04
+
+libs/NitroSystem/src/snd/snd_stream.c:
+    complete
+    .text start:0x02073c04 end:0x020741d0
+    .bss start:0x02112bc4 end:0x02112c94
+
+libs/NitroSystem/src/snd/snd_capture.c:
+    complete
+    .text start:0x020741d0 end:0x02074550
+    .bss start:0x02112c94 end:0x02113290
+
+libs/NitroSystem/src/snd/snd_arc.c:
+    complete
+    .text start:0x02074550 end:0x02074bd8
+    .bss start:0x02113290 end:0x02113294
+
+libs/NitroSystem/src/snd/snd_heap.c:
+    complete
+    .text start:0x02074bd8 end:0x02074e24
+
+libs/NitroSystem/src/snd/snd_arcload.c:
+    complete
+    .text start:0x02074e24 end:0x02075780
+    .bss start:0x02113294 end:0x021132d0
+
+libs/NitroSystem/src/snd/snd_arcplayer.c:
+    complete
+    .text start:0x02075780 end:0x02075aa4
+
+libs/NitroSystem/src/snd/snd_arcstrm.c:
+    complete
+    .text start:0x02075aa4 end:0x02077204
+    .rodata start:0x020ba6e8 end:0x020ba7ac
+    .bss start:0x021132d0 end:0x02114140
+
+libs/NitroSystem/src/snd/snd_seqarc.c:
+    complete
+    .text start:0x02077204 end:0x02077244
+
+libs/NitroSystem/src/snd/snd_fader.c:
+    complete
+    .text start:0x02077244 end:0x020772e8
+
+libs/NitroSDK/src/os/os_irqwait.c:
+    complete
+    .text start:0x020772e8 end:0x02077468
+    .data start:0x020c404c end:0x020c405c
+
+libs/NitroSDK/src/os/os_interrupt.c:
+    complete
+    .text start:0x02077468 end:0x02077710
+    .bss start:0x02114140 end:0x021141a0
+
+libs/NitroSDK/src/os/os_spinlock.c:
+    complete
+    .text start:0x02077710 end:0x02077a6c
+    .bss start:0x021141a0 end:0x021141a4
+
+libs/NitroSDK/src/os/os_printf.c:
+    complete
+    .text start:0x02077a6c end:0x020783c4
+
+libs/NitroSDK/src/os/os_thread.c:
+    complete
+    .text start:0x020783c4 end:0x02078c44
+    .bss start:0x021141a4 end:0x02114420
+
+libs/NitroSDK/src/os/os_context.c:
+    complete
+    .text start:0x02078c44 end:0x02078d40
+
+libs/NitroSDK/src/os/os_emulator.c:
+    complete
+    .text start:0x02078d40 end:0x02078d60
+    .data start:0x020c405c end:0x020c4060
+
+libs/NitroSDK/src/os/os_message.c:
+    complete
+    .text start:0x02078d60 end:0x02078f5c
+
+libs/NitroSDK/src/os/os_arena.c:
+    complete
+    .text start:0x02079298 end:0x02079664
+    .bss start:0x02114420 end:0x02114428
+
+libs/NitroSDK/src/os/os_alloc.c:
+    complete
+    .text start:0x02079664 end:0x020798c0
+    .bss start:0x02114428 end:0x0211444c
+
+libs/NitroSDK/src/os/os_protection.c:
+    complete
+    .text start:0x020798c0 end:0x02079918
+
+libs/NitroSDK/src/os/os_exception.c:
+    complete
+    .text start:0x02079918 end:0x02079af4
+    .bss start:0x0211444c end:0x021144d8
+
+libs/NitroSDK/src/os/os_timer.c:
+    complete
+    .text start:0x02079af4 end:0x02079b10
+    .bss start:0x021144d8 end:0x021144dc
+
+libs/NitroSDK/src/os/os_tick.c:
+    complete
+    .text start:0x02079b10 end:0x02079ca0
+    .bss start:0x021144dc end:0x021144ec
+
+libs/NitroSDK/src/os/os_valarm.c:
+    complete
+    .text start:0x02079ca0 end:0x02079ce8
+    .bss start:0x021144ec end:0x02114500
+
 libs/NitroSDK/src/os/mutex.c:
     complete
     .text start:0x02078f5c end:0x0207914c
+
+libs/NitroSDK/src/card/card_common.c:
+    complete
+    .text start:0x0205d3bc end:0x0205d644
+    .bss start:0x0210bee0 end:0x0210c580
+
+libs/NitroSDK/src/card/card_lock.c:
+    complete
+    .text start:0x0205d644 end:0x0205d718
+
+libs/NitroSDK/src/card/card_backup.c:
+    complete
+    .text start:0x0205d718 end:0x0205ddb8
+
+libs/NitroSDK/src/card/card_rom.c:
+    complete
+    .text start:0x0205ddb8 end:0x0205e47c
+    .data start:0x020c3c88 end:0x020c3c8c
+    .bss start:0x0210c580 end:0x0210c7c0
+
+libs/NitroSDK/src/card/card_request.c:
+    complete
+    .text start:0x0205e47c end:0x0205e65c
+
+libs/NitroSDK/src/card/card_pullout.c:
+    complete
+    .text start:0x0205e65c end:0x0205e828
+    .bss start:0x0210c7c0 end:0x0210c7c8
+
+libs/NitroSDK/src/wm/wm_gameinfo.c:
+    complete
+    .text start:0x0205e828 end:0x0205e8c0
+
+libs/NitroSDK/src/cp/cp_context.c:
+    complete
+    .text start:0x0205e8c0 end:0x0205e93c
+
+libs/NitroSDK/src/ctrdg/ctrdg_common.c:
+    complete
+    .text start:0x0205e93c end:0x0205ec54
+    .bss start:0x0210c7c8 end:0x0210c7d0
+
+libs/NitroSDK/src/ctrdg/ctrdg_init.c:
+    complete
+    .text start:0x0205ec54 end:0x0205efac
+    .bss start:0x0210c7e0 end:0x0210c9a8
+
+libs/NitroSDK/src/ctrdg/ctrdg_task.c:
+    complete
+    .text start:0x0205efac end:0x0205f13c
+    .bss start:0x0210c9a8 end:0x0210cdd0
+
+libs/NitroSDK/src/math/math_sha1.c:
+    complete
+    .text start:0x0205f13c end:0x0205f4dc
+    .data start:0x020c3c8c end:0x020c3da8
+
+libs/NitroSDK/src/math/math_hmac.c:
+    complete
+    .text start:0x0205f4dc end:0x0205f728
+    .rodata start:0x020b62d4 end:0x020b6328
+
+libs/NitroSDK/src/math/math_sha1_block.c:
+    complete
+    .text start:0x0205f728 end:0x0205f9bc
+
+libs/NitroSDK/src/fs/fs_archive.c:
+    complete
+    .text start:0x0205f9bc end:0x02060ddc
+    .data start:0x020c3da8 end:0x020c3dac
+    .rodata start:0x020b6328 end:0x020b634c
+    .bss start:0x0210cdd0 end:0x0210cde0
+
+libs/NitroSDK/src/fs/fs_file.c:
+    complete
+    .text start:0x02060ddc end:0x020612ec
+    .bss start:0x0210cde0 end:0x0210cde4
 
 libs/NitroSDK/src/fs/rom.c:
     complete
@@ -1158,9 +2380,110 @@ libs/NitroSDK/src/os/cpustat.c:
     complete
     .text start:0x02079ce8 end:0x02079d94
 
+libs/NitroSDK/src/fs/overlay.c:
+    complete
+    .text start:0x02061544 end:0x02061b70
+    .rodata start:0x020b634c end:0x020b638c
+    .data start:0x020c3db0 end:0x020c3db8
+
+libs/NitroSDK/src/fx/fx_mtx22.c:
+    complete
+    .text start:0x02061b70 end:0x02061b88
+
+libs/NitroSDK/src/fx/fx_mtx33.c:
+    complete
+    .text start:0x02061b88 end:0x02061f58
+
+libs/NitroSDK/src/fx/fx_mtx43.c:
+    complete
+    .text start:0x02061f58 end:0x02062740
+
+libs/NitroSDK/src/fx/fx_mtx44.c:
+    complete
+    .text start:0x02062740 end:0x02062e04
+
+libs/NitroSDK/src/fx/fx_division.c:
+    complete
+    .text start:0x02062e04 end:0x02062f64
+
+libs/NitroSDK/src/fx/fx_vec.c:
+    complete
+    .text start:0x02062f64 end:0x02063408
+
+libs/NitroSDK/src/gx/gx.c:
+    complete
+    .text start:0x0206366c end:0x02063960
+    .data start:0x020c3db8 end:0x020c3dc0
+    .bss start:0x0210ce58 end:0x0210ce5c
+
+libs/NitroSDK/src/gx/gx_vramcnt.c:
+    complete
+    .text start:0x02063960 end:0x02064ad0
+    .bss start:0x0210ce5c end:0x0210ce78
+
+libs/NitroSDK/src/gx/gx_bgcnt.c:
+    complete
+    .text start:0x02064ad0 end:0x02064f40
+
+libs/NitroSDK/src/gx/g2.c:
+    complete
+    .text start:0x02064f40 end:0x02065034
+
+libs/NitroSDK/src/gx/g3.c:
+    complete
+    .text start:0x02065034 end:0x02065088
+
+libs/NitroSDK/src/gx/g3x.c:
+    complete
+    .text start:0x02065088 end:0x02065604
+
+libs/NitroSDK/src/gx/g3_util.c:
+    complete
+    .text start:0x02065604 end:0x02065cd8
+
+libs/NitroSDK/src/gx/gx_load2d.c:
+    complete
+    .text start:0x02065cd8 end:0x02066958
+    .bss start:0x0210ce78 end:0x0210ce94
+
+libs/NitroSDK/src/gx/gx_load3d.c:
+    complete
+    .text start:0x02066958 end:0x02066dcc
+    .rodata start:0x020ba490 end:0x020ba500
+    .bss start:0x0210ce94 end:0x0210ceb4
+
+libs/NitroSDK/src/gx/gx_sendfifo.c:
+    complete
+    .text start:0x02066dcc end:0x02066df0
+
+libs/NitroSDK/src/math/math.c:
+    complete
+    .text start:0x02066df0 end:0x020670bc
+
+libs/NitroSDK/src/mi/mi_wram.c:
+    complete
+    .text start:0x020670bc end:0x020670cc
+
+libs/NitroSDK/src/mi/mi_dma.c:
+    complete
+    .text start:0x020670cc end:0x02067540
+
+libs/NitroSDK/src/mi/mi_dma_gxcommand.c:
+    complete
+    .text start:0x02067540 end:0x02067828
+    .bss start:0x0210ceb4 end:0x0210ced4
+
+libs/NitroSDK/src/mi/cpumem.c:
+    complete
+    .text start:0x02067828 end:0x02067b88
+
+libs/NitroSDK/src/fx/fx_trig.c:
+    complete
+    .rodata start:0x020b638c end:0x020ba38c
+
 libs/NitroSDK/src/fx/fx_atan.c:
     complete
-    .text start:0x020634c4 end:0x0206366c
+    .text start:0x02063408 end:0x0206366c
     .rodata start:0x020ba38c end:0x020ba490
 
 src/main/menu/MaterielMenu_FIGHT_STADIUM.cpp:
@@ -1174,3 +2497,49 @@ src/main/menu/MaterielMenu_SAVE.cpp:
     .text start:0x0203b8a4 end:0x0203c8e4
     .rodata start:0x020b61b8 end:0x020b61bc
     .data start:0x020c1448 end:0x020c1490
+
+src/main/debug/UnkDebugInfo.cpp:
+    complete
+    .text start:0x0203c8e4 end:0x0203d034
+    .init start:0x0208b540 end:0x0208b588
+    .ctor start:0x020bb430 end:0x020bb434
+    .data start:0x020c1490 end:0x020c15e8
+    .bss start:0x020f1d78 end:0x020f2008
+
+src/main/debug/UnkDebugBattleInfo.cpp:
+    complete
+    .text start:0x0203d034 end:0x0203d670
+    .init start:0x0208b588 end:0x0208b598
+    .ctor start:0x020bb434 end:0x020bb438
+    .rodata start:0x020b61bc end:0x020b61c0
+    .data start:0x020c15e8 end:0x020c18b0
+    .bss start:0x020f2008 end:0x020f201c
+
+src/main/debug/UnkDebugPrint.cpp:
+    complete
+    .text start:0x0203d670 end:0x0203d7e4
+    .bss start:0x020f201c end:0x020f2028
+
+src/main/menu/UnkMaterielMenu_0203d7e4.cpp:
+    complete
+    .text start:0x0203d7e4 end:0x0203da14
+    .rodata start:0x020b61c0 end:0x020b61c4
+    .data start:0x020c18b0 end:0x020c1908
+
+src/main/ModulePadding_main.cpp:
+    complete
+    .ctor start:0x020bb4cc end:0x020bb4d0
+    .data start:0x020c4a08 end:0x020c4a20
+    .bss start:0x021210dc end:0x021210e0
+
+src/main/ModulePadding_main_1.cpp:
+    complete
+    .bss start:0x0210c7d0 end:0x0210c7e0
+
+src/main/ModulePadding_main_2.cpp:
+    complete
+    .bss start:0x021145bc end:0x021145c0
+
+src/main/ModulePadding_main_3.cpp:
+    complete
+    .bss start:0x0210becc end:0x0210bee0

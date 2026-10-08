@@ -1,4 +1,5 @@
 #pragma once
+#include "main/btl/MonsterData.hpp"
 #include "main/btl/BattleAutoFeed.hpp"
 #include <globaldefs.h>
 #include "main/dss/Camera.hpp"
@@ -36,6 +37,5 @@ namespace btl {
     };
 
 }
-extern short data_020c04f4[310][5]; //MonsterTaiData
+
 extern int monsterChangeCount;
-extern "C" void func_02050e88(int a, int b, int c, int d);

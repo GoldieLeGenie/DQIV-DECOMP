@@ -3,8 +3,8 @@
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/Camera.hpp"
 #include "main/cmn/MoveBase.hpp"
+#include "main/object/BillboardCharacter.hpp"
 
-extern int data_020f22c0;
 
 struct TownCamera {
     dss::DualCamera camera_;                         // 0x000

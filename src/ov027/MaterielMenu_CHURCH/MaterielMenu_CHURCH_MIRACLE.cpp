@@ -39,7 +39,7 @@ THUMB void MaterielMenu_CHURCH_MIRACLE::menuSetup()
     type_ = false;
     mother_ = false;
     int i = 0;
-    unsigned int count = data_020b615c.count_;
+    unsigned int count = param::MapChurch::size_;
     for (; i < count; i++) {
         if (church[i].floor[0] == g_Global.getMapName()[0] &&
             church[i].floor[1] == g_Global.getMapName()[1] &&

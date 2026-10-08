@@ -4,18 +4,18 @@
 ARM void UnkTextureBillboard::unkfunc_02058680(const BillboardVertex* vertex, const BillboardTexCoord* texCoord, void* texture)
 {
     texture_ = texture;
-    func_02086798(texture, 1);
-    func_020840c8(this, vertex);
-    func_0208413c(this, texCoord);
+    ((TextureObject*)texture)->unkfunc_02086798(1);
+    unkfunc_020840c8(vertex);
+    unkfunc_0208413c(texCoord);
     RenderObject::texture_ = texture_;
 }
 
 ARM void UnkTextureBillboard::unkfunc_020586c4()
 {
-    func_02086868(texture_);
+    ((TextureObject*)texture_)->unkfunc_02086868();
 }
 
 ARM void UnkTextureBillboard::unkfunc_020586d4(int a)
 {
-    func_020869ec(texture_, (void*)a, 0);
+    ((TextureObject*)texture_)->unkfunc_020869ec((TextureObject*)(void*)a, 0);
 }

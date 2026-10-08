@@ -54,7 +54,6 @@ struct SpriteCharacter : UnkSprite2D {
     void cleanup();
     void unkfunc_0204b33c();
     void reload(int dir);
-    void setColor(int color);
     void setPosition(int x, int y);
     void setPosition(dss::Vector2<int> pos);
     void setDepth(int depth) { unk_28 = depth; }

@@ -131,7 +131,7 @@ THUMB void status::Status::setEventParty(unsigned int index)
 
     i = 0;
     unsigned int itemMax;
-    unsigned int itemCount = data_0208c9fc;
+    unsigned int itemCount = param::ItemData::size_;
     itemMax = itemCount - 1;
     do {
         int j;
@@ -173,8 +173,8 @@ THUMB void status::Status::setEventParty(unsigned int index)
         member++;
     } while (member->index == 0xffff);
 
-    ExcelBinaryData::clearData(&data_020c7830);
-    ExcelBinaryData::clearData(&data_020c7980);
+    ExcelBinaryData::clearData(&param::Event::data_);
+    ExcelBinaryData::clearData(&param::Fukuro::data_);
     setEventFlag(index);
 
     if (g_AreaFlag.check(0x13d)) {
@@ -192,7 +192,7 @@ THUMB void status::Status::setEventParty(unsigned int index)
 
 THUMB void status::Status::setEventFlag(unsigned int index)
 {
-    param::EventFlag* data = (param::EventFlag*)ExcelBinaryData::checkSum(ExcelBinaryData::readFileData(&param::EventFlag::data_, param::EventFlag::filename_[0]), data_020b5d64);
+    param::EventFlag* data = (param::EventFlag*)ExcelBinaryData::checkSum(ExcelBinaryData::readFileData(&param::EventFlag::data_, param::EventFlag::filename_[0]), param::EventFlag::ID_);
 
     g_AreaFlag.clear();
     for (unsigned int i = 0; i <= index; i++) {
@@ -318,7 +318,7 @@ THUMB void status::Status::setFlagShopExec()
         char floor[10];
         dss::memset(floor, 0, 10);
         dss::strcpy_s(floor, 10, event->floor);
-        ExcelBinaryData::clearData(&data_020c7830);
+        ExcelBinaryData::clearData(&param::Event::data_);
         encount::Encount::getSingleton()->initialize();
         initialize();
         setEventParty(flagShopIndex_);

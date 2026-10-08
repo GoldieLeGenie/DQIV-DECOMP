@@ -14,8 +14,10 @@
 #include "main/cmn/HengeNoTsueManager.hpp"
 #include "main/cmn/PartyTalk.hpp"
 #include "main/sound/Sound.hpp"
+#include "main/cmn/UnkEnvoyManager.hpp"
+#include "main/cmn/UnkImmigrantTown.hpp"
 
-THUMB int profile::Profile::deliverDATA()
+THUMB int profile::Profile::deliverDATA(int)
 {
     presetMember();
     if (isValidData() == 0) {
@@ -158,7 +160,7 @@ THUMB void profile::Profile::deliverDATA_PARTY()
     status::g_Game.setUniqueID(pPARTY->UNIQUEID);
 
     for (int i = 0; i < 50; i++)
-        func_0203ab20(&data_020f0078, i, pPARTY->SELECTTAISHI_FLAG[i]);
+        data_020f0078.unkfunc_0203ab20(i, pPARTY->SELECTTAISHI_FLAG[i]);
 }
 
 THUMB void profile::Profile::deliverDATA_CHAPTER()
@@ -209,39 +211,38 @@ THUMB void profile::Profile::deliverDATA_MONSTER()
 THUMB void profile::Profile::deliverDATA_ENVOY()
 {
     for (int i = 0; i < 0x18; i++) {
-        func_0203a34c(&data_020f0078, i);
+        data_020f0078.unkfunc_0203a34c(i);
         if (this->pENVOY->TYPE != 0xFF) {
-            func_0203a574(&data_020f0078, 1);
-            func_0203a58c(&data_020f0078, this->pENVOY->UNIQUE);
-            func_0203a5bc(&data_020f0078, this->pENVOY->TYPE);
-            func_0203a6f4(&data_020f0078, this->pENVOY->SEX);
-            func_0203a730(&data_020f0078, this->pENVOY->AGE);
-            func_0203a76c(&data_020f0078, this->pENVOY->SKILL);
-            dss::memcpy(func_0203a65c(&data_020f0078), this->pENVOY->NAME, 0x1A);
-            dss::memcpy(func_0203a6d8(&data_020f0078), this->pENVOY->HERONAME, 0x1A);
-            dss::memcpy(func_0203a820(&data_020f0078), this->pENVOY->TOWNNAME, 0x2A);
-            dss::memcpy(func_0203a938(&data_020f0078), this->pENVOY->COMMENT, 0x5C);
+            data_020f0078.unkfunc_0203a574(1);
+            data_020f0078.unkfunc_0203a58c(this->pENVOY->UNIQUE);
+            data_020f0078.unkfunc_0203a5bc(this->pENVOY->TYPE);
+            data_020f0078.unkfunc_0203a6f4(this->pENVOY->SEX);
+            data_020f0078.unkfunc_0203a730(this->pENVOY->AGE);
+            data_020f0078.unkfunc_0203a76c(this->pENVOY->SKILL);
+            dss::memcpy(data_020f0078.unkfunc_0203a65c(), this->pENVOY->NAME, 0x1A);
+            dss::memcpy(data_020f0078.unkfunc_0203a6d8(), this->pENVOY->HERONAME, 0x1A);
+            dss::memcpy(data_020f0078.unkfunc_0203a820(), this->pENVOY->TOWNNAME, 0x2A);
+            dss::memcpy(data_020f0078.unkfunc_0203a938(), this->pENVOY->COMMENT, 0x5C);
         } else {
-            func_0203a574(&data_020f0078, 0);
+            data_020f0078.unkfunc_0203a574(0);
         }
         this->pENVOY++;
     }
-    func_02037da4();
-    func_02037ca4();
-    data_020f0078 = 1;
+    UnkImmigrantTown::getSingleton()->unkfunc_02037ca4();
+    data_020f0078.mode_ = 1;
     if (this->pENVOY->TYPE != 0xFF) {
-        func_0203a574(&data_020f0078, 1);
-        func_0203a58c(&data_020f0078, this->pENVOY->UNIQUE);
-        func_0203a5bc(&data_020f0078, this->pENVOY->TYPE);
-        func_0203a6f4(&data_020f0078, this->pENVOY->SEX);
-        func_0203a730(&data_020f0078, this->pENVOY->AGE);
-        func_0203a76c(&data_020f0078, this->pENVOY->SKILL);
-        dss::memcpy(func_0203a65c(&data_020f0078), this->pENVOY->NAME, 0x1A);
-        dss::memcpy(func_0203a6d8(&data_020f0078), this->pENVOY->HERONAME, 0x1A);
-        dss::memcpy(func_0203a820(&data_020f0078), this->pENVOY->TOWNNAME, 0x2A);
-        dss::memcpy(func_0203a938(&data_020f0078), this->pENVOY->COMMENT, 0x5C);
+        data_020f0078.unkfunc_0203a574(1);
+        data_020f0078.unkfunc_0203a58c(this->pENVOY->UNIQUE);
+        data_020f0078.unkfunc_0203a5bc(this->pENVOY->TYPE);
+        data_020f0078.unkfunc_0203a6f4(this->pENVOY->SEX);
+        data_020f0078.unkfunc_0203a730(this->pENVOY->AGE);
+        data_020f0078.unkfunc_0203a76c(this->pENVOY->SKILL);
+        dss::memcpy(data_020f0078.unkfunc_0203a65c(), this->pENVOY->NAME, 0x1A);
+        dss::memcpy(data_020f0078.unkfunc_0203a6d8(), this->pENVOY->HERONAME, 0x1A);
+        dss::memcpy(data_020f0078.unkfunc_0203a820(), this->pENVOY->TOWNNAME, 0x2A);
+        dss::memcpy(data_020f0078.unkfunc_0203a938(), this->pENVOY->COMMENT, 0x5C);
     } else {
-        func_0203a574(&data_020f0078, 0);
+        data_020f0078.unkfunc_0203a574(0);
     }
 }
 

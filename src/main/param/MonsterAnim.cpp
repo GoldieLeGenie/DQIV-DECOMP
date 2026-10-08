@@ -72,3 +72,5 @@ THUMB int param::MonsterAnim::getAnimData(MonsterAnim* anim, unsigned int monste
     }
     return line;
 }
+
+DataObject param::MonsterAnim::data_;

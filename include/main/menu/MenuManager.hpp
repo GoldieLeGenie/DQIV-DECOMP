@@ -1,7 +1,9 @@
 #pragma once
 #include "globaldefs.h"
+#include "main/dss/DssCore.hpp"
 #include "main/menu/MenuBase.hpp"
 #include "main/menu/DebugMenu.hpp"
+#include "main/dss/UnkBgBuffer.hpp"
 
 enum MENUDISPLAY_MODE {
     MENUDISPLAY_OFF = 0,
@@ -41,27 +43,4 @@ struct MenuManager {
     static int isExtraMenu();
 };
 
-extern char data_02108518[];
-extern char data_0211c4d8[];
-extern char data_0211c4c0[];
-extern char data_0211c4cc[];
-extern char data_0211c4f0[];
-extern char data_02116ce0[];
 
-extern "C" {
-    void func_02050614(int redraw);
-    void func_02050494(void);
-    int  func_0207e7e8(void);
-    void func_0207e810(void* obj);
-    void func_0207e864(void* console, int x, int y, const char* str);
-    void func_0207e88c(void* console, int x, int y, const char* format, ...);
-    void func_0207e804(void* console);
-    void func_0207e8e0(void* console, int x, int y, int w, int h);
-    void func_0207e8f4(void* console, int x, int y);
-    void func_02081728(int plane);
-    void func_0208120c(void* obj);
-    void func_02080e90(void* obj);
-    void func_0204fea8(void* obj, int flag);
-    void func_02050698(int x, int y);
-    void func_0205077c(int x, int y, int w, int h);       // draw a frame
-}

@@ -2,11 +2,13 @@
 #include "main/menu/CommonMenu_YESNO.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/menu/TownMenu_PARTY_TALK.hpp"
+#include "main/menu/MenuAPI.hpp"
 #include "main/menu/MenuUpdateAssist.hpp"
 #include "main/sound/SoundManager.hpp"
 #include "globaldefs.h"
 #include "main/sound/Sound.hpp"
 #include "main/menu/UiMsg.hpp"
+#include "main/menu/UnkMenuDisplays.hpp"
 
 static MENUITEM_DATA yesNoItemData[] = {
     {1, 2, 0xd0, 0x08, 0x28, 0x10},
@@ -18,10 +20,10 @@ THUMB void CommonMenu_YESNO::menuSetup()
 {
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     menuItem_.active_ = 0;
-    menuItem_.unk_2C = 1;
-    Data020f6340* const window = &data_020f7e10;
+    menuItem_.enableLoopEdge_ = 1;
+    UnkMenuYesNoDisplay* const window = &data_020f530c.yesNo_;
     window->unkfunc_0204f264(1);
-    func_02052a28(window, 0xa0000064, 0xa0000065);
+    window->unkfunc_02052a28(0xa0000064, 0xa0000065);
     window->unkfunc_0204f270(0xc0, 0xc0);
     unkfunc_02056184(0);
     Sound::sePlay(0x130);
@@ -46,7 +48,7 @@ THUMB void CommonMenu_YESNO::menuUpdate()
         wait_++;
         return;
     }
-    func_02051a7c(&menuItem_);
+    menuItem_.execInput();
     switch (menuItem_.result_) {
         case 1:
             unkfunc_02056184(menuItem_.active_);
@@ -95,7 +97,7 @@ THUMB void CommonMenu_YESNO::setYesNo(int cursor)
 
 THUMB void CommonMenu_YESNO::setPosition(int x, int y)
 {
-    data_020f7e10.unkfunc_0204f270(x, y + 0xc0);
+    data_020f530c.yesNo_.unkfunc_0204f270(x, y + 0xc0);
 }
 
 THUMB void CommonMenu_YESNO::setSuperCancel(int flag)

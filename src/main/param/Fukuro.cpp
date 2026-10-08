@@ -9,7 +9,7 @@ THUMB param::Fukuro *param::Fukuro::getFileData(unsigned int index)
     if (index < 0x15B)
         name = player_fukuro1;
 
-    void* addr = ExcelBinaryData::readFileData(&data_020c7980, name);
+    void* addr = ExcelBinaryData::readFileData(&param::Fukuro::data_, name);
     param::Fukuro *data = (param::Fukuro*)ExcelBinaryData::checkSum(addr, 0x02CE0284);
 
     unsigned int i = 0;
@@ -22,3 +22,5 @@ THUMB param::Fukuro *param::Fukuro::getFileData(unsigned int index)
     } while (i < 0x15B);
     return data;
 }
+
+DataObject param::Fukuro::data_;

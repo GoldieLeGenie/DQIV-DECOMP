@@ -70,7 +70,7 @@ src/ov001/Commands/FieldCommand.cpp:
     .text start:0x0212d954 end:0x0212db84
     .init start:0x02160620 end:0x021606a8
     .ctor start:0x021606b8 end:0x021606bc
-    .data start:0x02160de4 end:0x02160e4c
+    .data start:0x02160de4 end:0x02160e44
     .bss start:0x02164a20 end:0x02164a60
 
 src/ov001/window/FieldImageMap.cpp:
@@ -144,3 +144,8 @@ src/ov001/window/UnkFieldMap_0212d558.cpp:
     complete
     .text start:0x0212d558 end:0x0212d6c4
     .data start:0x02160d88 end:0x02160de4
+
+src/ov001/ModulePadding_ov001.cpp:
+    complete
+    .ctor start:0x021606bc end:0x021606c0
+    .data start:0x02160e44 end:0x02160e60

@@ -42,7 +42,7 @@ ARM void __cmd_count::initialize(char* scriptParam)
 ARM void __cmd_count::execute()
 {
     count_ += add_;
-    func_0207e88c(data_02116ce0, 0xe, 0x28, "%04d", count_);
+    data_02116ce0.unkfunc_0207e88c(0xe, 0x28, "%04d", count_);
 }
 
 ARM int __cmd_count::isEnd()

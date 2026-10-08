@@ -7,3 +7,5 @@ _ZN21MaterielMenu_INN_ROOT10fadeEffectEv kind:function(thumb,size=0x148) addr:0x
 _ZN21MaterielMenu_INN_ROOT11showMessageEi kind:function(thumb,size=0x18) addr:0x02189760
 _ZN21MaterielMenu_INN_ROOT11menuExecuteEv kind:function(arm,size=0x4) addr:0x02189778
 _ZTV21MaterielMenu_INN_ROOT kind:data(byte[28]) addr:0x02189780
+module_padding_ov024_ctor_0218977c kind:data(byte[4]) addr:0x0218977c
+module_padding_ov024_data_0218979c kind:data(byte[4]) addr:0x0218979c

@@ -2,6 +2,9 @@
 #include "globaldefs.h"
 #include "main/dss/DssUtils.hpp"
 #include "main/data/DataObject.hpp"
+#include "main/dss/UnkTextConvert.hpp"
+#include "main/dss/UnkMessageFind.hpp"
+#include "main/dss/UnkBgText.hpp"
 
 struct TextHookBase;
 
@@ -201,10 +204,6 @@ struct MacroName {
     const char* name;
 };
 
-struct Utf8Iterator {
-    unsigned char unk_00[0x24];
-};
-
 MsgData* unkfunc_0205488c(int msg_id);
 int unkfunc_02054970(int msg_id, int lang);
 int unkfunc_02054984(int msg_id, int lang);
@@ -222,32 +221,4 @@ extern BadWordList g_bad_word_list;
 extern MsgFile g_msg_file;
 
 extern int data_021098c4;
-extern unsigned char* data_02120544;    /* last found message */
-extern int data_020c4978;               /* last found message length */
-extern unsigned short data_020c45b0[];  /* uppercase table */
-extern unsigned short data_020c4618[];  /* lowercase table */
-extern unsigned short data_020c47d4[];
-extern unsigned short data_020c4894[];
-extern unsigned short data_020c455c[];
-extern unsigned short data_020c4586[];
-extern unsigned short data_020c4680[];
-extern unsigned short data_020c472a[];
 
-extern "C" {
-    void func_02087fbc(unsigned short* upper, unsigned short* lower, char* dst, int size, const char* src, int count);
-    void func_02087f14(unsigned short* from, unsigned short* to, char* dst, int size, const char* src);
-    void func_020876f4(Utf8Iterator* it);
-    void func_020875ec(Utf8Iterator* it, char* text);
-    int  func_0208771c(Utf8Iterator* it);                                                   /* current char */
-    void func_020877b8(Utf8Iterator* it);                                                   /* next */
-    void func_02087634(Utf8Iterator* it, char* buf, int size);                              /* set write buffer */
-    void func_02087734(Utf8Iterator* it, int c);                                            /* put char */
-    void* func_0207f77c(void* heap, int size, int align);                                   /* heap alloc */
-    void func_02080038(int font);
-    void func_0207f9b8(int a, int b, int c, int d, const char* text, int f);
-    int  func_02080100(void);
-    char* func_02088078(const char* str);
-    int  func_02088484(char* addr, unsigned int msg_id);                                    /* find message */
-    int  func_02087a74(Utf8Iterator* it, char* line, int size);                             /* read line */
-    void func_02087e08(char* dst, int size, const char* src);
-}

@@ -99,3 +99,5 @@ THUMB int param::FloorParam::getFloorIndex(param::FloorParam* data, char* name)
     }
     return -1;
 }
+
+DataObject param::FloorParam::data_;

@@ -1,6 +1,7 @@
 #pragma ipa file
 
 #include "ov000/town/TownCamera.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "ov000/town/TownActionCalculate.hpp"
 #include "main/object/DSSAObject.hpp"
 #include "ov000/town/TownPlayerManager.hpp"
@@ -11,8 +12,10 @@
 #include "main/status/BaseActionStatus.hpp"
 #include "main/status/BaseStatus.hpp"
 #include "ov000/Commands/TownCommand.hpp"
+#include "main/dss/UnkDssMath.hpp"
+#include "main/dss/UnkMatrix43.hpp"
 
-inline bool isEven() { return (func_02081254() & 1) == 0; }
+inline bool isEven() { return (unkfunc_02081254() & 1) == 0; }
 static const float TOWN_CAMERA_DISTANCE = 39.55f;
 static const dss::Fix32Vector3 position(0, 0, 0);
 static dss::Vector3<short> default_angle(-8556, 0, 0);
@@ -189,8 +192,8 @@ ARM void TownCamera::draw()
     if (a == 0 && b == 0) {
         camera_.applyCamera();
     } else {
-        dss::Camera* cam = (func_02081254() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_068;
-        int no = func_02081254() & 1;
+        dss::Camera* cam = (unkfunc_02081254() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_068;
+        int no = unkfunc_02081254() & 1;
         cam->m_pos.vx.value = TownStageManager::getSingleton()->GetCameraCentFX32(no).x;
         cam->m_pos.vy.value = TownStageManager::getSingleton()->GetCameraCentFX32(no).y;
         cam->m_pos.vz.value = TownStageManager::getSingleton()->GetCameraCentFX32(no).z;
@@ -201,7 +204,7 @@ ARM void TownCamera::draw()
         cam->m_target_pos.vy.value = TownStageManager::getSingleton()->stage_.m_fld.m_x32_camera_tag[no].y;
         cam->m_target_pos.vz.value = TownStageManager::getSingleton()->stage_.m_fld.m_x32_camera_tag[no].z;
         camera_.applyG3d();
-        func_02049984(!isEven() ? &camera_.unk_004 : &camera_.unk_068);
+        BillboardCharacter::setCamera(!isEven() ? &camera_.unk_004 : &camera_.unk_068);
     }
     DSSAObjectWithCamera::camera_ = !isEven() ? &camera_.unk_004 : &camera_.unk_068;
 
@@ -212,9 +215,9 @@ ARM void TownCamera::draw()
         notEqualPreAngle_ = 1;
     }
     if (notEqualPreAngle_ == 0) {
-        data_020f22c0 = 0;
+        BillboardCharacter::changeAngle_ = 0;
     } else {
-        data_020f22c0 = 1;
+        BillboardCharacter::changeAngle_ = 1;
     }
     dss::Vector3short* now = &camera_.unk_004.getAngle();
     short y = now->vy;
@@ -258,7 +261,7 @@ ARM void TownCamera::rotateL()
     if (limitL == dss::Fix32(-1L)) {
         angle.vy = 0;
     } else if (limitL != dss::Fix32(0L)) {
-        angle.vy = dss::clamp<int>(angle.vy, -func_02080d94(limitR), func_02080d94(limitL));
+        angle.vy = dss::clamp<int>(angle.vy, -unkfunc_02080d94(limitR), unkfunc_02080d94(limitL));
     }
     if (angle.vy == 0) {
         flagRotateL = false;
@@ -279,7 +282,7 @@ ARM void TownCamera::rotateR()
     if (limitR == dss::Fix32(-1L)) {
         angle.vy = 0;
     } else if (limitR != dss::Fix32(0L)) {
-        angle.vy = dss::clamp<int>(angle.vy, -func_02080d94(limitR), func_02080d94(limitL));
+        angle.vy = dss::clamp<int>(angle.vy, -unkfunc_02080d94(limitR), unkfunc_02080d94(limitL));
     }
     if (angle.vy == 0) {
         flagRotateR = false;
@@ -494,17 +497,15 @@ ARM void TownCamera::setPovMove(dss::Fix32Vector3 target, int frame, int flag)
 
 ARM void TownCamera::calculatePursue(dss::Vector3short& angle, dss::Fix32Vector3& pos, dss::Fix32Vector3& target)
 {
-    MtxFx43 rotX;
-    func_020885f8(&rotX);
-    MtxFx43 rotY;
-    func_020885f8(&rotY);
+    dss::UnkMatrix43 rotX;
+    dss::UnkMatrix43 rotY;
     dss::Fix32Vector3 vec;
-    func_02088698(&rotX, angle.vx);
-    func_020886d0(&rotY, angle.vy);
+    rotX.unkfunc_02088698(angle.vx);
+    rotY.unkfunc_020886d0(angle.vy);
     vec.setFix32(0, 0, 1);
     vec *= camera_.unk_004.getDistance();
-    vec = func_02088670(&rotX, &vec);
-    vec = func_02088670(&rotY, &vec);
+    vec = rotX * vec;
+    vec = rotY * vec;
     pos = target + vec;
 }
 

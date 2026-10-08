@@ -9,6 +9,7 @@
 #include "main/cmn/CommonCalculate.hpp"
 #include "main/dss/Camera.hpp"
 #include <nitro/fx/fx_atan.h>
+#include "main/dss/UnkMatrix43.hpp"
 
 const dss::Fix32 TownActionCalculate::cos_PI_6(0xddb);
 
@@ -311,10 +312,9 @@ ARM void TownActionCalculate::normalMove(dss::Fix32Vector3& position, short& dir
     dss::Fix32Vector3 dir(TownCamera::getSingleton()->camera_.unk_004.getDirection());
     dir.vy = 0L;
     dir.normalize();
-    MtxFx43 mtx;
-    func_020885f8(&mtx);
-    func_020886d0(&mtx, -dirInput);
-    dir = func_02088670(&mtx, &dir);
+    dss::UnkMatrix43 mtx;
+    mtx.unkfunc_020886d0(-dirInput);
+    dir = mtx * dir;
     dir.vy = 0L;
     position = position + dir * speed;
     dirIdx = 0x8000 - dirInput + TownCamera::getSingleton()->camera_.unk_004.getAngle().vy;

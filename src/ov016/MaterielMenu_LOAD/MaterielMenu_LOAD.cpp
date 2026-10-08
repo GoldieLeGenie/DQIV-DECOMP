@@ -24,7 +24,7 @@ THUMB void MaterielMenu_LOAD::menuSetup()
     killResult_ = 0;
     makeResult_ = 0;
     resume_ = 0;
-    if (func_0202b684(3) == 1) {
+    if (profile::SaveLoad::unkfunc_0202b684(3) == 1) {
         resume_ = 1;
     }
     frame_ = 0;
@@ -126,7 +126,7 @@ THUMB void MaterielMenu_LOAD::menuUpdate()
         sexualityUpdate();
         break;
     case LOAD_WRITECHECK: {
-        int result = func_0202c040();
+        int result = profile::SaveLoad::isCardOK();
         if (result) {
             result = makeDiary();
         }
@@ -156,7 +156,7 @@ THUMB void MaterielMenu_LOAD::menuUpdate()
         }
         break;
     case LOAD_LOADCHECK:
-        if (func_0202b860(activeDiaryNo_)) {
+        if (profile::SaveLoad::loadbank(activeDiaryNo_)) {
             changeStatus(LOAD_END);
         } else {
             data_020ed1bc.openMessageForMENU();
@@ -174,7 +174,7 @@ THUMB void MaterielMenu_LOAD::menuUpdate()
         close();
         break;
     case LOAD_RESUME:
-        if (func_0202b860(3)) {
+        if (profile::SaveLoad::loadbank(3)) {
             changeStatus(LOAD_END);
         } else {
             data_020ed1bc.openMessageForMENU();
@@ -264,13 +264,13 @@ THUMB bool MaterielMenu_LOAD::messageUpdate()
 
 THUMB void MaterielMenu_LOAD::rootUpdate()
 {
-    func_02051a7c(&rootItem_);
+    rootItem_.execInput();
     switch (rootItem_.result_) {
     case 2: {
         rootItem_.result_ = 0;
         rootItem_.lastresult_ = 0;
         dataItem_.active_ = 0;
-        if (!func_0202c040()) {
+        if (!profile::SaveLoad::isCardOK()) {
             stat_ = menu::MenuBase::MENUBASE_STAT_OK;
             changeStatus(LOAD_END);
             break;
@@ -320,7 +320,7 @@ THUMB void MaterielMenu_LOAD::rootUpdate()
 
 THUMB void MaterielMenu_LOAD::dataSelectUpdate()
 {
-    func_02051a7c(&dataItem_);
+    dataItem_.execInput();
     switch (dataItem_.result_) {
     case 2: {
         dataItem_.result_ = 0;
@@ -349,7 +349,7 @@ THUMB void MaterielMenu_LOAD::dataSelectUpdate()
         case 2:
             if (diary_[active].name_ != 0) {
                 data_020ed1bc.openMessageForMENU();
-                func_0202bc10(&catalogview_[activeDiaryNo_]);
+                profile::SaveLoad::setCatalogMacro(&catalogview_[activeDiaryNo_]);
                 if (diary_[activeDiaryNo_].savetype_ == 4) {
                     data_020ed1bc.addMessage(0xcb610);
                 } else if (diary_[activeDiaryNo_].chapter_ >= 5) {
@@ -386,7 +386,7 @@ THUMB void MaterielMenu_LOAD::dataSelectUpdate()
 
 THUMB void MaterielMenu_LOAD::sexualityUpdate()
 {
-    func_02051a7c(&sexualityItem_);
+    sexualityItem_.execInput();
     switch (sexualityItem_.result_) {
     case 2:
         sexualityItem_.result_ = 0;
@@ -416,9 +416,9 @@ THUMB void MaterielMenu_LOAD::sexualityUpdate()
 
 THUMB bool MaterielMenu_LOAD::updateActiveDiary()
 {
-    catalogview_ = func_0202b6d8();
-    int active = func_0202b854();
-    CatalogView* view = catalogview_;
+    catalogview_ = profile::SaveLoad::getCatalogView();
+    int active = profile::SaveLoad::getCatalogRecent();
+    profile::CatalogView* view = catalogview_;
     DiaryInfo* diary = diary_;
     int useFlag[3] = { 0, 0, 0 };
     int i;
@@ -456,7 +456,7 @@ THUMB bool MaterielMenu_LOAD::updateActiveDiary()
 
 THUMB bool MaterielMenu_LOAD::deleteDiary()
 {
-    return func_0202b9f8(activeDiaryNo_);
+    return profile::SaveLoad::killbank(activeDiaryNo_);
 }
 
 THUMB bool MaterielMenu_LOAD::makeDiary()
@@ -467,7 +467,7 @@ THUMB bool MaterielMenu_LOAD::makeDiary()
     status::g_Game.resetUniqueID();
     g_Global.startFirstTown();
     status::g_Story.setHeroName(gMaterielMenu_NameEdit.getNameUTF8());
-    return func_0202b8b8(activeDiaryNo_, 4);
+    return profile::SaveLoad::savebank(activeDiaryNo_, profile::SAVETYPE_NEW);
 }
 
 THUMB void MaterielMenu_LOAD::changeStatus(LOAD_STATUS status)

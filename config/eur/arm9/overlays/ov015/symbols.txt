@@ -552,3 +552,4 @@ gBattleMenu_MAGIC kind:bss addr:0x0217aa0c
 s_param kind:bss addr:0x0217ac54 local
 gBattleMenuPlayerControl kind:bss addr:0x0217acd4
 _ZN3btl18BattleSelectTarget14specialTarget_E kind:bss(size=0x3c) addr:0x0217ad84
+module_padding_ov015_ctor_02176750 kind:data(byte[4]) addr:0x02176750

@@ -110,7 +110,7 @@ namespace status {
         int isChapter4BGM();
         int isPartyActionEnable();
         int isMegazaruRingEnable();
-        static void setNoDamageEnable(bool enable);
+        static void setNoDamageEnable(int enable);
         static void setNoDamageEnableForMonster(bool enable);
 
         static int noDamageEnable_;               // data_020c7a88

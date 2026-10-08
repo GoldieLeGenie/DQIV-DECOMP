@@ -7,6 +7,9 @@
 #include "ov037/PlayerTitle.hpp"
 #include "ov016/MenuTemplate/MenuTemplate_town.hpp"
 #include "ov016/UnkTownMenuDraw/UnkTownMenuDraw_02173d7c.hpp"
+#include "main/menu/UnkMenuPartsDraw.hpp"
+#include "main/menu/UnkMenuCommonDraw_0201e194.hpp"
+#include "main/menu/UnkMenuOverlay.hpp"
 
 THUMB void TownMenu_OPERATION_CAREER::menuSetup()
 {
@@ -24,7 +27,7 @@ THUMB void TownMenu_OPERATION_CAREER::menuSetup()
     if (status::g_Party.haveItemSack_.isItem(0x9d)) {
         bookOfBeasts_ = 1;
     }
-    func_02039460(14);
+    unkfunc_02039460(14);
     cmn::PlayerTitle::setPlayerTitle(0);
     for (int i = 0; i < 3; i++) {
         status::g_BattleHistory.historyType_ = (status::BattleHistory::HistoryType)i;
@@ -52,10 +55,10 @@ THUMB void TownMenu_OPERATION_CAREER::menuDraw()
         type = 1;
     }
     SetTextPage(0, type);
-    func_0201e194(0, 0, 0x100, 0xc0, -1);
+    unkfunc_0201e194(0, 0, 0x100, 0xc0, -1);
     if (pageMax_ >= 1) {
         SetTextPage(1, type);
-        func_0201e194(0, 0, 0x100, 0xc0, -1);
+        unkfunc_0201e194(0, 0, 0x100, 0xc0, -1);
     }
 }
 
@@ -80,7 +83,7 @@ THUMB void TownMenu_OPERATION_CAREER::SetTextPage(int page, int type)
 {
     if (page != 0) {
         status::g_BattleHistory.historyType_ = (status::BattleHistory::HistoryType)type;
-        func_02050698(0, 0);
+        unkfunc_02050698(0, 0);
         unkfunc_02173dec(status::g_BattleHistory.getHeroLevel(), 7, bookOfBeasts_, 1);
         if (type == 1) {
             unkfunc_02173e7c(status::g_BattleHistory.getAdventureTime(), 1);

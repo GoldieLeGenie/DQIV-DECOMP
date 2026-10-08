@@ -87,3 +87,5 @@ THUMB int param::MonsterMap::getFloorIndex(param::MonsterMap* data, int section,
     }
     return -1;
 }
+
+DataObject param::MonsterMap::data_;

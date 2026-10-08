@@ -168,8 +168,8 @@ namespace param{
         unsigned char item161;
         unsigned char dmmy0;
         static param::Fukuro* getFileData(unsigned int index);
+        static DataObject data_;
     };
 }
 
 extern char player_fukuro1[];                       //data_020bc614 ./param/param_player_fukuro1.dat
-extern DataObject data_020c7980;

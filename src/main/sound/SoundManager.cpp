@@ -9,6 +9,7 @@
 #include "main/param/FloorParam.hpp"
 #include "main/status/ExcelParam.hpp"
 
+int data_020ed280; // unreferenced
 int SoundManager::nextBgmParam_;
 int SoundManager::prevBgmIndex_;
 int SoundManager::nextBgmIndex_;

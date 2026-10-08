@@ -1,5 +1,6 @@
 #pragma once
 #include <globaldefs.h>
+#include "main/data/DataObject.hpp"
 
 
 namespace param {
@@ -9,6 +10,7 @@ namespace param {
         char floorID[8];
         unsigned char dmmy0;
         static int getFloorIndex(param::MonsterMap* data, int section, char* name);
+        static DataObject data_;
     };
 }
 

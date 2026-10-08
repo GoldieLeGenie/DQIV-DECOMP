@@ -1,4 +1,5 @@
 #include "main/global/Global.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/global/GlobalDQ4.hpp"
 #include "main/status/ExcelParam.hpp"
 #include "main/status/Status.hpp"
@@ -318,7 +319,7 @@ THUMB void GlobalChangePart::update()
     }
 }
 
-THUMB bool GlobalChangePart::isEnd()
+THUMB int GlobalChangePart::isEnd()
 {
     if (nextPart_ == 0x1A) {
         return true;
@@ -365,11 +366,11 @@ THUMB void GlobalFade::draw()
             brightness_ = 16 - brightness_;
             break;
     }
-    func_0207ed24(brightness_);
-    func_0207ed3c(brightness_);
+    unkfunc_0207ed24(brightness_);
+    unkfunc_0207ed3c(brightness_);
 }
 
-THUMB bool GlobalFade::isEnd()
+THUMB int GlobalFade::isEnd()
 {
     if (isFadeEnd()) {
         return true;
@@ -469,7 +470,7 @@ THUMB void GlobalWaitPart::draw()
     count_ = dss::clamp<int>(count_, 0, frames_);
 }
 
-THUMB bool GlobalWaitPart::isEnd()
+THUMB int GlobalWaitPart::isEnd()
 {
     if (isRunning() == 0) {
         return true;
@@ -480,7 +481,7 @@ THUMB bool GlobalWaitPart::isEnd()
 THUMB int GlobalWaitPart::isRunning()
 {
     if (count_ == frames_) {
-        func_0208214c(data_0211c4f0, 8, 8);
+        dss::g_DISPLAYPLUGIN_DOUBLE3D.SetBlur(8, 8);
         return 0;
     }
     return 1;

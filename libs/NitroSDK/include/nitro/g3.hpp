@@ -6,10 +6,13 @@ extern "C" {
     void func_02065604(unsigned int fovySin, unsigned int fovyCos, fx32 aspect, fx32 n, fx32 f, fx32 scaleW, int load, MtxFx44* mtx);    // G3i_PerspectiveW_
     void func_02065a98(const VecFx32* camPos, const VecFx32* camUp, const VecFx32* target, int load, MtxFx43* mtx);                       // G3i_LookAt_
     void func_020657d4(fx32 t, fx32 b, fx32 l, fx32 r, fx32 n, fx32 f, fx32 scaleW, int load, MtxFx44* mtx);                           // G3i_OrthoW_
+    void func_0206541c(unsigned int rgb, unsigned int alpha, unsigned int depth, unsigned int polygonID, int fog);    // G3X_SetClearColor
     void func_02065c9c(fx32 s, fx32 c);                                                                                                  // G3_RotZ
     void func_02065c24(fx32 s, fx32 c);                                                                                                  // G3_RotX
     void func_02065c60(fx32 s, fx32 c);                                                                                                  // G3_RotY
     int  func_02065544(int* result);                                                                                                     // G3_GetBoxTestResult
+    int  func_020653a8(MtxFx44* m);                                                                                                      // G3X_GetClipMtx
+    void func_02068f00(int x, int y, int z, int w, int h, int u0, int v0, int u1, int v1);                                            // draw a textured quad
 }
 
 inline void G3_PushMtx(void) {
@@ -20,6 +23,8 @@ inline void G3_PopMtx(int num) {
 }
 #define REG_GFX_FIFO_BOX_TEST                   (*(vu32*)0x040005C0)
 #define REG_GFX_RAM_COUNT                       (*(vu16*)0x04000604)
+#define REG_GFX_VTX_RAM_COUNT                   (*(vu16*)0x04000606)
+#define REG_RDLINES_COUNT                       (*(vu16*)0x04000320)
 
 typedef struct {
     fx16 x;
@@ -43,7 +48,7 @@ inline void G3_Identity(void) {
     REG_GFX_FIFO_MATRIX_IDENTITY = 0;
 }
 inline void G3_PolygonAttr(int light, int polyMode, int cullMode, int polygonID, int alpha, int misc) {
-    REG_GFX_FIFO_POLYGON_ATTR = (light << 0) | (polyMode << 4) | cullMode | (polygonID << 24) | (alpha << 16) | misc;
+    REG_GFX_FIFO_POLYGON_ATTR = (light << 0) | (polyMode << 4) | cullMode | misc | (polygonID << 24) | (alpha << 16);
 }
 inline void G3_Translate(fx32 x, fx32 y, fx32 z) {
     REG_GFX_FIFO_MATRIX_TRANSLATE = x;

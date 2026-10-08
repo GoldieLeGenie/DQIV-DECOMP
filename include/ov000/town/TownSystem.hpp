@@ -10,13 +10,7 @@ struct TownSystem;
 struct TownStageManager;
 struct TownFurnitureManager;
 struct TownPlayerManager;
-struct UnkManager_0202adc4;
 namespace encount { struct Encount; }
-
-extern "C" {
-    void func_02049ba4(void);
-    void func_02049eb4(void);
-}
 
 struct TownSystem {
     Render render_;                                                                 // 0x000

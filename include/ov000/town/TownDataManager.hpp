@@ -1,18 +1,10 @@
 #pragma once
 #include "globaldefs.h"
 #include "main/dss/DssUtils.hpp"
+#include "main/dss/UnkFog.hpp"
 #include "main/data/DataObject.hpp"
 #include "main/param/Param.hpp"
 #include "main/param/ColorCorrect.hpp"
-
-extern "C" {
-    void func_020832b0(int enable);                                         // fog enable
-    void func_0208328c(int r, int g, int b);                                // fog color
-    void func_020831e8(int side, dss::Fix32 rate);                          // fog rate
-    void func_020831d8(int side, int offset);                               // fog offset
-    void func_02084cec(unsigned char* bottomUpLeft, unsigned char* bottomUpRight, unsigned char* bottomDownLeft, unsigned char* bottomDownRight,
-                       unsigned char* topUpLeft, unsigned char* topUpRight, unsigned char* topDownLeft, unsigned char* topDownRight); // map back color
-}
 
 struct TownDataManager {
     int correctTime_;                           // 0x00

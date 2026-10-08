@@ -2032,7 +2032,7 @@ m_singleton$4391 kind:bss addr:0x0214f268 local
 _ZGVm_singleton$4510 kind:bss addr:0x02150a04 local
 distance kind:bss addr:0x02150a08 local
 offset kind:bss addr:0x02150a0c local
-default_angle kind:bss addr:0x02150a10 local
+default_angle kind:bss(size=0x6) addr:0x02150a10 local
 @4513 kind:bss addr:0x02150a18 local
 m_singleton$4510 kind:bss addr:0x02150a24 local
 _ZGVm_singleton$527 kind:bss addr:0x02150c94 local
@@ -2237,3 +2237,4 @@ m_singleton$1921 kind:bss addr:0x02160390 local
 _ZGVm_singleton$808 kind:bss addr:0x021608a0 local
 @811 kind:bss addr:0x021608a4 local
 m_singleton$808 kind:bss(size=0x390) addr:0x021608b0 local
+module_padding_ov000_ctor_02147848 kind:data(byte[4]) addr:0x02147848

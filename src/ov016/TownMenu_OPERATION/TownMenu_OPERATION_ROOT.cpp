@@ -94,7 +94,7 @@ THUMB void TownMenu_OPERATION_ROOT::menuUpdate()
     }
     if (data_020ed1bc.isOpen()) {
         int stat = data_020ed1bc.stat_;
-        if (func_0204e004(s_draw)) {
+        if (s_draw->unkfunc_0204e004()) {
             isMantan_ = 0;
             if (mode_ == 3) {
                 status::UseActionParam useActionParam;
@@ -132,7 +132,7 @@ THUMB void TownMenu_OPERATION_ROOT::menuUpdate()
         }
         if (data_020ed1bc.isMessageWAITPROG()) {
             if (abort_ == 2) {
-                saveResult_ = func_0202b8b8(3, 3);
+                saveResult_ = profile::SaveLoad::savebank(3, profile::SAVETYPE_RESUME);
                 abort_ = 3;
             }
             unkfunc_0217a67c();
@@ -146,7 +146,7 @@ THUMB void TownMenu_OPERATION_ROOT::menuUpdate()
             data_020ed1bc.close();
             if (mode_ == 1 || mode_ == 2) {
                 if (unk_1ac == 1) {
-                    menuItem_.bActive_ = menu::MenuItem::CURSORTYPE_ACTIVE;
+                    menuItem_.ctype_ = menu::MenuItem::CURSORTYPE_ACTIVE;
                     menuItem_.drawActive();
                     mode_ = 0;
                     unk_1ac = 0;
@@ -159,7 +159,7 @@ THUMB void TownMenu_OPERATION_ROOT::menuUpdate()
             data_020ed1bc.close();
             if (mode_ != 1) {
                 mode_ = 0;
-                menuItem_.bActive_ = menu::MenuItem::CURSORTYPE_ACTIVE;
+                menuItem_.ctype_ = menu::MenuItem::CURSORTYPE_ACTIVE;
                 menuItem_.drawActive();
                 redraw_ = 1;
             }
@@ -169,7 +169,7 @@ THUMB void TownMenu_OPERATION_ROOT::menuUpdate()
     if (MenuUpdate_Assist::isCancel(cancelItem_)) {
         if (mode_ == 1 || mode_ == 2) {
             mode_ = 0;
-            menuItem_.bActive_ = menu::MenuItem::CURSORTYPE_ACTIVE;
+            menuItem_.ctype_ = menu::MenuItem::CURSORTYPE_ACTIVE;
             menuItem_.drawActive();
             redraw_ = 1;
             return;
@@ -267,7 +267,7 @@ THUMB void TownMenu_OPERATION_ROOT::unkfunc_0217a278()
     data_020ed1bc.openMessageForMENU();
     data_020ed1bc.addMessage(0xc3d5b);
     data_020ed1bc.setYesNo();
-    menuItem_.bActive_ = menu::MenuItem::CURSORTYPE_NONE;
+    menuItem_.ctype_ = menu::MenuItem::CURSORTYPE_NONE;
 }
 
 THUMB void TownMenu_OPERATION_ROOT::unkfunc_0217a2a0()
@@ -282,7 +282,7 @@ THUMB void TownMenu_OPERATION_ROOT::unkfunc_0217a2a0()
             data_020ed1bc.addMessage(0xc3d65);
         }
         data_020ed1bc.setYesNo();
-        menuItem_.bActive_ = menu::MenuItem::CURSORTYPE_NONE;
+        menuItem_.ctype_ = menu::MenuItem::CURSORTYPE_NONE;
         return;
     }
     data_020ed1bc.openMessageForMENU();

@@ -46,7 +46,7 @@ ARM int DebugMenu::unkfunc_02058380()
     return unk_6c;
 }
 
-ARM bool DebugMenu::isEnd()
+ARM int DebugMenu::isEnd()
 {
     return true;
 }
@@ -74,7 +74,7 @@ ARM void DebugMenu::print(int x, int y, const char* fmt, ...)
     va_list args;
     va_start(args, fmt);
     vsnprintf(buf, 0x21, fmt, args);
-    func_0207e864(data_02116ce0, x_ + x, y_ + y, buf);
+    data_02116ce0.unkfunc_0207e864(x_ + x, y_ + y, buf);
 }
 
 ARM void DebugMenu::unkfunc_02058430(const char* date)

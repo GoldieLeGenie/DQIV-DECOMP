@@ -13,22 +13,22 @@ ARM UnkMenuSprite::~UnkMenuSprite()
 
 ARM void UnkMenuSprite::unkfunc_02057d1c()
 {
-    func_02086868(texture_);
+    ((TextureObject*)texture_)->unkfunc_02086868();
 }
 
 ARM void UnkMenuSprite::unkfunc_02057d2c()
 {
-    func_02086968(texture_, 0);
+    ((TextureObject*)texture_)->unkfunc_02086968(0);
 }
 
 ARM void UnkMenuSprite::unkfunc_02057d40()
 {
-    func_020868dc(texture_);
+    ((TextureObject*)texture_)->unkfunc_020868dc();
 }
 
 ARM int UnkMenuSprite::unkfunc_02057d50()
 {
-    return func_02086a9c(texture_);
+    return ((TextureObject*)texture_)->unkfunc_02086a9c();
 }
 
 ARM void UnkMenuSprite::unkfunc_02057d60(const char* filename, int a)
@@ -46,16 +46,16 @@ ARM void UnkMenuSprite::unkfunc_02057d88(void* addr)
 ARM void UnkMenuSprite::unkfunc_02057dac()
 {
     texture_ = data_.getAddr();
-    func_02086798(texture_, 1);
+    ((TextureObject*)texture_)->unkfunc_02086798(1);
     sprite_.texture_ = texture_;
     sprite_.unkfunc_02084534(0, 0);
-    sprite_.unkfunc_0208456c(func_02086c18(texture_), func_02086c64(texture_));
-    sprite_.unkfunc_02084578(0, 0, func_02086c18(texture_), func_02086c64(texture_));
+    sprite_.unkfunc_0208456c(((TextureObject*)texture_)->unkfunc_02086c18(), ((TextureObject*)texture_)->unkfunc_02086c64());
+    sprite_.unkfunc_02084578(0, 0, ((TextureObject*)texture_)->unkfunc_02086c18(), ((TextureObject*)texture_)->unkfunc_02086c64());
 }
 
 ARM void UnkMenuSprite::unkfunc_02057e34()
 {
-    func_02086868(texture_);
+    ((TextureObject*)texture_)->unkfunc_02086868();
     data_.cleanup();
     texture_ = 0;
 }
@@ -133,5 +133,5 @@ ARM void UnkMenuSprite::unkfunc_02057f38(int a)
 
 ARM void UnkMenuSprite::unkfunc_02057f40(unsigned char r, unsigned char g, unsigned char b)
 {
-    func_02084e8c(&sprite_, r, g, b);
+    sprite_.setColor(r, g, b);
 }

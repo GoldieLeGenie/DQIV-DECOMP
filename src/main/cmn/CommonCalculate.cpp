@@ -1,4 +1,8 @@
 #include "main/cmn/CommonCalculate.hpp"
+#include "main/dss/UnkMatrix43.hpp"
+
+// unreferenced
+const short data_020b5fa8 = 0x1000;
 
 inline const long& enterLimitL() { return 0L; }
 inline const long& frontLimitL() { return 0L; }
@@ -6,10 +10,9 @@ inline const long& frontLimitL() { return 0L; }
 ARM void cmn::CommonCalculate::getDirByIdx(short dir, dss::Fix32Vector3& vec)
 {
     vec.set(0, 0, 0x1000);
-    MtxFx43 rot;
-    func_020885f8(&rot);
-    func_020886d0(&rot, dir);
-    vec = func_02088670(&rot, &vec);
+    dss::UnkMatrix43 rot;
+    rot.unkfunc_020886d0(dir);
+    vec = rot * vec;
 }
 
 ARM bool cmn::CommonCalculate::simpleAreaInCheck(dss::Fix32Vector3& min, dss::Fix32Vector3& max, dss::Fix32Vector3 pos)
@@ -75,8 +78,9 @@ ARM bool cmn::CommonCalculate::areaCheck(dss::Fix32Vector3& pos, short dir, dss:
 
 ARM bool cmn::CommonCalculate::directionCheckByScriptParam(int param, short dir)
 {
+    static const short checkDir[8] = { 0, 0x2000, 0x4000, 0x6000, (short)0x8000, (short)0xa000, (short)0xc000, (short)0xe000 };
     if (param != 4) {
-        short center = data_020b5faa[param];
+        short center = checkDir[param];
         int result = 0;
         if (center - 0x1000 <= dir && dir < center + 0x1000) {
             result = 1;

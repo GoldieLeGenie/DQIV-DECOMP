@@ -5,6 +5,7 @@
 #include "main/menu/MenuBase.hpp"
 #include "main/text/TextAPI.hpp"
 #include "main/dss/DssUtils.hpp"
+#include "main/menu/UnkMenuPartsDraw.hpp"
 
 BattleMonsterNamePlate gBattleMonsterNamePlate;
 
@@ -89,7 +90,7 @@ THUMB void BattleMonsterNamePlate::setMonsterParameter(int group, int monsterCou
     } else {
         TextAPI::getMonsterNamePlateTextImitation(text, monsterData_[addCount_].name, monsterData_[addCount_].num);
     }
-    monsterData_[addCount_].leng = func_02050e20(addCount_, text);
+    monsterData_[addCount_].leng = unkfunc_02050e20(addCount_, text);
     monsterData_[addCount_].height = rect[2];
     monsterData_[addCount_].drawID = (addCount_ == 0) ? 1 : 2;
     adjustPosition(addCount_);

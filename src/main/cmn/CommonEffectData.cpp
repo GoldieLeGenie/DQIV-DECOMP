@@ -227,7 +227,7 @@ ARM void cmn::CommonEffectData::setup(int index)
         dss::sprintf_s(path, 0x80, "data/effect/effect%03db.lz", index - 10000);
     }
     effectData_.setup(path, 1, 1);
-    m_effect_type = *(int*)func_0207f8dc(effectData_.getAddr(), 0);
+    m_effect_type = *(int*)unkfunc_0207f8dc(effectData_.getAddr(), 0);
     if (m_effect_type == 0) {
         setupTexture();
     }
@@ -235,7 +235,7 @@ ARM void cmn::CommonEffectData::setup(int index)
 
 ARM void cmn::CommonEffectData::setupTexture()
 {
-    func_02086798(getTextureData(), 0);
+    ((TextureObject*)(getTextureData()))->unkfunc_02086798(0);
 }
 
 ARM void cmn::CommonEffectData::cleanup()
@@ -250,17 +250,17 @@ ARM void cmn::CommonEffectData::cleanup()
 
 ARM void cmn::CommonEffectData::cleanupTexture()
 {
-    func_02086868(getTextureData());
+    ((TextureObject*)(getTextureData()))->unkfunc_02086868();
 }
 
 ARM void* cmn::CommonEffectData::getTextureData()
 {
-    return func_0207f8dc(effectData_.getAddr(), 1);
+    return unkfunc_0207f8dc(effectData_.getAddr(), 1);
 }
 
 ARM void* cmn::CommonEffectData::getAnimationData()
 {
-    return func_0207f8dc(effectData_.getAddr(), 2);
+    return unkfunc_0207f8dc(effectData_.getAddr(), 2);
 }
 
 ARM void* cmn::CommonEffectData::getPaletteAnimData()
@@ -268,25 +268,25 @@ ARM void* cmn::CommonEffectData::getPaletteAnimData()
     if (!isPamEnable()) {
         return 0;
     }
-    return func_0207f8dc(effectData_.getAddr(), 3);
+    return unkfunc_0207f8dc(effectData_.getAddr(), 3);
 }
 
 ARM int cmn::CommonEffectData::isPamEnable()
 {
-    return func_0207f8c4(effectData_.getAddr()) > 3;
+    return unkfunc_0207f8c4(effectData_.getAddr()) > 3;
 }
 
 ARM void* cmn::CommonEffectData::getModelData()
 {
-    return func_0207f8dc(effectData_.getAddr(), 1);
+    return unkfunc_0207f8dc(effectData_.getAddr(), 1);
 }
 
 ARM void* cmn::CommonEffectData::getAnimData(int index)
 {
-    if (func_0207f8c4(effectData_.getAddr()) <= index + 2) {
+    if (unkfunc_0207f8c4(effectData_.getAddr()) <= index + 2) {
         return 0;
     }
-    return func_0207f8dc(effectData_.getAddr(), index + 2);
+    return unkfunc_0207f8dc(effectData_.getAddr(), index + 2);
 }
 
 ARM int cmn::CommonEffectData::isEnable()

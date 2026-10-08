@@ -1,7 +1,22 @@
+#pragma ipa file
 #include "main/cmn/WorldLocation.hpp"
 #include "main/status/ExcelParam.hpp"
 #include "main/status/StageStatus.hpp"
 
+
+ARM cmn::WorldLocation::WorldLocation()
+{
+}
+
+ARM cmn::WorldLocation::~WorldLocation()
+{
+}
+
+ARM cmn::WorldLocation* cmn::WorldLocation::getSingleton()
+{
+    static WorldLocation WorldLocation;
+    return &WorldLocation;
+}
 
 ARM void cmn::WorldLocation::initialize()
 {

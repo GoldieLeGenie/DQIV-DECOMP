@@ -10,6 +10,7 @@
 #include "main/text/TextAPI.hpp"
 #include "ov016/MenuTemplate/MenuTemplate_town.hpp"
 #include "ov016/UnkTownMenuDraw/UnkTownMenuDraw_0217d560.hpp"
+#include "main/menu/MenuTemplate_Common.hpp"
 
 THUMB void TownMenu_OPERATION_EQUIP::menuSetup()
 {
@@ -47,7 +48,7 @@ THUMB void TownMenu_OPERATION_EQUIP::menuExecute()
         if (itemCount > 6) {
             itemCount = 6;
         }
-        func_0201e6c4(&itemItem_, itemCount, itemItem_.active_);
+        MenuTemplate_Common::COMMON_ITEM_ICON32_2x3(&itemItem_, itemCount, itemItem_.active_);
         if (itemType_ >= 0) {
             MenuTemplate_town::TOWN_OP_NOEQUIP(&removeItem_);
         }

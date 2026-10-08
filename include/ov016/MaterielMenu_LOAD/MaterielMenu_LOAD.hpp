@@ -35,7 +35,7 @@ struct MaterielMenu_LOAD : menu::MenuBase
     int country_;                       /* 0x160 */
     int sexuality_;                     /* 0x164 */
     DiaryInfo diary_[3];                /* 0x168 */
-    CatalogView* catalogview_;          /* 0x1B0 */
+    profile::CatalogView* catalogview_;          /* 0x1B0 */
     int killResult_;                    /* 0x1B4 */
     int makeResult_;                    /* 0x1B8 */
     int resume_;                        /* 0x1BC */

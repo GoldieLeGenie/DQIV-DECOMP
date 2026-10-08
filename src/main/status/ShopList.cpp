@@ -5,6 +5,7 @@
 #include "main/param/ShopDataFirst.hpp"
 #include "main/param/ShopDataSecond.hpp"
 
+status::ShopList status::g_Shop;
 status::ShopData status::ShopData_;
 
 char check_map[4] = "en";   // 0x020bdc70

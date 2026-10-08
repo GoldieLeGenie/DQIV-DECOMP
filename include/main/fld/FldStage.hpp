@@ -6,33 +6,20 @@
 #include "main/fld/Coll.hpp"
 #include "main/object/ModelObject.hpp"
 #include "main/dss/Render.hpp"
+#include "main/dss/UnkPaletteEffect.hpp"
 
 struct FldStage;
 struct FldCollision;
 
 int unkfunc_020484ec(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecFx32* box, dss::Fix32* rate);
 
-extern "C" {
-    void  func_0208532c(FldStage* stage, Render* render);
-    void  func_02085348(FldStage* stage);
-    void  func_020857a8(int index, dss::Fix32Vector3 scale);
-    void  func_02085840(void* palette, int size, dss::Fix32Vector3& rate);   /* applies an rgb rate to a palette */
-    void  func_02084c78(int r, int g, int b);
-    void  func_0208336c(UnkModelMember* self);
-    int*  func_0207f88c(void* heap);
-    void  func_02067940(const void* src, void* dst);              // MI_Copy36B
-}
-
-struct FldStage {
-    // vtable                                   // 0x000
-    void* m_item_place;                         // 0x004
+struct FldStage : UnkRenderModel {
     Render* m_render;                           // 0x008
     LZDataObject m_data;                        // 0x00C
     DataObject m_model;                         // 0x01C
     DataObject m_texture;                       // 0x02C
     DataObject m_coll;                          // 0x03C
     UnkModelMember m_anim;                      // 0x04C
-    int unk_054;                                // 0x054
     fld::FLDObject m_fld;                       // 0x058
     dss::Fix32Vector3 scale_;                   // 0x668
     int collisionFlag_;                         // 0x674

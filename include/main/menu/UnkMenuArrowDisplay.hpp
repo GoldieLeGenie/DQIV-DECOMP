@@ -2,7 +2,7 @@
 #include <globaldefs.h>
 #include "main/menu/UnkMenuDisplay.hpp"
 
-// Up to 16 arrows / cursors drawn on the sub screen (data_020fa828)
+// Up to 16 arrows / cursors drawn on the sub screen (data_020f530c.arrow_)
 struct UnkMenuArrowDisplay : UnkMenuDisplay {
     int posX_[16];                              // 0x030
     int posY_[16];                              // 0x070
@@ -23,3 +23,4 @@ struct UnkMenuArrowDisplay : UnkMenuDisplay {
     void unkfunc_02052658(int x, int y, int kind, int flag);
     void unkfunc_02052694();
 };
+

@@ -47,7 +47,7 @@ THUMB void BattleMenu_MAGIC2ENEMY::menuUpdate()
 {
     int group = touchRect_[menuItem_.active_].group;
     int old = menuItem_.active_;
-    func_02051a7c(&menuItem_);
+    menuItem_.execInput();
     int i = menuItem_.active_;
     if (MenuUpdate_Assist::isCancel(cancelItem_)) {
         status::g_Party.getPlayerStatus(btl::BattleMenuPlayerControl::getSingleton()->activeChara_)->haveBattleStatus_.setSelectCommand(status::HaveBattleStatus::UseAction, -1);

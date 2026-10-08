@@ -5,6 +5,7 @@
 #include "main/status/HaveEquipment.hpp"
 #include "ov003/btl/BattleExecVictory.hpp"
 #include "main/dss/ScreenPosition.hpp"
+#include "main/menu/UnkMenuPartsDraw.hpp"
 
 int monsterChangeCount;
 
@@ -171,7 +172,7 @@ THUMB void btl::BattleActorAnimation::setResultAnimation(status::UseActionParam*
             if (target->isDamageAnimation()) {
                 int effectValue = target->haveStatusInfo_.effectValue_;
                 if (effectValue > 0) {
-                    tai = data_020c04f4[g_monster.getMonsterStatusWithCtrlId(ctrlId)->characterIndex_];
+                    tai = MonsterTaiData[g_monster.getMonsterStatusWithCtrlId(ctrlId)->characterIndex_];
 
                     for (i = 0; i < g_monster.getCount(); i++) {
                         if (ctrlId == g_monster.getMonsterStatus(i)->haveStatusInfo_.drawCtrlId_) {
@@ -187,7 +188,7 @@ THUMB void btl::BattleActorAnimation::setResultAnimation(status::UseActionParam*
                     if (value <= 32) {
                         value = 32;
                     }
-                    func_02050e88(a, value, effectValue, 0);
+                    unkfunc_02050e88(a, value, effectValue, 0);
                     SoundManager::playSe(402, 0);
                 }
             }

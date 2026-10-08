@@ -33,7 +33,7 @@ THUMB int MsgVar::extract_var(char* dst, int size, int ex)
 {
     unsigned char letter[8];
     char buf[8];
-    char* work = (char*)func_0207f77c(&data_0211a60c, 0x202, 0x20);
+    char* work = (char*)unkfunc_0207f77c(&data_0211a60c, 0x202, 0x20);
     const char* prefix = "";
     const char* suffix = prefix;
     int plural = (m_opt != -1) ? 1 : 0;
@@ -109,7 +109,7 @@ THUMB int MsgVar::extract_var(char* dst, int size, int ex)
             letter[0] = alphabet[m_opt];
             letter[1] = 0;
             if (TextAPI::m_lang == 0) {
-                func_02087f14(data_020c47d4, data_020c4894, buf, 8, (char*)letter);
+                unkfunc_02087f14(data_020c47d4, data_020c4894, buf, 8, (char*)letter);
             } else {
                 dss::sprintf_s(buf, 8, " %s", letter);
             }
@@ -117,7 +117,7 @@ THUMB int MsgVar::extract_var(char* dst, int size, int ex)
         }
     }
     m_macro_stat = g_text_extractor.m_macro_stat;
-    func_0207f840(&data_0211a60c, work);
+    unkfunc_0207f840(&data_0211a60c, work);
     return ret;
 }
 

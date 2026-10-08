@@ -1,6 +1,7 @@
 #pragma once
 #include "main/menu/MenuBase.hpp"
 #include "main/menu/TownMenu_TOWN.hpp"
+#include "main/menu/CommonMenu_APITEST.hpp"
 #include "ov016/TownShopMenu/TownShopMenu.hpp"
 #include "ov016/UnkTownMenu_02178a58/UnkTownMenu_02178a58.hpp"
 
@@ -43,8 +44,4 @@ namespace MenuAPI {
     void suspendMessageKeyInput(int flag);
 }
 
-extern menu::MenuBase data_020ed068;            /* gCommonMenu_APITEST */
 
-extern "C" {
-    void func_02081264(unsigned short backDrop);
-}

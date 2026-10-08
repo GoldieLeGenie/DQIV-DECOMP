@@ -90,6 +90,7 @@ extern "C" {
     int collCheckA(VecFx32* bboxA, VecFx32* bboxB, VecFx32* point);
     COLL_ADD_RESULT_TYPE coll_AddCollPoly2(int extraNo, int polyNo, COLL_HEADER* header, COLL_POLY* new_poly, NNSFndAllocator* allocator, int& allocFlag);
 
+    int coll_CheckBoxWallNo(COLL_HEADER* header, VecFx32* center, fx32 r, int start, VecFx32* ret);
     int coll_GetNextMoveBox(COLL_HEADER* header, VecFx32* old_center, VecFx32* center, fx32 r, VecFx32* ret);
-    int func_02053abc(COLL_HEADER* coll, int obj, int wall);
+    int coll_GetObjWallNo(COLL_HEADER* header, int obj_id, int poly_no);
 }

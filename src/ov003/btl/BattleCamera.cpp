@@ -133,8 +133,8 @@ THUMB void BattleCamera::setCameraAnimation(unsigned char camera1, unsigned char
 {
     this->camera1 = 1;
     this->camera2 = 1;
-    func_02033d14(camera1, file_);
-    func_02033d14(camera2, file2_);
+    param::EffectParam::getCameraFile(camera1, file_);
+    param::EffectParam::getCameraFile(camera2, file2_);
     setWait(wait);
     getSingleton()->initCamera();
 }

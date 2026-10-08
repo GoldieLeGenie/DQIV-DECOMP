@@ -33,6 +33,7 @@
 #include "ov000/town/TownSystem.hpp"
 #include "ov000/town/TownWindowSystem.hpp"
 #include "main/sound/Sound.hpp"
+#include "main/cmn/UnkImmigrantTown.hpp"
 
 THUMB int cmd_get_flag(int* param)
 {
@@ -196,16 +197,16 @@ THUMB void __cmd_fade_out2::initialize(char* scriptParam)
         data_020f21f8.state_ = GlobalFade::FADE_NONE;
         data_020f21f8.count_ = 0;
         data_020f21f8.frames_ = frame;
-        func_02084e8c(data_020f220c, 0, 0, 0);
-        func_02084e8c(data_020f2244, 0, 0, 0);
+        data_020f21f8.sprite_[0].setColor(0, 0, 0);
+        data_020f21f8.sprite_[1].setColor(0, 0, 0);
         data_0210bc18.unkfunc_02058294(&data_020f21f8);
     } else {
         int frame = param->frame;
         data_020f21f8.state_ = GlobalFade::FADE_IN_BLACK;
         data_020f21f8.count_ = 0;
         data_020f21f8.frames_ = frame;
-        func_02084e8c(data_020f220c, 0x1f, 0x1f, 0x1f);
-        func_02084e8c(data_020f2244, 0x1f, 0x1f, 0x1f);
+        data_020f21f8.sprite_[0].setColor(0x1f, 0x1f, 0x1f);
+        data_020f21f8.sprite_[1].setColor(0x1f, 0x1f, 0x1f);
         data_0210bc18.unkfunc_02058294(&data_020f21f8);
     }
     count_ = 0;
@@ -786,12 +787,12 @@ THUMB int cmd_not_play_normal_sound(int* param)
 
 THUMB int cmd_check_member_type(int* param)
 {
-    return func_02037d6c(func_02037da4(), param[0]);
+    return UnkImmigrantTown::getSingleton()->unkfunc_02037d6c(param[0]);
 }
 
 THUMB int cmd_check_member_num(int* param)
 {
-    unsigned int count = *(unsigned int*)func_02037da4();
+    unsigned int count = UnkImmigrantTown::getSingleton()->count_;
     if (count < (unsigned int)param[1] && count >= (unsigned int)param[0]) {
         return 1;
     }

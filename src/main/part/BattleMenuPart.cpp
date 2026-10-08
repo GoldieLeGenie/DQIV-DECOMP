@@ -86,7 +86,7 @@ ARM void BattleMenuPart::onExecutePart()
     if (dss::g_Pad.edge() & 0x80) {
         cursor_++;
     }
-    func_0207e810(data_02116ce0);
+    data_02116ce0.unkfunc_0207e810();
     if (cursor_ == 0) {
         if (dss::g_Pad.edge() & 0x10) {
             mode_ = 1;
@@ -132,13 +132,13 @@ ARM void BattleMenuPart::onExecutePart()
 
 ARM void BattleMenuPart::onDrawPart()
 {
-    func_0207e88c(data_02116ce0, x_, y_ + cursor_, ">");
+    data_02116ce0.unkfunc_0207e88c(x_, y_ + cursor_, ">");
     if (mode_ == 0) {
-        func_0207e88c(data_02116ce0, x_ + 1, y_, "1.Mode : Encount");
+        data_02116ce0.unkfunc_0207e88c(x_ + 1, y_, "1.Mode : Encount");
         unkfunc_020090f4();
     }
     if (mode_ == 1) {
-        func_0207e88c(data_02116ce0, x_ + 1, y_, "1.Mode : Select");
+        data_02116ce0.unkfunc_0207e88c(x_ + 1, y_, "1.Mode : Select");
         unkfunc_020091f0();
     }
 }
@@ -149,7 +149,7 @@ ARM void BattleMenuPart::onWindowPart()
 
 ARM void BattleMenuPart::onDebugPart()
 {
-    func_0207e88c(data_02116ce0, 0, 0, "Battle Menu Part", REG_GFX_RAM_COUNT);
+    data_02116ce0.unkfunc_0207e88c(0, 0, "Battle Menu Part", REG_GFX_RAM_COUNT);
 }
 
 ARM void BattleMenuPart::unkfunc_02008d84()
@@ -255,22 +255,22 @@ ARM void BattleMenuPart::unkfunc_02008ed0()
 
 ARM void BattleMenuPart::unkfunc_020090f4()
 {
-    func_0207e88c(data_02116ce0, x_ + 1, y_ + 1, "2.Encount Tile : %3d", tileId_);
+    data_02116ce0.unkfunc_0207e88c(x_ + 1, y_ + 1, "2.Encount Tile : %3d", tileId_);
     char timeZone[3][8] = { "None", "Day", "Night" };
-    func_0207e88c(data_02116ce0, x_ + 1, y_ + 2, "3.Time Zone    : %s", timeZone[timeZone_]);
-    func_0207e88c(data_02116ce0, x_ + 1, y_ + 3, "4.Group        : %s", data_020c4fb4.unkfunc_02048e50());
-    func_0207e88c(data_02116ce0, x_ + 1, y_ + 4, "5.Map          : %s", data_020c4fb4.unkfunc_02048f7c());
+    data_02116ce0.unkfunc_0207e88c(x_ + 1, y_ + 2, "3.Time Zone    : %s", timeZone[timeZone_]);
+    data_02116ce0.unkfunc_0207e88c(x_ + 1, y_ + 3, "4.Group        : %s", data_020c4fb4.unkfunc_02048e50());
+    data_02116ce0.unkfunc_0207e88c(x_ + 1, y_ + 4, "5.Map          : %s", data_020c4fb4.unkfunc_02048f7c());
 }
 
 ARM void BattleMenuPart::unkfunc_020091f0()
 {
-    func_0207e88c(data_02116ce0, x_ + 1, y_ + 1, "2.GROUP   : %d", group_ + 1);
-    func_0207e88c(data_02116ce0, x_ + 1, y_ + 2, "3.MONSTER : m%03d", monster_[group_]);
-    func_0207e88c(data_02116ce0, x_ + 1, y_ + 3, "4.COUNT   : %d", count_[group_]);
-    func_0207e88c(data_02116ce0, x_ + 1, y_ + 4, "5.Group   : %s", data_020c4fb4.unkfunc_02048e50());
-    func_0207e88c(data_02116ce0, x_ + 1, y_ + 5, "6.Map     : %s", data_020c4fb4.unkfunc_02048f7c());
-    func_0207e88c(data_02116ce0, x_ + 0x18, y_ + 1, "m%03d(%d)", monster_[0], count_[0]);
-    func_0207e88c(data_02116ce0, x_ + 0x18, y_ + 2, "m%03d(%d)", monster_[1], count_[1]);
-    func_0207e88c(data_02116ce0, x_ + 0x18, y_ + 3, "m%03d(%d)", monster_[2], count_[2]);
-    func_0207e88c(data_02116ce0, x_ + 0x18, y_ + 4, "m%03d(%d)", monster_[3], count_[3]);
+    data_02116ce0.unkfunc_0207e88c(x_ + 1, y_ + 1, "2.GROUP   : %d", group_ + 1);
+    data_02116ce0.unkfunc_0207e88c(x_ + 1, y_ + 2, "3.MONSTER : m%03d", monster_[group_]);
+    data_02116ce0.unkfunc_0207e88c(x_ + 1, y_ + 3, "4.COUNT   : %d", count_[group_]);
+    data_02116ce0.unkfunc_0207e88c(x_ + 1, y_ + 4, "5.Group   : %s", data_020c4fb4.unkfunc_02048e50());
+    data_02116ce0.unkfunc_0207e88c(x_ + 1, y_ + 5, "6.Map     : %s", data_020c4fb4.unkfunc_02048f7c());
+    data_02116ce0.unkfunc_0207e88c(x_ + 0x18, y_ + 1, "m%03d(%d)", monster_[0], count_[0]);
+    data_02116ce0.unkfunc_0207e88c(x_ + 0x18, y_ + 2, "m%03d(%d)", monster_[1], count_[1]);
+    data_02116ce0.unkfunc_0207e88c(x_ + 0x18, y_ + 3, "m%03d(%d)", monster_[2], count_[2]);
+    data_02116ce0.unkfunc_0207e88c(x_ + 0x18, y_ + 4, "m%03d(%d)", monster_[3], count_[3]);
 }

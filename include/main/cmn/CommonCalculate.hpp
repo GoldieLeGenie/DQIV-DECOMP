@@ -19,4 +19,4 @@ namespace cmn {
 
 
 // direction per script param: 0x0000, 0x2000, 0x4000, 0x6000, -0x8000, -0x6000, -0x4000, -0x2000
-extern const short data_020b5faa[8];
+extern const short data_020b5fa8;

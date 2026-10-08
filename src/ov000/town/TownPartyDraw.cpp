@@ -1,4 +1,5 @@
 #include "ov000/town/TownPartyDraw.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "ov000/town/TownCamera.hpp"
 #include "ov000/town/TownStageManager.hpp"
 #include "ov000/town/TownSystem.hpp"
@@ -78,12 +79,12 @@ ARM void TownPartyDraw::setup()
             }
             dss::sprintf_s(path, sizeof(path), "data/chr/h%03d.pack", chara);
             partyCharacter_[i].setRender(&TownSystem::getSingleton()->render_);
-            func_02049984(&TownCamera::getSingleton()->camera_.unk_004);
+            BillboardCharacter::setCamera(&TownCamera::getSingleton()->camera_.unk_004);
             partyCharacter_[i].setup(path, 0);
             partyCharacter_[i].setPosition(defaultPosition);
-            func_0204948c(&partyCharacter_[i], 0);
+            partyCharacter_[i].setRotate(0);
             partyCharacter_[i].enable_ = 0;
-            func_0204977c(&partyCharacter_[i], 0);
+            partyCharacter_[i].unkfunc_0204977c(0);
             partyCharacter_[i].exec();
         }
         count_ = dss::clamp<int>(count_, 0, 7);
@@ -111,11 +112,11 @@ ARM void TownPartyDraw::setup()
             }
             dss::sprintf_s(path, sizeof(path), "data/chr/h%03d.pack", chara);
             partyCharacter_[i].setRender(&TownSystem::getSingleton()->render_);
-            func_02049984(&TownCamera::getSingleton()->camera_.unk_004);
+            BillboardCharacter::setCamera(&TownCamera::getSingleton()->camera_.unk_004);
             partyCharacter_[i].setup(path, 0);
             partyCharacter_[i].setPosition(defaultPosition);
-            func_0204948c(&partyCharacter_[i], 0);
-            func_0204977c(&partyCharacter_[i], 0);
+            partyCharacter_[i].setRotate(0);
+            partyCharacter_[i].unkfunc_0204977c(0);
             partyCharacter_[i].exec();
         }
     }
@@ -144,7 +145,7 @@ ARM void TownPartyDraw::setPosition(int index, const dss::Fix32Vector3& pos)
 
 ARM void TownPartyDraw::setRotate(int index, int dirIdx)
 {
-    func_0204948c(&partyCharacter_[index], dirIdx);
+    partyCharacter_[index].setRotate(dirIdx);
 }
 
 ARM void TownPartyDraw::resetAlpha()
@@ -157,14 +158,14 @@ ARM void TownPartyDraw::resetAlpha()
 ARM void TownPartyDraw::resetDrawPartyCount()
 {
     for (int i = 0; i < count_; i++) {
-        func_020497a4(&partyCharacter_[i], 1);
+        partyCharacter_[i].setDisplayEnable(1);
     }
 }
 
 ARM void TownPartyDraw::setDrawPartyOne()
 {
     for (int i = 1; i < count_; i++) {
-        func_020497a4(&partyCharacter_[i], 0);
+        partyCharacter_[i].setDisplayEnable(0);
         setAlpha(i, 0);
     }
 }
@@ -172,38 +173,38 @@ ARM void TownPartyDraw::setDrawPartyOne()
 ARM void TownPartyDraw::setDrawPartyNone()
 {
     for (int i = 0; i < count_; i++) {
-        func_020497a4(&partyCharacter_[i], 0);
+        partyCharacter_[i].setDisplayEnable(0);
         setAlpha(i, 0);
     }
 }
 
 ARM void TownPartyDraw::setAnimationOne(int anim)
 {
-    func_02049814(&partyCharacter_[0], anim);
+    partyCharacter_[0].setAnimFlag(anim);
 }
 
 ARM void TownPartyDraw::setAnimation(int anim)
 {
     for (int i = 0; i < 8; i++) {
-        if (func_020499d4() == 0) {
-            func_02049814(&partyCharacter_[i], anim);
+        if (BillboardCharacter::isAllAnimation() == 0) {
+            partyCharacter_[i].setAnimFlag(anim);
         } else if (anim == 1) {
-            func_02049814(&partyCharacter_[i], 2);
+            partyCharacter_[i].setAnimFlag(2);
         } else {
-            func_02049814(&partyCharacter_[i], anim);
+            partyCharacter_[i].setAnimFlag(anim);
         }
     }
 }
 
 ARM void TownPartyDraw::setWriggleCharacter(int flag)
 {
-    func_020498d0(&partyCharacter_[0], flag);
+    partyCharacter_[0].setWriggleFlag(flag);
 }
 
 ARM void TownPartyDraw::setWriggleCharaAll(int flag)
 {
     for (int i = 0; i < countReal_; i++) {
-        func_020498d0(&partyCharacter_[i], flag);
+        partyCharacter_[i].setWriggleFlag(flag);
     }
 }
 
@@ -265,15 +266,15 @@ ARM void TownPartyDraw::execute()
     if (exe_ == 0) {
         return;
     }
-    if (func_02081254() & 1) {
+    if (unkfunc_02081254() & 1) {
         for (int i = 0; i < 8; i++) {
-            func_020497bc(&partyCharacter_[i], 1);
+            partyCharacter_[i].unkfunc_020497bc(1);
             partyCharacter_[i].setBoxTestOff(true);
         }
     } else {
         for (int i = 0; i < 8; i++) {
-            func_020497bc(&partyCharacter_[i], 0);
-            func_02049374(&partyCharacter_[i]);
+            partyCharacter_[i].unkfunc_020497bc(0);
+            partyCharacter_[i].execute();
         }
     }
 }
@@ -283,7 +284,7 @@ ARM void TownPartyDraw::setExcute(int flag)
     exe_ = flag;
     if (flag == 0) {
         for (int i = 0; i < 8; i++) {
-            func_020497bc(&partyCharacter_[i], 1);
+            partyCharacter_[i].unkfunc_020497bc(1);
             partyCharacter_[i].setBoxTestOff(true);
         }
     }
@@ -292,7 +293,7 @@ ARM void TownPartyDraw::setExcute(int flag)
 ARM void TownPartyDraw::changePose(int pose)
 {
     char path[128];
-    func_02049190(&partyCharacter_[0]);
+    partyCharacter_[0].unkfunc_02049190();
     if (dataObject_.getAddr()) {
         dataObject_.cleanup();
     }
@@ -304,7 +305,7 @@ ARM void TownPartyDraw::changePose(int pose)
 
 ARM void TownPartyDraw::restorePose()
 {
-    func_02049190(&partyCharacter_[0]);
+    partyCharacter_[0].unkfunc_02049190();
     if (dataObject_.getAddr()) {
         dataObject_.cleanup();
     }
@@ -321,7 +322,7 @@ ARM void TownPartyDraw::setSleep(int sleep)
 ARM void TownPartyDraw::requestCharacterReload()
 {
     for (int i = 0; i < count_; i++) {
-        func_02049a18(&partyCharacter_[i]);
+        partyCharacter_[i].unkfunc_02049a18();
     }
 }
 
@@ -365,12 +366,12 @@ ARM void TownPartyDraw::setVanAndBasha()
         }
         dss::sprintf_s(path, sizeof(path), "data/chr/h%03d.pack", chara);
         partyCharacter_[i].setRender(&TownSystem::getSingleton()->render_);
-        func_02049984(&TownCamera::getSingleton()->camera_.unk_004);
+        BillboardCharacter::setCamera(&TownCamera::getSingleton()->camera_.unk_004);
         partyCharacter_[i].setup(path, 0);
         partyCharacter_[i].setPosition(defaultPosition);
-        func_0204948c(&partyCharacter_[i], 0);
+        partyCharacter_[i].setRotate(0);
         partyCharacter_[i].enable_ = 0;
-        func_0204977c(&partyCharacter_[i], 0);
+        partyCharacter_[i].unkfunc_0204977c(0);
     }
     count_ = dss::clamp<int>(count_, 0, 6);
     for (int i = 0; i < count_; i++) {

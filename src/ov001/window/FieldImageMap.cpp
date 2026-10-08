@@ -1,4 +1,5 @@
 #include "ov001/window/FieldImageMap.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "ov001/fld/FieldSystem.hpp"
 #include "main/global/Global.hpp"
 #include "main/dss/Camera.hpp"
@@ -57,7 +58,7 @@ ARM void FieldImageMap::execute()
         map_->setAlpha(alpha_);
         break;
     case 4:
-        if (func_02081254() & 1) {
+        if (unkfunc_02081254() & 1) {
             return;
         }
         phase_ = 5;
@@ -85,7 +86,7 @@ ARM void FieldImageMap::execute()
         unk_008.unkfunc_0212cfd4(alpha_);
         break;
     case 0:
-        if (func_02081254() & 1) {
+        if (unkfunc_02081254() & 1) {
             return;
         }
         map_->load();

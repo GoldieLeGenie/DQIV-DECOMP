@@ -124,7 +124,7 @@ src/ov003/btl/BattleMessage.cpp:
 src/ov003/status/ExcelParamBis.cpp:
     complete
     .text start:0x0212c0e8 end:0x0212c118
-    .rodata start:0x02130e9c end:0x02139040
+    .rodata start:0x02130e98 end:0x02139040
 
 src/ov003/btl/AutoAction.cpp:
     complete
@@ -240,3 +240,7 @@ src/ov003/btl/BattleTurn.cpp:
     .text start:0x02123cf4 end:0x02123fa0
     .data start:0x02139e98 end:0x0213a060
 
+src/ov003/ModulePadding_ov003.cpp:
+    complete
+    .ctor start:0x021396c8 end:0x021396cc
+    .data start:0x0213ca50 end:0x0213ca60

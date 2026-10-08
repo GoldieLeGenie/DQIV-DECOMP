@@ -3,6 +3,7 @@
 #include "GameInfo.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/Pad.hpp"
+#include "main/dss/UnkMemory.hpp"
 
 namespace cmn{
     struct CommonCounterInfo{
@@ -21,12 +22,5 @@ namespace cmn{
     extern CommonCounterInfo g_CommonCounterInfo;
 }
 
-struct UnkTouchPanel {                           // DS touch-panel state 
-    char unk_00[0x18];
-    int touch_;                                  // 0x18
-    int x_;                                      // 0x1C
-    int y_;                                      // 0x20
-};
-extern UnkTouchPanel data_0211a5d4;
 
  

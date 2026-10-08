@@ -1,5 +1,6 @@
 #include "main/menu/UiMsg.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
+#include "main/menu/UnkMenuDisplays.hpp"
 #include "main/text/TextAPI.hpp"
 #include "main/dss/DssUtils.hpp"
 
@@ -14,7 +15,7 @@ static unsigned char s_msgSndQue[33];
 
 THUMB void ui_MsgSystemInit()
 {
-    s_draw = (MessageWindow*)data_020f641c;
+    s_draw = &data_020f530c.message_;
     ui_MsgSndSet(0x39);
 }
 
@@ -67,7 +68,7 @@ THUMB void ui_MsgAdd(const char* str)
     buf[1] = '0';
     name[0] = 0;
     if (*(const unsigned char*)str == '@') {
-        func_02087e08(buf + 2, 0x3fe, str + 1);
+        unkfunc_02087e08(buf + 2, 0x3fe, str + 1);
     } else {
         dss::strcpy_s(buf + 2, 0x3fe, (char*)str);
     }
@@ -77,9 +78,9 @@ THUMB void ui_MsgAdd(const char* str)
     }
     buf[1] = snd;
     if (s_msgCur == 0) {
-        func_0204de2c(s_draw, s_windowType, name, buf);
+        s_draw->unkfunc_0204de2c(s_windowType, name, buf);
     } else {
-        func_0204de50(s_draw, buf);
+        s_draw->unkfunc_0204de50(buf);
     }
     s_msgCur++;
 }
@@ -87,23 +88,23 @@ THUMB void ui_MsgAdd(const char* str)
 THUMB void unkfunc_0205614c()
 {
     unkfunc_02056300();
-    func_0204de6c(s_draw);
+    s_draw->unkfunc_0204de6c();
 }
 
 THUMB void ui_MsgAddWait()
 {
     unkfunc_02056300();
-    func_0204de7c(s_draw);
+    s_draw->unkfunc_0204de7c();
 }
 
 THUMB void unkfunc_02056174()
 {
-    data_020f7e10.unkfunc_0204f264(1);
+    data_020f530c.yesNo_.unkfunc_0204f264(1);
 }
 
 THUMB void unkfunc_02056184(int cursor)
 {
-    func_02052aa4(&data_020f7e10, cursor);
+    data_020f530c.yesNo_.unkfunc_02052aa4(cursor);
 }
 
 THUMB void unkfunc_02056194(int strNo)
@@ -157,22 +158,22 @@ THUMB void unkfunc_02056194(int strNo)
     }
     buf[1] = snd;
     if (s_msgCur == 0) {
-        func_0204de2c(s_draw, s_windowType, "", "");
-        func_0204de50(s_draw, "\x1b" "A");
-        func_0204de50(s_draw, buf);
-        func_0204def4(s_draw);
+        s_draw->unkfunc_0204de2c(s_windowType, "", "");
+        s_draw->unkfunc_0204de50("\x1b" "A");
+        s_draw->unkfunc_0204de50(buf);
+        s_draw->unkfunc_0204def4();
     } else {
-        func_0204de50(s_draw, "\x1b" "A");
-        func_0204de50(s_draw, buf);
+        s_draw->unkfunc_0204de50("\x1b" "A");
+        s_draw->unkfunc_0204de50(buf);
     }
-    func_0204df1c(s_draw, name);
+    s_draw->unkfunc_0204df1c(name);
     s_msgCur++;
 }
 
 THUMB void unkfunc_02056300()
 {
     if (s_msgCur == 0) {
-        func_0204de2c(s_draw, s_windowType, "", "");
+        s_draw->unkfunc_0204de2c(s_windowType, "", "");
         s_msgCur++;
     }
 }

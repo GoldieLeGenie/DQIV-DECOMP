@@ -68,3 +68,5 @@ THUMB int param::ColorCorrect::getCorrectIndex(param::ColorCorrect *data, char *
     }
     return -1;
 }
+
+DataObject param::ColorCorrect::data_;

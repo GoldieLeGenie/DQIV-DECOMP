@@ -1,8 +1,12 @@
 #include "main/menu/TownMenu_MESSAGE.hpp"
+#include "main/menu/UnkMenuDisplays.hpp"
 #include "main/dss/Pad.hpp"
 #include "main/menu/CommonMenu_YESNO.hpp"
 #include "main/cmn/CommonCounterInfo.hpp"
 #include "main/status/GameStatus.hpp"
+#include "main/debug/UnkDebugInfo.hpp"
+
+int data_020be244[5] = { 1, 7, 9, 2, 4 };
 
 static MENUITEM_DATA yesNoItemData[] = {
     {1, 2, 0, 0, 0x100, 0xc0},
@@ -20,7 +24,7 @@ THUMB void TownMenu_MESSAGE::menuSetup()
     yesNoSuperCancel_ = 1;
     suspendInput_ = 0;
     noClose_ = 0;
-    func_0203cc0c(data_020f1d88);
+    data_020f1d88.unkfunc_0203cc0c();
 }
 
 THUMB void TownMenu_MESSAGE::menuExecute()
@@ -29,9 +33,9 @@ THUMB void TownMenu_MESSAGE::menuExecute()
         yesNoItem_.setMenuItem(yesNoItemData, 1, 1, 1);
     }
     if (noClose_ != 0) {
-        Data020f6340* const busy = &data_020f6340;
-        busy->unk_34 = 0xb;
-        func_0204f53c(busy, 0);
+        UnkMenuFaceDisplay* const busy = &data_020f530c.face_;
+        busy->mode_ = 11;
+        busy->unkfunc_0204f53c(0);
         busy->unkfunc_0204f270(0xe0, 0x164);
         busy->unkfunc_0204f264(1);
     }
@@ -48,7 +52,7 @@ THUMB void TownMenu_MESSAGE::menuUpdate()
         if (ynExec_ == 0) {
             yesNoItem_.result_ = 0;
             yesNoItem_.lastresult_ = 0;
-            func_02051a7c(&yesNoItem_);
+            yesNoItem_.execInput();
             int key = 0;
             if ((dss::g_Pad.edge() & 0x1) || (dss::g_Pad.edge() & 0x2) ||
                 (dss::g_Pad.edge() & 0x400) || (dss::g_Pad.edge() & 0x800) ||
@@ -59,11 +63,11 @@ THUMB void TownMenu_MESSAGE::menuUpdate()
             }
             if (keyEnable_ != 0) {
                 if (yesNo_ != 0) {
-                    if (func_0204dfd8(s_draw) && key == 1) {
-                        func_0204e040(s_draw);
+                    if (s_draw->unkfunc_0204dfd8() && key == 1) {
+                        s_draw->unkfunc_0204e040();
                         keyEnable_ = 0;
                     }
-                    if (func_0204e004(s_draw)) {
+                    if (s_draw->unkfunc_0204e004()) {
                         data_020ed094.open();
                         data_020ed094.setYesNo(yesNoCursor_);
                         data_020ed094.setPosition(ynPosX_, ynPosY_);
@@ -72,24 +76,24 @@ THUMB void TownMenu_MESSAGE::menuUpdate()
                         keyEnable_ = 0;
                     }
                 } else {
-                    if (func_0204dfd8(s_draw) && key == 1) {
-                        func_0204e040(s_draw);
+                    if (s_draw->unkfunc_0204dfd8() && key == 1) {
+                        s_draw->unkfunc_0204e040();
                         keyEnable_ = 0;
                     }
-                    if (func_0204e004(s_draw) && key == 1) {
-                        func_0204e040(s_draw);
+                    if (s_draw->unkfunc_0204e004() && key == 1) {
+                        s_draw->unkfunc_0204e040();
                         keyEnable_ = 0;
                     }
                 }
             } else {
-                if (func_0204dfd8(s_draw) && key == 0) {
+                if (s_draw->unkfunc_0204dfd8() && key == 0) {
                     keyEnable_ = 1;
                 }
-                if (func_0204e004(s_draw) && key == 0) {
+                if (s_draw->unkfunc_0204e004() && key == 0) {
                     keyEnable_ = 1;
                 }
             }
-            if (func_0204e018(s_draw)) {
+            if (s_draw->unkfunc_0204e018()) {
                 stat_ = MENUBASE_STAT_OK;
             }
         } else {
@@ -157,7 +161,7 @@ THUMB void TownMenu_MESSAGE::openMessage(eMessageWindow type)
 THUMB void TownMenu_MESSAGE::addMessageNOWAIT(int messageID)
 {
     ui_MsgAdd(messageID);
-    func_0203cc20(data_020f1d88, messageID);
+    data_020f1d88.unkfunc_0203cc20(messageID);
 }
 
 THUMB void TownMenu_MESSAGE::addMessage(int messageID)
@@ -168,7 +172,7 @@ THUMB void TownMenu_MESSAGE::addMessage(int messageID)
     }
     ui_MsgAdd(messageID);
     unkfunc_0205614c();
-    func_0203cc20(data_020f1d88, messageID);
+    data_020f1d88.unkfunc_0203cc20(messageID);
 }
 
 THUMB void TownMenu_MESSAGE::addMessage(int messageID1, int messageID2)
@@ -208,7 +212,7 @@ THUMB void TownMenu_MESSAGE::addMessage(const char* message)
 {
     ui_MsgAdd(message);
     unkfunc_0205614c();
-    func_0203cc20(data_020f1d88, 99999999);
+    data_020f1d88.unkfunc_0203cc20(99999999);
 }
 
 THUMB void TownMenu_MESSAGE::setYesNo()
@@ -242,9 +246,9 @@ THUMB void TownMenu_MESSAGE::restartMessage()
     ynExec_ = 0;
     ynPosX_ = 0xc0;
     ynPosY_ = 0x40;
-    func_0204dfc0(s_draw);
+    s_draw->unkfunc_0204dfc0();
     s_msgCount = 0;
-    func_0203cc0c(data_020f1d88);
+    data_020f1d88.unkfunc_0203cc0c();
 }
 
 THUMB void TownMenu_MESSAGE::addMessageWAITKEY()
@@ -254,12 +258,12 @@ THUMB void TownMenu_MESSAGE::addMessageWAITKEY()
 
 THUMB bool TownMenu_MESSAGE::isMessageWAITPROG()
 {
-    return func_0204e02c(s_draw);
+    return s_draw->unkfunc_0204e02c();
 }
 
 THUMB void TownMenu_MESSAGE::clearMessageWAITPROG()
 {
-    func_0204e064(s_draw, 0);
+    s_draw->unkfunc_0204e064(0);
 }
 
 THUMB void TownMenu_MESSAGE::setMessageCursor(bool flag)
@@ -281,11 +285,11 @@ THUMB void TownMenu_MESSAGE::setMessageLastCursor(bool flag)
 THUMB void TownMenu_MESSAGE::SetNoClose(bool flag)
 {
     noClose_ = flag;
-    Data020f6340* obj = &data_020f6340;
+    UnkMenuFaceDisplay* obj = &data_020f530c.face_;
     if (noClose_ != 0) {
-        func_0204f554(obj);
-        obj->unk_34 = 0xb;
+        obj->unkfunc_0204f554();
+        obj->mode_ = 11;
         return;
     }
-    obj->unk_34 = 0;
+    obj->mode_ = 0;
 }

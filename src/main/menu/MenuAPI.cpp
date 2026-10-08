@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "main/menu/MenuAPI.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/menu/MenuManager.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
@@ -153,7 +154,7 @@ THUMB void MenuAPI::openBattleMenu()
 
 THUMB void MenuAPI::setBattleBackDrop(unsigned short backDrop)
 {
-    func_02081264(backDrop);
+    unkfunc_02081264(backDrop);
 }
 
 THUMB void MenuAPI::openBattleStadiumAbort()
@@ -202,17 +203,17 @@ THUMB bool MenuAPI::isWaitMessage()
 
 THUMB int MenuAPI::isMessageWaitTrigger()
 {
-    return func_0204dfd8(s_draw);
+    return s_draw->unkfunc_0204dfd8();
 }
 
 THUMB void MenuAPI::clearMessageWaitTriggerSE()
 {
-    func_0204e040(s_draw);
+    s_draw->unkfunc_0204e040();
 }
 
 THUMB void MenuAPI::clearMessageWaitTriggerNOSE()
 {
-    func_0204e050(s_draw);
+    s_draw->unkfunc_0204e050();
 }
 
 THUMB void MenuAPI::openEncountMessage()
@@ -285,12 +286,12 @@ THUMB int MenuAPI::isFinishMessageWindow()
 
 THUMB int MenuAPI::isFinishMessage()
 {
-    return func_0204e004(s_draw);
+    return s_draw->unkfunc_0204e004();
 }
 
 THUMB int MenuAPI::isEndMessage()
 {
-    return func_0204e018(s_draw);
+    return s_draw->unkfunc_0204e018();
 }
 
 THUMB void MenuAPI::suspendMessageKeyInput(int flag)

@@ -1,6 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/dss/DssUtils.hpp"
+#include "main/dss/UnkBgBuffer.hpp"
 #include "main/window/InputControl.hpp"
 #include "main/window/NormalControl.hpp"
 #include "main/window/MapControl.hpp"
@@ -101,7 +102,5 @@ struct UnkG2dSprite {                           // NNSG2dExtendedSprite-like (0x
     short unk_3a;                               // 0x3A
 };
 
-void unkfunc_020817d8();
-int  unkfunc_0208198c();
 void unkfunc_02068ec8(int attr);                // sprite attribute enable (NNS G2D-like)
 void unkfunc_02068eec(UnkG2dSprite* sprite);    // draw software sprite

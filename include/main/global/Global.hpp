@@ -1,5 +1,7 @@
 #pragma once
 #include "main/dss/DssUtils.hpp"
+#include "main/dss/DssCore.hpp"
+#include "main/dss/UnkSprite2D.hpp"
 #include "main/global/GlobalGamePart.hpp"
 #include "main/global/GlobalDQ4.hpp"
 
@@ -79,7 +81,7 @@ struct GlobalChangePart : UnkGlobalPart {
     int nextPart_;                             
 
     virtual void update();
-    virtual bool isEnd();
+    virtual int isEnd();
     void setNextPart(int part);
 };
 
@@ -89,7 +91,7 @@ struct GlobalWaitPart : UnkGlobalPart {
 
     virtual void update();
     virtual void draw();
-    virtual bool isEnd();
+    virtual int isEnd();
     int isRunning();
 };
 
@@ -109,7 +111,7 @@ struct GlobalFade : UnkGlobalPart {
     GlobalFade();
     virtual void update();
     virtual void draw();
-    virtual bool isEnd();
+    virtual int isEnd();
     void fadeOutBlack(int frames);
     void fadeOutWhite(int frames);
     void fadeInBlack(int frames);
@@ -119,6 +121,39 @@ struct GlobalFade : UnkGlobalPart {
     int isFadeOutBlack();
     int isFadeInBlack();
     int isFadeOutWhite();
+};
+
+// Screen fade with one full screen sprite per screen, run by the global parts like GlobalFade
+/* vtable 0x020c1b88 */
+struct UnkSpriteFade : UnkGlobalPart {
+    GlobalFade::FADE_STATE state_;              // 0x04
+    int alpha_;                                 // 0x08
+    int count_;                                 // 0x0C
+    int frames_;                                // 0x10
+    UnkSprite2D sprite_[2];                     // 0x14 main, sub
+
+    UnkSpriteFade()
+    {
+        sprite_[0].unkfunc_02084534(0, 0);
+        sprite_[0].unkfunc_0208456c(256, 192);
+        sprite_[0].texture_ = NULL;
+        sprite_[0].unk_2c = 1;
+        sprite_[0].setColor(0, 0, 0);
+        sprite_[0].setPolygonID(63);
+        sprite_[0].setAlpha(0);
+        sprite_[0].unk_28 = 0;
+        sprite_[1].unkfunc_02084534(0, 0);
+        sprite_[1].unkfunc_0208456c(256, 192);
+        sprite_[1].texture_ = NULL;
+        sprite_[1].unk_2c = 2;
+        sprite_[1].setColor(0, 0, 0);
+        sprite_[1].setAlpha(0);
+        sprite_[1].setPolygonID(63);
+        sprite_[1].unk_28 = 0;
+    }
+    virtual void update();
+    virtual void draw();
+    virtual int isEnd();
     inline void flashWhite(int frames, int r, int g, int b);
 };
 
@@ -126,27 +161,20 @@ extern Global g_Global; // 0x020c768c
 extern GlobalChangePart g_GlobalChangePart;
 extern GlobalWaitPart g_GlobalWaitPart;
 extern GlobalFade g_GlobalFade;
-extern GlobalFade data_020f21f8;   // 
-extern unsigned char data_020f220c[0x38];   // screen, RGB555 color at 0x34
-extern unsigned char data_020f2244[0x38];   // screen, RGB555 color at 0x34
+extern UnkSpriteFade data_020f21f8;
 
-extern char mlb1a[8]; // "mlb1a data_0208c9ec"
-extern char za1f1[8]; //za1f1 data_0208c9f4
+extern const char mlb1a[8]; // "mlb1a data_0208c9ec"
+extern const char za1f1[8]; //za1f1 data_0208c9f4
 extern char s_mapEv01[];                            // "ev01"
 
-extern "C" void func_02084e8c(void* screen, int r, int g, int b);   // sets RGB555 color at 0x34
 
-inline void GlobalFade::flashWhite(int frames, int r, int g, int b)
+inline void UnkSpriteFade::flashWhite(int frames, int r, int g, int b)
 {
-    state_ = FADE_IN_WHITE;
+    state_ = GlobalFade::FADE_IN_WHITE;
     count_ = 0;
     frames_ = frames;
-    func_02084e8c(data_020f220c, r, g, b);
-    func_02084e8c(data_020f2244, r, g, b);
+    sprite_[0].setColor(r, g, b);
+    sprite_[1].setColor(r, g, b);
     data_0210bc18.unkfunc_02058294(this);
 }
 
-extern "C" {
-    void func_0207ed24(int brightness);
-    void func_0207ed3c(int brightness);
-}

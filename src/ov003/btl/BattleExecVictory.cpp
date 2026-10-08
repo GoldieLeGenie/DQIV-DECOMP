@@ -606,8 +606,8 @@ THUMB void btl::BattleExecVictory38::setup()
     data_020f21f8.state_ = GlobalFade::FADE_NONE;
     data_020f21f8.count_ = 0;
     data_020f21f8.frames_ = 30;
-    func_02084e8c(data_020f220c, 0, 0, 0);
-    func_02084e8c(data_020f2244, 0, 0, 0);
+    data_020f21f8.sprite_[0].setColor(0, 0, 0);
+    data_020f21f8.sprite_[1].setColor(0, 0, 0);
     data_0210bc18.unkfunc_02058294(&data_020f21f8);
     MenuAPI::closeMenu();
     counter_ = 0;

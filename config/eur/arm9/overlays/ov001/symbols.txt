@@ -514,3 +514,5 @@ g_cmd_field_get_down_ship kind:bss addr:0x02164a2c
 @1648 kind:bss(size=0xc) addr:0x02164a3c local
 @1646 kind:bss(size=0xc) addr:0x02164a48 local
 @1647 kind:bss(size=0xc) addr:0x02164a54 local
+module_padding_ov001_ctor_021606bc kind:data(byte[4]) addr:0x021606bc
+module_padding_ov001_data_02160e44 kind:data(byte[28]) addr:0x02160e44

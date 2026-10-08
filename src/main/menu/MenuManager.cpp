@@ -1,4 +1,7 @@
 #include "main/menu/MenuManager.hpp"
+#include "main/dss/UnkDisplay.hpp"
+#include "main/menu/UnkMenuBg.hpp"
+#include "main/menu/UnkMenuPartsDraw.hpp"
 
 static int s_updateTime;
 static MenuSubManager* s_currentMenu;
@@ -31,22 +34,22 @@ THUMB void MenuManager::setup()
 THUMB void MenuManager::setMenuDisplay(int mode)
 {
     if (mode == MENUDISPLAY_OFF) {
-        func_02081728(4);
-        func_0204fea8(data_02108518, 0);
-        func_0208120c(data_0211c4f0);
+        unkfunc_02081728(4);
+        data_020facb8.icon_.unkfunc_0204fea8(0);
+        unkfunc_0208120c(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     }
     if (mode == MENUDISPLAY_NORMAL) {
-        func_02081728(4);
-        func_0204fea8(data_02108518, 0);
-        func_0208120c(data_0211c4f0);
+        unkfunc_02081728(4);
+        data_020facb8.icon_.unkfunc_0204fea8(0);
+        unkfunc_0208120c(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     }
     if (mode == MENUDISPLAY_EXTRA) {
-        func_02081728(4);
-        func_0208120c(data_0211c4d8);
-        func_0204fea8(data_02108518, 1);
+        unkfunc_02081728(4);
+        unkfunc_0208120c(&dss::g_DISPLAYPLUGIN_CAPTURE);
+        data_020facb8.icon_.unkfunc_0204fea8(1);
     }
     clearMenuAll();
-    func_0207e810(data_02116ce0);
+    data_02116ce0.unkfunc_0207e810();
     s_currentMenu->m_update = 1;
 }
 
@@ -82,8 +85,8 @@ THUMB void MenuManager::execute()
         enable = request;
         s_redraw = 1;
         if (request == 0) {
-            func_02050614(1);
-            func_02050494();
+            unkfunc_02050614(1);
+            unkfunc_02050494();
             return;
         }
     }
@@ -104,17 +107,17 @@ THUMB void MenuManager::execute()
     if (s_currentMenu->m_update) {
         s_redraw = 1;
     }
-    int start = func_0207e7e8();
-    func_02050614(s_redraw);
+    int start = unkfunc_0207e7e8();
+    unkfunc_02050614(s_redraw);
     s_currentMenu->draw(0, 0xc0);
     s_currentMenu->m_update = 0;
-    int drawTime = func_0207e7e8() - start;
+    int drawTime = unkfunc_0207e7e8() - start;
     if (s_redraw) {
-        func_02050494();
+        unkfunc_02050494();
     }
-    start = func_0207e7e8();
+    start = unkfunc_0207e7e8();
     s_currentMenu->update();
-    int updateTime = func_0207e7e8() - start;
+    int updateTime = unkfunc_0207e7e8() - start;
     if (s_redraw) {
         s_redraw = 0;
         s_drawTimeRedraw = drawTime;

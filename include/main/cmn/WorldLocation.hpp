@@ -10,6 +10,8 @@ namespace cmn
     struct WorldLocation
     {
         param::CLUTCode *pCLUTCode_;
+        WorldLocation();
+        ~WorldLocation();
         static WorldLocation* getSingleton();
         void initialize();
         void terminate();

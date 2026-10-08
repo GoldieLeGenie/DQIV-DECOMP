@@ -7,6 +7,7 @@
 #include "main/profile/Profile.hpp"
 #include "main/status/ShopList.hpp"
 #include "main/dss/DssUtils.hpp"
+#include "main/cmn/UnkEnvoyManager.hpp"
 
 TextHook gTextHook;
 
@@ -33,10 +34,10 @@ THUMB int TextHook::extractDefaultTextTest(char* text, int size, int id, int par
     char* str;
     switch (id) {
         case 0x1a:
-            data_020f0078 = 1;
+            data_020f0078.mode_ = 1;
             str = "\xe3\x82\xbd\xe3\x83\xad\xe3\x82\xbf\xe3\x82\xa6\xe3\x83\xb3";
-            if (func_0203a354(&data_020f0078) == 1) {
-                name = func_0203a820(&data_020f0078);
+            if (data_020f0078.unkfunc_0203a354() == 1) {
+                name = data_020f0078.unkfunc_0203a820();
                 if (name[0] != 0 && name[0] != 0xff) {
                     str = (char*)name;
                 }
@@ -45,9 +46,9 @@ THUMB int TextHook::extractDefaultTextTest(char* text, int size, int id, int par
             return 1;
         case 0x1c:
             str = "\xe3\x82\xbd\xe3\x83\xad";
-            if (func_0203a354(&data_020f0078) == 1) {
-                data_020f0078 = 1;
-                name = func_0203a65c(&data_020f0078);
+            if (data_020f0078.unkfunc_0203a354() == 1) {
+                data_020f0078.mode_ = 1;
+                name = data_020f0078.unkfunc_0203a65c();
                 if (name[0] != 0 && name[0] != 0xff) {
                     str = (char*)name;
                 }
@@ -290,7 +291,7 @@ THUMB int TextHook::getMacroStat(int id, int param)
             break;
         }
         case 0x1c: {
-            unsigned char sex = func_0203a714(&data_020f0078);
+            int sex = data_020f0078.unkfunc_0203a714();
             if (sex == SEX_MALE) {
                 result = (MACRO_STAT)(result | MST_MALE);
             }

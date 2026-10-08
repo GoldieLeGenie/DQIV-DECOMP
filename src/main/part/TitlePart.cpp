@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "main/part/TitlePart.hpp"
+#include "main/dss/UnkDisplay.hpp"
 #include "main/global/Global.hpp"
 #include "main/global/StageLink.hpp"
 #include "main/data/DataObject.hpp"
@@ -21,7 +22,7 @@ static TITLE_PART_ITEM s_item[] = {
 
 ARM void TitlePart::initialize()
 {
-    func_0207e804(data_02116ce0);
+    data_02116ce0.unkfunc_0207e804();
     x_ = 1;
     cursor_ = 1;
     buildDate_.unkfunc_02057000();
@@ -30,7 +31,7 @@ ARM void TitlePart::initialize()
     data_0210baf8.end0_ = 0;
     data_0210baf8.end1_ = 0;
     data_0210baf8.end2_ = 0;
-    func_02080e90(data_0211c4cc);
+    unkfunc_02080e90(&dss::g_DISPLAYPLUGIN_SINGLE3D);
     dss::g_Pad.unkfunc_0207f2b4(0);
     int i = 0;
     TITLE_PART_ITEM* item = s_item;
@@ -48,7 +49,7 @@ ARM void TitlePart::initialize()
 
 ARM void TitlePart::terminate()
 {
-    func_0207e810(data_02116ce0);
+    data_02116ce0.unkfunc_0207e810();
 }
 
 ARM void TitlePart::onExecutePart()
@@ -60,7 +61,7 @@ ARM void TitlePart::onExecutePart()
         cursor_++;
     }
     cursor_ = dss::loop<int>(cursor_, 1, s_itemNum);
-    func_0207e810(data_02116ce0);
+    data_02116ce0.unkfunc_0207e810();
     if (dss::g_Pad.edge() & 1) {
         if (cursor_ == 5) {
             g_Global.setMinigame(1);
@@ -74,19 +75,19 @@ ARM void TitlePart::onExecutePart()
 
 ARM void TitlePart::onDrawPart()
 {
-    func_0207e8e0(data_02116ce0, 0, 0, 0x16, s_itemNum + 2);
+    data_02116ce0.unkfunc_0207e8e0(0, 0, 0x16, s_itemNum + 2);
     for (int i = 0; i < s_itemNum; i++) {
-        func_0207e88c(data_02116ce0, 2, i + 1, "%1d:%s", i + 1, s_item[i].name);
+        data_02116ce0.unkfunc_0207e88c(2, i + 1, "%1d:%s", i + 1, s_item[i].name);
     }
-    func_0207e8f4(data_02116ce0, x_, cursor_);
-    func_0207e88c(data_02116ce0, 12, 16, "Size:0x%08x", data_0211a60c.unk_54);
-    func_0207e88c(data_02116ce0, 12, 17, "Size:0x%08x", data_0211a60c.unk_54);
-    func_0207e88c(data_02116ce0, 12, 18, "Size:0x%08x", data_0211a60c.unk_54);
-    func_0207e88c(data_02116ce0, 12, 19, "Size:0x%08x", data_0211a60c.unk_54);
-    func_0207e88c(data_02116ce0, 12, 20, "Size:0x%08x", data_0211a60c.unk_54);
-    func_0207e88c(data_02116ce0, 12, 21, "Size:0x%08x", data_0211a60c.unk_54);
-    func_0207e88c(data_02116ce0, 12, 22, "Build.%s %s", buildDate_.dateString_, buildDate_.time_);
-    func_0207e88c(data_02116ce0, 12, 23, "Convt.%s %s", data_0210baf8.date_, data_0210baf8.time_);
+    data_02116ce0.unkfunc_0207e8f4(x_, cursor_);
+    data_02116ce0.unkfunc_0207e88c(12, 16, "Size:0x%08x", data_0211a60c.unk_54);
+    data_02116ce0.unkfunc_0207e88c(12, 17, "Size:0x%08x", data_0211a60c.unk_54);
+    data_02116ce0.unkfunc_0207e88c(12, 18, "Size:0x%08x", data_0211a60c.unk_54);
+    data_02116ce0.unkfunc_0207e88c(12, 19, "Size:0x%08x", data_0211a60c.unk_54);
+    data_02116ce0.unkfunc_0207e88c(12, 20, "Size:0x%08x", data_0211a60c.unk_54);
+    data_02116ce0.unkfunc_0207e88c(12, 21, "Size:0x%08x", data_0211a60c.unk_54);
+    data_02116ce0.unkfunc_0207e88c(12, 22, "Build.%s %s", buildDate_.dateString_, buildDate_.time_);
+    data_02116ce0.unkfunc_0207e88c(12, 23, "Convt.%s %s", data_0210baf8.date_, data_0210baf8.time_);
 }
 
 ARM void TitlePart::onWindowPart()

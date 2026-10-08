@@ -1,5 +1,6 @@
 #pragma ipa file
 #include "ov015/btl/BattleMenu.hpp"
+#include "main/menu/UnkMenuPartsDraw.hpp"
 
 static UnkMenuParts s_parts[] = {
     { 0x01, 0x00, (short)0xf000, 0, 0x00, 0x98, 0xe0, 0x28 },
@@ -48,11 +49,11 @@ THUMB void UnkBattleMenu_0216e270::menuDraw()
     s_param[3] = 0xa;
     // "@テストです" ("this is a test")
     s_param[4] = (int)"@\x83\x65\x83\x58\x83\x67\x82\xc5\x82\xb7";
-    func_02050ea8(s_parts, s_param);
+    unkfunc_02050ea8(s_parts, s_param);
     menuItem_.drawActive();
 }
 
 THUMB void UnkBattleMenu_0216e270::menuUpdate()
 {
-    func_02051a7c(&menuItem_);
+    menuItem_.execInput();
 }

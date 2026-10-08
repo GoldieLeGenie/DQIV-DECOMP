@@ -370,7 +370,7 @@ THUMB void TextExtractor::setHeroName(char* name)
 THUMB int TextExtractor::extract_text_user_str(char* dst, int size, int no)
 {
     char* str = m_user_str[no];
-    func_02088078(str);
+    unkfunc_02088078(str);
     dss::strcpy_s(dst, size, str);
     return 1;
 }
@@ -385,7 +385,7 @@ THUMB int TextExtractor::extract_text_number(char* dst, int size, int no)
     char buf[0x200];
     if (TextAPI::m_lang == 0) {
         dss::sprintf_s(buf, 0x200, "%d", no);
-        func_02087f14(data_020c47d4, data_020c4894, dst, size, buf);
+        unkfunc_02087f14(data_020c47d4, data_020c4894, dst, size, buf);
     } else {
         dss::sprintf_s(dst, size, "%d", no);
     }

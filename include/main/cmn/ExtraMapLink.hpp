@@ -85,6 +85,8 @@ namespace cmn
         void setExtraLinkFieldAbsPos(int fieldType, dss::Fix32Vector3& pos, short dir);
         void setLinkData(int nowId, int nextId, LINK_TYPE type, const char* nowMapName, const char* nextMapName);
         void setLinkData(int nowId, int nextId, LINK_TYPE type, const char* nowMapName, const char* nextMapName,dss::Fix32Vector3& offset);
+        void setData(int index, int nowId, int nextId, LINK_TYPE type, const char* nowMapName, const char* nextMapName,
+                     dss::Fix32Vector3& offset);
     };
 
     extern ExtraMapLink g_extraMapLink;    // data_020ed28c
@@ -92,5 +94,4 @@ namespace cmn
 
 struct Global;
 
-extern "C" void func_020290cc(cmn::ExtraMapLink* self, int index, int nowId, int nextId, int type, const char* mapName1, const char* mapName2, dss::Fix32Vector3* offset); // cmn::ExtraMapLink::setData
 

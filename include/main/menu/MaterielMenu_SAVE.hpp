@@ -41,7 +41,7 @@ struct MaterielMenu_SAVE : menu::MenuBase
     int messageCounter_;                /* 0xE4 */
     int saveResult_;                    /* 0xE8 */
     int waitFrame_;                     /* 0xEC */
-    CatalogView* catalogview_;          /* 0xF0 */
+    profile::CatalogView* catalogview_;          /* 0xF0 */
 
     virtual void menuSetup();
     virtual void menuExecute();

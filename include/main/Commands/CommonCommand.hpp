@@ -136,9 +136,6 @@ int cmd_set_player_ride_on(int* param);
 int cmd_set_ship_pos(int* param);
 int cmd_set_title_part(int* param);
 
-extern "C" {
-    int func_02037d6c(void* obj, int type);
-}
 
 short unkfunc_0202528c(int* param);
 short unkfunc_020254a4(short count, short alive, int mode);
