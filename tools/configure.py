@@ -499,7 +499,7 @@ def add_download_tool_builds(n: ninja_syntax.Writer):
     if args.compiler is None:
         n.build(
             rule="download_tool",
-            outputs=[CC, LD, CC_LIBS],
+            outputs=[CC, LD, CC_LIBS, MWASM_LIBS],
             variables={
                 "tool": "mwccarm",
                 "tag": "latest",

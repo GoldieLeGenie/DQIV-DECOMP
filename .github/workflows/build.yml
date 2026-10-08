@@ -39,11 +39,12 @@ jobs:
           export WINEPREFIX=/tmp/wineprefix
           wineboot --init || true
           python3 tools/configure.py -w wine --no-extract ${{ matrix.version }}
-          ninja arm9 report || true
+          ninja rom report
           echo "--- CI SHA1 ---"
-          sha1sum dqiv_eur.nds || true
+          sha1sum dqiv_${{ matrix.version }}.nds
           echo "--- Expected SHA1 ---"
-          cat config/eur/dqiv_eur.sha1 || true
+          cat config/${{ matrix.version }}/dqiv_${{ matrix.version }}.sha1
+          sha1sum --check config/${{ matrix.version }}/dqiv_${{ matrix.version }}.sha1
 
       - name: Upload report
         if: always()

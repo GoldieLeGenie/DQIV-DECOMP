@@ -24,7 +24,7 @@ def dsd_url(tag: str) -> str:
     return f'https://github.com/AetiasHax/ds-decomp/releases/download/{tag}/dsd-{platform.system}-{platform.machine}{platform.exe}'
 
 def mwccarm_url(tag: str) -> str:
-    return 'http://decomp.aetias.com/files/mwccarm.zip'
+    return 'https://decomp.aetias.com/files/mwccarm.zip'
 
 def wibo_url(tag: str) -> str:
     return f'https://github.com/decompals/wibo/releases/download/{tag}/wibo'
@@ -43,6 +43,7 @@ TOOLS = {
 download_url = TOOLS[args.tool](args.tag)
 print(f'\nDownloading {args.tool} {args.tag}...')
 response = requests.get(download_url)
+response.raise_for_status()
 if download_url.endswith('.zip'):
     zip_file = zipfile.ZipFile(io.BytesIO(response.content))
     zip_file.extractall(args.path)
